@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="根本卓哉 - トリニティインフィニティフレームワーク創始者。スカラー索引済み、概念モデルをGitHubに複数実装。CS50x/AI修了者。">
+    <meta name="robots" content="index, follow">
+    <title>根本卓哉 | Trinity Infinity Framework 創始者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            border-radius: 3px;
+        }
+        
+        .nav-link {
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: #6366f1;
+            transform: translateY(-1px);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- Navigation -->
+    <nav class="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">T</span>
+                </div>
+                <div>
+                    <div class="font-semibold text-xl tracking-tight">根本卓哉</div>
+                    <div class="text-xs text-zinc-500 -mt-1">Tadamasa Nemoto</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-8 text-sm">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-white">About</a>
+                <a href="#framework" class="nav-link text-zinc-400 hover:text-white">Framework</a>
+                <a href="#education" class="nav-link text-zinc-400 hover:text-white">Education</a>
+                <a href="https://github.com/cpsbvbng26-dotcom" target="_blank" 
+                   class="flex items-center gap-x-2 px-4 py-2 rounded-full border border-zinc-700 hover:bg-zinc-900 transition-colors">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
+        <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-sm mb-6">
+            <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span class="text-emerald-400">現在進行中</span>
+        </div>
+        
+        <h1 class="text-6xl md:text-7xl font-semibold tracking-tighter mb-4">
+            根本卓哉
+        </h1>
+        <p class="text-2xl md:text-3xl text-zinc-400 tracking-tight mb-8">
+            Trinity Infinity Framework 創始者
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm">
+            <div class="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl">スカラー索引済み</div>
+            <div class="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl">概念モデル GitHub複数実装</div>
+            <div class="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl">CS50x / AI 修了</div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-800">
+        <div class="grid md:grid-cols-12 gap-x-12 gap-y-8">
+            <div class="md:col-span-5">
+                <h2 class="text-4xl font-semibold tracking-tight mb-4">About</h2>
+                <p class="text-zinc-400">独自のフレームワークと概念モデルを構築し、<br>GitHub上で複数の実装を公開しています。</p>
+            </div>
+            <div class="md:col-span-7 text-lg leading-relaxed text-zinc-300">
+                <p>トリニティインフィニティフレームワークの創始者として、<br>
+                スカラー索引に基づく新しい概念モデルを開発・実装しています。<br>
+                CS50xおよびAI関連の学習を修了し、<br>
+                実践的なソフトウェア開発と理論の融合を目指しています。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Framework -->
+    <div id="framework" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-800">
+        <h2 class="text-4xl font-semibold tracking-tight mb-10">Trinity Infinity Framework</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-infinity text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-3">概念の核心</h3>
+                <p class="text-zinc-400">トリニティ（三位一体）とインフィニティ（無限）を融合させた、独自のフレームワーク設計思想。</p>
+            </div>
+            
+            <div class="card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-database text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-3">スカラー索引</h3>
+                <p class="text-zinc-400">効率的なデータ構造と検索性を重視した、索引ベースのアーキテクチャを実装。</p>
+            </div>
+            
+            <div class="card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-code-branch text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-3">GitHub実装</h3>
+                <p class="text-zinc-400">複数のリポジトリで概念モデルを実装・公開。実践を通じた検証を継続中。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div id="education" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-800">
+        <h2 class="text-4xl font-semibold tracking-tight mb-10">Education &amp; Achievements</h2>
+        
+        <div class="space-y-6">
+            <div class="flex gap-6 items-start">
+                <div class="w-16 h-16 bg-zinc-900 border border-zinc-700 rounded-2xl flex-shrink-0 flex items-center justify-center">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-zinc-400"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-xl">CS50x</div>
+                    <div class="text-zinc-400">Harvard University（edX経由）修了</div>
+                    <div class="text-sm text-zinc-500 mt-1">Computer Science基礎を体系的に習得</div>
+                </div>
+            </div>
+            
+            <div class="flex gap-6 items-start">
+                <div class="w-16 h-16 bg-zinc-900 border border-zinc-700 rounded-2xl flex-shrink-0 flex items-center justify-center">
+                    <i class="fa-solid fa-robot text-3xl text-zinc-400"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-xl">AI関連学習</div>
+                    <div class="text-zinc-400">人工知能分野の専門学習を修了</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Contact -->
+    <footer class="border-t border-zinc-800 bg-zinc-950">
+        <div class="max-w-5xl mx-auto px-6 py-14 text-center">
+            <div class="mb-8">
+                <a href="https://github.com/cpsbvbng26-dotcom" target="_blank"
+                   class="inline-flex items-center gap-x-3 px-8 py-4 rounded-2xl border border-zinc-700 hover:bg-zinc-900 transition-colors text-lg">
+                    <i class="fa-brands fa-github text-2xl"></i>
+                    <span>GitHubで全てのプロジェクトを見る</span>
+                </a>
+            </div>
+            
+            <p class="text-zinc-500 text-sm">
+                © 2026 根本卓哉 — Trinity Infinity Framework
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
