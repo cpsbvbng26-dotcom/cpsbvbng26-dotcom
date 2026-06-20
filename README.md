@@ -7,11 +7,13 @@ cs50x/AI修了者
 日本物理学会元会友
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Stack_Overflow-Autobiographer-F48024?logo=stackoverflow&logoColor=white&style=flat-square" />
 
-  <img src="https://img.shields.io/badge/Qiita-Contribution-55C500?logo=qiita&logoColor=white&style=flat-square" />
+  <img src="https://img.shields.io/badge/Stack%20Overflow-Autobiographer-F58025?logo=stackoverflow&logoColor=white&style=for-the-badge" />
 
-  <img src="https://img.shields.io/badge/CS50x-Harvard-A51C30?logo=harvard&logoColor=white&style=flat-square" />
+  <img src="https://img.shields.io/badge/Qiita-Contributor-55C500?logo=qiita&logoColor=white&style=for-the-badge" />
 
-  <img src="https://img.shields.io/badge/CS50_AI-Harvard-8A2BE2?style=flat-square" />
+  <img src="https://img.shields.io/badge/Harvard-CS50x-A51C30?logo=edx&logoColor=white&style=for-the-badge" />
+
+  <img src="https://img.shields.io/badge/Harvard-CS50AI-8A2BE2?logo=openai&logoColor=white&style=for-the-badge" />
+
 </p>
