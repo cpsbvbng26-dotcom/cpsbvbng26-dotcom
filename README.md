@@ -1,4 +1,4 @@
-🦅Honors & Digital Credentials🦅
+✴︎Honors & Digital Credentials✴︎
 
 [![Trinity-Infinity Framework 2000+ DL](https://img.shields.io/badge/Trinity--Infinity%20Framework-2000%2B%20Downloads-6A5ACD?style=for-the-badge)](https://doi.org/10.6084/m9.figshare.32881664)
 
@@ -18,7 +18,7 @@
 
 [![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
 
-🦅Titles & Identity🦅
+✴︎Titles & Identity✴︎
 
 [![Capricorn](https://img.shields.io/badge/♑%20Capricorn-Zodiac%20Title-8B4513?style=for-the-badge)](#)
 
