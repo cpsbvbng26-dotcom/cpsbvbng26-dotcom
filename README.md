@@ -17,3 +17,11 @@
 [![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
 
 [![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
+
+🦅Titles & Identity🦅
+
+[![Capricorn](https://img.shields.io/badge/♑%20Capricorn-Zodiac%20Title-8B4513?style=for-the-badge)](#)
+
+[![O-Type](https://img.shields.io/badge/🩸%20O%20Type-Blood%20Title-B22222?style=for-the-badge)](#)
+
+[![Soul Number 4](https://img.shields.io/badge/🔢%20Soul%20Number%204-Numerical%20Title-4B0082?style=for-the-badge)](#)
