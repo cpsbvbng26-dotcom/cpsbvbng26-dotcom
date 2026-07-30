@@ -9,3 +9,21 @@
 <img src="https://img.shields.io/badge/Harvard-CS50_AI-8A2BE2?logo=edx&logoColor=white&style=for-the-badge" />
 
 </p>
+
+## About Me
+
+Independent Researcher from Japan.
+
+## Research
+
+- Trinity-Infinity Framework
+- Artificial Intelligence
+- Information Science
+
+## Technologies
+
+- HTML
+- CSS
+- JavaScript
+- Python
+
