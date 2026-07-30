@@ -1,29 +1,149 @@
-<p align="center">
+# Takuya Nemoto
 
-<img src="https://img.shields.io/badge/Qiita-Contribution_1+-55C500?logo=qiita&logoColor=white&style=for-the-badge" />
+<div align="center">
 
-<img src="https://img.shields.io/badge/Stack_Overflow-Autobiographer-F58025?logo=stackoverflow&logoColor=white&style=for-the-badge" />
+# Trinity-Infinity Framework
 
-<img src="https://img.shields.io/badge/Harvard-CS50x-A51C30?logo=edx&logoColor=white&style=for-the-badge" />
+Independent Researcher • Open Source Developer • Information Science
 
-<img src="https://img.shields.io/badge/Harvard-CS50_AI-8A2BE2?logo=edx&logoColor=white&style=for-the-badge" />
+![CS50x Badge]
+![CS50 AI Badge]
+![ORCID]
+![DBSJ]
 
-</p>
+</div>
 
-## About Me
+---
 
-Independent Researcher from Japan.
+## 👋 About Me
 
-## Research
+Hello!
+My name is Takuya Nemoto, an independent researcher and open-source developer from Japan.
+
+My research focuses on information science, systems thinking, artificial intelligence, and the Trinity-Infinity Framework.
+
+---
+
+## 🔬 Research Interests
 
 - Trinity-Infinity Framework
 - Artificial Intelligence
 - Information Science
+- Systems Science
+- Mathematical Thinking
+- Philosophy of Technology
+- Open Science
 
-## Technologies
+---
 
-- HTML
-- CSS
-- JavaScript
-- Python
+## 💻 Technologies
 
+HTML5
+
+CSS3
+
+JavaScript
+
+Python
+
+Git
+
+GitHub
+
+Linux
+
+---
+
+## 🎓 Education
+
+- ZEN University
+- Harvard CS50x
+- Harvard CS50 AI
+
+---
+
+## 🏛 Membership
+
+Second-Class Regular Member
+
+Database Society of Japan (DBSJ)
+
+---
+
+## 📚 Publications
+
+Research articles
+
+Technical reports
+
+GitHub repositories
+
+Conference materials
+
+---
+
+## 🌍 Online Profiles
+
+ORCID
+
+Google Scholar
+
+GitHub
+
+ResearchGate
+
+Medium
+
+Qiita
+
+Zenn
+
+Stack Overflow
+
+DEV Community
+
+---
+
+## 📈 Current Activities
+
+- Open-source development
+- Research documentation
+- AI experiments
+- Web development
+- Academic writing
+
+---
+
+## 🎯 Goals
+
+Building open knowledge.
+
+Creating reusable software.
+
+Publishing reproducible research.
+
+Contributing to the global open-source community.
+
+---
+
+## 📊 GitHub Statistics
+
+(Stats Cards)
+
+---
+
+## 🏆 Certifications
+
+Harvard CS50x
+
+Harvard CS50 AI
+
+---
+
+## 🤝 Collaboration
+
+Feel free to contact me regarding research collaborations, open-source projects, or academic discussions.
+
+---
+
+⭐ Thank you for visiting my GitHub profile!
