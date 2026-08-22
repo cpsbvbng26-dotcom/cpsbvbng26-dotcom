@@ -1,7 +1,5 @@
 ✴︎Honors & Digital Credentials✴︎
 
-[![Trinity-Infinity Framework 2000+ DL](https://img.shields.io/badge/Trinity--Infinity%20Framework-2000%2B%20Downloads-6A5ACD?style=for-the-badge)](https://doi.org/10.6084/m9.figshare.32881664)
-
 [![17LIVE Certified V-Liver](https://img.shields.io/badge/17LIVE-Certified%20V--Liver-FF69B4?style=for-the-badge)](#)
 
 [![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
