@@ -1,7 +1,5 @@
 ✴︎Honors & Digital Credentials✴︎
 
-[![17LIVE Certified V-Liver](https://img.shields.io/badge/17LIVE-Certified%20V--Liver-FF69B4?style=for-the-badge)](#)
-
 [![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
 
 [![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
