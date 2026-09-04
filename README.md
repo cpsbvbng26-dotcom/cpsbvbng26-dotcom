@@ -4,7 +4,7 @@
 
 **技名・二つ名・詠唱を量産する**
 
-[![Demo](https://img.shields.io/badge/Demo-cpsbvbng26--dotcom.github.io-7C3AED?style=for-the-badge&logo=githubpages)](https://cpsbvbng26-dotcom.github.io/chuuni.html)
+[![Demo](https://img.shields.io/badge/Demo-Open-7C3AED?style=for-the-badge&logo=githubpages)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/chuuni.html)
 
 </div>
 
@@ -16,7 +16,7 @@
 
 漢字にカタカナルビ、その下にラテン表記を添えた形で出力します。厨二力レベルを上げるほど修飾が増え、`【】` や `†`、位階の表記が付きます。
 
-**デモ** → [cpsbvbng26-dotcom.github.io/chuuni.html](https://cpsbvbng26-dotcom.github.io/chuuni.html)
+**デモ** → [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/chuuni.html](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/chuuni.html)
 
 ---
 
