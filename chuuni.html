@@ -33,6 +33,7 @@
   --faint: #52525b;
   --violet: #a78bfa;
   --violet-deep: #7c3aed;
+  --grad-end: #e11d48;
   --surface-2: #1f1f23;
   --field-bg: #0c0c0f;
   --border-strong: #3f3f46;
@@ -59,6 +60,7 @@
   --faint: #8b8b93;
   --violet: #6d28d9;
   --violet-deep: #7c3aed;
+  --grad-end: #e11d48;
   --surface-2: #f4f4f5;
   --field-bg: #ffffff;
   --border-strong: #d4d4d8;
@@ -71,6 +73,74 @@
   --aura-2: rgba(244, 63, 94, .06);
 }
 
+
+
+/* ---------- 厨二力に応じた配色 ---------- */
+:root[data-level="1"] {
+  --violet: #7dd3fc;
+  --violet-deep: #0284c7;
+  --grad-end: #0ea5e9;
+  --chip-text: #bae6fd;
+  --glow: rgba(125, 211, 252, .28);
+  --aura-1: rgba(2,132,199,.18);
+  --aura-2: rgba(14,165,233,.08);
+}
+:root[data-theme="light"][data-level="1"] {
+  --violet: #0369a1;
+  --chip-text: #0369a1;
+}
+:root[data-level="2"] {
+  --violet: #93c5fd;
+  --violet-deep: #4f46e5;
+  --grad-end: #6366f1;
+  --chip-text: #c7d2fe;
+  --glow: rgba(147, 197, 253, .28);
+  --aura-1: rgba(79,70,229,.20);
+  --aura-2: rgba(99,102,241,.09);
+}
+:root[data-theme="light"][data-level="2"] {
+  --violet: #4338ca;
+  --chip-text: #4338ca;
+}
+:root[data-level="3"] {
+  --violet: #a78bfa;
+  --violet-deep: #7c3aed;
+  --grad-end: #e11d48;
+  --chip-text: #ddd6fe;
+  --glow: rgba(167, 139, 250, .28);
+  --aura-1: rgba(124,58,237,.22);
+  --aura-2: rgba(244,63,94,.10);
+}
+:root[data-theme="light"][data-level="3"] {
+  --violet: #6d28d9;
+  --chip-text: #6d28d9;
+}
+:root[data-level="4"] {
+  --violet: #e879f9;
+  --violet-deep: #a21caf;
+  --grad-end: #db2777;
+  --chip-text: #f5d0fe;
+  --glow: rgba(232, 121, 249, .28);
+  --aura-1: rgba(162,28,175,.24);
+  --aura-2: rgba(219,39,119,.12);
+}
+:root[data-theme="light"][data-level="4"] {
+  --violet: #a21caf;
+  --chip-text: #a21caf;
+}
+:root[data-level="5"] {
+  --violet: #fb7185;
+  --violet-deep: #be123c;
+  --grad-end: #7f1d1d;
+  --chip-text: #fecdd3;
+  --glow: rgba(251, 113, 133, .28);
+  --aura-1: rgba(190,18,60,.26);
+  --aura-2: rgba(127,29,29,.14);
+}
+:root[data-theme="light"][data-level="5"] {
+  --violet: #be123c;
+  --chip-text: #be123c;
+}
 
 * { box-sizing: border-box; }
 
@@ -130,7 +200,7 @@ header {
   width: 2.25rem; height: 2.25rem; flex: none;
   border-radius: .8rem;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--violet-deep), #e11d48);
+  background: linear-gradient(135deg, var(--violet-deep), var(--grad-end));
   color: #fff; font-weight: 700; font-size: 1.05rem;
 }
 .brand-name { font-weight: 600; letter-spacing: .01em; line-height: 1.25; }
@@ -259,8 +329,8 @@ select:focus-visible, input[type="text"]:focus-visible { outline-offset: 1px; }
   font-size: .95rem; font-weight: 600;
   color: #fff; border: none;
   border-radius: .9rem;
-  background: linear-gradient(100deg, var(--violet-deep), #e11d48);
-  box-shadow: 0 10px 28px -12px rgba(124, 58, 237, .8);
+  background: linear-gradient(100deg, var(--violet-deep), var(--grad-end));
+  box-shadow: 0 10px 28px -12px var(--glow);
   transition: filter .15s, transform .1s;
 }
 .btn-primary:hover { filter: brightness(1.1); }
@@ -781,6 +851,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
       state.seed = CHUUNI.randomSeed();
       $('seed').value = state.seed;
     }
+    document.documentElement.setAttribute('data-level', String(state.level));
     current = CHUUNI.generate(state);
     viewingFavs = false;
     paintFavButton();
@@ -853,6 +924,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   $('level').addEventListener('input', function () {
     var v = clamp(parseInt(this.value, 10), 1, 5, 3);
     $('levelText').textContent = 'Lv.' + v + ' ' + LEVEL_NAMES[v];
+    document.documentElement.setAttribute('data-level', String(v));
   });
   $('level').addEventListener('change', run);
   $('count').addEventListener('change', run);
