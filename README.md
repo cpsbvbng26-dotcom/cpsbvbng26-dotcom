@@ -56,6 +56,10 @@
 
 ✴︎Honors & Digital Credentials✴︎
 
+修了証・オープンバッジ 計 7 件。各バッジは発行機関の検証ページにリンクしています。
+
+**edX**（4 件）
+
 [![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
 
 [![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
@@ -64,11 +68,16 @@
 
 [![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
 
+**東北大学 MOOC / オープンバッジ**（3 件）
+
 [![Tohoku University MOOC: Radiation Safety](https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09)
 
 [![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
 
 [![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
+
+<!-- 新しい修了証を追加するときは、上のいずれかのグループに 1 行足してください。
+     [![講座名](https://img.shields.io/badge/発行元-講座名-色?style=for-the-badge)](検証ページのURL) -->
 
 ---
 
