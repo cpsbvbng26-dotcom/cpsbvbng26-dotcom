@@ -381,6 +381,28 @@ select:focus-visible, input[type="text"]:focus-visible { outline-offset: 1px; }
 }
 .profile-fields dd { margin: 0; min-width: 0; }
 
+.star {
+  background: none; border: none; padding: 0 0 0 .5rem;
+  font-size: 1rem; line-height: 1;
+  color: var(--faint);
+  transition: color .15s, transform .1s;
+}
+.star:hover { color: var(--violet); }
+.star:active { transform: scale(.9); }
+.star[aria-pressed="true"] { color: #f59e0b; }
+
+.card-top .right { display: flex; align-items: center; gap: .1rem; }
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3.5rem 1rem;
+  color: var(--dim);
+  font-size: .9rem;
+  border: 1px dashed var(--line);
+  border-radius: 1.1rem;
+}
+
 .copy {
   align-self: flex-start; margin-top: auto;
   background: none; border: none; padding: .2rem 0;
@@ -508,6 +530,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 
     <div class="actions">
       <button id="go" class="btn-primary" type="button">⚔ 生成する</button>
+      <button id="favView" class="btn" type="button" aria-pressed="false">★ お気に入り</button>
       <button id="copyAll" class="btn" type="button">全部コピー</button>
       <button id="dlTxt" class="btn" type="button">.txt で保存</button>
       <button id="dlJson" class="btn" type="button">.json で保存</button>
@@ -544,6 +567,51 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   var COUNTS = ['10', '30', '50', '100', '300'];
   var state = { kind: 'skill', level: 3, count: 30, seed: '' };
   var current = null;
+
+  /* ---------- お気に入り ---------- */
+  var FAV_KEY = 'chuuni-favorites';
+  var FAV_MAX = 300;
+  var favs = loadFavs();
+  var viewingFavs = false;
+
+  function loadFavs() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+      return Object.prototype.toString.call(raw) === '[object Array]' ? raw : [];
+    } catch (e) { return []; }
+  }
+
+  function saveFavs() {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); }
+    catch (e) { toast('保存できませんでした'); }
+  }
+
+  function favKey(item) { return item.kind + '\u0000' + item.head + '\u0000' + (item.body || ''); }
+
+  function favIndex(item) {
+    var key = favKey(item);
+    for (var i = 0; i < favs.length; i++) if (favKey(favs[i]) === key) return i;
+    return -1;
+  }
+
+  function toggleFav(item) {
+    var at = favIndex(item);
+    if (at >= 0) {
+      favs.splice(at, 1);
+    } else {
+      favs.unshift({ kind: item.kind, label: item.label, head: item.head, latin: item.latin, body: item.body });
+      if (favs.length > FAV_MAX) favs.length = FAV_MAX;
+    }
+    saveFavs();
+    paintFavButton();
+    return at < 0;
+  }
+
+  function paintFavButton() {
+    var b = $('favView');
+    b.textContent = '★ お気に入り' + (favs.length ? '（' + favs.length + '）' : '');
+    b.setAttribute('aria-pressed', String(viewingFavs));
+  }
 
   /* ---------- タブ ---------- */
   var kindsEl = $('kinds');
@@ -611,16 +679,33 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   }
 
   /* ---------- 描画 ---------- */
-  function render(result) {
+  function render(items, metaText) {
     var frag = document.createDocumentFragment();
 
-    result.items.forEach(function (item, i) {
+    items.forEach(function (item, i) {
       var card = el('article', 'card');
       card.style.setProperty('--i', String(Math.min(i, 14)));
 
       var top = el('div', 'card-top');
       top.appendChild(text(el('span', 'chip'), item.label));
-      top.appendChild(text(el('span', 'idx'), '#' + (i + 1)));
+
+      var right = el('div', 'right');
+      right.appendChild(text(el('span', 'idx'), '#' + (i + 1)));
+
+      var star = text(el('button', 'star'), favIndex(item) >= 0 ? '★' : '☆');
+      star.type = 'button';
+      star.title = 'お気に入りに入れる';
+      star.setAttribute('aria-label', 'お気に入りに入れる');
+      star.setAttribute('aria-pressed', String(favIndex(item) >= 0));
+      star.addEventListener('click', function () {
+        var added = toggleFav(item);
+        star.textContent = added ? '★' : '☆';
+        star.setAttribute('aria-pressed', String(added));
+        toast(added ? 'お気に入りに入れました' : 'お気に入りから外しました');
+        if (viewingFavs) showFavorites();
+      });
+      right.appendChild(star);
+      top.appendChild(right);
       card.appendChild(top);
 
       var head = el('div', 'head serif');
@@ -649,10 +734,19 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 
     var out = $('out');
     out.textContent = '';
-    out.appendChild(frag);
+    if (!items.length) {
+      out.appendChild(text(el('p', 'empty'), 'まだお気に入りがありません。カード右上の ☆ を押すと、ここに残ります。'));
+    } else {
+      out.appendChild(frag);
+    }
 
-    $('meta').textContent = result.items.length + ' 件 ／ 厨二力 Lv.' + result.level +
-      '（' + LEVEL_NAMES[result.level] + '） ／ seed: ' + result.seed;
+    $('meta').textContent = metaText;
+  }
+
+  function showFavorites() {
+    viewingFavs = true;
+    paintFavButton();
+    render(favs, favs.length ? 'お気に入り ' + favs.length + ' 件' : 'お気に入り');
   }
 
   /* 「項目 : 内容」の各行を、桁の揃った定義リストに組み直す */
@@ -681,7 +775,10 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
       $('seed').value = state.seed;
     }
     current = CHUUNI.generate(state);
-    render(current);
+    viewingFavs = false;
+    paintFavButton();
+    render(current.items, current.items.length + ' 件 ／ 厨二力 Lv.' + current.level +
+      '（' + LEVEL_NAMES[current.level] + '） ／ seed: ' + current.seed);
     writeHash();
   }
 
@@ -760,14 +857,27 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   $('seed').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') { e.preventDefault(); run(); }
   });
+  $('favView').addEventListener('click', function () {
+    if (viewingFavs) { run(); } else { showFavorites(); }
+  });
+
+  function shown() {
+    return viewingFavs
+      ? { seed: 'favorites', level: state.level, kind: 'favorites', items: favs }
+      : current;
+  }
+
   $('copyAll').addEventListener('click', function () {
-    if (current) copyText(CHUUNI.resultToText(current));
+    var r = shown();
+    if (r && r.items.length) copyText(CHUUNI.resultToText(r));
   });
   $('dlTxt').addEventListener('click', function () {
-    if (current) download('chuuni-' + current.seed + '.txt', CHUUNI.resultToText(current), 'text/plain');
+    var r = shown();
+    if (r && r.items.length) download('chuuni-' + r.seed + '.txt', CHUUNI.resultToText(r), 'text/plain');
   });
   $('dlJson').addEventListener('click', function () {
-    if (current) download('chuuni-' + current.seed + '.json', jsonOf(current), 'application/json');
+    var r = shown();
+    if (r && r.items.length) download('chuuni-' + r.seed + '.json', jsonOf(r), 'application/json');
   });
 
   /* ---------- 起動 ---------- */
@@ -782,6 +892,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   $('count').value = String(state.count);
   $('seed').value = state.seed;
   paintTabs();
+  paintFavButton();
   run();
 })();
 </script>
