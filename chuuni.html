@@ -243,6 +243,30 @@ button { font: inherit; cursor: pointer; }
 .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
 .dice { flex: none; padding-inline: .8rem; }
 
+/* ---------- 狭い画面での操作部 ---------- */
+@media (max-width: 46rem) {
+  .panel { padding: 1.1rem; border-radius: 1.25rem; }
+
+  /* タブは折り返さず、横に流して 1 行に収める */
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1.1rem 1.2rem;
+    padding: 0 1.1rem;
+    /* 右端をぼかして、まだ続くことを示す */
+    mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: none; }
+
+  /* 主ボタンは幅いっぱい、他は均等に並べる */
+  .btn-primary { width: 100%; }
+  .actions .btn { flex: 1 1 8rem; }
+}
+
 /* ---------- メタ情報 ---------- */
 .meta-row {
   display: flex; flex-wrap: wrap; gap: .25rem 1rem;
