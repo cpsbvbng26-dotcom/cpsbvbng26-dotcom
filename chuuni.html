@@ -403,6 +403,49 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 
 .noscript { text-align: center; color: var(--rose); padding: 2rem 0; }
 
+/* ---------- 印刷 ---------- */
+@media print {
+  @page { margin: 14mm; }
+
+  /* 紙は常に白地。テーマの選択に関わらず明るい配色で出す */
+  html, :root[data-theme="light"], :root[data-theme="dark"] { color-scheme: light; }
+  html, body { background: #fff; color: #000; }
+  body::before { display: none; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+
+  /* 操作部と装飾は紙に出さない */
+  header, footer, .hero, .skip-link, .panel .tabs, .panel .controls,
+  .panel .actions, .copy, .idx { display: none !important; }
+
+  .wrap { max-width: none; padding: 0; }
+  .panel { border: none; padding: 0; background: none; }
+  .meta-row { margin: 0 0 6mm; color: #555; font-size: 9pt; }
+
+  .grid { display: block; padding: 0; column-count: 2; column-gap: 10mm; }
+
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+    background: none;
+    border: none;
+    border-top: .4pt solid #bbb;
+    border-radius: 0;
+    padding: 3mm 0 4mm;
+    margin: 0;
+    animation: none;
+    box-shadow: none;
+  }
+  .card:hover { transform: none; box-shadow: none; }
+
+  .chip { border: .4pt solid #999; color: #444; background: none; }
+  .head { color: #000; text-shadow: none; font-size: 13pt; line-height: 2.1; }
+  .latin { color: #666; font-size: 7pt; }
+  .body { color: #111; font-size: 9.5pt; line-height: 1.9; }
+  .body--chant { border-left: .8pt solid #999; }
+  rt { color: #555; }
+}
+
 @media (max-width: 26rem) {
   .brand-sub { display: none; }
   .brand-name { font-size: .95rem; }
