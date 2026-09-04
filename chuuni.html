@@ -170,7 +170,25 @@ body::before {
     radial-gradient(60rem 32rem at 50% -12rem, var(--aura-1), transparent 70%),
     radial-gradient(40rem 24rem at 100% 0%, var(--aura-2), transparent 70%);
   z-index: 0;
+  animation: drift 26s ease-in-out infinite;
 }
+/* 平坦なグラデーションに、ごく薄い粒子を重ねて質感を出す */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -1.5%, 0) scale(1.05); }
+}
+
 
 .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
 
