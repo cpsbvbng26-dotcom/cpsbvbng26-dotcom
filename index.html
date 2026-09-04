@@ -270,6 +270,22 @@ h2 { font-size: 1.75rem; font-weight: 600; margin: 0 0 1.75rem; letter-spacing: 
 }
 
 /* ---------- フッター ---------- */
+
+/* 制作に使ったツールの表示 */
+.built-with {
+  display: inline-flex; align-items: center; gap: .45rem;
+  margin-top: .2rem; padding: .35rem .85rem;
+  font-size: .72rem; letter-spacing: .02em;
+  color: var(--muted); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s, color .15s, background-color .15s;
+}
+.built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
+.built-with .dot {
+  width: .5rem; height: .5rem; flex: none;
+  border-radius: 50%; background: #d97757;
+}
+
 footer { border-top: 1px solid var(--line); }
 .foot { text-align: center; padding: 3rem 0; font-size: .75rem; color: var(--faint); }
 .foot p { margin: .4rem 0; }
@@ -388,6 +404,9 @@ footer { border-top: 1px solid var(--line); }
     <p>語彙はこのサイトのために書き下ろしたもので、生成結果は自由にお使いいただけます。<br>
       ごくまれに既存の作品名・商標と偶然一致する場合があるため、商用利用の前にご確認ください。</p>
     <p>実装には AI コーディング支援ツール Claude Code（Anthropic）を使用しています。</p>
+    <p><a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+      <span class="dot" aria-hidden="true"></span>Built with Claude Code
+    </a></p>
     <p><a href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">ソースコード</a></p>
   </div>
 </footer>
