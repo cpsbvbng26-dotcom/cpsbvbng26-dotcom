@@ -190,7 +190,8 @@ button { font: inherit; cursor: pointer; }
   border: 1px solid var(--line-soft);
   border-radius: 1.1rem;
   padding: 1.15rem 1.2rem;
-  animation: rise .3s ease both;
+  animation: rise .42s cubic-bezier(.22, .68, .28, 1) both;
+  animation-delay: calc(var(--i, 0) * 22ms);
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
 .card:hover {
@@ -198,7 +199,20 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--violet-deep);
   box-shadow: 0 16px 34px -20px rgba(124, 58, 237, .9);
 }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* 動きを減らす設定を尊重する */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: .01ms !important;
+  }
+  .card:hover { transform: none; }
+}
 
 .card-top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
 .chip {
@@ -396,6 +410,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 
     result.items.forEach(function (item, i) {
       var card = el('article', 'card');
+      card.style.setProperty('--i', String(Math.min(i, 14)));
 
       var top = el('div', 'card-top');
       top.appendChild(text(el('span', 'chip'), item.label));
