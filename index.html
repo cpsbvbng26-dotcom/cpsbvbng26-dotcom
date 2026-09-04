@@ -97,6 +97,14 @@ body::before {
 .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
 .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
 
+/* ---------- 和文の組版 ---------- */
+h1, h2, h3, .brand-name, .sample .name {
+  font-feature-settings: "palt" 1;
+}
+.hero h1, h2, .sample .name { text-wrap: balance; }
+.hero p, .card p, .list li { text-wrap: pretty; }
+.sample .name, .list li, .card p { line-break: strict; overflow-wrap: anywhere; }
+
 /* ---------- ヘッダー ---------- */
 header {
   position: sticky; top: 0; z-index: 20;
