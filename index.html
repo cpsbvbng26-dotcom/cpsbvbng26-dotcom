@@ -155,6 +155,23 @@ header {
 }
 .hero p { margin: 0 auto 2rem; color: var(--muted); max-width: 34rem; }
 
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: .4rem;
+}
+
+.skip-link {
+  position: absolute; left: .75rem; top: -3rem;
+  z-index: 50;
+  padding: .55rem 1rem;
+  color: #fff; text-decoration: none; font-size: .85rem;
+  background: var(--violet-deep);
+  border-radius: .6rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: .75rem; }
+
 .cta {
   display: inline-block;
   padding: .9rem 2.4rem;
@@ -270,6 +287,8 @@ footer { border-top: 1px solid var(--line); }
 </head>
 <body>
 
+<a class="skip-link" href="#main">本文へスキップ</a>
+
 <header>
   <div class="wrap head-row">
     <div class="brand">
@@ -287,7 +306,7 @@ footer { border-top: 1px solid var(--line); }
   </div>
 </header>
 
-<section class="wrap hero">
+<section id="main" class="wrap hero" tabindex="-1">
   <h1 class="serif">闇の力を、量産する</h1>
   <p>技名・二つ名・組織名・詠唱・キャラクター設定書を、一度に最大 300 件まとめて生成します。</p>
   <a class="cta" href="./chuuni.html">⚔ ジェネレーターを開く</a>

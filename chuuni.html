@@ -217,6 +217,25 @@ select:focus, input[type="text"]:focus { outline: none; border-color: var(--viol
 
 button { font: inherit; cursor: pointer; }
 
+/* ---------- キーボード操作 ---------- */
+:where(a, button, select, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: .4rem;
+}
+select:focus-visible, input[type="text"]:focus-visible { outline-offset: 1px; }
+
+.skip-link {
+  position: absolute; left: .75rem; top: -3rem;
+  z-index: 50;
+  padding: .55rem 1rem;
+  color: #fff; text-decoration: none; font-size: .85rem;
+  background: var(--violet-deep);
+  border-radius: .6rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: .75rem; }
+
 .btn {
   padding: .6rem 1.1rem;
   font-size: .85rem;
@@ -393,6 +412,8 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 </head>
 <body>
 
+<a class="skip-link" href="#out">生成結果へスキップ</a>
+
 <header>
   <div class="wrap head-row">
     <div class="brand">
@@ -456,7 +477,7 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
   </div>
 </section>
 
-<main id="out" class="wrap grid" aria-live="polite"></main>
+<main id="out" class="wrap grid" role="region" aria-label="生成結果" aria-live="polite" tabindex="-1"></main>
 
 <noscript><p class="noscript">このページの生成機能には JavaScript が必要です。</p></noscript>
 
@@ -490,17 +511,33 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
     b.dataset.kind = k.id;
     b.textContent = k.label;
     b.setAttribute('role', 'tab');
+    b.setAttribute('aria-controls', 'out');
     b.addEventListener('click', function () {
-      state.kind = k.id;
-      paintTabs();
-      run();
+      select(k.id);
+    });
+    b.addEventListener('keydown', function (e) {
+      var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      var tabs = Array.prototype.slice.call(kindsEl.children);
+      var next = tabs[(tabs.indexOf(this) + step + tabs.length) % tabs.length];
+      next.focus();
+      select(next.dataset.kind);
     });
     kindsEl.appendChild(b);
   });
 
+  function select(kind) {
+    state.kind = kind;
+    paintTabs();
+    run();
+  }
+
   function paintTabs() {
     Array.prototype.forEach.call(kindsEl.children, function (b) {
-      b.setAttribute('aria-selected', String(b.dataset.kind === state.kind));
+      var on = b.dataset.kind === state.kind;
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
     });
   }
 
