@@ -162,6 +162,14 @@ footer { border-top: 1px solid var(--line); }
 .foot p { margin: .4rem 0; }
 .foot a { color: var(--dim); }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .card:hover { transform: none; }
+}
+
 @media (max-width: 26rem) {
   .brand-sub { display: none; }
   .brand-name { font-size: .95rem; }
