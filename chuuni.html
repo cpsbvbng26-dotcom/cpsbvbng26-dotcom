@@ -314,6 +314,30 @@ button { font: inherit; cursor: pointer; }
   padding-top: .8rem;
   white-space: pre-wrap;
 }
+/* 詠唱は引用のように、左に罫を立てて見せる */
+.body--chant {
+  border-top: none;
+  border-left: 2px solid var(--violet-deep);
+  padding: .1rem 0 .1rem 1.1rem;
+  margin-top: .4rem;
+}
+
+/* 設定書は項目名と内容を桁で揃える */
+.profile-fields {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: .3rem .9rem;
+  margin: 0;
+}
+.profile-fields dt {
+  color: var(--dim);
+  font-size: .8em;
+  letter-spacing: .1em;
+  padding-top: .35em;
+  white-space: nowrap;
+}
+.profile-fields dd { margin: 0; min-width: 0; }
+
 .copy {
   align-self: flex-start; margin-top: auto;
   background: none; border: none; padding: .2rem 0;
@@ -502,8 +526,12 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
       if (item.latin) card.appendChild(text(el('div', 'latin'), item.latin));
 
       if (item.body) {
-        var body = el('div', 'body serif');
-        body.innerHTML = CHUUNI.toHtml(item.body);
+        var body = el('div', 'body serif body--' + item.kind);
+        if (item.kind === 'profile') {
+          body.appendChild(profileFields(item.body));
+        } else {
+          body.innerHTML = CHUUNI.toHtml(item.body);
+        }
         card.appendChild(body);
       }
 
@@ -521,6 +549,20 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 
     $('meta').textContent = result.items.length + ' 件 ／ 厨二力 Lv.' + result.level +
       '（' + LEVEL_NAMES[result.level] + '） ／ seed: ' + result.seed;
+  }
+
+  /* 「項目 : 内容」の各行を、桁の揃った定義リストに組み直す */
+  function profileFields(bodyText) {
+    var dl = el('dl', 'profile-fields');
+    bodyText.split('\n').forEach(function (line) {
+      var at = line.indexOf(':');
+      if (at === -1) return;
+      dl.appendChild(text(document.createElement('dt'), line.slice(0, at).trim()));
+      var dd = document.createElement('dd');
+      dd.innerHTML = CHUUNI.toHtml(line.slice(at + 1).trim());
+      dl.appendChild(dd);
+    });
+    return dl;
   }
 
   function el(tag, cls) { var e = document.createElement(tag); e.className = cls; return e; }
