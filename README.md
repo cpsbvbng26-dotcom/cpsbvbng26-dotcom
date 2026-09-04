@@ -13,3 +13,11 @@
 [![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
 
 [![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
+
+---
+
+✴︎Tools & Disclosure✴︎
+
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
+
+本リポジトリのサイト実装（`index.html` / `chuuni.html` / `chuuni.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
