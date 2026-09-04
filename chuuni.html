@@ -99,6 +99,17 @@ body::before {
 
 .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
 
+/* ---------- 和文の組版 ---------- */
+h1, h2, h3, .head, .brand-name, .hero h1 {
+  /* 約物のアキを詰めて、日本語の見出しを締まって見せる */
+  font-feature-settings: "palt" 1;
+}
+.hero h1, .head { text-wrap: balance; }
+.hero p, .card p, .body { text-wrap: pretty; }
+/* 日本語の行末禁則を効かせ、英数字だけを折り返す */
+.head, .body, .latin { line-break: strict; overflow-wrap: anywhere; }
+.meta-row, .idx { font-variant-numeric: tabular-nums; }
+
 /* ---------- ヘッダー ---------- */
 header {
   position: sticky; top: 0; z-index: 20;
@@ -292,16 +303,16 @@ button { font: inherit; cursor: pointer; }
   font-size: 1.3rem; font-weight: 600;
   line-height: 2.4;
   color: var(--head-text);
-  word-break: break-word;
+  letter-spacing: .012em;
   text-shadow: 0 0 22px var(--glow);
 }
-.latin { font-size: .68rem; letter-spacing: .18em; color: var(--dim); word-break: break-word; }
+.latin { font-size: .68rem; letter-spacing: .18em; color: var(--dim); }
 .body {
   font-size: .92rem; line-height: 2.3;
   color: var(--body-text);
   border-top: 1px solid var(--line-soft);
   padding-top: .8rem;
-  white-space: pre-wrap; word-break: break-word;
+  white-space: pre-wrap;
 }
 .copy {
   align-self: flex-start; margin-top: auto;
