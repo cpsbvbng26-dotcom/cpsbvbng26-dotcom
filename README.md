@@ -90,4 +90,15 @@
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 
-本リポジトリの実装（`index.html` / `chuuni.html` / `chuuni.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
+本リポジトリの実装（`index.html` / `chuuni.html` / `chuuni.js` ほか）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
+
+**制作過程の記録** — 表明だけでなく、リポジトリの履歴そのものから確認できます。
+
+| 確認できること | 方法 |
+| --- | --- |
+| どのコミットが支援を受けたものか | `git log --author=Claude` |
+| 各コミットに紐づく作業セッション | コミットメッセージ末尾の `Claude-Session:` トレーラ |
+| 共同作成の記録 | コミットメッセージ末尾の `Co-authored-by:` トレーラ |
+| 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
+
+コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。

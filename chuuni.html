@@ -514,6 +514,22 @@ rt {
 .head rt { font-size: .4em; }
 .body rt { font-size: .55em; }
 
+
+/* 制作に使ったツールの表示 */
+.built-with {
+  display: inline-flex; align-items: center; gap: .45rem;
+  margin-top: .2rem; padding: .35rem .85rem;
+  font-size: .72rem; letter-spacing: .02em;
+  color: var(--muted); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s, color .15s, background-color .15s;
+}
+.built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
+.built-with .dot {
+  width: .5rem; height: .5rem; flex: none;
+  border-radius: 50%; background: #d97757;
+}
+
 footer { border-top: 1px solid var(--line); margin-top: 1rem; }
 .foot { text-align: center; padding: 2.5rem 0; font-size: .72rem; color: var(--faint); }
 .foot p { margin: .35rem 0; }
@@ -648,6 +664,9 @@ footer { border-top: 1px solid var(--line); margin-top: 1rem; }
     <p>語彙はこのページのために書き下ろしたもので、生成結果は自由にお使いいただけます。<br>
       ごくまれに既存の作品名・商標と偶然一致する場合があるため、商用利用の前にご確認ください。</p>
     <p>実装には AI コーディング支援ツール Claude Code（Anthropic）を使用しています。</p>
+    <p><a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+      <span class="dot" aria-hidden="true"></span>Built with Claude Code
+    </a></p>
   </div>
 </footer>
 
