@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厨二病ジェネレーター | 技名・二つ名・詠唱を量産する</title>
+<meta name="description" content="技名・二つ名・組織名・詠唱・キャラ設定書をまとめて量産する厨二病ジェネレーター。厨二力レベルとシード指定に対応、テキスト/JSONで書き出せます。">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="厨二病ジェネレーター">
+<meta property="og:description" content="技名・二つ名・詠唱・設定書を一括量産。厨二力レベル1〜5、シード固定対応。">
+<meta property="og:type" content="website">
+<style>
+:root {
+  --bg: #09090b;
+  --panel: #131316;
+  --card: #17171b;
+  --line: #27272a;
+  --line-soft: #202024;
+  --text: #e4e4e7;
+  --muted: #a1a1aa;
+  --dim: #71717a;
+  --faint: #52525b;
+  --violet: #a78bfa;
+  --violet-deep: #7c3aed;
+  --rose: #fb7185;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景の淡い光 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 32rem at 50% -12rem, rgba(124, 58, 237, .22), transparent 70%),
+    radial-gradient(40rem 24rem at 100% 0%, rgba(244, 63, 94, .10), transparent 70%);
+  z-index: 0;
+}
+
+.wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
+
+.serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
+
+/* ---------- ヘッダー ---------- */
+header {
+  position: sticky; top: 0; z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: rgba(9, 9, 11, .82);
+  backdrop-filter: blur(12px);
+}
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .85rem; padding-bottom: .85rem; }
+.brand { display: flex; align-items: center; gap: .75rem; min-width: 0; }
+.sigil {
+  width: 2.25rem; height: 2.25rem; flex: none;
+  border-radius: .8rem;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--violet-deep), #e11d48);
+  color: #fff; font-weight: 700; font-size: 1.05rem;
+}
+.brand-name { font-weight: 600; letter-spacing: .01em; line-height: 1.25; }
+.brand-sub { font-size: .68rem; color: var(--faint); letter-spacing: .18em; }
+.back { color: var(--muted); text-decoration: none; font-size: .85rem; white-space: nowrap; }
+.back:hover { color: #fff; }
+
+/* ---------- ヒーロー ---------- */
+.hero { text-align: center; padding: 3rem 0 1.75rem; }
+.hero h1 {
+  margin: 0 0 .6rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  background: linear-gradient(115deg, #c4b5fd 0%, #f0abfc 45%, #fb7185 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 24px rgba(167, 139, 250, .3));
+}
+.hero p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ---------- 操作パネル ---------- */
+.panel {
+  background: color-mix(in srgb, var(--panel) 85%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.4rem;
+}
+
+.tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.4rem; }
+.tab {
+  font: inherit; font-size: .85rem;
+  padding: .45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.tab:hover { background: #1f1f23; color: var(--text); }
+.tab[aria-selected="true"] {
+  background: rgba(124, 58, 237, .18);
+  border-color: var(--violet-deep);
+  color: #ddd6fe;
+}
+
+.controls { display: grid; gap: 1.1rem; grid-template-columns: 1fr; align-items: end; }
+@media (min-width: 46rem) { .controls { grid-template-columns: 1.2fr .8fr 1.2fr; } }
+
+.field-label {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-size: .82rem; color: var(--muted); margin-bottom: .45rem;
+}
+.field-label b { color: #ddd6fe; font-weight: 600; }
+
+input[type="range"] { width: 100%; accent-color: var(--violet); }
+.range-ends { display: flex; justify-content: space-between; font-size: .65rem; color: var(--faint); margin-top: .2rem; }
+
+select, input[type="text"] {
+  font: inherit; font-size: .88rem;
+  width: 100%;
+  padding: .6rem .75rem;
+  color: var(--text);
+  background: #0c0c0f;
+  border: 1px solid #3f3f46;
+  border-radius: .75rem;
+}
+select:focus, input[type="text"]:focus { outline: none; border-color: var(--violet); }
+.seed-row { display: flex; gap: .5rem; }
+.seed-row input { min-width: 0; }
+
+button { font: inherit; cursor: pointer; }
+
+.btn {
+  padding: .6rem 1.1rem;
+  font-size: .85rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid #3f3f46;
+  border-radius: .9rem;
+  transition: background-color .15s, border-color .15s;
+}
+.btn:hover { background: #1f1f23; border-color: #52525b; }
+
+.btn-primary {
+  padding: .7rem 1.8rem;
+  font-size: .95rem; font-weight: 600;
+  color: #fff; border: none;
+  border-radius: .9rem;
+  background: linear-gradient(100deg, var(--violet-deep), #e11d48);
+  box-shadow: 0 10px 28px -12px rgba(124, 58, 237, .8);
+  transition: filter .15s, transform .1s;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-primary:active { transform: translateY(1px); }
+
+.actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
+.dice { flex: none; padding-inline: .8rem; }
+
+/* ---------- メタ情報 ---------- */
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: .25rem 1rem;
+  font-size: .75rem; color: var(--faint);
+  margin-top: 1.1rem;
+}
+#toast { color: #34d399; opacity: 0; transition: opacity .25s; }
+
+/* ---------- 出力 ---------- */
+.grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+  padding: 1.5rem 0 2rem;
+}
+
+.card {
+  display: flex; flex-direction: column; gap: .7rem;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 1.1rem;
+  padding: 1.15rem 1.2rem;
+  animation: rise .3s ease both;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--violet-deep);
+  box-shadow: 0 16px 34px -20px rgba(124, 58, 237, .9);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.chip {
+  font-size: .62rem; letter-spacing: .16em;
+  color: #ddd6fe;
+  border: 1px solid rgba(124, 58, 237, .45);
+  background: rgba(124, 58, 237, .12);
+  border-radius: 999px;
+  padding: .2rem .6rem;
+}
+.idx { font-size: .65rem; color: #3f3f46; }
+
+.head {
+  font-size: 1.3rem; font-weight: 600;
+  line-height: 2.4;
+  color: #fafafa;
+  word-break: break-word;
+  text-shadow: 0 0 22px rgba(167, 139, 250, .28);
+}
+.latin { font-size: .68rem; letter-spacing: .18em; color: var(--dim); word-break: break-word; }
+.body {
+  font-size: .92rem; line-height: 2.3;
+  color: #d4d4d8;
+  border-top: 1px solid var(--line-soft);
+  padding-top: .8rem;
+  white-space: pre-wrap; word-break: break-word;
+}
+.copy {
+  align-self: flex-start; margin-top: auto;
+  background: none; border: none; padding: .2rem 0;
+  font-size: .72rem; color: var(--faint);
+  transition: color .15s;
+}
+.copy:hover { color: var(--violet); }
+
+ruby { ruby-position: over; }
+rt {
+  font-weight: 400; letter-spacing: .06em;
+  color: var(--violet); opacity: .85;
+}
+.head rt { font-size: .4em; }
+.body rt { font-size: .55em; }
+
+footer { border-top: 1px solid var(--line); margin-top: 1rem; }
+.foot { text-align: center; padding: 2.5rem 0; font-size: .72rem; color: var(--faint); }
+.foot p { margin: .35rem 0; }
+
+.noscript { text-align: center; color: var(--rose); padding: 2rem 0; }
+
+@media (max-width: 26rem) {
+  .brand-sub { display: none; }
+  .brand-name { font-size: .95rem; }
+  .back { font-size: .78rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-row">
+    <div class="brand">
+      <div class="sigil">厨</div>
+      <div>
+        <div class="brand-name">厨二病ジェネレーター</div>
+        <div class="brand-sub">CHUUNI CONTENT FORGE</div>
+      </div>
+    </div>
+    <a class="back" href="./index.html">← サイトトップ</a>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <h1 class="serif">闇の力を、量産する</h1>
+  <p>技名・二つ名・組織名・詠唱・キャラ設定書を、一度に最大 300 件まとめて生成します。</p>
+</section>
+
+<section class="wrap">
+  <div class="panel">
+    <div id="kinds" class="tabs" role="tablist" aria-label="生成するもの"></div>
+
+    <div class="controls">
+      <div>
+        <label class="field-label" for="level"><span>厨二力</span><b id="levelText"></b></label>
+        <input id="level" type="range" min="1" max="5" step="1" value="3">
+        <div class="range-ends"><span>ひかえめ</span><span>臨界突破</span></div>
+      </div>
+
+      <div>
+        <label class="field-label" for="count"><span>生成数</span></label>
+        <select id="count">
+          <option>10</option><option selected>30</option><option>50</option>
+          <option>100</option><option>300</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="field-label" for="seed"><span>シード（同じ値なら同じ結果）</span></label>
+        <div class="seed-row">
+          <input id="seed" type="text" placeholder="空欄でランダム" autocomplete="off" spellcheck="false">
+          <button id="dice" class="btn dice" type="button" title="シードを振り直す">🎲</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="go" class="btn-primary" type="button">⚔ 生成する</button>
+      <button id="copyAll" class="btn" type="button">全部コピー</button>
+      <button id="dlTxt" class="btn" type="button">.txt で保存</button>
+      <button id="dlJson" class="btn" type="button">.json で保存</button>
+    </div>
+
+    <div class="meta-row">
+      <span id="meta"></span>
+      <span id="toast" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<main id="out" class="wrap grid" aria-live="polite"></main>
+
+<noscript><p class="noscript">このページの生成機能には JavaScript が必要です。</p></noscript>
+
+<footer>
+  <div class="wrap foot">
+    <p>生成はすべてブラウザ内で完結します。通信も保存も行いません。</p>
+    <p>© 2026 根本卓哉</p>
+  </div>
+</footer>
+
+<script src="./chuuni.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LEVEL_NAMES = ['', '素の中学生', '目覚めかけ', '発症', '重症', '臨界突破'];
+  var COUNTS = ['10', '30', '50', '100', '300'];
+  var state = { kind: 'skill', level: 3, count: 30, seed: '' };
+  var current = null;
+
+  /* ---------- タブ ---------- */
+  var kindsEl = $('kinds');
+  CHUUNI.KINDS.forEach(function (k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tab';
+    b.dataset.kind = k.id;
+    b.textContent = k.label;
+    b.setAttribute('role', 'tab');
+    b.addEventListener('click', function () {
+      state.kind = k.id;
+      paintTabs();
+      run();
+    });
+    kindsEl.appendChild(b);
+  });
+
+  function paintTabs() {
+    Array.prototype.forEach.call(kindsEl.children, function (b) {
+      b.setAttribute('aria-selected', String(b.dataset.kind === state.kind));
+    });
+  }
+
+  /* ---------- URL ハッシュ ---------- */
+  function readHash() {
+    var h = location.hash.replace(/^#/, '');
+    if (!h) return;
+    h.split('&').forEach(function (pair) {
+      var kv = pair.split('=');
+      var k = decodeURIComponent(kv[0] || '');
+      var v = decodeURIComponent(kv[1] || '');
+      if (k === 'kind' && CHUUNI.KINDS.some(function (x) { return x.id === v; })) state.kind = v;
+      if (k === 'level') state.level = clamp(parseInt(v, 10), 1, 5, 3);
+      if (k === 'count') state.count = clamp(parseInt(v, 10), 1, 300, 30);
+      if (k === 'seed') state.seed = v;
+    });
+  }
+
+  function clamp(n, lo, hi, fallback) {
+    if (isNaN(n)) return fallback;
+    return Math.min(hi, Math.max(lo, n));
+  }
+
+  function writeHash() {
+    history.replaceState(null, '',
+      '#kind=' + state.kind + '&level=' + state.level +
+      '&count=' + state.count + '&seed=' + encodeURIComponent(state.seed));
+  }
+
+  /* ---------- 描画 ---------- */
+  function render(result) {
+    var frag = document.createDocumentFragment();
+
+    result.items.forEach(function (item, i) {
+      var card = el('article', 'card');
+
+      var top = el('div', 'card-top');
+      top.appendChild(text(el('span', 'chip'), item.label));
+      top.appendChild(text(el('span', 'idx'), '#' + (i + 1)));
+      card.appendChild(top);
+
+      var head = el('div', 'head serif');
+      head.innerHTML = CHUUNI.toHtml(item.head);
+      card.appendChild(head);
+
+      if (item.latin) card.appendChild(text(el('div', 'latin'), item.latin));
+
+      if (item.body) {
+        var body = el('div', 'body serif');
+        body.innerHTML = CHUUNI.toHtml(item.body);
+        card.appendChild(body);
+      }
+
+      var copy = text(el('button', 'copy'), 'コピー');
+      copy.type = 'button';
+      copy.addEventListener('click', function () { copyText(CHUUNI.itemToText(item)); });
+      card.appendChild(copy);
+
+      frag.appendChild(card);
+    });
+
+    var out = $('out');
+    out.textContent = '';
+    out.appendChild(frag);
+
+    $('meta').textContent = result.items.length + ' 件 ／ 厨二力 Lv.' + result.level +
+      '（' + LEVEL_NAMES[result.level] + '） ／ seed: ' + result.seed;
+  }
+
+  function el(tag, cls) { var e = document.createElement(tag); e.className = cls; return e; }
+  function text(e, s) { e.textContent = s; return e; }
+
+  function run() {
+    state.level = clamp(parseInt($('level').value, 10), 1, 5, 3);
+    state.count = clamp(parseInt($('count').value, 10), 1, 300, 30);
+    state.seed = $('seed').value.trim();
+    if (!state.seed) {
+      state.seed = CHUUNI.randomSeed();
+      $('seed').value = state.seed;
+    }
+    current = CHUUNI.generate(state);
+    render(current);
+    writeHash();
+  }
+
+  /* ---------- コピー・保存 ---------- */
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.style.opacity = '1';
+    clearTimeout(toast.id);
+    toast.id = setTimeout(function () { t.style.opacity = '0'; }, 1800);
+  }
+
+  function copyText(str) {
+    var ok = function () { toast('コピーしました'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(str).then(ok, function () { fallbackCopy(str, ok); });
+    } else {
+      fallbackCopy(str, ok);
+    }
+  }
+
+  function fallbackCopy(str, ok) {
+    var ta = document.createElement('textarea');
+    ta.value = str;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); ok(); }
+    catch (e) { toast('コピーできませんでした'); }
+    document.body.removeChild(ta);
+  }
+
+  function download(filename, str, mime) {
+    var url = URL.createObjectURL(new Blob([str], { type: mime + ';charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    toast('保存しました');
+  }
+
+  function jsonOf(result) {
+    return JSON.stringify({
+      seed: result.seed,
+      level: result.level,
+      kind: result.kind,
+      items: result.items.map(function (it) {
+        return {
+          kind: it.kind,
+          label: it.label,
+          head: CHUUNI.toPlain(it.head),
+          latin: it.latin,
+          body: it.body ? CHUUNI.toPlain(it.body) : ''
+        };
+      })
+    }, null, 2);
+  }
+
+  /* ---------- イベント ---------- */
+  $('level').addEventListener('input', function () {
+    var v = clamp(parseInt(this.value, 10), 1, 5, 3);
+    $('levelText').textContent = 'Lv.' + v + ' ' + LEVEL_NAMES[v];
+  });
+  $('level').addEventListener('change', run);
+  $('count').addEventListener('change', run);
+  $('go').addEventListener('click', run);
+  $('dice').addEventListener('click', function () {
+    $('seed').value = CHUUNI.randomSeed();
+    run();
+  });
+  $('seed').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); run(); }
+  });
+  $('copyAll').addEventListener('click', function () {
+    if (current) copyText(CHUUNI.resultToText(current));
+  });
+  $('dlTxt').addEventListener('click', function () {
+    if (current) download('chuuni-' + current.seed + '.txt', CHUUNI.resultToText(current), 'text/plain');
+  });
+  $('dlJson').addEventListener('click', function () {
+    if (current) download('chuuni-' + current.seed + '.json', jsonOf(current), 'application/json');
+  });
+
+  /* ---------- 起動 ---------- */
+  readHash();
+  $('level').value = String(state.level);
+  $('levelText').textContent = 'Lv.' + state.level + ' ' + LEVEL_NAMES[state.level];
+  if (COUNTS.indexOf(String(state.count)) === -1) {
+    var opt = document.createElement('option');
+    opt.textContent = String(state.count);
+    $('count').appendChild(opt);
+  }
+  $('count').value = String(state.count);
+  $('seed').value = state.seed;
+  paintTabs();
+  run();
+})();
+</script>
+</body>
+</html>
