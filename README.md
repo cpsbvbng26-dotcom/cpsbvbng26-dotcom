@@ -12,7 +12,7 @@
 
 ---
 
-✴︎Credentials✴︎
+✰︎Credentials✰︎
 
 修了証・オープンバッジ 計 7 件。各バッジは発行機関の検証ページにリンクしています。
 
@@ -39,7 +39,7 @@
 
 ---
 
-✴︎Areas✴︎
+✰︎Areas✰︎
 
 | 領域 | 内容 |
 | --- | --- |
@@ -51,7 +51,7 @@
 
 ---
 
-✴︎Papers✴︎
+✰︎Papers✰︎
 
 いずれも査読前のプレプリントです。はじめの二篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、三篇目は Zenodo に置いています。
 
@@ -59,11 +59,11 @@
 | --- | --- | --- | --- |
 | [The Nobility and Exemplarity of the Celibate Individual](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/celibate-individual.html) | 性的活動を倫理的な義務とみなす通説を反出生主義の側から検討し、自足的な幸福という観点から独身を自己陶冶の型として擁護する | v2 — 2026年8月 | — |
 | [Manifesto of Imperial Selfhood](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/imperial-selfhood.html) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 | — |
-| [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709) |
+| [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勳記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709) |
 
 ---
 
-✴︎Works✴︎
+✰︎Works✰︎
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
@@ -73,7 +73,7 @@
 
 ---
 
-✴︎Links✴︎
+✰︎Links✰︎
 
 - ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
@@ -90,19 +90,21 @@
 
 ---
 
-✴︎Tools & Disclosure✴︎
+✰︎Tools & Disclosure✰︎
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
+[![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-111111?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `research.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
+本リポジトリのサイト実装（`index.html` / `research.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。開示文の整理および以降の公開面の更新には **Grok**（xAI）を使用しています。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
 
 **制作過程の記録** — 表明だけでなく、リポジトリの履歴そのものから確認できます。
 
 | 確認できること | 方法 |
 | --- | --- |
-| どのコミットが支援を受けたものか | `git log --author=Claude` |
-| 各コミットに紐づく作業セッション | コミットメッセージ末尾の `Claude-Session:` トレーラ |
+| Claude による支援コミット | `git log --author=Claude` |
+| Claude の作業セッション | コミットメッセージ末尾の `Claude-Session:` トレーラ |
+| Grok による支援コミット | コミットメッセージ末尾の `Assisted-by: Grok` トレーラ |
 | 共同作成の記録 | コミットメッセージ末尾の `Co-authored-by:` トレーラ |
 | 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
 
-コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
+コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り縹うことはできません。
