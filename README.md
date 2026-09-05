@@ -12,7 +12,7 @@
 
 ---
 
-✰︎Credentials✰︎
+✴︎Credentials✴︎
 
 修了証・オープンバッジ 計 7 件。各バッジは発行機関の検証ページにリンクしています。
 
@@ -39,7 +39,7 @@
 
 ---
 
-✰︎Areas✰︎
+✴︎Areas✴︎
 
 | 領域 | 内容 |
 | --- | --- |
@@ -51,7 +51,7 @@
 
 ---
 
-✰︎Papers✰︎
+✴︎Papers✴︎
 
 いずれも査読前のプレプリントです。はじめの二篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、三篇目は Zenodo に置いています。
 
@@ -63,7 +63,7 @@
 
 ---
 
-✰︎Works✰︎
+✴︎Works✴︎
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
@@ -73,7 +73,7 @@
 
 ---
 
-✰︎Links✰︎
+✴︎Links✴︎
 
 - ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
@@ -90,7 +90,7 @@
 
 ---
 
-✰︎Tools & Disclosure✰︎
+✴︎Tools & Disclosure✴︎
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-111111?style=for-the-badge)](https://grok.com)
@@ -107,4 +107,4 @@
 | 共同作成の記録 | コミットメッセージ末尾の `Co-authored-by:` トレーラ |
 | 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
 
-コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り縹うことはできません。
+コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
