@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
-<title>根本卓哉 | Takuya Nemoto</title>
-<meta name="description" content="根本卓哉（Takuya Nemoto）のプロフィール。HarvardX の CS50x / CS50AI をはじめ、コンピュータサイエンス・人工知能・コンテナ基盤・防災科学の修了証を掲載しています。">
+<title>研究ブログ | 根本卓哉</title>
+<meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="根本卓哉 | Takuya Nemoto">
-<meta property="og:description" content="コンピュータサイエンス、人工知能、コンテナ基盤、防災科学の学習記録と修了証。">
-<meta property="og:type" content="profile">
-<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/">
-<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/">
+<meta property="og:title" content="研究ブログ | 根本卓哉">
+<meta property="og:description" content="researchmap で公開している研究ブログへの入口です。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/research.html">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/research.html">
 <meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -264,6 +263,55 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   .reveal { opacity: 1; transform: none; }
 }
 </style>
+<style>
+/* ---------- 研究ブログ ---------- */
+.lead-block { max-width: 38rem; }
+.lead-block p { color: var(--muted); }
+
+.primary-card {
+  display: block;
+  padding: 2rem;
+  margin: 2.5rem 0 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  text-decoration: none;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.primary-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.primary-card .code {
+  font-family: Georgia, serif;
+  font-size: .7rem; letter-spacing: .18em; color: var(--accent);
+}
+.primary-card h3 { margin: .5rem 0 .4rem; font-size: 1.2rem; font-weight: 600; letter-spacing: .03em; }
+.primary-card p { margin: 0; font-size: .88rem; color: var(--muted); }
+.primary-card .verify { display: inline-block; margin-top: 1rem; font-size: .76rem; color: var(--faint); letter-spacing: .06em; }
+.primary-card:hover .verify { color: var(--accent); }
+.primary-card .verify::after { content: " →"; }
+
+.entries { list-style: none; margin: 0; padding: 0; }
+.entries li { border-top: 1px solid var(--line-soft); }
+.entries li:last-child { border-bottom: 1px solid var(--line-soft); }
+.entries a {
+  display: grid; gap: .2rem 2rem; grid-template-columns: 1fr;
+  padding: 1.3rem 0; text-decoration: none;
+  transition: color .15s;
+}
+@media (min-width: 40rem) { .entries a { grid-template-columns: 8rem 1fr; align-items: baseline; } }
+.entries time { font-family: Georgia, serif; font-size: .78rem; letter-spacing: .1em; color: var(--faint); }
+.entries .t { font-size: .98rem; font-weight: 600; line-height: 1.7; }
+.entries a:hover .t { color: var(--accent); }
+
+.note {
+  margin: 0; padding: 2rem 0;
+  font-size: .88rem; color: var(--muted);
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+}
+</style>
 </head>
 <body>
 
@@ -271,12 +319,11 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 
 <header>
   <div class="wrap head-row">
-    <a class="mark serif" href="#main">TN</a>
+    <a class="mark serif" href="./index.html">TN</a>
     <nav class="nav">
-      <a href="#credentials">修了証</a>
-      <a href="#areas">学習領域</a>
+      <a href="./index.html#credentials">修了証</a>
+      <a href="./index.html#areas">学習領域</a>
       <a href="./research.html">研究ブログ</a>
-      <a href="#links">リンク</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
     </nav>
   </div>
@@ -285,121 +332,51 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <main id="main" tabindex="-1">
 
   <section class="wrap hero">
-    <p class="eyebrow reveal">Profile</p>
-    <h1 class="serif reveal">根本卓哉</h1>
-    <p class="romaji reveal">TAKUYA NEMOTO</p>
-    <p class="lead reveal">
-      コンピュータサイエンスと人工知能を中心に学習を続けています。
-      修了した講座と、その証明をこのページにまとめています。
-    </p>
+    <p class="eyebrow reveal">Research Blog</p>
+    <h1 class="serif reveal">研究ブログ</h1>
+    <p class="romaji reveal">RESEARCHMAP</p>
+    <div class="lead-block reveal">
+      <p>researchmap 上で記事を公開しています。researchmap は科学技術振興機構（JST）が運営する、研究者の情報を集約するデータベースです。</p>
+    </div>
+
+    <a class="primary-card reveal" href="https://researchmap.jp/takuyanemoto/research_blogs" target="_blank" rel="noopener">
+      <span class="code">researchmap</span>
+      <h3>研究ブログ 一覧</h3>
+      <p>投稿した記事の一覧を researchmap 上で読めます。</p>
+      <span class="verify">researchmap で読む</span>
+    </a>
   </section>
 
   <hr class="rule">
 
-  <section id="credentials" class="wrap block">
+  <section class="wrap block">
     <div class="sec-head reveal">
-      <h2 class="serif">修了証</h2>
-      <p>各カードから発行機関の検証ページを開けます。</p>
+      <h2 class="serif">記事</h2>
+      <p>主な記事を抜粋しています。全文は researchmap 上で公開しています。</p>
     </div>
 
-    <div class="group">
-      <div class="group-name reveal">edX</div>
-      <div class="cards">
-        <a class="cert reveal" href="https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc" target="_blank" rel="noopener">
-          <span class="code">CS50x</span>
-          <h3>Introduction to Computer Science</h3>
-          <p class="issuer">HarvardX</p>
-          <span class="verify">証明書を確認</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">
-          <span class="code">CS50AI</span>
-          <h3>Introduction to Artificial Intelligence with Python</h3>
-          <p class="issuer">HarvardX</p>
-          <span class="verify">証明書を確認</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3" target="_blank" rel="noopener">
-          <span class="code">ER22.1x</span>
-          <h3>Justice</h3>
-          <p class="issuer">HarvardX</p>
-          <span class="verify">証明書を確認</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316" target="_blank" rel="noopener">
-          <span class="code">CC0201EN</span>
-          <h3>Introduction to Containers, Kubernetes and OpenShift</h3>
-          <p class="issuer">IBM</p>
-          <span class="verify">証明書を確認</span>
-        </a>
-      </div>
-    </div>
+    <!-- 記事を追加するときは、この形式で <li> を足してください。
+    <ul class="entries">
+      <li><a href="記事のURL" target="_blank" rel="noopener">
+        <time datetime="2026-01-01">2026.01.01</time>
+        <span class="t">記事のタイトル</span>
+      </a></li>
+    </ul>
+    -->
 
-    <div class="group">
-      <div class="group-name reveal">東北大学 MOOC</div>
-      <div class="cards">
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Radiation Safety</h3>
-          <p class="issuer">東北大学</p>
-          <span class="verify">バッジを確認</span>
-        </a>
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Disaster Science</h3>
-          <p class="issuer">東北大学</p>
-          <span class="verify">バッジを確認</span>
-        </a>
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Mystery of Aurora</h3>
-          <p class="issuer">東北大学</p>
-          <span class="verify">バッジを確認</span>
-        </a>
-      </div>
-    </div>
+    <p class="note reveal">記事の一覧は researchmap 上でご覧いただけます。抜粋をこのページに掲載する場合は、上記の形式で追記します。</p>
   </section>
 
   <hr class="rule">
 
-  <section id="areas" class="wrap block">
-    <div class="sec-head reveal">
-      <h2 class="serif">学習領域</h2>
-      <p>修了した講座で扱った範囲です。</p>
-    </div>
-
-    <div class="areas">
-      <div class="area reveal">
-        <h3>コンピュータサイエンス</h3>
-        <p>C / Python、アルゴリズムとデータ構造、計算量の考え方</p>
-      </div>
-      <div class="area reveal">
-        <h3>人工知能</h3>
-        <p>探索、知識表現、確率推論、最適化、機械学習、ニューラルネットワーク、自然言語処理</p>
-      </div>
-      <div class="area reveal">
-        <h3>コンテナ基盤</h3>
-        <p>Docker、Kubernetes、OpenShift の基本概念と操作</p>
-      </div>
-      <div class="area reveal">
-        <h3>Web 開発</h3>
-        <p>HTML / CSS / JavaScript による実装、GitHub Pages での公開と運用</p>
-      </div>
-      <div class="area reveal">
-        <h3>領域知識</h3>
-        <p>放射線安全、災害科学、政治哲学</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <section id="links" class="wrap block">
+  <section class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">リンク</h2>
     </div>
     <div class="links reveal">
-      <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
-      <a class="link" href="./research.html">研究ブログ <span>researchmap</span></a>
       <a class="link" href="https://researchmap.jp/takuyanemoto" target="_blank" rel="noopener">researchmap <span>プロフィール</span></a>
       <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
+      <a class="link" href="./index.html">プロフィール <span>修了証・学習領域</span></a>
     </div>
   </section>
 
@@ -419,19 +396,11 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 (function () {
   'use strict';
   var targets = document.querySelectorAll('.reveal');
-
-  document.querySelectorAll('.cards, .areas').forEach(function (group) {
-    Array.prototype.forEach.call(group.children, function (el, i) {
-      el.style.setProperty('--i', String(i));
-    });
-  });
-
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) {
     Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
     return;
   }
-
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
@@ -439,7 +408,6 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       io.unobserve(entry.target);
     });
   }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
-
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
 })();
 </script>
