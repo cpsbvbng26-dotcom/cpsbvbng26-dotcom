@@ -4,7 +4,7 @@
 
 **コンピュータサイエンス・人工知能の学習記録**
 
-[![ORCID](https://img.shields.io/badge/ORCID-0009-0000-1406-0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
 
 [![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge&logo=githubpages)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
