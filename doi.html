@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOI アナライザー | 根本卓哉</title>
+<meta name="description" content="DOI や SSRN の Abstract ID から、各索引サービスでの収録状況を確認するリンクをまとめて生成するツール。">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="DOI アナライザー | 根本卓哉">
+<meta property="og:description" content="DOI や SSRN の Abstract ID から、各索引サービスへのリンクをまとめて生成します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html">
+<meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
+<meta property="og:site_name" content="根本卓哉 | Takuya Nemoto">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#faf9f7">
+<style>
+:root {
+  --bg: #faf9f7;
+  --card: #ffffff;
+  --text: #17171a;
+  --muted: #63636b;
+  --faint: #9a9aa2;
+  --line: #e6e4df;
+  --line-soft: #efedE9;
+  --accent: #8a6a3d;
+  --accent-soft: rgba(138, 106, 61, .10);
+  --header-bg: rgba(250, 249, 247, .86);
+  --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
+}
+
+:root[data-theme="dark"] {
+  --bg: #121214;
+  --card: #191919;
+  --text: #ececee;
+  --muted: #9c9ca4;
+  --faint: #6a6a72;
+  --line: #2a2a2d;
+  --line-soft: #232326;
+  --accent: #b08d57;
+  --accent-soft: rgba(176, 141, 87, .14);
+  --header-bg: rgba(18, 18, 20, .86);
+  --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
+}
+
+html { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s, color .25s;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+  font-feature-settings: "palt" 1;
+}
+
+.wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.5rem; }
+
+a { color: inherit; }
+
+/* ---------- ヘッダー ---------- */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.head-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-top: 1rem; padding-bottom: 1rem;
+}
+.mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
+  text-decoration: none;
+}
+.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav a {
+  font-size: .82rem; color: var(--muted); text-decoration: none;
+  letter-spacing: .04em; white-space: nowrap;
+  transition: color .15s;
+}
+.nav a:hover { color: var(--text); }
+
+.theme-toggle {
+  width: 2rem; height: 2rem; flex: none;
+  display: grid; place-items: center;
+  font: inherit; font-size: .9rem; line-height: 1; cursor: pointer;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- ヒーロー ---------- */
+.hero { padding: 6rem 0 4rem; }
+.eyebrow {
+  font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 1.5rem;
+}
+.hero h1 {
+  margin: 0 0 .5rem;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  font-weight: 600; letter-spacing: .04em; line-height: 1.3;
+}
+.hero .romaji {
+  margin: 0 0 .9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem; letter-spacing: .22em; color: var(--faint);
+}
+
+.ident { margin: 0 0 2rem; font-size: .8rem; letter-spacing: .04em; }
+.ident .label {
+  font-family: Georgia, serif;
+  letter-spacing: .18em; color: var(--accent);
+  margin-right: .7rem;
+}
+.ident a {
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s, border-color .15s;
+}
+.ident a:hover { color: var(--accent); border-color: var(--accent); }
+
+.hero p.lead {
+  margin: 0; max-width: 34rem;
+  color: var(--muted); font-size: 1rem;
+}
+
+.rule { height: 1px; background: var(--line); margin: 0; border: 0; }
+
+/* ---------- セクション ---------- */
+section.block { padding: 4.5rem 0; }
+.sec-head { margin-bottom: 2.5rem; }
+.sec-head h2 {
+  margin: 0 0 .4rem;
+  font-size: 1.4rem; font-weight: 600; letter-spacing: .06em;
+}
+.sec-head p { margin: 0; font-size: .85rem; color: var(--faint); }
+
+/* ---------- 修了証 ---------- */
+.group + .group { margin-top: 2.5rem; }
+.group-name {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: .74rem; letter-spacing: .2em; color: var(--faint);
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.group-name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+.cert {
+  display: flex; flex-direction: column; gap: .55rem;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  text-decoration: none;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.cert:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.cert .code {
+  font-family: Georgia, serif;
+  font-size: .7rem; letter-spacing: .14em; color: var(--accent);
+}
+.cert h3 {
+  margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.6;
+  letter-spacing: .01em;
+}
+.cert .issuer { font-size: .8rem; color: var(--muted); margin: 0; }
+.cert .verify {
+  margin-top: .35rem;
+  font-size: .74rem; letter-spacing: .06em; color: var(--faint);
+  transition: color .2s;
+}
+.cert:hover .verify { color: var(--accent); }
+.cert .verify::after { content: " →"; }
+
+/* ---------- 学習領域 ---------- */
+.areas { display: grid; gap: 0; }
+.area {
+  display: grid; gap: .3rem 2rem;
+  grid-template-columns: 1fr;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.area:last-child { border-bottom: 1px solid var(--line-soft); }
+@media (min-width: 40rem) { .area { grid-template-columns: 13rem 1fr; } }
+.area h3 { margin: 0; font-size: .95rem; font-weight: 600; letter-spacing: .04em; }
+.area p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+/* ---------- リンク ---------- */
+.links { display: flex; flex-wrap: wrap; gap: .75rem; }
+.link {
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .2rem .6rem;
+  max-width: 100%;
+  padding: .7rem 1.4rem;
+  font-size: .88rem; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .2s, background-color .2s;
+}
+.link:hover { border-color: var(--accent); background: var(--accent-soft); }
+.link span { font-size: .72rem; color: var(--faint); letter-spacing: .08em; }
+
+/* ---------- フッター ---------- */
+footer { border-top: 1px solid var(--line); margin-top: 2rem; }
+.foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 2.5rem 0;
+  font-size: .74rem; color: var(--faint);
+}
+.built-with {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .35rem .85rem;
+  font-size: .72rem; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s, color .15s, background-color .15s;
+}
+.built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
+.built-with .dot { width: .45rem; height: .45rem; flex: none; border-radius: 50%; background: #d97757; }
+
+/* ---------- 登場演出 ---------- */
+.reveal {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .7s cubic-bezier(.22, .68, .28, 1), transform .7s cubic-bezier(.22, .68, .28, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: .3rem;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem; z-index: 50;
+  padding: .55rem 1rem;
+  color: var(--bg); background: var(--text);
+  text-decoration: none; font-size: .82rem;
+  border-radius: .5rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
+@media (max-width: 30rem) {
+  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem; }
+  .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: .95rem; }
+  .nav a { font-size: .76rem; }
+  .wrap { padding: 0 1.1rem; }
+}
+
+@media (max-width: 22rem) {
+  .nav { gap: .7rem; }
+  .nav a { font-size: .72rem; letter-spacing: 0; }
+  .wrap { padding: 0 .9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .cert:hover { transform: none; }
+}
+
+@media print {
+  @page { margin: 16mm; }
+  header, footer, .theme-toggle, .skip-link { display: none !important; }
+  body { background: #fff; color: #000; }
+  .cert { break-inside: avoid; border-color: #ccc; box-shadow: none; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+<style>
+/* ---------- DOI アナライザー ---------- */
+.tool { max-width: 40rem; }
+.field-row { display: flex; gap: .6rem; align-items: stretch; }
+.field-row input {
+  flex: 1; min-width: 0;
+  font: inherit; font-size: 1rem;
+  padding: .8rem 1rem;
+  color: var(--text); background: var(--card);
+  border: 1px solid var(--line); border-radius: .7rem;
+  transition: border-color .15s;
+}
+.field-row input:focus { outline: none; border-color: var(--accent); }
+.btn {
+  font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+  padding: .8rem 1.6rem; white-space: nowrap;
+  color: var(--bg); background: var(--text);
+  border: 1px solid var(--text); border-radius: .7rem;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-quiet {
+  color: var(--muted); background: transparent; border-color: var(--line);
+  font-weight: 400;
+}
+.btn-quiet:hover { color: var(--text); border-color: var(--accent); opacity: 1; }
+
+.hint { margin: .8rem 0 0; font-size: .78rem; color: var(--faint); }
+
+.detected {
+  margin: 2rem 0 0; padding: 1.1rem 1.3rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: .8rem;
+  font-size: .85rem;
+}
+.detected dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .35rem 1.2rem; margin: 0; }
+.detected dt { color: var(--faint); font-size: .78rem; letter-spacing: .06em; white-space: nowrap; }
+.detected dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.detected .kind { color: var(--accent); font-weight: 600; }
+
+.result-group { margin-top: 2.5rem; }
+.result-group h3 {
+  display: flex; align-items: center; gap: .9rem;
+  margin: 0 0 .9rem;
+  font-size: .74rem; letter-spacing: .2em; color: var(--faint);
+  font-weight: 400; text-transform: uppercase;
+}
+.result-group h3::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.result-list { list-style: none; margin: 0; padding: 0; }
+.result-list li { border-bottom: 1px solid var(--line-soft); }
+.result-list li:first-child { border-top: 1px solid var(--line-soft); }
+.row { display: flex; align-items: baseline; gap: 1rem; padding: .85rem 0; }
+.row a { flex: 1; min-width: 0; text-decoration: none; font-size: .92rem; }
+.row a:hover { color: var(--accent); }
+.row a small { display: block; font-size: .74rem; color: var(--faint); margin-top: .1rem; overflow-wrap: anywhere; }
+.row button {
+  flex: none; font: inherit; font-size: .72rem; cursor: pointer;
+  padding: .25rem .7rem;
+  color: var(--faint); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: color .15s, border-color .15s;
+}
+.row button:hover { color: var(--accent); border-color: var(--accent); }
+
+#status { font-size: .78rem; color: #3f8f5f; min-height: 1.2em; margin: 1rem 0 0; }
+:root[data-theme="dark"] #status { color: #6fbf8f; }
+
+@media print { .field-row, .row button, #copyAll { display: none !important; } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header>
+  <div class="wrap head-row">
+    <a class="mark serif" href="./index.html">TN</a>
+    <nav class="nav">
+      <a href="./index.html#credentials">修了証</a>
+      <a href="./index.html#works">制作物</a>
+      <a href="./research.html">研究ブログ</a>
+      <a href="./index.html#links">リンク</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="wrap hero">
+    <p class="eyebrow reveal">Tool</p>
+    <h1 class="serif reveal">DOI アナライザー</h1>
+    <p class="romaji reveal">DOI ANALYZER</p>
+    <div class="tool reveal">
+      <p class="lead">DOI や SSRN の Abstract ID を入れると、各索引サービスでの収録状況を確認するリンクをまとめて生成します。</p>
+
+      <div class="field-row">
+        <input id="q" type="text" autocomplete="off" spellcheck="false"
+               placeholder="10.2139/ssrn.1234567 または 1234567" aria-label="DOI または SSRN Abstract ID">
+        <button id="go" class="btn" type="button">調べる</button>
+      </div>
+      <p class="hint">
+        受け付ける形式: DOI（<code>10.2139/ssrn.1234567</code>）、DOI の URL、SSRN の Abstract ID（数字のみ）、
+        SSRN や Zenodo のページ URL、論文タイトル。
+      </p>
+      <p id="status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div id="detected" class="detected tool" hidden></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">確認先</h2>
+      <p>リンクは新しいタブで開きます。生成のみを行い、外部への通信はしません。</p>
+    </div>
+    <div id="results"></div>
+    <p style="margin-top:2rem"><button id="copyAll" class="btn btn-quiet" type="button" hidden>全部コピー（Markdown）</button></p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 根本卓哉</span>
+    <a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+      <span class="dot" aria-hidden="true"></span>Built with Claude Code
+    </a>
+  </div>
+</footer>
+
+<script src="./theme.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'doi-analyzer-last';
+
+  /* ------------------------------------------------------------------
+   * 入力の解釈
+   * ---------------------------------------------------------------- */
+
+  /** 入力を DOI / SSRN ID / Zenodo ID / 語句 のいずれかとして解釈する */
+  function parse(raw) {
+    var input = String(raw || '').trim();
+    if (!input) return null;
+
+    var out = { input: input, doi: '', ssrn: '', zenodo: '', kind: '' };
+
+    // SSRN のページ URL
+    var m = input.match(/abstract[_-]?id=(\d+)/i);
+    if (m) out.ssrn = m[1];
+
+    // Zenodo のページ URL
+    m = input.match(/zenodo\.org\/(?:records?|record)\/(\d+)/i);
+    if (m) out.zenodo = m[1];
+
+    // DOI（前置きの doi: や解決子の URL を落とす）
+    var doiSource = input
+      .replace(/^https?:\/\/(dx\.)?doi\.org\//i, '')
+      .replace(/^doi:\s*/i, '');
+    m = doiSource.match(/(10\.\d{4,9}\/[^\s"'<>]+)/);
+    if (m) out.doi = m[1].replace(/[.,;)]+$/, '');
+
+    // 数字だけなら SSRN の Abstract ID とみなす
+    if (!out.doi && !out.ssrn && !out.zenodo && /^\d{5,9}$/.test(input)) out.ssrn = input;
+
+    // DOI から発行元を割り出す
+    if (out.doi) {
+      var s = out.doi.match(/^10\.2139\/ssrn\.(\d+)$/i);
+      if (s) { out.ssrn = out.ssrn || s[1]; out.kind = 'SSRN の DOI'; }
+      var z = out.doi.match(/^10\.5281\/zenodo\.(\d+)$/i);
+      if (z) { out.zenodo = out.zenodo || z[1]; out.kind = 'Zenodo の DOI'; }
+      if (!out.kind) out.kind = 'DOI';
+    } else if (out.ssrn) {
+      out.kind = 'SSRN の Abstract ID';
+      out.doi = '10.2139/ssrn.' + out.ssrn;   // SSRN が付与する形式からの推定
+      out.derived = true;
+    } else if (out.zenodo) {
+      out.kind = 'Zenodo のレコード ID';
+    } else {
+      out.kind = '語句として検索';
+    }
+    return out;
+  }
+
+  /* ------------------------------------------------------------------
+   * 確認先の組み立て
+   * ---------------------------------------------------------------- */
+
+  function buildGroups(p) {
+    var q = encodeURIComponent(p.doi || p.input);
+    var doi = p.doi;
+    var groups = [];
+
+    /* 発行元 */
+    var origin = [];
+    if (p.ssrn) {
+      origin.push(['SSRN の論文ページ', 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' + p.ssrn]);
+    }
+    if (p.zenodo) {
+      origin.push(['Zenodo のレコード', 'https://zenodo.org/records/' + p.zenodo]);
+    }
+    if (doi) {
+      origin.push(['DOI を解決する', 'https://doi.org/' + doi]);
+    }
+    if (origin.length) groups.push(['発行元', origin]);
+
+    /* 登録情報 */
+    var reg = [];
+    if (doi) {
+      reg.push(['Crossref の登録内容', 'https://api.crossref.org/works/' + encodeURIComponent(doi)]);
+      reg.push(['DataCite Commons', 'https://commons.datacite.org/doi.org/' + doi]);
+      reg.push(['OpenAlex の登録内容', 'https://api.openalex.org/works/doi:' + encodeURIComponent(doi)]);
+    } else {
+      reg.push(['Crossref を検索', 'https://search.crossref.org/?q=' + q]);
+      reg.push(['OpenAlex を検索', 'https://openalex.org/works?search=' + q]);
+    }
+    groups.push(['登録情報', reg]);
+
+    /* 索引・検索 */
+    groups.push(['索引・検索', [
+      ['Google Scholar', 'https://scholar.google.com/scholar?q=' + q],
+      ['Semantic Scholar', doi ? 'https://api.semanticscholar.org/DOI:' + doi
+                               : 'https://www.semanticscholar.org/search?q=' + q],
+      ['BASE', 'https://www.base-search.net/Search/Results?lookfor=' + q],
+      ['CORE', 'https://core.ac.uk/search?q=' + q],
+      ['The Lens', 'https://www.lens.org/lens/search/scholar/list?q=' + q],
+      ['Dimensions（要ログイン）', 'https://app.dimensions.ai/discover/publication?search_text=' + q]
+    ]]);
+
+    /* 引用・指標 */
+    var metrics = [];
+    if (doi) {
+      metrics.push(['Altmetric', 'https://www.altmetric.com/details/doi/' + doi]);
+      metrics.push(['Scholia（Wikidata）', 'https://scholia.toolforge.org/doi/' + encodeURIComponent(doi)]);
+    }
+    metrics.push(['Connected Papers', 'https://www.connectedpapers.com/search?q=' + q]);
+    groups.push(['引用・指標', metrics]);
+
+    return groups;
+  }
+
+  /* ------------------------------------------------------------------
+   * 表示
+   * ---------------------------------------------------------------- */
+
+  function el(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
+
+  function showDetected(p) {
+    var box = $('detected');
+    box.textContent = '';
+    var dl = el('dl');
+
+    function row(label, value, cls) {
+      var dt = el('dt'); dt.textContent = label;
+      var dd = el('dd', cls); dd.textContent = value;
+      dl.appendChild(dt); dl.appendChild(dd);
+    }
+
+    row('認識', p.kind, 'kind');
+    if (p.doi) row('DOI', p.doi + (p.derived ? '（Abstract ID からの推定）' : ''));
+    if (p.ssrn) row('SSRN ID', p.ssrn);
+    if (p.zenodo) row('Zenodo ID', p.zenodo);
+
+    box.appendChild(dl);
+    box.hidden = false;
+  }
+
+  var lastGroups = null;
+
+  function render(p) {
+    var groups = buildGroups(p);
+    lastGroups = groups;
+
+    var out = $('results');
+    out.textContent = '';
+
+    groups.forEach(function (g) {
+      var section = el('div', 'result-group');
+      var h = el('h3');
+      h.textContent = g[0];
+      section.appendChild(h);
+
+      var ul = el('ul', 'result-list');
+      g[1].forEach(function (item) {
+        var li = el('li');
+        var row = el('div', 'row');
+
+        var a = el('a');
+        a.href = item[1];
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.appendChild(document.createTextNode(item[0]));
+        var small = el('small');
+        small.textContent = item[1];
+        a.appendChild(small);
+
+        var copy = el('button');
+        copy.type = 'button';
+        copy.textContent = 'コピー';
+        copy.addEventListener('click', function () { copyText(item[1]); });
+
+        row.appendChild(a);
+        row.appendChild(copy);
+        li.appendChild(row);
+        ul.appendChild(li);
+      });
+
+      section.appendChild(ul);
+      out.appendChild(section);
+    });
+
+    $('copyAll').hidden = false;
+  }
+
+  /* ------------------------------------------------------------------
+   * コピー
+   * ---------------------------------------------------------------- */
+
+  function status(msg) {
+    var s = $('status');
+    s.textContent = msg;
+    clearTimeout(status.id);
+    status.id = setTimeout(function () { s.textContent = ''; }, 2200);
+  }
+
+  function copyText(text) {
+    var ok = function () { status('コピーしました'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok, function () { fallback(text, ok); });
+    } else {
+      fallback(text, ok);
+    }
+  }
+
+  function fallback(text, ok) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); ok(); }
+    catch (e) { status('コピーできませんでした'); }
+    document.body.removeChild(ta);
+  }
+
+  function asMarkdown() {
+    return lastGroups.map(function (g) {
+      return '## ' + g[0] + '\n\n' + g[1].map(function (i) {
+        return '- [' + i[0] + '](' + i[1] + ')';
+      }).join('\n');
+    }).join('\n\n');
+  }
+
+  /* ------------------------------------------------------------------
+   * 起動
+   * ---------------------------------------------------------------- */
+
+  function run() {
+    var p = parse($('q').value);
+    if (!p) { status('DOI か Abstract ID を入力してください'); return; }
+    try { localStorage.setItem(KEY, p.input); } catch (e) {}
+    showDetected(p);
+    render(p);
+  }
+
+  $('go').addEventListener('click', run);
+  $('q').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); run(); }
+  });
+  $('copyAll').addEventListener('click', function () {
+    if (lastGroups) copyText(asMarkdown());
+  });
+
+  try {
+    var last = localStorage.getItem(KEY);
+    if (last) { $('q').value = last; run(); }
+  } catch (e) {}
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.reveal').forEach(function (n) { n.classList.add('is-visible'); });
+  });
+})();
+</script>
+</body>
+</html>
