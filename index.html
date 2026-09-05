@@ -265,15 +265,17 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 }
 .skip-link:focus { top: 1rem; }
 
+/* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
 @media (max-width: 30rem) {
-  .nav { gap: .85rem; }
-  .nav a { font-size: .74rem; }
+  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem; }
+  .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: .95rem; }
+  .nav a { font-size: .76rem; }
   .wrap { padding: 0 1.1rem; }
 }
 
 @media (max-width: 22rem) {
-  .nav { gap: .55rem; }
-  .nav a { font-size: .7rem; letter-spacing: 0; }
+  .nav { gap: .7rem; }
+  .nav a { font-size: .72rem; letter-spacing: 0; }
   .wrap { padding: 0 .9rem; }
 }
 
@@ -302,6 +304,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     <nav class="nav">
       <a href="#credentials">修了証</a>
       <a href="#areas">学習領域</a>
+      <a href="#works">制作物</a>
       <a href="./research.html">研究ブログ</a>
       <a href="#links">リンク</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
@@ -414,6 +417,30 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
         <h3>領域知識</h3>
         <p>放射線安全、災害科学、政治哲学</p>
       </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="works" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">制作物</h2>
+      <p>公開しているリポジトリです。</p>
+    </div>
+
+    <div class="cards">
+      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">
+        <span class="code">JavaScript / MIT</span>
+        <h3>researcher-profile</h3>
+        <p class="issuer">設定ファイル 1 つから、研究者プロフィールの静的サイトを生成するツール。依存パッケージなし、外部リクエストゼロ。</p>
+        <span class="verify">GitHub で見る</span>
+      </a>
+      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/justice-and-algorithms" target="_blank" rel="noopener">
+        <span class="code">Markdown / CC BY 4.0</span>
+        <h3>justice-and-algorithms</h3>
+        <p class="issuer">アルゴリズムによる判断をめぐる論点を、政治哲学の正義論に接続して整理する資料。</p>
+        <span class="verify">GitHub で見る</span>
+      </a>
     </div>
   </section>
 
