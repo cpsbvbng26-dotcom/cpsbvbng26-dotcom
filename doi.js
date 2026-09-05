@@ -654,6 +654,30 @@
     render();
   }
 
+  /* URL から DOI を受け取る。
+   *
+   *   doi.html?q=10.5281/zenodo.22058254
+   *   doi.html?q=10.5281/zenodo.22058254,10.2139/ssrn.7358779
+   *   doi.html#q=...            （? が使えない場面のための予備）
+   *
+   * プロフィールの各ページから、そこに載っている DOI をそのまま渡すために使う。
+   * 受け取った時点で解析まで走らせる。ネットワークには触れない。
+   */
+  function fromLocation() {
+    var raw = '';
+    var m = /[?&]q=([^&]*)/.exec(window.location.search);
+    if (m) raw = m[1];
+    else {
+      var h = /^#q=(.*)$/.exec(window.location.hash);
+      if (h) raw = h[1];
+    }
+    if (!raw) return false;
+    try { raw = decodeURIComponent(raw.replace(/\+/g, ' ')); } catch (e) { /* 壊れていればそのまま */ }
+    $('input').value = raw.split(/[,\s]+/).filter(Boolean).join('\n');
+    run();
+    return true;
+  }
+
   $('analyze').addEventListener('click', run);
   $('lookup').addEventListener('click', lookupAll);
   $('sample').addEventListener('click', function () { $('input').value = SAMPLE; run(); });
@@ -677,6 +701,8 @@
       renderExport();
     });
   });
+
+  fromLocation();
 
   $('copy').addEventListener('click', function () {
     var text = $('out').textContent;

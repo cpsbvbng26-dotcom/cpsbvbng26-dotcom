@@ -605,6 +605,15 @@ section.block { padding: 4.5rem 0; }
   color: var(--accent);
 }
 
+.sec-head .go {
+  display: inline-block; margin-left: .6rem;
+  font-size: .8rem; color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s;
+}
+.sec-head .go:hover { border-bottom-color: var(--accent); }
+.sec-head .go::after { content: " →"; }
+
 .cert .verify {
   margin-top: .35rem;
   font-size: .74rem; letter-spacing: .06em; color: var(--faint);
@@ -859,7 +868,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="papers" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Papers</h2>
-      <p>Preprints. Not peer-reviewed.</p>
+      <p>Preprints. Not peer-reviewed.<a class="go" href="./doi.html?q=10.5281/zenodo.22058254,10.5281/zenodo.22057583,10.5281/zenodo.22064241,10.5281/zenodo.22055709,10.5281/zenodo.22058624,10.5281/zenodo.22058777,10.5281/zenodo.22058964">Analyse all seven DOIs</a></p>
     </div>
 
     <div class="cards">
