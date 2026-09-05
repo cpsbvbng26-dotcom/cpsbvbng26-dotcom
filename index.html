@@ -61,6 +61,85 @@
         "https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0",
         "https://medium.com/@heaven_livid_frog_333/lists",
         "https://github.com/cpsbvbng26-dotcom"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CS50x: Introduction to Computer Science",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "HarvardX"
+          },
+          "url": "https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc",
+          "dateCreated": "2026-03"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "ER22.1x: Justice",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "HarvardX"
+          },
+          "url": "https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3",
+          "dateCreated": "2026-03"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CS50AI: Introduction to Artificial Intelligence with Python",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "HarvardX"
+          },
+          "url": "https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807",
+          "dateCreated": "2026-04"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CC0201EN: Introduction to Containers, Kubernetes and OpenShift",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "IBM"
+          },
+          "url": "https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316",
+          "dateCreated": "2026-05"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Introduction to Radiation Safety",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "東北大学"
+          },
+          "url": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09",
+          "dateCreated": "2026-03"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Action oriented Research on Disaster Science",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "東北大学"
+          },
+          "url": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09",
+          "dateCreated": "2026-03"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Mystery of Aurora",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "東北大学"
+          },
+          "url": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09",
+          "dateCreated": "2026-03"
+        }
       ]
     },
     {
@@ -272,6 +351,11 @@ section.block { padding: 4.5rem 0; }
   letter-spacing: .01em;
 }
 .cert .issuer { font-size: .8rem; color: var(--muted); margin: 0; }
+.cert .when {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: .74rem; letter-spacing: .1em; color: var(--faint);
+}
 .cert .doi {
   margin: 0;
   font-family: Georgia, serif;
@@ -432,24 +516,28 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
           <span class="code">CS50x</span>
           <h3>Introduction to Computer Science</h3>
           <p class="issuer">HarvardX</p>
-          <span class="verify">証明書を確認</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">
-          <span class="code">CS50AI</span>
-          <h3>Introduction to Artificial Intelligence with Python</h3>
-          <p class="issuer">HarvardX</p>
+          <p class="when">2026年3月</p>
           <span class="verify">証明書を確認</span>
         </a>
         <a class="cert reveal" href="https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3" target="_blank" rel="noopener">
           <span class="code">ER22.1x</span>
           <h3>Justice</h3>
           <p class="issuer">HarvardX</p>
+          <p class="when">2026年3月</p>
+          <span class="verify">証明書を確認</span>
+        </a>
+        <a class="cert reveal" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">
+          <span class="code">CS50AI</span>
+          <h3>Introduction to Artificial Intelligence with Python</h3>
+          <p class="issuer">HarvardX</p>
+          <p class="when">2026年4月</p>
           <span class="verify">証明書を確認</span>
         </a>
         <a class="cert reveal" href="https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316" target="_blank" rel="noopener">
           <span class="code">CC0201EN</span>
           <h3>Introduction to Containers, Kubernetes and OpenShift</h3>
           <p class="issuer">IBM</p>
+          <p class="when">2026年5月</p>
           <span class="verify">証明書を確認</span>
         </a>
       </div>
@@ -462,18 +550,21 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
           <span class="code">Open Badge</span>
           <h3>Radiation Safety</h3>
           <p class="issuer">東北大学</p>
+          <p class="when">2026年3月</p>
           <span class="verify">バッジを確認</span>
         </a>
         <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09" target="_blank" rel="noopener">
           <span class="code">Open Badge</span>
           <h3>Disaster Science</h3>
           <p class="issuer">東北大学</p>
+          <p class="when">2026年3月</p>
           <span class="verify">バッジを確認</span>
         </a>
         <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09" target="_blank" rel="noopener">
           <span class="code">Open Badge</span>
           <h3>Mystery of Aurora</h3>
           <p class="issuer">東北大学</p>
+          <p class="when">2026年3月</p>
           <span class="verify">バッジを確認</span>
         </a>
       </div>
