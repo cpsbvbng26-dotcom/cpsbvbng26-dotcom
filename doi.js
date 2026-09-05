@@ -94,6 +94,82 @@
   ].join('\n');
 
   /* ------------------------------------------------------------------ *
+   * 索引先
+   *
+   * kind は二種類。'direct' はその DOI のレコードを直接指す URL、
+   * 'search' は DOI を検索語として投げる URL。**同じ扱いにしない。**
+   * direct は当たれば必ずその資料、search は当たらないことも別物が出ることもある。
+   * ------------------------------------------------------------------ */
+
+  // API のパスに DOI を置くとき、'/' は生のまま渡す（各 API はこれを受ける）。
+  function pathSafe(doi) { return encodeURIComponent(doi).replace(/%2F/gi, '/'); }
+  var q = encodeURIComponent;
+
+  var INDEXES = [
+    { name: 'Crossref', kind: 'direct', group: '登録機関', ra: 'Crossref',
+      url: function (d) { return 'https://api.crossref.org/works/' + pathSafe(d); } },
+    { name: 'DataCite Commons', kind: 'direct', group: '登録機関', ra: 'DataCite',
+      url: function (d) { return 'https://commons.datacite.org/doi.org/' + pathSafe(d); } },
+    { name: 'DataCite API', kind: 'direct', group: '登録機関', ra: 'DataCite',
+      url: function (d) { return 'https://api.datacite.org/dois/' + pathSafe(d); } },
+
+    { name: 'OpenAlex', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://api.openalex.org/works/doi:' + pathSafe(d); } },
+    { name: 'Semantic Scholar', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://api.semanticscholar.org/' + pathSafe(d); } },
+    { name: 'Scholia（Wikidata）', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://scholia.toolforge.org/doi/' + pathSafe(d); } },
+    { name: 'OpenCitations', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://opencitations.net/index/coci/api/v1/citations/' + pathSafe(d); } },
+    { name: 'scite', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://scite.ai/reports/' + pathSafe(d); } },
+    { name: 'Unpaywall', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://unpaywall.org/' + pathSafe(d); } },
+
+    { name: 'Google Scholar', kind: 'search', group: '検索',
+      url: function (d) { return 'https://scholar.google.com/scholar?q=' + q('"' + d + '"'); } },
+    { name: 'Crossref 検索', kind: 'search', group: '検索',
+      url: function (d) { return 'https://search.crossref.org/search/works?q=' + q(d) + '&from_ui=yes'; } },
+    { name: 'BASE', kind: 'search', group: '検索',
+      url: function (d) { return 'https://www.base-search.net/Search/Results?lookfor=' + q(d); } },
+    { name: 'CORE', kind: 'search', group: '検索',
+      url: function (d) { return 'https://core.ac.uk/search?q=' + q('"' + d + '"'); } },
+    { name: 'Lens.org', kind: 'search', group: '検索',
+      url: function (d) { return 'https://www.lens.org/lens/search/scholar/list?q=' + q(d); } },
+    { name: 'Dimensions', kind: 'search', group: '検索',
+      url: function (d) { return 'https://app.dimensions.ai/discover/publication?search_text=' + q(d); } },
+    { name: 'Europe PMC', kind: 'search', group: '分野別',
+      url: function (d) { return 'https://europepmc.org/search?query=DOI:' + q('"' + d + '"'); } },
+    { name: 'PubMed', kind: 'search', group: '分野別',
+      url: function (d) { return 'https://pubmed.ncbi.nlm.nih.gov/?term=' + q(d); } },
+    { name: 'PhilPapers', kind: 'search', group: '分野別',
+      url: function (d) { return 'https://philpapers.org/s/' + q(d); } }
+  ];
+
+  /* 接尾辞から、掲載元のレコードそのものを組み立てられるもの。
+   * 検索でも索引でもなく、DOI の中に識別子が入っているので確実に当たる。 */
+  var REGISTRY = [
+    { re: /^10\.5281\/zenodo\.(\d+)$/i, name: 'Zenodo のレコード',
+      url: function (m) { return 'https://zenodo.org/records/' + m[1]; } },
+    { re: /^10\.2139\/ssrn\.(\d+)$/i, name: 'SSRN の要旨ページ',
+      url: function (m) { return 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' + m[1]; } },
+    { re: /^10\.48550\/arxiv\.(.+)$/i, name: 'arXiv の abs ページ',
+      url: function (m) { return 'https://arxiv.org/abs/' + m[1]; } },
+    { re: /^10\.312(?:19|22|34)\/osf\.io\/(\w+)$/i, name: 'OSF のレコード',
+      url: function (m) { return 'https://osf.io/' + m[1]; } },
+    { re: /^10\.17605\/osf\.io\/(\w+)$/i, name: 'OSF のレコード',
+      url: function (m) { return 'https://osf.io/' + m[1]; } }
+  ];
+
+  function registryLink(doi) {
+    for (var i = 0; i < REGISTRY.length; i++) {
+      var m = REGISTRY[i].re.exec(doi);
+      if (m) return { name: REGISTRY[i].name, url: REGISTRY[i].url(m) };
+    }
+    return null;
+  }
+
+  /* ------------------------------------------------------------------ *
    * 正規化
    * ------------------------------------------------------------------ */
 
@@ -211,6 +287,50 @@
     return '<dt>' + esc(term) + '</dt><dd' + (strong ? ' class="strong"' : '') + '>' + value + '</dd>';
   }
 
+  function renderIndexes(it) {
+    var reg = registryLink(it.doi);
+    var groups = { '登録機関': [], '索引': [], '検索': [], '分野別': [] };
+
+    // 登録機関は、接頭辞から推定したほうを先に出す。Crossref の DOI を DataCite に
+    // 問い合わせても当たらないので、同格に並べると無駄足になる。
+    var ordered = INDEXES.slice().sort(function (a, b) {
+      if (a.group !== '登録機関' || b.group !== '登録機関' || !it.ra) return 0;
+      return (b.ra === it.ra ? 1 : 0) - (a.ra === it.ra ? 1 : 0);
+    });
+
+    ordered.forEach(function (ix) {
+      var off = ix.group === '登録機関' && it.ra && ix.ra !== it.ra;
+      groups[ix.group].push(
+        '<a class="ix ' + ix.kind + (off ? ' off' : '') + '" href="' + esc(ix.url(it.doi)) +
+        '" target="_blank" rel="noopener"' + (off ? ' title="接頭辞からの推定では別の登録機関です"' : '') + '>' +
+        esc(ix.name) + '</a>');
+    });
+
+    var n = INDEXES.length + (reg ? 1 : 0);
+    var html = '<details class="ixbox"><summary>索引先を開く（' + n + ' 件）</summary>';
+
+    if (reg) {
+      html += '<div class="ixgroup"><span class="ixlabel">掲載元のレコード</span><div class="ixlinks">' +
+        '<a class="ix direct" href="' + esc(reg.url) + '" target="_blank" rel="noopener">' + esc(reg.name) + '</a>' +
+        '</div><p class="ixnote">DOI の接尾辞に識別子が入っているので、検索を経ずに組み立てられます。</p></div>';
+    }
+
+    ['登録機関', '索引', '検索', '分野別'].forEach(function (g) {
+      var label = g;
+      if (g === '登録機関' && it.ra) label += '（推定は ' + it.ra + '）';
+      if (g === '分野別') label += '（資料の分野によります）';
+      html += '<div class="ixgroup"><span class="ixlabel">' + esc(label) + '</span>' +
+        '<div class="ixlinks">' + groups[g].join('') + '</div></div>';
+    });
+
+    html += '<p class="ixnote"><b>実線は直接</b>その DOI のレコードを指します。' +
+      '<b>点線は検索</b>で、DOI を検索語として投げるだけです。当たらないことも、別のものが出ることもあります。' +
+      '<b>薄いものは、接頭辞からの推定では別の登録機関</b>のため、おそらく当たりません。' +
+      '実際に収録されているかどうかは、ここでは確かめていません —— <b>開いて初めて分かります。</b></p>';
+    html += '</details>';
+    return html;
+  }
+
   function renderItem(it) {
     var cls = !it.valid ? 'bad' : (it.note && it.note.kind === 'warn' ? 'flagged' : 'ok');
     var tag = !it.valid ? '<span class="tag bad">書式が不正</span>'
@@ -242,6 +362,8 @@
     if (it.note) {
       html += '<div class="note">' + it.note.html + '</div>';
     }
+
+    if (it.valid) html += renderIndexes(it);
 
     if (it.lookupState === 'pending') {
       html += '<div class="meta-block"><dl class="kv">' + row('照会', '問い合わせ中…') + '</dl></div>';
@@ -323,11 +445,6 @@
   /* ------------------------------------------------------------------ *
    * 照会（ここだけがネットワークに触れる）
    * ------------------------------------------------------------------ */
-
-  // encodeURIComponent は '/' も潰すので戻す。API は生のスラッシュを受ける。
-  function pathSafe(doi) {
-    return encodeURIComponent(doi).replace(/%2F/gi, '/');
-  }
 
   function fromCrossref(m) {
     var issued = m.issued && m.issued['date-parts'] && m.issued['date-parts'][0];
@@ -497,13 +614,29 @@
     return rows.join('\n');
   }
 
+  function indexLinks() {
+    var out = [];
+    state.items.filter(function (it) { return it.valid; }).forEach(function (it) {
+      out.push('## ' + it.doi);
+      out.push('');
+      var reg = registryLink(it.doi);
+      if (reg) out.push('- 掲載元 — [' + reg.name + '](' + reg.url + ')');
+      INDEXES.forEach(function (ix) {
+        out.push('- ' + ix.group + '（' + (ix.kind === 'direct' ? '直接' : '検索') + '） — [' +
+                 ix.name + '](' + ix.url(it.doi) + ')');
+      });
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
   function plain() {
     return state.items.filter(function (it) { return it.valid; })
       .map(function (it) { return it.url; }).join('\n');
   }
 
   function renderExport() {
-    var map = { bibtex: bibtex, csl: csl, cff: cff, md: markdown, txt: plain };
+    var map = { bibtex: bibtex, csl: csl, cff: cff, md: markdown, links: indexLinks, txt: plain };
     $('out').textContent = (map[fmt] || bibtex)();
   }
 

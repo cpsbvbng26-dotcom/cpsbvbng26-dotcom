@@ -406,6 +406,38 @@ pre#out {
   white-space: pre-wrap; overflow-wrap: anywhere;
 }
 
+/* ---------- 索引先 ---------- */
+.ixbox { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid var(--line-soft); }
+.ixbox summary {
+  cursor: pointer; list-style: none;
+  font-size: .78rem; letter-spacing: .06em; color: var(--faint);
+  transition: color .15s;
+}
+.ixbox summary::-webkit-details-marker { display: none; }
+.ixbox summary::before { content: "▸ "; color: var(--accent); }
+.ixbox[open] summary::before { content: "▾ "; }
+.ixbox summary:hover { color: var(--accent); }
+
+.ixgroup { margin-top: .9rem; }
+.ixlabel {
+  display: block; margin-bottom: .45rem;
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint);
+}
+.ixlinks { display: flex; flex-wrap: wrap; gap: .4rem; }
+.ix {
+  font-size: .76rem; padding: .3rem .8rem;
+  color: var(--muted); text-decoration: none;
+  border-radius: 999px;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+.ix.direct { border: 1px solid var(--line); }
+.ix.search { border: 1px dashed var(--line); }
+.ix.off { opacity: .45; }
+.ix:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+.ixnote { margin: .7rem 0 0; font-size: .74rem; line-height: 1.7; color: var(--faint); }
+.ixnote b { color: var(--muted); }
+
 .empty { padding: 2.5rem 0; font-size: .88rem; color: var(--faint); }
 
 @media print {
@@ -438,7 +470,7 @@ pre#out {
     <p class="romaji reveal">PARSE · VERIFY · EXPORT</p>
 
     <div class="lead-block reveal">
-      <p>DOI を貼ると、書式を検証し、接頭辞から登録者を推定し、正しい URL の形に直します。文献リストをそのまま貼っても、含まれている DOI を全部拾います。</p>
+      <p>DOI を貼ると、書式を検証し、接頭辞から登録者を推定し、正しい URL の形に直し、<strong>その DOI で辿れる索引先を一覧にします</strong>。文献リストをそのまま貼っても、含まれている DOI を全部拾います。</p>
       <p><strong>このページは読み込み時に外部へ一切リクエストを出しません。</strong> メタデータの照会は、押したときだけ CrossRef と DataCite に問い合わせます。押さなければ、すべてこのページの中だけで完結します。</p>
     </div>
 
@@ -479,6 +511,7 @@ pre#out {
         <button class="tab" role="tab" data-fmt="csl" aria-selected="false">CSL-JSON</button>
         <button class="tab" role="tab" data-fmt="cff" aria-selected="false">CITATION.cff</button>
         <button class="tab" role="tab" data-fmt="md" aria-selected="false">Markdown</button>
+        <button class="tab" role="tab" data-fmt="links" aria-selected="false">索引先</button>
         <button class="tab" role="tab" data-fmt="txt" aria-selected="false">DOI のみ</button>
       </div>
       <pre id="out"></pre>
@@ -495,6 +528,10 @@ pre#out {
       <h2 class="serif">この道具について</h2>
     </div>
     <div class="areas reveal">
+      <div class="area">
+        <h3>索引先</h3>
+        <p>DOI 一件ごとに、辿れる先を並べます。<strong>直接その DOI のレコードを指すもの（Crossref・DataCite Commons・OpenAlex・Semantic Scholar・Scholia・OpenCitations・scite・Unpaywall）と、DOI を検索語として投げるだけのもの（Google Scholar・BASE・CORE・Lens・Dimensions ほか）を、線の種類で分けています。</strong> Zenodo・SSRN・arXiv・OSF は、接尾辞に識別子が入っているので掲載元のレコードそのものを組み立てます。</p>
+      </div>
       <div class="area">
         <h3>何を確かめるか</h3>
         <p>書式（<code>10.</code> + 4〜9 桁の登録者番号 + <code>/</code> + 接尾辞）、接頭辞から推定した登録者と登録機関、正規の解決 URL。同じ DOI が複数あれば重複として数えます。</p>
