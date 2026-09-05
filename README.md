@@ -55,6 +55,7 @@
 
 - ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
+- PhilPeople — [哲学者プロフィール](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [欧州拠点研究者プロフィール](https://cv.hal.science/nemoto-takuya)
 - acadmc — [アカデミックプロフィール](https://acadmc.com/takuyanemoto)
 - J-GLOBAL — [研究者データベース](https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335)
