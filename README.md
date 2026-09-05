@@ -53,12 +53,13 @@
 
 ✴︎Papers✴︎
 
-いずれも査読前のプレプリントです。全文と PDF は [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) にあります。
+いずれも査読前のプレプリントです。はじめの二篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、三篇目は Zenodo に置いています。
 
-| 論文 | 内容 | 版 |
-| --- | --- | --- |
-| [The Nobility and Exemplarity of the Celibate Individual](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/celibate-individual.html) | 性的活動を倫理的な義務とみなす通説を反出生主義の側から検討し、自足的な幸福という観点から独身を自己陶冶の型として擁護する | v2 — 2026年8月 |
-| [Manifesto of Imperial Selfhood](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/imperial-selfhood.html) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 |
+| 論文 | 内容 | 版 | DOI |
+| --- | --- | --- | --- |
+| [The Nobility and Exemplarity of the Celibate Individual](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/celibate-individual.html) | 性的活動を倫理的な義務とみなす通説を反出生主義の側から検討し、自足的な幸福という観点から独身を自己陶冶の型として擁護する | v2 — 2026年8月 | — |
+| [Manifesto of Imperial Selfhood](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/imperial-selfhood.html) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 | — |
+| [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709) |
 
 ---
 
