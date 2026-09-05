@@ -59,6 +59,7 @@
 - acadmc — [アカデミックプロフィール](https://acadmc.com/takuyanemoto)
 - J-GLOBAL — [研究者データベース](https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335)
 - ORCID — [0009-0000-1406-0547](https://orcid.org/0009-0000-1406-0547)
+- Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
