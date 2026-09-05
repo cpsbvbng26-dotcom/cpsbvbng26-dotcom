@@ -6,7 +6,7 @@
 
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
 
-[![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge&logo=githubpages)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+[![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge&logo=githubpages&logoColor=white)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
@@ -21,13 +21,13 @@
 
 **edX**（4 件）
 
-[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
+[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge&logo=edx&logoColor=white)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
 
-[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
+[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge&logo=edx&logoColor=white)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
 
-[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
+[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge&logo=edx&logoColor=white)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
 
-[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge&logo=edx)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
+[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge&logo=edx&logoColor=white)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
 
 **東北大学 MOOC / オープンバッジ**（3 件）
 
@@ -110,4 +110,4 @@
 | 共同作成の記録 | コミットメッセージ末尾の `Co-authored-by:` トレーラ |
 | 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
 
-コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り縹うことはできません。
+コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
