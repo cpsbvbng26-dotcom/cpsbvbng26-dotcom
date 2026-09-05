@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOI アナライザー | 根本卓哉</title>
-<meta name="description" content="DOI や SSRN の Abstract ID から、各索引サービスでの収録状況を確認するリンクをまとめて生成するツール。">
+<meta name="description" content="DOI や SSRN の Abstract ID から、Crossref・OpenAlex・Semantic Scholar・DataCite に問い合わせて収録状況と被引用数を調べるツール。">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="DOI アナライザー | 根本卓哉">
-<meta property="og:description" content="DOI や SSRN の Abstract ID から、各索引サービスへのリンクをまとめて生成します。">
+<meta property="og:description" content="DOI や SSRN の Abstract ID から、各索引サービスでの収録状況と被引用数を調べます。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html">
 <link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html">
@@ -357,6 +357,41 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 #status { font-size: .78rem; color: #3f8f5f; min-height: 1.2em; margin: 1rem 0 0; }
 :root[data-theme="dark"] #status { color: #6fbf8f; }
 
+/* 調査結果 */
+.findings { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.finding {
+  padding: 1.3rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: .9rem;
+}
+.finding .src {
+  display: flex; align-items: center; justify-content: space-between; gap: .8rem;
+  margin-bottom: .9rem;
+}
+.finding .src b { font-size: .95rem; font-weight: 600; letter-spacing: .02em; }
+.chip {
+  flex: none; font-size: .68rem; letter-spacing: .08em;
+  padding: .18rem .65rem; border-radius: 999px; border: 1px solid;
+}
+.chip.ok      { color: #2f7d52; border-color: rgba(47,125,82,.4);  background: rgba(47,125,82,.08); }
+.chip.none    { color: var(--muted); border-color: var(--line); }
+.chip.error   { color: #a8562f; border-color: rgba(168,86,47,.4);  background: rgba(168,86,47,.07); }
+.chip.loading { color: var(--faint); border-color: var(--line); }
+:root[data-theme="dark"] .chip.ok    { color: #7ec79b; }
+:root[data-theme="dark"] .chip.error { color: #e0a184; }
+
+.finding dl { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: .3rem 1rem; margin: 0; font-size: .82rem; }
+.finding dt { color: var(--faint); font-size: .76rem; white-space: nowrap; }
+.finding dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.finding .num { font-family: Georgia, serif; font-size: 1.05em; }
+.finding .msg { margin: 0; font-size: .8rem; color: var(--muted); }
+
+.summary {
+  margin: 0 0 2rem; padding: 1.1rem 1.3rem;
+  border-left: 2px solid var(--accent);
+  font-size: .9rem; color: var(--text);
+}
+.summary b { font-family: Georgia, serif; font-size: 1.15em; color: var(--accent); }
+
 @media print { .field-row, .row button, #copyAll { display: none !important; } }
 </style>
 </head>
@@ -384,7 +419,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     <h1 class="serif reveal">DOI アナライザー</h1>
     <p class="romaji reveal">DOI ANALYZER</p>
     <div class="tool reveal">
-      <p class="lead">DOI や SSRN の Abstract ID を入れると、各索引サービスでの収録状況を確認するリンクをまとめて生成します。</p>
+      <p class="lead">DOI や SSRN の Abstract ID を入れると、Crossref・OpenAlex・Semantic Scholar・DataCite に問い合わせて<strong>収録の有無と被引用数を実際に取得</strong>します。あわせて、手動で確認するためのリンクも生成します。</p>
 
       <div class="field-row">
         <input id="q" type="text" autocomplete="off" spellcheck="false"
@@ -403,10 +438,21 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 
   <hr class="rule">
 
+  <section id="findings-section" class="wrap block" hidden>
+    <div class="sec-head">
+      <h2 class="serif">調査結果</h2>
+      <p>各サービスの公開 API に問い合わせた結果です。</p>
+    </div>
+    <p id="summary" class="summary" hidden></p>
+    <div id="findings" class="findings"></div>
+  </section>
+
+  <hr class="rule" id="rule-before-links">
+
   <section class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">確認先</h2>
-      <p>リンクは新しいタブで開きます。生成のみを行い、外部への通信はしません。</p>
+      <p>API を持たないサービスも含めた、手動で確認するためのリンクです。新しいタブで開きます。</p>
     </div>
     <div id="results"></div>
     <p style="margin-top:2rem"><button id="copyAll" class="btn btn-quiet" type="button" hidden>全部コピー（Markdown）</button></p>
@@ -654,11 +700,238 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
    * 起動
    * ---------------------------------------------------------------- */
 
+
+  /* ------------------------------------------------------------------
+   * 各サービスへの問い合わせ
+   *
+   * いずれも公開 API で、ブラウザからの取得を許可している（CORS）。
+   * 応答しない場合や仕様が変わった場合でも、他の結果の表示は続ける。
+   * ---------------------------------------------------------------- */
+
+  var TIMEOUT = 9000;
+
+  function fetchJson(url) {
+    if (typeof fetch !== 'function') return Promise.reject(new Error('unsupported'));
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT);
+    return fetch(url, ctrl ? { signal: ctrl.signal } : undefined).then(function (res) {
+      clearTimeout(timer);
+      if (res.status === 404) return { notFound: true };
+      if (res.status === 429) throw new Error('rate-limited');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }, function (e) {
+      clearTimeout(timer);
+      throw e;
+    });
+  }
+
+  function num(v) { return (typeof v === 'number' && isFinite(v)) ? v.toLocaleString('ja-JP') : null; }
+  function firstOf(v) { return Array.isArray(v) ? v[0] : v; }
+
+  var SOURCES = [
+    {
+      name: 'Crossref',
+      note: '出版社が登録する書誌情報',
+      url: function (p) { return 'https://api.crossref.org/works/' + encodeURIComponent(p.doi); },
+      need: 'doi',
+      parse: function (j) {
+        var m = j.message;
+        if (!m) return null;
+        return {
+          title: firstOf(m.title),
+          fields: [
+            ['種別', m.type],
+            ['発行', m.publisher],
+            ['年', (m.issued && m.issued['date-parts'] && m.issued['date-parts'][0]) ? m.issued['date-parts'][0][0] : null],
+            ['被引用', num(m['is-referenced-by-count'])]
+          ]
+        };
+      }
+    },
+    {
+      name: 'OpenAlex',
+      note: '論文・著者・分野の統合目録',
+      url: function (p) { return 'https://api.openalex.org/works/doi:' + encodeURIComponent(p.doi); },
+      need: 'doi',
+      parse: function (j) {
+        if (!j || !j.id) return null;
+        return {
+          title: j.display_name,
+          fields: [
+            ['年', j.publication_year],
+            ['被引用', num(j.cited_by_count)],
+            ['著者数', num(j.authorships ? j.authorships.length : null)],
+            ['主題', j.primary_topic ? j.primary_topic.display_name : null],
+            ['オープンアクセス', j.open_access ? (j.open_access.is_oa ? 'はい（' + (j.open_access.oa_status || '-') + '）' : 'いいえ') : null]
+          ]
+        };
+      }
+    },
+    {
+      name: 'Semantic Scholar',
+      note: '引用の文脈を含む学術検索',
+      url: function (p) {
+        return 'https://api.semanticscholar.org/graph/v1/paper/DOI:' + encodeURIComponent(p.doi) +
+               '?fields=title,year,citationCount,influentialCitationCount,openAccessPdf';
+      },
+      need: 'doi',
+      parse: function (j) {
+        if (!j || (!j.paperId && !j.title)) return null;
+        return {
+          title: j.title,
+          fields: [
+            ['年', j.year],
+            ['被引用', num(j.citationCount)],
+            ['影響の大きい引用', num(j.influentialCitationCount)],
+            ['本文 PDF', j.openAccessPdf && j.openAccessPdf.url ? 'あり' : 'なし']
+          ]
+        };
+      }
+    },
+    {
+      name: 'DataCite',
+      note: 'データセット・プレプリントの登録機関',
+      url: function (p) { return 'https://api.datacite.org/dois/' + encodeURIComponent(p.doi); },
+      need: 'doi',
+      parse: function (j) {
+        var a = j.data && j.data.attributes;
+        if (!a) return null;
+        return {
+          title: firstOf(a.titles) ? firstOf(a.titles).title : null,
+          fields: [
+            ['種別', a.types ? (a.types.resourceTypeGeneral || a.types.resourceType) : null],
+            ['発行', a.publisher && a.publisher.name ? a.publisher.name : a.publisher],
+            ['年', a.publicationYear],
+            ['被引用', num(a.citationCount)],
+            ['閲覧', num(a.viewCount)],
+            ['取得', num(a.downloadCount)]
+          ]
+        };
+      }
+    }
+  ];
+
+  function el2(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
+
+  function findingCard(src) {
+    var card = el2('div', 'finding');
+    var head = el2('div', 'src');
+    var b = document.createElement('b');
+    b.textContent = src.name;
+    var chip = el2('span', 'chip loading');
+    chip.textContent = '問い合わせ中';
+    head.appendChild(b);
+    head.appendChild(chip);
+    card.appendChild(head);
+
+    var body = el2('div');
+    var note = el2('p', 'msg');
+    note.textContent = src.note;
+    body.appendChild(note);
+    card.appendChild(body);
+
+    return { card: card, chip: chip, body: body };
+  }
+
+  function fillCard(ui, state, data) {
+    ui.body.textContent = '';
+    ui.chip.className = 'chip ' + state;
+
+    if (state === 'ok') {
+      ui.chip.textContent = '収録あり';
+      var dl = el2('dl');
+      if (data.title) {
+        var dt0 = el2('dt'); dt0.textContent = '題名';
+        var dd0 = el2('dd'); dd0.textContent = data.title;
+        dl.appendChild(dt0); dl.appendChild(dd0);
+      }
+      data.fields.forEach(function (f) {
+        if (f[1] === null || f[1] === undefined || f[1] === '') return;
+        var dt = el2('dt'); dt.textContent = f[0];
+        var dd = el2('dd'); dd.textContent = String(f[1]);
+        if (f[0] === '被引用' || f[0] === '閲覧' || f[0] === '取得') dd.className = 'num';
+        dl.appendChild(dt); dl.appendChild(dd);
+      });
+      ui.body.appendChild(dl);
+    } else if (state === 'none') {
+      ui.chip.textContent = '未収録';
+      var p1 = el2('p', 'msg');
+      p1.textContent = 'この識別子での登録は見つかりませんでした。';
+      ui.body.appendChild(p1);
+    } else {
+      ui.chip.textContent = '応答なし';
+      var p2 = el2('p', 'msg');
+      p2.textContent = data || '取得できませんでした。時間をおいて再度お試しください。';
+      ui.body.appendChild(p2);
+    }
+  }
+
+  function investigate(p) {
+    var section = $('findings-section');
+    var box = $('findings');
+    var sum = $('summary');
+    box.textContent = '';
+    sum.hidden = true;
+    section.hidden = false;
+
+    if (!p.doi) {
+      section.hidden = true;
+      return;
+    }
+
+    var done = 0, found = 0, cites = 0;
+
+    SOURCES.forEach(function (src) {
+      var ui = findingCard(src);
+      box.appendChild(ui.card);
+
+      fetchJson(src.url(p)).then(function (j) {
+        if (j && j.notFound) { fillCard(ui, 'none', null); return; }
+        var data = null;
+        try { data = src.parse(j); } catch (e) { data = null; }
+        if (!data) { fillCard(ui, 'none', null); return; }
+        fillCard(ui, 'ok', data);
+        found++;
+        data.fields.forEach(function (f) {
+          if (f[0] === '被引用' && f[1]) {
+            var n = parseInt(String(f[1]).replace(/,/g, ''), 10);
+            if (!isNaN(n) && n > cites) cites = n;
+          }
+        });
+      }, function (e) {
+        var msg = e && e.message === 'rate-limited'
+          ? '短時間に多く問い合わせたため、一時的に制限されています。'
+          : '取得できませんでした（通信の遮断、または仕様変更の可能性）。';
+        fillCard(ui, 'error', msg);
+      }).then(function () {
+        done++;
+        if (done === SOURCES.length) {
+          sum.hidden = false;
+          sum.innerHTML = '';
+          sum.appendChild(document.createTextNode('照会した ' + SOURCES.length + ' 件のうち '));
+          var strong = document.createElement('b');
+          strong.textContent = String(found);
+          sum.appendChild(strong);
+          sum.appendChild(document.createTextNode(' 件で収録を確認しました。'));
+          if (cites > 0) {
+            sum.appendChild(document.createTextNode(' 報告された被引用数の最大値は '));
+            var c = document.createElement('b');
+            c.textContent = cites.toLocaleString('ja-JP');
+            sum.appendChild(c);
+            sum.appendChild(document.createTextNode(' です。'));
+          }
+        }
+      });
+    });
+  }
+
   function run() {
     var p = parse($('q').value);
     if (!p) { status('DOI か Abstract ID を入力してください'); return; }
     try { localStorage.setItem(KEY, p.input); } catch (e) {}
     showDetected(p);
+    investigate(p);
     render(p);
   }
 
