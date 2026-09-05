@@ -51,8 +51,12 @@
 
 ✴︎Links✴︎
 
-- サイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+- ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
+- researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
+- HAL — [欧州拠点研究者プロフィール](https://cv.hal.science/nemoto-takuya)
+- acadmc — [アカデミックプロフィール](https://acadmc.com/takuyanemoto)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
+- このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 ---
 

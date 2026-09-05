@@ -200,7 +200,8 @@ section.block { padding: 4.5rem 0; }
 /* ---------- リンク ---------- */
 .links { display: flex; flex-wrap: wrap; gap: .75rem; }
 .link {
-  display: inline-flex; align-items: baseline; gap: .6rem;
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .2rem .6rem;
+  max-width: 100%;
   padding: .7rem 1.4rem;
   font-size: .88rem; text-decoration: none;
   border: 1px solid var(--line); border-radius: 999px;
@@ -249,6 +250,18 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   transition: top .15s;
 }
 .skip-link:focus { top: 1rem; }
+
+@media (max-width: 30rem) {
+  .nav { gap: .85rem; }
+  .nav a { font-size: .74rem; }
+  .wrap { padding: 0 1.1rem; }
+}
+
+@media (max-width: 22rem) {
+  .nav { gap: .55rem; }
+  .nav a { font-size: .7rem; letter-spacing: 0; }
+  .wrap { padding: 0 .9rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -396,9 +409,12 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       <h2 class="serif">リンク</h2>
     </div>
     <div class="links reveal">
-      <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
-      <a class="link" href="./research.html">研究ブログ <span>researchmap</span></a>
+      <a class="link" href="https://www.nemoto200101.com/" target="_blank" rel="noopener">ホームページ <span>nemoto200101.com</span></a>
       <a class="link" href="https://researchmap.jp/takuyanemoto" target="_blank" rel="noopener">researchmap <span>プロフィール</span></a>
+      <a class="link" href="./research.html">研究ブログ <span>researchmap の記事</span></a>
+      <a class="link" href="https://cv.hal.science/nemoto-takuya" target="_blank" rel="noopener">HAL <span>欧州拠点研究者プロフィール</span></a>
+      <a class="link" href="https://acadmc.com/takuyanemoto" target="_blank" rel="noopener">acadmc <span>アカデミックプロフィール</span></a>
+      <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
       <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
     </div>
   </section>
