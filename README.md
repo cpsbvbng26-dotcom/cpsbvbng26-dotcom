@@ -51,6 +51,15 @@
 
 ---
 
+✴︎Works✴︎
+
+| リポジトリ | 内容 | ライセンス |
+| --- | --- | --- |
+| [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT |
+| [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 |
+
+---
+
 ✴︎Links✴︎
 
 - ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
