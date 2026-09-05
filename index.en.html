@@ -400,6 +400,21 @@
       "citation": "JACAR（アジア歴史資料センター）Ref.C12070491000、海軍公報（部内限）號外　昭和十八年九月十一日發令（防衛省防衛研究所）",
       "temporalCoverage": "1943-09-11",
       "keywords": "Naval Gazette, Order of the Sacred Treasure, investiture, JACAR, transcription"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "DOI Analyzer",
+      "description": "Validates DOI syntax, infers the registrant from the prefix, queries Crossref and DataCite, and exports to BibTeX, CSL-JSON and CITATION.cff. Paste a bibliography and it extracts every DOI in it. Makes no external request on load.",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "license": "https://opensource.org/licenses/MIT"
     }
   ]
 }
@@ -707,6 +722,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       <a href="#papers">Papers</a>
       <a href="#works">Works</a>
       <a href="./research.html" hreflang="ja" lang="ja">研究ブログ</a>
+      <a href="./doi.html">DOI</a>
       <a href="#links">Links</a>
       <a href="./index.html" hreflang="ja" lang="ja">日本語</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">☾</button>
@@ -917,6 +933,12 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     </div>
 
     <div class="cards">
+      <a class="cert reveal" href="./doi.html">
+        <span class="code">On this site / tool</span>
+        <h3>DOI Analyzer</h3>
+        <p class="issuer">Validates DOI syntax, infers the registrant from the prefix, queries Crossref and DataCite, and exports to BibTeX and other formats. Paste a bibliography and it finds every DOI in it. Makes no external request until asked.</p>
+        <span class="verify">Open</span>
+      </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">
         <span class="code">JavaScript / MIT</span>
         <h3>researcher-profile</h3>

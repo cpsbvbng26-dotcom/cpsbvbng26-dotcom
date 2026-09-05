@@ -400,6 +400,21 @@
       "citation": "JACAR（アジア歴史資料センター）Ref.C12070491000、海軍公報（部内限）號外　昭和十八年九月十一日發令（防衛省防衛研究所）",
       "temporalCoverage": "1943-09-11",
       "keywords": "海軍公報, 瑞寶章, 叙勲, JACAR, 翻刻"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "DOI アナライザー",
+      "description": "DOI の書式を検証し、接頭辞から登録者を推定し、CrossRef と DataCite に照会して BibTeX・CSL-JSON・CITATION.cff などに書き出す道具。文献リストを貼りこむと、含まれる DOI をすべて抽出する。読み込み時は外部へリクエストを出さない。",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "ja",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "license": "https://opensource.org/licenses/MIT"
     }
   ]
 }
@@ -707,6 +722,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       <a href="#papers">論文</a>
       <a href="#works">制作物</a>
       <a href="./research.html">研究ブログ</a>
+      <a href="./doi.html">DOI</a>
       <a href="#links">リンク</a>
       <a href="./index.en.html" hreflang="en" lang="en">EN</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
@@ -914,6 +930,12 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     </div>
 
     <div class="cards">
+      <a class="cert reveal" href="./doi.html">
+        <span class="code">このサイト内 / ツール</span>
+        <h3>DOI アナライザー</h3>
+        <p class="issuer">DOI の書式を検証し、接頭辞から登録者を推定し、CrossRef と DataCite に照会して BibTeX などに書き出す。文献リストを貼れば含まれる DOI を全部拾う。読み込み時は外部リクエストを出さない。</p>
+        <span class="verify">開く</span>
+      </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">
         <span class="code">JavaScript / MIT</span>
         <h3>researcher-profile</h3>
