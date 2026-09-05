@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>履歴 | 根本卓哉</title>
+<meta name="description" content="根本卓哉（Takuya Nemoto）の履歴。修了証、公開した成果、研究者プロフィールを一枚にまとめたもの。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#faf9f7">
+<style>
+:root {
+  --bg: #faf9f7;
+  --card: #ffffff;
+  --text: #17171a;
+  --muted: #63636b;
+  --faint: #9a9aa2;
+  --line: #e6e4df;
+  --line-soft: #efedE9;
+  --accent: #8a6a3d;
+  --accent-soft: rgba(138, 106, 61, .10);
+  --header-bg: rgba(250, 249, 247, .86);
+  --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
+}
+
+:root[data-theme="dark"] {
+  --bg: #121214;
+  --card: #191919;
+  --text: #ececee;
+  --muted: #9c9ca4;
+  --faint: #6a6a72;
+  --line: #2a2a2d;
+  --line-soft: #232326;
+  --accent: #b08d57;
+  --accent-soft: rgba(176, 141, 87, .14);
+  --header-bg: rgba(18, 18, 20, .86);
+  --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
+}
+
+html { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s, color .25s;
+}
+
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+  font-feature-settings: "palt" 1;
+}
+
+.wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.5rem; }
+
+a { color: inherit; }
+
+/* ---------- ヘッダー ---------- */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.head-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-top: 1rem; padding-bottom: 1rem;
+}
+.mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
+  text-decoration: none;
+}
+.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav a {
+  font-size: .82rem; color: var(--muted); text-decoration: none;
+  letter-spacing: .04em; white-space: nowrap;
+  transition: color .15s;
+}
+.nav a:hover { color: var(--text); }
+
+.theme-toggle {
+  width: 2rem; height: 2rem; flex: none;
+  display: grid; place-items: center;
+  font: inherit; font-size: .9rem; line-height: 1; cursor: pointer;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- ヒーロー ---------- */
+.hero { padding: 6rem 0 4rem; }
+.eyebrow {
+  font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 1.5rem;
+}
+.hero h1 {
+  margin: 0 0 .5rem;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  font-weight: 600; letter-spacing: .04em; line-height: 1.3;
+}
+.hero .romaji {
+  margin: 0 0 .9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem; letter-spacing: .22em; color: var(--faint);
+}
+
+.ident { margin: 0 0 2rem; font-size: .8rem; letter-spacing: .04em; }
+.ident .label {
+  font-family: Georgia, serif;
+  letter-spacing: .18em; color: var(--accent);
+  margin-right: .7rem;
+}
+.ident a {
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s, border-color .15s;
+}
+.ident a:hover { color: var(--accent); border-color: var(--accent); }
+
+.hero p.lead {
+  margin: 0; max-width: 34rem;
+  color: var(--muted); font-size: 1rem;
+}
+
+.rule { height: 1px; background: var(--line); margin: 0; border: 0; }
+
+/* ---------- セクション ---------- */
+section.block { padding: 4.5rem 0; }
+.sec-head { margin-bottom: 2.5rem; }
+.sec-head h2 {
+  margin: 0 0 .4rem;
+  font-size: 1.4rem; font-weight: 600; letter-spacing: .06em;
+}
+.sec-head p { margin: 0; font-size: .85rem; color: var(--faint); }
+
+/* ---------- 修了証 ---------- */
+.group + .group { margin-top: 2.5rem; }
+.group-name {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: .74rem; letter-spacing: .2em; color: var(--faint);
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.group-name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+.cert {
+  display: flex; flex-direction: column; gap: .55rem;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  text-decoration: none;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.cert:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.cert .code {
+  font-family: Georgia, serif;
+  font-size: .7rem; letter-spacing: .14em; color: var(--accent);
+}
+.cert h3 {
+  margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.6;
+  letter-spacing: .01em;
+}
+.cert .issuer { font-size: .8rem; color: var(--muted); margin: 0; }
+.cert .alt {
+  margin: 0;
+  font-size: .76rem; line-height: 1.7; color: var(--faint);
+}
+.cert .when {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: .74rem; letter-spacing: .1em; color: var(--faint);
+}
+.cert .doi {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: .72rem; letter-spacing: .08em;
+  color: var(--accent);
+}
+
+.cert .verify {
+  margin-top: .35rem;
+  font-size: .74rem; letter-spacing: .06em; color: var(--faint);
+  transition: color .2s;
+}
+.cert:hover .verify { color: var(--accent); }
+.cert .verify::after { content: " →"; }
+
+/* ---------- 学習領域 ---------- */
+.areas { display: grid; gap: 0; }
+.area {
+  display: grid; gap: .3rem 2rem;
+  grid-template-columns: 1fr;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.area:last-child { border-bottom: 1px solid var(--line-soft); }
+@media (min-width: 40rem) { .area { grid-template-columns: 13rem 1fr; } }
+.area h3 { margin: 0; font-size: .95rem; font-weight: 600; letter-spacing: .04em; }
+.area p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+/* ---------- リンク ---------- */
+.links { display: flex; flex-wrap: wrap; gap: .75rem; }
+.link {
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .2rem .6rem;
+  max-width: 100%;
+  padding: .7rem 1.4rem;
+  font-size: .88rem; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .2s, background-color .2s;
+}
+.link:hover { border-color: var(--accent); background: var(--accent-soft); }
+.link span { font-size: .72rem; color: var(--faint); letter-spacing: .08em; }
+
+/* ---------- フッター ---------- */
+footer { border-top: 1px solid var(--line); margin-top: 2rem; }
+.foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 2.5rem 0;
+  font-size: .74rem; color: var(--faint);
+}
+.built-with {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .35rem .85rem;
+  font-size: .72rem; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s, color .15s, background-color .15s;
+}
+.built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
+.built-with .dot { width: .45rem; height: .45rem; flex: none; border-radius: 50%; background: #d97757; }
+
+/* ---------- 登場演出 ---------- */
+.reveal {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .7s cubic-bezier(.22, .68, .28, 1), transform .7s cubic-bezier(.22, .68, .28, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: .3rem;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem; z-index: 50;
+  padding: .55rem 1rem;
+  color: var(--bg); background: var(--text);
+  text-decoration: none; font-size: .82rem;
+  border-radius: .5rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
+@media (max-width: 30rem) {
+  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem; }
+  .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: .95rem; }
+  .nav a { font-size: .76rem; }
+  .wrap { padding: 0 1.1rem; }
+}
+
+@media (max-width: 22rem) {
+  .nav { gap: .7rem; }
+  .nav a { font-size: .72rem; letter-spacing: 0; }
+  .wrap { padding: 0 .9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .cert:hover { transform: none; }
+}
+
+@media print {
+  @page { margin: 16mm; }
+  header, footer, .theme-toggle, .skip-link { display: none !important; }
+  body { background: #fff; color: #000; }
+  .cert { break-inside: avoid; border-color: #ccc; box-shadow: none; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+<style>
+/* ---------- 履歴書 ---------- */
+.cv-note {
+  margin: 2.5rem 0 0; padding: 1.1rem 1.3rem;
+  border-left: 2px solid var(--accent);
+  font-size: .85rem; color: var(--muted);
+}
+.cv-note b { color: var(--text); font-weight: 600; }
+
+.cv { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+.cv-head { padding: 3.5rem 0 2rem; border-bottom: 2px solid var(--text); }
+.cv-head h1 {
+  margin: 0 0 .3rem;
+  font-size: 2.1rem; font-weight: 600; letter-spacing: .05em;
+}
+.cv-head .romaji {
+  margin: 0 0 1rem;
+  font-family: Georgia, serif; font-size: .9rem; letter-spacing: .22em; color: var(--faint);
+}
+.cv-meta { display: flex; flex-wrap: wrap; gap: .3rem 1.6rem; font-size: .82rem; color: var(--muted); }
+.cv-meta span b { font-family: Georgia, serif; color: var(--accent); font-weight: 400; letter-spacing: .12em; margin-right: .5rem; }
+.cv-meta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+
+.cv section { padding: 2.2rem 0; border-bottom: 1px solid var(--line-soft); }
+.cv h2 {
+  margin: 0 0 1.2rem;
+  font-size: .78rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+}
+
+.cv-row {
+  display: grid; gap: .2rem 1.5rem;
+  grid-template-columns: 1fr;
+  padding: .7rem 0;
+}
+@media (min-width: 40rem) { .cv-row { grid-template-columns: 7rem 1fr; } }
+.cv-row + .cv-row { border-top: 1px solid var(--line-soft); }
+.cv-when { font-family: Georgia, serif; font-size: .8rem; letter-spacing: .06em; color: var(--faint); }
+.cv-what { min-width: 0; }
+.cv-what b { display: block; font-size: .95rem; font-weight: 600; letter-spacing: .01em; }
+.cv-what span { display: block; font-size: .82rem; color: var(--muted); }
+.cv-what .id {
+  display: block; margin-top: .2rem;
+  font-family: Georgia, serif; font-size: .74rem; letter-spacing: .06em; color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.cv-what a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+
+.cv-links { display: grid; gap: .45rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); font-size: .84rem; }
+.cv-links a { color: var(--muted); text-decoration: none; overflow-wrap: anywhere; }
+.cv-links a:hover { color: var(--accent); }
+.cv-links b { color: var(--text); font-weight: 600; margin-right: .5rem; }
+
+@media print {
+  @page { margin: 15mm; size: A4; }
+  header, footer, .cv-note, .skip-link { display: none !important; }
+  html, body { background: #fff; color: #000; }
+  :root { --text: #000; --muted: #222; --faint: #555; --line: #999; --line-soft: #ccc; --accent: #6b5230; }
+  .cv { max-width: none; padding: 0; }
+  .cv-head { padding-top: 0; }
+  .cv section { padding: 1.1rem 0; break-inside: avoid; }
+  .cv-row { padding: .35rem 0; break-inside: avoid; }
+  .cv h2 { margin-bottom: .6rem; }
+  a { text-decoration: none; }
+  .cv-what .cert-link { display: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header>
+  <div class="wrap head-row">
+    <a class="mark serif" href="./index.html">TN</a>
+    <nav class="nav">
+      <a href="./index.html">プロフィール</a>
+      <a href="./research.html">研究ブログ</a>
+      <a href="./index.en.html" hreflang="en" lang="en">EN</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="cv" tabindex="-1">
+
+  <div class="cv-head">
+    <h1 class="serif">根本卓哉</h1>
+    <p class="romaji">TAKUYA NEMOTO</p>
+    <div class="cv-meta">
+      <span><b>ORCID</b><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></span>
+      <span><b>WEB</b><a href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/">cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom</a></span>
+    </div>
+  </div>
+
+  <p class="cv-note">
+    このページは<b>そのまま印刷して PDF として保存できます</b>。ブラウザの印刷から「PDF に保存」を選んでください。
+    ヘッダーとこの案内は印刷されません。
+  </p>
+
+  <section>
+    <h2>Credentials</h2>
+      <div class="cv-row">
+        <div class="cv-when">2026.03</div>
+        <div class="cv-what">
+          <b>CS50x: Introduction to Computer Science</b>
+          <span>HarvardX（edX）</span>
+          <a class="id cert-link" href="https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.03</div>
+        <div class="cv-what">
+          <b>ER22.1x: Justice</b>
+          <span>HarvardX（edX）</span>
+          <a class="id cert-link" href="https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.03</div>
+        <div class="cv-what">
+          <b>放射線安全社会入門 〜リスクの知見を暮らしに〜</b>
+          <span>国立大学法人東北大学</span>
+          <a class="id cert-link" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.03</div>
+        <div class="cv-what">
+          <b>東日本大震災の教訓を活かした実践的防災学へのアプローチ</b>
+          <span>国立大学法人東北大学</span>
+          <a class="id cert-link" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.03</div>
+        <div class="cv-what">
+          <b>解明：オーロラの謎</b>
+          <span>国立大学法人東北大学</span>
+          <a class="id cert-link" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.04</div>
+        <div class="cv-what">
+          <b>CS50AI: Introduction to Artificial Intelligence with Python</b>
+          <span>HarvardX（edX）</span>
+          <a class="id cert-link" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026.05</div>
+        <div class="cv-what">
+          <b>CC0201EN: Introduction to Containers, Kubernetes and OpenShift</b>
+          <span>IBM（edX）</span>
+          <a class="id cert-link" href="https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316" target="_blank" rel="noopener">証明書</a>
+        </div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Works</h2>
+      <div class="cv-row">
+        <div class="cv-when">2026</div>
+        <div class="cv-what">
+          <b>正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理</b>
+          <span>Zenodo・CC BY 4.0</span>
+          <a class="id" href="https://doi.org/10.5281/zenodo.22335676" target="_blank" rel="noopener">DOI 10.5281/zenodo.22335676</a>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2026</div>
+        <div class="cv-what">
+          <b>researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール</b>
+          <span>Zenodo・MIT License</span>
+          <a class="id" href="https://doi.org/10.5281/zenodo.22335692" target="_blank" rel="noopener">DOI 10.5281/zenodo.22335692</a>
+        </div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Areas</h2>
+      <div class="cv-row">
+        <div class="cv-when">コンピュータサイエンス</div>
+        <div class="cv-what"><span>C / Python、アルゴリズムとデータ構造、計算量の考え方</span></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">人工知能</div>
+        <div class="cv-what"><span>探索、知識表現、確率推論、最適化、機械学習、ニューラルネットワーク、自然言語処理</span></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">コンテナ基盤</div>
+        <div class="cv-what"><span>Docker、Kubernetes、OpenShift の基本概念と操作</span></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">Web 開発</div>
+        <div class="cv-what"><span>HTML / CSS / JavaScript による実装、GitHub Pages での公開と運用</span></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">領域知識</div>
+        <div class="cv-what"><span>放射線安全、災害科学、政治哲学</span></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Profiles</h2>
+    <div class="cv-links">
+      <a href="https://researchmap.jp/takuyanemoto" target="_blank" rel="noopener"><b>researchmap</b>researchmap.jp/takuyanemoto</a>
+      <a href="https://philpeople.org/profiles/takuyanemoto" target="_blank" rel="noopener"><b>PhilPeople</b>philpeople.org/profiles/takuyanemoto</a>
+      <a href="https://cv.hal.science/nemoto-takuya" target="_blank" rel="noopener"><b>HAL</b>cv.hal.science/nemoto-takuya</a>
+      <a href="https://acadmc.com/takuyanemoto" target="_blank" rel="noopener"><b>acadmc</b>acadmc.com/takuyanemoto</a>
+      <a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335" target="_blank" rel="noopener"><b>J-GLOBAL</b>jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335</a>
+      <a href="https://scholar.google.com/citations?user=_HEl3dYAAAAJ&amp;hl=ja" target="_blank" rel="noopener"><b>Google Scholar</b>scholar.google.com/citations?user=_HEl3dYAAAAJ</a>
+      <a href="https://www.nemoto200101.com/" target="_blank" rel="noopener"><b>ホームページ</b>www.nemoto200101.com/</a>
+      <a href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener"><b>GitHub</b>github.com/cpsbvbng26-dotcom</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 根本卓哉</span>
+    <a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+      <span class="dot" aria-hidden="true"></span>Built with Claude Code
+    </a>
+  </div>
+</footer>
+
+<script src="./theme.js"></script>
+</body>
+</html>
