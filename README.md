@@ -99,12 +99,28 @@
 
 ---
 
+✴︎License✴︎
+
+このリポジトリは二種類のものを含んでいるので、ライセンスも二つに分けています。
+
+| | ライセンス | |
+| --- | --- | --- |
+| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
+| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
+
+© 2026 根本卓哉（Takuya Nemoto）
+
+**リンク先の各リポジトリと各プレプリントは、それぞれのライセンスに従います。**
+一覧の ✴︎Works✴︎ 欄と、各リポジトリの `LICENSE` を参照してください。
+
+---
+
 ✴︎Tools & Disclosure✴︎
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `research.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。開示文の整理および以降の公開面の更新には **Grok**（xAI）を使用しています。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
+本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。開示文の整理および以降の公開面の更新には **Grok**（xAI）を使用しています。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
 
 **制作過程の記録** — 表明だけでなく、リポジトリの履歴そのものから確認できます。
 
