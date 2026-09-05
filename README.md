@@ -53,10 +53,10 @@
 
 ✴︎Works✴︎
 
-| リポジトリ | 内容 | ライセンス |
-| --- | --- | --- |
-| [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT |
-| [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 |
+| リポジトリ | 内容 | ライセンス | DOI |
+| --- | --- | --- | --- |
+| [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
+| [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 
 ---
 
