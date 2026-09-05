@@ -26,6 +26,11 @@
 
   function apply(theme) {
     root.setAttribute('data-theme', theme);
+
+    // アドレスバーの色も切り替える
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#121214' : '#faf9f7');
+
     var btn = document.getElementById('themeToggle');
     if (!btn) return;
     var toDark = theme === 'light';

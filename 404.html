@@ -9,10 +9,13 @@
 <meta name="theme-color" content="#faf9f7">
 <style>
 :root { --bg:#faf9f7; --text:#17171a; --muted:#63636b; --line:#e6e4df; --accent:#8a6a3d; }
+:root[data-theme="dark"] { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; }
 @media (prefers-color-scheme: dark) {
-  :root { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; }
+  :root:not([data-theme="light"]) { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; }
 }
 html { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 * { box-sizing: border-box; }
 body {
   margin: 0; min-height: 100vh;
@@ -49,5 +52,6 @@ a:hover { border-color: var(--accent); }
     <p>お探しのページは移動または削除された可能性があります。</p>
     <a href="/cpsbvbng26-dotcom/">トップへ戻る</a>
   </div>
+<script src="/cpsbvbng26-dotcom/theme.js"></script>
 </body>
 </html>
