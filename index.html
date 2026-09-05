@@ -121,10 +121,24 @@ header {
   font-weight: 600; letter-spacing: .04em; line-height: 1.3;
 }
 .hero .romaji {
-  margin: 0 0 2rem;
+  margin: 0 0 .9rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1rem; letter-spacing: .22em; color: var(--faint);
 }
+
+.ident { margin: 0 0 2rem; font-size: .8rem; letter-spacing: .04em; }
+.ident .label {
+  font-family: Georgia, serif;
+  letter-spacing: .18em; color: var(--accent);
+  margin-right: .7rem;
+}
+.ident a {
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s, border-color .15s;
+}
+.ident a:hover { color: var(--accent); border-color: var(--accent); }
+
 .hero p.lead {
   margin: 0; max-width: 34rem;
   color: var(--muted); font-size: 1rem;
@@ -301,6 +315,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     <p class="eyebrow reveal">Profile</p>
     <h1 class="serif reveal">根本卓哉</h1>
     <p class="romaji reveal">TAKUYA NEMOTO</p>
+    <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <p class="lead reveal">
       コンピュータサイエンスと人工知能を中心に学習を続けています。
       修了した講座と、その証明をこのページにまとめています。
@@ -414,6 +429,8 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       <a class="link" href="./research.html">研究ブログ <span>researchmap の記事</span></a>
       <a class="link" href="https://cv.hal.science/nemoto-takuya" target="_blank" rel="noopener">HAL <span>欧州拠点研究者プロフィール</span></a>
       <a class="link" href="https://acadmc.com/takuyanemoto" target="_blank" rel="noopener">acadmc <span>アカデミックプロフィール</span></a>
+      <a class="link" href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335" target="_blank" rel="noopener">J-GLOBAL <span>研究者データベース</span></a>
+      <a class="link" href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">ORCID <span>0009-0000-1406-0547</span></a>
       <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
       <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
     </div>
