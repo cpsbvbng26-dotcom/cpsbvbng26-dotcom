@@ -71,7 +71,7 @@
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 
-本リポジトリのサイト実装（`index.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
+本リポジトリのサイト実装（`index.html` / `research.html` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。設計・内容の確認および最終的な判断は制作者本人が行っています。
 
 **制作過程の記録** — 表明だけでなく、リポジトリの履歴そのものから確認できます。
 
