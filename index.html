@@ -4,325 +4,264 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
-<title>厨二病ジェネレーター | 技名・二つ名・詠唱を量産する</title>
-<meta name="description" content="技名・二つ名・組織名・詠唱・キャラクター設定書を一度に最大300件まとめて生成する、厨二病ジェネレーター。厨二力レベル1〜5、シード固定、テキスト/JSON書き出しに対応。">
+<title>根本卓哉 | Takuya Nemoto</title>
+<meta name="description" content="根本卓哉（Takuya Nemoto）のプロフィール。HarvardX の CS50x / CS50AI をはじめ、コンピュータサイエンス・人工知能・コンテナ基盤・防災科学の修了証を掲載しています。">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="厨二病ジェネレーター">
-<meta property="og:description" content="技名・二つ名・詠唱・設定書を一括量産。厨二力レベル1〜5、シード固定対応。">
-<meta property="og:type" content="website">
+<meta property="og:title" content="根本卓哉 | Takuya Nemoto">
+<meta property="og:description" content="コンピュータサイエンス、人工知能、コンテナ基盤、防災科学の学習記録と修了証。">
+<meta property="og:type" content="profile">
 <meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/">
 <link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/">
 <meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="厨二病ジェネレーター - 闇の力を、量産する">
-<meta property="og:site_name" content="厨二病ジェネレーター">
+<meta property="og:site_name" content="根本卓哉 | Takuya Nemoto">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#09090b">
+<meta name="theme-color" content="#faf9f7">
 <style>
 :root {
-  --bg: #09090b;
-  --panel: #131316;
-  --card: #17171b;
-  --line: #27272a;
-  --line-soft: #202024;
-  --text: #e4e4e7;
-  --muted: #a1a1aa;
-  --dim: #71717a;
-  --faint: #52525b;
-  --violet: #a78bfa;
-  --violet-deep: #7c3aed;
-  --surface-2: #1f1f23;
-  --field-bg: #0c0c0f;
-  --border-strong: #3f3f46;
-  --head-text: #fafafa;
-  --body-text: #d4d4d8;
-  --chip-text: #ddd6fe;
-  --header-bg: rgba(9, 9, 11, .82);
-  --glow: rgba(167, 139, 250, .28);
-  --aura-1: rgba(124, 58, 237, .22);
-  --aura-2: rgba(244, 63, 94, .10);
-}
-
-/* ライトテーマ */
-:root[data-theme="light"] {
-  --bg: #fafafa;
-  --panel: #ffffff;
+  --bg: #faf9f7;
   --card: #ffffff;
-  --line: #e4e4e7;
-  --line-soft: #ebebee;
-  --text: #27272a;
-  --muted: #52525b;
-  --dim: #71717a;
-  --faint: #8b8b93;
-  --violet: #6d28d9;
-  --violet-deep: #7c3aed;
-  --surface-2: #f4f4f5;
-  --field-bg: #ffffff;
-  --border-strong: #d4d4d8;
-  --head-text: #18181b;
-  --body-text: #3f3f46;
-  --chip-text: #6d28d9;
-  --header-bg: rgba(250, 250, 250, .85);
-  --glow: rgba(124, 58, 237, .16);
-  --aura-1: rgba(124, 58, 237, .10);
-  --aura-2: rgba(244, 63, 94, .06);
+  --text: #17171a;
+  --muted: #63636b;
+  --faint: #9a9aa2;
+  --line: #e6e4df;
+  --line-soft: #efedE9;
+  --accent: #8a6a3d;
+  --accent-soft: rgba(138, 106, 61, .10);
+  --header-bg: rgba(250, 249, 247, .86);
+  --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
 }
 
+:root[data-theme="dark"] {
+  --bg: #121214;
+  --card: #191919;
+  --text: #ececee;
+  --muted: #9c9ca4;
+  --faint: #6a6a72;
+  --line: #2a2a2d;
+  --line-soft: #232326;
+  --accent: #b08d57;
+  --accent-soft: rgba(176, 141, 87, .14);
+  --header-bg: rgba(18, 18, 20, .86);
+  --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
+}
+
+html { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
-
-html { color-scheme: dark; }
-:root[data-theme="light"] { color-scheme: light; }
-
-body, header, .panel, .card, .sample, select, input[type="text"], .btn {
-  transition: background-color .25s, border-color .25s, color .25s;
-}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
-  line-height: 1.7;
+  line-height: 1.85;
   -webkit-font-smoothing: antialiased;
+  transition: background-color .25s, color .25s;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(60rem 32rem at 50% -12rem, var(--aura-1), transparent 70%),
-    radial-gradient(40rem 24rem at 100% 0%, var(--aura-2), transparent 70%);
-  z-index: 0;
-  animation: drift 26s ease-in-out infinite;
-}
-/* 平坦なグラデーションに、ごく薄い粒子を重ねて質感を出す */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@keyframes drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(0, -1.5%, 0) scale(1.05); }
-}
-
-
-.wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
-.serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
-
-/* ---------- 和文の組版 ---------- */
-h1, h2, h3, .brand-name, .sample .name {
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
   font-feature-settings: "palt" 1;
 }
-.hero h1, h2, .sample .name { text-wrap: balance; }
-.hero p, .card p, .list li { text-wrap: pretty; }
-.sample .name, .list li, .card p { line-break: strict; overflow-wrap: anywhere; }
+
+.wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.5rem; }
+
+a { color: inherit; }
 
 /* ---------- ヘッダー ---------- */
 header {
   position: sticky; top: 0; z-index: 20;
-  border-bottom: 1px solid var(--line);
   background: var(--header-bg);
   backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding-top: .85rem; padding-bottom: .85rem;
+  padding-top: 1rem; padding-bottom: 1rem;
 }
-.brand { display: flex; align-items: center; gap: .75rem; min-width: 0; }
-.sigil {
-  width: 2.25rem; height: 2.25rem; flex: none;
-  border-radius: .8rem; display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--violet-deep), #e11d48);
-  color: #fff; font-weight: 700; font-size: 1.05rem;
+.mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
+  text-decoration: none;
 }
-.brand-name { font-weight: 600; line-height: 1.25; }
-.brand-sub { font-size: .68rem; color: var(--faint); letter-spacing: .18em; }
-.nav { display: flex; align-items: center; gap: 1.25rem; }
-.nav a { color: var(--muted); text-decoration: none; font-size: .85rem; white-space: nowrap; }
-.nav a:hover { color: #fff; }
+.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav a {
+  font-size: .82rem; color: var(--muted); text-decoration: none;
+  letter-spacing: .04em; white-space: nowrap;
+  transition: color .15s;
+}
+.nav a:hover { color: var(--text); }
 
-
-.head-actions { display: flex; align-items: center; gap: 1rem; }
 .theme-toggle {
   width: 2rem; height: 2rem; flex: none;
   display: grid; place-items: center;
-  font-size: .95rem; line-height: 1;
+  font: inherit; font-size: .9rem; line-height: 1; cursor: pointer;
   color: var(--muted);
   background: transparent;
   border: 1px solid var(--line);
   border-radius: 999px;
-  transition: background-color .15s, color .15s, border-color .15s;
+  transition: color .15s, border-color .15s, background-color .15s;
 }
-.theme-toggle:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-strong); }
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
 
 /* ---------- ヒーロー ---------- */
-.hero { text-align: center; padding: 4.5rem 0 3rem; }
+.hero { padding: 6rem 0 4rem; }
+.eyebrow {
+  font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 1.5rem;
+}
 .hero h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2.2rem, 7vw, 3.5rem);
-  font-weight: 700; letter-spacing: .02em;
-  background: linear-gradient(115deg, #c4b5fd 0%, #f0abfc 45%, #fb7185 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 0 24px rgba(167, 139, 250, .3));
+  margin: 0 0 .5rem;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  font-weight: 600; letter-spacing: .04em; line-height: 1.3;
 }
-.hero p { margin: 0 auto 2rem; color: var(--muted); max-width: 34rem; }
-
-:where(a, button, [tabindex]):focus-visible {
-  outline: 2px solid var(--violet);
-  outline-offset: 2px;
-  border-radius: .4rem;
+.hero .romaji {
+  margin: 0 0 2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem; letter-spacing: .22em; color: var(--faint);
 }
-
-.skip-link {
-  position: absolute; left: .75rem; top: -3rem;
-  z-index: 50;
-  padding: .55rem 1rem;
-  color: #fff; text-decoration: none; font-size: .85rem;
-  background: var(--violet-deep);
-  border-radius: .6rem;
-  transition: top .15s;
-}
-.skip-link:focus { top: .75rem; }
-
-.cta {
-  display: inline-block;
-  padding: .9rem 2.4rem;
-  font-size: 1rem; font-weight: 600;
-  color: #fff; text-decoration: none;
-  border-radius: 1rem;
-  background: linear-gradient(100deg, var(--violet-deep), #e11d48);
-  box-shadow: 0 12px 32px -12px rgba(124, 58, 237, .85);
-  transition: filter .15s, transform .1s;
-}
-.cta:hover { filter: brightness(1.1); }
-.cta:active { transform: translateY(1px); }
-
-:root[data-theme="light"] .hero h1 {
-  background: linear-gradient(115deg, #6d28d9 0%, #a21caf 45%, #be123c 100%);
-  -webkit-background-clip: text; background-clip: text;
-  filter: none;
+.hero p.lead {
+  margin: 0; max-width: 34rem;
+  color: var(--muted); font-size: 1rem;
 }
 
-/* ---------- サンプル ---------- */
-.samples {
-  display: grid; gap: .75rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  padding: 1rem 0 2rem;
-}
-.sample {
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  border-radius: 1.1rem;
-  padding: 1rem 1.2rem;
-  text-align: left;
-}
-.sample .name { font-size: 1.15rem; font-weight: 600; line-height: 2.4; color: var(--head-text); }
-.sample .latin { font-size: .62rem; letter-spacing: .16em; color: var(--dim); }
-ruby { ruby-position: over; }
-rt { font-size: .4em; font-weight: 400; letter-spacing: .06em; color: var(--violet); opacity: .85; }
+.rule { height: 1px; background: var(--line); margin: 0; border: 0; }
 
 /* ---------- セクション ---------- */
-section.block { padding: 3.5rem 0; border-top: 1px solid var(--line); }
-h2 { font-size: 1.75rem; font-weight: 600; margin: 0 0 1.75rem; letter-spacing: .01em; }
+section.block { padding: 4.5rem 0; }
+.sec-head { margin-bottom: 2.5rem; }
+.sec-head h2 {
+  margin: 0 0 .4rem;
+  font-size: 1.4rem; font-weight: 600; letter-spacing: .06em;
+}
+.sec-head p { margin: 0; font-size: .85rem; color: var(--faint); }
 
-.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  border-radius: 1.25rem;
+/* ---------- 修了証 ---------- */
+.group + .group { margin-top: 2.5rem; }
+.group-name {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: .74rem; letter-spacing: .2em; color: var(--faint);
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.group-name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+.cert {
+  display: flex; flex-direction: column; gap: .55rem;
   padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  text-decoration: none;
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--violet-deep);
-  box-shadow: 0 16px 34px -20px rgba(124, 58, 237, .9);
+.cert:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
 }
-.card h3 { margin: 0 0 .6rem; font-size: 1.1rem; font-weight: 600; }
-.card p { margin: 0; color: var(--muted); font-size: .9rem; }
-.card .num {
-  display: inline-grid; place-items: center;
-  width: 2.5rem; height: 2.5rem; margin-bottom: 1rem;
-  border-radius: .8rem;
-  background: rgba(124, 58, 237, .12);
-  border: 1px solid rgba(124, 58, 237, .35);
-  color: var(--chip-text); font-size: 1.1rem;
+.cert .code {
+  font-family: Georgia, serif;
+  font-size: .7rem; letter-spacing: .14em; color: var(--accent);
 }
+.cert h3 {
+  margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.6;
+  letter-spacing: .01em;
+}
+.cert .issuer { font-size: .8rem; color: var(--muted); margin: 0; }
+.cert .verify {
+  margin-top: .35rem;
+  font-size: .74rem; letter-spacing: .06em; color: var(--faint);
+  transition: color .2s;
+}
+.cert:hover .verify { color: var(--accent); }
+.cert .verify::after { content: " →"; }
 
-.list { margin: 0; padding-left: 1.2rem; color: var(--muted); font-size: .92rem; }
-.list li { margin-bottom: .6rem; }
-.list code {
-  font-size: .85em; padding: .1rem .35rem; border-radius: .35rem;
-  background: var(--surface-2); color: var(--chip-text);
+/* ---------- 学習領域 ---------- */
+.areas { display: grid; gap: 0; }
+.area {
+  display: grid; gap: .3rem 2rem;
+  grid-template-columns: 1fr;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line-soft);
 }
+.area:last-child { border-bottom: 1px solid var(--line-soft); }
+@media (min-width: 40rem) { .area { grid-template-columns: 13rem 1fr; } }
+.area h3 { margin: 0; font-size: .95rem; font-weight: 600; letter-spacing: .04em; }
+.area p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+/* ---------- リンク ---------- */
+.links { display: flex; flex-wrap: wrap; gap: .75rem; }
+.link {
+  display: inline-flex; align-items: baseline; gap: .6rem;
+  padding: .7rem 1.4rem;
+  font-size: .88rem; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .2s, background-color .2s;
+}
+.link:hover { border-color: var(--accent); background: var(--accent-soft); }
+.link span { font-size: .72rem; color: var(--faint); letter-spacing: .08em; }
 
 /* ---------- フッター ---------- */
-
-/* 制作に使ったツールの表示 */
+footer { border-top: 1px solid var(--line); margin-top: 2rem; }
+.foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 2.5rem 0;
+  font-size: .74rem; color: var(--faint);
+}
 .built-with {
   display: inline-flex; align-items: center; gap: .45rem;
-  margin-top: .2rem; padding: .35rem .85rem;
-  font-size: .72rem; letter-spacing: .02em;
-  color: var(--muted); text-decoration: none;
+  padding: .35rem .85rem;
+  font-size: .72rem; color: var(--muted); text-decoration: none;
   border: 1px solid var(--line); border-radius: 999px;
   transition: border-color .15s, color .15s, background-color .15s;
 }
 .built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
-.built-with .dot {
-  width: .5rem; height: .5rem; flex: none;
-  border-radius: 50%; background: #d97757;
-}
-
-footer { border-top: 1px solid var(--line); }
-.foot { text-align: center; padding: 3rem 0; font-size: .75rem; color: var(--faint); }
-.foot p { margin: .4rem 0; }
-.foot a { color: var(--dim); }
+.built-with .dot { width: .45rem; height: .45rem; flex: none; border-radius: 50%; background: #d97757; }
 
 /* ---------- 登場演出 ---------- */
 .reveal {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 0; transform: translateY(12px);
   transition: opacity .7s cubic-bezier(.22, .68, .28, 1), transform .7s cubic-bezier(.22, .68, .28, 1);
-  transition-delay: calc(var(--i, 0) * 90ms);
+  transition-delay: calc(var(--i, 0) * 70ms);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-@keyframes heroIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: .3rem;
 }
-.hero h1 { animation: heroIn .8s cubic-bezier(.22, .68, .28, 1) both; }
-.hero p  { animation: heroIn .8s cubic-bezier(.22, .68, .28, 1) .12s both; }
-.hero .cta { animation: heroIn .8s cubic-bezier(.22, .68, .28, 1) .22s both; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem; z-index: 50;
+  padding: .55rem 1rem;
+  color: var(--bg); background: var(--text);
+  text-decoration: none; font-size: .82rem;
+  border-radius: .5rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-  .card:hover { transform: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .cert:hover { transform: none; }
 }
 
-@media (max-width: 26rem) {
-  .brand-sub { display: none; }
-  .brand-name { font-size: .95rem; }
-  .nav { gap: .9rem; }
-  .nav a { font-size: .78rem; }
+@media print {
+  @page { margin: 16mm; }
+  header, footer, .theme-toggle, .skip-link { display: none !important; }
+  body { background: #fff; color: #000; }
+  .cert { break-inside: avoid; border-color: #ccc; box-shadow: none; }
+  .reveal { opacity: 1; transform: none; }
 }
 </style>
 </head>
@@ -332,82 +271,143 @@ footer { border-top: 1px solid var(--line); }
 
 <header>
   <div class="wrap head-row">
-    <div class="brand">
-      <div class="sigil">厨</div>
-      <div>
-        <div class="brand-name">厨二病ジェネレーター</div>
-        <div class="brand-sub">CHUUNI CONTENT FORGE</div>
-      </div>
-    </div>
+    <a class="mark serif" href="#main">TN</a>
     <nav class="nav">
-      <a href="./chuuni.html">ジェネレーター</a>
-      <a href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub</a>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☀</button>
+      <a href="#credentials">修了証</a>
+      <a href="#areas">学習領域</a>
+      <a href="#links">リンク</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
     </nav>
   </div>
 </header>
 
-<section id="main" class="wrap hero" tabindex="-1">
-  <h1 class="serif">闇の力を、量産する</h1>
-  <p>技名・二つ名・組織名・詠唱・キャラクター設定書を、一度に最大 300 件まとめて生成します。</p>
-  <a class="cta" href="./chuuni.html">⚔ ジェネレーターを開く</a>
+<main id="main" tabindex="-1">
 
-  <div class="samples">
-    <div class="sample reveal">
-      <div class="name serif"><ruby>蒼焔を喰らいし讃歌<rt>アズールフレイムアンセム</rt></ruby></div>
-      <div class="latin">AZURE FLAME ANTHEM</div>
-    </div>
-    <div class="sample reveal">
-      <div class="name serif"><ruby>魔王の漆黒羅針<rt>デモンロードジェットブラックコンパス</rt></ruby></div>
-      <div class="latin">DEMON LORD JET BLACK COMPASS</div>
-    </div>
-    <div class="sample reveal">
-      <div class="name serif"><ruby>冥闇を焼き尽くす放浪者<rt>ネザーワンダラー</rt></ruby></div>
-      <div class="latin">THE NETHER WANDERER</div>
-    </div>
-  </div>
-</section>
+  <section class="wrap hero">
+    <p class="eyebrow reveal">Profile</p>
+    <h1 class="serif reveal">根本卓哉</h1>
+    <p class="romaji reveal">TAKUYA NEMOTO</p>
+    <p class="lead reveal">
+      コンピュータサイエンスと人工知能を中心に学習を続けています。
+      修了した講座と、その証明をこのページにまとめています。
+    </p>
+  </section>
 
-<section class="wrap block">
-  <h2 class="reveal">生成できるもの</h2>
-  <div class="cards">
-    <div class="card reveal">
-      <div class="num">技</div>
-      <h3>技名・二つ名・組織名</h3>
-      <p>漢字にカタカナルビ、その下にラテン表記。厨二力を上げるほど字数が伸び、【】や†、位階の表記が付きます。</p>
-    </div>
-    <div class="card reveal">
-      <div class="num">詠</div>
-      <h3>詠唱</h3>
-      <p>真名の宣言から封印の解除、最後の顕現まで。数行構成の詠唱を丸ごと組み立てます。</p>
-    </div>
-    <div class="card reveal">
-      <div class="num">設</div>
-      <h3>キャラクター設定書</h3>
-      <p>真名・異名・所属・起源・権能・制約・禁忌・口癖の8項目を、矛盾なく一枚にまとめます。</p>
-    </div>
-  </div>
-</section>
+  <hr class="rule">
 
-<section class="wrap block">
-  <h2 class="reveal">仕組み</h2>
-  <ul class="list reveal">
-    <li>素の JavaScript のみで実装。外部ライブラリ・CDN への依存はゼロで、生成はすべてブラウザ内で完結します。</li>
-    <li>シードを指定すると、同じシードから何度でも同じ結果を再現できます。生成条件は URL に入るので、そのまま共有・ブックマークできます。</li>
-    <li>厨二力レベルは 1〜5。上げるほど修飾が増え、ラテン表記が大文字になります。</li>
-    <li>一括コピー、<code>.txt</code> / <code>.json</code> 書き出しに対応。技名の最長パターンだけで約 55 万通りの組み合わせがあります。</li>
-  </ul>
-</section>
+  <section id="credentials" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">修了証</h2>
+      <p>各カードから発行機関の検証ページを開けます。</p>
+    </div>
+
+    <div class="group">
+      <div class="group-name reveal">edX</div>
+      <div class="cards">
+        <a class="cert reveal" href="https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc" target="_blank" rel="noopener">
+          <span class="code">CS50x</span>
+          <h3>Introduction to Computer Science</h3>
+          <p class="issuer">HarvardX</p>
+          <span class="verify">証明書を確認</span>
+        </a>
+        <a class="cert reveal" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">
+          <span class="code">CS50AI</span>
+          <h3>Introduction to Artificial Intelligence with Python</h3>
+          <p class="issuer">HarvardX</p>
+          <span class="verify">証明書を確認</span>
+        </a>
+        <a class="cert reveal" href="https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3" target="_blank" rel="noopener">
+          <span class="code">ER22.1x</span>
+          <h3>Justice</h3>
+          <p class="issuer">HarvardX</p>
+          <span class="verify">証明書を確認</span>
+        </a>
+        <a class="cert reveal" href="https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316" target="_blank" rel="noopener">
+          <span class="code">CC0201EN</span>
+          <h3>Introduction to Containers, Kubernetes and OpenShift</h3>
+          <p class="issuer">IBM</p>
+          <span class="verify">証明書を確認</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-name reveal">東北大学 MOOC</div>
+      <div class="cards">
+        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09" target="_blank" rel="noopener">
+          <span class="code">Open Badge</span>
+          <h3>Radiation Safety</h3>
+          <p class="issuer">東北大学</p>
+          <span class="verify">バッジを確認</span>
+        </a>
+        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09" target="_blank" rel="noopener">
+          <span class="code">Open Badge</span>
+          <h3>Disaster Science</h3>
+          <p class="issuer">東北大学</p>
+          <span class="verify">バッジを確認</span>
+        </a>
+        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09" target="_blank" rel="noopener">
+          <span class="code">Open Badge</span>
+          <h3>Mystery of Aurora</h3>
+          <p class="issuer">東北大学</p>
+          <span class="verify">バッジを確認</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="areas" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">学習領域</h2>
+      <p>修了した講座で扱った範囲です。</p>
+    </div>
+
+    <div class="areas">
+      <div class="area reveal">
+        <h3>コンピュータサイエンス</h3>
+        <p>C / Python、アルゴリズムとデータ構造、計算量の考え方</p>
+      </div>
+      <div class="area reveal">
+        <h3>人工知能</h3>
+        <p>探索、知識表現、確率推論、最適化、機械学習、ニューラルネットワーク、自然言語処理</p>
+      </div>
+      <div class="area reveal">
+        <h3>コンテナ基盤</h3>
+        <p>Docker、Kubernetes、OpenShift の基本概念と操作</p>
+      </div>
+      <div class="area reveal">
+        <h3>Web 開発</h3>
+        <p>HTML / CSS / JavaScript による実装、GitHub Pages での公開と運用</p>
+      </div>
+      <div class="area reveal">
+        <h3>領域知識</h3>
+        <p>放射線安全、災害科学、政治哲学</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="links" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">リンク</h2>
+    </div>
+    <div class="links reveal">
+      <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
+      <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
+    </div>
+  </section>
+
+</main>
 
 <footer>
   <div class="wrap foot">
-    <p>語彙はこのサイトのために書き下ろしたもので、生成結果は自由にお使いいただけます。<br>
-      ごくまれに既存の作品名・商標と偶然一致する場合があるため、商用利用の前にご確認ください。</p>
-    <p>実装には AI コーディング支援ツール Claude Code（Anthropic）を使用しています。</p>
-    <p><a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
+    <span>© 2026 根本卓哉</span>
+    <a class="built-with" href="https://claude.com/claude-code" target="_blank" rel="noopener">
       <span class="dot" aria-hidden="true"></span>Built with Claude Code
-    </a></p>
-    <p><a href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">ソースコード</a></p>
+    </a>
   </div>
 </footer>
 
@@ -417,10 +417,7 @@ footer { border-top: 1px solid var(--line); }
   'use strict';
   var targets = document.querySelectorAll('.reveal');
 
-  // グループ内での順番を渡し、少しずつ遅らせて現れるようにする
-  ['.samples', '.cards'].forEach(function (sel) {
-    var group = document.querySelector(sel);
-    if (!group) return;
+  document.querySelectorAll('.cards, .areas').forEach(function (group) {
     Array.prototype.forEach.call(group.children, function (el, i) {
       el.style.setProperty('--i', String(i));
     });
@@ -438,11 +435,10 @@ footer { border-top: 1px solid var(--line); }
       entry.target.classList.add('is-visible');
       io.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: .1 });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
 
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
 })();
 </script>
-
 </body>
 </html>

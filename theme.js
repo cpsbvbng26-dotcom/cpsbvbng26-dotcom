@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var KEY = 'chuuni-theme';
+  var KEY = 'site-theme';
   var root = document.documentElement;
 
   function stored() {
