@@ -51,12 +51,24 @@
 
 ---
 
+✴︎Papers✴︎
+
+いずれも査読前のプレプリントです。全文と PDF は [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) にあります。
+
+| 論文 | 内容 | 版 |
+| --- | --- | --- |
+| [The Nobility and Exemplarity of the Celibate Individual](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/celibate-individual.html) | 性的活動を倫理的な義務とみなす通説を反出生主義の側から検討し、自足的な幸福という観点から独身を自己陶冶の型として擁護する | v2 — 2026年8月 |
+| [Manifesto of Imperial Selfhood](https://cpsbvbng26-dotcom.github.io/autonomy-and-self-cultivation/papers/imperial-selfhood.html) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 |
+
+---
+
 ✴︎Works✴︎
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
+| [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 上の二篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
 
 ---
 
