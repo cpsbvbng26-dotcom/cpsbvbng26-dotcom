@@ -106,44 +106,53 @@
   var q = encodeURIComponent;
 
   var INDEXES = [
-    { name: 'Crossref', kind: 'direct', group: '登録機関', ra: 'Crossref',
-      url: function (d) { return 'https://api.crossref.org/works/' + pathSafe(d); } },
-    { name: 'DataCite Commons', kind: 'direct', group: '登録機関', ra: 'DataCite',
-      url: function (d) { return 'https://commons.datacite.org/doi.org/' + pathSafe(d); } },
-    { name: 'DataCite API', kind: 'direct', group: '登録機関', ra: 'DataCite',
-      url: function (d) { return 'https://api.datacite.org/dois/' + pathSafe(d); } },
-
+    /* 索引 —— 人が読むページ。その資料が収録されていれば、そこに出る。 */
     { name: 'OpenAlex', kind: 'direct', group: '索引',
-      url: function (d) { return 'https://api.openalex.org/works/doi:' + pathSafe(d); } },
-    { name: 'Semantic Scholar', kind: 'direct', group: '索引',
+      url: function (d) { return 'https://openalex.org/works?filter=doi:' + q(d); } },
+    // api. のホストだが、これは論文ページ（www.semanticscholar.org/paper/…）への
+    // 転送用に用意されたもので、JSON は返らない。名前にその旨を出しておく。
+    { name: 'Semantic Scholar（転送）', kind: 'direct', group: '索引', hint: '論文ページへ転送されます',
       url: function (d) { return 'https://api.semanticscholar.org/' + pathSafe(d); } },
     { name: 'Scholia（Wikidata）', kind: 'direct', group: '索引',
       url: function (d) { return 'https://scholia.toolforge.org/doi/' + pathSafe(d); } },
-    { name: 'OpenCitations', kind: 'direct', group: '索引',
-      url: function (d) { return 'https://opencitations.net/index/coci/api/v1/citations/' + pathSafe(d); } },
     { name: 'scite', kind: 'direct', group: '索引',
       url: function (d) { return 'https://scite.ai/reports/' + pathSafe(d); } },
     { name: 'Unpaywall', kind: 'direct', group: '索引',
       url: function (d) { return 'https://unpaywall.org/' + pathSafe(d); } },
-
-    { name: 'Google Scholar', kind: 'search', group: '検索',
-      url: function (d) { return 'https://scholar.google.com/scholar?q=' + q('"' + d + '"'); } },
-    { name: 'Crossref 検索', kind: 'search', group: '検索',
+    { name: 'Crossref 検索', kind: 'search', group: '索引', ra: 'Crossref',
       url: function (d) { return 'https://search.crossref.org/search/works?q=' + q(d) + '&from_ui=yes'; } },
-    { name: 'BASE', kind: 'search', group: '検索',
+    { name: 'DataCite Commons', kind: 'direct', group: '索引', ra: 'DataCite',
+      url: function (d) { return 'https://commons.datacite.org/doi.org/' + pathSafe(d); } },
+
+    /* 発見 —— DOI を検索語として投げるだけ。当たらないこともある。 */
+    { name: 'Google Scholar', kind: 'search', group: '発見',
+      url: function (d) { return 'https://scholar.google.com/scholar?q=' + q('"' + d + '"'); } },
+    { name: 'BASE', kind: 'search', group: '発見',
       url: function (d) { return 'https://www.base-search.net/Search/Results?lookfor=' + q(d); } },
-    { name: 'CORE', kind: 'search', group: '検索',
+    { name: 'CORE', kind: 'search', group: '発見',
       url: function (d) { return 'https://core.ac.uk/search?q=' + q('"' + d + '"'); } },
-    { name: 'Lens.org', kind: 'search', group: '検索',
+    { name: 'Lens.org', kind: 'search', group: '発見',
       url: function (d) { return 'https://www.lens.org/lens/search/scholar/list?q=' + q(d); } },
-    { name: 'Dimensions', kind: 'search', group: '検索',
+    { name: 'Dimensions', kind: 'search', group: '発見',
       url: function (d) { return 'https://app.dimensions.ai/discover/publication?search_text=' + q(d); } },
-    { name: 'Europe PMC', kind: 'search', group: '分野別',
+    { name: 'ORCID', kind: 'search', group: '発見',
+      url: function (d) { return 'https://orcid.org/orcid-search/search?searchQuery=' + q('"' + d + '"'); } },
+    { name: 'Europe PMC', kind: 'search', group: '発見',
       url: function (d) { return 'https://europepmc.org/search?query=DOI:' + q('"' + d + '"'); } },
-    { name: 'PubMed', kind: 'search', group: '分野別',
+    { name: 'PubMed', kind: 'search', group: '発見',
       url: function (d) { return 'https://pubmed.ncbi.nlm.nih.gov/?term=' + q(d); } },
-    { name: 'PhilPapers', kind: 'search', group: '分野別',
-      url: function (d) { return 'https://philpapers.org/s/' + q(d); } }
+    { name: 'PhilPapers', kind: 'search', group: '発見',
+      url: function (d) { return 'https://philpapers.org/s/' + q(d); } },
+
+    /* API —— 機械向け。押すと JSON が出る。索引先ではない。 */
+    { name: 'Crossref API', kind: 'direct', group: 'API', ra: 'Crossref',
+      url: function (d) { return 'https://api.crossref.org/works/' + pathSafe(d); } },
+    { name: 'DataCite API', kind: 'direct', group: 'API', ra: 'DataCite',
+      url: function (d) { return 'https://api.datacite.org/dois/' + pathSafe(d); } },
+    { name: 'OpenAlex API', kind: 'direct', group: 'API',
+      url: function (d) { return 'https://api.openalex.org/works/doi:' + pathSafe(d); } },
+    { name: 'OpenCitations API', kind: 'direct', group: 'API',
+      url: function (d) { return 'https://opencitations.net/index/coci/api/v1/citations/' + pathSafe(d); } }
   ];
 
   /* 接尾辞から、掲載元のレコードそのものを組み立てられるもの。
@@ -242,6 +251,69 @@
   }
 
   /* ------------------------------------------------------------------ *
+   * ORCID
+   *
+   * iD の検査は通信なしでできる。末尾はチェックディジットで、ISO 7064 の
+   * MOD 11-2 で決まる（10 は X）。打ち間違いはここで落ちる。
+   * 業績の読み込みだけが pub.orcid.org に触れる。
+   * ------------------------------------------------------------------ */
+
+  function normalizeOrcid(raw) {
+    var t = toHalfWidth(String(raw)).trim();
+    t = t.replace(/^https?:\/\/(?:sandbox\.)?orcid\.org\//i, '');
+    t = t.replace(/^orcid:?\s*/i, '');
+    t = t.replace(/[\s‐-―]/g, '-');   // 各種ダッシュを普通のハイフンに
+    t = t.replace(/-+/g, '-').replace(/^-|-$/g, '');
+    if (/^\d{15}[\dXx]$/.test(t)) {             // 区切りなしで入力された場合
+      t = t.slice(0, 4) + '-' + t.slice(4, 8) + '-' + t.slice(8, 12) + '-' + t.slice(12);
+    }
+    return t.toUpperCase();
+  }
+
+  function orcidCheckDigit(first15) {
+    var total = 0;
+    for (var i = 0; i < first15.length; i++) {
+      total = (total + Number(first15.charAt(i))) * 2;
+    }
+    var result = (12 - (total % 11)) % 11;
+    return result === 10 ? 'X' : String(result);
+  }
+
+  function validateOrcid(id) {
+    if (!/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/.test(id)) {
+      return { ok: false, reason: '書式が違います。0000-0000-0000-0000 の形（末尾だけ X もあり）です。' };
+    }
+    var digits = id.replace(/-/g, '');
+    var expected = orcidCheckDigit(digits.slice(0, 15));
+    if (expected !== digits.charAt(15)) {
+      return { ok: false, reason: 'チェックディジットが合いません。末尾は ' + expected + ' のはずです（打ち間違いの可能性）。' };
+    }
+    return { ok: true };
+  }
+
+  // ORCID の公開 API から業績を読み、DOI だけを取り出す。
+  function loadOrcidWorks(id) {
+    return fetch('https://pub.orcid.org/v3.0/' + id + '/works', {
+      headers: { 'Accept': 'application/json' }
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (j) {
+      var dois = [];
+      var titles = 0;
+      (j.group || []).forEach(function (g) {
+        titles++;
+        (g['external-ids'] && g['external-ids']['external-id'] || []).forEach(function (x) {
+          if (x['external-id-type'] === 'doi' && x['external-id-value']) {
+            dois.push(String(x['external-id-value']).trim());
+          }
+        });
+      });
+      return { dois: dois, works: titles };
+    });
+  }
+
+  /* ------------------------------------------------------------------ *
    * 解析
    * ------------------------------------------------------------------ */
 
@@ -289,20 +361,16 @@
 
   function renderIndexes(it) {
     var reg = registryLink(it.doi);
-    var groups = { '登録機関': [], '索引': [], '検索': [], '分野別': [] };
+    var groups = { '索引': [], '発見': [], 'API': [] };
 
-    // 登録機関は、接頭辞から推定したほうを先に出す。Crossref の DOI を DataCite に
-    // 問い合わせても当たらないので、同格に並べると無駄足になる。
-    var ordered = INDEXES.slice().sort(function (a, b) {
-      if (a.group !== '登録機関' || b.group !== '登録機関' || !it.ra) return 0;
-      return (b.ra === it.ra ? 1 : 0) - (a.ra === it.ra ? 1 : 0);
-    });
-
-    ordered.forEach(function (ix) {
-      var off = ix.group === '登録機関' && it.ra && ix.ra !== it.ra;
+    // ra を持つ項目（登録機関に紐づくもの）は、接頭辞からの推定と食い違えば薄くする。
+    // Crossref の DOI を DataCite に問い合わせても当たらないため。
+    INDEXES.forEach(function (ix) {
+      var off = ix.ra && it.ra && ix.ra !== it.ra;
+      var title = off ? '接頭辞からの推定では別の登録機関です' : (ix.hint || '');
       groups[ix.group].push(
         '<a class="ix ' + ix.kind + (off ? ' off' : '') + '" href="' + esc(ix.url(it.doi)) +
-        '" target="_blank" rel="noopener"' + (off ? ' title="接頭辞からの推定では別の登録機関です"' : '') + '>' +
+        '" target="_blank" rel="noopener"' + (title ? ' title="' + esc(title) + '"' : '') + '>' +
         esc(ix.name) + '</a>');
     });
 
@@ -315,11 +383,13 @@
         '</div><p class="ixnote">DOI の接尾辞に識別子が入っているので、検索を経ずに組み立てられます。</p></div>';
     }
 
-    ['登録機関', '索引', '検索', '分野別'].forEach(function (g) {
-      var label = g;
-      if (g === '登録機関' && it.ra) label += '（推定は ' + it.ra + '）';
-      if (g === '分野別') label += '（資料の分野によります）';
-      html += '<div class="ixgroup"><span class="ixlabel">' + esc(label) + '</span>' +
+    var LABEL = {
+      '索引': '索引 — 人が読むページ',
+      '発見': '発見 — DOI を検索語として投げる',
+      'API': 'API — 機械向け。押すと JSON が出ます'
+    };
+    ['索引', '発見', 'API'].forEach(function (g) {
+      html += '<div class="ixgroup"><span class="ixlabel">' + esc(LABEL[g]) + '</span>' +
         '<div class="ixlinks">' + groups[g].join('') + '</div></div>';
     });
 
@@ -377,6 +447,12 @@
       b += row('照会先', esc(m.source), true);
       if (m.title) b += row('題名', esc(m.title), true);
       if (m.authors && m.authors.length) b += row('著者', esc(m.authors.join(' / ')));
+      if (m.orcids && m.orcids.length) {
+        b += row('著者の ORCID', m.orcids.map(function (o) {
+          return '<a href="https://orcid.org/' + esc(o.id) + '" target="_blank" rel="noopener">' +
+                 esc(o.id) + '</a>' + (o.name ? '<span style="color:var(--faint)"> — ' + esc(o.name) + '</span>' : '');
+        }).join('<br>'));
+      }
       if (m.type) b += row('種別', esc(m.type));
       if (m.container) b += row('掲載', esc(m.container));
       if (m.publisher) b += row('発行', esc(m.publisher));
@@ -454,6 +530,12 @@
       authors: (m.author || []).map(function (a) {
         return a.family ? (a.family + (a.given ? ', ' + a.given : '')) : (a.name || '');
       }).filter(Boolean),
+      orcids: (m.author || []).filter(function (a) { return a.ORCID; }).map(function (a) {
+        return {
+          name: a.family ? (a.family + (a.given ? ', ' + a.given : '')) : (a.name || ''),
+          id: String(a.ORCID).replace(/^https?:\/\/orcid\.org\//, '')
+        };
+      }),
       type: m.type,
       container: m['container-title'] && m['container-title'][0],
       publisher: m.publisher,
@@ -477,6 +559,14 @@
       source: 'DataCite',
       title: a.titles && a.titles[0] && a.titles[0].title,
       authors: (a.creators || []).map(function (c) { return c.name; }).filter(Boolean),
+      orcids: (a.creators || []).reduce(function (acc, c) {
+        (c.nameIdentifiers || []).forEach(function (n) {
+          if (/orcid/i.test(n.nameIdentifierScheme || '')) {
+            acc.push({ name: c.name, id: String(n.nameIdentifier).replace(/^https?:\/\/orcid\.org\//, '') });
+          }
+        });
+        return acc;
+      }, []),
       type: a.types && (a.types.resourceTypeGeneral || a.types.resourceType),
       container: null,
       publisher: a.publisher,
@@ -700,6 +790,63 @@
       fmt = tab.getAttribute('data-fmt');
       renderExport();
     });
+  });
+
+  /* ---- ORCID の配線 ---- */
+  function setOrcidStatus(html, cls) {
+    var el = $('orcidStatus');
+    el.className = 'orcid-status' + (cls ? ' ' + cls : '');
+    el.innerHTML = html;
+  }
+
+  $('orcidCheck').addEventListener('click', function () {
+    var id = normalizeOrcid($('orcid').value);
+    if (!id) { setOrcidStatus('ORCID iD を入れてください。', 'bad'); return; }
+    $('orcid').value = id;
+    var v = validateOrcid(id);
+    if (!v.ok) { setOrcidStatus('<b>' + esc(id) + '</b> — ' + esc(v.reason), 'bad'); return; }
+    setOrcidStatus('<b>' + esc(id) + '</b> — 書式とチェックディジットは妥当です。' +
+      '<a href="https://orcid.org/' + esc(id) + '" target="_blank" rel="noopener">orcid.org で開く</a>', 'ok');
+  });
+
+  $('orcidLoad').addEventListener('click', function () {
+    var id = normalizeOrcid($('orcid').value);
+    $('orcid').value = id;
+    var v = validateOrcid(id);
+    if (!v.ok) { setOrcidStatus('<b>' + esc(id || '（空）') + '</b> — ' + esc(v.reason), 'bad'); return; }
+
+    var btn = $('orcidLoad');
+    btn.disabled = true;
+    setOrcidStatus('pub.orcid.org に問い合わせています…');
+    loadOrcidWorks(id).then(function (r) {
+      btn.disabled = false;
+      if (!r.dois.length) {
+        setOrcidStatus('業績は ' + r.works + ' 件ありましたが、<b>DOI が登録されているものはありませんでした。</b>', 'bad');
+        return;
+      }
+      var uniq = [];
+      var seen = {};
+      r.dois.forEach(function (d) {
+        var k = d.toLowerCase();
+        if (!seen[k]) { seen[k] = 1; uniq.push(d); }
+      });
+      $('input').value = uniq.join('\n');
+      run();
+      var dupNote = r.dois.length > uniq.length
+        ? '（同じ DOI が ' + (r.dois.length - uniq.length) + ' 件重複していました）' : '';
+      setOrcidStatus('業績 <b>' + r.works + '</b> 件のうち、DOI のあるもの <b>' + uniq.length +
+        '</b> 件を読み込みました' + dupNote + '。', 'ok');
+      $('input').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function (e) {
+      btn.disabled = false;
+      setOrcidStatus('読み込めませんでした（' + esc(String(e.message || e)) + '）。' +
+        'ORCID が公開設定になっているか、通信が遮断されていないかを確かめてください。', 'bad');
+    });
+  });
+
+  $('orcidMine').addEventListener('click', function () {
+    $('orcid').value = '0009-0000-1406-0547';
+    $('orcidCheck').click();
   });
 
   fromLocation();

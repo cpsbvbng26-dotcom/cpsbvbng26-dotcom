@@ -315,7 +315,30 @@ textarea#input:focus { outline: none; border-color: var(--accent); }
 .btn.primary { color: var(--accent); border-color: var(--accent); }
 .btn.primary:hover:not(:disabled) { background: var(--accent-soft); }
 
-.hint { margin: .8rem 0 0; font-size: .76rem; color: var(--faint); }
+.hint { margin: .8rem 0 0; font-size: .76rem; line-height: 1.75; color: var(--faint); }
+.hint code { font-size: .95em; }
+
+.orcid-box {
+  margin-top: 1.75rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--line-soft);
+}
+input#orcid {
+  width: 100%; max-width: 18rem;
+  padding: .7rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem; letter-spacing: .06em;
+  color: var(--text); background: var(--card);
+  border: 1px solid var(--line); border-radius: .55rem;
+  transition: border-color .2s;
+}
+input#orcid:focus { outline: none; border-color: var(--accent); }
+
+.orcid-status { margin: .9rem 0 0; font-size: .82rem; line-height: 1.75; color: var(--muted); }
+.orcid-status:empty { display: none; }
+.orcid-status.ok { color: var(--text); }
+.orcid-status.ok b { color: var(--accent); }
+.orcid-status.bad { color: #b4503c; }
+.orcid-status.bad b { color: #b4503c; }
 
 /* ---------- 集計 ---------- */
 .summary {
@@ -487,6 +510,22 @@ pre#out {
         <button id="clear" class="btn" type="button">消去</button>
       </div>
       <p class="hint">解析は端末の中だけで動きます。照会を押したときに限り <code>api.crossref.org</code> と <code>api.datacite.org</code> へ問い合わせます。送るのは DOI だけです。</p>
+
+      <div class="orcid-box">
+        <div class="field">
+          <label for="orcid">ORCID iD から読み込む</label>
+          <input id="orcid" type="text" inputmode="numeric" spellcheck="false"
+            autocapitalize="off" autocorrect="off" placeholder="0000-0000-0000-0000">
+        </div>
+        <div class="btn-row">
+          <button id="orcidCheck" class="btn" type="button">iD を検査</button>
+          <button id="orcidLoad" class="btn" type="button">業績を読み込む</button>
+          <button id="orcidMine" class="btn" type="button">著者の iD</button>
+        </div>
+        <p id="orcidStatus" class="orcid-status"></p>
+        <p class="hint"><strong>検査は通信なしで行います。</strong> ORCID iD の末尾はチェックディジットで、ISO 7064 の MOD 11-2 で決まります。打ち間違いはここで落ちます。<br>
+          <strong>読み込みは <code>pub.orcid.org</code> に問い合わせます。</strong> 公開されている業績のうち、DOI が登録されているものを取り出して解析にかけます。</p>
+      </div>
     </div>
   </section>
 
@@ -528,6 +567,11 @@ pre#out {
       <h2 class="serif">この道具について</h2>
     </div>
     <div class="areas reveal">
+      <div class="area">
+        <h3>ORCID</h3>
+        <p><strong>iD の検査は通信なしでできます。</strong> ORCID iD の末尾はチェックディジットで、ISO 7064 の MOD 11-2 によって残り 15 桁から一意に決まります（10 は <code>X</code>）。打ち間違いはこの段階で落ちます。<code>https://orcid.org/…</code> の形でも、区切りなしの 16 桁でも受けます。<br>
+          <strong>業績の読み込みは <code>pub.orcid.org</code> の公開 API に問い合わせます。</strong> 登録されている業績から DOI を取り出し、重複を除いてそのまま解析にかけます。ORCID に何が入っているかを確かめる用途に使えます。</p>
+      </div>
       <div class="area">
         <h3>URL から渡す</h3>
         <p><code>doi.html?q=10.5281/zenodo.22058254</code> の形で開くと、その場で解析します。カンマか空白で区切れば複数渡せます。<strong>プロフィールの「論文」節から、掲載中の 7 件をまとめて渡すリンクを張ってあります。</strong></p>
