@@ -82,6 +82,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | Full text, PDFs and citation metadata for the three philosophical papers, with a generator for the reading site | CC BY 4.0 | — |
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | The three Trinity-Infinity papers with 44 verification checks, an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
+| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 22 checks | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | The transcription from the source note, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down | CC BY 4.0 | — |
 
 ---

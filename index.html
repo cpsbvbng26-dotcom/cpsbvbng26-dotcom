@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-hnmm03AIhHDW0Jpwd/TREgyb253f9Lu4peo5Up+I/l0=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O/ZzUtGeli5qbcqeg3UstrTwX8xqOFvwbVgYbgHow8o=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）のプロフィール。自律と自己統治をめぐる査読前のプレプリント 7 篇、公開しているリポジトリ、および修了証を掲載しています。">
@@ -381,6 +381,24 @@
         {
           "@id": "https://doi.org/10.5281/zenodo.22058964"
         }
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "trinity-operator",
+      "description": "Trinity-Infinity の三篇が扱う作用素を、Q を巡回置換に、係数を (0,1) に限らずに実装したもの。収束の条件がスペクトル半径 ρ(DQ) < 1 であり、三篇が置いた作用素ノルムの条件は十分条件にすぎないことを、非正規行列の過渡的増幅とともに示す。",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "url": "https://github.com/cpsbvbng26-dotcom/trinity-operator",
+      "codeRepository": "https://github.com/cpsbvbng26-dotcom/trinity-operator",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT",
+      "datePublished": "2026",
+      "isBasedOn": [
+        { "@id": "https://doi.org/10.5281/zenodo.22058624" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058777" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058964" }
       ]
     },
     {
@@ -1037,6 +1055,12 @@ footer::before {
         <span class="code">PDF / CC BY 4.0</span>
         <h3>trinity-infinity</h3>
         <p class="issuer">上の三篇と、その検証をまとめたリポジトリ。定理を独立に実装し直す 13 項目と、紙面の数値を計算し直す 31 項目。何が確立され、何が撤回されたかも記録している。</p>
+        <span class="verify">GitHub で見る</span>
+      </a>
+      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">
+        <span class="code">Python / MIT</span>
+        <h3>trinity-operator</h3>
+        <p class="issuer">上の三篇が扱う作用素を、置換にも一様な係数にも限らずに実装したリポジトリ。収束を決めているのはスペクトル半径であって、三篇が置いた作用素ノルムの条件は必要以上に強い。誤差が一度 11.8 倍に膨らんでから収束する例を含む 22 項目。</p>
         <span class="verify">GitHub で見る</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/naval-gazette-notes" target="_blank" rel="noopener">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-VbrhZm9Hwq4wU5yFwrdrd3vBq/sgWKWmjJnFdmZMl94=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-cK8c+Z0e/gdCxST0rzmxmjwK8sPxn4jkaRJ+CMf8JAY=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="Profile of Takuya Nemoto. Seven preprints on autonomy and self-government, published repositories, and credentials in computer science and artificial intelligence.">
@@ -381,6 +381,24 @@
         {
           "@id": "https://doi.org/10.5281/zenodo.22058964"
         }
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "trinity-operator",
+      "description": "An implementation of the operator studied in the three Trinity-Infinity papers, without their restriction of Q to a cyclic permutation and of the blend coefficients to (0,1). It shows that convergence is governed by the spectral radius \u03c1(DQ) < 1 and that the operator-norm condition assumed in the papers is merely sufficient, together with the transient amplification a non-normal operator produces.",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "url": "https://github.com/cpsbvbng26-dotcom/trinity-operator",
+      "codeRepository": "https://github.com/cpsbvbng26-dotcom/trinity-operator",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT",
+      "datePublished": "2026",
+      "isBasedOn": [
+        { "@id": "https://doi.org/10.5281/zenodo.22058624" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058777" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058964" }
       ]
     },
     {
@@ -1040,6 +1058,12 @@ footer::before {
         <span class="code">PDF / CC BY 4.0</span>
         <h3>trinity-infinity</h3>
         <p class="issuer">The three papers above with two verification scripts — 13 checks reimplementing the theorems independently, 31 recomputing every number printed in the papers — and a record of what the series established and what it withdrew.</p>
+        <span class="verify">View on GitHub</span>
+      </a>
+      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">
+        <span class="code">Python / MIT</span>
+        <h3>trinity-operator</h3>
+        <p class="issuer">The operator of the three papers above, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 22 checks, including a case where the error grows 11.8× before it converges.</p>
         <span class="verify">View on GitHub</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/naval-gazette-notes" target="_blank" rel="noopener">
