@@ -120,6 +120,8 @@ The check that earns its place is **"the DOIs on the paper cards match the DOIs 
 
 **The checks were confirmed not to be vacuous.** Five deliberate breakages — a changed DOI on a card, an injected external script, a link to a page that does not exist, an inconsistent `hasPart`, a stale sitemap entry — produced five failures.
 
+**Some things are not checked.** How the DOI analyzer renders a *successful* response from Crossref, DataCite, OpenAlex, Semantic Scholar or ORCID has only been exercised against recorded response shapes, because those APIs are unreachable from the environment the page was built in. **If a real response differs, the display may break.** The failure path — reporting the reason and restoring the button — is verified.
+
 ---
 
 ✴︎License✴︎
