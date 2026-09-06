@@ -204,6 +204,9 @@
       }
       if (last === ')' && count(doi, ')') > count(doi, '(')) { doi = doi.slice(0, -1); changed = true; continue; }
       if (last === ']' && count(doi, ']') > count(doi, '[')) { doi = doi.slice(0, -1); changed = true; continue; }
+      // 閉じの来ない開き括弧が末尾に残ることがある（和文で切ったとき）
+      if (last === '(' && count(doi, '(') > count(doi, ')')) { doi = doi.slice(0, -1); changed = true; continue; }
+      if (last === '[' && count(doi, '[') > count(doi, ']')) { doi = doi.slice(0, -1); changed = true; continue; }
       if ('>」』】）"\''.indexOf(last) >= 0) { doi = doi.slice(0, -1); changed = true; }
     }
     return doi;
@@ -215,7 +218,16 @@
     return n;
   }
 
-  var EXTRACT = /10\.\d{4,9}(?:\.\d+)*\/[^\s"'<>、。「」『』]+/g;
+  /* DOI の接尾辞は規格上は不透明だが、実在するものは ASCII である。
+   * 和文の中に置かれた DOI を拾うため、仮名・漢字・和文約物で切る。
+   * これがないと「10.5281/zenodo.1（そして）」の全角括弧を半角に直した後、
+   * 括弧の対応が取れてしまい、日本語ごと飲み込む。
+   *
+   * '<' '>' は許す。Wiley の SICI 形式が本当に含むため
+   * （10.1002/(SICI)1097-0258(19980815)17:15<1623::AID-SIM871>3.0.CO;2-N）。
+   * 入力は textarea の平文なので、HTML を食う心配はない。 */
+  var CJK = '\u3000-\u303F\u3040-\u30FF\u31F0-\u31FF\u4E00-\u9FFF\uFF00-\uFFEF';
+  var EXTRACT = new RegExp('10\\.\\d{4,9}(?:\\.\\d+)*\\/[^\\s"\'' + CJK + ']+', 'g');
   var STRICT = /^10\.\d{4,9}(?:\.\d+)*\/\S+$/;
 
   // 貼りこまれた文字列から DOI を全部拾う。入力が 1 件でも一覧でも同じ経路。
@@ -893,6 +905,24 @@
     $('input').value = raw.split(/[,\s]+/).filter(Boolean).join('\n');
     run();
     return true;
+  }
+
+  // ここから下はブラウザでのみ動く。Node から読み込んだときは配線せず、
+  // 純粋な関数だけを出す（verification/check_doi.js が使う）。
+  var HAS_DOM = typeof document !== 'undefined' && !!document.getElementById;
+  if (!HAS_DOM) {
+    if (typeof module !== 'undefined' && module.exports) {
+      module.exports = {
+        PREFIX: PREFIX, NOTES: NOTES, INDEXES: INDEXES, SAMPLE: SAMPLE,
+        toHalfWidth: toHalfWidth, trimTail: trimTail, extract: extract,
+        suspects: suspects, analyseOne: analyseOne, registryLink: registryLink,
+        normalizeOrcid: normalizeOrcid, orcidCheckDigit: orcidCheckDigit,
+        validateOrcid: validateOrcid,
+        fromCrossref: fromCrossref, fromDataCite: fromDataCite,
+        STRICT: STRICT
+      };
+    }
+    return;
   }
 
   $('analyze').addEventListener('click', run);
