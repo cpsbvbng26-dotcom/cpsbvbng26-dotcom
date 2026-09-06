@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-HGFN5vcJiKydkj4y9yI8yba5aBTkzcWL1BBxjvpMc14='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
-<title>研究ブログ | 根本卓哉</title>
-<meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-8j0CmoS9hrFaIW1iHWj9vtCeqj5w6BPQqgzkapghTqA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>作用素を回す | 根本卓哉</title>
+<meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="研究ブログ | 根本卓哉">
-<meta property="og:description" content="researchmap で公開している研究ブログへの入口です。">
+<meta property="og:title" content="作用素を回す | 根本卓哉">
+<meta property="og:description" content="ρ(A) < 1 が収束の必要十分条件で、‖A‖₂ < 1 は十分条件にすぎない。その差を、行列を打ち込んで確かめられるページ。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/research.html">
-<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/research.html">
+<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html">
 <meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -346,56 +346,153 @@ footer::before {
   .reveal { opacity: 1; transform: none; }
 }
 </style>
+</style>
 <style>
-/* ---------- 研究ブログ ---------- */
-.lead-block { max-width: 38rem; }
+/* ---------- 作用素 ---------- */
+.lead-block { max-width: 40rem; }
 .lead-block p { color: var(--muted); }
 
-.primary-card {
-  display: block;
-  padding: 2rem;
-  margin: 2.5rem 0 0;
+.claim {
+  margin: 2rem 0 0; padding: 1.1rem 1.3rem;
+  background: var(--wall-bg); border-left: 3px solid var(--ember);
+  border-radius: 0 .5rem .5rem 0;
+}
+.claim p { margin: 0; font-size: .9rem; line-height: 1.9; }
+.claim p + p { margin-top: .5rem; }
+.claim .iff { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .84rem; }
+
+.tool { margin-top: 2.5rem; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.btn {
+  font: inherit; font-size: .82rem; letter-spacing: .04em;
+  padding: .55rem 1.15rem; cursor: pointer;
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+.btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+.btn.on { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+.sizefield { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
+.sizefield label { font-size: .76rem; letter-spacing: .1em; color: var(--faint); }
+select#size {
+  font: inherit; font-size: .82rem; padding: .45rem .7rem;
+  color: var(--text); background: var(--card);
+  border: 1px solid var(--line); border-radius: .5rem;
+}
+select#size:focus { outline: none; border-color: var(--accent); }
+
+.note { margin: 1rem 0 0; font-size: .8rem; line-height: 1.8; color: var(--faint); }
+
+/* 入力欄 */
+#grid { margin-top: 1.6rem; display: grid; gap: 1.4rem; }
+.mlabel {
+  margin-bottom: .5rem;
+  font-size: .74rem; letter-spacing: .12em; color: var(--faint);
+}
+.mgrid { display: grid; gap: .35rem; }
+.mgrid.cols-2 { grid-template-columns: repeat(2, minmax(0, 5.5rem)); }
+.mgrid.cols-3 { grid-template-columns: repeat(3, minmax(0, 5.5rem)); }
+.mgrid.cols-4 { grid-template-columns: repeat(4, minmax(0, 5.5rem)); }
+.mgrid.cols-5 { grid-template-columns: repeat(5, minmax(0, 5.5rem)); }
+.mgrid.cols-6 { grid-template-columns: repeat(6, minmax(0, 5.5rem)); }
+.mgrid.cols-7 { grid-template-columns: repeat(7, minmax(0, 5.5rem)); }
+.mgrid.cols-8 { grid-template-columns: repeat(8, minmax(0, 5.5rem)); }
+.mcell {
+  width: 100%; padding: .45rem .5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .82rem; text-align: right;
+  color: var(--text); background: var(--card);
+  border: 1px solid var(--line); border-radius: .35rem;
+  transition: border-color .15s;
+}
+.mcell:focus { outline: none; border-color: var(--accent); }
+.mcell.a { border-color: var(--accent-soft); }
+
+/* 判定 */
+#out { margin-top: 2.5rem; }
+.verdicts { display: grid; gap: .8rem; }
+.verdict {
+  display: flex; gap: .9rem; align-items: flex-start;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line); border-radius: .6rem;
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: .9rem;
-  text-decoration: none;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
 }
-.primary-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
+.verdict.yes { border-color: var(--accent); }
+.verdict.no { border-color: var(--line); background: var(--wall-bg); }
+.vmark { flex: none; font-size: 1.1rem; line-height: 1.4; }
+.verdict.yes .vmark { color: var(--accent); }
+.verdict.no .vmark { color: var(--faint); }
+.vhead {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92rem; letter-spacing: .02em;
 }
-.primary-card .code {
-  font-family: Georgia, serif;
-  font-size: .7rem; letter-spacing: .18em; color: var(--accent);
-}
-.primary-card h3 { margin: .5rem 0 .4rem; font-size: 1.2rem; font-weight: 600; letter-spacing: .03em; }
-.primary-card p { margin: 0; font-size: .88rem; color: var(--muted); }
-.primary-card .verify { display: inline-block; margin-top: 1rem; font-size: .76rem; color: var(--faint); letter-spacing: .06em; }
-.primary-card:hover .verify { color: var(--accent); }
-.primary-card .verify::after { content: " →"; }
+.vbody { margin-top: .3rem; font-size: .82rem; line-height: 1.8; color: var(--muted); }
 
-.entries { list-style: none; margin: 0; padding: 0; }
-.entries li { border-top: 1px solid var(--line-soft); }
-.entries li:last-child { border-bottom: 1px solid var(--line-soft); }
-.entries a {
-  display: grid; gap: .2rem 2rem; grid-template-columns: 1fr;
-  padding: 1.3rem 0; text-decoration: none;
-  transition: color .15s;
+.facts { margin-top: 1.6rem; display: grid; gap: 0; }
+.fact {
+  display: grid; grid-template-columns: 13rem 1fr; gap: 1rem;
+  padding: .6rem 0; border-bottom: 1px solid var(--line-soft);
 }
-@media (min-width: 40rem) { .entries a { grid-template-columns: 8rem 1fr; align-items: baseline; } }
-.entries time { font-family: Georgia, serif; font-size: .78rem; letter-spacing: .1em; color: var(--faint); }
-.entries .t { font-size: .98rem; font-weight: 600; line-height: 1.7; }
-.entries a:hover .t { color: var(--accent); }
+.fact dt { margin: 0; font-size: .78rem; color: var(--faint); }
+.fact dd {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .82rem; line-height: 1.7; word-break: break-word;
+}
 
-.note {
-  margin: 0; padding: 2rem 0;
-  font-size: .88rem; color: var(--muted);
-  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+/* 誤差の推移 */
+.plotwrap { margin-top: 2rem; overflow-x: auto; }
+svg.plot { width: 100%; min-width: 30rem; height: auto; display: block; }
+svg.plot .gl { stroke: var(--line); stroke-width: 1; }
+svg.plot .gt { fill: var(--faint); font-size: 10px; text-anchor: end; }
+svg.plot text.gt:last-of-type { text-anchor: start; }
+svg.plot .baseline { stroke: var(--faint); stroke-width: 1; stroke-dasharray: 4 4; }
+svg.plot .curve { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+svg.plot .peak { fill: var(--ember); stroke: none; }
+svg.plot .pt { fill: var(--text); font-size: 10px; text-anchor: start; }
+
+.growth {
+  margin: .9rem 0 0; padding: .8rem 1rem;
+  font-size: .82rem; line-height: 1.85; color: var(--text);
+  background: var(--wall-bg); border-left: 3px solid var(--ember);
+  border-radius: 0 .4rem .4rem 0;
+}
+
+/* 反復の表 */
+.tablewrap { margin-top: 1.8rem; overflow-x: auto; }
+table.steps { width: 100%; border-collapse: collapse; font-size: .78rem; }
+table.steps th, table.steps td {
+  padding: .4rem .7rem; text-align: right; white-space: nowrap;
+  border-bottom: 1px solid var(--line-soft);
+}
+table.steps th { font-weight: 400; color: var(--faint); letter-spacing: .06em; }
+table.steps td {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+}
+table.steps td.kcol { color: var(--faint); text-align: left; }
+table.steps td.ecol { color: var(--accent); }
+
+/* 読み物 */
+.prose { max-width: 40rem; }
+.prose h2 { font-size: 1.05rem; margin: 0 0 .8rem; letter-spacing: .02em; }
+.prose p { font-size: .88rem; line-height: 1.95; color: var(--muted); }
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em; color: var(--text);
+}
+.prose a { color: var(--accent); }
+
+@media (max-width: 40rem) {
+  .fact { grid-template-columns: 1fr; gap: .1rem; }
+  .sizefield { margin-left: 0; }
+}
+@media print {
+  .btn-row, .sizefield, #grid { display: none !important; }
 }
 </style>
-</head>
 <body>
 
 <a class="skip-link" href="#main">本文へスキップ</a>
@@ -404,12 +501,12 @@ footer::before {
   <div class="wrap head-row">
     <a class="mark serif" href="./index.html">TN</a>
     <nav class="nav">
-      <a href="./index.html#credentials">修了証</a>
-      <a href="./index.html#areas">学習領域</a>
+      <a href="./index.html#papers">論文</a>
+      <a href="./index.html#works">制作物</a>
       <a href="./research.html">研究ブログ</a>
       <a href="./doi.html">DOI</a>
-      <a href="./trinity.html">作用素</a>
-      <a href="#links">リンク</a>
+      <a href="./trinity.html" aria-current="page">作用素</a>
+      <a href="./index.html#links">リンク</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
     </nav>
   </div>
@@ -418,48 +515,61 @@ footer::before {
 <main id="main" tabindex="-1">
 
   <section class="wrap hero">
-    <p class="eyebrow reveal">Research Blog</p>
-    <h1 class="serif reveal">研究ブログ</h1>
-    <p class="romaji reveal">RESEARCHMAP</p>
+    <p class="eyebrow reveal">Trinity Operator</p>
+    <h1 class="serif reveal">作用素を回す</h1>
+    <p class="romaji reveal">ITERATE · DIAGNOSE · SEE</p>
+
     <div class="lead-block reveal">
-      <p>researchmap 上で記事を公開しています。researchmap は科学技術振興機構（JST）が運営する、研究者の情報を集約するデータベースです。</p>
+      <p>Trinity-Infinity の三篇が扱うのは、次の一行を繰り返す作用素です。</p>
+      <p class="claim iff">x ← D Q x + (I − D) p</p>
+      <p>三篇は、Q を巡回置換に、混合係数 a を 0 と 1 の間に限っています。その仮定の下では作用素ノルム ‖DQ‖₂ が 1 未満になり、Banach の不動点定理がそのまま使えます。<strong>ですが、収束を決めているのはそこではありません。</strong></p>
     </div>
 
-    <a class="primary-card reveal" href="https://researchmap.jp/takuyanemoto/research_blogs" target="_blank" rel="noopener">
-      <span class="code">researchmap</span>
-      <h3>研究ブログ 一覧</h3>
-      <p>投稿した記事の一覧を researchmap 上で読めます。</p>
-      <span class="verify">researchmap で読む</span>
-    </a>
-  </section>
+    <div class="claim reveal">
+      <p class="iff">任意の初期値から一意の不動点へ収束する　⟺　ρ(A) &lt; 1</p>
+      <p class="iff">誤差が初手から単調に減衰する　　　　　　⟸　‖A‖₂ &lt; 1</p>
+      <p>ρ ≤ ‖A‖₂ なので、論文の条件は必要以上に強いことになります。等号が成り立つのは A が正規行列のときで、三篇の設定（Q が置換、a が一様）はちょうどその場合です。だから区別が表に出てきませんでした。</p>
+      <p>これは新しい数学ではありません。非正規行列の過渡的増幅も、収束条件が ρ(A) &lt; 1 であることも、数値線形代数の標準的な事実です。ここで言うのは一点だけ —— <strong>三篇が置いた仮定は、必要以上に強い。</strong></p>
+    </div>
 
+    <div class="tool reveal">
+      <div class="btn-row">
+        <button class="preset btn" type="button" data-preset="s1" aria-pressed="false">Series I</button>
+        <button class="preset btn" type="button" data-preset="s2" aria-pressed="false">Series II</button>
+        <button class="preset btn" type="button" data-preset="counter" aria-pressed="false">反例</button>
+        <button class="preset btn" type="button" data-preset="boundary" aria-pressed="false">境界 ρ = 1</button>
+        <button class="preset btn" type="button" data-preset="singular" aria-pressed="false">特異な Q</button>
+        <button id="rand" class="btn" type="button">Q を無作為に</button>
+        <span class="sizefield">
+          <label for="size">n</label>
+          <select id="size">
+            <option>2</option><option selected>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </span>
+      </div>
+      <p id="note" class="note"></p>
+
+      <div id="grid"></div>
+
+      <p class="hint">数値を書き換えると、その場で計算し直します。<strong>このページは外部へ一切リクエストを出しません。</strong>固有値・特異値・連立一次方程式は、すべてこのページの中で解いています。</p>
+
+      <div id="out"></div>
+    </div>
+  </section>
 
   <hr class="rule">
 
-  <section id="links" class="wrap block">
-    <div class="sec-head reveal">
-      <h2 class="serif">リンク</h2>
+  <section class="wrap block">
+    <div class="prose reveal">
+      <h2 class="serif">何を計算しているか</h2>
+      <p>A = D Q（D は a を並べた対角行列）、b = (I − D) p と置くと、反復は <code>x ← Ax + b</code> です。これが任意の初期値から収束するのは、ρ(A) &lt; 1 のとき、かつそのときに限ります。ρ はスペクトル半径、つまり固有値の絶対値の最大です。</p>
+      <p>不動点は <code>(I − A)x = b</code> を解いて求めています。反復を回して近づけたのではなく、直接解いた値です。</p>
+      <p>固有値は、Householder 変換で上 Hessenberg 形にしてから、複素数のままシフト付き QR 法を回して取っています。実数のシフトだけだと複素固有値の対で止まるためです。特異値は AᵀA の固有値の平方根で、対称なので Jacobi 回転で取っています。連立一次方程式は部分ピボット付きの Gauss 消去です。外部のライブラリは使っていません。</p>
+      <p>この実装は NumPy と突き合わせて検査してあります。大きさ 1 から 8 までの行列 728 個 —— 三角行列、強い非正規行列、複素固有値を持つもの、固有値が重なるもの、特異行列を含みます —— について、ρ と ‖A‖₂ の相対誤差は 6.7×10⁻¹⁵ と 1.7×10⁻¹⁵ を超えませんでした。記録した値は <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/trinity_fixtures.json" target="_blank" rel="noopener">verification/trinity_fixtures.json</a> にあり、<code>node verification/check_trinity.js</code> で走ります。</p>
+      <p>数値計算である以上、限界はあります。固有値が高度に縮退した行列では、ρ の桁数は表示ほど信用できません。ρ が 1 のごく近くにあるとき、「収束する」の判定は浮動小数点の誤差の中に入ります。「境界 ρ = 1」の見本は、まさにその場所を見るためのものです。</p>
+      <p>作用素そのものの実装と、論文の数値の再現は <a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a> にあります（Python、MIT）。三篇の PDF と、その検証は <a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity" target="_blank" rel="noopener">trinity-infinity</a> にあります。</p>
     </div>
-      <div class="group reveal">
-        <div class="group-name">研究者プロフィール</div>
-        <div class="links">
-          <a class="link" href="https://researchmap.jp/takuyanemoto" target="_blank" rel="noopener">researchmap <span>プロフィール</span></a>
-          <a class="link" href="https://philpeople.org/profiles/takuyanemoto" target="_blank" rel="noopener">PhilPeople <span>哲学者プロフィール</span></a>
-          <a class="link" href="https://cv.hal.science/nemoto-takuya" target="_blank" rel="noopener">HAL <span>欧州拠点研究者プロフィール</span></a>
-          <a class="link" href="https://acadmc.com/takuyanemoto" target="_blank" rel="noopener">acadmc <span>アカデミックプロフィール</span></a>
-          <a class="link" href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335" target="_blank" rel="noopener">J-GLOBAL <span>研究者データベース</span></a>
-          <a class="link" href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">ORCID <span>0009-0000-1406-0547</span></a>
-          <a class="link" href="https://scholar.google.com/citations?user=_HEl3dYAAAAJ&amp;hl=ja" target="_blank" rel="noopener">Google Scholar <span>論文データベース</span></a>
-        </div>
-      </div>
-      <div class="group reveal">
-        <div class="group-name">ウェブ・SNS</div>
-        <div class="links">
-          <a class="link" href="https://www.nemoto200101.com/" target="_blank" rel="noopener">ホームページ <span>nemoto200101.com</span></a>
-          <a class="link" href="https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0" target="_blank" rel="noopener">LinkedIn <span>職務プロフィール</span></a>
-          <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
-        </div>
-      </div>
   </section>
 
 </main>
@@ -493,5 +603,6 @@ footer::before {
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
 })();
 </script>
+<script src="./trinity.js"></script>
 </body>
 </html>

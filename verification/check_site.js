@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', '404.html'];
+const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', '404.html'];
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 let pass = 0;
@@ -275,6 +275,55 @@ ok('通信するのは既知の 4 ホストだけ',
    })(),
    [...new Set([...js.matchAll(/fetch\(\s*'https:\/\/([^/']+)/g)].map((m) => m[1]))].join(', '));
 ok('利用者のメールアドレスを送っていない', !/mailto=/.test(js) && !/@privaterelay/.test(js));
+
+/* ------------------------------------------------------ 9. trinity.js */
+section('9. trinity.js');
+
+const tjs = read('trinity.js');
+ok('trinity.js が読み込まれている',
+   /<script src="\.\/trinity\.js"><\/script>/.test(read('trinity.html')));
+/* このページは端末の中だけで完結する。通信の手立てがコードに無いことを確かめる。 */
+ok('trinity.js は通信しない',
+   !/\bfetch\s*\(|XMLHttpRequest|navigator\.sendBeacon|WebSocket|EventSource|import\s*\(/.test(tjs),
+   (tjs.match(/\bfetch\s*\(|XMLHttpRequest|navigator\.sendBeacon|WebSocket|EventSource/g) || []).join(', '));
+ok('trinity.html の CSP は connect-src を閉じている',
+   /connect-src 'none'/.test(read('trinity.html')));
+/* CSP の style-src はハッシュだけなので、style 属性を置くと描画が壊れる。 */
+ok('trinity.js が style 属性や el.style を触っていない',
+   !/\.style\.|setAttribute\(\s*'style'/.test(tjs));
+ok('trinity.html にインラインの style 属性が無い',
+   !/\sstyle="/.test(read('trinity.html')));
+
+/* 本文が名乗っている検査の規模と精度が、実際の記録と合っているか。
+ * 文章のほうだけ古くなるのを防ぐ。 */
+(() => {
+  const prose = read('trinity.html');
+  const fx = JSON.parse(read('verification/trinity_fixtures.json'));
+  const m = prose.match(/大きさ 1 から 8 までの行列 ([0-9,]+) 個/);
+  ok('本文の照合件数が fixtures の件数と一致する',
+     !!m && Number(m[1].replace(/,/g, '')) === fx.cases.length,
+     '本文 ' + (m ? m[1] : 'なし') + ' / 実際 ' + fx.cases.length);
+
+  const T = require(path.resolve(ROOT, 'trinity.js'));
+  let wr = 0, wn = 0;
+  fx.cases.forEach((c) => {
+    const A = [];
+    for (let i = 0; i < c.n; i++) A.push(c.A.slice(i * c.n, (i + 1) * c.n));
+    wr = Math.max(wr, Math.abs(T.spectralRadius(A) - c.rho) / Math.max(1, c.rho));
+    wn = Math.max(wn, Math.abs(T.spectralNorm(A) - c.norm) / Math.max(1, c.norm));
+  });
+  const claimed = prose.match(/相対誤差は ([0-9.]+)×10⁻¹⁵ と ([0-9.]+)×10⁻¹⁵ を超えませんでした/);
+  ok('本文が名乗っている精度を、実際に超えていない',
+     !!claimed && wr <= Number(claimed[1]) * 1e-15 && wn <= Number(claimed[2]) * 1e-15,
+     claimed
+       ? '本文 ' + claimed[1] + 'e-15 / ' + claimed[2] + 'e-15　実際 '
+         + wr.toExponential(2) + ' / ' + wn.toExponential(2)
+       : '本文に精度の記載が見つからない');
+})();
+
+PAGES.filter((p) => p !== '404.html').forEach((page) => {
+  ok(page + ' のナビから作用素ページへ行ける', /href="\.\/trinity\.html"/.test(read(page)));
+});
 
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O/ZzUtGeli5qbcqeg3UstrTwX8xqOFvwbVgYbgHow8o=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-J3TL7WQUVDOKyCLXyWHLeeUtuwqRN56+lB816O54BkQ=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）のプロフィール。自律と自己統治をめぐる査読前のプレプリント 7 篇、公開しているリポジトリ、および修了証を掲載しています。">
@@ -422,6 +422,26 @@
     },
     {
       "@type": "WebApplication",
+      "name": "作用素を回す",
+      "description": "Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、ブラウザの中だけで反復する道具。スペクトル半径と作用素ノルムを別々に出し、収束の可否と誤差が単調に減衰するかを分けて判定する。固有値は Householder 変換とシフト付き QR 法、特異値は Jacobi 回転、連立一次方程式は部分ピボット付き Gauss 消去で、いずれも外部ライブラリを使わずに解いている。外部へのリクエストは無い。",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScript",
+      "isAccessibleForFree": true,
+      "license": "https://opensource.org/licenses/MIT",
+      "inLanguage": "ja",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "isBasedOn": [
+        { "@id": "https://doi.org/10.5281/zenodo.22058624" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058777" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058964" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
       "name": "DOI アナライザー",
       "description": "DOI の書式を検証し、接頭辞から登録者を推定し、CrossRef と DataCite に照会して BibTeX・CSL-JSON・CITATION.cff などに書き出す道具。文献リストを貼りこむと、含まれる DOI をすべて抽出する。読み込み時は外部へリクエストを出さない。",
       "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html",
@@ -818,6 +838,7 @@ footer::before {
       <a href="#works">制作物</a>
       <a href="./research.html">研究ブログ</a>
       <a href="./doi.html">DOI</a>
+      <a href="./trinity.html">作用素</a>
       <a href="#links">リンク</a>
       <a href="./index.en.html" hreflang="en" lang="en">EN</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">☾</button>
@@ -1029,6 +1050,12 @@ footer::before {
         <span class="code">このサイト内 / ツール</span>
         <h3>DOI アナライザー</h3>
         <p class="issuer">DOI の書式を検証し、接頭辞から登録者を推定し、辿れる索引先を索引・発見・API に分けて並べ、CrossRef と DataCite に照会して BibTeX などに書き出す。ORCID iD の検査（チェックディジット）と、ORCID からの業績の読み込みも。読み込み時は外部リクエストを出さない。</p>
+        <span class="verify">開く</span>
+      </a>
+      <a class="cert reveal" href="./trinity.html">
+        <span class="code">このサイト内 / ツール</span>
+        <h3>作用素を回す</h3>
+        <p class="issuer">下の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。行列を打ち込むと、スペクトル半径と作用素ノルムを両方出し、収束するか・誤差が単調に減るかを別々に判定し、不動点と誤差の推移を描く。固有値も特異値も連立一次方程式も、このページの中で解いている。外部リクエストは無し。</p>
         <span class="verify">開く</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">

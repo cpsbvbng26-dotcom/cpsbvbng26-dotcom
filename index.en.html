@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-cK8c+Z0e/gdCxST0rzmxmjwK8sPxn4jkaRJ+CMf8JAY=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-OkDgo/3EG6RQpmJvdupQBaHKEYCBGriG6GMN4tEz8MY=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="Profile of Takuya Nemoto. Seven preprints on autonomy and self-government, published repositories, and credentials in computer science and artificial intelligence.">
@@ -422,6 +422,26 @@
     },
     {
       "@type": "WebApplication",
+      "name": "Iterating the operator",
+      "description": "Iterates the operator x \u2190 DQx + (I\u2212D)p from the three Trinity-Infinity papers entirely in the browser. It reports the spectral radius and the operator norm separately, so that convergence and monotone decay are judged as two different conditions. Eigenvalues are found by Householder reduction and shifted QR, singular values by Jacobi rotation, and the linear system by Gaussian elimination with partial pivoting \u2014 no external library. Makes no network request.",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScript",
+      "isAccessibleForFree": true,
+      "license": "https://opensource.org/licenses/MIT",
+      "inLanguage": "ja",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "isBasedOn": [
+        { "@id": "https://doi.org/10.5281/zenodo.22058624" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058777" },
+        { "@id": "https://doi.org/10.5281/zenodo.22058964" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
       "name": "DOI Analyzer",
       "description": "Validates DOI syntax, infers the registrant from the prefix, queries Crossref and DataCite, and exports to BibTeX, CSL-JSON and CITATION.cff. Paste a bibliography and it extracts every DOI in it. Makes no external request on load.",
       "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html",
@@ -818,6 +838,7 @@ footer::before {
       <a href="#works">Works</a>
       <a href="./research.html" hreflang="ja" lang="ja">研究ブログ</a>
       <a href="./doi.html">DOI</a>
+      <a href="./trinity.html">Operator</a>
       <a href="#links">Links</a>
       <a href="./index.html" hreflang="ja" lang="ja">日本語</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">☾</button>
@@ -1032,6 +1053,12 @@ footer::before {
         <span class="code">On this site / tool</span>
         <h3>DOI Analyzer</h3>
         <p class="issuer">Validates DOI syntax, infers the registrant from the prefix, lists where the DOI can be looked up (grouped into indexes, discovery search, and APIs), queries Crossref and DataCite, and exports to BibTeX and other formats. Also checks ORCID iDs and loads works from an ORCID record. Makes no external request until asked.</p>
+        <span class="verify">Open</span>
+      </a>
+      <a class="cert reveal" href="./trinity.html">
+        <span class="code">On this site / tool</span>
+        <h3>Iterating the operator</h3>
+        <p class="issuer">Runs the operator x ← DQx + (I−D)p from the three papers above, in the browser. Enter a matrix and it reports the spectral radius and the operator norm separately, judges convergence and monotone decay as two different questions, and plots the fixed point and the error trajectory. Eigenvalues, singular values and the linear solve are all computed on the page. No external request. The page itself is in Japanese.</p>
         <span class="verify">Open</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">
