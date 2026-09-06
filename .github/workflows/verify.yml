@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: サイトの構造 25 項目 / DOI アナライザー 76 項目
+    name: 誤変換 / サイトの構造 29 項目 / DOI アナライザー 76 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 22
       # 依存パッケージなし。npm install も要らない。
+      - name: 誤変換とバッジ記法
+        run: node verification/check_text.js
       - name: サイトの構造
         run: node verification/check_site.js
       - name: DOI アナライザー

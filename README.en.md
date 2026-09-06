@@ -142,7 +142,7 @@ This repository holds two kinds of thing, so it carries two licences.
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was used to organise the disclosure text and for subsequent updates to the public pages. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
+The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
 
 **The record of how it was made** is not only a claim — it can be checked against the repository history itself.
 
