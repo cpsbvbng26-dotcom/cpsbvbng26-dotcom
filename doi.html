@@ -30,9 +30,10 @@
   --line-soft: #efedE9;
   --accent: #8a6a3d;
   --accent-soft: rgba(138, 106, 61, .10);
-  --wall: rgba(138, 106, 61, .46);          /* 海鼠壁の目地 */
-  --wall-bg: rgba(138, 106, 61, .07);       /* 壁の地 */
-  --stone: rgba(23, 23, 26, .22);           /* 石垣の継ぎ目 */
+  --wall: #221f26;                          /* 城壁の石。火を遮るので不透明 */
+  --ember: rgba(118, 20, 14, .78);          /* 狭間から漏れる火 */
+  --wall-bg: rgba(28, 26, 30, .06);
+  --stone: rgba(23, 23, 26, .30);           /* 石の継ぎ目 */
   --header-bg: rgba(250, 249, 247, .86);
   --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
 }
@@ -47,9 +48,10 @@
   --line-soft: #232326;
   --accent: #b08d57;
   --accent-soft: rgba(176, 141, 87, .14);
-  --wall: rgba(176, 141, 87, .40);
-  --wall-bg: rgba(176, 141, 87, .08);
-  --stone: rgba(236, 236, 238, .18);
+  --wall: #08070a;
+  --ember: rgba(232, 74, 42, .62);
+  --wall-bg: rgba(0, 0, 0, .35);
+  --stone: rgba(236, 236, 238, .16);
   --header-bg: rgba(18, 18, 20, .86);
   --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
 }
@@ -86,14 +88,15 @@ header {
   border-bottom: 1px solid var(--line);
 }
 
-/* 頭上にも壁。仕切りと同じ海鼠壁を細く敷いて、上下を壁で締める。 */
+/* 頭上から牙が下りている —— 落とし格子の内側。 */
 header::after {
-  content: ""; display: block; height: 7px;
-  background-color: var(--wall-bg);
+  content: ""; display: block; height: 13px;
   background-image:
-    repeating-linear-gradient(45deg,  var(--wall) 0 1.5px, transparent 1.5px 19px),
-    repeating-linear-gradient(-45deg, var(--wall) 0 1.5px, transparent 1.5px 19px);
-  border-top: 1px solid var(--line);
+    conic-gradient(from 225deg at 50% 100%, var(--wall) 0 90deg, transparent 0),
+    linear-gradient(to bottom, var(--ember) 0%, transparent 76%);
+  background-size: 24px 13px, 100% 100%;
+  background-position: 0 0, 0 0;
+  background-repeat: repeat-x, no-repeat;
 }
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -145,17 +148,17 @@ header::after {
   color: var(--muted); font-size: 1rem;
 }
 
-/* 仕切りは海鼠壁 —— 城の外壁の、平瓦を並べて目地を漆喰で盛った意匠。
-   画像は使わない（外部リクエストを出さないため）。斜めの格子は CSS の
-   繰り返しグラデーションを直交させて出している。 */
+/* 仕切りは胸壁 —— 狭間を切った上端と壁体。石は不透明で火を遮り、
+   狭間の隙間からだけ下の火が漏れる。画像は使わない。 */
 .rule {
-  height: 26px; margin: 0; border: 0;
-  background-color: var(--wall-bg);
+  height: 34px; margin: 0; border: 0;
   background-image:
-    repeating-linear-gradient(45deg,  var(--wall) 0 2px, transparent 2px 19px),
-    repeating-linear-gradient(-45deg, var(--wall) 0 2px, transparent 2px 19px);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+    repeating-linear-gradient(90deg, var(--wall) 0 27px, transparent 27px 52px),
+    linear-gradient(var(--wall), var(--wall)),
+    linear-gradient(to bottom, var(--ember) 0%, var(--ember) 46%, transparent 74%);
+  background-size: 52px 22px, 100% 12px, 100% 100%;
+  background-position: 0 0, 0 22px, 0 0;
+  background-repeat: repeat-x, repeat-x, no-repeat;
 }
 
 /* ---------- セクション ---------- */
@@ -239,19 +242,19 @@ section.block { padding: 4.5rem 0; }
 /* ---------- フッター ---------- */
 footer { border-top: 1px solid var(--line); margin-top: 2rem; position: relative; }
 
-/* 石垣 —— 布積み。上下の段を半分ずらし、周期の違う三枚目を重ねて
-   割付けの規則性を崩す。下ほど翳らせて反りを匂わせる。 */
+/* 基壇の粗い石積み。火は狭間と牙だけに置き、ここは石だけで重くする。
+   上下の段を半分ずらし、周期の違う三枚目を重ねて割付けの規則性を崩す。 */
 footer::before {
-  content: ""; display: block; height: 40px;
+  content: ""; display: block; height: 46px;
   background-image:
-    linear-gradient(to bottom, transparent 40%, var(--wall-bg)),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 68px),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 68px),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 109px),
     linear-gradient(var(--stone), var(--stone)),
-    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 62px),
-    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 62px),
-    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 101px);
-  background-size: 100% 100%, 100% 2px, 62px 20px, 62px 20px, 101px 40px;
-  background-position: 0 0, 0 19px, 0 0, 31px 20px, 17px 0;
-  background-repeat: no-repeat, repeat-x, repeat-x, repeat-x, repeat-x;
+    linear-gradient(to bottom, var(--wall-bg), transparent 70%);
+  background-size: 68px 23px, 68px 23px, 109px 46px, 100% 2px, 100% 100%;
+  background-position: 0 0, 34px 23px, 19px 0, 0 22px, 0 0;
+  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat;
 }
 .foot {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
