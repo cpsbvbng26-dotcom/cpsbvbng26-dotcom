@@ -1052,7 +1052,7 @@ footer::before {
       <a class="cert reveal" href="./doi.html">
         <span class="code">On this site / tool</span>
         <h3>DOI Analyzer</h3>
-        <p class="issuer">Validates DOI syntax, infers the registrant from the prefix, lists where the DOI can be looked up (grouped into indexes, discovery search, and APIs), queries Crossref and DataCite, and exports to BibTeX and other formats. Also checks ORCID iDs and loads works from an ORCID record. Makes no external request until asked.</p>
+        <p class="issuer">Validates DOI syntax, infers the registrant from the prefix, lists where the DOI can be looked up (grouped into indexes, discovery search, and APIs), queries Crossref and DataCite, and exports to BibTeX and other formats. Case, percent-encoding and URL fragments are resolved so that two spellings of one DOI are treated as one, and each export escapes for its own grammar. Also checks ORCID iDs and loads works from an ORCID record. Makes no external request until asked.</p>
         <span class="verify">Open</span>
       </a>
       <a class="cert reveal" href="./trinity.html">

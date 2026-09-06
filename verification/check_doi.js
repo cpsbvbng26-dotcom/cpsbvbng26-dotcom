@@ -156,7 +156,8 @@ eq('Crossref: 題名', cr.title, 'Fairness and Abstraction in Sociotechnical Sys
 eq('Crossref: 著者名を姓, 名 にする', cr.authors, ['Selbst, Andrew D.', 'boyd, danah']);
 eq('Crossref: 年', cr.year, 2019);
 eq('Crossref: 掲載', cr.container, 'FAT* ’19');
-eq('Crossref: ORCID のある著者だけ拾う', cr.orcids, [{ name: 'Selbst, Andrew D.', id: '0000-0002-1825-0097' }]);
+eq('Crossref: ORCID のある著者だけ拾う', cr.orcids,
+   [{ name: 'Selbst, Andrew D.', id: '0000-0002-1825-0097', bad: false, authenticated: false }]);
 eq('Crossref: 掲載ページ', cr.landing, 'https://doi.org/10.1145/3287560.3287598');
 
 const dcVersion = D.fromDataCite({
@@ -171,7 +172,7 @@ const dcVersion = D.fromDataCite({
 });
 eq('DataCite: 題名', dcVersion.title, 'The Trinity-Infinity Framework');
 eq('DataCite: 著者', dcVersion.authors, ['Nemoto, Takuya']);
-eq('DataCite: ORCID', dcVersion.orcids, [{ name: 'Nemoto, Takuya', id: '0009-0000-1406-0547' }]);
+eq('DataCite: ORCID', dcVersion.orcids, [{ name: 'Nemoto, Takuya', id: '0009-0000-1406-0547', bad: false }]);
 eq('DataCite: バージョン DOI と判定', dcVersion.zenodoKind, 'バージョン DOI（この版を固定して指します）');
 eq('DataCite: 掲載ページ', dcVersion.landing, 'https://zenodo.org/records/22058624');
 
@@ -204,6 +205,189 @@ ok('索引群に api.crossref.org / api.datacite.org / api.openalex.org を置�
    D.INDEXES.filter(i => i.group === '索引').map(i => i.url('10.1/x')).join(' '));
 ok('すべての索引先が https',
    D.INDEXES.every(i => i.url('10.1145/x').indexOf('https://') === 0));
+
+/* -------------------------------------------------- URL への載せ方（厳密） */
+section('URL への載せ方');
+
+/* DOI Handbook 2.5.2.3 が符号化を求める文字。生のまま href に置くと、
+ * リンクが別の場所を指すか、そもそも URL として成立しない。 */
+eq('% を符号化する', D.encodeDoi('10.1234/a%b'), '10.1234/a%25b');
+eq('空白を符号化する', D.encodeDoi('10.1234/a b'), '10.1234/a%20b');
+eq('# を符号化する（素片と読まれるため）', D.encodeDoi('10.1234/a#b'), '10.1234/a%23b');
+eq('? を符号化する（クエリと読まれるため）', D.encodeDoi('10.1234/a?b'), '10.1234/a%3Fb');
+eq('" を符号化する', D.encodeDoi('10.1234/a"b'), '10.1234/a%22b');
+eq("' を符号化する", D.encodeDoi("10.1234/a'b"), '10.1234/a%27b');
+/* RFC 3986 が URI から除いている文字。Wiley の SICI 形式が < > を本当に含む。 */
+eq('< > を符号化する', D.encodeDoi('10.1234/a<b>c'), '10.1234/a%3Cb%3Ec');
+eq('{ } | \\ ^ ` [ ] を符号化する',
+   D.encodeDoi('10.1234/{}|\\^`[]'), '10.1234/%7B%7D%7C%5C%5E%60%5B%5D');
+eq('非 ASCII は UTF-8 で符号化する', D.encodeDoi('10.1234/あ'), '10.1234/%E3%81%82');
+/* DOI に頻出し、パスの中では曖昧にならない文字は残す。読める URL のため。 */
+eq('/ : ; ( ) , = + $ ! * @ - _ . ~ は残す',
+   D.encodeDoi('10.1234/a/b:c;d(e),f=g+h$i!j*k@l-m_n.o~p'),
+   '10.1234/a/b:c;d(e),f=g+h$i!j*k@l-m_n.o~p');
+
+const SICI = '10.1002/(SICI)1097-0258(19980815)17:15<1623::AID-SIM871>3.0.CO;2-N';
+eq('SICI 形式の DOI が正しい解決 URL になる',
+   D.doiUrl(SICI),
+   'https://doi.org/10.1002/(SICI)1097-0258(19980815)17:15%3C1623::AID-SIM871%3E3.0.CO;2-N');
+eq('analyseOne が返す url も符号化済み', D.analyseOne(SICI, 0).url, D.doiUrl(SICI));
+
+/* URL の中の %XX は定義上つねに符号化である（DOI 自身の % は %25 になる）。 */
+eq('百分率符号化された URL から素の DOI に戻す',
+   D.extract('https://doi.org/10.1002/%28SICI%291097-0258%2819980815%2917%3A15%3C1623%3A%3AAID-SIM871%3E3.0.CO%3B2-N').list,
+   [SICI]);
+eq('%25 は % に戻す', D.extract('https://doi.org/10.1234/a%25b').list, ['10.1234/a%b']);
+eq('壊れた符号化には触らない', D.extract('https://doi.org/10.1234/ab%zz').list, ['10.1234/ab%zz']);
+eq('解いて空白になるなら触らない', D.extract('https://doi.org/10.1234/a%20b').list, ['10.1234/a%20b']);
+eq('平文の % はそのまま', D.extract('10.1234/a%25b は平文').list, ['10.1234/a%25b']);
+
+/* 往復。符号化して解くと元に戻る。 */
+ok('符号化 → 復号で元に戻る',
+   ['10.1234/a%b', '10.1234/a b', SICI, '10.1234/あ', '10.1234/a<b>c']
+     .every((d) => decodeURIComponent(D.encodeDoi(d)) === d));
+
+/* ------------------------------------------------- URL の尾を落とす（厳密） */
+section('URL の尾');
+
+eq('URL の素片（#）を落とす',
+   D.extract('https://doi.org/10.1234/abc#section2').list, ['10.1234/abc']);
+eq('URL のクエリ（&）を落とす',
+   D.extract('https://ex.com/s?doi=10.1234/abc&lang=ja').list, ['10.1234/abc']);
+eq('URL のクエリ（?）を落とす',
+   D.extract('https://ex.com/10.1234/abc?utm_source=x').list, ['10.1234/abc']);
+/* 平文では落とさない。DOI の接尾辞は規格上は不透明で、# や & を含みうる。 */
+eq('平文の # は落とさない', D.extract('10.1234/abc#frag は平文').list, ['10.1234/abc#frag']);
+eq('平文の & は落とさない', D.extract('10.1234/a&b は平文').list, ['10.1234/a&b']);
+eq('doi: 接頭の平文でも落とさない', D.extract('doi:10.1234/a&b').list, ['10.1234/a&b']);
+
+/* ------------------------------------------------------ 点検（何が悪いか） */
+section('点検');
+
+const lv = (d) => D.inspect(d).map((f) => f.level);
+const txt = (d) => D.inspect(d).map((f) => f.text).join(' / ');
+
+ok('正しい DOI には bad が出ない', lv('10.5281/zenodo.22058624').indexOf('bad') < 0, txt('10.5281/zenodo.22058624'));
+ok('接頭辞の桁が足りないと bad', lv('10.99/x').indexOf('bad') >= 0);
+ok('接頭辞が 10 桁だと bad', lv('10.1234567890/x').indexOf('bad') >= 0);
+ok('10. で始まらないと bad', lv('11.1234/x').indexOf('bad') >= 0);
+ok('スラッシュが無いと bad', lv('10.5281zenodo.1').indexOf('bad') >= 0);
+ok('接尾辞が空だと bad', lv('10.5281/').indexOf('bad') >= 0);
+ok('下位接頭辞（10.1234.5/x）は通る', lv('10.1234.5/x').indexOf('bad') < 0, txt('10.1234.5/x'));
+ok('符号化が要る文字があると warn', lv(SICI).indexOf('warn') >= 0, txt(SICI));
+ok('非 ASCII の接尾辞は warn', lv('10.1234/あ').indexOf('warn') >= 0);
+ok('大文字を含むと info（DOI は大小を区別しない）',
+   lv('10.5281/ZENODO.1').indexOf('info') >= 0, txt('10.5281/ZENODO.1'));
+ok('小文字だけなら info は出ない', lv('10.5281/zenodo.1').indexOf('info') < 0);
+ok('bad があれば valid にならない', D.analyseOne('10.99/x', 0).valid === false);
+ok('warn だけなら valid のまま', D.analyseOne(SICI, 0).valid === true, txt(SICI));
+
+/* ------------------------------------------------------------ 日付の採り方 */
+section('Crossref の日付');
+
+/* issued が空でも、published-online などに入っていることがある。
+ * created は登録日であって刊行日ではないので、最後に見る。 */
+eq('issued があればそれを採る',
+   D.crossrefDate({ issued: { 'date-parts': [[2019, 1, 29]] } }),
+   { parts: [2019, 1, 29], from: 'issued' });
+const dOnline = D.crossrefDate({ issued: { 'date-parts': [[null]] },
+                                 'published-online': { 'date-parts': [[2019, 3, 4]] } });
+eq('issued が [[null]] なら次を見る', dOnline && dOnline.from, 'published-online');
+eq('その日付も年月日まで採る', dOnline && dOnline.parts, [2019, 3, 4]);
+eq('どこにも無ければ null', D.crossrefDate({}), null);
+const dCreated = D.crossrefDate({ created: { 'date-parts': [[2020]] } });
+eq('created は最後の手段', dCreated && dCreated.from, 'created');
+const dMixed = D.crossrefDate({ issued: { 'date-parts': [[2019, null, null]] } });
+eq('null 混じりの date-parts から数字だけ採る', dMixed && dMixed.parts, [2019]);
+
+/* ------------------------------------------------------------ 種別の対応 */
+section('種別の対応');
+
+eq('journal-article', D.typePair('journal-article'), ['article', 'article-journal']);
+eq('proceedings-article', D.typePair('proceedings-article'), ['inproceedings', 'paper-conference']);
+eq('book-chapter', D.typePair('book-chapter'), ['incollection', 'chapter']);
+eq('dissertation', D.typePair('dissertation'), ['phdthesis', 'thesis']);
+eq('DataCite の Software', D.typePair('Software'), ['software', 'software']);
+eq('知らない種別は null（当てずっぽうにしない）', D.typePair('とても新しい種別'), null);
+
+/* ---------------------------------------------------------- 書き出しの逃がし */
+section('書き出しの逃がし');
+
+eq('LaTeX: & % $ # _ { }', D.tex('& % $ # _ { }'), '\\& \\% \\$ \\# \\_ \\{ \\}');
+eq('LaTeX: ~ と ^ は命令にする', D.tex('~^'), '\\textasciitilde{}\\textasciicircum{}');
+/* \ を先に直してから { } を直すと、差し込んだ命令の中括弧まで逃がしてしまう。 */
+eq('LaTeX: バックスラッシュを二重に逃がさない',
+   D.tex('a\\b'), 'a\\textbackslash{}b');
+eq('LaTeX: 頁は en ダッシュ二つでつなぐ', D.texPages('1623-1633'), '1623--1633');
+eq('LaTeX: 全角ダッシュの頁も同じ形にする', D.texPages('1–9'), '1--9');
+eq('LaTeX: 頁が一つなら触らない', D.texPages('e12345'), 'e12345');
+
+eq('YAML: " を逃がす', D.yaml('a"b'), '"a\\"b"');
+eq('YAML: \\ を逃がす', D.yaml('a\\b'), '"a\\\\b"');
+eq('YAML: 制御文字を逃がす', D.yaml('a\tb'), '"a\\x09b"');
+
+eq('Markdown: | を逃がす', D.mdCell('a|b'), 'a\\|b');
+eq('Markdown: [ ] を逃がす', D.mdCell('[a]'), '\\[a\\]');
+eq('Markdown: 改行は空白にする', D.mdCell('a\nb'), 'a b');
+eq('Markdown: . や - は素のまま', D.mdCell('10.1234/a-b'), '10.1234/a-b');
+
+/* 実際に一件通して、壊れた書誌が出てこないことを見る。 */
+const one = D.analyseOne('10.1177/2053951716679679', 0);
+one.meta = {
+  source: 'Crossref', title: 'Big Data & Society: 50% of {it}',
+  authors: ['Mittelstadt, Brent Daniel', 'boyd, danah'],
+  container: 'Big Data & Society', publisher: 'SAGE',
+  year: 2016, dateParts: [2016, 7, 1], type: 'journal-article',
+  volume: '3', issue: '2', page: '1-21'
+};
+
+const bib = D.bibtex([one]);
+ok('BibTeX: 逃がしていない & が残っていない', !/(^|[^\\])&/.test(bib), bib);
+ok('BibTeX: 逃がしていない % が残っていない', !/(^|[^\\])%/.test(bib), bib);
+ok('BibTeX: 種別が @article になる', bib.indexOf('@article{') === 0, bib.slice(0, 40));
+ok('BibTeX: 月が入る', /month\s+= \{jul\}/.test(bib), bib);
+ok('BibTeX: 頁が -- になる', /pages\s+= \{1--21\}/.test(bib), bib);
+ok('BibTeX: 中括弧の対応が取れている',
+   (bib.match(/(^|[^\\])\{/g) || []).length === (bib.match(/(^|[^\\])\}/g) || []).length, bib);
+
+const cslOut = JSON.parse(D.csl([one]));
+eq('CSL: 種別を対応させる', cslOut[0].type, 'article-journal');
+eq('CSL: 日付は年月日まで入れる', cslOut[0].issued, { 'date-parts': [[2016, 7, 1]] });
+eq('CSL: 巻・号・頁を入れる',
+   [cslOut[0].volume, cslOut[0].issue, cslOut[0].page], ['3', '2', '1-21']);
+eq('CSL: 姓名を分ける', cslOut[0].author[0], { family: 'Mittelstadt', given: 'Brent Daniel' });
+
+const cffOut = D.cff([one]);
+ok('CFF: 題名が引用符で囲まれている', /title: "Big Data & Society: 50% of \{it\}"/.test(cffOut), cffOut);
+ok('CFF: 種別が article', /- type: article/.test(cffOut), cffOut);
+ok('CFF: authors が必ず入る',
+   D.cff([D.analyseOne('10.1234/x', 0)]).indexOf('authors:') >= 0,
+   D.cff([D.analyseOne('10.1234/x', 0)]));
+
+ok('Markdown: 表の列が割れていない',
+   D.markdown([one]).split('\n').slice(2).every((r) => r.split(/(?<!\\)\|/).length === 6),
+   D.markdown([one]));
+
+ok('書き出しは書式が不正なものを含めない',
+   D.bibtex([D.analyseOne('10.99/x', 0)]) === '' && D.plain([D.analyseOne('10.99/x', 0)]) === '');
+eq('plain は符号化済みの URL を出す', D.plain([one]), 'https://doi.org/10.1177/2053951716679679');
+
+/* ------------------------------------------------------- API の返す ORCID */
+section('API の返す ORCID');
+
+/* 登録側の打ち間違いは、チェックディジットで落ちる。落として捨てるのではなく、
+ * 印を付けて出す —— 誰の iD が壊れているのかは、見えたほうがよい。 */
+const badOrcid = D.fromCrossref({
+  author: [{ family: 'X', given: 'Y', ORCID: 'https://orcid.org/0000-0002-1825-0098' }]
+});
+ok('チェックディジットの合わない ORCID に印が付く', badOrcid.orcids[0].bad === true,
+   JSON.stringify(badOrcid.orcids));
+ok('正しい ORCID には印が付かない',
+   D.fromCrossref({ author: [{ family: 'X', ORCID: 'http://orcid.org/0000-0002-1825-0097' }] })
+     .orcids[0].bad === false);
+ok('authenticated-orcid をそのまま持つ',
+   D.fromCrossref({ author: [{ family: 'X', ORCID: 'https://orcid.org/0000-0002-1825-0097',
+                               'authenticated-orcid': true }] }).orcids[0].authenticated === true);
 
 /* ---------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));

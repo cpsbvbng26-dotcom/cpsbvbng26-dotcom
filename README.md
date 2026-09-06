@@ -78,7 +78,7 @@
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
-| [DOI アナライザー](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html) | DOI の書式検証、接頭辞からの登録者の推定、**索引先の一覧（索引 / 発見 / API に分けて 20 件）**、CrossRef / DataCite への照会、**ORCID iD の検査と業績の読み込み**、BibTeX などへの書き出し。このサイト内のページ | MIT | — |
+| [DOI アナライザー](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html) | DOI の書式検証、接頭辞からの登録者の推定、**索引先の一覧（索引 / 発見 / API に分けて 20 件）**、CrossRef / DataCite への照会、**ORCID iD の検査と業績の読み込み**、BibTeX などへの書き出し。**大小の別・百分率符号化・URL の素片を解いて同一視し、`<` `>` を含む DOI も正しい解決 URL にする**。このサイト内のページ | MIT | — |
 | [作用素を回す](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) | Trinity-Infinity の三篇が扱う作用素を、ブラウザの中だけで反復する。**スペクトル半径と作用素ノルムを別々に出し、収束の可否と単調減衰を分けて判定する**。固有値・特異値・連立一次方程式を外部ライブラリなしで解いている。NumPy の値と 728 件突き合わせ済み。このサイト内のページ | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |

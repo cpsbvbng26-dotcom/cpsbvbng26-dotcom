@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-PYtWOk4oBxku/kV1VGQ2G1AH2pLwDISWJmb21j+AnV4='; img-src 'self' data:; connect-src https://api.crossref.org https://api.datacite.org https://api.openalex.org https://api.semanticscholar.org https://opencitations.net https://pub.orcid.org; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-ags8TfTKyja/2UM5tsN0GGUA1Jjvbc5iX7uQ0vq5GUc='; img-src 'self' data:; connect-src https://api.crossref.org https://api.datacite.org https://api.openalex.org https://api.semanticscholar.org https://opencitations.net https://pub.orcid.org; form-action 'none'; base-uri 'none'">
 <title>DOI アナライザー | 根本卓哉</title>
 <meta name="description" content="DOI を解析する道具。書式の検証、接頭辞からの登録者の推定、CrossRef と DataCite への照会、BibTeX などへの書き出し。読み込み時は外部リクエストを一切出しません。">
 <meta name="robots" content="index, follow">
@@ -542,6 +542,21 @@ pre#out {
 
 .empty { padding: 2.5rem 0; font-size: .88rem; color: var(--faint); }
 
+/* 点検で気づいたこと。良し悪しの一語ではなく、一つずつ並べる。 */
+.findings { margin: .8rem 0 0; padding: 0; list-style: none; }
+.findings li {
+  position: relative; padding: .3rem 0 .3rem 1.4rem;
+  font-size: .8rem; line-height: 1.8; color: var(--muted);
+}
+.findings li::before {
+  position: absolute; left: .25rem; top: .3rem;
+  font-size: .85em;
+}
+.findings li.f-bad::before { content: "×"; color: #b4503c; }
+.findings li.f-warn::before { content: "!"; color: var(--accent); }
+.findings li.f-info::before { content: "i"; color: var(--faint); font-style: italic; }
+.findings li.f-bad { color: var(--text); }
+
 @media print {
   .btn-row, .tabs, textarea#input, .field label { display: none !important; }
 }
@@ -574,6 +589,7 @@ pre#out {
 
     <div class="lead-block reveal">
       <p>DOI を貼ると、書式を検証し、接頭辞から登録者を推定し、正しい URL の形に直し、<strong>その DOI で辿れる索引先を一覧にします</strong>。文献リストをそのまま貼っても、含まれている DOI を全部拾います。</p>
+      <p><strong>同じ資料を指す別の書き方は、同じものとして扱います。</strong> 大文字と小文字（DOI は区別しません）、百分率符号化された URL、末尾に付いた <code>#</code> 素片や <code>&amp;</code> クエリ —— これらは解いて突き合わせます。<code>&lt;</code> や <code>&gt;</code> を含む DOI（Wiley の SICI 形式）も、正しく符号化した解決 URL を出します。書き出す BibTeX・CFF・Markdown は、題名の <code>&amp;</code> や <code>%</code> をそれぞれの文法で逃がします。</p>
       <p><strong>このページは読み込み時に外部へ一切リクエストを出しません。</strong> メタデータの照会は、押したときだけ CrossRef と DataCite に問い合わせます。押さなければ、すべてこのページの中だけで完結します。</p>
     </div>
 

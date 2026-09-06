@@ -89,6 +89,9 @@
     '１０.１０３８/s42256-019-0048-x',
     'Mittelstadt et al., Big Data & Society 3(2), 2016 (10.1177/2053951716679679).',
     '10.5281/ZENODO.22058624',
+    'https://doi.org/10.5281/zenodo.22058624#abstract',
+    '10.1002/(SICI)1097-0258(19980815)17:15<1623::AID-SIM871>3.0.CO;2-N',
+    'https://doi.org/10.1002/%28SICI%291097-0258%2819980815%2917%3A15%3C1623%3A%3AAID-SIM871%3E3.0.CO%3B2-N',
     '10.99/接頭辞の桁が足りない',
     'Nemoto 2026, DOI 10.5281zenodo.22058777（スラッシュが抜けている）'
   ].join('\n');
@@ -230,6 +233,67 @@
   var EXTRACT = new RegExp('10\\.\\d{4,9}(?:\\.\\d+)*\\/[^\\s"\'' + CJK + ']+', 'g');
   var STRICT = /^10\.\d{4,9}(?:\.\d+)*\/\S+$/;
 
+  /* DOI を URL に載せるときに符号化しなければならない文字。
+   *
+   * DOI Handbook 2.5.2.3 が名指ししているのは % " # ' ? と空白。
+   * 実際にはこれだけでは足りない。< > は Wiley の SICI 形式の DOI が本当に
+   * 含んでいて（10.1002/(SICI)…<1623::AID-SIM871>3.0.CO;2-N）、生のまま
+   * href に置くとブラウザが URL として受け付けない。RFC 3986 が URI から
+   * 除いている文字（< > { } | \ ^ ` [ ]）も同じ理由で符号化する。
+   *
+   * / : ; ( ) , = + $ ! * @ - _ . ~ は残す。DOI に頻出し、パスの中では
+   * 符号化しなくても曖昧にならないため。生で残すほうが読める URL になる。 */
+  function encodeDoi(doi) {
+    return String(doi).replace(/[^\x21-\x7E]|[%"#?'<>{}|\\^`\[\]]/g, function (c) {
+      var out = '', i, b;
+      var utf = encodeURIComponent(c);           // 非 ASCII もここで UTF-8 に
+      if (utf.charAt(0) === '%') return utf.toUpperCase();
+      for (i = 0; i < utf.length; i++) {
+        b = utf.charCodeAt(i);
+        out += '%' + (b < 16 ? '0' : '') + b.toString(16).toUpperCase();
+      }
+      return out;
+    });
+  }
+
+  function doiUrl(doi) { return 'https://doi.org/' + encodeDoi(doi); }
+
+  /* URL の形で貼られた DOI を、素の DOI に戻す。
+   *
+   * URL の中では、%XX は定義上つねに百分率符号化である。DOI 自身に % が
+   * 含まれる場合、URL に載せるときは %25 に符号化しなければならない
+   * （Handbook 2.5.2.3）。だから URL から取り出した %XX は、そのまま解いてよい。
+   *
+   * 解かないのは二つの場合だけ。組になっていない % があって解けないとき
+   * （decodeURIComponent が投げる）と、解いた結果に空白や制御文字が現れた
+   * とき。後者は URL の切り出しに失敗しているので、触らずに返して
+   * inspect() に指摘させる。 */
+  function decodeDoi(doi) {
+    if (doi.indexOf('%') < 0) return doi;
+    var dec;
+    try { dec = decodeURIComponent(doi); } catch (e) { return doi; }
+    if (/[\s\x00-\x1F\x7F]/.test(dec)) return doi;
+    return dec;
+  }
+
+  /* URL の中から拾ったときだけ、DOI ではない尾を落とす。
+   *
+   *   https://doi.org/10.1234/abc#section2   → 10.1234/abc   （# 以降は素片）
+   *   https://ex.com/s?doi=10.1234/abc&l=ja  → 10.1234/abc   （& 以降は別の引数）
+   *
+   * URL でない平文では落とさない。DOI の接尾辞は規格上は不透明で、# や &
+   * を含みうるためである。URL の中でならこれらは区切りとして働くので、
+   * そこでだけ切れる。 */
+  function trimUrlTail(doi) {
+    var cut = doi.length, i;
+    var marks = ['#', '?', '&'];
+    for (i = 0; i < marks.length; i++) {
+      var at = doi.indexOf(marks[i]);
+      if (at > 0 && at < cut) cut = at;
+    }
+    return doi.slice(0, cut);
+  }
+
   // 貼りこまれた文字列から DOI を全部拾う。入力が 1 件でも一覧でも同じ経路。
   function extract(raw) {
     var text = toHalfWidth(String(raw));
@@ -238,13 +302,75 @@
     var m;
     EXTRACT.lastIndex = 0;
     while ((m = EXTRACT.exec(text)) !== null) {
-      var doi = trimTail(m[0]);
-      if (!doi) continue;
+      /* この一致が URL の中にあるかどうかを、直前の空白までを見て決める。 */
+      var head = text.slice(0, m.index);
+      var sp = Math.max(head.lastIndexOf(' '), head.lastIndexOf('\n'), head.lastIndexOf('\t'));
+      var token = head.slice(sp + 1);
+      var inUrl = /^(?:https?:)?\/\//i.test(token) || /^[a-z][a-z0-9+.-]*:\/\//i.test(token);
+
+      var doi = m[0];
+      if (inUrl) doi = decodeDoi(trimUrlTail(doi));
+      doi = trimTail(doi);
+      if (!doi || doi.indexOf('/') < 0) continue;
       var key = doi.toLowerCase();
       if (!seen[key]) { seen[key] = 1; found.push(doi); }
       else { seen[key]++; }
     }
     return { list: found, counts: seen };
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 厳密さの点検
+   *
+   * 「書式が正しいか」を真偽の一つで返すと、何が悪いのかが分からない。
+   * 気づいたことを個別に返す。level は 'bad'（DOI として成立しない）、
+   * 'warn'（成立するが、そのままでは扱いを誤りやすい）、'info'。
+   * ------------------------------------------------------------------ */
+  function inspect(doi) {
+    var out = [];
+    var slash = doi.indexOf('/');
+    var prefix = slash > 0 ? doi.slice(0, slash) : doi;
+    var suffix = slash > 0 ? doi.slice(slash + 1) : '';
+
+    if (slash < 0) {
+      out.push({ level: 'bad', text: '接頭辞と接尾辞を分ける「/」がありません。' });
+    } else if (!suffix) {
+      out.push({ level: 'bad', text: '接尾辞が空です。「/」の後に必ず何か続きます。' });
+    }
+    if (!/^10\./.test(doi)) {
+      out.push({ level: 'bad', text: 'DOI は必ず「10.」で始まります。' });
+    } else if (!/^10\.\d{4,9}(?:\.\d+)*$/.test(prefix)) {
+      out.push({ level: 'bad',
+        text: '接頭辞「' + prefix + '」の形が違います。「10.」の後は 4〜9 桁の数字で、'
+            + '下位接頭辞が付く場合は「.数字」が続きます。' });
+    }
+
+    /* 大小の別。DOI は大小を区別しない（Handbook 2.4）。同じ資料を二度
+     * 数えないために、比較は小文字に落として行っている。 */
+    if (/[A-Z]/.test(suffix)) {
+      out.push({ level: 'info',
+        text: 'DOI は大文字と小文字を区別しません。' + prefix + '/' + suffix.toLowerCase()
+            + ' と同じ資料を指します。' });
+    }
+
+    /* URL に載せるとき符号化が要る文字。href をそのまま組み立てると壊れる。 */
+    var needs = suffix.match(/[%"#?'<>{}|\\^`\[\] ]|[^\x21-\x7E]/g);
+    if (needs) {
+      var uniq = [];
+      needs.forEach(function (c) { if (uniq.indexOf(c) < 0) uniq.push(c); });
+      out.push({ level: 'warn',
+        text: 'URL に載せるとき符号化が要る文字を含みます（' + uniq.join(' ') + '）。'
+            + '下の解決 URL は符号化済みです。' });
+    }
+    if (/[^\x00-\x7F]/.test(suffix)) {
+      out.push({ level: 'warn',
+        text: '接尾辞に ASCII 以外の文字があります。規格は禁じていませんが、'
+            + '登録された DOI でこうなっているものはほとんどありません。写し間違いを疑ってください。' });
+    }
+    if (/\s/.test(doi)) {
+      out.push({ level: 'warn', text: '空白を含みます。切り出しに失敗している可能性があります。' });
+    }
+    return out;
   }
 
   // 拾えなかった行のうち、DOI を書こうとして失敗していそうなものを拾う。
@@ -330,7 +456,8 @@
    * ------------------------------------------------------------------ */
 
   function analyseOne(doi, duplicates) {
-    var valid = STRICT.test(doi);
+    var findings = inspect(doi);
+    var valid = STRICT.test(doi) && !findings.some(function (f) { return f.level === 'bad'; });
     var slash = doi.indexOf('/');
     var prefix = slash > 0 ? doi.slice(0, slash) : doi;
     var suffix = slash > 0 ? doi.slice(slash + 1) : '';
@@ -341,12 +468,13 @@
       raw: doi,
       doi: doi,
       valid: valid,
+      findings: findings,
       prefix: prefix,
       registrant: prefix.replace(/^10\./, ''),
       suffix: suffix,
       owner: known ? known[0] : null,
       ra: known ? known[1] : null,
-      url: 'https://doi.org/' + doi,
+      url: doiUrl(doi),
       duplicate: duplicates > 1 ? duplicates : 0,
       note: note,
       meta: null,
@@ -464,11 +592,19 @@
       html += row('登録者', it.owner ? esc(it.owner) + '<span class="faint"> — 接頭辞からの推定</span>'
                                      : '<span class="faint">内蔵の一覧に無し</span>');
       html += row('登録機関', it.ra ? esc(it.ra) : '<span class="faint">不明</span>');
-      html += row('大文字小文字', 'DOI は区別しません。表示は入力のまま。');
     } else {
       html += row('判定', '<code>10.</code> + 4〜9 桁の登録者番号 + <code>/</code> + 接尾辞、の形になっていません。', true);
     }
     html += '</dl>';
+
+    /* 点検で気づいたことを、良し悪しの一語ではなく 一つずつ並べる。 */
+    if (it.findings && it.findings.length) {
+      html += '<ul class="findings">';
+      it.findings.forEach(function (f) {
+        html += '<li class="f-' + f.level + '">' + esc(f.text) + '</li>';
+      });
+      html += '</ul>';
+    }
 
     if (it.note) {
       html += '<div class="note">' + it.note.html + '</div>';
@@ -563,8 +699,64 @@
    * 照会（ここだけがネットワークに触れる）
    * ------------------------------------------------------------------ */
 
+  /* Crossref の日付は一箇所ではない。issued が空のことも、[[null]] が
+   * 入っていることもある。published → published-print → published-online →
+   * created の順に、実際に数字が入っている最初のものを採る。
+   * created は登録された日であって刊行日ではないので、最後に置く。 */
+  var DATE_FIELDS = ['issued', 'published', 'published-print', 'published-online', 'created'];
+
+  function crossrefDate(m) {
+    for (var i = 0; i < DATE_FIELDS.length; i++) {
+      var f = m[DATE_FIELDS[i]];
+      var dp = f && f['date-parts'] && f['date-parts'][0];
+      if (dp && dp.length && typeof dp[0] === 'number' && isFinite(dp[0])) {
+        return { parts: dp.filter(function (v) { return typeof v === 'number'; }), from: DATE_FIELDS[i] };
+      }
+    }
+    return null;
+  }
+
+  /* Crossref の type を BibTeX の項目種別と CSL の type に対応させる。
+   * 分からないものは misc / document に落とす —— 当てずっぽうで
+   * article にすると、書誌としては誤りになる。 */
+  var TYPE_MAP = {
+    'journal-article':    ['article', 'article-journal'],
+    'proceedings-article': ['inproceedings', 'paper-conference'],
+    'book':               ['book', 'book'],
+    'monograph':          ['book', 'book'],
+    'edited-book':        ['book', 'book'],
+    'reference-book':     ['book', 'book'],
+    'book-chapter':       ['incollection', 'chapter'],
+    'book-section':       ['incollection', 'chapter'],
+    'book-part':          ['incollection', 'chapter'],
+    'posted-content':     ['misc', 'article'],
+    'dissertation':       ['phdthesis', 'thesis'],
+    'report':             ['techreport', 'report'],
+    'report-component':   ['techreport', 'report'],
+    'dataset':            ['misc', 'dataset'],
+    'component':          ['misc', 'document'],
+    'standard':           ['misc', 'standard'],
+    'peer-review':        ['misc', 'review'],
+    /* DataCite の resourceTypeGeneral */
+    'Dataset':            ['misc', 'dataset'],
+    'Software':           ['software', 'software'],
+    'Text':               ['misc', 'document'],
+    'Preprint':           ['misc', 'article'],
+    'JournalArticle':     ['article', 'article-journal'],
+    'ConferencePaper':    ['inproceedings', 'paper-conference'],
+    'Book':               ['book', 'book'],
+    'BookChapter':        ['incollection', 'chapter'],
+    'Report':             ['techreport', 'report'],
+    'Dissertation':       ['phdthesis', 'thesis'],
+    'Image':              ['misc', 'graphic'],
+    'Audiovisual':        ['misc', 'motion_picture']
+  };
+
+  function typePair(t) { return TYPE_MAP[t] || null; }
+
   function fromCrossref(m) {
-    var issued = m.issued && m.issued['date-parts'] && m.issued['date-parts'][0];
+    var d = crossrefDate(m);
+    var issued = d ? d.parts : null;
     return {
       source: 'Crossref',
       title: m.title && m.title[0],
@@ -572,15 +764,21 @@
         return a.family ? (a.family + (a.given ? ', ' + a.given : '')) : (a.name || '');
       }).filter(Boolean),
       orcids: (m.author || []).filter(function (a) { return a.ORCID; }).map(function (a) {
+        var id = normalizeOrcid(String(a.ORCID));
         return {
           name: a.family ? (a.family + (a.given ? ', ' + a.given : '')) : (a.name || ''),
-          id: String(a.ORCID).replace(/^https?:\/\/orcid\.org\//, '')
+          id: id,
+          /* 返ってきた iD も検算する。登録側の打ち間違いはここで出る。 */
+          bad: !validateOrcid(id).ok,
+          authenticated: a['authenticated-orcid'] === true
         };
       }),
       type: m.type,
       container: m['container-title'] && m['container-title'][0],
       publisher: m.publisher,
       year: issued && issued[0],
+      dateParts: issued,
+      dateFrom: d ? d.from : null,
       license: m.license && m.license[0] && m.license[0].URL,
       landing: m.URL,
       volume: m.volume, issue: m.issue, page: m.page,
@@ -604,7 +802,8 @@
       orcids: (a.creators || []).reduce(function (acc, c) {
         (c.nameIdentifiers || []).forEach(function (n) {
           if (/orcid/i.test(n.nameIdentifierScheme || '')) {
-            acc.push({ name: c.name, id: String(n.nameIdentifier).replace(/^https?:\/\/orcid\.org\//, '') });
+            var oid = normalizeOrcid(String(n.nameIdentifier));
+            acc.push({ name: c.name, id: oid, bad: !validateOrcid(oid).ok });
           }
         });
         return acc;
@@ -768,39 +967,115 @@
     return (a || 'ref') + y + (i + 1);
   }
 
-  function bibtex() {
-    return state.items.filter(function (it) { return it.valid; }).map(function (it, i) {
+  /* ------------------------------------------------------------------ *
+   * 書き出しの逃がし方
+   *
+   * 書き出した先はそれぞれ別の文法を持つ。題名に & が一つ入っているだけで
+   * BibTeX は組版に失敗するし、" が入れば YAML は壊れる。取ってきた文字列を
+   * そのまま流し込まない。
+   * ------------------------------------------------------------------ */
+
+  /* LaTeX。一度きりの走査で置き換える。\ を先に直してから { } を直すと、
+   * 差し込んだ \textbackslash{} の中括弧まで逃がしてしまう。 */
+  var TEX = { '&': '\\&', '%': '\\%', '$': '\\$', '#': '\\#', '_': '\\_',
+              '{': '\\{', '}': '\\}',
+              '~': '\\textasciitilde{}', '^': '\\textasciicircum{}',
+              '\\': '\\textbackslash{}' };
+
+  function tex(v) {
+    return String(v == null ? '' : v)
+      .replace(/[&%$#_{}~^\\]/g, function (c) { return TEX[c]; });
+  }
+
+  // BibTeX の頁は、単一のハイフンではなく en ダッシュ二つでつなぐ。
+  function texPages(v) {
+    return tex(String(v).replace(/\s*[-–—]\s*/g, '--').replace(/-{3,}/g, '--'));
+  }
+
+  /* YAML の二重引用符スカラー。\ と " のほか、制御文字も逃がす。 */
+  function yaml(v) {
+    return '"' + String(v == null ? '' : v)
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/[\x00-\x1F\x7F]/g, function (c) {
+        var h = c.charCodeAt(0).toString(16).toUpperCase();
+        return '\\x' + (h.length < 2 ? '0' + h : h);
+      }) + '"';
+  }
+
+  /* Markdown の表のセル。| で列が割れ、[ ] ` * _ で書式に化け、
+   * < > で生の HTML と見なされ、改行で行が割れる。それだけを逃がす。
+   * . - # ( ) は行頭でしか意味を持たず、セルの中では素のままでよい。 */
+  function mdCell(v) {
+    return String(v == null ? '' : v)
+      .replace(/\r?\n/g, ' ')
+      .replace(/[\\`*_\[\]<>|]/g, function (c) { return '\\' + c; });
+  }
+
+  function pickType(it) {
+    var m = it.meta;
+    var pair = m && m.type ? typePair(m.type) : null;
+    if (pair) return pair;
+    if (m && m.container) return ['article', 'article-journal'];
+    return ['misc', 'document'];
+  }
+
+  function splitName(n) {
+    var p = String(n).split(',');
+    return p.length > 1
+      ? { family: p[0].trim(), given: p.slice(1).join(',').trim() }
+      : null;
+  }
+
+  function valid(items) {
+    return (items || state.items).filter(function (it) { return it.valid; });
+  }
+
+  var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
+                'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+  function bibtex(items) {
+    return valid(items).map(function (it, i) {
       var m = it.meta;
-      var type = m && m.container ? 'article' : 'misc';
-      var lines = ['@' + type + '{' + bibKey(it, i) + ','];
-      if (m && m.authors && m.authors.length) lines.push('  author       = {' + m.authors.join(' and ') + '},');
-      if (m && m.title) lines.push('  title        = {{' + m.title + '}},');
-      if (m && m.container) lines.push('  journal      = {' + m.container + '},');
-      if (m && m.publisher) lines.push('  publisher    = {' + m.publisher + '},');
-      if (m && m.year) lines.push('  year         = {' + m.year + '},');
-      if (m && m.volume) lines.push('  volume       = {' + m.volume + '},');
-      if (m && m.issue) lines.push('  number       = {' + m.issue + '},');
-      if (m && m.page) lines.push('  pages        = {' + m.page + '},');
-      lines.push('  doi          = {' + it.doi + '},');
+      var lines = ['@' + pickType(it)[0] + '{' + bibKey(it, i) + ','];
+      if (m && m.authors && m.authors.length) {
+        lines.push('  author       = {' + m.authors.map(tex).join(' and ') + '},');
+      }
+      /* 題名は二重の中括弧で囲む。BibTeX が大文字を落とすのを止めるため。 */
+      if (m && m.title) lines.push('  title        = {{' + tex(m.title) + '}},');
+      if (m && m.container) lines.push('  journal      = {' + tex(m.container) + '},');
+      if (m && m.publisher) lines.push('  publisher    = {' + tex(m.publisher) + '},');
+      if (m && m.year) lines.push('  year         = {' + tex(m.year) + '},');
+      if (m && m.dateParts && m.dateParts.length > 1) {
+        lines.push('  month        = {' + MONTHS[m.dateParts[1] - 1] + '},');
+      }
+      if (m && m.volume) lines.push('  volume       = {' + tex(m.volume) + '},');
+      if (m && m.issue) lines.push('  number       = {' + tex(m.issue) + '},');
+      if (m && m.page) lines.push('  pages        = {' + texPages(m.page) + '},');
+      lines.push('  doi          = {' + tex(it.doi) + '},');
       lines.push('  url          = {' + it.url + '}');
       lines.push('}');
       return lines.join('\n');
     }).join('\n\n');
   }
 
-  function csl() {
-    return JSON.stringify(state.items.filter(function (it) { return it.valid; }).map(function (it, i) {
+  function csl(items) {
+    return JSON.stringify(valid(items).map(function (it, i) {
       var m = it.meta;
-      var o = { id: bibKey(it, i), DOI: it.doi, URL: it.url, type: 'document' };
+      var o = { id: bibKey(it, i), type: pickType(it)[1], DOI: it.doi, URL: it.url };
       if (m) {
         if (m.title) o.title = m.title;
-        if (m.container) { o['container-title'] = m.container; o.type = 'article-journal'; }
+        if (m.container) o['container-title'] = m.container;
         if (m.publisher) o.publisher = m.publisher;
-        if (m.year) o.issued = { 'date-parts': [[Number(m.year)]] };
+        if (m.volume) o.volume = String(m.volume);
+        if (m.issue) o.issue = String(m.issue);
+        if (m.page) o.page = String(m.page);
+        if (m.dateParts && m.dateParts.length) o.issued = { 'date-parts': [m.dateParts] };
+        else if (m.year) o.issued = { 'date-parts': [[Number(m.year)]] };
         if (m.authors && m.authors.length) {
           o.author = m.authors.map(function (n) {
-            var p = n.split(',');
-            return p.length > 1 ? { family: p[0].trim(), given: p.slice(1).join(',').trim() } : { literal: n };
+            var sp = splitName(n);
+            return sp ? { family: sp.family, given: sp.given } : { literal: n };
           });
         }
       }
@@ -808,50 +1083,67 @@
     }), null, 2);
   }
 
-  function cff() {
+  function cff(items) {
     var out = ['references:'];
-    state.items.filter(function (it) { return it.valid; }).forEach(function (it) {
+    valid(items).forEach(function (it) {
       var m = it.meta;
-      out.push('  - type: ' + (m && m.container ? 'article' : 'generic'));
-      if (m && m.title) out.push('    title: "' + String(m.title).replace(/"/g, '\\"') + '"');
+      /* CFF が定めている reference type の語彙に限る。無ければ generic。 */
+      var t = { article: 'article', inproceedings: 'conference-paper', book: 'book',
+                incollection: 'chapter', phdthesis: 'thesis', techreport: 'report',
+                software: 'software' }[pickType(it)[0]] || 'generic';
+      out.push('  - type: ' + t);
+      if (m && m.title) out.push('    title: ' + yaml(m.title));
       if (m && m.authors && m.authors.length) {
         out.push('    authors:');
         m.authors.forEach(function (n) {
-          var p = n.split(',');
-          if (p.length > 1) {
-            out.push('      - family-names: "' + p[0].trim() + '"');
-            out.push('        given-names: "' + p.slice(1).join(',').trim() + '"');
+          var sp = splitName(n);
+          if (sp) {
+            out.push('      - family-names: ' + yaml(sp.family));
+            out.push('        given-names: ' + yaml(sp.given));
           } else {
-            out.push('      - name: "' + n + '"');
+            out.push('      - name: ' + yaml(n));
           }
         });
+      } else {
+        /* authors は CFF の必須項目である。空で出すと妥当な CFF にならない。 */
+        out.push('    authors:');
+        out.push('      - name: ' + yaml('（不明）'));
       }
-      if (m && m.year) out.push('    year: ' + m.year);
-      out.push('    doi: ' + it.doi);
+      if (m && m.container) out.push('    journal: ' + yaml(m.container));
+      if (m && m.publisher) {
+        out.push('    publisher:');
+        out.push('      name: ' + yaml(m.publisher));
+      }
+      if (m && m.year) out.push('    year: ' + Number(m.year));
+      if (m && m.volume) out.push('    volume: ' + yaml(m.volume));
+      if (m && m.issue) out.push('    issue: ' + yaml(m.issue));
+      out.push('    doi: ' + yaml(it.doi));
+      out.push('    url: ' + yaml(it.url));
     });
     return out.join('\n');
   }
 
-  function markdown() {
+  function markdown(items) {
     var rows = ['| DOI | 題名 | 登録者 | 年 |', '| --- | --- | --- | --- |'];
-    state.items.filter(function (it) { return it.valid; }).forEach(function (it) {
+    valid(items).forEach(function (it) {
       var m = it.meta || {};
-      rows.push('| [' + it.doi + '](' + it.url + ') | ' +
-        (m.title ? String(m.title).replace(/\|/g, '\\|') : '—') + ' | ' +
-        (m.publisher || it.owner || '—') + ' | ' + (m.year || '—') + ' |');
+      rows.push('| [' + mdCell(it.doi) + '](' + it.url + ') | ' +
+        (m.title ? mdCell(m.title) : '—') + ' | ' +
+        mdCell(m.publisher || it.owner || '—') + ' | ' +
+        (m.year ? mdCell(m.year) : '—') + ' |');
     });
     return rows.join('\n');
   }
 
-  function indexLinks() {
+  function indexLinks(items) {
     var out = [];
-    state.items.filter(function (it) { return it.valid; }).forEach(function (it) {
+    valid(items).forEach(function (it) {
       out.push('## ' + it.doi);
       out.push('');
       var reg = registryLink(it.doi);
-      if (reg) out.push('- 掲載元 — [' + reg.name + '](' + reg.url + ')');
+      if (reg) out.push('- [' + reg.name + '](' + reg.url + ')');
       INDEXES.forEach(function (ix) {
-        out.push('- ' + ix.group + '（' + (ix.kind === 'direct' ? '直接' : '検索') + '） — [' +
+        out.push('- ' + (ix.kind === 'search' ? '（検索）' : '') + '[' +
                  ix.name + '](' + ix.url(it.doi) + ')');
       });
       out.push('');
@@ -859,9 +1151,8 @@
     return out.join('\n');
   }
 
-  function plain() {
-    return state.items.filter(function (it) { return it.valid; })
-      .map(function (it) { return it.url; }).join('\n');
+  function plain(items) {
+    return valid(items).map(function (it) { return it.url; }).join('\n');
   }
 
   function renderExport() {
@@ -919,6 +1210,12 @@
         normalizeOrcid: normalizeOrcid, orcidCheckDigit: orcidCheckDigit,
         validateOrcid: validateOrcid,
         fromCrossref: fromCrossref, fromDataCite: fromDataCite,
+        crossrefDate: crossrefDate, typePair: typePair,
+        encodeDoi: encodeDoi, decodeDoi: decodeDoi, doiUrl: doiUrl,
+        inspect: inspect, trimUrlTail: trimUrlTail,
+        tex: tex, texPages: texPages, yaml: yaml, mdCell: mdCell,
+        bibtex: bibtex, csl: csl, cff: cff, markdown: markdown,
+        indexLinks: indexLinks, plain: plain,
         STRICT: STRICT
       };
     }
