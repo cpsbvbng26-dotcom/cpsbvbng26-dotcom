@@ -458,6 +458,14 @@ pre#out {
 .ix.off { opacity: .45; }
 .ix:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
 
+.ixgroup.resolved {
+  margin-top: 0; padding: .9rem 1rem 1rem;
+  background: var(--accent-soft); border-radius: .6rem;
+}
+.ix.found { border: 1px solid var(--accent); color: var(--accent); background: var(--card); }
+.ix.found:hover { background: var(--accent-soft); }
+.ixmeta { margin-left: .45rem; font-size: .92em; color: var(--faint); }
+
 .ixnote { margin: .7rem 0 0; font-size: .74rem; line-height: 1.7; color: var(--faint); }
 .ixnote b { color: var(--muted); }
 
@@ -505,7 +513,7 @@ pre#out {
       </div>
       <div class="btn-row">
         <button id="analyze" class="btn primary" type="button">解析する</button>
-        <button id="lookup" class="btn" type="button" disabled>メタデータを照会</button>
+        <button id="lookup" class="btn" type="button" disabled>メタデータと索引先を照会</button>
         <button id="sample" class="btn" type="button">例を入れる</button>
         <button id="clear" class="btn" type="button">消去</button>
       </div>
@@ -578,7 +586,9 @@ pre#out {
       </div>
       <div class="area">
         <h3>索引先</h3>
-        <p>DOI 一件ごとに、辿れる先を並べます。<strong>直接その DOI のレコードを指すもの（Crossref・DataCite Commons・OpenAlex・Semantic Scholar・Scholia・OpenCitations・scite・Unpaywall）と、DOI を検索語として投げるだけのもの（Google Scholar・BASE・CORE・Lens・Dimensions ほか）を、線の種類で分けています。</strong> Zenodo・SSRN・arXiv・OSF は、接尾辞に識別子が入っているので掲載元のレコードそのものを組み立てます。</p>
+        <p><strong>組み立てられるのは候補までです。</strong> ある索引の中でのレコード URL —— <code>openalex.org/W…</code> や <code>semanticscholar.org/paper/…</code> —— は DOI に含まれていないので、DOI をいくら加工しても出てきません。<strong>索引に訊いて初めて分かります。</strong></p>
+        <p>「照会」を押すと、OpenAlex・Semantic Scholar・OpenCitations に問い合わせ、<strong>実際のレコード URL、被引用数、その資料を持っている雑誌やリポジトリの所在、全文（OA）、PubMed / arXiv / DBLP などの他の識別子</strong>を解決します。<strong>収録されていなければ「収録なし」と出ます。それも結果です。</strong></p>
+        <p>押すまでは、DOI から組み立てた候補（索引 / 発見 / API）が並びます。Zenodo・SSRN・arXiv・OSF だけは接尾辞に識別子が入っているので、掲載元のレコードそのものを組み立てられます。</p>
       </div>
       <div class="area">
         <h3>何を確かめるか</h3>

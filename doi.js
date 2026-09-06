@@ -359,6 +359,26 @@
     return '<dt>' + esc(term) + '</dt><dd' + (strong ? ' class="strong"' : '') + '>' + value + '</dd>';
   }
 
+  // 照会で解決した、実際の索引先。組み立てた候補とは別に、上に出す。
+  function renderResolved(it) {
+    if (!it.found && !it.missing) return '';
+    var html = '<div class="ixgroup resolved"><span class="ixlabel">' +
+      '収録が確認できた索引先 — 照会して解決したもの</span>';
+    if (it.found && it.found.length) {
+      html += '<div class="ixlinks">' + it.found.map(function (f) {
+        return '<a class="ix found" href="' + esc(f.url) + '" target="_blank" rel="noopener">' +
+          esc(f.name) + (f.note ? '<span class="ixmeta">' + esc(f.note) + '</span>' : '') + '</a>';
+      }).join('') + '</div>';
+    } else {
+      html += '<p class="ixnote">どの索引にも見つかりませんでした。</p>';
+    }
+    if (it.missing && it.missing.length) {
+      html += '<p class="ixnote"><b>収録なし、または応答なし:</b> ' + esc(it.missing.join('、')) +
+        '。登録が新しいと、索引に取り込まれるまで数日から数週間かかります。</p>';
+    }
+    return html + '</div>';
+  }
+
   function renderIndexes(it) {
     var reg = registryLink(it.doi);
     var groups = { '索引': [], '発見': [], 'API': [] };
@@ -375,7 +395,13 @@
     });
 
     var n = INDEXES.length + (reg ? 1 : 0);
-    var html = '<details class="ixbox"><summary>索引先を開く（' + n + ' 件）</summary>';
+    var resolved = it.found ? it.found.length : 0;
+    var label = it.found
+      ? '索引先を開く（解決 ' + resolved + ' 件 / 候補 ' + n + ' 件）'
+      : '索引先の候補を開く（' + n + ' 件 — 「照会」を押すと実際の索引先を解決します）';
+    var html = '<details class="ixbox"' + (it.found && resolved ? ' open' : '') +
+      '><summary>' + label + '</summary>';
+    html += renderResolved(it);
 
     if (reg) {
       html += '<div class="ixgroup"><span class="ixlabel">掲載元のレコード</span><div class="ixlinks">' +
@@ -384,16 +410,19 @@
     }
 
     var LABEL = {
-      '索引': '索引 — 人が読むページ',
-      '発見': '発見 — DOI を検索語として投げる',
-      'API': 'API — 機械向け。押すと JSON が出ます'
+      '索引': '候補: 索引 — 人が読むページ（収録は未確認）',
+      '発見': '候補: 発見 — DOI を検索語として投げるだけ',
+      'API': '候補: API — 機械向け。押すと JSON が出ます'
     };
     ['索引', '発見', 'API'].forEach(function (g) {
       html += '<div class="ixgroup"><span class="ixlabel">' + esc(LABEL[g]) + '</span>' +
         '<div class="ixlinks">' + groups[g].join('') + '</div></div>';
     });
 
-    html += '<p class="ixnote"><b>実線は直接</b>その DOI のレコードを指します。' +
+    html += '<p class="ixnote"><b>ここから下は、DOI から組み立てた候補です。</b>' +
+      'その索引の中でのレコード URL は DOI に含まれていないので、組み立てでは出せません。' +
+      '<b>実際の索引先は「照会」を押すと解決します。</b><br>' +
+      '<b>実線は直接</b>その DOI のレコードを指します。' +
       '<b>点線は検索</b>で、DOI を検索語として投げるだけです。当たらないことも、別のものが出ることもあります。' +
       '<b>薄いものは、接頭辞からの推定では別の登録機関</b>のため、おそらく当たりません。' +
       '実際に収録されているかどうかは、ここでは確かめていません —— <b>開いて初めて分かります。</b></p>';
@@ -541,6 +570,7 @@
       publisher: m.publisher,
       year: issued && issued[0],
       license: m.license && m.license[0] && m.license[0].URL,
+      landing: m.URL,
       volume: m.volume, issue: m.issue, page: m.page,
       relations: []
     };
@@ -573,9 +603,105 @@
       year: a.publicationYear,
       version: a.version,
       license: a.rightsList && a.rightsList[0] && a.rightsList[0].rightsUri,
+      landing: a.url,
       zenodoKind: kind,
       relations: rel
     };
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 索引先の解決
+   *
+   * DOI から組み立てられるのは「候補の URL」までで、索引の中でのレコード URL
+   * （openalex.org/W…、semanticscholar.org/paper/… など）は DOI に含まれていない。
+   * 索引に訊いて初めて分かる。ここで訊く。
+   *
+   * 収録されていなければ「収録なし」と出る。これも結果である。
+   * ------------------------------------------------------------------ */
+
+  function jget(url, opts) {
+    return fetch(url, opts || {}).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+
+  function push(list, name, url, note) {
+    if (url) list.push({ name: name, url: url, note: note || '' });
+  }
+
+  function resolveOpenAlex(it, found, missing) {
+    return jget('https://api.openalex.org/works/doi:' + pathSafe(it.doi)).then(function (w) {
+      push(found, 'OpenAlex', w.id,
+        (w.cited_by_count != null ? '被引用 ' + w.cited_by_count : ''));
+      if (w.ids) {
+        if (w.ids.pmid) push(found, 'PubMed', String(w.ids.pmid).replace(/^https?:\/\/[^/]+\//, 'https://pubmed.ncbi.nlm.nih.gov/'));
+        if (w.ids.pmcid) {
+          var pmc = String(w.ids.pmcid).replace(/^https?:\/\/[^/]+\/(?:pmc\/articles\/)?/, '');
+          push(found, 'PubMed Central', 'https://www.ncbi.nlm.nih.gov/pmc/articles/' +
+            (/^PMC/i.test(pmc) ? pmc : 'PMC' + pmc) + '/');
+        }
+      }
+      if (w.open_access && w.open_access.oa_url) {
+        push(found, '全文（OA）', w.open_access.oa_url,
+          w.open_access.oa_status ? String(w.open_access.oa_status) : '');
+      }
+      // locations は、その資料を実際に持っている所（雑誌・リポジトリ）の一覧。
+      (w.locations || []).forEach(function (loc) {
+        var src = loc.source && loc.source.display_name;
+        var u = loc.landing_page_url || loc.pdf_url;
+        if (src && u) push(found, '所在: ' + src, u);
+      });
+    }).catch(function () { missing.push('OpenAlex'); });
+  }
+
+  function resolveSemanticScholar(it, found, missing) {
+    var f = 'url,externalIds,citationCount,openAccessPdf';
+    return jget('https://api.semanticscholar.org/graph/v1/paper/DOI:' + pathSafe(it.doi) + '?fields=' + f)
+      .then(function (w) {
+        push(found, 'Semantic Scholar', w.url,
+          (w.citationCount != null ? '被引用 ' + w.citationCount : ''));
+        var x = w.externalIds || {};
+        if (x.ArXiv) push(found, 'arXiv', 'https://arxiv.org/abs/' + x.ArXiv);
+        if (x.PubMed) push(found, 'PubMed', 'https://pubmed.ncbi.nlm.nih.gov/' + x.PubMed + '/');
+        if (x.PubMedCentral) push(found, 'PubMed Central', 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC' + x.PubMedCentral + '/');
+        if (x.DBLP) push(found, 'DBLP', 'https://dblp.org/rec/' + x.DBLP + '.html');
+        if (x.CorpusId) push(found, 'Corpus ID', 'https://www.semanticscholar.org/CorpusID:' + x.CorpusId);
+        if (w.openAccessPdf && w.openAccessPdf.url) push(found, '全文 PDF', w.openAccessPdf.url);
+      }).catch(function () { missing.push('Semantic Scholar'); });
+  }
+
+  function resolveOpenCitations(it, found, missing) {
+    return jget('https://opencitations.net/index/coci/api/v1/citation-count/' + pathSafe(it.doi))
+      .then(function (a) {
+        var n = a && a[0] && a[0].count;
+        if (n == null) throw new Error('no count');
+        push(found, 'OpenCitations', 'https://opencitations.net/index/coci/api/v1/citations/' + pathSafe(it.doi),
+          '被引用 ' + n);
+      }).catch(function () { missing.push('OpenCitations'); });
+  }
+
+  function resolveIndexes(it) {
+    var found = [], missing = [];
+
+    // 登録機関が返す「掲載ページ」も、実際に解決された所在である。
+    if (it.meta && it.meta.landing) push(found, it.meta.source + ' が示す掲載ページ', it.meta.landing);
+
+    return Promise.all([
+      resolveOpenAlex(it, found, missing),
+      resolveSemanticScholar(it, found, missing),
+      resolveOpenCitations(it, found, missing)
+    ]).then(function () {
+      // 同じ先が複数の経路から出る。末尾のスラッシュ違いも同じものとして扱う。
+      var seen = {};
+      it.found = found.filter(function (f) {
+        var key = String(f.url).replace(/\/+$/, '').toLowerCase();
+        if (seen[key]) return false;
+        seen[key] = 1;
+        return true;
+      });
+      it.missing = missing;
+    });
   }
 
   function lookupOne(it) {
@@ -588,7 +714,8 @@
           .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
           .then(function (j) { it.meta = fromDataCite(j.data.attributes); it.lookupState = 'ok'; })
           .catch(function () { it.lookupState = 'fail'; });
-      });
+      })
+      .then(function () { return resolveIndexes(it); });
   }
 
   function lookupAll() {
@@ -610,7 +737,7 @@
         });
       });
     }, Promise.resolve()).then(function () {
-      btn.textContent = 'メタデータを照会';
+      btn.textContent = 'メタデータと索引先を照会';
       btn.disabled = state.items.filter(function (i) { return i.valid && !i.meta; }).length === 0;
       render();
     });
