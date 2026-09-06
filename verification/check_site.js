@@ -133,6 +133,46 @@ const countCards = (h, id) => {
      'ja ' + countCards(ja, id) + ' / en ' + countCards(en, id));
 });
 
+/* --------------------------------------- 5b. 日本語 README と英語 README */
+section('5b. 日本語 README と英語 README');
+
+// 論文を足したときに片方だけ直す、が起きる。DOI の集合で突き合わせる。
+// 節の終わりは、行頭から行末までが '---' の水平線。表の区切り（| --- |）と
+// 取り違えると、節がほぼ空になって検査が素通りする。実際に一度そうなった。
+const sectionOf = (md, heading) => {
+  const i = md.indexOf(heading);
+  if (i < 0) return '';
+  const m = /\n---\n/.exec(md.slice(i));
+  return md.slice(i, m ? i + m.index : md.length);
+};
+const doisIn = (md, heading) =>
+  [...sectionOf(md, heading).matchAll(/\[(10\.\d{4,9}\/[^\]]+)\]\(https:\/\/doi\.org\//g)]
+    .map((m) => m[1]);
+const rowsIn = (md, heading) => (sectionOf(md, heading).match(/^\| \[/gm) || []).length;
+
+if (fs.existsSync(path.join(ROOT, 'README.en.md'))) {
+  const jaMd = read('README.md');
+  const enMd = read('README.en.md');
+
+  const jaDois = [...new Set(doisIn(jaMd, '✴︎Papers✴︎'))];
+  const enDois = [...new Set(doisIn(enMd, '✴︎Papers✴︎'))];
+  ok('両 README の論文 DOI が一致する',
+     JSON.stringify(jaDois.slice().sort()) === JSON.stringify(enDois.slice().sort()),
+     'ja ' + jaDois.length + ' / en ' + enDois.length);
+
+  ok('両 README の制作物の行数が一致する',
+     rowsIn(jaMd, '✴︎Works✴︎') === rowsIn(enMd, '✴︎Works✴︎'),
+     'ja ' + rowsIn(jaMd, '✴︎Works✴︎') + ' / en ' + rowsIn(enMd, '✴︎Works✴︎'));
+
+  ok('両 README が互いにリンクしている',
+     /README\.en\.md/.test(jaMd) && /\(README\.md\)/.test(enMd));
+
+  ok('英語 README に「独立研究者」の英訳が残っていない',
+     !/Independent Researcher/i.test(enMd));
+} else {
+  ok('README.en.md がある', false);
+}
+
 /* ---------------------------------------------------------- 6. sitemap */
 section('6. sitemap');
 

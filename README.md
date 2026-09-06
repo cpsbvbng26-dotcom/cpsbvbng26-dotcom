@@ -13,6 +13,8 @@
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
+[日本語](README.md) ｜ **English** は [README.en.md](README.en.md)
+
 </div>
 
 ---
@@ -104,14 +106,14 @@
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 101 項目の検査を通します。** 依存パッケージはありません。
+このリポジトリは、**push のたびに 105 項目の検査を通します。** 依存パッケージはありません。
 
 ```
-node verification/check_site.js   # サイトの構造 25 項目
+node verification/check_site.js   # サイトの構造 29 項目
 node verification/check_doi.js    # DOI アナライザー 76 項目
 ```
 
-**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数の食い違い、`doi.js` が既知以外のホストへ通信すること。
+**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、`doi.js` が既知以外のホストへ通信すること。
 
 いちばん効くのは **「論文カードの DOI と、まとめて解析リンクの DOI が一致すること」** です。論文を足してリンクを直し忘れる、が最も起きやすい破綻なので、そこを機械で押さえています。
 
@@ -127,7 +129,7 @@ node verification/check_doi.js    # DOI アナライザー 76 項目
 
 | | ライセンス | |
 | --- | --- | --- |
-| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
+| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
 | **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
 
 © 2026 根本卓哉（Takuya Nemoto）
