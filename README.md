@@ -8,6 +8,8 @@
 
 [![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge&logo=githubpages&logoColor=white)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
+[![検査](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
+
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
@@ -100,6 +102,25 @@
 
 ---
 
+✴︎Verification✴︎
+
+このリポジトリは、**push のたびに 101 項目の検査を通します。** 依存パッケージはありません。
+
+```
+node verification/check_site.js   # サイトの構造 25 項目
+node verification/check_doi.js    # DOI アナライザー 76 項目
+```
+
+**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数の食い違い、`doi.js` が既知以外のホストへ通信すること。
+
+いちばん効くのは **「論文カードの DOI と、まとめて解析リンクの DOI が一致すること」** です。論文を足してリンクを直し忘れる、が最も起きやすい破綻なので、そこを機械で押さえています。
+
+**`check_doi.js`** は DOI アナライザーの純粋な関数を、ブラウザを起こさずに検査します。正規化・抽出・ORCID のチェックディジット（ISO 7064 MOD 11-2）・掲載元 URL の組み立て・API 応答の解釈。応答の解釈は、記録した形の JSON を流し込んで確かめています。
+
+**空振りでないことは確認済みです。** 論文カードの DOI 書き換え、外部 script の混入、存在しないページへのリンク、`hasPart` の不整合、sitemap のずれ —— 五通り壊して五通りとも落ちました。
+
+---
+
 ✴︎License✴︎
 
 このリポジトリは二種類のものを含んでいるので、ライセンスも二つに分けています。
@@ -107,7 +128,7 @@
 | | ライセンス | |
 | --- | --- | --- |
 | **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
-| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
+| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
 
 © 2026 根本卓哉（Takuya Nemoto）
 
