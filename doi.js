@@ -461,9 +461,9 @@
       html += row('解決 URL', '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.url) + '</a>', true);
       html += row('接頭辞', '<code>' + esc(it.prefix) + '</code>（登録者番号 ' + esc(it.registrant) + '）');
       html += row('接尾辞', '<code>' + esc(it.suffix) + '</code>');
-      html += row('登録者', it.owner ? esc(it.owner) + '<span style="color:var(--faint)"> — 接頭辞からの推定</span>'
-                                     : '<span style="color:var(--faint)">内蔵の一覧に無し</span>');
-      html += row('登録機関', it.ra ? esc(it.ra) : '<span style="color:var(--faint)">不明</span>');
+      html += row('登録者', it.owner ? esc(it.owner) + '<span class="faint"> — 接頭辞からの推定</span>'
+                                     : '<span class="faint">内蔵の一覧に無し</span>');
+      html += row('登録機関', it.ra ? esc(it.ra) : '<span class="faint">不明</span>');
       html += row('大文字小文字', 'DOI は区別しません。表示は入力のまま。');
     } else {
       html += row('判定', '<code>10.</code> + 4〜9 桁の登録者番号 + <code>/</code> + 接尾辞、の形になっていません。', true);
@@ -480,7 +480,7 @@
       html += '<div class="meta-block"><dl class="kv">' + row('照会', '問い合わせ中…') + '</dl></div>';
     } else if (it.lookupState === 'fail') {
       html += '<div class="meta-block"><dl class="kv">' +
-        row('照会', '<span style="color:var(--faint)">CrossRef にも DataCite にも見つかりませんでした。登録が新しい、通信が遮断されている、または DOI が存在しません。</span>') +
+        row('照会', '<span class="faint">CrossRef にも DataCite にも見つかりませんでした。登録が新しい、通信が遮断されている、または DOI が存在しません。</span>') +
         '</dl></div>';
     } else if (it.meta) {
       var m = it.meta;
@@ -491,7 +491,7 @@
       if (m.orcids && m.orcids.length) {
         b += row('著者の ORCID', m.orcids.map(function (o) {
           return '<a href="https://orcid.org/' + esc(o.id) + '" target="_blank" rel="noopener">' +
-                 esc(o.id) + '</a>' + (o.name ? '<span style="color:var(--faint)"> — ' + esc(o.name) + '</span>' : '');
+                 esc(o.id) + '</a>' + (o.name ? '<span class="faint"> — ' + esc(o.name) + '</span>' : '');
         }).join('<br>'));
       }
       if (m.type) b += row('種別', esc(m.type));

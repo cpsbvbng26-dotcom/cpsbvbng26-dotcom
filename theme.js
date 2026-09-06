@@ -43,16 +43,7 @@
     var foot = document.querySelector('footer .foot');
     if (!foot || foot.querySelector('.built-with.grok')) return;
 
-    if (!document.getElementById('grok-mark-style')) {
-      var style = document.createElement('style');
-      style.id = 'grok-mark-style';
-      style.textContent =
-        '.built-with.grok:hover{border-color:#4b5563;background:rgba(75,85,99,.08)}' +
-        '.built-with.grok .dot{background:#4b5563}' +
-        '.built-with-row{display:inline-flex;flex-wrap:wrap;gap:.5rem;align-items:center}';
-      document.head.appendChild(style);
-    }
-
+    // 見た目は各ページの <style> に置いてある（CSP が動的な <style> を拒むため）。
     var claude = foot.querySelector('a.built-with');
     var row = document.createElement('span');
     row.className = 'built-with-row';

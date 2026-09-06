@@ -221,6 +221,38 @@ PAGES.forEach((page) => {
 ok('canonical と og:url が正の URL で揃っている', canonMismatch.length === 0,
    canonMismatch.join(', '));
 
+/* ------------------------------------------------------ 6c. CSP */
+section('6c. Content-Security-Policy');
+
+// 「外部リクエストを出さない」を、書いてあるだけでなくブラウザに強制させる。
+// インラインの <style> <script> はハッシュで許しているので、中身を書き換えたら
+// ハッシュも入れ直さないと、ブラウザがそのスクリプトの実行を拒む。ここで落とす。
+const cspLib = require('./csp.js');
+const cspErrors = [];
+const cspWeak = [];
+PAGES.forEach((page) => {
+  const html = read(page);
+  const now = cspLib.current(html);
+  if (!now) { cspErrors.push(page + ': CSP が無い'); return; }
+  const want = cspLib.build(html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>\n?/, ''));
+  if (now !== want) cspErrors.push(page + ': 中身と食い違う（update_csp.js を実行してください）');
+  if (now.indexOf("default-src 'none'") !== 0) cspWeak.push(page + ": default-src が 'none' でない");
+  if (/unsafe-inline|unsafe-eval|unsafe-hashes/.test(now)) cspWeak.push(page + ': unsafe-* が入っている');
+  if (/\*/.test(now)) cspWeak.push(page + ': ワイルドカードが入っている');
+});
+ok('すべてのページに CSP がある', !cspErrors.some((e) => /CSP が無い/.test(e)),
+   cspErrors.filter((e) => /CSP が無い/.test(e)).join(', '));
+ok('CSP がページの中身と一致する', cspErrors.filter((e) => /食い違う/.test(e)).length === 0,
+   cspErrors.filter((e) => /食い違う/.test(e)).join(', '));
+ok('CSP が緩められていない', cspWeak.length === 0, cspWeak.join(', '));
+
+// 通信先は doi.js が実際に叩くホストと一致していること
+const doiHosts = [...new Set([...read('doi.js').matchAll(/fetch\(\s*'https:\/\/([^/']+)/g)].map((m) => m[1]))].sort();
+const cspHosts = cspLib.CONNECT.map((u) => u.replace('https://', '')).sort();
+ok('CSP の connect-src が doi.js の通信先と一致する',
+   doiHosts.every((h) => cspHosts.indexOf(h) >= 0),
+   'doi.js: ' + doiHosts.join(', ') + ' / CSP: ' + cspHosts.join(', '));
+
 /* ------------------------------------------------------------- 7. ナビ */
 section('7. ナビ');
 

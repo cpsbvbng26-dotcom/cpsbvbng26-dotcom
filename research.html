@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-HGFN5vcJiKydkj4y9yI8yba5aBTkzcWL1BBxjvpMc14='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>研究ブログ | 根本卓哉</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
 <meta name="robots" content="index, follow">
@@ -271,6 +272,12 @@ footer::before {
 .built-with:hover { color: var(--text); border-color: #d97757; background: rgba(217, 119, 87, .08); }
 .built-with .dot { width: .45rem; height: .45rem; flex: none; border-radius: 50%; background: #d97757; }
 
+/* Grok の表示。以前は theme.js が実行時に <style> を注入していたが、
+   CSP の style-src が動的な <style> を拒むため、ここに置く。 */
+.built-with.grok:hover { border-color: #4b5563; background: rgba(75, 85, 99, .08); }
+.built-with.grok .dot { background: #4b5563; }
+.built-with-row { display: inline-flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+
 /* ---------- 登場演出 ---------- */
 .reveal {
   opacity: 0; transform: translateY(12px);
@@ -278,6 +285,22 @@ footer::before {
   transition-delay: calc(var(--i, 0) * 70ms);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
+
+/* 登場の時間差。以前は JS で --i を書き込んでいたが、CSP の style-src が
+   インラインの style 適用を拒むため、CSS だけで与える。JS も一つ減る。 */
+.cards > *:nth-child(1), .areas > *:nth-child(1) { --i: 0; }
+.cards > *:nth-child(2), .areas > *:nth-child(2) { --i: 1; }
+.cards > *:nth-child(3), .areas > *:nth-child(3) { --i: 2; }
+.cards > *:nth-child(4), .areas > *:nth-child(4) { --i: 3; }
+.cards > *:nth-child(5), .areas > *:nth-child(5) { --i: 4; }
+.cards > *:nth-child(6), .areas > *:nth-child(6) { --i: 5; }
+.cards > *:nth-child(7), .areas > *:nth-child(7) { --i: 6; }
+.cards > *:nth-child(8), .areas > *:nth-child(8) { --i: 7; }
+.cards > *:nth-child(9), .areas > *:nth-child(9) { --i: 8; }
+.cards > *:nth-child(10), .areas > *:nth-child(10) { --i: 9; }
+.cards > *:nth-child(11), .areas > *:nth-child(11) { --i: 10; }
+.cards > *:nth-child(12), .areas > *:nth-child(12) { --i: 11; }
+
 
 :where(a, button, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);

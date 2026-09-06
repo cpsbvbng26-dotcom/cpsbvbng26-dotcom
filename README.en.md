@@ -105,14 +105,23 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 107 checks.** There are no dependencies to install.
+**Every push runs 111 checks.** There are no dependencies to install.
 
 ```
-node verification/check_site.js   # site structure, 31 checks
+node verification/check_site.js   # site structure, 35 checks
 node verification/check_doi.js    # DOI analyzer, 76 checks
 ```
 
 **`check_site.js`** catches the kind of drift that looks fixed but isn't: broken internal links, a subresource that would fetch from a third party on load, a JSON-LD `hasPart` pointing at a work that is not in the graph, a sitemap entry with no file behind it, a card count that differs between the Japanese and English pages, and `doi.js` calling a host it is not supposed to.
+
+**"No external requests" is enforced by a Content-Security-Policy, not merely stated.** A policy written in a README cannot stop one injected line.
+
+```
+default-src 'none'; script-src 'self' 'sha256-…'; style-src 'sha256-…';
+img-src 'self' data:; connect-src <the six lookup hosts>; form-action 'none'; base-uri 'none'
+```
+
+**No `unsafe-inline`.** Inline `<style>` and `<script>` are allowed by SHA-256 hash. Editing them changes the hash, so it has to be reissued with `verification/update_csp.js` — forget, and the checks fail and the browser refuses to run the script. Blocking was verified against simulated injection: external scripts, injected inline scripts, `fetch` to a non-allowlisted host, tracking images and injected inline styles are all refused; the allowlisted API host is not.
 
 The check that earns its place is **"the DOIs on the paper cards match the DOIs in the analyse-all link."** Adding a paper and forgetting to update the link is the most likely way this page quietly goes wrong, so a machine holds it.
 
