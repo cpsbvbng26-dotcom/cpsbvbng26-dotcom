@@ -105,10 +105,10 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 105 checks.** There are no dependencies to install.
+**Every push runs 107 checks.** There are no dependencies to install.
 
 ```
-node verification/check_site.js   # site structure, 29 checks
+node verification/check_site.js   # site structure, 31 checks
 node verification/check_doi.js    # DOI analyzer, 76 checks
 ```
 

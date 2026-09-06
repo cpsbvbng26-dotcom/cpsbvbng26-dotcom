@@ -191,6 +191,36 @@ const shouldList = PAGES.filter((p) => p !== '404.html');
 const notListed = shouldList.filter((p) => !inSitemap.has(p));
 ok('公開ページがすべて sitemap にある', notListed.length === 0, notListed.join(', '));
 
+/* ------------------------------------------------- 6b. 正の URL がひとつ */
+section('6b. 正の URL');
+
+// このサイトの正は GitHub Pages。別の配信先（Vercel など）を指す URL が混ざると、
+// 検索エンジンにも読者にも二つの版があるように見える。canonical と og:url が
+// 食い違えば、どちらが正か機械にも分からなくなる。
+const CANON = 'https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/';
+
+const strayHosts = [];
+['README.md', 'README.en.md', 'sitemap.xml'].concat(PAGES).forEach((f) => {
+  if (!fs.existsSync(path.join(ROOT, f))) return;
+  [...read(f).matchAll(/https:\/\/([a-z0-9.-]*cpsbvbng26-dotcom[a-z0-9.-]*)\//g)].forEach((m) => {
+    if (m[1] !== 'cpsbvbng26-dotcom.github.io') strayHosts.push(f + ': ' + m[1]);
+  });
+});
+ok('別の配信先を指す URL が無い', strayHosts.length === 0,
+   [...new Set(strayHosts)].join(', '));
+
+const canonMismatch = [];
+PAGES.forEach((page) => {
+  const html = read(page);
+  const c = /<link rel="canonical" href="([^"]+)"/.exec(html);
+  const o = /<meta property="og:url" content="([^"]+)"/.exec(html);
+  if (c && c[1].indexOf(CANON) !== 0) canonMismatch.push(page + ' canonical: ' + c[1]);
+  if (o && o[1].indexOf(CANON) !== 0) canonMismatch.push(page + ' og:url: ' + o[1]);
+  if (c && o && c[1] !== o[1]) canonMismatch.push(page + ' canonical ≠ og:url');
+});
+ok('canonical と og:url が正の URL で揃っている', canonMismatch.length === 0,
+   canonMismatch.join(', '));
+
 /* ------------------------------------------------------------- 7. ナビ */
 section('7. ナビ');
 
