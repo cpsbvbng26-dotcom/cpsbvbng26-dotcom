@@ -30,6 +30,9 @@
   --line-soft: #efedE9;
   --accent: #8a6a3d;
   --accent-soft: rgba(138, 106, 61, .10);
+  --wall: rgba(138, 106, 61, .46);          /* 海鼠壁の目地 */
+  --wall-bg: rgba(138, 106, 61, .07);       /* 壁の地 */
+  --stone: rgba(23, 23, 26, .22);           /* 石垣の継ぎ目 */
   --header-bg: rgba(250, 249, 247, .86);
   --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
 }
@@ -44,6 +47,9 @@
   --line-soft: #232326;
   --accent: #b08d57;
   --accent-soft: rgba(176, 141, 87, .14);
+  --wall: rgba(176, 141, 87, .40);
+  --wall-bg: rgba(176, 141, 87, .08);
+  --stone: rgba(236, 236, 238, .18);
   --header-bg: rgba(18, 18, 20, .86);
   --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
 }
@@ -78,6 +84,16 @@ header {
   background: var(--header-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
+}
+
+/* 頭上にも壁。仕切りと同じ海鼠壁を細く敷いて、上下を壁で締める。 */
+header::after {
+  content: ""; display: block; height: 7px;
+  background-color: var(--wall-bg);
+  background-image:
+    repeating-linear-gradient(45deg,  var(--wall) 0 1.5px, transparent 1.5px 19px),
+    repeating-linear-gradient(-45deg, var(--wall) 0 1.5px, transparent 1.5px 19px);
+  border-top: 1px solid var(--line);
 }
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -129,7 +145,18 @@ header {
   color: var(--muted); font-size: 1rem;
 }
 
-.rule { height: 1px; background: var(--line); margin: 0; border: 0; }
+/* 仕切りは海鼠壁 —— 城の外壁の、平瓦を並べて目地を漆喰で盛った意匠。
+   画像は使わない（外部リクエストを出さないため）。斜めの格子は CSS の
+   繰り返しグラデーションを直交させて出している。 */
+.rule {
+  height: 26px; margin: 0; border: 0;
+  background-color: var(--wall-bg);
+  background-image:
+    repeating-linear-gradient(45deg,  var(--wall) 0 2px, transparent 2px 19px),
+    repeating-linear-gradient(-45deg, var(--wall) 0 2px, transparent 2px 19px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
 
 /* ---------- セクション ---------- */
 section.block { padding: 4.5rem 0; }
@@ -210,7 +237,22 @@ section.block { padding: 4.5rem 0; }
 .link span { font-size: .72rem; color: var(--faint); letter-spacing: .08em; }
 
 /* ---------- フッター ---------- */
-footer { border-top: 1px solid var(--line); margin-top: 2rem; }
+footer { border-top: 1px solid var(--line); margin-top: 2rem; position: relative; }
+
+/* 石垣 —— 布積み。上下の段を半分ずらし、周期の違う三枚目を重ねて
+   割付けの規則性を崩す。下ほど翳らせて反りを匂わせる。 */
+footer::before {
+  content: ""; display: block; height: 40px;
+  background-image:
+    linear-gradient(to bottom, transparent 40%, var(--wall-bg)),
+    linear-gradient(var(--stone), var(--stone)),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 62px),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 62px),
+    repeating-linear-gradient(90deg, var(--stone) 0 2px, transparent 2px 101px);
+  background-size: 100% 100%, 100% 2px, 62px 20px, 62px 20px, 101px 40px;
+  background-position: 0 0, 0 19px, 0 0, 31px 20px, 17px 0;
+  background-repeat: no-repeat, repeat-x, repeat-x, repeat-x, repeat-x;
+}
 .foot {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 1rem; padding: 2.5rem 0;
