@@ -42,6 +42,8 @@ The three philosophical papers are not refutable in this shape, and they have no
 
 > **Nothing published here has been peer reviewed.** None of it has gone through a journal or a conference. Having a DOI does not mean a work was reviewed.
 
+The front page of the site shows this core and nothing else. The three philosophical papers, the source note, the certificates and the external profiles have been moved — not deleted — to [Notes](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.en.html).
+
 The listings follow. Read on if you are not in a hurry.
 
 ---

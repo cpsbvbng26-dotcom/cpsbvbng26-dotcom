@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', '404.html'];
+const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 let pass = 0;
@@ -31,11 +31,14 @@ function section(n) { console.log('\n' + n); }
 section('1. 内部リンク');
 
 const missing = [];
+/* 相対リンクは、そのページが置かれている場所から解決する。ROOT から見ると
+ * notes/ の中の ./../doi.html を見失う。 */
 PAGES.forEach((page) => {
   const html = read(page);
-  const hrefs = [...html.matchAll(/(?:href|src)="\.\/([^"#?]+)/g)].map((m) => m[1]);
+  const dir = path.dirname(path.join(ROOT, page));
+  const hrefs = [...html.matchAll(/(?:href|src)="(\.\/[^"#?]+)/g)].map((m) => m[1]);
   [...new Set(hrefs)].forEach((h) => {
-    if (!fs.existsSync(path.join(ROOT, h))) missing.push(page + ' → ' + h);
+    if (!fs.existsSync(path.resolve(dir, h))) missing.push(page + ' → ' + h);
   });
 });
 ok('すべての内部リンク先のファイルが存在する', missing.length === 0, missing.join(', '));
@@ -258,7 +261,7 @@ section('7. ナビ');
 
 PAGES.filter((p) => p !== '404.html').forEach((page) => {
   const html = read(page);
-  ok(page + ' のナビから DOI ページへ行ける', /href="\.\/doi\.html"/.test(html));
+  ok(page + ' のナビから DOI ページへ行ける', /href="\.\/(?:\.\.\/)?doi\.html"/.test(html));
 });
 
 /* ---------------------------------------------------------- 8. doi.js */
@@ -322,7 +325,7 @@ ok('trinity.html にインラインの style 属性が無い',
 })();
 
 PAGES.filter((p) => p !== '404.html').forEach((page) => {
-  ok(page + ' のナビから作用素ページへ行ける', /href="\.\/trinity\.html"/.test(read(page)));
+  ok(page + ' のナビから作用素ページへ行ける', /href="\.\/(?:\.\.\/)?trinity\.html"/.test(read(page)));
 });
 
 /* -------------------------------------------------- 10. 入口としての約束
@@ -351,14 +354,46 @@ ENTRIES.forEach((page) => {
      hero.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 90));
 });
 
-/* 30 秒で何の場所か分かること —— 論文と制作物が、修了証より前にあること。 */
+/* 30 秒で何の場所か分かること。
+ * 修了証・学習領域・外部プロフィールは、入口に節として存在しないこと
+ * （notes/ に移してある。アンカーだけは <span id> で生かしてある）。 */
 ENTRIES.forEach((page) => {
   const html = read(page);
   const at = (id) => html.indexOf('<section id="' + id + '"');
-  ok(page + ' で論文と制作物が修了証より前にある',
-     at('papers') > 0 && at('works') > 0 && at('credentials') > 0 &&
-     at('papers') < at('credentials') && at('works') < at('credentials'),
-     '論文 ' + at('papers') + ' / 制作物 ' + at('works') + ' / 修了証 ' + at('credentials'));
+  ['credentials', 'areas', 'links'].forEach((id) => {
+    ok(page + ' の入口に「' + id + '」の節が無い', at(id) < 0, String(at(id)));
+  });
+  ok(page + ' の入口が論文と制作物と主張を持っている',
+     at('papers') > 0 && at('works') > 0 && at('claim') > 0);
+  ok(page + ' で主張が論文より前にある', at('claim') < at('papers'));
+  /* 移した先へ辿れること。消したのではないことが、入口から分かること。 */
+  ok(page + ' の入口からノートへ辿れる', /href="\.\/notes\/index(\.en)?\.html/.test(html));
+  ['credentials', 'areas', 'links'].forEach((id) => {
+    ok(page + ' が旧アンカー #' + id + ' を残している',
+       new RegExp('id="' + id + '"').test(html));
+  });
+});
+
+/* 核だけがトップから見えること。核でない論文・リポジトリが入口に無いこと。 */
+const NOT_CORE = ['zenodo.22058254', 'zenodo.22057583', 'zenodo.22064241', 'zenodo.22055709',
+                  'researcher-profile', 'justice-and-algorithms',
+                  'autonomy-and-self-cultivation', 'naval-gazette-notes'];
+ENTRIES.forEach((page) => {
+  const html = read(page);
+  const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+  const cards = main.slice(main.indexOf('<section id="papers"'), main.indexOf('<section id="notes"'));
+  const leaked = NOT_CORE.filter((k) => cards.indexOf(k) >= 0);
+  ok(page + ' の核の節に、核でないものが混ざっていない', leaked.length === 0, leaked.join(', '));
+});
+
+/* 移したものが notes に全部あること。消していないことを、数で確かめる。 */
+[['notes/index.html', 'ja'], ['notes/index.en.html', 'en']].forEach(([f]) => {
+  const html = read(f);
+  const absent = NOT_CORE.filter((k) => html.indexOf(k) < 0);
+  ok(f + ' に、核から外したものが全部ある', absent.length === 0, absent.join(', '));
+  ok(f + ' に修了証 7 件がある',
+     (html.match(/openbadge-global|courses\.edx\.org\/certificates/g) || []).length >= 7);
+  ok(f + ' から核へ戻れる', /href="\.\/\.\.\/index(\.en)?\.html/.test(html));
 });
 
 /* 一つの主張に反論できること —— 主張・証拠・反証の手順・撤回、の四つが揃っていること。 */

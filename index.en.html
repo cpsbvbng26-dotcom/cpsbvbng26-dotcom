@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-OkDgo/3EG6RQpmJvdupQBaHKEYCBGriG6GMN4tEz8MY=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-KNir719qhYxJgtOpfcB43UDuOf4OF6XLtTx76nFN00Y='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-OkDgo/3EG6RQpmJvdupQBaHKEYCBGriG6GMN4tEz8MY=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-Q0BDT4RjO6C4zMh5noMOmAe885+NYkpvvBXmwz2NL5w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="Profile of Takuya Nemoto. Seven preprints on autonomy and self-government, published repositories, and credentials in computer science and artificial intelligence.">
@@ -649,6 +649,21 @@ header::after {
   .facts .fact, .claim-kv > div { grid-template-columns: 1fr; gap: .15rem; }
 }
 
+/* ---------- ノートへの導線 ----------
+   核に置かなかったものは、消さずにここから辿れる。 */
+.notes-list { max-width: 42rem; }
+.notes-list p {
+  margin: 0; padding: .85rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: .88rem; line-height: 1.8;
+}
+.notes-list a { color: var(--accent); text-decoration: none; }
+.notes-list a:hover { text-decoration: underline; }
+.notes-list span {
+  display: block; margin-top: .15rem;
+  font-size: .78rem; color: var(--faint);
+}
+
 /* 仕切りは胸壁 —— 狭間を切った上端と壁体。石は不透明で火を遮り、
    狭間の隙間からだけ下の火が漏れる。画像は使わない。 */
 .rule {
@@ -880,15 +895,13 @@ footer::before {
   <div class="wrap head-row">
     <a class="mark serif" href="#main">TN</a>
     <nav class="nav">
+      <a href="#claim">Claim</a>
       <a href="#papers">Papers</a>
       <a href="#works">Works</a>
-      <a href="#credentials">Credentials</a>
-      <a href="#areas">Areas</a>
-      <a href="./research.html" hreflang="ja" lang="ja">研究ブログ</a>
-      <a href="./doi.html">DOI</a>
       <a href="./trinity.html">Operator</a>
-      <a href="#links">Links</a>
-      <a href="./index.html" hreflang="ja" lang="ja">日本語</a>
+      <a href="./doi.html">DOI</a>
+      <a href="./research.html">Blog</a>
+      <a href="./notes/index.en.html">Notes</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">☾</button>
     </nav>
   </div>
@@ -904,13 +917,13 @@ footer::before {
     <p class="lead reveal">
       I study computer science and artificial intelligence.
       <strong>Everything published here is a preprint that has not been peer reviewed.</strong>
-      Three papers in philosophy, one source note, three in mathematics, and four repositories
-      of verification code. All of it is reachable by DOI or on GitHub.
+      <strong>This page has one core: the Trinity-Infinity convergence theorem and its verification.</strong>
+      Three papers in philosophy and a source note are published too, but they are not the core, so they live in <a href="./notes/index.en.html">Notes</a>.
     </p>
 
     <div class="facts reveal">
-      <div class="fact"><dt>Papers</dt><dd>Seven (<a href="#papers">below</a>). <b>None peer reviewed.</b> Where there is more than one DOI, cite the Zenodo one</dd></div>
-      <div class="fact"><dt>Code</dt><dd>Four repositories. The checks run in CI on every push (<a href="#works">below</a>)</dd></div>
+      <div class="fact"><dt>Core</dt><dd>The three Trinity-Infinity papers (<a href="#papers">below</a>). <b>Not peer reviewed.</b> The other four are in <a href="./notes/index.en.html">Notes</a></dd></div>
+      <div class="fact"><dt>Verification</dt><dd>129 checks run in CI on every push: 31 on the printed numbers, 13 reimplementing the theorems, 22 on the operator, 63 here (<a href="#works">below</a>)</dd></div>
       <div class="fact"><dt>Withdrawn</dt><dd>What the Trinity-Infinity series withdrew is <a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md" target="_blank" rel="noopener">kept on the record</a>, not deleted</dd></div>
       <div class="fact"><dt>Reading</dt><dd><span class="faint">The following is the author's own reading.</span> The papers keep returning to one question — how far a life can be governed by the person living it</dd></div>
     </div>
@@ -918,7 +931,7 @@ footer::before {
 
   <hr class="rule">
 
-  <section class="wrap block">
+  <section id="claim" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">If you want to argue, start here</h2>
       <p>One claim, chosen because it is the easiest thing here to check. Agreeing or refuting it takes a browser.</p>
@@ -954,45 +967,11 @@ footer::before {
 
   <section id="papers" class="wrap block">
     <div class="sec-head reveal">
-      <h2 class="serif">Papers</h2>
-      <p>Preprints. Not peer-reviewed.<a class="go" href="./doi.html?q=10.5281/zenodo.22058254,10.5281/zenodo.22057583,10.5281/zenodo.22064241,10.5281/zenodo.22055709,10.5281/zenodo.22058624,10.5281/zenodo.22058777,10.5281/zenodo.22058964">Analyse all seven DOIs</a></p>
+      <h2 class="serif">Papers — the core</h2>
+      <p>Trinity-Infinity Series I–III. These three are the core of this site. <strong>They have not been peer reviewed.</strong><a class="go" href="./doi.html?q=10.5281/zenodo.22058624,10.5281/zenodo.22058777,10.5281/zenodo.22058964">Analyse all three DOIs</a></p>
     </div>
 
     <div class="cards">
-      <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22058254" target="_blank" rel="noopener">
-        <span class="code">PREPRINT</span>
-        <h3>The Nobility and Exemplarity of the Celibate Individual</h3>
-        <p class="alt">An Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life</p>
-        <p class="issuer">Argues that the demographic-necessity case for treating sexual activity as obligatory does not survive the antinatalist critique, and defends celibacy as a discipline of autonomous, self-sustaining well-being.</p>
-        <p class="when">v2 — August 2026</p>
-        <p class="doi">DOI 10.5281/zenodo.22058254</p>
-        <span class="verify">Read on Zenodo</span>
-      </a>
-      <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener">
-        <span class="code">PREPRINT</span>
-        <h3>Manifesto of Imperial Selfhood</h3>
-        <p class="alt">An Exploratory Essay on Personal Imperialism and Spiritual Sovereignty</p>
-        <p class="issuer">Assembles a reflexive account of self-integration from Kantian legislation, Nietzschean revaluation and J&uuml;ngerian mobilisation, treating the tension between them as the structure rather than a defect.</p>
-        <p class="when">Revised edition — August 2026</p>
-        <p class="doi">DOI 10.5281/zenodo.22057583</p>
-        <span class="verify">Read on Zenodo</span>
-      </a>
-      <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener">
-        <span class="code">PREPRINT</span>
-        <h3>Fragmentarian Spiritual Individualism</h3>
-        <p class="alt">A Philosophy of Fragments for Solitary Spiritual Autonomy</p>
-        <p class="issuer">Treats life, faith, society, thought and finitude as discrete fragments rather than one continuous story, and builds a discipline for inhabiting fragmentation rather than repairing it.</p>
-        <p class="doi">DOI 10.5281/zenodo.22064241</p>
-        <span class="verify">Read on Zenodo</span>
-      </a>
-      <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22055709" target="_blank" rel="noopener">
-        <span class="code">PREPRINT</span>
-        <h3>A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）</h3>
-        <p class="alt">A Note on the Investiture List of 11 September 1943 in the Naval Gazette (Internal Circulation Only), Extra Edition</p>
-        <p class="issuer">Transcribes a single investiture entry for an Imperial Japanese Navy lieutenant from a gazette held by JACAR, and separates what the document establishes from what it does not.</p>
-        <p class="doi">DOI 10.5281/zenodo.22055709</p>
-        <span class="verify">Read on Zenodo</span>
-      </a>
       <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener">
         <span class="code">PREPRINT</span>
         <h3>Trinity-Infinity Framework, Series I</h3>
@@ -1023,42 +1002,16 @@ footer::before {
 
   <section id="works" class="wrap block">
     <div class="sec-head reveal">
-      <h2 class="serif">Works</h2>
-      <p>Published repositories.</p>
+      <h2 class="serif">Works — verifying the core</h2>
+      <p>An independent reimplementation of the theorems, a recomputation of every number printed in the papers, and a page that runs the operator outside the assumptions.</p>
     </div>
 
     <div class="cards">
-      <a class="cert reveal" href="./doi.html">
-        <span class="code">On this site / tool</span>
-        <h3>DOI Analyzer</h3>
-        <p class="issuer">Validates DOI syntax, infers the registrant from the prefix, lists where the DOI can be looked up (grouped into indexes, discovery search, and APIs), queries Crossref and DataCite, and exports to BibTeX and other formats. Case, percent-encoding and URL fragments are resolved so that two spellings of one DOI are treated as one, and each export escapes for its own grammar. Also checks ORCID iDs and loads works from an ORCID record. Makes no external request until asked.</p>
-        <span class="verify">Open</span>
-      </a>
       <a class="cert reveal" href="./trinity.html">
         <span class="code">On this site / tool</span>
         <h3>Iterating the operator</h3>
         <p class="issuer">Runs the operator x ← DQx + (I−D)p from the three papers above, in the browser. Enter a matrix and it reports the spectral radius and the operator norm separately, judges convergence and monotone decay as two different questions, and plots the fixed point and the error trajectory. Eigenvalues, singular values and the linear solve are all computed on the page. No external request. The page itself is in Japanese.</p>
         <span class="verify">Open</span>
-      </a>
-      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/researcher-profile" target="_blank" rel="noopener">
-        <span class="code">JavaScript / MIT</span>
-        <h3>researcher-profile</h3>
-        <p class="issuer">A tool that generates a static researcher profile site from a single configuration file. No dependencies, no external requests.</p>
-        <p class="doi">DOI 10.5281/zenodo.22335692</p>
-        <span class="verify">View on GitHub</span>
-      </a>
-      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/justice-and-algorithms" target="_blank" rel="noopener">
-        <span class="code">Markdown / CC BY 4.0</span>
-        <h3>justice-and-algorithms</h3>
-        <p class="issuer">A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy.</p>
-        <p class="doi">DOI 10.5281/zenodo.22335676</p>
-        <span class="verify">View on GitHub</span>
-      </a>
-      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation" target="_blank" rel="noopener">
-        <span class="code">Markdown / CC BY 4.0</span>
-        <h3>autonomy-and-self-cultivation</h3>
-        <p class="issuer">The full text, PDFs and citation metadata for the three papers above. The Markdown is transcribed from the PDFs and checked word sequence against word sequence.</p>
-        <span class="verify">View on GitHub</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-infinity" target="_blank" rel="noopener">
         <span class="code">PDF / CC BY 4.0</span>
@@ -1072,146 +1025,24 @@ footer::before {
         <p class="issuer">The operator of the three papers above, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 22 checks, including a case where the error grows 11.8× before it converges.</p>
         <span class="verify">View on GitHub</span>
       </a>
-      <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/naval-gazette-notes" target="_blank" rel="noopener">
-        <span class="code">CSV / JSON / CC BY 4.0</span>
-        <h3>naval-gazette-notes</h3>
-        <p class="issuer">The transcription from the source note above, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down.</p>
-        <span class="verify">View on GitHub</span>
-      </a>
-    </div>
+          </div>
   </section>
   <hr class="rule">
 
-  <section id="credentials" class="wrap block">
-    <div class="sec-head reveal">
-      <h2 class="serif">Credentials</h2>
-      <p>Each card links to the issuer&rsquo;s verification page.</p>
-    </div>
 
-    <div class="group">
-      <div class="group-name reveal">edX</div>
-      <div class="cards">
-        <a class="cert reveal" href="https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc" target="_blank" rel="noopener">
-          <span class="code">CS50x</span>
-          <h3>Introduction to Computer Science</h3>
-          <p class="issuer">HarvardX</p>
-          <p class="when">March 2026</p>
-          <span class="verify">View certificate</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3" target="_blank" rel="noopener">
-          <span class="code">ER22.1x</span>
-          <h3>Justice</h3>
-          <p class="issuer">HarvardX</p>
-          <p class="when">March 2026</p>
-          <span class="verify">View certificate</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807" target="_blank" rel="noopener">
-          <span class="code">CS50AI</span>
-          <h3>Introduction to Artificial Intelligence with Python</h3>
-          <p class="issuer">HarvardX</p>
-          <p class="when">April 2026</p>
-          <span class="verify">View certificate</span>
-        </a>
-        <a class="cert reveal" href="https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316" target="_blank" rel="noopener">
-          <span class="code">CC0201EN</span>
-          <h3>Introduction to Containers, Kubernetes and OpenShift</h3>
-          <p class="issuer">IBM</p>
-          <p class="when">May 2026</p>
-          <span class="verify">View certificate</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="group">
-      <div class="group-name reveal">Tohoku University MOOC</div>
-      <div class="cards">
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Introduction to radiation safety: Risk assessment for our life and society</h3>
-          <p class="alt" lang="ja">放射線安全社会入門 〜リスクの知見を暮らしに〜</p>
-          <p class="issuer">Tohoku University</p>
-          <p class="when">March 2026</p>
-          <span class="verify">View badge</span>
-        </a>
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Action oriented Research on Disaster Science</h3>
-          <p class="alt" lang="ja">東日本大震災の教訓を活かした実践的防災学へのアプローチ</p>
-          <p class="issuer">Tohoku University</p>
-          <p class="when">March 2026</p>
-          <span class="verify">View badge</span>
-        </a>
-        <a class="cert reveal" href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09" target="_blank" rel="noopener">
-          <span class="code">Open Badge</span>
-          <h3>Mystery of Aurora</h3>
-          <p class="alt" lang="ja">解明：オーロラの謎</p>
-          <p class="issuer">Tohoku University</p>
-          <p class="when">March 2026</p>
-          <span class="verify">View badge</span>
-        </a>
-      </div>
-    </div>
-  </section>
   <hr class="rule">
 
-  <section id="areas" class="wrap block">
+  <section id="notes" class="wrap block">
+    <span id="credentials"></span><span id="areas"></span><span id="links"></span>
     <div class="sec-head reveal">
-      <h2 class="serif">Areas</h2>
-      <p>Topics covered by the courses completed.</p>
+      <h2 class="serif">Notes</h2>
+      <p>Everything not placed in the core is collected, undeleted, in <a href="./notes/index.en.html">Notes</a>. The DOIs and the repositories are live.</p>
     </div>
-
-    <div class="areas">
-      <div class="area reveal">
-        <h3>Computer science</h3>
-        <p>C and Python, algorithms and data structures, reasoning about complexity</p>
-      </div>
-      <div class="area reveal">
-        <h3>Artificial intelligence</h3>
-        <p>Search, knowledge representation, probabilistic inference, optimisation, machine learning, neural networks, natural language processing</p>
-      </div>
-      <div class="area reveal">
-        <h3>Container platforms</h3>
-        <p>Core concepts and operation of Docker, Kubernetes and OpenShift</p>
-      </div>
-      <div class="area reveal">
-        <h3>Web development</h3>
-        <p>Implementation in HTML, CSS and JavaScript; publishing and operating sites on GitHub Pages</p>
-      </div>
-      <div class="area reveal">
-        <h3>Domain knowledge</h3>
-        <p>Radiation safety, disaster science, political philosophy</p>
-      </div>
+    <div class="notes-list reveal">
+      <p><a href="./notes/index.en.html#papers">Three papers in philosophy, and a naval gazette source note</a><span>four papers</span></p>
+      <p><a href="./notes/index.en.html#works">Repositories and tools outside the core</a><span>researcher-profile / justice-and-algorithms / autonomy-and-self-cultivation / naval-gazette-notes / the DOI Analyzer</span></p>
+      <p><a href="./notes/index.en.html#credentials">Certificates, areas of study, external profiles</a></p>
     </div>
-  </section>
-  <hr class="rule">
-
-  <section id="links" class="wrap block">
-    <div class="sec-head reveal">
-      <h2 class="serif">Links</h2>
-    </div>
-      <div class="group reveal">
-        <div class="group-name">Researcher profiles</div>
-        <div class="links">
-          <a class="link" href="https://researchmap.jp/takuyanemoto" target="_blank" rel="noopener">researchmap <span>Profile</span></a>
-          <a class="link" href="https://philpeople.org/profiles/takuyanemoto" target="_blank" rel="noopener">PhilPeople <span>Philosophy profile</span></a>
-          <a class="link" href="https://cv.hal.science/nemoto-takuya" target="_blank" rel="noopener">HAL <span>Researcher CV</span></a>
-          <a class="link" href="https://acadmc.com/takuyanemoto" target="_blank" rel="noopener">acadmc <span>Academic profile</span></a>
-          <a class="link" href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335" target="_blank" rel="noopener">J-GLOBAL <span>Researcher database</span></a>
-          <a class="link" href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">ORCID <span>0009-0000-1406-0547</span></a>
-          <a class="link" href="https://scholar.google.com/citations?user=_HEl3dYAAAAJ&amp;hl=ja" target="_blank" rel="noopener">Google Scholar <span>Publications</span></a>
-          <a class="link" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280" target="_blank" rel="noopener">SSRN <span>Paper repository</span></a>
-        </div>
-      </div>
-      <div class="group reveal">
-        <div class="group-name">Web and social</div>
-        <div class="links">
-          <a class="link" href="https://www.nemoto200101.com/" target="_blank" rel="noopener">Homepage <span>nemoto200101.com</span></a>
-          <a class="link" href="./research.html">Research blog <span lang="ja">researchmap</span></a>
-          <a class="link" href="https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0" target="_blank" rel="noopener">LinkedIn <span>Professional profile</span></a>
-          <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>Articles</span></a>
-          <a class="link" href="https://github.com/cpsbvbng26-dotcom" target="_blank" rel="noopener">GitHub <span>@cpsbvbng26-dotcom</span></a>
-        </div>
-      </div>
   </section>
 
 </main>

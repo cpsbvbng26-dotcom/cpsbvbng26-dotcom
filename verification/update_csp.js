@@ -13,7 +13,7 @@ const path = require('path');
 const csp = require('./csp.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', '404.html'];
+const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
 
 PAGES.forEach((page) => {
   const file = path.join(ROOT, page);
