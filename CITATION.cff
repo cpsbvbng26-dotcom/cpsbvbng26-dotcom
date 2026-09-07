@@ -1,0 +1,90 @@
+cff-version: 1.2.0
+title: 根本卓哉 — 公開プロフィールと、その検証
+message: >-
+  このリポジトリを参照する場合は、以下の情報を用いてください。
+  個々の論文を引用する場合は、references に挙げた DOI を用いてください。
+  公開している論文はいずれも査読を受けていません。DOI があることは、査読を受けたことを意味しません。
+type: software
+authors:
+  - family-names: Nemoto
+    given-names: Takuya
+    orcid: https://orcid.org/0009-0000-1406-0547
+repository-code: https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom
+url: https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/
+abstract: >-
+  公開プロフィールの静的サイトと、その中で動く道具、そしてサイト自身の検査。
+  トップに置いているのは一つの主張だけで、Trinity-Infinity の三本が収束の条件として
+  置いた作用素ノルム ‖DQ‖₂ < 1 は十分条件であって必要条件ではない、というものである。
+  反証の手順を同じ画面に書き、その判定をブラウザの中だけで出すページを同梱している。
+  哲学の三篇・史料ノート・修了証は核ではないので、notes/ と cv.html に分けてある。
+  外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出さない。
+  これは方針ではなく、ハッシュで許可した Content-Security-Policy がブラウザに強制させている。
+keywords:
+  - research profile
+  - preprint
+  - spectral radius
+  - reproducibility
+  - self-correction
+  - content security policy
+  - static site
+license:
+  - CC-BY-4.0
+  - MIT
+date-released: 2026-06-12
+references:
+  - type: article
+    title: >-
+      The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications
+      in Game Theory, Mathematical Logic, and Mechanical Engineering (Revised Edition)
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    month: 8
+    doi: 10.5281/zenodo.22058624
+    notes: >-
+      Preprint. Not peer-reviewed. このサイトが核として置いている三本のうちの一本。
+      訂正の対象である 2025 年の初版は 10.5281/zenodo.17173703。
+  - type: article
+    title: >-
+      The Trinity-Infinity Framework, Series II: Extended Formalization and Further
+      Illustrative Applications (Revised Edition)
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    month: 8
+    doi: 10.5281/zenodo.22058777
+    notes: Preprint. Not peer-reviewed.
+  - type: article
+    title: >-
+      The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization
+      and Retrospective
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    month: 8
+    doi: 10.5281/zenodo.22058964
+    notes: Preprint. Not peer-reviewed.
+  - type: software
+    title: trinity-operator — 論文が置いた仮定の外まで実装した作用素
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    repository-code: https://github.com/cpsbvbng26-dotcom/trinity-operator
+    notes: サイトが出している主張の実装と反例。
+  - type: software
+    title: researcher-profile — 設定 1 つから研究者プロフィールを生成する
+    authors:
+      - family-names: Nemoto
+        given-names: Takuya
+        orcid: https://orcid.org/0009-0000-1406-0547
+    year: 2026
+    doi: 10.5281/zenodo.22335692
+    notes: このサイトのトップ・CV・ノートは、この生成器の出力である。

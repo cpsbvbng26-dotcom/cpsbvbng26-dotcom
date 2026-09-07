@@ -584,6 +584,48 @@ LD_PAGES.forEach((page) => {
      ids.every((i) => i && i === ids[0]), ids.join(' / '));
 })();
 
+/* -------------------------------------- 13. 第三者の標章と、引用情報
+ *
+ * ロゴをバッジから外したとき、SVG のファイルだけが木に残っていた。
+ * どこからも参照されていないので、目でも検査でも見つからなかった。
+ * 参照が無いことは、置いてよい理由にならない。
+ */
+section('13. 第三者の標章と引用情報');
+
+(() => {
+  const marks = fs.readdirSync(ROOT)
+    .filter((f) => /\.(svg|png|ico|webp)$/i.test(f))
+    .filter((f) => f !== 'favicon.svg' && f !== 'og.png');
+  const orphans = marks.filter((f) => {
+    const used = ['README.md', 'README.en.md', 'sitemap.xml']
+      .concat(PAGES)
+      .some((p) => fs.existsSync(path.join(ROOT, p)) && read(p).indexOf(f) >= 0);
+    return !used;
+  });
+  ok('どこからも参照されていない画像が残っていない', orphans.length === 0, orphans.join(', '));
+})();
+
+/* 第三者の名を冠したファイルは、そもそも置かない。 */
+(() => {
+  /* 画像だけを見る。.github（設定）や Search Console の確認用 HTML は別物である。 */
+  const named = fs.readdirSync(ROOT)
+    .filter((f) => /\.(svg|png|ico|webp|jpg|jpeg|gif)$/i.test(f))
+    .filter((f) => /(grok|openai|anthropic|claude|github|google|twitter|x-mark|logo)/i.test(f));
+  ok('第三者の名を冠した画像ファイルが無い', named.length === 0, named.join(', '));
+})();
+
+/* 引用情報。書いてある DOI が、README の論文表と食い違わないこと。 */
+(() => {
+  const cff = read('CITATION.cff');
+  ok('CITATION.cff がある', cff.length > 0);
+  ok('CITATION.cff が査読前であることを述べている', /査読を受けていません/.test(cff));
+  ok('CITATION.cff に ORCID がある', /0009-0000-1406-0547/.test(cff));
+  const cffDois = [...new Set([...cff.matchAll(/10\.\d{4,9}\/[A-Za-z0-9._-]+/g)].map((m) => m[0]))];
+  const readmeDois = new Set([...read('README.md').matchAll(/10\.\d{4,9}\/[A-Za-z0-9._-]+/g)].map((m) => m[0]));
+  const unknown = cffDois.filter((d) => !readmeDois.has(d));
+  ok('CITATION.cff の DOI が README にもある', unknown.length === 0, unknown.join(', '));
+})();
+
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));
 if (failures.length) {
