@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-Mn7OfXJMiU0MoYNW9e/xwmiO5tFDwVl5nU49aPdndwI='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -460,6 +460,36 @@ svg.plot .pt { fill: var(--text); font-size: 10px; text-anchor: start; }
   border-radius: 0 .4rem .4rem 0;
 }
 
+/* 縮小になる距離の証書 */
+#certout { margin-top: 1.8rem; }
+.gammarow { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.gammarow label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92rem; color: var(--text);
+}
+.gammarow input[type="range"] {
+  flex: 1 1 14rem; max-width: 24rem; accent-color: var(--accent);
+}
+.gval {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .8rem; color: var(--muted);
+}
+svg.plot .bcurve {
+  fill: none; stroke: var(--faint); stroke-width: 1.6;
+  stroke-dasharray: 6 4; stroke-linejoin: round;
+}
+svg.plot .lgd { fill: var(--faint); font-size: 10px; text-anchor: start; }
+.pmat { margin-top: 1.8rem; overflow-x: auto; }
+.pcap { margin: 0 0 .6rem; font-size: .78rem; color: var(--faint); }
+table.pmat-t {
+  border-collapse: collapse; font-size: .78rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+table.pmat-t td {
+  padding: .35rem .8rem; text-align: right; white-space: nowrap;
+  color: var(--text); border-bottom: 1px solid var(--line-soft);
+}
+
 /* 反復の表 */
 .tablewrap { margin-top: 1.8rem; overflow-x: auto; }
 table.steps { width: 100%; border-collapse: collapse; font-size: .78rem; }
@@ -567,13 +597,44 @@ table.steps td.ecol { color: var(--accent); }
 
   <hr class="rule">
 
+  <section class="wrap block" id="repair">
+    <div class="prose reveal">
+      <h2 class="serif">壊れた議論を、その場で組み直す</h2>
+      <p>ここまでは、論文の条件が必要以上に強いことを<strong>測って</strong>いました。ここからはその続きで、<strong>足りなくなった分を作り直します。</strong></p>
+      <p>三篇の議論は「‖A‖₂ &lt; 1 だから縮小写像、よって Banach の不動点定理」と進みます。ρ &lt; 1 ≤ ‖A‖₂ の領域では、<strong>結論は正しいまま、議論だけが壊れます。</strong>ユークリッド距離で測るかぎり縮小写像ではないので、定理をそのまま当てられません。</p>
+      <p>やることは一つです。<strong>縮小写像になる距離を、その場で作る。</strong></p>
+    </div>
+
+    <div class="claim reveal">
+      <p class="iff">P − BᵀPB = I　　B = A/γ、　ρ &lt; γ &lt; 1</p>
+      <p class="iff">‖Ax‖_P ≤ κ‖x‖_P　　κ = γ√(1 − 1/λmax(P)) &lt; γ &lt; 1</p>
+      <p>‖x‖_P = √(xᵀPx) と置いたときの話です。P はリアプノフ（Stein）方程式の解で、下のスライダを動かすとその場で解き直します。κ はこのノルムでの ‖A‖_P の上界ではなく、<strong>達成される値そのもの</strong>です（定義から取り直して突き合わせています）。</p>
+      <p>‖·‖_P はユークリッド距離と同値なので (ℝⁿ, d_P) は完備で、<strong>Banach の不動点定理が字義どおり当たります。</strong>ユークリッド距離に戻すと ‖xₖ − x*‖ ≤ √(λmax/λmin)·κᵏ·‖x₀ − x*‖ になり、この係数が上で測った過渡的増幅にあたります。<strong>誤差はいったん増えてよい。</strong>増えたうえで κ のレートに乗る、という形です。</p>
+      <p>これも新しい数学ではありません。ρ に任意に近いノルムが存在することは Ostrowski / Householder の古典的な結果で、リアプノフ方程式でそれを構成するのも標準的な手順です。ここでやっているのは、<strong>存在証明で終わっている構成を実際に走らせ、出したものが主張どおりかを当たること</strong>だけです。</p>
+    </div>
+
+    <div class="tool reveal">
+      <div class="gammarow">
+        <label for="gamma">γ</label>
+        <input id="gamma" type="range" min="2" max="98" step="1" value="50" aria-label="目盛り γ を ρ と 1 のあいだで選ぶ">
+        <span id="gammaVal" class="gval"></span>
+      </div>
+      <p class="hint">γ は目盛りです。ρ に寄せるほど κ は小さくなりますが、係数は大きくなります。<strong>「どんな ρ &lt; 1 でも κ &lt; 1 の距離が取れる」が内容であって、「良い定数が取れる」ではありません。</strong>ここでも外部へのリクエストは出していません。n²×n² の連立一次方程式も、コレスキー分解も、このページの中で解いています。</p>
+      <div id="certout"></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
   <section class="wrap block">
     <div class="prose reveal">
       <h2 class="serif">何を計算しているか</h2>
       <p>A = D Q（D は a を並べた対角行列）、b = (I − D) p と置くと、反復は <code>x ← Ax + b</code> です。これが任意の初期値から収束するのは、ρ(A) &lt; 1 のとき、かつそのときに限ります。ρ はスペクトル半径、つまり固有値の絶対値の最大です。</p>
       <p>不動点は <code>(I − A)x = b</code> を解いて求めています。反復を回して近づけたのではなく、直接解いた値です。</p>
       <p>固有値は、Householder 変換で上 Hessenberg 形にしてから、複素数のままシフト付き QR 法を回して取っています。実数のシフトだけだと複素固有値の対で止まるためです。特異値は AᵀA の固有値の平方根で、対称なので Jacobi 回転で取っています。連立一次方程式は部分ピボット付きの Gauss 消去です。外部のライブラリは使っていません。</p>
+      <p>縮小になる距離のほうは、B = A/γ と置いて P − BᵀPB = I を解いています。行優先の vec では vec(BᵀPB) = (Bᵀ ⊗ Bᵀ) vec(P) になるので、クロネッカー積で n²×n² の連立一次方程式に落として、上と同じ Gauss 消去で解いています。P が正定値であることはコレスキー分解が通ることで確かめ、λmax・λmin は Jacobi 回転で取っています。‖A‖_P は、y = Lᵀx と置き直したときの作用素 Lᵀ A L⁻ᵀ の 2-ノルムです。</p>
       <p>この実装は NumPy と突き合わせて検査してあります。大きさ 1 から 8 までの行列 728 個 —— 三角行列、強い非正規行列、複素固有値を持つもの、固有値が重なるもの、特異行列を含みます —— について、ρ と ‖A‖₂ の相対誤差は 6.7×10⁻¹⁵ と 1.7×10⁻¹⁵ を超えませんでした。記録した値は <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/trinity_fixtures.json" target="_blank" rel="noopener">verification/trinity_fixtures.json</a> にあり、<code>node verification/check_trinity.js</code> で走ります。</p>
+      <p>縮小になる距離のほうも、同じやり方で突き合わせています。証書 23 件 —— 論文の設定、反例、三角行列、対称行列、直交行列、大きさ 1 から 8 まで —— について、κ の相対差は 3.9×10⁻¹⁶、係数と P そのものは 4.2×10⁻¹⁰ を超えませんでした。P のほうが桁を落とすのは、γ を ρ に寄せると解く連立一次方程式が悪条件になるからです。それでも κ の精度は保たれます。記録した値は <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/certificate_fixtures.json" target="_blank" rel="noopener">verification/certificate_fixtures.json</a> にあります。</p>
       <p>数値計算である以上、限界はあります。固有値が高度に縮退した行列では、ρ の桁数は表示ほど信用できません。ρ が 1 のごく近くにあるとき、「収束する」の判定は浮動小数点の誤差の中に入ります。「境界 ρ = 1」の見本は、まさにその場所を見るためのものです。</p>
       <p>作用素そのものの実装と、論文の数値の再現は <a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a> にあります（Python、MIT）。三篇の PDF と、その検証は <a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity" target="_blank" rel="noopener">trinity-infinity</a> にあります。</p>
     </div>

@@ -322,6 +322,32 @@ ok('trinity.html にインラインの style 属性が無い',
        ? '本文 ' + claimed[1] + 'e-15 / ' + claimed[2] + 'e-15　実際 '
          + wr.toExponential(2) + ' / ' + wn.toExponential(2)
        : '本文に精度の記載が見つからない');
+  /* 証書のほうの主張も、同じやり方で当たる。 */
+  const cfx = JSON.parse(read('verification/certificate_fixtures.json'));
+  const cm = prose.match(/証書 ([0-9,]+) 件/);
+  ok('本文の証書の件数が fixtures の件数と一致する',
+     !!cm && Number(cm[1].replace(/,/g, '')) === cfx.cases.length,
+     '本文 ' + (cm ? cm[1] : 'なし') + ' / 実際 ' + cfx.cases.length);
+
+  let wk = 0, wp = 0;
+  cfx.cases.forEach((c) => {
+    const A = [];
+    for (let i = 0; i < c.n; i++) A.push(c.A.slice(i * c.n, (i + 1) * c.n));
+    const ct = T.certificate(A, c.gamma);
+    if (!ct) { wk = Infinity; return; }
+    wk = Math.max(wk, Math.abs(ct.kappa - c.kappa) / Math.max(1, Math.abs(c.kappa)));
+    wp = Math.max(wp, Math.abs(ct.amplification - c.amplification) / Math.max(1, c.amplification));
+    for (let i = 0; i < c.n; i++) for (let j = 0; j < c.n; j++) {
+      wp = Math.max(wp, Math.abs(ct.P[i][j] - c.P[i * c.n + j]) /
+        Math.max(1, Math.abs(c.P[i * c.n + j])));
+    }
+  });
+  const cc = prose.match(/κ の相対差は ([0-9.]+)×10⁻¹⁶、係数と P そのものは ([0-9.]+)×10⁻¹⁰ を超えませんでした/);
+  ok('本文が名乗っている証書の精度を、実際に超えていない',
+     !!cc && wk <= Number(cc[1]) * 1e-16 && wp <= Number(cc[2]) * 1e-10,
+     '本文 ' + (cc ? cc[1] + '×10⁻¹⁶ / ' + cc[2] + '×10⁻¹⁰' : 'なし') +
+     ' / 実際 ' + wk.toExponential(2) + ' / ' + wp.toExponential(2));
+
 })();
 
 PAGES.filter((p) => p !== '404.html').forEach((page) => {
