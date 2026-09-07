@@ -42,11 +42,11 @@
 
 **description（英語・136 字）**
 
-> Three preprints on a contraction operator, with 44 verification checks and a record of what the series established and what it withdrew.
+> Three preprints on a contraction operator, with 72 verification checks and a record of what the series established and what it withdrew.
 
 **description（日本語・参考）**
 
-> 縮小作用素をめぐる三篇のプレプリントと、検証 44 項目。何が確立され、何が撤回されたかの記録。
+> 縮小作用素をめぐる三篇のプレプリントと、検証 72 項目。何が確立され、何が撤回されたかの記録。
 
 **topics（11）**
 
