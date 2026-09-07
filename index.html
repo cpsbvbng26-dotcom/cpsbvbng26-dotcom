@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-wUXYysbpKmjNle/XTNBhKpLy48UebiI0dgVOoCknng0=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Y7/X2IGjdZCw49kabT7P6kzjlD8ypWWxjkAHykJhvt8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oVVCE+lOGH2jQRySMUe2DOEs+fKPLjXn6cQOJTeJT6A=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="Trinity-Infinity の収束定理と、その検証。査読前のプレプリントです。収束を決めるのはスペクトル半径であって、三篇が置いた作用素ノルムの条件ではありません。">
 <meta name="robots" content="index, follow">
@@ -156,7 +156,7 @@
     {
       "@type": "SoftwareSourceCode",
       "name": "trinity-operator",
-      "description": "Trinity-Infinity の三篇が扱う作用素を、Q を巡回置換に、係数を (0,1) に限らずに実装したもの。収束の条件がスペクトル半径 ρ(DQ) < 1 であり、三篇が置いた作用素ノルムの条件は十分条件にすぎないことを、非正規行列の過渡的増幅とともに示す。",
+      "description": "Trinity-Infinity の三篇が扱う作用素を、Q を巡回置換に、係数を (0,1) に限らずに実装したもの。収束の条件がスペクトル半径 ρ(DQ) < 1 であり、三篇が置いた作用素ノルムの条件は十分条件にすぎないことを、非正規行列の過渡的増幅とともに示す。あわせて、その領域で成り立たなくなる Banach の議論を、リアプノフ方程式から重み付きノルムを構成して組み直す。",
       "author": {
         "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
       },
@@ -180,7 +180,7 @@
     {
       "@type": "WebApplication",
       "name": "作用素を回す",
-      "description": "Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、ブラウザの中だけで反復する道具。スペクトル半径と作用素ノルムを別々に出し、収束の可否と誤差が単調に減衰するかを分けて判定する。固有値は Householder 変換とシフト付き QR 法、特異値は Jacobi 回転、連立一次方程式は部分ピボット付き Gauss 消去で、いずれも外部ライブラリを使わずに解いている。外部へのリクエストは無い。",
+      "description": "Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、ブラウザの中だけで反復する道具。スペクトル半径と作用素ノルムを別々に出し、収束の可否と誤差が単調に減衰するかを分けて判定する。三篇の議論が成り立たない領域では、リアプノフ方程式を解いて縮小写像になる重み付きノルムを構成し、その縮小定数と誤差の上界を出す。固有値は Householder 変換とシフト付き QR 法、特異値は Jacobi 回転、連立一次方程式は部分ピボット付き Gauss 消去、コレスキー分解も含めて、いずれも外部ライブラリを使わずに解いている。外部へのリクエストは無い。",
       "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
@@ -656,6 +656,23 @@ footer::before {
 .lead a, .issuer a, .sec-head p a { text-decoration: underline; text-underline-offset: .15em; }
 .facts dd a:hover, .claim-kv dd a:hover, .notes-list a:hover,
 .prose a:hover, .lead-block a:hover, .lead a:hover { text-decoration-thickness: 2px; }
+
+/* 同じ資料の別の所在。DOI の下に一行で並べる。 */
+/* カードの外に出したので .cert の子孫ではない。単独のクラスで指定する。 */
+.where {
+  margin: .2rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .72rem; line-height: 1.7; letter-spacing: .01em; color: var(--faint);
+}
+
+/* 所在の行はカードの外に置く（<a> の入れ子は作れないため）。
+   カードのすぐ下に、同じ幅で続けて見えるようにする。 */
+.cert-group { display: flex; flex-direction: column; gap: .35rem; }
+.cert-group .cert { flex: 1; }
+.cert-group .where { padding: 0 .35rem; }
+.cert-group .where a { color: var(--faint); }
+.cert-group .where a { text-decoration: underline; text-underline-offset: .15em; }
+.cert-group .where a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -744,8 +761,12 @@ footer::before {
         <dd>仮定を外した作用素。乱数種は固定（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a>）</dd>
       </div>
       <div class="fact">
-        <dt>この場で 63</dt>
-        <dd><a href="./trinity.html">作用素のページ</a>の数値を、記録した NumPy の値 728 件と突き合わせる。最大相対差 ρ 6.7×10⁻¹⁵、‖A‖₂ 1.7×10⁻¹⁵</dd>
+        <dt>証書 51</dt>
+        <dd>壊れた議論を組み直した構成そのもの。P が方程式の解であること、‖·‖_P がノルムであること、f がその距離で縮小写像であることを、定義に戻って当たる（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a>）</dd>
+      </div>
+      <div class="fact">
+        <dt>この場で 90</dt>
+        <dd><a href="./trinity.html">作用素のページ</a>の数値を、記録した NumPy の値 728 件と突き合わせる。最大相対差 ρ 6.7×10⁻¹⁵、‖A‖₂ 1.7×10⁻¹⁵。縮小になる距離のほうも証書 23 件と突き合わせる（κ の相対差 3.9×10⁻¹⁶）</dd>
       </div>
     </div>
   </section>
@@ -836,7 +857,7 @@ footer::before {
       <a class="cert reveal" href="./trinity.html">
         <span class="code">このサイト内 / ツール</span>
         <h3>作用素を回す</h3>
-        <p class="issuer">下の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。行列を打ち込むと、スペクトル半径と作用素ノルムを両方出し、収束するか・誤差が単調に減るかを別々に判定し、不動点と誤差の推移を描く。固有値も特異値も連立一次方程式も、このページの中で解いている。外部リクエストは無し。</p>
+        <p class="issuer">下の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。行列を打ち込むと、スペクトル半径と作用素ノルムを両方出し、収束するか・誤差が単調に減るかを別々に判定し、不動点と誤差の推移を描く。三篇の議論が破れる領域では、f が縮小写像になる距離をその場で作り、Banach の定理が字義どおり当たる形まで組み直す。固有値も特異値もリアプノフ方程式も、このページの中で解いている。外部リクエストは無し。</p>
         <span class="verify">開く</span>
       </a>
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-infinity" target="_blank" rel="noopener">
@@ -848,7 +869,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">
         <span class="code">Python / MIT</span>
         <h3>trinity-operator</h3>
-        <p class="issuer">上の三篇が扱う作用素を、置換にも一様な係数にも限らずに実装したリポジトリ。収束を決めているのはスペクトル半径であって、三篇が置いた作用素ノルムの条件は必要以上に強い。誤差が一度 11.8 倍に膨らんでから収束する例を含む 22 項目。</p>
+        <p class="issuer">上の三篇が扱う作用素を、置換にも一様な係数にも限らずに実装したリポジトリ。収束を決めているのはスペクトル半径であって、三篇が置いた作用素ノルムの条件は必要以上に強い。誤差が一度 11.8 倍に膨らんでから収束する例を含む 22 項目と、破れた議論を組み直す構成の 51 項目。</p>
         <span class="verify">GitHub で見る</span>
       </a>
     </div>
