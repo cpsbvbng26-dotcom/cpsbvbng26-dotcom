@@ -355,9 +355,11 @@ ok('trinity.html にインラインの style 属性が無い',
               { encoding: 'utf8' });
     const lines = out.trim().split('\n');
   const n = Number((lines[lines.length - 1].match(/^(\d+) 件/) || [])[1]);
-  ['index.html', 'index.en.html'].forEach((page) => {
-    const m2 = read(page).match(/この場で (\d+)/);
-    ok(page + ' の「この場で NN」が check_trinity.js の件数と一致する',
+  /* 日本語版と英語版で言い方が違うので、ページごとに拾う。 */
+  [['index.html', /この場で (\d+)/],
+   ['index.en.html', /(\d+) checks in this page/]].forEach(([page, pat]) => {
+    const m2 = read(page).match(pat);
+    ok(page + ' が名乗る件数が check_trinity.js の件数と一致する',
        !!m2 && Number(m2[1]) === n,
        '本文 ' + (m2 ? m2[1] : 'なし') + ' / 実際 ' + n);
   });
