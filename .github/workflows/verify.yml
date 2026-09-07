@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 136 項目 / サイトの構造 171 項目 / DOI アナライザー 157 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 119 項目 / サイトの構造 169 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +25,5 @@ jobs:
         run: node verification/check_contrast.js
       - name: サイトの構造
         run: node verification/check_site.js
-      - name: DOI アナライザー
-        run: node verification/check_doi.js
       - name: 作用素の数値（NumPy の記録との突き合わせ）
         run: node verification/check_trinity.js

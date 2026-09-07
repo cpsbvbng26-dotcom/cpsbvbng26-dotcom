@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ETATrfi7G1TpZ1GPx6YCaXKFixPJiLDIRah/X84R550=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-eUogBMjwkHCU7iSvV6BZj6HBM7llcdOjyleSKRPdU38=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="Trinity-Infinity の収束定理と、その検証。査読前のプレプリントです。収束を決めるのはスペクトル半径であって、三篇が置いた作用素ノルムの条件ではありません。">
 <meta name="robots" content="index, follow">
@@ -204,21 +204,6 @@
           "@id": "https://doi.org/10.5281/zenodo.22058964"
         }
       ]
-    },
-    {
-      "@type": "WebApplication",
-      "name": "DOI アナライザー",
-      "description": "DOI の書式を検証し、接頭辞から登録者を推定し、CrossRef と DataCite に照会して BibTeX・CSL-JSON・CITATION.cff などに書き出す道具。文献リストを貼りこむと、含まれる DOI をすべて抽出する。読み込み時は外部へリクエストを出さない。",
-      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html",
-      "applicationCategory": "ReferenceApplication",
-      "operatingSystem": "Web",
-      "browserRequirements": "JavaScript",
-      "isAccessibleForFree": true,
-      "inLanguage": "ja",
-      "author": {
-        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
-      },
-      "license": "https://opensource.org/licenses/MIT"
     }
   ]
 }
@@ -693,7 +678,6 @@ footer::before {
       <a href="#notes">ノート</a>
       <a href="#contact">連絡</a>
       <a href="./trinity.html">作用素</a>
-      <a href="./doi.html">DOI</a>
       <a href="./cv.html">CV</a>
       <a href="./index.en.html">EN</a>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">&#9790;</button>
@@ -824,7 +808,7 @@ footer::before {
   <section id="papers" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">論文</h2>
-      <p>Trinity-Infinity Series I–III。この三篇が核です。査読は受けていません。<a class="go" href="./doi.html?q=10.5281/zenodo.22058624,10.5281/zenodo.22058777,10.5281/zenodo.22058964">3 件の DOI をまとめて解析する</a></p>
+      <p>Trinity-Infinity Series I–III。この三篇が核です。査読は受けていません。</p>
     </div>
 
     <div class="cards">
@@ -899,7 +883,7 @@ footer::before {
       <p><a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener">Manifesto of Imperial Selfhood</a><span>Zenodo 10.5281/zenodo.22057583　／　<a href="https://doi.org/10.2139/ssrn.7358818" target="_blank" rel="noopener">SSRN 10.2139/ssrn.7358818</a>　／　<a href="https://philarchive.org/rec/NEMMOI" target="_blank" rel="noopener">PhilArchive NEMMOI</a></span></p>
       <p><a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener">Fragmentarian Spiritual Individualism</a><span>Zenodo 10.5281/zenodo.22064241　／　<a href="https://philarchive.org/rec/NEMFSI" target="_blank" rel="noopener">PhilArchive NEMFSI</a></span></p>
       <p><a href="https://doi.org/10.5281/zenodo.22055709" target="_blank" rel="noopener">A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）</a><span>Zenodo 10.5281/zenodo.22055709　／　<a href="https://works.hcommons.org/records/q36z2-98e12" target="_blank" rel="noopener">Knowledge Commons q36z2-98e12</a></span></p>
-      <p><a href="./notes/index.html#works">核に直接関わらないリポジトリとツール</a><span>researcher-profile / justice-and-algorithms / autonomy-and-self-cultivation / naval-gazette-notes / DOI アナライザー</span></p>
+      <p><a href="./notes/index.html#works">核に直接関わらないリポジトリとツール</a><span>researcher-profile / justice-and-algorithms / autonomy-and-self-cultivation / naval-gazette-notes</span></p>
       <p><a href="./cv.html">修了証・学習領域・外部プロフィール</a><span>CV</span></p>
     </div>
   </section>

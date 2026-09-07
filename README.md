@@ -72,7 +72,6 @@
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
-| [DOI アナライザー](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html) | DOI の書式検証、接頭辞からの登録者の推定、**索引先の一覧（索引 / 発見 / API に分けて 20 件）**、CrossRef / DataCite への照会、**ORCID iD の検査と業績の読み込み**、BibTeX などへの書き出し。**大小の別・百分率符号化・URL の素片を解いて同一視し、`<` `>` を含む DOI も正しい解決 URL にする**。このサイト内のページ | MIT | — |
 | [作用素を回す](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) | Trinity-Infinity の三篇が扱う作用素を、ブラウザの中だけで反復する。**スペクトル半径と作用素ノルムを別々に出し、収束の可否と単調減衰を分けて判定する**。固有値・特異値・連立一次方程式を外部ライブラリなしで解いている。NumPy の値と 728 件突き合わせ済み。このサイト内のページ | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
@@ -153,16 +152,18 @@
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 111 項目の検査を通します。** 依存パッケージはありません。
+このリポジトリは、**push のたびに 378 項目の検査を通します。** 依存パッケージはありません。
 
 ```
-node verification/check_site.js   # サイトの構造 35 項目
-node verification/check_doi.js    # DOI アナライザー 76 項目
+node verification/check_text.js      # 誤変換とバッジ記法
+node verification/check_contrast.js  # 配色の読みやすさ 119 項目
+node verification/check_site.js      # サイトの構造 169 項目
+node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
-**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、`doi.js` が既知以外のホストへ通信すること。
+**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、消したページへのリンクが残っていること。
 
-いちばん効くのは **「論文カードの DOI と、まとめて解析リンクの DOI が一致すること」** です。論文を足してリンクを直し忘れる、が最も起きやすい破綻なので、そこを機械で押さえています。
+いちばん効くのは **「本文が名乗っている数値と、実際に走らせた結果が一致すること」** です。検査を足したのに文章の数字だけ古い、が最も起きやすい破綻なので、そこを機械で押さえています（実際に一度起きました）。
 
 **外部リクエストを出さないことは、CSP でブラウザに強制させています。** 「そう書いてある」だけでは、注入された 1 行を止められません。
 
@@ -188,11 +189,9 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 **正の URL がひとつであること**も見ています。このサイトの正は GitHub Pages です。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見えます。`canonical` と `og:url` の食い違いも落とします。
 
-**`check_doi.js`** は DOI アナライザーの純粋な関数を、ブラウザを起こさずに検査します。正規化・抽出・ORCID のチェックディジット（ISO 7064 MOD 11-2）・掲載元 URL の組み立て・API 応答の解釈。応答の解釈は、記録した形の JSON を流し込んで確かめています。
+**`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査します。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
 
 **空振りでないことは確認済みです。** 論文カードの DOI 書き換え、外部 script の混入、存在しないページへのリンク、`hasPart` の不整合、sitemap のずれ —— 五通り壊して五通りとも落ちました。
-
-**検査していないものもあります。** DOI アナライザーが CrossRef・DataCite・OpenAlex・Semantic Scholar・ORCID に照会したときの、**応答が返ってきた場合の表示**です。制作環境からこれらの API に到達できないため、記録した形の JSON を流し込む形でしか確かめていません。**実際の応答とずれていれば、表示が崩れます。** 通信できなかった場合の動作（理由を表示してボタンが戻る）は確認済みです。
 
 ---
 
@@ -203,7 +202,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | | ライセンス | |
 | --- | --- | --- |
 | **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
-| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
+| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
 
 © 2026 根本卓哉（Takuya Nemoto）
 
@@ -219,7 +218,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させました。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
+本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させました。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
 
 **制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できます。
 

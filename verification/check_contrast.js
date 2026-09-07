@@ -17,7 +17,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const PAGES = ['index.html', 'index.en.html', 'cv.html', 'research.html',
-               'doi.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html'];
+               'trinity.html', 'notes/index.html', 'notes/index.en.html'];
 
 let pass = 0;
 const failures = [];

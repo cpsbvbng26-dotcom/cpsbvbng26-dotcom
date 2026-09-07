@@ -72,7 +72,6 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 | Repository | Content | Licence | DOI |
 | --- | --- | --- | --- |
-| [DOI Analyzer](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/doi.html) | Validates DOI syntax, infers the registrant from the prefix, **lists where the DOI can be looked up (indexes / discovery / APIs)**, queries Crossref and DataCite, **checks ORCID iDs and loads works from an ORCID record**, and exports to BibTeX and other formats. **Case, percent-encoding and URL fragments are resolved before comparison, and DOIs containing `<` `>` get a correctly encoded resolver URL.** A page on this site | MIT | — |
 | [Iterating the operator](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) | Runs the operator from the three Trinity-Infinity papers in the browser. **Reports the spectral radius and the operator norm separately**, judging convergence and monotone decay as two different conditions. Eigenvalues, singular values and the linear solve are implemented without any external library, and checked against 728 recorded NumPy results. A page on this site (in Japanese) | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | A tool that generates a static researcher profile site from a single configuration file | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
@@ -153,11 +152,13 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 **Every push runs 111 checks.** There are no dependencies to install.
 
 ```
-node verification/check_site.js   # site structure, 35 checks
-node verification/check_doi.js    # DOI analyzer, 76 checks
+node verification/check_text.js      # miscoversions and badge markup
+node verification/check_contrast.js  # colour contrast, 119 checks
+node verification/check_site.js      # site structure, 169 checks
+node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
-**`check_site.js`** catches the kind of drift that looks fixed but isn't: broken internal links, a subresource that would fetch from a third party on load, a JSON-LD `hasPart` pointing at a work that is not in the graph, a sitemap entry with no file behind it, a card count that differs between the Japanese and English pages, and `doi.js` calling a host it is not supposed to.
+**`check_site.js`** catches the kind of drift that looks fixed but isn't: broken internal links, a subresource that would fetch from a third party on load, a JSON-LD `hasPart` pointing at a work that is not in the graph, a sitemap entry with no file behind it, a card count that differs between the Japanese and English pages, and a link left behind to a page that has been removed.
 
 **"No external requests" is enforced by a Content-Security-Policy, not merely stated.** A policy written in a README cannot stop one injected line.
 
@@ -170,7 +171,7 @@ img-src 'self' data:; connect-src <the six lookup hosts>; form-action 'none'; ba
 
 The check that earns its place is **"the DOIs on the paper cards match the DOIs in the analyse-all link."** Adding a paper and forgetting to update the link is the most likely way this page quietly goes wrong, so a machine holds it.
 
-**`check_doi.js`** exercises the analyzer's pure functions without starting a browser: normalisation, extraction, the ORCID check digit (ISO 7064 MOD 11-2), building publisher record URLs, and parsing API responses. The parsers are fed recorded response shapes rather than live calls.
+**`check_trinity.js`** exercises the operator page's numerics without starting a browser, against 728 recorded NumPy results and 23 recorded contraction certificates.
 
 **The checks were confirmed not to be vacuous.** Five deliberate breakages — a changed DOI on a card, an injected external script, a link to a page that does not exist, an inconsistent `hasPart`, a stale sitemap entry — produced five failures.
 
@@ -185,7 +186,7 @@ This repository holds two kinds of thing, so it carries two licences.
 | | Licence | |
 | --- | --- | --- |
 | **Prose and structured data** — the profile text, the paper and work descriptions, `README.md`, `README.en.md`, the JSON-LD | [CC BY 4.0](LICENSE) | Free to use, including modification, with attribution |
-| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
+| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
 
 © 2026 Takuya Nemoto (根本卓哉)
 
@@ -200,7 +201,7 @@ This repository is written with [Claude Code](https://claude.com/claude-code). [
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `doi.html` / `doi.js` / `404.html` / `theme.js`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
+The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
 
 **The record of how it was made** is not only a claim — it can be checked against the repository history itself.
 

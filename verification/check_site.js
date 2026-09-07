@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', 'cv.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
+const PAGES = ['index.html', 'index.en.html', 'research.html', 'trinity.html', 'cv.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 let pass = 0;
@@ -32,7 +32,7 @@ section('1. 内部リンク');
 
 const missing = [];
 /* 相対リンクは、そのページが置かれている場所から解決する。ROOT から見ると
- * notes/ の中の ./../doi.html を見失う。 */
+ * notes/ の中の ./../trinity.html を見失う。 */
 PAGES.forEach((page) => {
   const html = read(page);
   const dir = path.dirname(path.join(ROOT, page));
@@ -104,22 +104,8 @@ section('4. 論文カードと「まとめて解析」リンク');
   const sec = html.slice(html.indexOf('id="papers"'), html.indexOf('</section>', html.indexOf('id="papers"')));
 
   const cardDois = [...sec.matchAll(/class="doi">DOI (10\.[^\s<]+)</g)].map((m) => m[1]);
-  const link = /href="\.\/doi\.html\?q=([^"]+)"/.exec(sec);
-
-  if (!link) { ok(page + ' に「まとめて解析」リンクがある', false); return; }
-  ok(page + ' に「まとめて解析」リンクがある', true);
-
-  const linked = decodeURIComponent(link[1]).split(',').filter(Boolean);
-  ok(page + ' のリンクが載せている DOI と一致する',
-     JSON.stringify(linked) === JSON.stringify(cardDois),
-     'カード ' + cardDois.length + ' 件 / リンク ' + linked.length + ' 件' +
-     (cardDois.length === linked.length ? '（順序か中身が違う）' : ''));
-
-  const label = />(\d+|[A-Za-z]+)\s*件の DOI|Analyse all (\w+) DOIs/.exec(sec);
-  if (label && label[1] && /^\d+$/.test(label[1])) {
-    ok(page + ' のリンクの件数表示が実際と合う', Number(label[1]) === cardDois.length,
-       '表示 ' + label[1] + ' / 実際 ' + cardDois.length);
-  }
+  ok(page + ' の論文カードに DOI が載っている', cardDois.length > 0,
+     cardDois.length + ' 件');
 });
 
 /* ----------------------------------------------- 5. 日本語版と英語版の対応 */
@@ -310,38 +296,26 @@ ok('CSP がページの中身と一致する', cspErrors.filter((e) => /食い�
    cspErrors.filter((e) => /食い違う/.test(e)).join(', '));
 ok('CSP が緩められていない', cspWeak.length === 0, cspWeak.join(', '));
 
-// 通信先は doi.js が実際に叩くホストと一致していること
-const doiHosts = [...new Set([...read('doi.js').matchAll(/fetch\(\s*'https:\/\/([^/']+)/g)].map((m) => m[1]))].sort();
-const cspHosts = cspLib.CONNECT.map((u) => u.replace('https://', '')).sort();
-ok('CSP の connect-src が doi.js の通信先と一致する',
-   doiHosts.every((h) => cspHosts.indexOf(h) >= 0),
-   'doi.js: ' + doiHosts.join(', ') + ' / CSP: ' + cspHosts.join(', '));
+// 外部へ通信するページはもう無い。connect-src はどのページでも 'none' であること。
+ok("すべてのページの connect-src が 'none'",
+   PAGES.every((p) => /connect-src 'none'/.test(read(p))),
+   PAGES.filter((p) => !/connect-src 'none'/.test(read(p))).join(', '));
+ok('CSP の許可ホストの一覧が空である', cspLib.CONNECT.length === 0,
+   cspLib.CONNECT.join(', '));
 
 /* ------------------------------------------------------------- 7. ナビ */
 section('7. ナビ');
 
 PAGES.filter((p) => p !== '404.html').forEach((page) => {
   const html = read(page);
-  ok(page + ' のナビから DOI ページへ行ける', /href="\.\/(?:\.\.\/)?doi\.html"/.test(html));
+  ok(page + ' のナビから作用素のページへ行ける',
+     /href="\.\/(?:\.\.\/)?trinity\.html"/.test(html));
+  ok(page + ' に消したページへのリンクが残っていない',
+     !/doi\.html/.test(html));
 });
 
-/* ---------------------------------------------------------- 8. doi.js */
-section('8. doi.js');
-
-const js = read('doi.js');
-ok('doi.js が読み込まれている', /<script src="\.\/doi\.js"><\/script>/.test(read('doi.html')));
-ok('通信するのは既知の 4 ホストだけ',
-   (() => {
-     const hosts = [...js.matchAll(/fetch\(\s*'https:\/\/([^/']+)/g)].map((m) => m[1]);
-     const allowed = ['api.crossref.org', 'api.datacite.org', 'api.openalex.org',
-                      'api.semanticscholar.org', 'opencitations.net', 'pub.orcid.org'];
-     return hosts.every((h) => allowed.indexOf(h) >= 0);
-   })(),
-   [...new Set([...js.matchAll(/fetch\(\s*'https:\/\/([^/']+)/g)].map((m) => m[1]))].join(', '));
-ok('利用者のメールアドレスを送っていない', !/mailto=/.test(js) && !/@privaterelay/.test(js));
-
-/* ------------------------------------------------------ 9. trinity.js */
-section('9. trinity.js');
+/* ------------------------------------------------------ 8. trinity.js */
+section('8. trinity.js');
 
 const tjs = read('trinity.js');
 ok('trinity.js が読み込まれている',
@@ -531,7 +505,7 @@ const OFF_TOPIC = [
   ['家系|家柄|末裔|血統|[Bb]loodline', '家系'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
-const PUBLIC_FACES = ENTRIES.concat(['research.html', 'doi.html', 'trinity.html',
+const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
                                      'README.md', 'README.en.md']);
 const offenders = [];
 PUBLIC_FACES.forEach((f) => {
@@ -624,7 +598,7 @@ const entryOf = (md) => {
 section('12. 構造化データとページの一致');
 
 const LD_PAGES = ['index.html', 'index.en.html', 'notes/index.html', 'notes/index.en.html',
-  'cv.html', 'research.html', 'doi.html', 'trinity.html'];
+  'cv.html', 'research.html', 'trinity.html'];
 
 function graphOf(html) {
   const m = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html);

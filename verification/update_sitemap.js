@@ -28,7 +28,6 @@ const PAGES = [
   { file: 'index.en.html', loc: 'index.en.html', priority: '0.9' },
   { file: 'research.html', loc: 'research.html', priority: '0.8' },
   { file: 'trinity.html', loc: 'trinity.html', priority: '0.7' },
-  { file: 'doi.html', loc: 'doi.html', priority: '0.7' },
   { file: 'notes/index.html', loc: 'notes/index.html', priority: '0.5' },
   { file: 'notes/index.en.html', loc: 'notes/index.en.html', priority: '0.5' },
   { file: 'cv.html', loc: 'cv.html', priority: '0.4' },

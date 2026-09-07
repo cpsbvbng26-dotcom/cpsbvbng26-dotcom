@@ -16,15 +16,10 @@
 
 const crypto = require('crypto');
 
-/* doi.js が照会するときだけ触れる先。ここに無いホストへは通信できない。 */
-const CONNECT = [
-  'https://api.crossref.org',
-  'https://api.datacite.org',
-  'https://api.openalex.org',
-  'https://api.semanticscholar.org',
-  'https://opencitations.net',
-  'https://pub.orcid.org'
-];
+/* 外部へ照会するページが無くなったので、いまは空である。
+ * 仕組みは残す —— 通信するページを足すときは、ここに書いた先だけが通る。
+ * 書き忘れればブラウザが止める。 */
+const CONNECT = [];
 
 function sha256(text) {
   return "'sha256-" + crypto.createHash('sha256').update(text, 'utf8').digest('base64') + "'";
@@ -41,7 +36,7 @@ function inlineBlocks(html, tag) {
 }
 
 function build(html, opts) {
-  const needsConnect = (opts && opts.connect) || /doi\.js/.test(html);
+  const needsConnect = !!(opts && opts.connect) && CONNECT.length > 0;
 
   const scriptHashes = inlineBlocks(html, 'script').map(sha256);
   const styleHashes = inlineBlocks(html, 'style').map(sha256);
