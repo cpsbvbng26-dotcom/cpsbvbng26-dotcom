@@ -140,6 +140,7 @@
 - Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [論文リポジトリ](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - LinkedIn — [職務プロフィール](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
+- Wantedly — [職務プロフィール](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - ランサーズ — [受注プロフィール](https://www.lancers.jp/profile/Itizyou)
 - ココナラ — [受注プロフィール](https://coconala.com/users/4974247)
