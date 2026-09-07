@@ -1,0 +1,70 @@
+# cpsbvbng26-dotcom
+
+プロフィールサイト。GitHub Pages で配信している入口である。
+**このリポジトリ群 9 つ全体の横断検査（`verification/check_ecosystem.js`）も
+ここに置いてある。**
+
+<!-- 共通ここから -->
+<!-- この区間は 9 つのリポジトリで一字一句同じである。
+     cpsbvbng26-dotcom/verification/check_ecosystem.js が一致を見ている。
+     一つだけ直すと落ちる。直すときは全部直す。 -->
+
+## 決めごと
+
+**破ると公開物が壊れる順に並べてある。上から効く。**
+
+1. **DOI を推測で埋めない。**利用者から受け取った番号だけを書く。作業環境からは
+   `zenodo.org` も `doi.org` も DataCite も見えない（届くのは GitHub だけ）。
+   確かめていないなら「確かめていない」と書く。番号を当てにいかない。
+2. **公開済みの論文 PDF を改変しない・再生成しない。**凍結された成果物である。
+   誤りが見つかったら PDF ではなく正誤表のほうを直し、直せないものは
+   `self-correction` に記録する。
+3. **生成されたファイルを手で編集しない。**もとの設定を直して生成し直す。
+   どのファイルが生成物かは、このあとの「このリポジトリ」に書いてある。
+4. **検証スクリプトの期待値・乱数種を、通すために変えない。**落ちたら中身を直す。
+   検査を緩めて通すのは、検査を消すのと同じである。
+5. **散文に数を書いたら、その数を機械で確かめられるようにする。**
+   「NN 項目」「NN 件」「NN 通り」を書き足したら、実際の数と突き合わせる検査も足す。
+   ここが、このリポジトリ群でいちばん頻繁にずれる。
+6. **自称の肩書きを書かない。**使わないと決めた語は各リポジトリの `check_text`
+   にある。凍結した紙面に印字されている分はそのまま（改変しない）。
+7. **ライセンスを勝手に変えない。**散文と論文は CC BY 4.0、実装は MIT。
+8. **AI 支援の開示は消さない。Claude を著者にしない。**
+9. **秘密情報・個人の連絡先を新規に公開しない。**
+10. **本文に書かないもの** —— 家系、コンサルタントの肩書き、ライブ配信、
+    シーランド公国の称号、在学中の学校名。
+11. **JACAR の原資料画像を追加しない。**防衛省防衛研究所 戦史研究センターへの
+    連絡が先である。
+12. **Zenodo での公開・新しい版の作成は利用者が行う。**こちらは番号を受け取って
+    書くだけ。GitHub の Release を勝手に作らない。
+13. **コミットは小さく、ファイルの種別ごとに分ける。**生成物と設定は別のコミットにする。
+
+## 環境について
+
+- `gh` は使えない。GitHub の操作は `mcp__github__*` を使う。
+- **タグの push は 403 で通らない。**Release の作成は利用者の手作業になる。
+- 外に出られるのは GitHub だけ。他のホストは egress proxy が塞いでいる。
+
+<!-- 共通ここまで -->
+
+## このリポジトリ
+
+```
+node verification/check_text.js        # 誤変換・使わないと決めた語
+node verification/check_contrast.js    # 配色（WCAG の比）
+node verification/check_site.js        # サイトの構造
+node verification/check_trinity.js     # 作用素のページの数値
+node verification/check_ecosystem.js   # 9 リポジトリ横断（要: 兄弟ディレクトリ）
+bash verification/check_all.sh         # 9 リポジトリの検査を全部回す
+```
+
+**生成物 —— 手で編集しない。**
+
+| ファイル | 作り方 |
+| --- | --- |
+| `index.html` / `index.en.html` / `cv.html` | `researcher-profile` の `site.json` / `site.en.json` / `cv.json` を直して `PROFILE_CONFIG=./site.json PROFILE_OUT=<出力先> node build.js`、出力をここへ写す |
+| `notes/*.html` | 同じく `researcher-profile` の `notes.json` / `notes.en.json` |
+| `sitemap.xml` | `node verification/update_sitemap.js` |
+| CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
+
+外部へリクエストを出さない。`default-src 'none'`、`'unsafe-inline'` を使わない。
