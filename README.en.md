@@ -69,7 +69,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | Generalises the blend to vary by coordinate without losing uniqueness, and adds a characterisation of the sustainable payoff set and a fully worked spring-network example | Revised — Aug 2026 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | Shows the convergence result never required three elements — it holds for every n ≥ 2 — and gives a retrospective on what the series established and what it withdrew | Aug 2026 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
-> **Note on Series I.** Series II and Series III cite the revised Series I with `10.5281/zenodo.17173703`, which is the DOI of the **2025 original that this series corrects**. The revised edition is `10.5281/zenodo.22058624`. See [ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md).
+> **Note on Series I.** Series II and Series III cite the revised Series I with `10.5281/zenodo.17173703`, which is the DOI of the **2025 original that this series corrects**. The revised edition is `10.5281/zenodo.22058624`. See [ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md). **Nothing withdrawn has been deleted.**
 
 ---
 

@@ -325,6 +325,79 @@ PAGES.filter((p) => p !== '404.html').forEach((page) => {
   ok(page + ' のナビから作用素ページへ行ける', /href="\.\/trinity\.html"/.test(read(page)));
 });
 
+/* -------------------------------------------------- 10. 入口としての約束
+ *
+ * この公開リポジトリが守ると決めたことを、覚えていることではなく検査にする。
+ * 文面はいずれ書き換わる。約束のほうを固定する。
+ */
+section('10. 入口としての約束');
+
+const ENTRIES = ['index.html', 'index.en.html'];
+
+/* 未査読であることを隠さない。<section class="wrap hero"> の中に置いてあること。
+ * ここを '<hr class="rule">' で切ると head と JSON-LD まで入ってしまい、
+ * 本文から消しても検査が素通りする。実際に一度そうなった。 */
+const heroOf = (html) => {
+  const i = html.indexOf('<section class="wrap hero">');
+  if (i < 0) return '';
+  const j = html.indexOf('</section>', i);
+  return html.slice(i, j < 0 ? html.length : j);
+};
+ENTRIES.forEach((page) => {
+  const hero = heroOf(read(page));
+  ok(page + ' のヒーローに <section class="wrap hero"> がある', hero.length > 0);
+  ok(page + ' のヒーローで査読前であることを明示している',
+     /(査読を受けていない|査読前)/.test(hero) || /not been peer reviewed/i.test(hero),
+     hero.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 90));
+});
+
+/* 30 秒で何の場所か分かること —— 論文と制作物が、修了証より前にあること。 */
+ENTRIES.forEach((page) => {
+  const html = read(page);
+  const at = (id) => html.indexOf('<section id="' + id + '"');
+  ok(page + ' で論文と制作物が修了証より前にある',
+     at('papers') > 0 && at('works') > 0 && at('credentials') > 0 &&
+     at('papers') < at('credentials') && at('works') < at('credentials'),
+     '論文 ' + at('papers') + ' / 制作物 ' + at('works') + ' / 修了証 ' + at('credentials'));
+});
+
+/* 一つの主張に反論できること —— 主張・証拠・反証の手順・撤回、の四つが揃っていること。 */
+ENTRIES.forEach((page) => {
+  const html = read(page);
+  ok(page + ' に主張の欄がある', /class="claim[ "]/.test(html));
+  ok(page + ' に反証の手順が書いてある',
+     /(どうすれば覆るか|What would refute it)/.test(html));
+  ok(page + ' に撤回の所在が書いてある', /ERRATA\.md/.test(html));
+  ok(page + ' の主張が作用素のページに繋がっている',
+     /class="claim[ "][\s\S]*?trinity\.html/.test(html));
+});
+
+/* 撤回した内容を消さない。ERRATA への導線が README 両方にあること。 */
+['README.md', 'README.en.md'].forEach((f) => {
+  ok(f + ' が ERRATA を指している', /ERRATA\.md/.test(read(f)));
+  ok(f + ' が撤回した初版の DOI に触れている', /10\.5281\/zenodo\.17173703/.test(read(f)));
+});
+
+/* 本文の核に置かないと決めたもの。出てきたら落とす。
+ * 「配信」は配信先（デプロイ先）の意味で使っているので、その用法だけ除く。 */
+const OFF_TOPIC = [
+  ['シーランド|[Ss]ealand|公国|[Pp]rincipality', 'シーランド称号'],
+  ['ライブ配信|生放送|ツイキャス|[Tt]witcast|[Tt]witch\\.tv|ニコ生', 'ライブ配信活動'],
+  ['家系|家柄|末裔|血統|[Bb]loodline', '家系'],
+  ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
+];
+const PUBLIC_FACES = ENTRIES.concat(['research.html', 'doi.html', 'trinity.html',
+                                     'README.md', 'README.en.md']);
+const offenders = [];
+PUBLIC_FACES.forEach((f) => {
+  const text = read(f);
+  OFF_TOPIC.forEach(([re, label]) => {
+    const m = text.match(new RegExp(re, 'g'));
+    if (m) offenders.push(f + ': ' + label + '（' + [...new Set(m)].join(' ') + '）');
+  });
+});
+ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
+
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));
 if (failures.length) {

@@ -72,6 +72,8 @@
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
+> **Series I についての注記。** Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いています。これは**この系列が訂正した 2025 年の初版**の DOI です。改訂版は `10.5281/zenodo.22058624` です。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見てください。**撤回した内容は消していません。**
+
 ---
 
 ✴︎Works✴︎
