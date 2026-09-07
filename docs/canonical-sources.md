@@ -25,8 +25,13 @@
 |---|---|---|
 | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779` |
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818` |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
 
 SSRN 版は同一本文です。片方だけを直すと食い違うため、**Zenodo を正**とします。
+
+Knowledge Commons のレコードも同一論文の別の所在です。**このレコードが DOI を
+持つかどうかは未確認です**（外部への接続が遮断されているため、この環境から
+確かめられません）。持っているなら、URL ではなく DOI を書いてください。
 
 ### 引用してはいけない DOI
 
