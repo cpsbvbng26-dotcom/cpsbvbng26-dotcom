@@ -8,10 +8,13 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 136 項目 / サイトの構造 152 項目 / DOI アナライザー 157 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 136 項目 / サイトの構造 171 項目 / DOI アナライザー 157 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # sitemap の lastmod を git の記録と突き合わせるため、履歴が要る。
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22

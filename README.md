@@ -173,6 +173,8 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 **`unsafe-inline` は使っていません。** インラインの `<style>` と `<script>` は SHA-256 のハッシュで名指しして許しています。中身を書き換えるとハッシュが変わるので、[`verification/update_csp.js`](verification/update_csp.js) で入れ直します。**入れ忘れると検査が落ち、ブラウザもそのスクリプトの実行を拒みます。**
 
+ページを足したり作り直したりしたときは、`node verification/update_sitemap.js` で `sitemap.xml` も入れ直します。`lastmod` は git の記録から入るので、手で書いて古くなることがありません（実際に 2 ページぶん古くなっていたので、こうしました）。**ページの変更と `sitemap.xml` は同じコミットに入れてください。**
+
 実際に何が止まるかは、攻撃を模して確かめました。
 
 | | |

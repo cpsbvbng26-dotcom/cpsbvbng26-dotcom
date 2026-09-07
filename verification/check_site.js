@@ -194,6 +194,67 @@ const shouldList = PAGES.filter((p) => p !== '404.html');
 const notListed = shouldList.filter((p) => !inSitemap.has(p));
 ok('公開ページがすべて sitemap にある', notListed.length === 0, notListed.join(', '));
 
+/* lastmod は手で書くと必ず古くなる。実際に 2 ページぶん古かった。
+ * verification/update_sitemap.js が git から入れ直すので、その結果と突き合わせる。 */
+(() => {
+  const entries = [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => {
+    const loc = /<loc>([^<]+)<\/loc>/.exec(m[1]);
+    const mod = /<lastmod>([^<]+)<\/lastmod>/.exec(m[1]);
+    return { loc: loc && loc[1], mod: mod && mod[1] };
+  });
+  ok('sitemap のすべての URL に lastmod がある',
+     entries.every((e) => e.mod), entries.filter((e) => !e.mod).map((e) => e.loc).join(', '));
+
+  const badFormat = entries.filter((e) => !/^\d{4}-\d{2}-\d{2}$/.test(e.mod || ''));
+  ok('lastmod が YYYY-MM-DD の形をしている', badFormat.length === 0,
+     badFormat.map((e) => e.loc + ' → ' + e.mod).join(', '));
+
+  const today = new Date().toISOString().slice(0, 10);
+  const future = entries.filter((e) => e.mod > today);
+  ok('lastmod が未来の日付になっていない', future.length === 0,
+     future.map((e) => e.loc + ' → ' + e.mod).join(', '));
+
+  /* git が最後にそのファイルを触った日より古い lastmod は、書き換えを忘れた印。 */
+  const cp = require('child_process');
+  const gitDate = (file) => {
+    try {
+      return cp.execFileSync('git', ['log', '-1', '--format=%cs', '--', file],
+                             { cwd: ROOT, encoding: 'utf8' }).trim();
+    } catch (e) { return ''; }
+  };
+  const stale = [];
+  let unknown = 0;
+  entries.forEach((e) => {
+    const rel = e.loc.slice(BASE.length) || 'index.html';
+    const d = gitDate(rel);
+    if (!d) { unknown++; return; }
+    if (e.mod < d) stale.push(rel + '  sitemap ' + e.mod + ' / git ' + d);
+  });
+  ok('lastmod が git の記録より古くない', stale.length === 0, stale.join(' | '));
+  ok('すべてのページの履歴が読めている（浅いクローンではない）', unknown === 0,
+     unknown + ' ページの日付が取れませんでした。fetch-depth: 0 が要ります');
+})();
+
+/* --------------------------------------------- 6c. 言語版の相互参照 */
+section('6c. hreflang');
+
+/* 日本語版と英語版がある組は、両方から両方を指す。片方だけだと、検索側は
+ * 対応を認めない。相互になっているかまで見る。 */
+[['index.html', 'index.en.html', ''],
+ ['notes/index.html', 'notes/index.en.html', 'notes/']].forEach(([jaPage, enPage, dir]) => {
+  const jaUrl = BASE + (dir ? dir + 'index.html' : '');
+  const enUrl = BASE + dir + 'index.en.html';
+  [jaPage, enPage].forEach((page) => {
+    const h = read(page);
+    const alts = [...h.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
+      .reduce((acc, m) => (acc[m[1]] = m[2], acc), {});
+    ok(page + ' が ja と en の両方を指している',
+       alts.ja === jaUrl && alts.en === enUrl,
+       'ja ' + alts.ja + ' / en ' + alts.en);
+    ok(page + ' に x-default がある', alts['x-default'] === jaUrl, alts['x-default']);
+  });
+});
+
 /* ------------------------------------------------- 6b. 正の URL がひとつ */
 section('6b. 正の URL');
 
@@ -562,7 +623,8 @@ const entryOf = (md) => {
  */
 section('12. 構造化データとページの一致');
 
-const LD_PAGES = ['index.html', 'index.en.html', 'notes/index.html', 'notes/index.en.html', 'cv.html'];
+const LD_PAGES = ['index.html', 'index.en.html', 'notes/index.html', 'notes/index.en.html',
+  'cv.html', 'research.html', 'doi.html', 'trinity.html'];
 
 function graphOf(html) {
   const m = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html);
