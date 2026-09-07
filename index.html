@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-J3TL7WQUVDOKyCLXyWHLeeUtuwqRN56+lB816O54BkQ=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-uHsPFQmi/vCp3aagOU6WGSfPLnNARwQPaZ5bBelsk4w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-J3TL7WQUVDOKyCLXyWHLeeUtuwqRN56+lB816O54BkQ=' 'sha256-RFiniM6aY9YHDxEOqRpAwKWz1aEr1m+yXcwGtWnR7xc='; style-src 'sha256-KNir719qhYxJgtOpfcB43UDuOf4OF6XLtTx76nFN00Y='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="google-site-verification" content="kblg8QQ1xlSNozJKtCEDDiEoxHo3A74_M99BbNTcrr8">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）のプロフィール。自律と自己統治をめぐる査読前のプレプリント 7 篇、公開しているリポジトリ、および修了証を掲載しています。">
@@ -601,6 +601,54 @@ header::after {
   color: var(--muted); font-size: 1rem;
 }
 
+/* ---------- 事実の欄 ----------
+   ヒーローで、数えられる事実と、著者自身の解釈を分けて置く。
+   混ぜると、どちらも検証できないものになる。 */
+.facts { margin: 1.8rem 0 0; max-width: 38rem; display: grid; gap: 0; }
+.facts .fact {
+  display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem;
+  padding: .55rem 0; border-bottom: 1px solid var(--line-soft);
+}
+.facts dt { margin: 0; font-size: .74rem; letter-spacing: .1em; color: var(--faint); padding-top: .2rem; }
+.facts dd { margin: 0; font-size: .86rem; line-height: 1.85; color: var(--muted); }
+.facts dd b { color: var(--text); }
+.facts dd a { color: var(--accent); }
+.facts .faint { color: var(--faint); }
+
+/* ---------- 主張 ----------
+   一つだけ出す。反証の手順まで書いていなければ、主張ではなく宣伝である。 */
+.claim {
+  max-width: 42rem;
+  padding: 1.5rem 1.6rem;
+  background: var(--wall-bg);
+  border-left: 3px solid var(--ember);
+  border-radius: 0 .5rem .5rem 0;
+}
+.claim-what { margin: 0 0 1.4rem; font-size: .95rem; line-height: 1.95; }
+.claim-what code, .claim-kv code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em; color: var(--text);
+}
+.claim-kv { margin: 0; display: grid; gap: 0; }
+.claim-kv > div {
+  display: grid; grid-template-columns: 9rem 1fr; gap: 1rem;
+  padding: .75rem 0; border-top: 1px solid var(--line);
+}
+.claim-kv dt { margin: 0; font-size: .76rem; letter-spacing: .08em; color: var(--faint); padding-top: .25rem; }
+.claim-kv dd { margin: 0; font-size: .85rem; line-height: 1.9; color: var(--muted); }
+.claim-kv dd b { color: var(--text); }
+.claim-kv dd a { color: var(--accent); }
+.claim-kv dd .faint { color: var(--faint); }
+.claim-foot {
+  margin: 1.3rem 0 0; padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: .82rem; line-height: 1.85; color: var(--faint);
+}
+
+@media (max-width: 40rem) {
+  .facts .fact, .claim-kv > div { grid-template-columns: 1fr; gap: .15rem; }
+}
+
 /* 仕切りは胸壁 —— 狭間を切った上端と壁体。石は不透明で火を遮り、
    狭間の隙間からだけ下の火が漏れる。画像は使わない。 */
 .rule {
@@ -854,12 +902,50 @@ footer::before {
     <p class="romaji reveal">TAKUYA NEMOTO</p>
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <p class="lead reveal">
-      コンピュータサイエンスと人工知能を学びながら、査読前のプレプリントを公開しています。
-      書くものの問いは、おおむね一つに戻ります —— <strong>自分の生をどこまで自分で治められるか</strong>。
-      独身を自己陶冶の型として読み直す一篇、断片化した自己の統合を試みる一篇、その統合を手放して断片に住まう一篇。
-      もう一つの関心は、主張を検証にかけたとき何が残るかです。自分の枠組みを証明と実行可能なコードに通し、
-      残らなかったものも記録しています。
+      コンピュータサイエンスと人工知能を学んでいます。<strong>公開しているのは、いずれも査読を受けていないプレプリントです。</strong>
+      哲学の三篇、史料ノート一篇、数学の三篇、それに検証用のコードが四つ。すべて DOI か GitHub で辿れます。
     </p>
+
+    <div class="facts reveal">
+      <div class="fact"><dt>論文</dt><dd>7 篇（<a href="#papers">下</a>）。<b>すべて査読前</b>。DOI は Zenodo が正</dd></div>
+      <div class="fact"><dt>コード</dt><dd>4 リポジトリ。検査は CI で毎回走る（<a href="#works">下</a>）</dd></div>
+      <div class="fact"><dt>撤回</dt><dd>Trinity-Infinity 系列が何を撤回したかは、消さずに<a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md" target="_blank" rel="noopener">残してあります</a></dd></div>
+      <div class="fact"><dt>読み</dt><dd><span class="faint">以下は著者自身の解釈です。</span>書くものの問いは、おおむね一つに戻ります —— 自分の生をどこまで自分で治められるか</dd></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">反論するなら、ここから</h2>
+      <p>この場所でいちばん確かめやすい主張を一つ出します。同意も反証も、手元で試せます。</p>
+    </div>
+
+    <div class="claim reveal">
+      <p class="claim-what">Trinity-Infinity Series I–III は、収束の条件として作用素ノルム <code>‖DQ‖₂ &lt; 1</code> を置いた。<strong>これは十分条件であって、必要条件ではない。</strong>収束の必要十分条件はスペクトル半径 <code>ρ(DQ) &lt; 1</code> のほうである。</p>
+
+      <dl class="claim-kv">
+        <div>
+          <dt>誰の主張か</dt>
+          <dd>三篇を書いたのも、この訂正を出しているのも同じ人間です。自分の枠組みに対する訂正であって、新しい理論ではありません。<span class="faint">非正規行列の過渡的増幅も、収束条件が ρ &lt; 1 であることも、数値線形代数の標準的な事実です。</span></dd>
+        </div>
+        <div>
+          <dt>証拠</dt>
+          <dd><code>Q = [[1,40],[0,1]]</code>、<code>a = (0.5, 0.5)</code> のとき ρ = 0.5 で収束するが、‖A‖₂ = 20.01 で三篇の条件は破れている。誤差は第 2 段で初期値の 11.8 倍まで増えてから落ちる。<a href="./trinity.html">その場で回せます</a>（行列を打ち替えられます）。実装は <a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a>、検査 22 項目。</dd>
+        </div>
+        <div>
+          <dt>どうすれば覆るか</dt>
+          <dd>次のどちらか一つを出してください。<b>(1)</b> ρ(A) &lt; 1 なのに、ある初期値から収束しない A と b。<b>(2)</b> ρ(A) ≥ 1 なのに、すべての初期値から一意の点に収束する A と b。<a href="./trinity.html">作用素のページ</a>に打ち込めば、その場で判定が出ます。</dd>
+        </div>
+        <div>
+          <dt>すでに撤回したもの</dt>
+          <dd>「三要素であること」が本質だという読みは、Series III で撤回済みです（任意の n ≥ 2 で成立）。Series I 初版の誤りと、Series II・III が誤った DOI を引いている件は <a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md" target="_blank" rel="noopener">ERRATA.md</a> にあります。<b>消していません。</b></dd>
+        </div>
+      </dl>
+
+      <p class="claim-foot">哲学の三篇はこの形で反証できる種類のものではありません。査読も受けていません。読んで反論する以外の道はなく、それでよいと考えています。</p>
+    </div>
   </section>
 
   <hr class="rule">
