@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -18,6 +18,39 @@
 <meta property="og:site_name" content="根本卓哉 | Takuya Nemoto">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html#app",
+      "name": "作用素を回す",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
+      "description": "Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、ブラウザの中だけで反復する道具。スペクトル半径と作用素ノルムを別々に出し、収束の可否と誤差が単調に減衰するかを分けて判定する。三篇の議論が成り立たない領域では、リアプノフ方程式を解いて縮小写像になる重み付きノルムを構成し、その縮小定数と誤差の上界を出す。固有値は Householder 変換とシフト付き QR 法、特異値は Jacobi 回転、連立一次方程式は部分ピボット付き Gauss 消去、コレスキー分解も含めて、いずれも外部ライブラリを使わずに解いている。外部へのリクエストは無い。",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScript",
+      "isAccessibleForFree": true,
+      "license": "https://opensource.org/licenses/MIT",
+      "inLanguage": "ja",
+      "author": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+      },
+      "isPartOf": {
+        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person",
+      "name": "根本卓哉",
+      "alternateName": "Takuya Nemoto",
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/"
+    }
+  ]
+}
+</script>
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#faf9f7">
 <style>
