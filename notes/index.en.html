@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Y7/X2IGjdZCw49kabT7P6kzjlD8ypWWxjkAHykJhvt8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Z/R2KHoduflJeD0CZe6pu3/zXYSfRc5Dk3w/rPo5sb0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Notes | Takuya Nemoto</title>
 <meta name="description" content="What is not on the front page: three papers in philosophy, a naval gazette source note, and repositories outside the core. Moved here, not deleted.">
 <meta name="robots" content="index, follow">
@@ -637,6 +637,13 @@ footer::before {
 .lead a, .issuer a, .sec-head p a { text-decoration: underline; text-underline-offset: .15em; }
 .facts dd a:hover, .claim-kv dd a:hover, .notes-list a:hover,
 .prose a:hover, .lead-block a:hover, .lead a:hover { text-decoration-thickness: 2px; }
+
+/* 同じ資料の別の所在。DOI の下に一行で並べる。 */
+.cert .where {
+  margin: .2rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .72rem; letter-spacing: .01em; color: var(--faint);
+}
 </style>
 </head>
 <body>
@@ -683,6 +690,7 @@ footer::before {
         <p class="alt">An Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life</p>
         <p class="issuer">Argues that the demographic-necessity case for treating sexual activity as obligatory does not survive the antinatalist critique, and defends celibacy as a discipline of autonomous, self-sustaining well-being.</p>
         <p class="doi">DOI 10.5281/zenodo.22058254</p>
+        <p class="where">SSRN 10.2139/ssrn.7358779　／　PhilArchive NEMTNA</p>
         <span class="verify">Read on Zenodo</span>
       </a>
       <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener">
@@ -691,6 +699,7 @@ footer::before {
         <p class="alt">An Exploratory Essay on Personal Imperialism and Spiritual Sovereignty</p>
         <p class="issuer">Assembles a reflexive account of self-integration from Kantian legislation, Nietzschean revaluation and J&amp;uuml;ngerian mobilisation, treating the tension between them as the structure rather than a defect.</p>
         <p class="doi">DOI 10.5281/zenodo.22057583</p>
+        <p class="where">SSRN 10.2139/ssrn.7358818　／　PhilArchive NEMMOI</p>
         <span class="verify">Read on Zenodo</span>
       </a>
       <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener">
@@ -699,6 +708,7 @@ footer::before {
         <p class="alt">A Philosophy of Fragments for Solitary Spiritual Autonomy</p>
         <p class="issuer">Treats life, faith, society, thought and finitude as discrete fragments rather than one continuous story, and builds a discipline for inhabiting fragmentation rather than repairing it.</p>
         <p class="doi">DOI 10.5281/zenodo.22064241</p>
+        <p class="where">PhilArchive NEMFSI</p>
         <span class="verify">Read on Zenodo</span>
       </a>
       <a class="cert reveal" href="https://doi.org/10.5281/zenodo.22055709" target="_blank" rel="noopener">
@@ -707,6 +717,7 @@ footer::before {
         <p class="alt">A Note on the Investiture List of 11 September 1943 in the Naval Gazette (Internal Circulation Only), Extra Edition</p>
         <p class="issuer">Transcribes a single investiture entry for an Imperial Japanese Navy lieutenant from a gazette held by JACAR, and separates what the document establishes from what it does not.</p>
         <p class="doi">DOI 10.5281/zenodo.22055709</p>
+        <p class="where">Knowledge Commons q36z2-98e12</p>
         <span class="verify">Read on Zenodo</span>
       </a>
     </div>
