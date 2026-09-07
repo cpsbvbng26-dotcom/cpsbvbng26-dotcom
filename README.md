@@ -44,6 +44,8 @@
 
 このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html) に移してあります。
 
+トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力です。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回してください。
+
 以下は一覧です。急がないなら読んでください。
 
 ---

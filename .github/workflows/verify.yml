@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / サイトの構造 123 項目 / DOI アナライザー 157 項目 / 作用素 63 項目
+    name: 誤変換 / サイトの構造 129 項目 / DOI アナライザー 157 項目 / 作用素 63 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

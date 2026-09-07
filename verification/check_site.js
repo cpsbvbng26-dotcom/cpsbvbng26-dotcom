@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
+const PAGES = ['index.html', 'index.en.html', 'research.html', 'doi.html', 'trinity.html', 'cv.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 let pass = 0;
@@ -386,13 +386,20 @@ ENTRIES.forEach((page) => {
   ok(page + ' の核の節に、核でないものが混ざっていない', leaked.length === 0, leaked.join(', '));
 });
 
+/* 資格・バッジは /cv にある。入口にも notes にも無いこと。 */
+ok('cv.html に修了証 7 件がある',
+   (read('cv.html').match(/openbadge-global|courses\.edx\.org\/certificates/g) || []).length >= 7);
+ok('cv.html から核へ戻れる', /href="\.\/index\.html"/.test(read('cv.html')));
+ENTRIES.concat(['notes/index.html', 'notes/index.en.html']).forEach((f) => {
+  ok(f + ' に修了証のバッジが無い',
+     !/openbadge-global|courses\.edx\.org\/certificates/.test(read(f)));
+});
+
 /* 移したものが notes に全部あること。消していないことを、数で確かめる。 */
 [['notes/index.html', 'ja'], ['notes/index.en.html', 'en']].forEach(([f]) => {
   const html = read(f);
   const absent = NOT_CORE.filter((k) => html.indexOf(k) < 0);
   ok(f + ' に、核から外したものが全部ある', absent.length === 0, absent.join(', '));
-  ok(f + ' に修了証 7 件がある',
-     (html.match(/openbadge-global|courses\.edx\.org\/certificates/g) || []).length >= 7);
   ok(f + ' から核へ戻れる', /href="\.\/\.\.\/index(\.en)?\.html/.test(html));
 });
 
