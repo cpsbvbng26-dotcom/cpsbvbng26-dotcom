@@ -512,6 +512,78 @@ const entryOf = (md) => {
      (md.match(/<details>/g) || []).length >= 2);
 });
 
+/* ---------------------------------- 12. 構造化データとページの一致
+ *
+ * JSON-LD は機械にしか見えない。ページに出していないものを、そこだけで
+ * 主張できてしまう。修了証のバッジを本文から外したとき、hasCredential 7 件が
+ * トップに残っていた。見えないところに残すのは、外したことにならない。
+ */
+section('12. 構造化データとページの一致');
+
+const LD_PAGES = ['index.html', 'index.en.html', 'notes/index.html', 'notes/index.en.html', 'cv.html'];
+
+function graphOf(html) {
+  const m = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html);
+  if (!m) return null;
+  try { return JSON.parse(m[1])['@graph'] || []; } catch (e) { return null; }
+}
+
+LD_PAGES.forEach((page) => {
+  const html = read(page);
+  const graph = graphOf(html);
+  if (!graph) { ok(page + ' の JSON-LD が読める', false); return; }
+  const body = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+
+  /* @graph が語っている資料は、そのページの本文にも出ていること。
+   *
+   * 見るのはノード単位である。sameAs は同じ資料の別の識別子（Zenodo と SSRN の
+   * ような）で、本文がそのうち一つを載せていれば、その資料は出ている。
+   * DOI 単位で見ると、載せない側の識別子まで落とすことになる。 */
+  const nodeDois = (n) => [n.identifier, n.url]
+    .concat(n.sameAs ? [].concat(n.sameAs) : [])
+    .filter((x) => typeof x === 'string' && x.indexOf('doi.org/') >= 0)
+    .map((u) => u.replace(/^https?:\/\/doi\.org\//, ''));
+  const orphan = graph
+    .filter((n) => nodeDois(n).length)
+    .filter((n) => !nodeDois(n).some((d) => body.indexOf(d) >= 0))
+    .map((n) => n.name || n['@type']);
+  ok(page + ' の JSON-LD が、本文に無い資料を主張していない',
+     orphan.length === 0, orphan.join(', '));
+
+  /* 修了証は cv.html にだけある。他のページの JSON-LD が持っていないこと。 */
+  const hasCred = graph.some((n) => n.hasCredential);
+  if (page === 'cv.html') {
+    ok('cv.html の JSON-LD が修了証を持っている', hasCred);
+  } else {
+    ok(page + ' の JSON-LD が修了証を持っていない', !hasCred);
+  }
+});
+
+/* 核から外した資料は、notes の JSON-LD が引き継いでいること。
+ * 移したつもりで、どちらからも消えているのが一番まずい。 */
+(() => {
+  const moved = ['10.5281/zenodo.22058254', '10.5281/zenodo.22057583',
+                 '10.5281/zenodo.22064241', '10.5281/zenodo.22055709'];
+  const g = graphOf(read('notes/index.html')) || [];
+  const text = JSON.stringify(g);
+  const lost = moved.filter((d) => text.indexOf(d) < 0);
+  ok('核から外した論文を notes の JSON-LD が引き継いでいる', lost.length === 0, lost.join(', '));
+  const core = graphOf(read('index.html')) || [];
+  const leaked = moved.filter((d) => JSON.stringify(core).indexOf(d) >= 0);
+  ok('核の JSON-LD に、外した論文が残っていない', leaked.length === 0, leaked.join(', '));
+})();
+
+/* 著者の @id は、どのページでも同じものを指していること。 */
+(() => {
+  const ids = LD_PAGES.map((p) => {
+    const g = graphOf(read(p)) || [];
+    const person = g.find((n) => n['@type'] === 'Person');
+    return person ? person['@id'] : null;
+  });
+  ok('どのページの Person も同じ @id を指している',
+     ids.every((i) => i && i === ids[0]), ids.join(' / '));
+})();
+
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));
 if (failures.length) {
