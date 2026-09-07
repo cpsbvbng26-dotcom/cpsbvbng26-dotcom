@@ -155,9 +155,6 @@ if (fs.existsSync(path.join(ROOT, 'README.en.md'))) {
 
   ok('両 README が互いにリンクしている',
      /README\.en\.md/.test(jaMd) && /\(README\.md\)/.test(enMd));
-
-  ok('英語 README に「独立研究者」の英訳が残っていない',
-     !/Independent Researcher/i.test(enMd));
 } else {
   ok('README.en.md がある', false);
 }

@@ -162,12 +162,12 @@
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 378 項目の検査を通します。** 依存パッケージはありません。
+このリポジトリは、**push のたびに 377 項目の検査を通します。** 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 119 項目
-node verification/check_site.js      # サイトの構造 169 項目
+node verification/check_site.js      # サイトの構造 168 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 

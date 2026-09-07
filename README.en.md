@@ -156,7 +156,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 169 checks
+node verification/check_site.js      # site structure, 168 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
