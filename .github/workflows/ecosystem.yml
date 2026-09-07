@@ -1,0 +1,49 @@
+name: 横断
+
+# 各リポジトリの検査は、自分の中しか見ていない。
+# だから「errata-check が 63 項目になったのに、サイトが 60 のまま」が起きる。
+# ここは 9 つを並べてから、その隙間だけを見る。
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  ecosystem:
+    name: 9 リポジトリ横断 45 項目
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { path: repos/cpsbvbng26-dotcom }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0 }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile }
+      - uses: actions/checkout@v4
+        with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms }
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pypdf
+
+      - name: 各リポジトリの検査を全部
+        working-directory: repos/cpsbvbng26-dotcom
+        run: node verification/check_all.js
+
+      - name: 横断のずれ
+        working-directory: repos/cpsbvbng26-dotcom
+        run: node verification/check_ecosystem.js
