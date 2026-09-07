@@ -24,7 +24,7 @@
 
 先に道具を作って論文に当てたのではありません。**自分の三篇を監査したら出てきたものです。**三篇が検証スクリプトの同梱を謳っている箇所を、三箇所だと思っていました。**数え直すと六箇所ありました。**見つけたのは目視ではなく機械です。
 
-**覆すには。** (1) この検査を通ったのに、正誤表が一次資料とずれている例を一つ出してください。(2) あるいは、宣言どおりに壊しても落ちない検査を一つ示してください。どちらも一件で覆ります。宣言の書き方と壊し方は [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check)（[10.5281/zenodo.22649054](https://doi.org/10.5281/zenodo.22649054)）にあります。
+**覆すには。** (1) この検査を通ったのに、正誤表が一次資料とずれている例を一つ出してください。(2) あるいは、宣言どおりに壊しても落ちない検査を一つ示してください。どちらも一件で覆ります。宣言の書き方と壊し方は [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check)（[10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899)）にあります。
 
 **言っておくこと。** 検証の量は、検証される中身の価値について何も言いません。この体系には、それを判定できる検査が存在しません。数がいくら増えても、「これは価値が無い」とは出ない。**主張の水準では反証可能で、意義の水準では構造的に反証不可能です。**[未解決のまま記録しています](https://github.com/cpsbvbng26-dotcom/self-correction)（ST-002）。
 
@@ -86,7 +86,7 @@
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | Trinity-Infinity の三篇と、その検証 95 項目（定理 13・紙面の数値 31・正誤表の監査 51）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 136 項目 | MIT | — |
-| [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する。**DOI が付いた PDF は直せない。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649054](https://doi.org/10.5281/zenodo.22649054) |
+| [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する。**DOI が付いた PDF は直せない。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
 | [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。**いま 15 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | — |
 
