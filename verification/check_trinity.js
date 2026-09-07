@@ -241,6 +241,163 @@ ok('a = 0 なら A は零行列で、x* は p そのもの',
      return r.rho === 0 && r.fixedPoint.every((v, i) => Math.abs(v - [1, 2, 3][i]) < 1e-14);
    })());
 
+section('7. 縮小になる距離の証書');
+
+/* trinity-operator の certificate.py（NumPy）が出した値と突き合わせる。
+   κ も P も、自分で書いた実装が正しいかを自分では判定できない。 */
+const cfx = JSON.parse(fs.readFileSync(
+  path.join(__dirname, 'certificate_fixtures.json'), 'utf8'));
+let worstKappa = 0, worstAmp = 0, worstP = 0, badResid = 0, badAch = 0, badMono = 0;
+
+cfx.cases.forEach((c) => {
+  const A = [];
+  for (let i = 0; i < c.n; i++) A.push(c.A.slice(i * c.n, (i + 1) * c.n));
+  const cert = T.certificate(A, c.gamma);
+  if (!cert) { badResid++; return; }
+
+  worstKappa = Math.max(worstKappa,
+    Math.abs(cert.kappa - c.kappa) / Math.max(1, Math.abs(c.kappa)));
+  worstAmp = Math.max(worstAmp,
+    Math.abs(cert.amplification - c.amplification) / Math.max(1, c.amplification));
+  for (let i = 0; i < c.n; i++) for (let j = 0; j < c.n; j++) {
+    worstP = Math.max(worstP,
+      Math.abs(cert.P[i][j] - c.P[i * c.n + j]) / Math.max(1, Math.abs(c.P[i * c.n + j])));
+  }
+
+  /* κ は上界ではなく ‖A‖_P そのもの。定義から取り直して一致するか。 */
+  const ach = T.certAchieved(cert);
+  if (ach === null || Math.abs(ach - cert.kappa) > 1e-8 * Math.max(1, cert.kappa)) badAch++;
+
+  /* P が方程式の解になっているか（P の大きさで割った相対残差）。 */
+  let pmax = 0;
+  for (let i = 0; i < c.n; i++) for (let j = 0; j < c.n; j++) pmax = Math.max(pmax, Math.abs(cert.P[i][j]));
+  if (cert.residual / Math.max(1, pmax) > 1e-10) badResid++;
+
+  /* ρ ≤ κ < γ < 1。これが崩れたら証書の意味がない。 */
+  if (!(cert.rho <= cert.kappa + 1e-12 && cert.kappa < cert.gamma && cert.gamma < 1)) badMono++;
+});
+
+ok('κ が NumPy と一致する（' + cfx.cases.length + ' 件）', worstKappa < 1e-9,
+   '最大相対差 ' + worstKappa.toExponential(3));
+ok('係数 √(λmax/λmin) が NumPy と一致する', worstAmp < 1e-7,
+   '最大相対差 ' + worstAmp.toExponential(3));
+ok('P そのものが NumPy と一致する', worstP < 1e-8,
+   '最大相対差 ' + worstP.toExponential(3));
+ok('P が方程式 P − BᵀPB = I を満たす', badResid === 0, badResid + ' 件で残差が大きい');
+ok('κ が ‖A‖_P と一致する（上界ではない）', badAch === 0, badAch + ' 件で食い違った');
+ok('どの例でも ρ ≤ κ < γ < 1', badMono === 0, badMono + ' 件で崩れた');
+
+/* --- 手で確かめられる性質 --- */
+
+/* 正規行列では ρ = ‖A‖₂ で、P はスカラ倍の単位行列になる。係数は 1。 */
+(function () {
+  const A = [];
+  const Q = T.cyclicShift(3);
+  for (let i = 0; i < 3; i++) A.push(Q[i].map((v) => 0.6 * v));
+  const c = T.certificate(A, 0.8);
+  near('正規行列では κ = ρ', c.kappa, 0.6, 1e-12);
+  ok('正規行列では係数が 1', Math.abs(c.amplification - 1) < 1e-9,
+     '係数 ' + c.amplification);
+})();
+
+/* ‖Ax‖_P ≤ κ‖x‖_P を、乱数ではなく決め打ちの向きで当たる。 */
+(function () {
+  const A = [[0.5, 20], [0, 0.5]];
+  const c = T.certificate(A, 0.75);
+  let worst = 0;
+  for (let d = 0; d < 720; d++) {
+    const th = d * Math.PI / 360;
+    const x = [Math.cos(th), Math.sin(th)];
+    const r = T.certNorm(c, T.matvec(A, x)) / T.certNorm(c, x);
+    worst = Math.max(worst, r);
+  }
+  ok('720 方向すべてで ‖Ax‖_P ≤ κ‖x‖_P', worst <= c.kappa + 1e-9,
+     '最悪比 ' + worst + ' / κ = ' + c.kappa);
+  ok('その最悪比が κ に達する（κ は達成値）', Math.abs(worst - c.kappa) < 1e-4,
+     '最悪比 ' + worst + ' / κ = ' + c.kappa);
+})();
+
+/* ‖·‖_P がノルムであること。三角不等式と斉次性。 */
+(function () {
+  const c = T.certificate([[0.5, 20], [0, 0.5]], 0.75);
+  let triOk = true, homOk = true;
+  for (let d = 0; d < 200; d++) {
+    const a = d * 0.031, b = d * 0.077;
+    const x = [Math.cos(a) * (1 + d % 5), Math.sin(a) * 2];
+    const y = [Math.cos(b), Math.sin(b) * (1 + d % 3)];
+    const sum = [x[0] + y[0], x[1] + y[1]];
+    if (T.certNorm(c, sum) > T.certNorm(c, x) + T.certNorm(c, y) + 1e-9) triOk = false;
+    const k = -3.5 + d * 0.037;
+    const kx = [k * x[0], k * x[1]];
+    if (Math.abs(T.certNorm(c, kx) - Math.abs(k) * T.certNorm(c, x)) > 1e-9) homOk = false;
+  }
+  ok('三角不等式 ‖x+y‖_P ≤ ‖x‖_P + ‖y‖_P', triOk);
+  ok('斉次性 ‖cx‖_P = |c|‖x‖_P', homOk);
+  ok('‖0‖_P = 0', T.certNorm(c, [0, 0]) === 0);
+})();
+
+/* 保証した上界が、実際の反復を覆うか。 */
+(function () {
+  const spec = T.PRESETS.counter;
+  const res = T.analyze(spec);
+  const c = T.certificate(res.A, 0.75);
+  const rows = T.iterate(res, spec.x0, 60);
+  const e0 = rows[0].err;
+  let broke = 0;
+  rows.forEach((r, k) => {
+    if (r.err === null || !isFinite(r.err)) return;
+    if (r.err > T.certBound(c, k, e0) * (1 + 1e-9)) broke++;
+  });
+  ok('反例で全 ' + rows.length + ' 段が上界の内側', broke === 0, broke + ' 段で破れた');
+  ok('第 1 段では誤差が初期値より大きい（増えてよい）', rows[1].err > rows[0].err);
+})();
+
+/* 作れないものは作らない。 */
+ok('ρ = 1 では証書を出さない', T.certificate(T.cyclicShift(3)) === null);
+ok('ρ > 1 では証書を出さない', T.certificate([[1.5, 0], [0, 0.3]]) === null);
+ok('ρ = 1 の非正規行列でも出さない', T.certificate([[1, 5], [0, 1]]) === null);
+ok('γ ≤ ρ を断る', T.certificate([[0.5, 20], [0, 0.5]], 0.4) === null);
+ok('γ ≥ 1 を断る', T.certificate([[0.5, 20], [0, 0.5]], 1.0) === null);
+ok('コレスキー分解は正定値でない行列に null を返す',
+   T.cholesky([[1, 2], [2, 1]]) === null);
+ok('コレスキー分解が P = LLᵀ を再現する',
+   (function () {
+     const P = [[4, 2], [2, 3]];
+     const L = T.cholesky(P);
+     const R = T.matmul(L, T.transpose(L));
+     return Math.abs(R[0][0] - 4) < 1e-12 && Math.abs(R[1][0] - 2) < 1e-12 &&
+       Math.abs(R[1][1] - 3) < 1e-12;
+   })());
+ok('クロネッカー積が NumPy の np.kron と一致する',
+   (function () {
+     /* np.kron([[1,2],[3,4]], [[0,5],[6,7]]) の全成分。 */
+     const want = [[0, 5, 0, 10], [6, 7, 12, 14], [0, 15, 0, 20], [18, 21, 24, 28]];
+     const K = T.kron([[1, 2], [3, 4]], [[0, 5], [6, 7]]);
+     if (K.length !== 4) return false;
+     for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+       if (K[i][j] !== want[i][j]) return false;
+     }
+     return true;
+   })());
+
+/* γ を振ったときの釣り合い。 */
+(function () {
+  const A = [[0.5, 20], [0, 0.5]];
+  const gs = [0.55, 0.6, 0.75, 0.9, 0.99];
+  const cs = gs.map((g) => T.certificate(A, g));
+  let kUp = true, aDown = true;
+  for (let i = 0; i + 1 < cs.length; i++) {
+    if (!(cs[i].kappa < cs[i + 1].kappa)) kUp = false;
+    if (!(cs[i].amplification > cs[i + 1].amplification)) aDown = false;
+  }
+  ok('γ が大きいほど κ も大きい（この例）', kUp);
+  ok('γ が大きいほど係数は小さい（この例）', aDown);
+  ok('どの γ でも κ < γ < 1', cs.every((c) => c.kappa < c.gamma && c.gamma < 1));
+  const nearRho = T.certificate(A, 0.51);
+  ok('γ を ρ に寄せると κ も ρ に寄る（Ostrowski）', nearRho.kappa <= 0.51,
+     'κ = ' + nearRho.kappa);
+})();
+
 /* --------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(58));
 if (failures.length === 0) {
