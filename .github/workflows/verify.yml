@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / サイトの構造 148 項目 / DOI アナライザー 157 項目 / 作用素 63 項目
+    name: 誤変換 / 配色 136 項目 / サイトの構造 148 項目 / DOI アナライザー 157 項目 / 作用素 63 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +18,8 @@ jobs:
       # 依存パッケージなし。npm install も要らない。
       - name: 誤変換とバッジ記法
         run: node verification/check_text.js
+      - name: 配色の読みやすさ
+        run: node verification/check_contrast.js
       - name: サイトの構造
         run: node verification/check_site.js
       - name: DOI アナライザー

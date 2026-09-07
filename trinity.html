@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-4+BWY8eYnPk+J5kpbHoNXK9eohVV/A3lzdn0RXQ38Z0=' 'sha256-8j0CmoS9hrFaIW1iHWj9vtCeqj5w6BPQqgzkapghTqA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-Mn7OfXJMiU0MoYNW9e/xwmiO5tFDwVl5nU49aPdndwI='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -26,7 +26,7 @@
   --card: #ffffff;
   --text: #17171a;
   --muted: #63636b;
-  --faint: #9a9aa2;
+  --faint: #727278;
   --line: #e6e4df;
   --line-soft: #efedE9;
   --accent: #8a6a3d;
@@ -44,7 +44,7 @@
   --card: #191919;
   --text: #ececee;
   --muted: #9c9ca4;
-  --faint: #6a6a72;
+  --faint: #81818b;
   --line: #2a2a2d;
   --line-soft: #232326;
   --accent: #b08d57;
@@ -492,6 +492,13 @@ table.steps td.ecol { color: var(--accent); }
 @media print {
   .btn-row, .sizefield, #grid { display: none !important; }
 }
+
+/* リンクは色だけで示さない。指し色と本文色の差はどう選んでも 1.2:1 程度にしか
+   ならず（3:1 必要）、色覚や低コントラストの環境では見分けがつかない。下線で示す。 */
+.facts dd a, .claim-kv dd a, .notes-list a, .prose a, .lead-block a,
+.lead a, .issuer a, .sec-head p a { text-decoration: underline; text-underline-offset: .15em; }
+.facts dd a:hover, .claim-kv dd a:hover, .notes-list a:hover,
+.prose a:hover, .lead-block a:hover, .lead a:hover { text-decoration-thickness: 2px; }
 </style>
 <body>
 
