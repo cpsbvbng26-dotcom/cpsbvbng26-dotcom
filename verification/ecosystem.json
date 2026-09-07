@@ -46,6 +46,15 @@
       ]
     },
     {
+      "名前": "check_all.js が回す検査の本数",
+      "実際": { "repo": "cpsbvbng26-dotcom", "file": "verification/check_all.js",
+                "数える": "^  \\['" },
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "README.md", "regex": "検査を全部（(\\d+) 本）" },
+        { "repo": "cpsbvbng26-dotcom", "file": ".claude/commands/check.md", "regex": "検査を全部（(\\d+) 本）" }
+      ]
+    },
+    {
       "名前": "self-correction 登録簿の検査",
       "実際": { "repo": "self-correction", "cmd": ["python3", "verification/check_register.py"],
                 "regex": "(\\d+) 件すべて通りました。" },

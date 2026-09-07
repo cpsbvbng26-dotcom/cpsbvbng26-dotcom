@@ -42,6 +42,9 @@ const CHECKS = [
   ['trinity-operator', '展望', 'python3', 'verification/check_roadmap.py'],
   ['trinity-operator', '引用情報', 'python3', 'verification/check_citation.py'],
 
+  /* site/ と dist/ は生成物である。まっさらな checkout には無いので、
+   * 生成そのものも一本の検査として先に回す。手元で通って CI で落ちたのがここ。 */
+  ['autonomy-and-self-cultivation', '生成', 'node', 'build.js'],
   ['autonomy-and-self-cultivation', '紙面との照合', 'python3', 'verification/check_fidelity.py'],
   ['autonomy-and-self-cultivation', '正誤表の監査', 'python3', 'verification/check_errata.py'],
   ['autonomy-and-self-cultivation', '誤変換ほか', 'node', 'verification/check_text.js'],
@@ -51,9 +54,11 @@ const CHECKS = [
   ['naval-gazette-notes', '正誤表の監査', 'python3', 'verification/check_errata.py'],
 
   ['researcher-profile', '誤変換ほか', 'node', 'verification/check_text.js'],
-  ['researcher-profile', '生成', 'node', 'verification/check_build.js'],
+  ['researcher-profile', '生成', 'node', 'build.js'],
+  ['researcher-profile', '生成物の中身', 'node', 'verification/check_build.js'],
 
   ['justice-and-algorithms', '誤変換ほか', 'node', 'verification/check_text.js'],
+  ['justice-and-algorithms', '生成', 'node', 'build.js'],
   ['justice-and-algorithms', 'サイトの構造', 'node', 'verification/check_site.js']
 ];
 
