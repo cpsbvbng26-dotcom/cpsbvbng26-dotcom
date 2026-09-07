@@ -6,12 +6,9 @@
 
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
 
-[![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
-
 [![検査](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
 
-[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
-[![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
+[サイト](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 [日本語](README.md) ｜ **English** は [README.en.md](README.en.md)
 
@@ -19,42 +16,33 @@
 
 ---
 
-✴︎Credentials✴︎
+## 30 秒で
 
-修了証・オープンバッジ 計 7 件。各バッジは発行機関の検証ページにリンクしています。
+コンピュータサイエンスと人工知能を学びながら、**査読を受けていないプレプリント**を書いて公開している者です。
 
-**edX**（4 件）
+**いま一番の主張。** 自分で書いた Trinity-Infinity Series I–III は、反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置きました。これは十分条件であって、必要条件ではありません。収束を決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分条件です。両者が離れる領域（`ρ < 1 ≤ ‖DQ‖₂`）では収束はするものの、誤差はいったん増えてから減ります。三篇の設定では作用素が正規行列になり `ρ = ‖DQ‖₂` が成り立つため、この区別が表に出ませんでした。新しい数学ではありません —— 非正規行列の過渡的増幅も、収束条件が `ρ < 1` であることも、数値線形代数の標準的な事実です。主張は一点だけです。**三篇が置いた仮定は、必要以上に強い。**
 
-[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
+**覆すには。** 次のどちらか一つを出してください。(1) `ρ(A) < 1` なのに、ある初期値から収束しない `A` と `b`。(2) `ρ(A) ≥ 1` なのに、すべての初期値から一意の点に収束する `A` と `b`。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)に打ち込めば、その場で判定が出ます。
 
-[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
+### 証明できたこと / 類推に過ぎないこと / 撤回したこと
 
-[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
-
-[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
-
-**東北大学 MOOC / オープンバッジ**（3 件）
-
-[![Tohoku University MOOC: Radiation Safety](https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09)
-
-[![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
-
-[![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
-
-<!-- 新しい修了証を追加するときは、上のいずれかのグループに 1 行足してください。
-     [![講座名](https://img.shields.io/badge/発行元-講座名-色?style=for-the-badge)](検証ページのURL) -->
-
----
-
-✴︎Areas✴︎
-
-| 領域 | 内容 |
+| | |
 | --- | --- |
-| コンピュータサイエンス | C / Python、アルゴリズムとデータ構造、計算量の考え方 |
-| 人工知能 | 探索、知識表現、確率推論、最適化、機械学習、ニューラルネットワーク、自然言語処理 |
-| コンテナ基盤 | Docker、Kubernetes、OpenShift の基本概念と操作 |
-| Web 開発 | HTML / CSS / JavaScript による実装、GitHub Pages での公開と運用 |
-| 領域知識 | 放射線安全、災害科学、政治哲学 |
+| **証明できたこと** | 座標の置換と固定基準点への統合を合成した作用素は縮小写像であり、唯一の不動点へ幾何的に収束する。Series I が三要素・一様な混合率で証明し、II が混合率を座標ごとに変えても成り立つことを示し、III が**そもそも三要素である必要がなかった**こと（任意の n ≥ 2）を示した。これに、上の訂正が加わる |
+| **類推に過ぎないこと** | 上記以外のすべて。ゲーム理論・論理学・工学への接続は、他分野の既知の結果を正しく計算した実例か、類推・未証明の推測として明示的に印をつけたもののどちらかである。n = 3 が区別されるのは「巡回置換がそれ自身の逆写像にならない最小の n」という一点だけで、Series III はそれが「三」の文化的・哲学的な含意を正当化しないことを明示的に否定している |
+| **撤回したこと** | 収束定理の原型（不動点が一意にならない読みだった）、「98.7% の試行で確認」（再現できるコードも乱数種もない）、三人ゲームの利得表（4 セルでは 2³ 通りを表現できない）、リアプノフ微分と LaSalle の原理の適用、AI アライメント・気候政策・ガバナンスへの応用。**各論文が同梱を謳う検証スクリプトは存在しない**（著者確認済み。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) の E3）。**どれも消していません** |
+
+哲学の三篇はこの形で反証できる種類のものではありません。査読も受けていません。読んで反論する以外の道はなく、それでよいと考えています。
+
+### 次に読むなら、この 3 つ
+
+1. **[trinity-infinity / ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)** —— 三篇の何が誤っていて、何が撤回されたか。読者が誤った版に辿り着く誤りが 1 件ある
+2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 22 項目、乱数種は固定
+3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** —— 系列が自分で何を確立し、何を撤回したかを書いた回顧
+
+> **公開しているものは、すべて査読を受けていません。** 学術誌にも会議にも通していません。DOI があることは、査読を受けたことを意味しません。
+
+以下は一覧です。急がないなら読んでください。
 
 ---
 
@@ -91,7 +79,52 @@
 
 ---
 
+✴︎Credentials✴︎
+
+<details>
+<summary>修了証・オープンバッジ 計 7 件（各バッジは発行機関の検証ページに繋がります）</summary>
+
+**edX**（4 件）
+
+[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
+
+[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
+
+[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
+
+[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
+
+**東北大学 MOOC / オープンバッジ**（3 件）
+
+[![Tohoku University MOOC: Radiation Safety](https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09)
+
+[![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
+
+[![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
+
+<!-- 新しい修了証を追加するときは、上のいずれかのグループに 1 行足してください。
+     [![講座名](https://img.shields.io/badge/発行元-講座名-色?style=for-the-badge)](検証ページのURL) -->
+
+</details>
+
+---
+
+✴︎Areas✴︎
+
+| 領域 | 内容 |
+| --- | --- |
+| コンピュータサイエンス | C / Python、アルゴリズムとデータ構造、計算量の考え方 |
+| 人工知能 | 探索、知識表現、確率推論、最適化、機械学習、ニューラルネットワーク、自然言語処理 |
+| コンテナ基盤 | Docker、Kubernetes、OpenShift の基本概念と操作 |
+| Web 開発 | HTML / CSS / JavaScript による実装、GitHub Pages での公開と運用 |
+| 領域知識 | 放射線安全、災害科学、政治哲学 |
+
+---
+
 ✴︎Links✴︎
+
+<details>
+<summary>外部のプロフィールと記事（正は ORCID と Zenodo です）</summary>
 
 - ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
@@ -105,6 +138,8 @@
 - LinkedIn — [職務プロフィール](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+
+</details>
 
 ---
 
@@ -168,6 +203,8 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 ---
 
 ✴︎Tools & Disclosure✴︎
+
+このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いています。監査には [Grok](https://grok.com) を使いました。
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)

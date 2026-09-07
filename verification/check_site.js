@@ -398,6 +398,78 @@ PUBLIC_FACES.forEach((f) => {
 });
 ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
 
+/* ------------------------------------------------- 11. 30 秒で読める入口
+ *
+ * README の先頭は、外から来た人が 30 秒で読み切れる入口である。
+ * 必須の 5 つが揃っていること、置かないと決めたものが入口に無いことを見る。
+ */
+section('11. 30 秒で読める入口');
+
+const ENTRY_END = /\n---\n/;
+const entryOf = (md) => {
+  const i = md.search(/\n## (30 秒で|In 30 seconds)\n/);
+  if (i < 0) return '';
+  const rest = md.slice(i + 1);
+  /* 入口は「一覧が続く」の一文で終わる。そこまでを入口とみなす。 */
+  const j = rest.search(/\n---\n\n+✴︎/);
+  return j < 0 ? rest : rest.slice(0, j);
+};
+
+[['README.md', 'ja'], ['README.en.md', 'en']].forEach(([f, lang]) => {
+  const md = read(f);
+  const entry = entryOf(md);
+  ok(f + ' に 30 秒の入口がある', entry.length > 0);
+
+  /* 入口が README の先頭側にあること。下にあっては入口ではない。 */
+  ok(f + ' の入口が一覧より前にある',
+     entry.length > 0 && md.indexOf(entry) < md.indexOf('✴︎Papers✴︎'));
+
+  ok(f + ' の入口に「この人は誰か」がある',
+     lang === 'ja' ? /学びながら|学んで/.test(entry) : /studying/i.test(entry));
+
+  ok(f + ' の入口にいまの主張がある',
+     /ρ\(DQ\)/.test(entry) && /‖DQ‖₂/.test(entry));
+
+  ok(f + ' の入口に反証の手順がある',
+     lang === 'ja' ? /覆すには/.test(entry) : /To refute it/i.test(entry));
+
+  /* 証明できたこと / 類推 / 撤回 の三つが揃っていること。一つでも欠けたら落とす。 */
+  /* 見出しに語があるだけでは通さない。表の行として立っていることを見る。
+   * 見出しだけを見ていると、中身を消しても素通りする。実際に一度そうなった。 */
+  const triple = lang === 'ja'
+    ? ['証明できたこと', '類推に過ぎないこと', '撤回したこと']
+    : ['Proven', 'Only an analogy', 'Withdrawn'];
+  triple.forEach((w) => {
+    ok(f + ' の入口に「' + w + '」の行がある',
+       new RegExp('^\\| \\*\\*' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\*\\* \\|', 'm').test(entry));
+  });
+
+  /* 次に読むファイルは 3 つだけ。増やしたら落とす。 */
+  const numbered = (entry.match(/^\d\. \*\*\[/gm) || []).length;
+  ok(f + ' の入口が次に読むファイルを 3 つだけ挙げている', numbered === 3, String(numbered));
+
+  ok(f + ' の入口で未査読を明示している',
+     lang === 'ja' ? /査読を受けていません|査読を受けていない/.test(entry)
+                   : /not been peer reviewed|has been peer reviewed/i.test(entry));
+
+  /* 入口に置かないと決めたもの。資格の羅列と、複数ブランドの並列。 */
+  ok(f + ' の入口に資格の羅列が無い',
+     !/openbadge-global|courses\.edx\.org\/certificates/.test(entry));
+  const brands = ['researchmap', 'philpeople', 'hal.science', 'acadmc', 'jglobal',
+                  'linkedin', 'medium.com', 'scholar.google', 'ssrn'];
+  const found = brands.filter((b) => entry.toLowerCase().indexOf(b) >= 0);
+  ok(f + ' の入口に複数ブランドの並列が無い', found.length === 0, found.join(', '));
+});
+
+/* 資格と外部プロフィールは消していない。折りたたんで下に置いてある。 */
+['README.md', 'README.en.md'].forEach((f) => {
+  const md = read(f);
+  ok(f + ' が修了証 7 件を残している',
+     (md.match(/openbadge-global|courses\.edx\.org\/certificates/g) || []).length >= 7);
+  ok(f + ' が修了証と外部プロフィールを折りたたんでいる',
+     (md.match(/<details>/g) || []).length >= 2);
+});
+
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));
 if (failures.length) {

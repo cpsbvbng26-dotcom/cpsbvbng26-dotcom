@@ -6,12 +6,9 @@
 
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
 
-[![Profile](https://img.shields.io/badge/Profile-cpsbvbng26--dotcom.github.io-8A6A3D?style=for-the-badge)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html)
-
 [![Checks](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
 
-[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
-[![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
+[Site](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html)
 
 **English** ｜ [日本語](README.md)
 
@@ -19,39 +16,33 @@
 
 ---
 
-✴︎Credentials✴︎
+## In 30 seconds
 
-Seven certificates and open badges. Each badge links to the issuer's verification page.
+Someone studying computer science and artificial intelligence, who writes and publishes **preprints that have not been peer reviewed**.
 
-**edX** (4)
+**The current claim.** Trinity-Infinity Series I–III — which I wrote — assume the operator norm `‖DQ‖₂ < 1` as the condition under which the iteration `x ← DQx + (I−D)p` converges. That condition is sufficient, not necessary. Convergence is governed by the spectral radius instead: `ρ(DQ) < 1` is necessary and sufficient. In the region where the two come apart (`ρ < 1 ≤ ‖DQ‖₂`) the iteration still converges, but the error grows before it decays. In the papers' own setting the operator is normal, so `ρ = ‖DQ‖₂` holds and the distinction never surfaced. This is not new mathematics — transient growth in non-normal operators, and `ρ < 1` as the convergence condition, are standard facts of numerical linear algebra. The claim is one thing only: **the assumption the three papers made is stronger than it needs to be.**
 
-[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
+**To refute it.** Produce either one of these. (1) An `A` and `b` with `ρ(A) < 1` for which some starting point does not converge. (2) An `A` and `b` with `ρ(A) ≥ 1` that converges to a unique point from every starting point. Type either into [the operator page](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) and it will tell you (the page is in Japanese; the matrix fields are not).
 
-[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
+### Proven / only an analogy / withdrawn
 
-[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
-
-[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
-
-**Tohoku University MOOC / Open Badges** (3)
-
-[![Tohoku University MOOC: Radiation Safety](https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09)
-
-[![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
-
-[![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
-
----
-
-✴︎Areas✴︎
-
-| Area | Content |
+| | |
 | --- | --- |
-| Computer science | C and Python, algorithms and data structures, reasoning about complexity |
-| Artificial intelligence | Search, knowledge representation, probabilistic inference, optimisation, machine learning, neural networks, natural language processing |
-| Container platforms | Core concepts and operation of Docker, Kubernetes and OpenShift |
-| Web development | Implementation in HTML, CSS and JavaScript; publishing and operating sites on GitHub Pages |
-| Domain knowledge | Radiation safety, disaster science, political philosophy |
+| **Proven** | An operator composing a permutation of coordinates with integration toward a fixed anchor is a contraction, and therefore converges geometrically to a unique fixed point. Series I proves it for three elements and a uniform blend, II shows it survives a per-coordinate blend, and III shows **three elements were never required** (it holds for every n ≥ 2). The correction above is added to this |
+| **Only an analogy** | Everything else. The connections to game theory, logic and engineering are either correct calculations of results already known in those fields, or things explicitly marked as analogy or unproven conjecture. The one respect in which n = 3 is distinguished is that it is the smallest n for which the cyclic permutation is not its own inverse — and Series III explicitly denies that this justifies any cultural or philosophical significance of "three" |
+| **Withdrawn** | The original convergence theorem (its natural reading gives no unique fixed point), "confirmed in 98.7% of trials" (no reproducible code, seed or stopping rule), a three-player payoff table (four cells cannot represent 2³ outcomes), the application of Lyapunov derivatives and LaSalle's principle, and the applications to AI alignment, climate policy and governance. **The verification scripts each paper claims to ship do not exist** (confirmed with the author; [ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md), item E3). **None of this has been deleted** |
+
+The three philosophical papers are not refutable in this shape, and they have not been peer reviewed either. Reading them and arguing back is the only route, and that seems right to me.
+
+### If you read three more things
+
+1. **[trinity-infinity / ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)** — what is wrong in the three papers and what was withdrawn. One error sends readers to the wrong edition
+2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** — the implementation of the claim above, and the counterexample. 22 checks, fixed seed
+3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** — the series' own retrospective on what it established and what it withdrew
+
+> **Nothing published here has been peer reviewed.** None of it has gone through a journal or a conference. Having a DOI does not mean a work was reviewed.
+
+The listings follow. Read on if you are not in a hurry.
 
 ---
 
@@ -88,7 +79,49 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ---
 
+✴︎Credentials✴︎
+
+<details>
+<summary>Seven certificates and open badges (each links to the issuer's verification page)</summary>
+
+**edX** (4)
+
+[![CC0201EN: Introduction to Containers, Kubernetes and OpenShift](https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge)](https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316)
+
+[![CS50AI: Introduction to Artificial Intelligence with Python](https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge)](https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807)
+
+[![CS50x: Introduction to Computer Science](https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge)](https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc)
+
+[![ER22.1x: Justice](https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge)](https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3)
+
+**Tohoku University MOOC / Open Badges** (3)
+
+[![Tohoku University MOOC: Radiation Safety](https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09)
+
+[![Tohoku University MOOC: Disaster Science](https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09)
+
+[![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
+
+</details>
+
+---
+
+✴︎Areas✴︎
+
+| Area | Content |
+| --- | --- |
+| Computer science | C and Python, algorithms and data structures, reasoning about complexity |
+| Artificial intelligence | Search, knowledge representation, probabilistic inference, optimisation, machine learning, neural networks, natural language processing |
+| Container platforms | Core concepts and operation of Docker, Kubernetes and OpenShift |
+| Web development | Implementation in HTML, CSS and JavaScript; publishing and operating sites on GitHub Pages |
+| Domain knowledge | Radiation safety, disaster science, political philosophy |
+
+---
+
 ✴︎Links✴︎
+
+<details>
+<summary>External profiles and writing (ORCID and Zenodo are the authoritative ones)</summary>
 
 - Homepage — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [profile](https://researchmap.jp/takuyanemoto) / [research blog](https://researchmap.jp/takuyanemoto/research_blogs)
@@ -102,6 +135,8 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 - LinkedIn — [professional profile](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
 - This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+
+</details>
 
 ---
 
@@ -151,6 +186,8 @@ This repository holds two kinds of thing, so it carries two licences.
 ---
 
 ✴︎Tools & Disclosure✴︎
+
+This repository is written with [Claude Code](https://claude.com/claude-code). [Grok](https://grok.com) was used for auditing.
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
