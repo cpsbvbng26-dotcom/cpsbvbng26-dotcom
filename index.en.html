@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-9VEpKJlGv54TjtpNeoo2699QwDLQc5ZViurvybv0BrU=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-wbSOR76cakJugjyNC6yXaIrdxRlw56iEbXZzPosulwU=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="The Trinity-Infinity convergence theorem and its verification. Preprints, not peer reviewed. Convergence is governed by the spectral radius, not by the operator-norm condition the papers assume.">
 <meta name="robots" content="index, follow">
@@ -158,7 +158,7 @@
     {
       "@type": "SoftwareSourceCode",
       "name": "trinity-operator",
-      "description": "The operator from the three Trinity-Infinity papers, implemented without restricting Q to a cyclic permutation or the coefficients to (0,1). It shows that convergence is governed by the spectral radius ρ(DQ) < 1, that the operator-norm condition the papers impose is merely sufficient, and that non-normal matrices amplify the error transiently. It also repairs the Banach argument that fails in that region, by constructing a weighted norm from the Lyapunov equation.",
+      "description": "The operator from the three Trinity-Infinity papers, implemented without restricting Q to a cyclic permutation or the coefficients to (0,1). It shows that convergence is governed by the spectral radius ρ(DQ) < 1, that the operator-norm condition the papers impose is merely sufficient, and that non-normal matrices amplify the error transiently. It also repairs the Banach argument that fails in that region by constructing a weighted norm from the Lyapunov equation, and lays out, as runnable stages, which conclusions survive as each assumption is dropped.",
       "author": {
         "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
       },
@@ -767,6 +767,10 @@ footer::before {
         <dd>The repaired argument itself: that P solves the Lyapunov equation, that ‖·‖_P is a norm, and that f contracts in that distance — checked from the definitions (<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a>)</dd>
       </div>
       <div class="fact">
+        <dt>63 checks on the outlook</dt>
+        <dd>Which of the papers’ conclusions survive as each assumption is dropped. What is settled exactly, what is only estimated, and what is undecidable in principle, counted separately (<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/roadmap" target="_blank" rel="noopener">trinity-operator/roadmap</a>)</dd>
+      </div>
+      <div class="fact">
         <dt>90 checks in this page</dt>
         <dd>The numerics behind <a href="./trinity.html">the operator page</a>, checked against 728 recorded NumPy results. Maximum relative difference: ρ 6.7×10⁻¹⁵, ‖A‖₂ 1.7×10⁻¹⁵. The constructed distance is checked against 23 recorded certificates as well (κ within 3.9×10⁻¹⁶)</dd>
       </div>
@@ -871,7 +875,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">
         <span class="code">Python / MIT</span>
         <h3>trinity-operator</h3>
-        <p class="issuer">The operator from the three papers above, implemented without restricting Q to a permutation or the coefficients to a uniform scalar. Convergence is governed by the spectral radius; the operator-norm condition the papers impose is stronger than it needs to be. 22 checks, including an example whose error swells to 11.8× before it converges, and 51 more on the construction that repairs the broken argument.</p>
+        <p class="issuer">The operator from the three papers above, implemented without restricting Q to a permutation or the coefficients to a uniform scalar. Convergence is governed by the spectral radius; the operator-norm condition the papers impose is stronger than it needs to be. 22 checks, including an example whose error swells to 11.8× before it converges, 51 more on the construction that repairs the broken argument, and 63 on a staged outlook that drops one assumption at a time.</p>
         <span class="verify">View on GitHub</span>
       </a>
     </div>

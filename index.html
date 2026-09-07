@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-rMUvMmWdyAJHiRR1eFuityfKclgQxEEktmWpdfy6Hno=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ETATrfi7G1TpZ1GPx6YCaXKFixPJiLDIRah/X84R550=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="Trinity-Infinity の収束定理と、その検証。査読前のプレプリントです。収束を決めるのはスペクトル半径であって、三篇が置いた作用素ノルムの条件ではありません。">
 <meta name="robots" content="index, follow">
@@ -158,7 +158,7 @@
     {
       "@type": "SoftwareSourceCode",
       "name": "trinity-operator",
-      "description": "Trinity-Infinity の三篇が扱う作用素を、Q を巡回置換に、係数を (0,1) に限らずに実装したもの。収束の条件がスペクトル半径 ρ(DQ) < 1 であり、三篇が置いた作用素ノルムの条件は十分条件にすぎないことを、非正規行列の過渡的増幅とともに示す。あわせて、その領域で成り立たなくなる Banach の議論を、リアプノフ方程式から重み付きノルムを構成して組み直す。",
+      "description": "Trinity-Infinity の三篇が扱う作用素を、Q を巡回置換に、係数を (0,1) に限らずに実装したもの。収束の条件がスペクトル半径 ρ(DQ) < 1 であり、三篇が置いた作用素ノルムの条件は十分条件にすぎないことを、非正規行列の過渡的増幅とともに示す。あわせて、その領域で成り立たなくなる Banach の議論を、リアプノフ方程式から重み付きノルムを構成して組み直し、仮定を一つずつ外したときに結論のどれが残るかを段ごとに実行できる形で並べる。",
       "author": {
         "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
       },
@@ -767,6 +767,10 @@ footer::before {
         <dd>壊れた議論を組み直した構成そのもの。P が方程式の解であること、‖·‖_P がノルムであること、f がその距離で縮小写像であることを、定義に戻って当たる（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">trinity-operator</a>）</dd>
       </div>
       <div class="fact">
+        <dt>展望 63</dt>
+        <dd>仮定を一つずつ外したとき、三篇の結論のどれが残るか。厳密に決まること・推定でしかないこと・原理的に決まらないことを分けて数える（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/roadmap" target="_blank" rel="noopener">trinity-operator/roadmap</a>）</dd>
+      </div>
+      <div class="fact">
         <dt>この場で 90</dt>
         <dd><a href="./trinity.html">作用素のページ</a>の数値を、記録した NumPy の値 728 件と突き合わせる。最大相対差 ρ 6.7×10⁻¹⁵、‖A‖₂ 1.7×10⁻¹⁵。縮小になる距離のほうも証書 23 件と突き合わせる（κ の相対差 3.9×10⁻¹⁶）</dd>
       </div>
@@ -871,7 +875,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">
         <span class="code">Python / MIT</span>
         <h3>trinity-operator</h3>
-        <p class="issuer">上の三篇が扱う作用素を、置換にも一様な係数にも限らずに実装したリポジトリ。収束を決めているのはスペクトル半径であって、三篇が置いた作用素ノルムの条件は必要以上に強い。誤差が一度 11.8 倍に膨らんでから収束する例を含む 22 項目と、破れた議論を組み直す構成の 51 項目。</p>
+        <p class="issuer">上の三篇が扱う作用素を、置換にも一様な係数にも限らずに実装したリポジトリ。収束を決めているのはスペクトル半径であって、三篇が置いた作用素ノルムの条件は必要以上に強い。誤差が一度 11.8 倍に膨らんでから収束する例を含む 22 項目、破れた議論を組み直す構成の 51 項目、そして仮定を外していったときに何が残るかを段ごとに走らせる展望の 63 項目。</p>
         <span class="verify">GitHub で見る</span>
       </a>
     </div>
