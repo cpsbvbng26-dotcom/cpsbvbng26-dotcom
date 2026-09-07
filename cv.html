@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Y7/X2IGjdZCw49kabT7P6kzjlD8ypWWxjkAHykJhvt8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-hZ5iMqn3iTak1hOXmxbgE9RxlkNqzwQq7D9z/EKUfUM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -544,6 +544,23 @@ footer::before {
 .lead a, .issuer a, .sec-head p a { text-decoration: underline; text-underline-offset: .15em; }
 .facts dd a:hover, .claim-kv dd a:hover, .notes-list a:hover,
 .prose a:hover, .lead-block a:hover, .lead a:hover { text-decoration-thickness: 2px; }
+
+/* 同じ資料の別の所在。DOI の下に一行で並べる。 */
+/* カードの外に出したので .cert の子孫ではない。単独のクラスで指定する。 */
+.where {
+  margin: .2rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .72rem; line-height: 1.7; letter-spacing: .01em; color: var(--faint);
+}
+
+/* 所在の行はカードの外に置く（<a> の入れ子は作れないため）。
+   カードのすぐ下に、同じ幅で続けて見えるようにする。 */
+.cert-group { display: flex; flex-direction: column; gap: .35rem; }
+.cert-group .cert { flex: 1; }
+.cert-group .where { padding: 0 .35rem; }
+.cert-group .where a { color: var(--faint); }
+.cert-group .where a { text-decoration: underline; text-underline-offset: .15em; }
+.cert-group .where a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -694,7 +711,9 @@ footer::before {
       <div class="group reveal">
         <div class="group-name">ウェブ・SNS</div>
         <div class="links">
-          <a class="link" href="https://www.nemoto200101.com/" target="_blank" rel="noopener">ホームページ <span>nemoto200101.com</span></a>
+          <a class="link" href="https://www.nemoto200101.com/" target="_blank" rel="noopener">ホームページ① <span>nemoto200101.com</span></a>
+          <a class="link" href="https://takuyanemoto.jimdofree.com/" target="_blank" rel="noopener">ホームページ② <span>takuyanemoto.jimdofree.com</span></a>
+          <a class="link" href="https://sites.google.com/view/nemototakuya/" target="_blank" rel="noopener">ホームページ③ <span>sites.google.com/view/nemototakuya</span></a>
           <a class="link" href="https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0" target="_blank" rel="noopener">LinkedIn <span>職務プロフィール</span></a>
           <a class="link" href="https://www.wantedly.com/id/takuya_nemoto_q" target="_blank" rel="noopener">Wantedly <span>職務プロフィール</span></a>
           <a class="link" href="https://medium.com/@heaven_livid_frog_333/lists" target="_blank" rel="noopener">Medium <span>記事一覧</span></a>
