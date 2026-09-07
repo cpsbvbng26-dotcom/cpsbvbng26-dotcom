@@ -3,11 +3,14 @@
  * 依存パッケージなし。外部へのリクエストは一切ない。
  * Node から読むと配線せず、数値の関数だけを出す（verification/check_trinity.js 用）。
  *
- * 数値の中身は三つ。
- *   固有値      Householder で上 Hessenberg にしてから、複素演算のシフト付き QR
- *   特異値      AᵀA の固有値の平方根。対称なので Jacobi 回転
- *   連立一次    部分ピボット付き Gauss 消去
- * いずれも NumPy と突き合わせて検査してある（verification/trinity_fixtures.json）。
+ * 数値の中身は五つ。
+ *   固有値        Householder で上 Hessenberg にしてから、複素演算のシフト付き QR
+ *   特異値        AᵀA の固有値の平方根。対称なので Jacobi 回転
+ *   連立一次      部分ピボット付き Gauss 消去
+ *   リアプノフ    クロネッカー積で n²×n² に落として、上の Gauss 消去
+ *   コレスキー    P = LLᵀ。‖x‖_P = ‖Lᵀx‖ を使うため
+ * いずれも NumPy と突き合わせて検査してある
+ * （verification/trinity_fixtures.json、verification/certificate_fixtures.json）。
  */
 (function () {
   'use strict';
@@ -223,6 +226,131 @@
     return x;
   }
 
+  /* ======================================================= クロネッカー積 */
+  /* 行優先の vec では vec(XᵀPX) = (Xᵀ ⊗ Xᵀ) vec(P) になる。リアプノフ方程式を
+     n²×n² の連立一次方程式に落とすために要る。 */
+  function kron(X, Y) {
+    var p = X.length, q = Y.length, out = zeros(p * q, p * q), i, j, k, l;
+    for (i = 0; i < p; i++) for (j = 0; j < p; j++)
+      for (k = 0; k < q; k++) for (l = 0; l < q; l++)
+        out[i * q + k][j * q + l] = X[i][j] * Y[k][l];
+    return out;
+  }
+
+  /* ============================================= コレスキー分解（P = L Lᵀ） */
+  /* 正定値でなければ null。‖x‖_P = ‖Lᵀx‖ を使うために要る。 */
+  function cholesky(P) {
+    var n = P.length, L = zeros(n, n), i, j, k, s;
+    for (i = 0; i < n; i++) {
+      for (j = 0; j <= i; j++) {
+        s = P[i][j];
+        for (k = 0; k < j; k++) s -= L[i][k] * L[j][k];
+        if (i === j) {
+          if (!(s > 0)) return null;
+          L[i][i] = Math.sqrt(s);
+        } else {
+          L[i][j] = s / L[j][j];
+        }
+      }
+    }
+    return L;
+  }
+
+  /* =========================================== 縮小になる距離を、その場で作る */
+  /* 論文の議論は「‖A‖₂ < 1 だから縮小写像、よって Banach」と進む。ρ < 1 ≤ ‖A‖₂
+     では結論だけが正しく、議論は成り立たない。ユークリッド距離で測るかぎり
+     縮小写像ではないからである。
+
+     足りない分は作れる。B = A/γ（ρ < γ < 1）として
+
+         P − BᵀPB = I          リアプノフ（Stein）方程式
+
+     を解き、‖x‖_P = √(xᵀPx) と置くと、全ての x で
+
+         ‖Ax‖_P ≤ κ‖x‖_P,     κ = γ√(1 − 1/λmax(P)) < γ < 1
+
+     が成り立つ。AᵀPA = γ²(P − I) から出る等式で、κ はこのノルムでの ‖A‖_P
+     そのもの（上からの評価ではない）。‖·‖_P はユークリッド距離と同値なので
+     (ℝⁿ, d_P) は完備で、Banach の不動点定理が字義どおり当たる。
+
+     ユークリッド距離に戻すと
+
+         ‖xₖ − x*‖ ≤ √(λmax/λmin) · κᵏ · ‖x₀ − x*‖
+
+     右辺の係数が、上で測っている過渡的増幅にあたる。誤差はいったん増えてよい。
+
+     新しい数学ではない。ρ に任意に近いノルムが存在することは Ostrowski /
+     Householder の古典的な結果で、リアプノフ方程式でそれを構成するのも標準的な
+     手順である。ここでやっているのは、存在で終わっている構成を実際に走らせる
+     ことだけ。 */
+  function certificate(A, gamma) {
+    var n = A.length, i, j;
+    var rho = spectralRadius(A);
+    if (!(rho < 1)) return null;                 /* ρ ≥ 1 では、どのノルムでも縮小にならない */
+    if (gamma === undefined || gamma === null) gamma = (rho + 1) / 2;
+    if (!(rho < gamma && gamma < 1)) return null;
+
+    var B = zeros(n, n);
+    for (i = 0; i < n; i++) for (j = 0; j < n; j++) B[i][j] = A[i][j] / gamma;
+    var Bt = transpose(B);
+    var K = kron(Bt, Bt), M = zeros(n * n, n * n), rhs = new Array(n * n);
+    for (i = 0; i < n * n; i++) {
+      for (j = 0; j < n * n; j++) M[i][j] = (i === j ? 1 : 0) - K[i][j];
+      rhs[i] = 0;
+    }
+    for (i = 0; i < n; i++) rhs[i * n + i] = 1;
+    var v = solve(M, rhs);
+    if (!v) return null;
+
+    var P = zeros(n, n);
+    for (i = 0; i < n; i++) for (j = 0; j < n; j++) P[i][j] = v[i * n + j];
+    for (i = 0; i < n; i++) for (j = 0; j < i; j++) {   /* 対称性は理論上のもの。丸めを落とす */
+      var m = (P[i][j] + P[j][i]) / 2;
+      P[i][j] = m; P[j][i] = m;
+    }
+    var L = cholesky(P);
+    if (!L) return null;
+
+    var w = eigSym(P), lmax = w[0], lmin = w[w.length - 1];
+    if (!(lmin > 0) || !isFinite(lmax)) return null;
+    var kappa = gamma * Math.sqrt(Math.max(0, 1 - 1 / lmax));
+    if (!(kappa < 1)) return null;
+
+    /* 残差。P が本当に方程式の解になっているか。 */
+    var BtPB = matmul(matmul(Bt, P), B), resid = 0;
+    for (i = 0; i < n; i++) for (j = 0; j < n; j++)
+      resid = Math.max(resid, Math.abs(P[i][j] - BtPB[i][j] - (i === j ? 1 : 0)));
+
+    return {
+      n: n, A: A, P: P, L: L, gamma: gamma, rho: rho,
+      kappa: kappa, lmax: lmax, lmin: lmin,
+      amplification: Math.sqrt(lmax / lmin),
+      residual: resid
+    };
+  }
+
+  /* ‖x‖_P = ‖Lᵀx‖。 */
+  function certNorm(cert, x) { return vnorm(matvec(transpose(cert.L), x)); }
+
+  /* このノルムでの ‖A‖_P を定義から取り直す。y = Lᵀx と置くと作用素は Lᵀ A L⁻ᵀ。
+     κ と一致するはずで、一致することが「上界ではなく達成値」の意味になる。 */
+  function certAchieved(cert) {
+    var n = cert.n, N = matmul(transpose(cert.L), cert.A);
+    var cols = [], i;
+    for (i = 0; i < n; i++) {
+      /* Mᵀ の第 i 列 = L⁻¹ (Nᵀ の第 i 列)、Nᵀ の第 i 列は N の第 i 行。 */
+      var c = solve(cert.L, N[i]);
+      if (!c) return null;
+      cols.push(c);
+    }
+    return spectralNorm(cols);   /* cols は M そのもの。‖M‖₂ = ‖A‖_P */
+  }
+
+  /* 第 k 段の誤差の上界（ユークリッド距離で測ったもの）。 */
+  function certBound(cert, k, e0) {
+    return cert.amplification * Math.pow(cert.kappa, k) * e0;
+  }
+
   /* ================================================================ 作用素 */
   function analyze(spec) {
     var n = spec.n, Q = spec.Q, a = spec.a, p = spec.p, i, j;
@@ -322,7 +450,9 @@
         eigSym: eigSym, hessenberg: hessenberg, solve: solve,
         matmul: matmul, matvec: matvec, transpose: transpose,
         identity: identity, zeros: zeros, cyclicShift: cyclicShift,
-        analyze: analyze, iterate: iterate, PRESETS: PRESETS
+        analyze: analyze, iterate: iterate, PRESETS: PRESETS,
+        kron: kron, cholesky: cholesky, certificate: certificate,
+        certNorm: certNorm, certAchieved: certAchieved, certBound: certBound
       };
     }
     return;
@@ -330,7 +460,9 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var grid = $('grid'), out = $('out'), sizeSel = $('size');
+  var certOut = $('certout'), gammaIn = $('gamma'), gammaVal = $('gammaVal');
   if (!grid) return;
+  if (gammaIn) gammaIn.addEventListener('input', runCert);
 
   var state = null;
 
@@ -489,6 +621,69 @@
     return svg;
   }
 
+  /* 実際の誤差と、保証した上界を重ねる。対数目盛。style 属性は置かない（CSP）。 */
+  function certPlot(errs, bounds) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var idx = [], i;
+    for (i = 0; i < errs.length; i++) {
+      if (errs[i] !== null && isFinite(errs[i]) && isFinite(bounds[i])) idx.push(i);
+    }
+    if (idx.length < 2) return null;
+    var W = 640, H = 210, L = 46, R = 10, T = 14, B = 40;
+    var lg = function (v) { return Math.log10(Math.max(v, 1e-18)); };
+    var all = idx.map(function (k) { return lg(errs[k]); })
+      .concat(idx.map(function (k) { return lg(bounds[k]); }));
+    var lo = Math.min.apply(null, all), hix = Math.max.apply(null, all);
+    if (hix - lo < 1) { lo -= 0.5; hix += 0.5; }
+    var X = function (j) { return L + j * (W - L - R) / (idx.length - 1); };
+    var Y = function (v) { return T + (hix - v) * (H - T - B) / (hix - lo); };
+
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('class', 'plot');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', '実際の誤差と、保証した上界。縦は対数目盛。');
+
+    var g0 = Math.ceil(lo), g1 = Math.floor(hix), g;
+    for (g = g0; g <= g1; g++) {
+      if (g1 - g0 > 8 && g % 2 !== 0) continue;
+      var ln = document.createElementNS(NS, 'line');
+      ln.setAttribute('x1', L); ln.setAttribute('x2', W - R);
+      ln.setAttribute('y1', Y(g).toFixed(1)); ln.setAttribute('y2', Y(g).toFixed(1));
+      ln.setAttribute('class', 'gl');
+      svg.appendChild(ln);
+      var tx = document.createElementNS(NS, 'text');
+      tx.setAttribute('x', L - 6); tx.setAttribute('y', (Y(g) + 3.5).toFixed(1));
+      tx.setAttribute('class', 'gt');
+      tx.textContent = '1e' + g;
+      svg.appendChild(tx);
+    }
+
+    var line = function (vals, cls) {
+      var d = idx.map(function (k, j) {
+        return (j ? 'L' : 'M') + X(j).toFixed(1) + ' ' + Y(lg(vals[k])).toFixed(1);
+      }).join(' ');
+      var pa = document.createElementNS(NS, 'path');
+      pa.setAttribute('d', d);
+      pa.setAttribute('class', cls);
+      svg.appendChild(pa);
+    };
+    line(bounds, 'bcurve');
+    line(errs, 'curve');
+
+    var lbl = document.createElementNS(NS, 'text');
+    lbl.setAttribute('x', L); lbl.setAttribute('y', H - 22);
+    lbl.setAttribute('class', 'lgd');
+    lbl.textContent = '第 0 段 → 第 ' + idx[idx.length - 1] + ' 段';
+    svg.appendChild(lbl);
+    var lg2 = document.createElementNS(NS, 'text');
+    lg2.setAttribute('x', L); lg2.setAttribute('y', H - 8);
+    lg2.setAttribute('class', 'lgd');
+    lg2.textContent = '実線 ＝ 実際の誤差　　破線 ＝ 保証した上界（つねに実線の上にある）';
+    svg.appendChild(lg2);
+    return svg;
+  }
+
   function verdict(okFlag, head, body) {
     var d = el('div', 'verdict ' + (okFlag ? 'yes' : 'no'));
     d.appendChild(el('span', 'vmark', okFlag ? '✓' : '×'));
@@ -574,6 +769,108 @@
     var tw = el('div', 'tablewrap');
     tw.appendChild(tbl);
     out.appendChild(tw);
+
+    runCert();
+  }
+
+  /* ============================ 縮小になる距離を作って、上界が実際を覆うか見る */
+  var EPS = 2.220446049250313e-16;      /* 倍精度の機械イプシロン */
+
+  function runCert() {
+    if (!certOut || !state) return;
+    certOut.textContent = '';
+    var res = state.res, spec = state.spec;
+
+    if (!res.converges || !res.fixedPoint) {
+      if (gammaIn) gammaIn.disabled = true;
+      if (gammaVal) gammaVal.textContent = 'ρ ≥ 1 のため、選べる γ がありません';
+      certOut.appendChild(verdict(false, 'ρ(A) = ' + fmt(res.rho) + ' ≥ 1',
+        'どんなノルムを持ってきても縮小写像にはなりません。どの誘導ノルムでも ρ(A) ≤ ‖A‖ が成り立つからです。作れないので、作りません。'));
+      return;
+    }
+    if (gammaIn) gammaIn.disabled = false;
+
+    var t = gammaIn ? (parseFloat(gammaIn.value) || 50) / 100 : 0.5;
+    var gamma = res.rho + t * (1 - res.rho);
+    var cert = certificate(res.A, gamma);
+    if (gammaVal) {
+      gammaVal.textContent = 'γ = ' + fmt(gamma) + '　（ρ = ' + fmt(res.rho) + ' と 1 のあいだ）';
+    }
+    if (!cert) {
+      certOut.appendChild(verdict(false, 'この γ では構成できませんでした',
+        'γ を ρ に寄せすぎると、解く連立一次方程式が悪条件になります。γ を大きい側へ動かしてください。'));
+      return;
+    }
+
+    certOut.appendChild(verdict(true, 'κ = ' + fmt(cert.kappa) + ' < 1',
+      'この距離のもとで f は縮小写像です。‖·‖_P はユークリッド距離と同値なので (ℝⁿ, d_P) は完備で、Banach の不動点定理が字義どおり当たります。'
+      + (res.monotone ? '　—— もっとも、この設定では ‖A‖₂ < 1 なので、論文の議論がそのまま通ります。組み直す必要がありません。'
+                      : '　論文の議論が破れているこの設定でも、同じ結論に同じ定理で到達できます。')));
+
+    var facts = el('div', 'facts');
+    var add = function (k, v) {
+      var r = el('div', 'fact');
+      r.appendChild(el('dt', null, k));
+      r.appendChild(el('dd', null, v));
+      facts.appendChild(r);
+    };
+    var ach = certAchieved(cert);
+    add('目盛り γ', fmt(cert.gamma) + '　（ρ < γ < 1）');
+    add('縮小定数 κ', fmt(cert.kappa) + '　＝ γ√(1 − 1/λmax(P))');
+    add('定義から取り直した ‖A‖_P', ach === null ? '—' : fmt(ach, 9)
+      + '　（κ との差 ' + (ach === null ? '—' : Math.abs(ach - cert.kappa).toExponential(1))
+      + '。κ は上界ではなく達成値）');
+    add('係数 √(λmax/λmin)', fmt(cert.amplification, 4) + '　ユークリッド距離に戻すときの代償');
+    var pmax = 0, pi, pj;
+    for (pi = 0; pi < cert.n; pi++) for (pj = 0; pj < cert.n; pj++)
+      pmax = Math.max(pmax, Math.abs(cert.P[pi][pj]));
+    add('方程式の残差', (cert.residual / Math.max(1, pmax)).toExponential(2)
+      + '　（P − BᵀPB − I の最大成分を、P の最大成分で割った値）');
+    add('得られた上界', '‖xₖ − x*‖ ≤ ' + fmt(cert.amplification, 4)
+      + ' × ' + fmt(cert.kappa) + '^k × ‖x₀ − x*‖');
+    certOut.appendChild(facts);
+
+    /* 上界が実際の反復を覆うか、その場で当たる。 */
+    var rows = iterate(res, spec.x0, 60);
+    var errs = rows.map(function (r) { return r.err; });
+    var e0 = errs[0], scale = 1 + vnorm(res.fixedPoint);
+    var bounds = errs.map(function (_, k) { return certBound(cert, k, e0); });
+    var broke = [], firstNoise = null, k;
+    for (k = 0; k < errs.length; k++) {
+      if (errs[k] === null || !isFinite(errs[k])) continue;
+      if (errs[k] > bounds[k] * (1 + 1e-9) && firstNoise === null) firstNoise = k;
+      if (errs[k] > bounds[k] * (1 + 1e-9) + 16 * EPS * scale * (k + 1)) broke.push(k);
+    }
+    certOut.appendChild(verdict(broke.length === 0,
+      broke.length === 0 ? '全 ' + errs.length + ' 段が上界の内側' : '第 ' + broke[0] + ' 段で破れました',
+      broke.length === 0
+        ? ('上界は κᵏ で落ちるので、段を伸ばせば倍精度で表せる下限を割ります。そこから先で不等式が見かけ上破れるのは反復に溜まった丸め誤差なので、その分（16ε(1+‖x*‖)(k+1)）だけを許しています。'
+           + (firstNoise === null ? 'ここではその項を使わずに全段が通りました。'
+              : 'ここでは第 ' + firstNoise + ' 段からその項が要りました。正規行列では上界が等号になるので、早めに要ります。'))
+        : '不等式が成り立っていません。この場合は構成か実装のどちらかが誤っています。'));
+
+    var pl = certPlot(errs, bounds);
+    if (pl) {
+      var pw = el('div', 'plotwrap');
+      pw.appendChild(pl);
+      certOut.appendChild(pw);
+    }
+
+    /* 作った行列そのもの。 */
+    var wrap = el('div', 'pmat');
+    var pt = el('table', 'pmat-t');
+    pt.setAttribute('aria-label', '構成した正定値行列 P');
+    var body = el('tbody'), i, j;
+    for (i = 0; i < cert.n; i++) {
+      var tr = el('tr');
+      for (j = 0; j < cert.n; j++) tr.appendChild(el('td', null, fmt(cert.P[i][j], 4)));
+      body.appendChild(tr);
+    }
+    pt.appendChild(body);
+    wrap.appendChild(el('p', 'pcap', 'ノルムを定める行列 P（対称・正定値、λmin = '
+      + fmt(cert.lmin, 4) + '、λmax = ' + fmt(cert.lmax, 4) + '）'));
+    wrap.appendChild(pt);
+    certOut.appendChild(wrap);
   }
 
   function load(key) {
