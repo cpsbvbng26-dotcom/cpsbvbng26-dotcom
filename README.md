@@ -142,6 +142,7 @@
 - LinkedIn — [職務プロフィール](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - ランサーズ — [受注プロフィール](https://www.lancers.jp/profile/Itizyou)
+- ココナラ — [受注プロフィール](https://coconala.com/users/4974247)
 - このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 </details>
