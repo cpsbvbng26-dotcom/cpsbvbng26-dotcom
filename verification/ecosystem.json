@@ -1,0 +1,118 @@
+{
+  "_": [
+    "9 つのリポジトリをまたいで、散文が名乗る数と、実際に走らせた数を突き合わせる宣言。",
+    "各リポジトリの検査は自分の中しか見ない。だから『errata-check が 63 項目になったのに",
+    "サイトが 60 のまま』が起きる。ここはその隙間だけを見る。",
+    "",
+    "実際: cmd を走らせて regex で数を取る。file なら中身から取る。",
+    "名乗り: その数が、書いてあるはずの場所すべてに、その数として書いてあるか。"
+  ],
+
+  "共通の決めごと": {
+    "file": "CLAUDE.md",
+    "begin": "<!-- 共通ここから -->",
+    "end": "<!-- 共通ここまで -->",
+    "repos": [
+      "cpsbvbng26-dotcom", "errata-check", "self-correction",
+      "trinity-infinity", "trinity-operator", "autonomy-and-self-cultivation",
+      "naval-gazette-notes", "researcher-profile", "justice-and-algorithms"
+    ]
+  },
+
+  "数": [
+    {
+      "名前": "errata-check 道具自身の検査",
+      "実際": { "repo": "errata-check", "cmd": ["python3", "tests/check_tool.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "errata-check", "file": "README.md", "regex": "check_tool\\.py\\s+# (\\d+) 項目" },
+        { "repo": "errata-check", "file": ".github/workflows/verify.yml", "regex": "道具自身 (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "道具自身への (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "<dt>道具自身 (\\d+)</dt>" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) on the tool\\." },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<dt>(\\d+) checks on the tool itself</dt>" }
+      ]
+    },
+    {
+      "名前": "errata-check 壊す先の数",
+      "実際": { "repo": "errata-check", "file": "README.md", "regex": "壊す先は (\\d+) 通り" },
+      "名乗り": [
+        { "repo": "errata-check", "file": "CITATION.cff", "regex": "(\\d+) 通りに壊して" },
+        { "repo": "errata-check", "file": ".zenodo.json", "regex": "breaking it in (\\d+) distinct ways" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "(\\d+) 通りに壊して" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "(\\d+) 通りに壊し、" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "in (\\d+) distinct ways" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "broken in (\\d+) distinct ways" }
+      ]
+    },
+    {
+      "名前": "self-correction 登録簿の検査",
+      "実際": { "repo": "self-correction", "cmd": ["python3", "verification/check_register.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "self-correction", "file": "README.md", "regex": "check_register\\.py\\s+# (\\d+) 項目" },
+        { "repo": "self-correction", "file": ".github/workflows/verify.yml", "regex": "登録簿 (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "<dt>登録簿 (\\d+)</dt>" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<dt>(\\d+) checks on the register</dt>" }
+      ]
+    },
+    {
+      "名前": "self-correction 登録簿の件数",
+      "実際": { "repo": "self-correction", "file": "register.toml", "数える": "^\\[\\[entry\\]\\]" },
+      "名乗り": [
+        { "repo": "self-correction", "file": "README.md", "regex": "いま \\*\\*(\\d+) 件\\*\\*" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "<strong>(\\d+) 件</strong>を、いま立っている" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<strong>(\\d+) entries</strong> across five statuses" }
+      ]
+    },
+    {
+      "名前": "trinity-infinity 正誤表の監査",
+      "実際": { "repo": "trinity-infinity", "cmd": ["python3", "verification/check_errata.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "trinity-infinity", "file": ".github/workflows/verify.yml", "regex": "正誤表の監査 (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "正誤表そのものへの検査 (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "Trinity-Infinity の三篇に (\\d+)" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) checks on the errata itself" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) on the three Trinity-Infinity papers" }
+      ]
+    },
+    {
+      "名前": "autonomy-and-self-cultivation 正誤表の監査",
+      "実際": { "repo": "autonomy-and-self-cultivation", "cmd": ["python3", "verification/check_errata.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "哲学の三篇に (\\d+)" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) on the three philosophical papers" }
+      ]
+    },
+    {
+      "名前": "naval-gazette-notes 正誤表の監査",
+      "実際": { "repo": "naval-gazette-notes", "cmd": ["python3", "verification/check_errata.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "ノートに (\\d+)" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) on the naval gazette source note" }
+      ]
+    }
+  ],
+
+  "和": [
+    {
+      "名前": "凍結された成果物への監査の合計",
+      "足すもの": ["trinity-infinity 正誤表の監査",
+                   "autonomy-and-self-cultivation 正誤表の監査",
+                   "naval-gazette-notes 正誤表の監査"],
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "正誤表の監査 (\\d+)" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "(\\d+) checks on the errata(?! itself)" }
+      ]
+    }
+  ],
+
+  "写した版と DOI": [
+    { "repo": "trinity-infinity", "版": "0.1.0", "doi": "10.5281/zenodo.22649054" },
+    { "repo": "autonomy-and-self-cultivation", "版": "0.2.0", "doi": "10.5281/zenodo.22649899" },
+    { "repo": "naval-gazette-notes", "版": "0.2.0", "doi": "10.5281/zenodo.22649899" }
+  ]
+}
