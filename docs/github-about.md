@@ -1,9 +1,9 @@
 # GitHub の About に入れるテキスト
 
-公開リポジトリ **7 件**分の description・topics・Website・ピン留め順です。
+公開リポジトリ **8 件**分の description・topics・Website・ピン留め順です。
 **まだ適用していません。** GitHub UI か API での反映は手作業です。
 
-現状、**7 件すべてで description と topics が空**です。ここを埋めるのが、
+現状、**8 件すべてで description と topics が空**です。ここを埋めるのが、
 発見可能性の面でいちばん効果の大きい変更です。
 
 記法は次のとおりです。description は英語 1 行と日本語 1 行を併記しますが、
@@ -35,6 +35,27 @@
 > ⚠️ **現在 `https://cpsbvbng26-dotcom.vercel.app` が設定されています。**
 > サイトの内容 67 箇所と検証スクリプトは GitHub Pages を正としています。
 > 正本が二つある状態なので、ここを直すのが最優先です。
+
+---
+
+## 1b. `errata-check` —— 凍結された公開物に対する正誤表の監査
+
+**description（英語・110 字）**
+
+> Deterministic auditing of errata against frozen, already-published artifacts. No LLM, no similarity scores.
+
+**description（日本語・参考）**
+
+> 凍結された公開物に対して、正誤表のほうを機械で監査する。LLM も類似度も使わない。
+
+**topics（10）**
+
+`research-integrity` `errata` `corrigendum` `post-publication` `reproducibility`
+`continuous-integration` `self-correction` `scholarly-communication` `pdf` `python`
+
+**Website**
+
+`https://doi.org/10.5281/zenodo.22649054`
 
 ---
 
