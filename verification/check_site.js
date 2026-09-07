@@ -348,6 +348,20 @@ ok('trinity.html にインラインの style 属性が無い',
      '本文 ' + (cc ? cc[1] + '×10⁻¹⁶ / ' + cc[2] + '×10⁻¹⁰' : 'なし') +
      ' / 実際 ' + wk.toExponential(2) + ' / ' + wp.toExponential(2));
 
+  /* トップが名乗る「この場で NN」は、check_trinity.js が実際に通す件数である。
+   * 検査を足したのに文章だけ古い、という壊れ方をここで止める。 */
+  const out = require('child_process')
+    .execSync('node ' + JSON.stringify(path.join(__dirname, 'check_trinity.js')),
+              { encoding: 'utf8' });
+    const lines = out.trim().split('\n');
+  const n = Number((lines[lines.length - 1].match(/^(\d+) 件/) || [])[1]);
+  ['index.html', 'index.en.html'].forEach((page) => {
+    const m2 = read(page).match(/この場で (\d+)/);
+    ok(page + ' の「この場で NN」が check_trinity.js の件数と一致する',
+       !!m2 && Number(m2[1]) === n,
+       '本文 ' + (m2 ? m2[1] : 'なし') + ' / 実際 ' + n);
+  });
+
 })();
 
 PAGES.filter((p) => p !== '404.html').forEach((page) => {
