@@ -135,6 +135,7 @@
 - PhilPeople — [哲学者プロフィール](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [欧州拠点研究者プロフィール](https://cv.hal.science/nemoto-takuya)
 - acadmc — [アカデミックプロフィール](https://acadmc.com/takuyanemoto)
+- Knowledge Commons — [人文学のプロフィール](https://profile.hcommons.org/members/nemoto200101/)
 - J-GLOBAL — [研究者データベース](https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335)
 - ORCID — [0009-0000-1406-0547](https://orcid.org/0009-0000-1406-0547)
 - Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
