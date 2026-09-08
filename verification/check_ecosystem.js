@@ -205,11 +205,34 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* 外部からの評価の記録。件数を機械で数える。
+ * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
+
+console.log('\n6. 外部からの評価');
+
+{
+  const F = path.join('docs', 'external-evaluations.md');
+  const text = read('cpsbvbng26-dotcom', F);
+  check('外部からの評価の記録がある', text !== null, F);
+
+  if (text !== null) {
+    const sec = text.slice(text.indexOf('## 受けた評価'), text.indexOf('## 出した先'));
+    const rows = (sec.match(/^\|(?!\s*(---|\s*日付))[^\n]*\|$/gm) || []).length;
+    const m = /\*\*いま (\d+) 件。\*\*/.exec(text);
+    check('名乗る件数が、表の行数と一致する', m !== null && parseInt(m[1], 10) === rows,
+      m ? ('名乗り ' + m[1] + ' / 行 ' + rows) : '「いま NN 件。」が無い');
+    check('査読と呼ばないことが書いてある', text.indexOf('査読と呼ばない') >= 0);
+    check('丸写ししないことが書いてある', text.indexOf('丸写ししない') >= 0);
+    check('褒めた箇所だけ載せないことが書いてある',
+      text.indexOf('褒めた箇所だけ載せない') >= 0);
+  }
+}
+
 /* この検査自身が名乗る件数も、実際と合わせる。
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n6. この検査が名乗る件数');
+console.log('\n7. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
