@@ -186,13 +186,84 @@ This repository holds two kinds of thing, so it carries two licences.
 | | Licence | |
 | --- | --- | --- |
 | **Prose and structured data** — the profile text, the paper and work descriptions, `README.md`, `README.en.md`, the JSON-LD | [CC BY 4.0](LICENSE) | Free to use, including modification, with attribution |
-| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
+| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
 
 © 2026 Takuya Nemoto (根本卓哉)
 
 **The linked repositories and preprints carry their own licences.** See the ✴︎Works✴︎ table above and the `LICENSE` file in each repository.
 
 ---
+
+✴︎The Keep✴︎
+
+<details>
+<summary>The nine repositories mapped onto the parts of a Japanese castle</summary>
+
+A metaphor, not a blueprint. It is included because mapping the parts makes the weak
+points fall out in the same shape.
+
+### Inside the walls (GitHub)
+
+| Part | What it is | Why |
+| --- | --- | --- |
+| Keep (天守閣) | `cpsbvbng26-dotcom` | The tower one sees from outside. It is not where fighting happens; the stonework and the loopholes do that. It carries the lookout (the cross-repository check) |
+| Inner citadel (本丸) | `trinity-infinity` | The core. Theorems, errata, route. If this falls, everything falls |
+| Stone base (石垣) | `self-correction` | Invisible from outside. Everything rests on it. git collects every id from every past revision, so it cannot be torn down |
+| Forward bastion (出丸) | `trinity-operator` | The enclosure that juts out past the wall — where the exchange of fire happens. The operator-norm / spectral-radius counterexample lives here |
+| Armoury (武具蔵) | `errata-check` | Where the weapon is forged. Copies are issued to three enclosures |
+| Works office (作事方) | `researcher-profile` | The drawing vault. The keep, the CV, the notes and the paper pages are all its output |
+| Second enclosure (二の丸) | `autonomy-and-self-cultivation` | Three philosophy papers, with their own errata and their own guardhouse |
+| Third enclosure (三の丸) | `naval-gazette-notes` / `justice-and-algorithms` | A source note and an issue survey, both declared not to be the core |
+| Unrepaired outwork | `cs50-final-project` | The one place left untouched. It lies outside the lookout's field of view |
+
+### Fittings
+
+| Part | What it is |
+| --- | --- |
+| Moat (堀) | CSP `default-src 'none'`. Nothing crosses. Not a policy — the browser enforces it |
+| Loopholes (狭間) | The check scripts in each repository |
+| Lookout tower (物見櫓) | `verification/check_ecosystem.js`, run daily on a schedule |
+| Guardhouse (番所) | Each repository's `verify.yml`, run on every push |
+| Main gate (大手門) | The top page |
+| Rear gate (搦手) | `sitemap.xml` and DOI resolution. More arrivals come from behind than from the front |
+| Bent entrance (虎口) | The per-paper pages — the first turn a reader takes after a DOI |
+| Notice board (高札場) | `ERRATA.md`. What was got wrong is posted where anyone can read it |
+| Land register (検地帳) | [`docs/doi-index.md`](docs/doi-index.md) |
+| Castle map (城絵図) | [`docs/canonical-sources.md`](docs/canonical-sources.md). Which source is canonical when several exist |
+
+### Outside (not the author's ground)
+
+| What it is | |
+| --- | --- |
+| The authority that grants the seal | Zenodo. It cannot be rewritten from here, which is why the artifacts are frozen |
+| Crest and seal | ORCID. The only thing that separates the author from a namesake |
+| Outposts | SSRN / PhilArchive / Knowledge Commons / researchmap / HAL. Entrances, not canonical records |
+| Another house's inspectors | External review and metrics. Records outside the author's control |
+
+### The field camp is not inside the castle
+
+The field camp is the working session. It is a temporary structure outside the walls, and
+it is reclaimed when left alone. What survives is only what was pushed — not the
+conversation, not the output of the checks, not the working tree.
+
+The castle does not fall when the camp does. The reverse is the risk: whatever was built
+in the camp and not brought inside never happened.
+
+### What the map shows
+
+The stone base carries no seal. Every enclosure points at `self-correction` as the
+canonical record of corrections, and it has no DOI. A foundation with no citable
+identifier.
+
+The unrepaired outwork is not on the castle map. `cs50-final-project` sits outside the
+lookout's field of view. The same crest flies over it, and it has been neither fixed nor
+closed.
+
+The keep is not built for fighting. That is the design, not a defect. The stonework and
+the loopholes do the defending. The castle keeps working if the keep burns — the Markdown
+is readable even when Pages is not.
+
+</details>
 
 ✴︎Tools & Disclosure✴︎
 
@@ -201,7 +272,7 @@ This repository is written with [Claude Code](https://claude.com/claude-code). [
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
+The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
 
 **The record of how it was made** is not only a claim — it can be checked against the repository history itself.
 

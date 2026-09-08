@@ -223,7 +223,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | | ライセンス | |
 | --- | --- | --- |
 | **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使える |
-| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
+| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
 
 © 2026 根本卓哉（Takuya Nemoto）
 
@@ -232,6 +232,73 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 ---
 
+✴︎The Keep✴︎
+
+<details>
+<summary>城の縄張りに喩えると、どれがどれに相当するか</summary>
+
+九つのリポジトリと、その外側の関係を、城の部位に当てて並べる。
+喩えであって設計図ではない。ただし当てはめると、弱点の位置が同じ形で出てくる。
+
+### 城内（GitHub）
+
+| 城の部位 | 相当するもの | なぜ |
+| --- | --- | --- |
+| 天守閣 | `cpsbvbng26-dotcom` | 外から見える塔である。実戦では使わない。防御は石垣と狭間がやっている。最上階に望楼がある（横断検査） |
+| 本丸 | `trinity-infinity` | 核である。定理・正誤表・経路。ここが落ちれば全部落ちる |
+| 石垣 | `self-correction` | 外からは見えない。全部これに載っている。git が全版から id を集めるので崩せない |
+| 出丸 | `trinity-operator` | 本丸の外に突き出た曲輪である。実際に撃ち合う場所。作用素ノルムとスペクトル半径の反例はここにある |
+| 武具蔵 | `errata-check` | 武器を打つ場所である。三つの曲輪に写しを配っている |
+| 作事方 | `researcher-profile` | 図面蔵である。天守も CV もノートも論文ページも、建物はここの出力である |
+| 二の丸 | `autonomy-and-self-cultivation` | 哲学三篇。独立した曲輪で、独自の正誤表と番所を持つ |
+| 三の丸 | `naval-gazette-notes` / `justice-and-algorithms` | 記録所と論点整理である。核ではないと明示してある |
+| 修復していない曲輪 | `cs50-final-project` | 手を入れていない唯一の場所である。横断検査の視界の外にある |
+
+### 城の設備
+
+| 部位 | 相当するもの |
+| --- | --- |
+| 堀 | CSP `default-src 'none'`。何も渡らない。方針ではなくブラウザが強制している |
+| 狭間 | 各リポジトリの検査 |
+| 物見櫓 | `verification/check_ecosystem.js`。日次で自動で回る |
+| 番所 | 各リポジトリの `verify.yml`。push ごとに動く |
+| 大手門 | トップページ |
+| 搦手 | `sitemap.xml` と DOI の解決。裏から入ってくる者のほうが多い |
+| 虎口 | 論文ごとの単独ページ。DOI から来た者が最初に折れる場所 |
+| 高札場 | `ERRATA.md`。誰でも読める所に、何を間違えたかを貼ってある |
+| 検地帳 | [`docs/doi-index.md`](docs/doi-index.md) |
+| 城絵図 | [`docs/canonical-sources.md`](docs/canonical-sources.md)。どれを正とするかの縄張り図 |
+
+### 城外（自分の領地ではない）
+
+| 相当するもの | |
+| --- | --- |
+| 墨付を出す側 | Zenodo。こちらから書き換えられない。だから凍結される |
+| 家紋・印判 | ORCID。同名の者と区別する唯一のものである |
+| 飛び地・陣屋 | SSRN / PhilArchive / Knowledge Commons / researchmap / HAL。正本ではない。入口である |
+| 他家の目付 | 外部の査読と計測。こちらの支配下に無い記録である |
+
+### 本陣は城の中に無い
+
+本陣は作業のセッションである。城外の仮設であり、放置すれば回収される。
+残るのは push したものだけである。会話も、検査の出力も、作業ツリーも残らない。
+
+本陣が落ちても城は落ちない。逆に、本陣で作ったものを城に入れないまま陣を払えば、
+それは無かったことになる。
+
+### 縄張りから見える弱点
+
+石垣に墨付が無い。`self-correction` は全曲輪が訂正の正本として指しているのに、
+DOI を持っていない。引用できる識別子の無い石垣である。
+
+修復していない曲輪が城絵図に載っていない。`cs50-final-project` は望楼の視界の外にある。
+外から見れば同じ家紋が立っているのに、直しても閉じてもいない。
+
+天守は実戦向きではない。これは弱点ではなく設計である。防御は石垣と狭間がやっている。
+天守が焼けても城は機能する。Pages が止まっても Markdown は読める。
+
+</details>
+
 ✴︎Tools & Disclosure✴︎
 
 このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いている。監査には [Grok](https://grok.com) を使った。
@@ -239,7 +306,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作している。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させた。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っている。AI は著作者ではない。
+本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作している。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させた。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っている。AI は著作者ではない。
 
 **制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できる。
 
