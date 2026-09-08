@@ -55,6 +55,19 @@
       ]
     },
     {
+      "名前": "trinity-operator 作用素の検査",
+      "実際": { "repo": "trinity-operator", "cmd": ["python3", "check.py"],
+                "regex": "(\\d+) 件すべて通りました。" },
+      "名乗り": [
+        { "repo": "trinity-operator", "file": "README.md", "regex": "check\\.py\\s+# (\\d+) 項目の検査" },
+        { "repo": "trinity-operator", "file": "README.md", "regex": "作用素の主張 (\\d+) 項目" },
+        { "repo": "trinity-operator", "file": "CITATION.cff", "regex": "乱数種を固定した検査 (\\d+) 項目" },
+        { "repo": "trinity-operator", "file": ".github/workflows/verify.yml", "regex": "作用素 (\\d+) 項目" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "<dt>作用素 (\\d+)</dt>" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<dt>(\\d+) checks on the operator</dt>" }
+      ]
+    },
+    {
       "名前": "self-correction 登録簿の検査",
       "実際": { "repo": "self-correction", "cmd": ["python3", "verification/check_register.py"],
                 "regex": "(\\d+) 件すべて通りました。" },
