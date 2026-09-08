@@ -28,6 +28,7 @@ const CHECKS = [
   ['errata-check', '道具自身', 'python3', 'tests/check_tool.py'],
   ['errata-check', '見本（最小）', 'python3', 'errata_check.py', 'examples/minimal/audit.toml'],
   ['errata-check', '見本（分野ごと）', 'python3', 'errata_check.py', 'examples/disciplines/audit.toml'],
+  ['errata-check', '見本（参考文献）', 'python3', 'errata_check.py', 'examples/references/audit.toml'],
 
   ['self-correction', '登録簿', 'python3', 'verification/check_register.py'],
 

@@ -172,7 +172,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 **リポジトリをまたぐずれは、これだけでは捕まりません。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きます（実際に起きました）。そこで 9 つを並べて隙間だけを見る検査を別に置いています。
 
 ```
-node verification/check_all.js        # 9 リポジトリの検査を全部（31 本）
+node verification/check_all.js        # 9 リポジトリの検査を全部（32 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 58 項目
 ```
 

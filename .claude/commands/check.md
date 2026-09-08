@@ -5,7 +5,7 @@ description: 9 リポジトリの検査を全部回し、横断のずれも見�
 次の二つを、この順で走らせてください。
 
 ```
-node verification/check_all.js        # 各リポジトリの検査を全部（31 本）
+node verification/check_all.js        # 各リポジトリの検査を全部（32 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断のずれ（58 項目）
 ```
 
