@@ -23,15 +23,10 @@ const BASE = 'https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/';
 
 /* 索引に載せるページ。404.html は noindex なので入れない。
  * loc は正準 URL に合わせる（トップだけ index.html を付けない）。 */
-const PAGES = [
-  { file: 'index.html', loc: '', priority: '1.0' },
-  { file: 'index.en.html', loc: 'index.en.html', priority: '0.9' },
-  { file: 'research.html', loc: 'research.html', priority: '0.8' },
-  { file: 'trinity.html', loc: 'trinity.html', priority: '0.7' },
-  { file: 'notes/index.html', loc: 'notes/index.html', priority: '0.5' },
-  { file: 'notes/index.en.html', loc: 'notes/index.en.html', priority: '0.5' },
-  { file: 'cv.html', loc: 'cv.html', priority: '0.4' },
-];
+/* 索引に載せるページ。404.html は noindex なので入れない。
+ * 一覧の出所は verification/pages.json である（三箇所にベタ書きしていたのをやめた）。
+ * loc は正準 URL に合わせる（トップだけ index.html を付けない）。 */
+const PAGES = require('./pages.json').pages.filter((p) => !p.noindex);
 
 const CHANGEFREQ = 'monthly';
 

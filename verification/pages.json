@@ -1,0 +1,118 @@
+{
+  "_": "配っているページの一覧。ここが唯一の出所である。",
+  "_なぜ": "check_site.js・update_csp.js・update_sitemap.js の三箇所にベタ書きしていた。ページが 8 から 22 に増えたので三重管理をやめる。",
+  "_loc": "sitemap の loc。トップだけ index.html を付けない。noindex のページは sitemap に入れない。",
+  "pages": [
+    {
+      "file": "index.html",
+      "loc": "",
+      "priority": "1.0"
+    },
+    {
+      "file": "index.en.html",
+      "loc": "index.en.html",
+      "priority": "0.9"
+    },
+    {
+      "file": "research.html",
+      "loc": "research.html",
+      "priority": "0.8"
+    },
+    {
+      "file": "trinity.html",
+      "loc": "trinity.html",
+      "priority": "0.7"
+    },
+    {
+      "file": "notes/index.html",
+      "loc": "notes/index.html",
+      "priority": "0.5"
+    },
+    {
+      "file": "notes/index.en.html",
+      "loc": "notes/index.en.html",
+      "priority": "0.5"
+    },
+    {
+      "file": "cv.html",
+      "loc": "cv.html",
+      "priority": "0.4"
+    },
+    {
+      "file": "papers/trinity-infinity-series-i.html",
+      "loc": "papers/trinity-infinity-series-i.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/trinity-infinity-series-i.en.html",
+      "loc": "papers/trinity-infinity-series-i.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/trinity-infinity-series-ii.html",
+      "loc": "papers/trinity-infinity-series-ii.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/trinity-infinity-series-ii.en.html",
+      "loc": "papers/trinity-infinity-series-ii.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/trinity-infinity-series-iii.html",
+      "loc": "papers/trinity-infinity-series-iii.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/trinity-infinity-series-iii.en.html",
+      "loc": "papers/trinity-infinity-series-iii.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/celibate-individual.html",
+      "loc": "papers/celibate-individual.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/celibate-individual.en.html",
+      "loc": "papers/celibate-individual.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/imperial-selfhood.html",
+      "loc": "papers/imperial-selfhood.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/imperial-selfhood.en.html",
+      "loc": "papers/imperial-selfhood.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/fragmentarian-spiritual-individualism.html",
+      "loc": "papers/fragmentarian-spiritual-individualism.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/fragmentarian-spiritual-individualism.en.html",
+      "loc": "papers/fragmentarian-spiritual-individualism.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/naval-gazette-otani-tsune.html",
+      "loc": "papers/naval-gazette-otani-tsune.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "papers/naval-gazette-otani-tsune.en.html",
+      "loc": "papers/naval-gazette-otani-tsune.en.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "404.html",
+      "loc": null,
+      "priority": null,
+      "noindex": true
+    }
+  ]
+}

@@ -13,7 +13,9 @@ const path = require('path');
 const csp = require('./csp.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'research.html', 'trinity.html', 'cv.html', 'notes/index.html', 'notes/index.en.html', '404.html'];
+/* 配っているページの一覧は verification/pages.json が唯一の出所である。
+ * 三箇所にベタ書きしていたのをやめた。ページを足したら pages.json だけ直す。 */
+const PAGES = require('./pages.json').pages.map((p) => p.file);
 
 PAGES.forEach((page) => {
   const file = path.join(ROOT, page);
