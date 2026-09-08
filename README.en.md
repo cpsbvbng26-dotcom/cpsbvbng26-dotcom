@@ -131,7 +131,6 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 - researchmap — [profile](https://researchmap.jp/takuyanemoto) / [research blog](https://researchmap.jp/takuyanemoto/research_blogs)
 - PhilPeople — [philosophy profile](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [researcher profile](https://cv.hal.science/nemoto-takuya)
-- acadmc — [academic profile](https://acadmc.com/takuyanemoto)
 - Knowledge Commons — [humanities profile](https://profile.hcommons.org/members/nemoto200101/)
 - J-GLOBAL — [researcher database](https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335)
 - ORCID — [0009-0000-1406-0547](https://orcid.org/0009-0000-1406-0547)
