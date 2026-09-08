@@ -122,7 +122,9 @@
       "実際": { "repo": "autonomy-and-self-cultivation", "file": "verification/references.toml",
                 "数える": "^\\[\\[reference\\]\\]" },
       "名乗り": [
-        { "repo": "autonomy-and-self-cultivation", "file": "ERRATA.md", "regex": "\\*\\*合計 (\\d+) 件\\*\\*" }
+        { "repo": "autonomy-and-self-cultivation", "file": "ERRATA.md", "regex": "\\*\\*合計 (\\d+) 件\\*\\*" },
+        { "repo": "autonomy-and-self-cultivation", "file": "SHELF.md", "regex": "まだ読んでいない\\*{0,2} (\\d+) 冊" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "(\\d+) 冊、まだ一冊も読んでいない" }
       ]
     },
     {
