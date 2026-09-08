@@ -214,7 +214,6 @@ points fall out in the same shape.
 | Works office (作事方) | `researcher-profile` | The drawing vault. The keep, the CV, the notes and the paper pages are all its output |
 | Second enclosure (二の丸) | `autonomy-and-self-cultivation` | Three philosophy papers, with their own errata and their own guardhouse |
 | Third enclosure (三の丸) | `naval-gazette-notes` / `justice-and-algorithms` | A source note and an issue survey, both declared not to be the core |
-| Unrepaired outwork | `cs50-final-project` | The one place left untouched. It lies outside the lookout's field of view |
 
 ### Fittings
 
@@ -255,9 +254,10 @@ The stone base carries no seal. Every enclosure points at `self-correction` as t
 canonical record of corrections, and it has no DOI. A foundation with no citable
 identifier.
 
-The unrepaired outwork is not on the castle map. `cs50-final-project` sits outside the
-lookout's field of view. The same crest flies over it, and it has been neither fixed nor
-closed.
+The lookout watches nine repositories, and nine is all there are — which was verified
+only after the author pointed out that one of them should not exist. Until then this map
+carried a repository that is not there. The only ground for it was a clone left in the
+working environment; the remote was never checked. Recorded as `WS-003` in the register.
 
 The keep is not built for fighting. That is the design, not a defect. The stonework and
 the loopholes do the defending. The castle keeps working if the keep burns — the Markdown
