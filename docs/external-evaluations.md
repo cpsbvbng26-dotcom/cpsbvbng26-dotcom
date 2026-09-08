@@ -1,6 +1,6 @@
 # 外部からの評価
 
-**いま 4 件。**
+**いま 5 件。**
 
 この文書は、外部の場から受けた評価を記録するためのものである。
 **評価が来る前に作ってある。**あとから作ると、都合の悪いものだけ載せない、が
@@ -42,6 +42,7 @@
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series I | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N8、登録簿の `EX-004`・`EX-005`・`EX-006` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series II | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N2・N9・N10、登録簿の `EX-004`・`EX-007` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Manifesto of Imperial Selfhood（改訂版） | 確かめられない | 版を同定し、全項目を当たった（下記） | `autonomy` の `ERRATA` E7、登録簿の `PH-008`・`EX-008` |
+| Stanford Agentic Reviewer（paperreview.ai） | 機械 | The Nobility and Exemplarity of the Celibate Individual（v2） | 確かめられない | 版を同定し、全項目を当たった（下記） | `autonomy` の `ERRATA` N5・N6、登録簿の `PH-009` |
 
 **場** —— 評価を出した先の名前。URL は書かない。消えるものを所在として書くと、
 あとから開けない穴が残る。
@@ -294,6 +295,57 @@ contribution of high originality`。**紙面と衝突しない。**評点は記�
 
 `promising and original in framing, but not yet at the level of concreteness and
 comparative engagement expected at a top-tier venue`。評点は記録しない。
+
+---
+
+### Stanford Agentic Reviewer — The Nobility and Exemplarity of the Celibate Individual
+
+**五件目。版の同定から。**
+
+#### 版の同定 —— v2 である
+
+査読は「四つの反論を先取りしている」と述べ、括弧で内容を並べた。
+
+| 査読が並べた順 | 紙面 |
+| --- | --- |
+| relational psychology | **Objection 1 (The Relational Objection)** |
+| self-undermining universalization | **Objection 2 (The Self-Undermining Objection)** |
+| parochialism | **Objection 3 (The Parochialism Objection)** |
+| QOL subjectivity | **Objection 4 (The Subjectivity Objection)** |
+
+**順番まで一致している。**表紙にも
+`Original version: 21 October 2025 | Revised version (v2): 22 August 2026` と印字されている。
+
+#### 当てたもの —— 紙面に無い語で確かめた
+
+査読の問いを、紙面の語の有無で当たった。**三つとも一度も現れない。**
+
+| 査読の問い | 紙面 | 記録 |
+| --- | --- | --- |
+| > Since **contraception** decouples sex from reproduction, how does your critique of "demographic necessity" translate into a critique of sexual activity per se | `contracept` **0 回** | **N5** |
+| > How do you distinguish chosen celibacy from **involuntary** sexlessness, aromanticism, and **asexuality** | `involuntary` **0 回** / `asexual` **0 回** | **N6** |
+| > Which contemporary population-ethics critiques of Benatar (**Parfit**, non-identity, **Arrhenius**) | いずれも **0 回** | 誤りではないので数えない |
+| > capability theory (**Sen**, **Nussbaum**) | いずれも **0 回** | 同上 |
+
+**N5 がいちばん重い。**否定的論証（第3節）は**生殖**の義務を撃ち、肯定的論証（第4節）は
+**性行為そのもの**を撃つ。**避妊がその二つを切り離す。**したがって第4節は反出生主義から
+の支えを受けずに単独で立たなければならないが、紙面はそこに触れていない。
+論証が崩れるわけではない —— **二段の関係が、書かれているより弱いというだけである。**
+
+#### 併せて確かめたこと —— E7 の範囲
+
+M の `No data, quotations, or sources were fabricated` は、**M だけにある。**
+N と F には無い。`E7` の範囲が M 限りであることを、機械で固定した。
+
+#### 総評について
+
+`with deeper engagement of alternative value theories, collective-duty considerations,
+and cross-cultural breadth, it could mature into a compelling and field-shaping article`。
+評点は記録しない。
+
+**哲学二篇に共通していること。**指摘はどれも「足りていないもの」であり、
+**紙面の誤りは一つも出ていない。**数学三本では E1・E5・E7 を見落としたが、
+哲学では見落とす対象そのものが少ない —— **正誤が数値や引用の形で存在しないためである。**
 
 
 ---
