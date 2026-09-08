@@ -30,7 +30,7 @@
 
 ### 監査の対象 —— Trinity-Infinity Series I–III
 
-自分で書いた三篇です。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置きましたが、これは十分条件であって必要条件ではありません。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分です。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出ます。
+自分で書いた三篇である。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置きたが、これは十分条件であって必要条件ではない。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分である。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出る。
 
 ### 証明できたこと / 類推に過ぎないこと / 撤回したこと
 
@@ -38,9 +38,9 @@
 | --- | --- |
 | **証明できたこと** | 座標の置換と固定基準点への統合を合成した作用素は縮小写像であり、唯一の不動点へ幾何的に収束する。Series I が三要素・一様な混合率で証明し、II が混合率を座標ごとに変えても成り立つことを示し、III が**そもそも三要素である必要がなかった**こと（任意の n ≥ 2）を示した。これに、上の訂正が加わる |
 | **類推に過ぎないこと** | 上記以外のすべて。ゲーム理論・論理学・工学への接続は、他分野の既知の結果を正しく計算した実例か、類推・未証明の推測として明示的に印をつけたもののどちらかである。n = 3 が区別されるのは「巡回置換がそれ自身の逆写像にならない最小の n」という一点だけで、Series III はそれが「三」の文化的・哲学的な含意を正当化しないことを明示的に否定している |
-| **撤回したこと** | 収束定理の原型（不動点が一意にならない読みだった）、「98.7% の試行で確認」（再現できるコードも乱数種もない）、三人ゲームの利得表（4 セルでは 2³ 通りを表現できない）、リアプノフ微分と LaSalle の原理の適用、AI アライメント・気候政策・ガバナンスへの応用。**各論文が同梱を謳う検証スクリプトは存在しない**（三篇で合計六箇所述べている。著者確認済み。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) の E3）。**どれも消していません** |
+| **撤回したこと** | 収束定理の原型（不動点が一意にならない読みだった）、「98.7% の試行で確認」（再現できるコードも乱数種もない）、三人ゲームの利得表（4 セルでは 2³ 通りを表現できない）、リアプノフ微分と LaSalle の原理の適用、AI アライメント・気候政策・ガバナンスへの応用。**各論文が同梱を謳う検証スクリプトは存在しない**（三篇で合計六箇所述べている。著者確認済み。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) の E3）。**どれも消していない** |
 
-哲学の三篇はこの形で反証できる種類のものではありません。査読も受けていません。読んで反論する以外の道はなく、それでよいと考えています。
+哲学の三篇はこの形で反証できる種類のものではない。査読も受けていない。読んで反論する以外の道はなく、それでよいと考えている。
 
 ### 次に読むなら、この 3 つ
 
@@ -48,19 +48,19 @@
 2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 22 項目、乱数種は固定
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** —— 系列が自分で何を確立し、何を撤回したかを書いた回顧
 
-> **公開しているものは、すべて査読を受けていません。** 学術誌にも会議にも通していません。DOI があることは、査読を受けたことを意味しません。
+> **公開しているものは、すべて査読を受けていない。** 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
 
-このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html) に移してあります。
+このサイトのトップも、この核だけが見えるようにしてある。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html) に移してある。
 
-トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力です。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回してください。
+トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力である。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回すこと。
 
-以下は一覧です。急がないなら読んでください。
+以下は一覧である。急がないなら読むこと。
 
 ---
 
 ✴︎Papers✴︎
 
-いずれも査読前のプレプリントです。哲学の三篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、Trinity-Infinity の三篇は [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) に置いています。史料ノートを含め、DOI のあるものは Zenodo が正です。
+いずれも査読前のプレプリントである。哲学の三篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、Trinity-Infinity の三篇は [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) に置いている。史料ノートを含め、DOI のあるものは Zenodo が正である。
 
 | 論文 | 内容 | 版 | DOI |
 | --- | --- | --- | --- |
@@ -72,7 +72,7 @@
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
-> **Series I についての注記。** Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いています。これは**この系列が訂正した 2025 年の初版**の DOI です。改訂版は `10.5281/zenodo.22058624` です。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見てください。**撤回した内容は消していません。**
+> **Series I についての注記。** Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。**撤回した内容は消していない。**
 
 ---
 
@@ -95,7 +95,7 @@
 ✴︎Credentials✴︎
 
 <details>
-<summary>修了証・オープンバッジ 計 7 件（各バッジは発行機関の検証ページに繋がります）</summary>
+<summary>修了証・オープンバッジ 計 7 件（各バッジは発行機関の検証ページに繋がる）</summary>
 
 **edX**（4 件）
 
@@ -115,7 +115,7 @@
 
 [![Tohoku University MOOC: Mystery of Aurora](https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge)](https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09)
 
-<!-- 新しい修了証を追加するときは、上のいずれかのグループに 1 行足してください。
+<!-- 新しい修了証を追加するときは、上のいずれかのグループに 1 行足すこと。
      [![講座名](https://img.shields.io/badge/発行元-講座名-色?style=for-the-badge)](検証ページのURL) -->
 
 </details>
@@ -137,7 +137,7 @@
 ✴︎Links✴︎
 
 <details>
-<summary>外部のプロフィールと記事（正は ORCID と Zenodo です）</summary>
+<summary>外部のプロフィールと記事（正は ORCID と Zenodo である）</summary>
 
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
 - PhilPeople — [哲学者プロフィール](https://philpeople.org/profiles/takuyanemoto)
@@ -160,7 +160,7 @@
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 377 項目の検査を通します。** 依存パッケージはありません。
+このリポジトリは、**push のたびに 377 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
@@ -169,35 +169,35 @@ node verification/check_site.js      # サイトの構造 168 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
-**リポジトリをまたぐずれは、これだけでは捕まりません。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きます（実際に起きました）。そこで 9 つを並べて隙間だけを見る検査を別に置いています。
+**リポジトリをまたぐずれは、これだけでは捕まらない。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きる（実際に起きた）。そこで 9 つを並べて隙間だけを見る検査を別に置いている。
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 62 項目
 ```
 
-**`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になります）。
+**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
-宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にあります。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にします（CI は 9 つを checkout してから回します）。
+宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にする（CI は 9 つを checkout してから回す）。
 
-各リポジトリの `CLAUDE.md` の共通部分が**一字一句同じか**も、ここで見ています。一つだけ直すと落ちます。
+各リポジトリの `CLAUDE.md` の共通部分が**一字一句同じか**も、ここで見ている。一つだけ直すと落ちる。
 
-**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、消したページへのリンクが残っていること。
+**`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いである。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、消したページへのリンクが残っていること。
 
-いちばん効くのは **「本文が名乗っている数値と、実際に走らせた結果が一致すること」** です。検査を足したのに文章の数字だけ古い、が最も起きやすい破綻なので、そこを機械で押さえています（実際に一度起きました）。
+いちばん効くのは **「本文が名乗っている数値と、実際に走らせた結果が一致すること」** である。検査を足したのに文章の数字だけ古い、が最も起きやすい破綻なので、そこを機械で押さえている（実際に一度起きた）。
 
-**外部リクエストを出さないことは、CSP でブラウザに強制させています。** 「そう書いてある」だけでは、注入された 1 行を止められません。
+**外部リクエストを出さないことは、CSP でブラウザに強制させている。** 「そう書いてある」だけでは、注入された 1 行を止められない。
 
 ```
 default-src 'none'; script-src 'self' 'sha256-…'; style-src 'sha256-…';
 img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; base-uri 'none'
 ```
 
-**`unsafe-inline` は使っていません。** インラインの `<style>` と `<script>` は SHA-256 のハッシュで名指しして許しています。中身を書き換えるとハッシュが変わるので、[`verification/update_csp.js`](verification/update_csp.js) で入れ直します。**入れ忘れると検査が落ち、ブラウザもそのスクリプトの実行を拒みます。**
+**`unsafe-inline` は使っていない。** インラインの `<style>` と `<script>` は SHA-256 のハッシュで名指しして許している。中身を書き換えるとハッシュが変わるので、[`verification/update_csp.js`](verification/update_csp.js) で入れ直す。**入れ忘れると検査が落ち、ブラウザもそのスクリプトの実行を拒む。**
 
-ページを足したり作り直したりしたときは、`node verification/update_sitemap.js` で `sitemap.xml` も入れ直します。`lastmod` は git の記録から入るので、手で書いて古くなることがありません（実際に 2 ページぶん古くなっていたので、こうしました）。**ページの変更と `sitemap.xml` は同じコミットに入れてください。**
+ページを足したり作り直したりしたときは、`node verification/update_sitemap.js` で `sitemap.xml` も入れ直す。`lastmod` は git の記録から入るので、手で書いて古くなることがない（実際に 2 ページぶん古くなっていたので、こうした）。**ページの変更と `sitemap.xml` は同じコミットに入れること。**
 
-実際に何が止まるかは、攻撃を模して確かめました。
+実際に何が止まるかは、攻撃を模して確かめた。
 
 | | |
 | --- | --- |
@@ -208,40 +208,40 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 注入したインライン `style` | 止まる |
 | 許可したホスト（`api.crossref.org`） | 通る |
 
-**正の URL がひとつであること**も見ています。このサイトの正は GitHub Pages です。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見えます。`canonical` と `og:url` の食い違いも落とします。
+**正の URL がひとつであること**も見ている。このサイトの正は GitHub Pages である。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見える。`canonical` と `og:url` の食い違いも落とす。
 
-**`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査します。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
+**`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査する。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
 
-**空振りでないことは確認済みです。** 論文カードの DOI 書き換え、外部 script の混入、存在しないページへのリンク、`hasPart` の不整合、sitemap のずれ —— 五通り壊して五通りとも落ちました。
+**空振りでないことは確認済みである。** 論文カードの DOI 書き換え、外部 script の混入、存在しないページへのリンク、`hasPart` の不整合、sitemap のずれ —— 五通り壊して五通りとも落ちた。
 
 ---
 
 ✴︎License✴︎
 
-このリポジトリは二種類のものを含んでいるので、ライセンスも二つに分けています。
+このリポジトリは二種類のものを含んでいるので、ライセンスも二つに分けている。
 
 | | ライセンス | |
 | --- | --- | --- |
-| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使えます |
-| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものです |
+| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使える |
+| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
 
 © 2026 根本卓哉（Takuya Nemoto）
 
-**リンク先の各リポジトリと各プレプリントは、それぞれのライセンスに従います。**
-一覧の ✴︎Works✴︎ 欄と、各リポジトリの `LICENSE` を参照してください。
+**リンク先の各リポジトリと各プレプリントは、それぞれのライセンスに従う。**
+一覧の ✴︎Works✴︎ 欄と、各リポジトリの `LICENSE` を参照すること。
 
 ---
 
 ✴︎Tools & Disclosure✴︎
 
-このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いています。監査には [Grok](https://grok.com) を使いました。
+このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いている。監査には [Grok](https://grok.com) を使いた。
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させました。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。AI は著作者ではありません。
+本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作している。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させた。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っている。AI は著作者ではない。
 
-**制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できます。
+**制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できる。
 
 | 確認できること | 方法 |
 | --- | --- |
@@ -251,4 +251,4 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 共同作成の記録 | コミットメッセージ末尾の `Co-authored-by:` トレーラ |
 | 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
 
-コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
+コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできない。
