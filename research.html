@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-gtBgLIgH6Mfvk2daOwvJUColaH6ux1+ieI1o5/SVas0=' 'sha256-QZhRBDuzkADvnLO+FA7H2C6/fnn7K2YPGoVQzK3GVJk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-twvR2DBBQB/Cbyl20QBXoYi0Rl6BLbAhFzmzRJ5S4pU=' 'sha256-QZhRBDuzkADvnLO+FA7H2C6/fnn7K2YPGoVQzK3GVJk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>研究ブログ | 根本卓哉</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
 <meta name="robots" content="index, follow">
@@ -64,6 +64,8 @@
   --ember: rgba(118, 20, 14, .78);          /* 狭間から漏れる火 */
   --wall-bg: rgba(28, 26, 30, .06);
   --stone: rgba(23, 23, 26, .30);           /* 石の継ぎ目 */
+  --sky: rgba(126, 158, 190, .20);          /* 城の上の空 */
+  --void: rgba(126, 158, 190, .13);         /* 城の下の空。基壇が途切れた先 */
   --header-bg: rgba(250, 249, 247, .86);
   --shadow: 0 18px 40px -28px rgba(23, 23, 26, .45);
 }
@@ -82,6 +84,8 @@
   --ember: rgba(232, 74, 42, .62);
   --wall-bg: rgba(0, 0, 0, .35);
   --stone: rgba(236, 236, 238, .16);
+  --sky: rgba(58, 84, 122, .34);            /* 城の上の空 */
+  --void: rgba(58, 84, 122, .22);           /* 城の下の空。基壇が途切れた先 */
   --header-bg: rgba(18, 18, 20, .86);
   --shadow: 0 18px 40px -28px rgba(0, 0, 0, .8);
 }
@@ -93,7 +97,11 @@ html { color-scheme: light; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  /* 城の上の空。頁の天から下へ薄れる。城壁はこの中に浮いている。 */
+  background:
+    linear-gradient(to bottom, var(--sky) 0, transparent 26rem),
+    var(--bg);
+  background-repeat: no-repeat, repeat;
   color: var(--text);
   font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
   line-height: 1.85;
@@ -188,6 +196,18 @@ header::after {
     linear-gradient(to bottom, var(--ember) 0%, var(--ember) 46%, transparent 74%);
   background-size: 52px 22px, 100% 12px, 100% 100%;
   background-position: 0 0, 0 22px, 0 0;
+  background-repeat: repeat-x, repeat-x, no-repeat;
+}
+
+/* 基壇の下端。石が不揃いに途切れ、その先には何も無い ―― 城は浮いている。 */
+footer::after {
+  content: ""; display: block; height: 30px;
+  background-image:
+    conic-gradient(from 45deg at 50% 0%, var(--stone) 0 90deg, transparent 0),
+    conic-gradient(from 45deg at 50% 0%, var(--stone) 0 90deg, transparent 0),
+    linear-gradient(to bottom, var(--void) 0%, transparent 82%);
+  background-size: 38px 17px, 61px 30px, 100% 100%;
+  background-position: 0 0, 19px 0, 0 0;
   background-repeat: repeat-x, repeat-x, no-repeat;
 }
 
