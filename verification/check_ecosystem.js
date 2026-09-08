@@ -158,6 +158,32 @@ for (const item of DECL['写した版と DOI']) {
     wrong.length ? wrong.join(', ') : (found + ' ファイルに ' + item.doi));
 }
 
+/* この検査自身が名乗る件数も、実際と合わせる。
+ * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
+ * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
+
+console.log('\n5. この検査が名乗る件数');
+
+{
+  const total = passed + failures.length + 1;
+  const claims = [
+    ['README.md', /9 リポジトリ横断 (\d+) 項目/],
+    ['.github/workflows/ecosystem.yml', /9 リポジトリ横断 (\d+) 項目/],
+    ['.claude/commands/check.md', /横断のずれ（(\d+) 項目）/],
+    ['.claude/commands/開始.md', /check_ecosystem\.js`（(\d+) 項目）/]
+  ];
+  const wrong = [];
+  for (const [f, re] of claims) {
+    const text = read('cpsbvbng26-dotcom', f);
+    if (text === null) { wrong.push(f + ' が無い'); continue; }
+    const m = re.exec(text);
+    if (!m) { wrong.push(f + ' に名乗りが無い'); continue; }
+    if (parseInt(m[1], 10) !== total) wrong.push(f + ' が ' + m[1]);
+  }
+  check('この検査が名乗る件数が実際と合う', wrong.length === 0,
+    wrong.length ? ('実際 ' + total + ' / ' + wrong.join(', ')) : ('実際 ' + total + ' / 名乗り ' + claims.length + ' 箇所すべて一致'));
+}
+
 /* ---------- ここまで ---------- */
 
 console.log('\n' + '-'.repeat(58));

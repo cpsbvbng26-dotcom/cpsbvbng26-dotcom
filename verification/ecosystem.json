@@ -88,6 +88,39 @@
       ]
     },
     {
+      "名前": "self-correction あとからの再構成の件数",
+      "実際": { "repo": "self-correction", "file": "register.toml", "数える": "^basis = \"再構成\"$" },
+      "名乗り": [
+        { "repo": "self-correction", "file": "README.md", "regex": "\\d+ 件のうち (\\d+) 件は、あとからの再構成" },
+        { "repo": "self-correction", "file": "register.toml", "regex": "\\d+ 件のうち (\\d+) 件は再構成である" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "<strong>うち (\\d+) 件はあとからの再構成である</strong>" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<strong>(\\d+) of them reconstructed after the fact</strong>" }
+      ]
+    },
+    {
+      "名前": "self-correction 同時に記録した件数",
+      "実際": { "repo": "self-correction", "file": "register.toml", "数える": "^basis = \"同時\"$" },
+      "名乗り": [
+        { "repo": "self-correction", "file": "README.md", "regex": "同時に記録したものは (\\d+) 件しかない" }
+      ]
+    },
+    {
+      "名前": "self-correction 第三者が確かめられる件数",
+      "実際": { "repo": "self-correction", "file": "register.toml", "数える": "^verifiable = \"紙面\"$" },
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "第三者が確かめられるのは (\\d+) 件で" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "<strong>(\\d+) can be checked by anyone" }
+      ]
+    },
+    {
+      "名前": "self-correction 証言しか根拠が無い件数",
+      "実際": { "repo": "self-correction", "file": "register.toml", "数える": "^verifiable = \"証言\"$" },
+      "名乗り": [
+        { "repo": "cpsbvbng26-dotcom", "file": "index.html", "regex": "残る (\\d+) 件は著者の証言しか根拠が無い" },
+        { "repo": "cpsbvbng26-dotcom", "file": "index.en.html", "regex": "the remaining (\\d+) rest on the author" }
+      ]
+    },
+    {
       "名前": "trinity-infinity 正誤表の監査",
       "実際": { "repo": "trinity-infinity", "cmd": ["python3", "verification/check_errata.py"],
                 "regex": "(\\d+) 件すべて通りました。" },
