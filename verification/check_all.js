@@ -35,6 +35,7 @@ const CHECKS = [
   ['trinity-infinity', '定理', 'python3', 'verification/independent_check.py'],
   ['trinity-infinity', '印字された数値', 'python3', 'verification/claims_audit.py'],
   ['trinity-infinity', '正誤表の監査', 'python3', 'verification/check_errata.py'],
+  ['trinity-infinity', '経路', 'python3', 'verification/check_route.py'],
 
   ['trinity-operator', '誤変換', 'python3', 'verification/check_text.py'],
   ['trinity-operator', '作用素', 'python3', 'check.py'],

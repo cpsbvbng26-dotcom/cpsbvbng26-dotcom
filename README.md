@@ -172,8 +172,8 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 **リポジトリをまたぐずれは、これだけでは捕まりません。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きます（実際に起きました）。そこで 9 つを並べて隙間だけを見る検査を別に置いています。
 
 ```
-node verification/check_all.js        # 9 リポジトリの検査を全部（30 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 48 項目
+node verification/check_all.js        # 9 リポジトリの検査を全部（31 本）
+node verification/check_ecosystem.js  # 9 リポジトリ横断 51 項目
 ```
 
 **`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になります）。
