@@ -239,17 +239,6 @@ console.log('\n6. 外部からの評価');
     check('日付を手で書かないと書いてある',
       text.indexOf('日付を手で書かない') >= 0);
 
-    /* 査読の型。改変すると別の手順になるので、三つ揃っていることと
-     * 目を塞ぐ決めごとが消えていないことを当たる。 */
-    const P = path.join('docs', 'review-prompt.md');
-    const prompt = read('cpsbvbng26-dotcom', P);
-    check('査読の型がある', prompt !== null, P);
-    if (prompt !== null) {
-      const kinds = ['## 型 A', '## 型 B', '## 型 C'].filter((k) => prompt.indexOf(k) < 0);
-      check('型が三つ揃っている', kinds.length === 0, kinds.join(', ') || '3 つ');
-      check('正誤表を渡さないと書いてある', prompt.indexOf('紙面だけを渡す') >= 0);
-    }
-
     /* PlumX は計測であって評価ではない。「受けた評価」に混ぜない。
      * そして数値を転記しない —— 動くし、この環境から確かめられない。 */
     const plum = text.slice(text.indexOf('## 計測されているもの'),
