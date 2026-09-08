@@ -217,7 +217,16 @@ console.log('\n6. 外部からの評価');
 
   if (text !== null) {
     const sec = text.slice(text.indexOf('## 受けた評価'), text.indexOf('## 出した先'));
-    const rows = (sec.match(/^\|(?!\s*(---|\s*日付))[^\n]*\|$/gm) || []).length;
+    /* 区切り行（| --- | --- |）の次から、| で始まる行が続くあいだが本体である。
+     * 見出し行を数えないために、位置で切る。列名で切ると、列名を変えたときに
+     * 静かに数え方が変わる —— 実際に一度そうなった。 */
+    const lines = sec.split('\n');
+    const sep = lines.findIndex((l) => /^\|\s*---/.test(l));
+    let rows = 0;
+    for (let i = sep + 1; sep >= 0 && i < lines.length; i++) {
+      if (!/^\|/.test(lines[i])) break;
+      rows++;
+    }
     const m = /\*\*いま (\d+) 件。\*\*/.exec(text);
     check('名乗る件数が、表の行数と一致する', m !== null && parseInt(m[1], 10) === rows,
       m ? ('名乗り ' + m[1] + ' / 行 ' + rows) : '「いま NN 件。」が無い');
@@ -225,6 +234,10 @@ console.log('\n6. 外部からの評価');
     check('丸写ししないことが書いてある', text.indexOf('丸写ししない') >= 0);
     check('褒めた箇所だけ載せないことが書いてある',
       text.indexOf('褒めた箇所だけ載せない') >= 0);
+    check('出典が消えるものを証言として扱うと書いてある',
+      text.indexOf('出典が消えるものは、証言として扱う') >= 0);
+    check('日付を手で書かないと書いてある',
+      text.indexOf('日付を手で書かない') >= 0);
 
     /* PlumX は計測であって評価ではない。「受けた評価」に混ぜない。
      * そして数値を転記しない —— 動くし、この環境から確かめられない。 */
