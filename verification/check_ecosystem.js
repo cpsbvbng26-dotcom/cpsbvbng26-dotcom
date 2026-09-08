@@ -260,11 +260,96 @@ console.log('\n6. 外部からの評価');
   }
 }
 
+/* 正誤表の項目への参照が、宛先を持っているか。
+ * 無い項目を指しても、いまは誰も気づかない。**宛先の無い参照は、
+ * 札だけ立った空き地である。**
+ * 参照先が曖昧な id（E1 は三つのリポジトリにある）は、指す先を宣言で絞る。 */
+
+console.log('\n7. 正誤表の項目への参照');
+
+{
+  const R = DECL['正誤表の項目への参照'];
+  const ID = /(?<![A-Za-z0-9_%-])([EN]\d{1,2})(?![A-Za-z0-9_-])/g;
+
+  /* 各リポジトリの ERRATA.md が定義している項目を集める。 */
+  const defined = {};
+  for (const repo of R['定義元']) {
+    const text = read(repo, 'ERRATA.md');
+    defined[repo] = new Set();
+    if (text === null) continue;
+    for (const m of text.matchAll(/^#{2,3} ([EN]\d{1,2}) —/gm)) defined[repo].add(m[1]);
+  }
+  R['定義元'].forEach((repo) => {
+    check(repo + ' の ERRATA が項目を定義している', defined[repo].size > 0,
+      defined[repo].size + ' 件');
+  });
+
+  const refs = R['参照'].slice();
+  const pp = R['論文ページ'];
+  for (const [slug, repo] of Object.entries(pp['対応'])) {
+    for (const suffix of ['.html', '.en.html']) {
+      refs.push({ repo: pp.repo, file: path.join('papers', slug + suffix), '指す先': [repo] });
+    }
+  }
+
+  const dangling = [];
+  let counted = 0;
+  for (const r of refs) {
+    const text = read(r.repo, r.file);
+    if (text === null) { dangling.push(r.file + ' が無い'); continue; }
+    const allowed = new Set();
+    r['指す先'].forEach((repo) => (defined[repo] || new Set()).forEach((i) => allowed.add(i)));
+    for (const m of text.matchAll(ID)) {
+      counted++;
+      if (!allowed.has(m[1])) dangling.push(r.file + ' の ' + m[1]);
+    }
+  }
+  check('正誤表の項目への参照に、宛先の無いものが無い', dangling.length === 0,
+    dangling.length ? dangling.slice(0, 8).join(', ') : refs.length + ' ファイルに ' + counted + ' 箇所');
+}
+
+/* 引用してはいけない DOI が、散文では必ず札とともに出ているか。
+ * 無標で置くと、読者が現行の番号として引く。**落とし穴の蓋である。**
+ * 宣言ファイルは対象外 —— 検査の入力であり、鍵の名前が文脈を持つ。 */
+
+console.log('\n8. 引用してはいけない DOI の札');
+
+{
+  const T = DECL['旧 DOI の札'];
+  const SKIPDIR = new Set(['.git', 'node_modules', 'site', 'dist', '__pycache__', 'venv']);
+  const naked = [];
+  let found = 0;
+
+  function walk(dir, repo) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (SKIPDIR.has(e.name)) continue;
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(full, repo); continue; }
+      if (!['.md', '.html'].includes(path.extname(e.name))) continue;
+      const text = fs.readFileSync(full, 'utf8');
+      let i = -1;
+      while ((i = text.indexOf(T.doi, i + 1)) >= 0) {
+        found++;
+        const w = text.slice(Math.max(0, i - T['窓']), i + T.doi.length + T['窓']);
+        if (!T['札'].some((l) => w.indexOf(l) >= 0)) {
+          naked.push(repo + '/' + path.relative(path.join(ROOT, repo), full));
+        }
+      }
+    }
+  }
+  for (const repo of C.repos) {
+    const dir = path.join(ROOT, repo);
+    if (fs.existsSync(dir)) walk(dir, repo);
+  }
+  check('引用してはいけない DOI が、無標で置かれていない', naked.length === 0,
+    naked.length ? [...new Set(naked)].join(', ') : found + ' 箇所すべてに札がある');
+}
+
 /* この検査自身が名乗る件数も、実際と合わせる。
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n7. この検査が名乗る件数');
+console.log('\n9. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
