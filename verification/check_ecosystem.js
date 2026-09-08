@@ -229,7 +229,7 @@ console.log('\n6. 外部からの評価');
     /* PlumX は計測であって評価ではない。「受けた評価」に混ぜない。
      * そして数値を転記しない —— 動くし、この環境から確かめられない。 */
     const plum = text.slice(text.indexOf('## 計測されているもの'),
-                            text.indexOf('### この二篇しか出せない理由'));
+                            text.indexOf('### 経路が二つある'));
     check('PlumX が評価ではないと書いてある',
       text.indexOf('計測であって評価ではない') >= 0);
     check('PlumX の数を書き写さないと書いてある',
