@@ -30,7 +30,7 @@
 
 ### 監査の対象 —— Trinity-Infinity Series I–III
 
-自分で書いた三篇である。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置きたが、これは十分条件であって必要条件ではない。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分である。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出る。
+自分で書いた三篇である。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置いたが、これは十分条件であって必要条件ではない。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分である。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出る。
 
 ### 証明できたこと / 類推に過ぎないこと / 撤回したこと
 
@@ -173,7 +173,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 62 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 76 項目
 ```
 
 **`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
@@ -234,7 +234,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 ✴︎Tools & Disclosure✴︎
 
-このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いている。監査には [Grok](https://grok.com) を使いた。
+このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いている。監査には [Grok](https://grok.com) を使った。
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
