@@ -1,6 +1,6 @@
 # 外部からの評価
 
-**いま 2 件。**
+**いま 3 件。**
 
 この文書は、外部の場から受けた評価を記録するためのものである。
 **評価が来る前に作ってある。**あとから作ると、都合の悪いものだけ載せない、が
@@ -40,6 +40,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series III | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N6・N7、登録簿の `EX-002`・`EX-003`・`EX-004` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series I | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N8、登録簿の `EX-004`・`EX-005`・`EX-006` |
+| Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series II | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N2・N9・N10、登録簿の `EX-004`・`EX-007` |
 
 **場** —— 評価を出した先の名前。URL は書かない。消えるものを所在として書くと、
 あとから開けない穴が残る。
@@ -165,6 +166,69 @@ Series I には現れない。
 **これは見落としとは別の壊れ方である。**見落としは沈黙だが、これは**確かめられる形の
 偽の指摘**である。指摘が具体的であるほど、確かめずに直してしまう危険が高い。
 登録簿の `EX-005` に立てた。
+
+---
+
+### Stanford Agentic Reviewer — Series II
+
+**三本目。`EX-004` の試験としては、E7 が対象だった** ——「`strictly above 2` と
+置いた二文後に `(2,4,2)` を例示」。同じ節の中で完結している矛盾である。
+
+#### いちばん重い —— 独立に導出された
+
+> A stronger structural fact is available … **(D P)^3 = (a1 a2 a3) I** because P^3 = I
+> and conjugation by P cyclically permutes the diagonal entries … an asymptotic linear
+> rate (Π a_i)^(1/3) equal to the spectral radius of D P.
+
+**正しい。測った。**
+
+| | |
+| --- | --- |
+| `(DQ)³` | `0.105 · I`（誤差 `0.0e+00`） |
+| `ρ(DQ)` | `0.471769398032` = `(0.105)^{1/3}` |
+| `‖DQ‖₂ = maxᵢ aᵢ` | `0.700000000000` |
+| 30 反復の実際の誤差比 | `1.63e-10` |
+| 紙面が名乗る `max(aᵢ)³⁰` | `2.25e-05` |
+
+**紙面の率は 5 桁ゆるい。**そして —— **これは
+[trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) が
+実装している中心的事実そのものである。**`ρ(DQ)` は巡回ごとの幾何平均。
+[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)
+がその場で計算する。**査読はそのリポジトリもこの文書も渡されていない。**
+
+`ERRATA` の **N9** に立てた。この系列でいちばん重い見落としである。
+機械でも当たるようにした（`independent_check.py`、15 項目）。
+
+#### 新しく出したもの
+
+| 指摘 | こちらの検証 | 記録 |
+| --- | --- | --- |
+| `(DP)³ = (∏aᵢ)I`、漸近率は幾何平均 | **当たっている。**上記 | **N9** |
+| 凸包を実現可能集合とするには公開ランダム化か時間平均が要る。監視構造も未明示 | 当たっている。紙面はどちらも述べていない | **N10** |
+| `V(x) = ‖x−T*‖2` が 2 乗なのかノルムの添字なのか曖昧 | **曖昧である。**リャプノフ関数の慣例では 2 乗で、その場合は紙面の `max(aᵢ)²` が正しい。**抽出したテキストでは区別できない** | **TI-011** |
+| 級数に `+☐` が出る | 同じ。抽出の崩れか紙面の崩れか区別できない | **TI-011** |
+| Series II 単独では利得表が復元できない（ミニマックス 2 と凸包の体積が自己完結していない） | 当たっている。**紙面の誤りではない** —— 参照は明示されている | 入れない |
+| 閉形式 `T* = (I − DP)⁻¹(I − D)p` を本文に書くべき | 当たっている。**書き方の助言である** | 入れない |
+| `d` 次元へ一般化できる | Series III がやっている。**査読は Series III を見ていない** | 入れない |
+
+#### 外したもの
+
+| | |
+| --- | --- |
+| **E7 を見抜けなかった** | `strictly above 2` と置いた二文後に `(2,4,2)` を例示している。**同じ節の中で完結している矛盾**である。査読は第4節を Blackwell 均衡の頑健性の観点から論じたが、この食い違いには触れていない |
+| E3 に触れなかった | Series II も `series2_verification.py` の同梱を三箇所で謳っている。むしろ `a companion script claimed to regenerate every reported number` を強みに数えた |
+
+**三本で三本、本文と参考文献欄の中で完結している誤りを拾えていない**
+（III の E1、I の E5、II の E7）。`EX-004` に書いた。
+
+#### 総評について
+
+`novelty is limited` / `a solid technical note with pedagogical value rather than a
+contribution of high originality`。**紙面と衝突しない。**評点は記録しない。
+
+**ただし、この一件は評点の話ではない。**査読が出した `(DP)³` は、
+**紙面を一段深く訂正する事実**である。こちらが別のリポジトリで実装していた
+向きに、外から独立に届いた。
 
 
 ---
