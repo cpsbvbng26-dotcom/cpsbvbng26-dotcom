@@ -225,6 +225,25 @@ console.log('\n6. 外部からの評価');
     check('丸写ししないことが書いてある', text.indexOf('丸写ししない') >= 0);
     check('褒めた箇所だけ載せないことが書いてある',
       text.indexOf('褒めた箇所だけ載せない') >= 0);
+
+    /* PlumX は計測であって評価ではない。「受けた評価」に混ぜない。
+     * そして数値を転記しない —— 動くし、この環境から確かめられない。 */
+    const plum = text.slice(text.indexOf('## 計測されているもの'),
+                            text.indexOf('### この二篇しか出せない理由'));
+    check('PlumX が評価ではないと書いてある',
+      text.indexOf('計測であって評価ではない') >= 0);
+    check('PlumX の数を書き写さないと書いてある',
+      text.indexOf('この記録に転記しない') >= 0);
+    const pairs = [['7358818', '10.2139/ssrn.7358818'],
+                   ['7358779', '10.2139/ssrn.7358779']];
+    const wrong = pairs.filter(([id, doi]) => {
+      const row = plum.split('\n').find((l) => l.indexOf('ssrn_id=' + id) >= 0);
+      return !row || row.indexOf(doi) < 0;
+    }).map(([id]) => id);
+    check('PlumX の宛先が、対応する SSRN の DOI と同じ行にある',
+      wrong.length === 0, wrong.length ? ('ずれ: ' + wrong.join(', ')) : pairs.length + ' 件');
+    const digits = /PlumX[^\n]*?[:：]\s*\d|閲覧\s*\d|ビュー\s*\d|保存\s*\d|言及\s*\d/;
+    check('PlumX の数値が転記されていない', !digits.test(plum));
   }
 }
 
