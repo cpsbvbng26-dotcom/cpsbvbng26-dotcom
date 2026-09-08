@@ -118,6 +118,14 @@
       ]
     },
     {
+      "名前": "autonomy-and-self-cultivation 参考文献",
+      "実際": { "repo": "autonomy-and-self-cultivation", "file": "verification/references.toml",
+                "数える": "^\\[\\[reference\\]\\]" },
+      "名乗り": [
+        { "repo": "autonomy-and-self-cultivation", "file": "ERRATA.md", "regex": "\\*\\*合計 (\\d+) 件\\*\\*" }
+      ]
+    },
+    {
       "名前": "naval-gazette-notes 正誤表の監査",
       "実際": { "repo": "naval-gazette-notes", "cmd": ["python3", "verification/check_errata.py"],
                 "regex": "(\\d+) 件すべて通りました。" },

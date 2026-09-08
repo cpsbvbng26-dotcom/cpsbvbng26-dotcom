@@ -13,7 +13,7 @@ on:
 
 jobs:
   ecosystem:
-    name: 9 リポジトリ横断 58 項目
+    name: 9 リポジトリ横断 60 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

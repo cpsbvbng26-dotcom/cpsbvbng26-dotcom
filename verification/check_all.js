@@ -49,6 +49,7 @@ const CHECKS = [
   ['autonomy-and-self-cultivation', '生成', 'node', 'build.js'],
   ['autonomy-and-self-cultivation', '紙面との照合', 'python3', 'verification/check_fidelity.py'],
   ['autonomy-and-self-cultivation', '正誤表の監査', 'python3', 'verification/check_errata.py'],
+  ['autonomy-and-self-cultivation', '参考文献', 'python3', 'verification/check_references.py'],
   ['autonomy-and-self-cultivation', '誤変換ほか', 'node', 'verification/check_text.js'],
   ['autonomy-and-self-cultivation', 'サイトの構造', 'node', 'verification/check_site.js'],
 
