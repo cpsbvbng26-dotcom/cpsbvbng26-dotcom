@@ -104,7 +104,7 @@
       "実際": { "repo": "trinity-infinity", "cmd": ["python3", "verification/check_route.py"],
                 "regex": "(\\d+) 件すべて通りました。" },
       "名乗り": [
-        { "repo": "trinity-infinity", "file": "ROUTE.md", "regex": "検査しています（(\\d+) 項目）" },
+        { "repo": "trinity-infinity", "file": "ROUTE.md", "regex": "検査している（(\\d+) 項目）" },
         { "repo": "trinity-infinity", "file": ".github/workflows/verify.yml", "regex": "経路 (\\d+) 項目" }
       ]
     },
