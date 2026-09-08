@@ -139,7 +139,6 @@
 <details>
 <summary>外部のプロフィールと記事（正は ORCID と Zenodo です）</summary>
 
-- ホームページ — [nemoto200101.com](https://www.nemoto200101.com/)
 - researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
 - PhilPeople — [哲学者プロフィール](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [欧州拠点研究者プロフィール](https://cv.hal.science/nemoto-takuya)
