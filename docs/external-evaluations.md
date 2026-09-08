@@ -1,6 +1,6 @@
 # 外部からの評価
 
-**いま 1 件。**
+**いま 2 件。**
 
 この文書は、外部の場から受けた評価を記録するためのものである。
 **評価が来る前に作ってある。**あとから作ると、都合の悪いものだけ載せない、が
@@ -39,6 +39,7 @@
 | 場 | 種別 | 対象 | 第三者 | こちらの検証 | 指摘への対応 |
 | --- | --- | --- | --- | --- | --- |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series III | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N6・N7、登録簿の `EX-002`・`EX-003`・`EX-004` |
+| Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series I | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N8、登録簿の `EX-004`・`EX-005`・`EX-006` |
 
 **場** —— 評価を出した先の名前。URL は書かない。消えるものを所在として書くと、
 あとから開けない穴が残る。
@@ -114,6 +115,56 @@
 
 **評点は記録しない。**覆せないものは、この登録簿の材料にならない（`ST-002`）。
 記録する価値があるのは、上の三つの表のほうである。
+
+---
+
+### Stanford Agentic Reviewer — Series I
+
+同じ場、同じ種別。**`EX-004` の試験である** —— 「紙面だけを読む査読は、同梱物の
+不在を見抜けない」という、こちらが立てた主張を試すために出した。
+
+#### 独立に当てたもの
+
+| 指摘 | こちらの記録 | 判定 |
+| --- | --- | --- |
+| > does not verify subgame perfection conditions in detail (e.g., one-shot deviation principle under the specified trigger) | **N8 ①** | **当たった。**こちらの読み直しと、互いを知らずに同じ箇所 |
+| > The engineering analogy would benefit from citing standard references on Neumann series, spectral-radius conditions, and matrix norms | **E6 の一部**（Euler 1735 と Neumann 級数が参考文献欄に無い） | **部分的に当たった。**バナッハ自体には触れていない |
+
+#### 新しく出したもの
+
+| 指摘 | こちらの検証 | 記録 |
+| --- | --- | --- |
+| `I − αP` の可逆性（`P` の固有値は絶対値 1 なので `ρ(αP) = α < 1`） | 当たっている。紙面は閉形式を使うが、逆行列が存在する理由を書いていない | **N8 ②** |
+| 置換はすべての `ℓᵖ` で等長なので、`ℓ²` に限らず一般化できる | 当たっている。**ただし紙面の誤りではない** —— Series I は `under the Euclidean norm` と明記している。射程の助言である | 入れない |
+| 自己言及版は対角線への一段射影であり、不動点集合は線分である。代数的に書けば数値実験は要らない | 当たっている。紙面は `every state with T1=T2=T3 is already a fixed point` と述べているので、内容は書かれている。**書き方の助言である** | 入れない |
+| 題が射程より広い | Series III 自身が `a smaller mathematical universe than its name suggests` と書いている。**凍結された題は変えない** | 入れない |
+
+#### 外したもの
+
+| | |
+| --- | --- |
+| **E5 を見抜けなかった** | 査読は `Beyond Fudenberg–Maskin (1986), the modern unilateral enforcement ... framework gives exact discount thresholds` と述べ、**Fudenberg & Maskin を正しい出所として扱ったうえで、追加の文献を勧めた。**grim trigger の閾値の出所が Friedman (1971) であることには触れていない。**参考文献欄と本文だけで確かめられる誤りである** |
+| E3 に触れなかった | Series III では存在しないスクリプトを強みとして数えたが、今回は言及していない。**当てたのでもなく、外したのでもない** |
+| E1 は Series I に無い | **こちらの見立てが誤っていた。**E1 は Series II と III の話であり、Series I の `Nemoto (2025) DOI: 17173703` は初版を指す正しい用法である。**査読の落ち度ではない** |
+
+#### 作ったもの —— 実在しない誤植
+
+> Minor notation inconsistency: f(T) = α σ(T) + (1−**a**)p uses “a” instead of “α” once.
+
+**そのような箇所は無い。**PDF から取り出して、Series I の該当形をすべて数えた。
+
+```
+'(1−α)'  …the integration map Ip,α(y) = αy + (1−α)p…
+'(1−α)'  …f(T) = α σ(T) + (1−α)p…
+'(1−α)'  …T* = (1−α)(I−αP)−1p exactly…
+```
+
+**三箇所すべて `α` である。**Series II の `(1−ai)pi` は異方性版の正しい表記であり、
+Series I には現れない。
+
+**これは見落としとは別の壊れ方である。**見落としは沈黙だが、これは**確かめられる形の
+偽の指摘**である。指摘が具体的であるほど、確かめずに直してしまう危険が高い。
+登録簿の `EX-005` に立てた。
 
 
 ---
