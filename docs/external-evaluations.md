@@ -1,6 +1,6 @@
 # 外部からの評価
 
-**いま 3 件。**
+**いま 4 件。**
 
 この文書は、外部の場から受けた評価を記録するためのものである。
 **評価が来る前に作ってある。**あとから作ると、都合の悪いものだけ載せない、が
@@ -41,6 +41,7 @@
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series III | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N6・N7、登録簿の `EX-002`・`EX-003`・`EX-004` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series I | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N8、登録簿の `EX-004`・`EX-005`・`EX-006` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series II | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N2・N9・N10、登録簿の `EX-004`・`EX-007` |
+| Stanford Agentic Reviewer（paperreview.ai） | 機械 | Manifesto of Imperial Selfhood（改訂版） | 確かめられない | 版を同定し、全項目を当たった（下記） | `autonomy` の `ERRATA` E7、登録簿の `PH-008`・`EX-008` |
 
 **場** —— 評価を出した先の名前。URL は書かない。消えるものを所在として書くと、
 あとから開けない穴が残る。
@@ -229,6 +230,70 @@ contribution of high originality`。**紙面と衝突しない。**評点は記�
 **ただし、この一件は評点の話ではない。**査読が出した `(DP)³` は、
 **紙面を一段深く訂正する事実**である。こちらが別のリポジトリで実装していた
 向きに、外から独立に届いた。
+
+---
+
+### Stanford Agentic Reviewer — Manifesto of Imperial Selfhood
+
+**四件目。数学ではなく哲学の一篇である。**利用者から「改訂後のやつか確認して」と
+求められたので、版の同定から始めた。
+
+#### 版の同定 —— 改訂版である
+
+| 査読が言っていること | 紙面 |
+| --- | --- |
+| `Section 5 objection handling` | 第5節 = `Objections and Limitations` |
+| Foucault / Stoicism / sovereign individual | 第4節 = `Situating Personal Imperialism: Adjacent Discourses` |
+| `the declared AI assistance` | `Declaration on the Use of Artificial Intelligence` あり |
+| `will to power` の後世編纂への注意 | `will to power` 9 回、`posthum` 1 回 |
+
+ファイルは `manifesto-of-imperial-selfhood-revised.pdf`、表紙に
+`Revised and Expanded Edition`、2026年8月、9 ページ。**第4節と第5節は改訂で
+足された章であり、初稿には無い。**したがって改訂版でしか成立しない指摘である。
+
+#### 版を確かめる作業のほうで見つかったもの
+
+**開示文を読んだので、こちらが一件見つけた。**査読の指摘ではない。
+
+> No data, quotations, or sources were fabricated by the AI system in the course of this revision.
+
+同じ段落が、照合そのものも AI がやったと述べている。
+
+> verify the bibliographic citations listed in the References section against publicly available sources
+
+**捏造が無かったことを確かめたのは AI であり、著者は原典に当たっていない**
+（`autonomy` の `ERRATA` E6）。**この断言は AI 自身の報告以外に根拠を持たない。**
+
+`autonomy` の `ERRATA` に **E7** として立て、二つの引用を機械で固定した（82 項目）。
+登録簿は `PH-008`。
+
+#### 査読が突かなかったこと
+
+査読は開示文を読んだうえで、こう問うた。
+
+> Given the declared AI assistance, are there specific passages where you worry voice or
+> judgment might have been over-normalized …
+
+**断言そのものには触れていない。**声が平準化されたかという問いは、それよりはるかに
+柔らかい。**この循環は紙面の中だけで完結している** —— 三本の数学論文で欄の中で
+完結している誤りを拾えなかったのと、同じ形である。登録簿の `EX-008`。
+
+#### 当てたもの
+
+| 指摘 | 判定 |
+| --- | --- |
+| Jünger の総動員が、反照性のみという制約と噛み合わない | **妥当。**紙面は第5節で修辞の危険を認めているが、この論点そのものは扱っていない |
+| カントの目的の王国を、間主観から内心へ移すのに Korsgaard 等を踏まえていない | **妥当。**参考文献欄に Korsgaard・Frankfurt・Bratman は無い |
+| 緊張を構造とすると言うが、一つの層が支配することを防げる理由を示していない | **妥当。**紙面は緊張が構成的であると述べるだけである |
+
+**どれも紙面の誤りではない。**足りていないものの指摘である。哲学の論文に対する
+査読としては、これが妥当な形だと思う。**数学の三本と違って、機械で当たれる指摘が
+一つも無い。**
+
+#### 総評について
+
+`promising and original in framing, but not yet at the level of concreteness and
+comparative engagement expected at a top-tier venue`。評点は記録しない。
 
 
 ---
