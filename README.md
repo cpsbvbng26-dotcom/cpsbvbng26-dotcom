@@ -165,7 +165,7 @@
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 119 項目
-node verification/check_site.js      # サイトの構造 168 項目
+node verification/check_site.js      # サイトの構造 210 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
