@@ -261,6 +261,27 @@ console.log('\n6. 外部からの評価');
     /* autonomy の ERRATA の N7 は、この記録のいずれもニーチェに言及していないと
      * 述べている。述べたのなら、突き合わせられるようにする。
      * 記録に言及が増えたら、N7 の書き方を直すことになる。 */
+    /* 使っている場の素性。名前だけ出して素性を伏せると、権威の借用になる。
+     * 開発者、公表されている数、そして接地の材料が薄い側に当たることまで書く。 */
+    check('使っている場の正式名称が書いてある',
+      text.indexOf('正式名称は **Stanford Agentic Reviewer**') >= 0);
+    check('使っている場の開発者が書いてある',
+      text.indexOf('Yixing Jiang') >= 0 && text.indexOf('Andrew Ng') >= 0);
+    check('公表されている数を確かめていないと書いてある',
+      text.indexOf('原文に当たっていない') >= 0);
+    check('接地の材料が薄い側に当たると書いてある',
+      text.indexOf('接地の材料が薄い側に当たる') >= 0);
+
+    /* 使っていることが、トップからも見えるか。記録の中だけに置くと、
+     * 都合の悪い前提を奥にしまえてしまう。 */
+    for (const page of ['index.html', 'index.en.html']) {
+      const p = read('cpsbvbng26-dotcom', page) || '';
+      check('トップが使っている場の名前を出している（' + page + '）',
+        p.indexOf('Stanford Agentic Reviewer') >= 0);
+      check('トップが接地の限界に触れている（' + page + '）',
+        p.indexOf('arXiv') >= 0);
+    }
+
     const errataN7 = read('autonomy-and-self-cultivation', 'ERRATA.md') || '';
     const 主張 = errataN7.indexOf('ニーチェに言及していない') >= 0;
     const 言及 = /ニーチェ|Nietzsche/.test(text);

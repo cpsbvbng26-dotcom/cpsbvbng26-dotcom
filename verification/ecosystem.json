@@ -424,7 +424,7 @@
         {
           "repo": "autonomy-and-self-cultivation",
           "file": "SHELF.md",
-          "regex": "まだ読んでいない\\*{0,2} (\\d+) 冊"
+          "regex": "まだ確かめていない\\*{0,2} (\\d+) 冊"
         },
         {
           "repo": "autonomy-and-self-cultivation",
