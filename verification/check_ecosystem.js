@@ -377,13 +377,44 @@ console.log('\n8. 引用してはいけない DOI の札');
     naked.length ? [...new Set(naked)].join(', ') : found + ' 箇所すべてに札がある');
 }
 
+/* ---------- Zenodo との連携の但書 ---------- */
+
+/* 「Zenodo が正」とだけ書くと、仕組みで保証されていると読まれる。
+ * **実際には、この環境から Zenodo へは何も送れない。**番号は転記であって確認ではなく、
+ * 版の DOI か概念 DOI かの判別も付かない。その但書が消えたら落ちる。 */
+
+console.log('\n9. Zenodo との連携の但書');
+
+{
+  const Z = DECL['Zenodo の但書'];
+  const text = read('cpsbvbng26-dotcom', Z.file);
+  check('但書がある', text !== null, Z.file);
+  if (text !== null) {
+    const i = text.indexOf(Z['見出し']);
+    check('但書の節がある', i >= 0, Z['見出し']);
+    const sec = i < 0 ? '' : text.slice(i);
+    for (const line of Z['必ず書いてあること']) {
+      check('  ' + line.replace(/\n/g, ' ').slice(0, 36),
+        sec.indexOf(line) >= 0);
+    }
+  }
+
+  /* 但書が「確かめていない」と言っている以上、一覧の側も未確認を未確認のまま
+   * 持っていること。片方だけ書き換わると、但書が空文になる。 */
+  const idx = read('cpsbvbng26-dotcom', Z['一覧']) || '';
+  check('一覧が、確かめていないことを書いている',
+    idx.indexOf(Z['一覧に必ずあること']) >= 0, Z['一覧に必ずあること']);
+  check('一覧に未確認の番号が残っている',
+    idx.indexOf(Z['未確認の番号']) >= 0, Z['未確認の番号']);
+}
+
 /* ---------- 先に立てておく反論 ---------- */
 
 /* 三つの反論は、実際に受けた形のまま置いてある。**当たっている部分を先に書く。**
  * ここが「反論を黙らせる文書」に書き換わると、記録ではなく宣伝になる。
  * 認めるところと、崩し方が消えたら落ちるようにしてある。 */
 
-console.log('\n9. 先に立てておく反論');
+console.log('\n10. 先に立てておく反論');
 
 {
   const O = DECL['反論'];
@@ -425,7 +456,7 @@ console.log('\n9. 先に立てておく反論');
  * CC BY 4.0 しか無いと、検査スクリプトを CC BY 4.0 だと読む余地が残る。
  * **実際に四つのリポジトリがその状態だった。** */
 
-console.log('\n10. ライセンスの分け方');
+console.log('\n11. ライセンスの分け方');
 
 {
   const L = DECL['ライセンス'];
@@ -464,7 +495,7 @@ console.log('\n10. ライセンスの分け方');
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n11. この検査が名乗る件数');
+console.log('\n12. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
