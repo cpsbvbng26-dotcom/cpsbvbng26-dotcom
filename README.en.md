@@ -26,21 +26,22 @@ What this record holds is my study of computer science and artificial intelligen
 
 Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
 
-| Education | | Credits earned |
+### Education
+
+| | | Credits earned |
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School | left partway through | |
 | Upper Secondary School Equivalency Examination | passed | |
-| Jiyugaoka Sanno College, Efficiency Dept., Business Management course | two years, then withdrew | 2 credits, at in-person sessions |
-| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | History of Mathematics (required elective) |
+| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits |
+| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | 11 courses, 22 credits (14 required, 4 required elective, 4 elective) |
 
-<details>
-<summary>Courses I have credit for (also listed in the <a href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html">CV</a>)</summary>
+### Courses I have credit for
 
-**Jiyugaoka Sanno College, Efficiency Dept., Business Management course**
+**Jiyugaoka Sanno College, Business Management course**
 
 | Course | Category | Credits |
 | --- | --- | --- |
-| Instructional Design (仕事の上手な教え方) | in-person session | 2 |
+| Instructional Design (taught in English) | in-person session | 2 |
 
 **1 course, 2 credits.**
 
@@ -61,8 +62,6 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | Internet Culture through the History of Derivative Works | elective | 2 |
 
 **11 courses, 22 credits** — 14 required, 4 required elective, 4 elective.
-
-</details>
 
 ---
 
@@ -201,12 +200,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 430 checks.** There are no dependencies to install.
+**Every push runs 436 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 221 checks
+node verification/check_site.js      # site structure, 227 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
