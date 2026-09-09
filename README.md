@@ -215,12 +215,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 447 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 455 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 119 項目
-node verification/check_site.js      # サイトの構造 238 項目
+node verification/check_site.js      # サイトの構造 246 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
