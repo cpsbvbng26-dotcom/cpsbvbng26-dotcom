@@ -48,6 +48,8 @@
 2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 29 項目、乱数種は固定
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** —— 系列が自分で何を確立し、何を撤回したかを書いた回顧
 
+**向けられる反論のうち、当たっているものは [docs/objections.md](docs/objections.md) に先に書き出してある。**三つとも実際に受けた形のまま置いてある。認めるところを先に書き、答えごとに、それを崩す方法を添えてある。
+
 > **公開しているものは、すべて査読を受けていない。** 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
 
 このサイトのトップも、この核だけが見えるようにしてある。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html) に移してある。
@@ -173,7 +175,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 180 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 194 項目
 ```
 
 **`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 68」「登録簿 53 件」「壊す先 26 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。

@@ -40,6 +40,8 @@ The three philosophical papers are not refutable in this shape, and they have no
 2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** — the implementation of the claim above, and the counterexample. 29 checks, fixed seed
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** — the series' own retrospective on what it established and what it withdrew
 
+**The objections to this work that land are written out first, in [docs/objections.md](docs/objections.md) (in Japanese).** All three are kept in the words they were raised in. What each one gets right is stated before the answer, and every answer carries the one thing that would defeat it.
+
 > **Nothing published here has been peer reviewed.** None of it has gone through a journal or a conference. Having a DOI does not mean a work was reviewed.
 
 The front page of the site shows this core and nothing else. The three philosophical papers, the source note, the certificates and the external profiles have been moved — not deleted — to [Notes](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.en.html).
