@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const MARK = ['<!-- 経歴:ここから -->', '<!-- 経歴:ここまで -->'];
+const MARK = ['<!-- 自己紹介:ここから -->', '<!-- 自己紹介:ここまで -->'];
 
 const WORDS = {
   ja: { history: '経歴', earned: '修得', courses: '修得した科目',
@@ -24,6 +24,37 @@ const WORDS = {
         course: 'Course', category: 'Category', credits: 'Credits',
         more: ' — more to come.' },
 };
+
+/* 板の地の文を Markdown に戻す。**強調と一つだけのリンクは残す。**
+ * 学校名も学んでいるものも、ここが唯一の源である site.json から来る。 */
+function proseOf(html) {
+  return html
+    .replace(/<strong>([\s\S]*?)<\/strong>/g, '**$1**')
+    .replace(/<code>([\s\S]*?)<\/code>/g, '`$1`')
+    .replace(/<a [^>]*href="\.\/([^"]+)"[^>]*>([\s\S]*?)<\/a>/g,
+             '[$2](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/$1)')
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/* 自己紹介の板から、地の文と目標を取り出す。 */
+function readProfile(html) {
+  const i = html.indexOf('<div class="profile reveal">');
+  if (i < 0) return null;
+  const block = html.slice(i, html.indexOf('<p class="lead', i));
+  const grab = (re) => { const m = re.exec(block); return m ? proseOf(m[1]) : ''; };
+  return {
+    label: grab(/<h2 class="profile-label">([\s\S]*?)<\/h2>/),
+    now: grab(/<p class="profile-now">([\s\S]*?)<\/p>/),
+    study: grab(/<p class="profile-now profile-study">([\s\S]*?)<\/p>/),
+    aimsLabel: grab(/<p class="aims-label">([\s\S]*?)<\/p>/),
+    aims: [...block.matchAll(/<li>([\s\S]*?)<\/li>/g)]
+      .filter((m) => m[1].indexOf('path-') < 0)
+      .map((m) => proseOf(m[1]))
+      .filter(Boolean),
+  };
+}
 
 const strip = (s) => s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 
@@ -61,8 +92,20 @@ function blockFor(page, lang) {
   const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
   const rows = readPath(html);
   const w = WORDS[lang];
-  const out = [MARK[0], '', '### ' + w.history, '',
-    '| | | ' + w.earned + ' |', '| --- | --- | --- |'];
+  const p = readProfile(html);
+  const out = [MARK[0], ''];
+  if (p) {
+    out.push('## ' + p.label, '');
+    if (p.now) out.push(p.now, '');
+    if (p.study) out.push(p.study, '');
+    if (p.aims.length) {
+      out.push('**' + p.aimsLabel + '**', '');
+      p.aims.forEach((a) => out.push('- ' + a));
+      out.push('');
+    }
+  }
+  out.push('### ' + w.history, '',
+    '| | | ' + w.earned + ' |', '| --- | --- | --- |');
   rows.forEach((r) => out.push(`| ${r.name} | ${r.state} | ${r.total} |`));
   out.push('', '### ' + w.courses, '');
   rows.filter((r) => r.items.length).forEach((r, i, all) => {
