@@ -315,6 +315,11 @@
           "repo": "self-correction",
           "file": "README.md",
           "regex": "同時に記録したものは (\\d+) 件しかない"
+        },
+        {
+          "repo": "self-correction",
+          "file": "README.md",
+          "regex": "同時に記録したものは (\\d+) 件"
         }
       ]
     },
@@ -335,6 +340,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "<strong>(\\d+) can be checked by anyone"
+        },
+        {
+          "repo": "self-correction",
+          "file": "README.md",
+          "regex": "\\*\\*誰でも確かめられる\\*\\*（(\\d+) 件）"
         }
       ]
     },
@@ -355,6 +365,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "the remaining (\\d+) rest on the author"
+        },
+        {
+          "repo": "self-correction",
+          "file": "README.md",
+          "regex": "反証もできない\\*\\*（(\\d+) 件）"
         }
       ]
     },
@@ -970,6 +985,9 @@
       "この連携は自動ではありません",
       "タグの push が 403 で通らないため、",
       "番号は転記であって、確認ではありません",
+      "**番号が実在しないと言っているのではありません。**",
+      "**存在は著者の証言で立っています。**",
+      "**起きる誤りは、存在ではなく書き写しのほうです。**",
       "版の DOI か、概念 DOI かも、判別できません",
       "**Zenodo を正としてください。**",
       "公開済みの PDF は改変も再生成もしません",
@@ -977,7 +995,7 @@
       "番号を推測して埋めない"
     ],
     "一覧": "docs/doi-index.md",
-    "一覧に必ずあること": "Zenodo 側の実体は",
+    "一覧に必ずあること": "**番号の存在は疑っていない。**",
     "未確認の番号": "10.5281/zenodo.22335691"
   }
 }
