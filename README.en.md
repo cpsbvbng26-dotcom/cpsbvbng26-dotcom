@@ -20,18 +20,18 @@
 
 I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
-My coursework is mainly philosophy and business practice. Mathematics is also on offer, and I have completed History of Mathematics as a required elective.
+My coursework is mainly philosophy and business practice. Mathematics is on offer as well.
 
 What this record holds is my study of computer science and artificial intelligence.
 
 Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
 
-| Education | |
-| --- | --- |
-| Tochigi Prefectural Tochigi High School | left partway through |
-| Upper Secondary School Equivalency Examination | passed |
-| Jiyugaoka Sanno College, Efficiency Dept., Business Management course | two years, then withdrew |
-| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) |
+| Education | | Credits earned |
+| --- | --- | --- |
+| Tochigi Prefectural Tochigi High School | left partway through | |
+| Upper Secondary School Equivalency Examination | passed | |
+| Jiyugaoka Sanno College, Efficiency Dept., Business Management course | two years, then withdrew | 2 credits, at in-person sessions |
+| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | History of Mathematics (required elective) |
 
 ---
 
