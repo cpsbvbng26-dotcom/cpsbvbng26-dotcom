@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-++AvQK68T/mb7bXfSadJyiML4Qo26f/46IRvwsQRrS8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DLZDcjzriXq6xdjn3B0rDUA8c9mLcrmVTMYj8/8ECRA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -367,6 +367,13 @@ header::after {
 .path-state {
   font-size: .76rem; letter-spacing: .04em; color: var(--muted);
   white-space: nowrap;
+}
+/* 単位を取った科目など、行に付く小さな注記。二列目には収めない。 */
+.path-note {
+  grid-column: 1 / -1;
+  margin-top: .2rem; padding-left: .8rem;
+  font-size: .76rem; line-height: 1.7; color: var(--faint);
+  border-left: 2px solid var(--accent-soft);
 }
 
 /* これからの二つ。数ではなく並びで見せる。 */

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-++AvQK68T/mb7bXfSadJyiML4Qo26f/46IRvwsQRrS8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DLZDcjzriXq6xdjn3B0rDUA8c9mLcrmVTMYj8/8ECRA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -469,6 +469,13 @@ header::after {
   font-size: .76rem; letter-spacing: .04em; color: var(--muted);
   white-space: nowrap;
 }
+/* 単位を取った科目など、行に付く小さな注記。二列目には収めない。 */
+.path-note {
+  grid-column: 1 / -1;
+  margin-top: .2rem; padding-left: .8rem;
+  font-size: .76rem; line-height: 1.7; color: var(--faint);
+  border-left: 2px solid var(--accent-soft);
+}
 
 /* これからの二つ。数ではなく並びで見せる。 */
 .aims-label { margin: 1.5rem 0 .6rem; }
@@ -796,12 +803,12 @@ footer::before {
     <div class="profile reveal">
       <h2 class="profile-label">About me</h2>
       <p class="profile-now">I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
-      <p class="profile-now profile-study">My coursework is mainly <strong>philosophy</strong> and <strong>business practice</strong>. Mathematics is also on offer, and I have completed <strong>History of Mathematics</strong> as a required elective. What this place holds is my study of computer science and artificial intelligence.</p>
+      <p class="profile-now profile-study">My coursework is mainly <strong>philosophy</strong> and <strong>business practice</strong>. <strong>Mathematics</strong> is on offer as well. What this place holds is my study of computer science and artificial intelligence.</p>
       <ol class="path">
       <li><span class="path-name">Tochigi Prefectural Tochigi High School</span><span class="path-state">left partway through</span></li>
       <li><span class="path-name">Upper Secondary School Equivalency Examination</span><span class="path-state">passed</span></li>
-      <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span></li>
-      <li class="path-now"><span class="path-name">Online university, information-and-society faculty</span><span class="path-state">enrolled (first autumn-entry cohort)</span></li>
+      <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span><span class="path-note">2 credits earned at in-person sessions</span></li>
+      <li class="path-now"><span class="path-name">Online university, information-and-society faculty</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">History of Mathematics completed as a required elective</span></li>
       </ol>
       <p class="aims-label">Two aims</p>
       <ul class="aims">
