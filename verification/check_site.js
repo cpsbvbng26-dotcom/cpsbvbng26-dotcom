@@ -595,6 +595,20 @@ section('10.5 修得した科目の合計');
   });
 }
 
+/* ------------------------------------------------- 10.6 三篇の結論
+ *
+ * **枠組みは残らなかった、が Trinity-Infinity の根幹である。**
+ * 下のほうに置けば読み手が辿り着かない。トップの主張の欄に出ていること。
+ */
+section('10.6 三篇の結論');
+
+[['index.html', ['枠組みは残らなかった', '学部の演習問題の水準']],
+ ['index.en.html', ['The framework did not survive',
+                    'at the level of an undergraduate exercise']]].forEach(([page, words]) => {
+  const html = read(page);
+  words.forEach((w) => ok(page + ' が「' + w + '」を出している', html.indexOf(w) >= 0));
+});
+
 /* ------------------------------------------------- 11. 30 秒で読める入口
  *
  * README の先頭は、外から来た人が 30 秒で読み切れる入口である。
