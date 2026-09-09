@@ -131,7 +131,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | A tool that generates a static researcher profile site from a single configuration file | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | Full text, PDFs and citation metadata for the three philosophical papers, with a generator for the reading site | CC BY 4.0 | — |
-| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **The framework did not survive.** What remains is one fact about one operator — for `Q` an n-cycle and `D` diagonal, `(DQ)ⁿ = (∏ᵢ aᵢ)·I` exactly, so convergence is governed by the geometric mean of the coefficients. **The fact is correct, machine-checked, and at the level of an undergraduate exercise.** The three papers, with 155 verification checks (15 on the theorems, 32 on the printed numerics, 78 on the errata, 30 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
+| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **The framework did not survive.** What remains is one fact about one operator — for `Q` an n-cycle and `D` diagonal, `(DQ)ⁿ = (∏ᵢ aᵢ)·I` exactly, so convergence is governed by the geometric mean of the coefficients. **The fact is correct, machine-checked, and at the level of a second- or third-year undergraduate exercise.** Only the tool used to repair the broken proof sits a step above. The closest department is linear systems and control. The three papers, with 163 verification checks (15 on the theorems, 32 on the printed numerics, 78 on the errata, 38 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 172 checks | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **Audits an errata document against a frozen, already-published artifact.** A DOI'd PDF cannot be revised; only the errata can, so the errata drifts. Checks that every quotation appears verbatim, that occurrences are not undercounted, that an item declared unresolvable has not been quietly resolved, and that the artifact itself has not been swapped. **No inference is used in the judgement** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
 | [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 55 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
@@ -204,12 +204,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 440 checks.** There are no dependencies to install.
+**Every push runs 442 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 231 checks
+node verification/check_site.js      # site structure, 233 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
