@@ -603,10 +603,12 @@ section('10.5 修得した科目の合計');
 section('10.6 三篇の結論');
 
 [['index.html', ['枠組みは残らなかった', '学部 2〜3 年の演習問題の水準',
-                 '線形システム論・現代制御']],
+                 '大学院の線形システム論と行列解析',
+                 '道具の水準と、直された中身の水準は別']],
  ['index.en.html', ['The framework did not survive',
                     'second- or third-year undergraduate exercise',
-                    'linear systems and control']]].forEach(([page, words]) => {
+                    'graduate linear systems and matrix analysis',
+                    'two different things']]].forEach(([page, words]) => {
   const html = read(page);
   words.forEach((w) => ok(page + ' が「' + w + '」を出している', html.indexOf(w) >= 0));
 });
