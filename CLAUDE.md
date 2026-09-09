@@ -87,6 +87,7 @@ node verification/check_all.js         # 9 リポジトリの検査を全部回�
 | --- | --- |
 | `index.html` / `index.en.html` / `cv.html` | `researcher-profile` の `site.json` / `site.en.json` / `cv.json` を直して `PROFILE_CONFIG=./site.json PROFILE_OUT=<出力先> node build.js`、出力をここへ写す |
 | `notes/*.html` | 同じく `researcher-profile` の `notes.json` / `notes.en.json` |
+| `README.md` / `README.en.md` の学歴と修得した科目（`<!-- 経歴:ここから -->` から `<!-- 経歴:ここまで -->` まで） | 科目の源は `researcher-profile` の `courses.json`。そこに一行足してページを作り直し、`node verification/update_readme_courses.js` |
 | `sitemap.xml` | `node verification/update_sitemap.js` |
 | CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
 
