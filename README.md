@@ -175,7 +175,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 194 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 206 項目
 ```
 
 **`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 68」「登録簿 53 件」「壊す先 26 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
