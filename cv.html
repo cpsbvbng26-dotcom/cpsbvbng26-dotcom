@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-4RhGhQTEI3Jm63zWg7hlOoC47dw80TaH116bFZOeXXM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-nLIuHGBlECTSnZUVhoHrzI35Kv9eOZpgFtO78AzDLsA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -407,6 +407,11 @@ header::after {
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
 }
+.courses-total {
+  margin: .7rem 0 0; padding-left: .8rem;
+  font-size: .78rem; letter-spacing: .04em; color: var(--muted);
+  border-left: 2px solid var(--accent);
+}
 
 @media (max-width: 40rem) {
   .courses li { grid-template-columns: 1fr; gap: .1rem; }
@@ -792,25 +797,27 @@ footer::before {
     <div class="group">
       <div class="group-name reveal">自由が丘産能短期大学 能率科 経営管理コース</div>
       <ul class="courses reveal">
-        <li><span class="course-name">仕事の上手な教え方（インストラクショナルデザイン）</span><span class="course-note">スクーリング・2 単位</span></li>
+        <li data-category="スクーリング" data-credits="2"><span class="course-name">仕事の上手な教え方（インストラクショナルデザイン）</span><span class="course-note">スクーリング・2 単位</span></li>
       </ul>
+        <p class="courses-total">1 科目 2 単位</p>
     </div>
 
     <div class="group">
       <div class="group-name reveal">オンライン大学 情報社会系の学部</div>
       <ul class="courses reveal">
-        <li><span class="course-name">人文社会入門</span></li>
-        <li><span class="course-name">IT リテラシー</span></li>
-        <li><span class="course-name">アカデミックリテラシー</span></li>
-        <li><span class="course-name">ネット情報発信概論</span></li>
-        <li><span class="course-name">二次創作の歴史から見るネット文化</span></li>
-        <li><span class="course-name">多言語 IT コミュニケーション</span></li>
-        <li><span class="course-name">人工知能活用実践</span></li>
-        <li><span class="course-name">経済入門</span></li>
-        <li><span class="course-name">デジタルツールの使い方</span></li>
-        <li><span class="course-name">情報セキュリティ概論</span></li>
-        <li><span class="course-name">数学史</span><span class="course-note">選択必修科目</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">人文社会入門</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">IT リテラシー</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">アカデミックリテラシー</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">デジタルツールの使い方</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">多言語 IT コミュニケーション</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">人工知能活用実践</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="必修" data-credits="2"><span class="course-name">経済入門</span><span class="course-note">必修・2 単位</span></li>
+        <li data-category="選択必修" data-credits="2"><span class="course-name">情報セキュリティ概論</span><span class="course-note">選択必修・2 単位</span></li>
+        <li data-category="選択必修" data-credits="2"><span class="course-name">数学史</span><span class="course-note">選択必修・2 単位</span></li>
+        <li data-category="選択" data-credits="2"><span class="course-name">ネット情報発信概論</span><span class="course-note">選択・2 単位</span></li>
+        <li data-category="選択" data-credits="2"><span class="course-name">二次創作の歴史から見るネット文化</span><span class="course-note">選択・2 単位</span></li>
       </ul>
+        <p class="courses-total">11 科目 22 単位 —— 必修 14・選択必修 4・選択 4</p>
     </div>
   </section>
 

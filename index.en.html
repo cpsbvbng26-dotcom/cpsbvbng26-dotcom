@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-4RhGhQTEI3Jm63zWg7hlOoC47dw80TaH116bFZOeXXM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-nLIuHGBlECTSnZUVhoHrzI35Kv9eOZpgFtO78AzDLsA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -507,6 +507,11 @@ header::after {
 .course-name { font-size: .9rem; line-height: 1.7; color: var(--text); }
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
+}
+.courses-total {
+  margin: .7rem 0 0; padding-left: .8rem;
+  font-size: .78rem; letter-spacing: .04em; color: var(--muted);
+  border-left: 2px solid var(--accent);
 }
 
 @media (max-width: 40rem) {

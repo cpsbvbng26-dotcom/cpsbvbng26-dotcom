@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-4RhGhQTEI3Jm63zWg7hlOoC47dw80TaH116bFZOeXXM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-nLIuHGBlECTSnZUVhoHrzI35Kv9eOZpgFtO78AzDLsA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -507,6 +507,11 @@ header::after {
 .course-name { font-size: .9rem; line-height: 1.7; color: var(--text); }
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
+}
+.courses-total {
+  margin: .7rem 0 0; padding-left: .8rem;
+  font-size: .78rem; letter-spacing: .04em; color: var(--muted);
+  border-left: 2px solid var(--accent);
 }
 
 @media (max-width: 40rem) {
