@@ -502,7 +502,11 @@ const OFF_TOPIC = [
   ['シーランド|[Ss]ealand|公国|[Pp]rincipality', 'シーランド称号'],
   ['ライブ配信|生放送|ツイキャス|[Tt]witcast|[Tt]witch\\.tv|ニコ生', 'ライブ配信活動'],
   ['家系|家柄|末裔|血統|[Bb]loodline', '家系'],
-  ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
+  ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き'],
+  /* 在学中の学校名は出さないと決めてある（CLAUDE.md の決めごと 10）。
+   * 自己紹介では「オンライン大学の情報系学部」と伏せてある。
+   * **学部名は校名と一対一なので、そちらも止める。**伏せ方が戻ったら落ちる。 */
+  ['ZEN大学|ZEN University|知能情報社会学部', '在学中の学校名']
 ];
 const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
                                      'README.md', 'README.en.md']);
