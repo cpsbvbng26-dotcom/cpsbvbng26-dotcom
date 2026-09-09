@@ -398,7 +398,7 @@
       ]
     },
     {
-      "名前": "autonomy-and-self-cultivation 参考文献",
+      "名前": "autonomy-and-self-cultivation 参考文献の総数",
       "実際": {
         "repo": "autonomy-and-self-cultivation",
         "file": "verification/references.toml",
@@ -409,16 +409,37 @@
           "repo": "autonomy-and-self-cultivation",
           "file": "ERRATA.md",
           "regex": "\\*\\*合計 (\\d+) 件\\*\\*"
-        },
+        }
+      ]
+    },
+    {
+      "名前": "autonomy-and-self-cultivation 未検証の冊数",
+      "_": "総数と別に数える。一冊読めば減る。**一つにまとめていたので、減った瞬間に落ちた。**",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "file": "verification/references.toml",
+        "数える": "^agreement = \"\"$"
+      },
+      "名乗り": [
         {
           "repo": "autonomy-and-self-cultivation",
           "file": "SHELF.md",
           "regex": "まだ読んでいない\\*{0,2} (\\d+) 冊"
         },
         {
+          "repo": "autonomy-and-self-cultivation",
+          "file": "ERRATA.md",
+          "regex": "未記入は \\*\\*(\\d+) 件\\*\\*"
+        },
+        {
           "repo": "cpsbvbng26-dotcom",
           "file": "index.html",
-          "regex": "(\\d+) 冊、まだ一冊も読んでいない"
+          "regex": "39 冊のうち (\\d+) 冊は未検証"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "(\\d+) of the 39 unchecked"
         }
       ]
     },
