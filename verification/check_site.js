@@ -582,6 +582,33 @@ section('10.5 修得した科目の合計');
                 + (z.byCat['必修'] || 0) + ' required, '
                 + (z.byCat['選択必修'] || 0) + ' required elective, '
                 + (z.byCat['選択'] || 0) + ' elective.') >= 0);
+
+  /* 学歴の欄の単位欄。表の行と、科目の一覧の合計が食い違ってはいけない。 */
+  ok('README.md の学歴の単位欄が実際と合う',
+     ja.indexOf('| ' + z.n + ' 科目 ' + z.credits + ' 単位（必修 ' + (z.byCat['必修'] || 0)
+                + '・選択必修 ' + (z.byCat['選択必修'] || 0)
+                + '・選択 ' + (z.byCat['選択'] || 0) + '） |') >= 0
+     && ja.indexOf('| ' + t.n + ' 科目 ' + t.credits + ' 単位 |') >= 0);
+  ok('README.en.md の学歴の単位欄が実際と合う',
+     en.indexOf('| ' + z.n + ' courses, ' + z.credits + ' credits ('
+                + (z.byCat['必修'] || 0) + ' required, '
+                + (z.byCat['選択必修'] || 0) + ' required elective, '
+                + (z.byCat['選択'] || 0) + ' elective) |') >= 0
+     && en.indexOf('| ' + t.n + ' course, ' + t.credits + ' credits |') >= 0);
+
+  /* トップの自己紹介にも同じ科目が並んでいる。**二箇所に置いた以上、突き合わせる。** */
+  [['index.html', ['科目', '単位']], ['index.en.html', ['courses', 'credits']]]
+    .forEach(([page, [unit, credit]]) => {
+      const html = read(page);
+      const rows = [...html.matchAll(/<ul class="path-courses">([\s\S]*?)<\/ul>/g)];
+      ok(page + ' の学歴に科目の一覧がある', rows.length === 2, String(rows.length));
+      const last = rows.length ? rows[rows.length - 1][1] : '';
+      const cells = [...last.matchAll(/data-credits="(\d+)"/g)];
+      const sum = cells.reduce((n, m) => n + Number(m[1]), 0);
+      ok(page + ' の学歴の科目数と単位数が cv.html と合う',
+         cells.length === z.n && sum === z.credits,
+         cells.length + ' ' + unit + ' ' + sum + ' ' + credit);
+    });
 }
 
 /* ------------------------------------------------- 11. 30 秒で読める入口
