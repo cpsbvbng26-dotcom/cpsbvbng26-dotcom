@@ -16,6 +16,14 @@
 
 ---
 
+## About me
+
+My aims are to succeed my father in his business and, after a doctorate, to teach at an online university. I work toward that daily.
+
+I left Tochigi Prefectural Tochigi High School partway through and passed the national Upper Secondary School Equivalency Examination. I then spent two years on the Business Management course of the Efficiency Department at Jiyugaoka Sanno College before withdrawing of my own accord, and I am now enrolled in an information-science faculty at an online university (its first autumn-entry cohort).
+
+---
+
 ## In 30 seconds
 
 Someone studying computer science and artificial intelligence, who writes and publishes **preprints that have not been peer reviewed**.
