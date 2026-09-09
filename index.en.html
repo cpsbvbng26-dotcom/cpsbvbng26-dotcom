@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-+mEIKFjMKPsUw08kBEgJniCQk1RF3Tz2TZwPI5EweeU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-L8dd/KDtOf4lvglC4BPhKlO4q1ZbjsOKwFCV4Vy/cIg='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -524,6 +524,9 @@ header::after {
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
 }
+.as-of {
+  margin: .5rem 0 0; font-size: .76rem; letter-spacing: .08em; color: var(--faint);
+}
 .courses-total {
   margin: .7rem 0 0; padding-left: .8rem;
   font-size: .78rem; letter-spacing: .04em; color: var(--muted);
@@ -842,13 +845,13 @@ footer::before {
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <div class="profile reveal">
       <h2 class="profile-label">About me</h2>
-      <p class="profile-now">I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
+      <p class="profile-now">I am enrolled at ZEN University — 知能情報社会学部 知能情報社会学科 — in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
       <p class="profile-now profile-study">My coursework is mainly <strong>philosophy</strong> and <strong>business practice</strong>. <strong>Mathematics</strong> is on offer as well. The courses I have credit for are listed in the <a href="./cv.html">CV</a> (in Japanese). What this place holds is my study of computer science and artificial intelligence.</p>
       <ol class="path">
       <li><span class="path-name">Tochigi Prefectural Tochigi High School</span><span class="path-state">left partway through</span></li>
       <li><span class="path-name">Upper Secondary School Equivalency Examination</span><span class="path-state">passed</span></li>
-      <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span><span class="path-note">1 course, 2 credits</span><ul class="path-courses"><li data-category="in-person session" data-credits="2">Instructional Design (taught in English)<i>in-person session</i></li></ul></li>
-      <li class="path-now"><span class="path-name">Online university, information-and-society faculty</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">11 courses, 22 credits — 14 required, 4 required elective, 4 elective</span><ul class="path-courses"><li data-category="required" data-credits="2">Introduction to the Humanities and Social Sciences<i>required</i></li><li data-category="required" data-credits="2">IT Literacy<i>required</i></li><li data-category="required" data-credits="2">Academic Literacy<i>required</i></li><li data-category="required" data-credits="2">Using Digital Tools<i>required</i></li><li data-category="required" data-credits="2">Multilingual IT Communication<i>required</i></li><li data-category="required" data-credits="2">Applied Practice in Artificial Intelligence<i>required</i></li><li data-category="required" data-credits="2">Introduction to Economics<i>required</i></li><li data-category="required elective" data-credits="2">Introduction to Information Security<i>required elective</i></li><li data-category="required elective" data-credits="2">History of Mathematics<i>required elective</i></li><li data-category="elective" data-credits="2">Introduction to Publishing on the Internet<i>elective</i></li><li data-category="elective" data-credits="2">Internet Culture through the History of Derivative Works<i>elective</i></li></ul></li>
+      <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span><span class="path-note">1 course, 2 credits (as of 9 September 2026)</span><ul class="path-courses"><li data-category="in-person session" data-credits="2">Instructional Design (仕事の上手な教え方)<i>in-person session</i></li></ul></li>
+      <li class="path-now"><span class="path-name">ZEN University — 知能情報社会学部 知能情報社会学科</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)</span><ul class="path-courses"><li data-category="required" data-credits="2">Introduction to the Humanities and Social Sciences<i>required</i></li><li data-category="required" data-credits="2">IT Literacy<i>required</i></li><li data-category="required" data-credits="2">Academic Literacy<i>required</i></li><li data-category="required" data-credits="2">Using Digital Tools<i>required</i></li><li data-category="required" data-credits="2">Multilingual IT Communication<i>required</i></li><li data-category="required" data-credits="2">Applied Practice in Artificial Intelligence<i>required</i></li><li data-category="required" data-credits="2">Introduction to Economics<i>required</i></li><li data-category="required elective" data-credits="2">Introduction to Information Security<i>required elective</i></li><li data-category="required elective" data-credits="2">History of Mathematics<i>required elective</i></li><li data-category="elective" data-credits="2">Introduction to Publishing on the Internet<i>elective</i></li><li data-category="elective" data-credits="2">Internet Culture through the History of Derivative Works<i>elective</i></li></ul></li>
       </ol>
       <p class="aims-label">Two aims</p>
       <ul class="aims">
@@ -912,7 +915,7 @@ footer::before {
       </div>
       <div class="fact">
         <dt>34 checks on the register</dt>
-        <dd>The shape and history of the correction record itself. <strong>54 entries</strong> across five statuses, <strong>30 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>46 can be checked by anyone against a frozen artifact; the remaining 8 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
+        <dd>The shape and history of the correction record itself. <strong>55 entries</strong> across five statuses, <strong>30 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>47 can be checked by anyone against a frozen artifact; the remaining 8 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
       </div>
       <div class="fact">
         <dt>31 printed numbers</dt>
@@ -946,7 +949,7 @@ footer::before {
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Withdrawn, and unfixable</h2>
-      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (54 entries)&lt;/a&gt;.</p>
+      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (55 entries)&lt;/a&gt;.</p>
     </div>
 
     <div class="facts reveal">

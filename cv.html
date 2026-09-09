@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-+mEIKFjMKPsUw08kBEgJniCQk1RF3Tz2TZwPI5EweeU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-L8dd/KDtOf4lvglC4BPhKlO4q1ZbjsOKwFCV4Vy/cIg='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -423,6 +423,9 @@ header::after {
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
 }
+.as-of {
+  margin: .5rem 0 0; font-size: .76rem; letter-spacing: .08em; color: var(--faint);
+}
 .courses-total {
   margin: .7rem 0 0; padding-left: .8rem;
   font-size: .78rem; letter-spacing: .04em; color: var(--muted);
@@ -808,18 +811,19 @@ footer::before {
     <div class="sec-head reveal">
       <h2 class="serif">修得した科目</h2>
       <p>大学・短期大学で単位を修得した科目です。修了証と違って検証ページが無いので、別に置いています。オンライン大学の分はこれから増えます。</p>
+      <p class="as-of">2026年9月9日現在</p>
     </div>
 
     <div class="group">
       <div class="group-name reveal">自由が丘産能短期大学 能率科 経営管理コース</div>
       <ul class="courses reveal">
-        <li data-category="スクーリング" data-credits="2"><span class="course-name">仕事の上手な教え方（Instructional Design、英語で開講）</span><span class="course-note">スクーリング・2 単位</span></li>
+        <li data-category="スクーリング" data-credits="2"><span class="course-name">仕事の上手な教え方（Instructional Design）</span><span class="course-note">スクーリング・2 単位</span></li>
       </ul>
         <p class="courses-total">1 科目 2 単位</p>
     </div>
 
     <div class="group">
-      <div class="group-name reveal">オンライン大学 情報社会系の学部</div>
+      <div class="group-name reveal">ZEN大学 知能情報社会学部 知能情報社会学科</div>
       <ul class="courses reveal">
         <li data-category="必修" data-credits="2"><span class="course-name">人文社会入門</span><span class="course-note">必修・2 単位</span></li>
         <li data-category="必修" data-credits="2"><span class="course-name">IT リテラシー</span><span class="course-note">必修・2 単位</span></li>

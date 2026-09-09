@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-+mEIKFjMKPsUw08kBEgJniCQk1RF3Tz2TZwPI5EweeU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-L8dd/KDtOf4lvglC4BPhKlO4q1ZbjsOKwFCV4Vy/cIg='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -524,6 +524,9 @@ header::after {
 .course-note {
   font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
 }
+.as-of {
+  margin: .5rem 0 0; font-size: .76rem; letter-spacing: .08em; color: var(--faint);
+}
 .courses-total {
   margin: .7rem 0 0; padding-left: .8rem;
   font-size: .78rem; letter-spacing: .04em; color: var(--muted);
@@ -842,13 +845,13 @@ footer::before {
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <div class="profile reveal">
       <h2 class="profile-label">自己紹介</h2>
-      <p class="profile-now">オンライン大学の情報社会系の学部に在籍しています（秋入学一期生）。文理を横断する課程です。</p>
+      <p class="profile-now">ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。</p>
       <p class="profile-now profile-study">大学では主に<strong>哲学</strong>と<strong>実務</strong>を学んでいます。<strong>数学</strong>も履修できます。修得した科目は <a href="./cv.html">CV</a> に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。</p>
       <ol class="path">
       <li><span class="path-name">栃木県立栃木高等学校</span><span class="path-state">中途退学</span></li>
       <li><span class="path-name">高等学校卒業程度認定試験規則による認定試験</span><span class="path-state">合格</span></li>
-      <li><span class="path-name">自由が丘産能短期大学 能率科 経営管理コース</span><span class="path-state">二年間在籍後、自主退学</span><span class="path-note">1 科目 2 単位</span><ul class="path-courses"><li data-category="スクーリング" data-credits="2">仕事の上手な教え方（Instructional Design、英語で開講）<i>スクーリング</i></li></ul></li>
-      <li class="path-now"><span class="path-name">オンライン大学 情報社会系の学部</span><span class="path-state">在籍（秋入学一期生）</span><span class="path-note">11 科目 22 単位 —— 必修 14・選択必修 4・選択 4</span><ul class="path-courses"><li data-category="必修" data-credits="2">人文社会入門<i>必修</i></li><li data-category="必修" data-credits="2">IT リテラシー<i>必修</i></li><li data-category="必修" data-credits="2">アカデミックリテラシー<i>必修</i></li><li data-category="必修" data-credits="2">デジタルツールの使い方<i>必修</i></li><li data-category="必修" data-credits="2">多言語 IT コミュニケーション<i>必修</i></li><li data-category="必修" data-credits="2">人工知能活用実践<i>必修</i></li><li data-category="必修" data-credits="2">経済入門<i>必修</i></li><li data-category="選択必修" data-credits="2">情報セキュリティ概論<i>選択必修</i></li><li data-category="選択必修" data-credits="2">数学史<i>選択必修</i></li><li data-category="選択" data-credits="2">ネット情報発信概論<i>選択</i></li><li data-category="選択" data-credits="2">二次創作の歴史から見るネット文化<i>選択</i></li></ul></li>
+      <li><span class="path-name">自由が丘産能短期大学 能率科 経営管理コース</span><span class="path-state">二年間在籍後、自主退学</span><span class="path-note">1 科目 2 単位（2026年9月9日現在）</span><ul class="path-courses"><li data-category="スクーリング" data-credits="2">仕事の上手な教え方（Instructional Design）<i>スクーリング</i></li></ul></li>
+      <li class="path-now"><span class="path-name">ZEN大学 知能情報社会学部 知能情報社会学科</span><span class="path-state">在籍（秋入学一期生）</span><span class="path-note">11 科目 22 単位 —— 必修 14・選択必修 4・選択 4（2026年9月9日現在）</span><ul class="path-courses"><li data-category="必修" data-credits="2">人文社会入門<i>必修</i></li><li data-category="必修" data-credits="2">IT リテラシー<i>必修</i></li><li data-category="必修" data-credits="2">アカデミックリテラシー<i>必修</i></li><li data-category="必修" data-credits="2">デジタルツールの使い方<i>必修</i></li><li data-category="必修" data-credits="2">多言語 IT コミュニケーション<i>必修</i></li><li data-category="必修" data-credits="2">人工知能活用実践<i>必修</i></li><li data-category="必修" data-credits="2">経済入門<i>必修</i></li><li data-category="選択必修" data-credits="2">情報セキュリティ概論<i>選択必修</i></li><li data-category="選択必修" data-credits="2">数学史<i>選択必修</i></li><li data-category="選択" data-credits="2">ネット情報発信概論<i>選択</i></li><li data-category="選択" data-credits="2">二次創作の歴史から見るネット文化<i>選択</i></li></ul></li>
       </ol>
       <p class="aims-label">これからの二つ</p>
       <ul class="aims">
@@ -912,7 +915,7 @@ footer::before {
       </div>
       <div class="fact">
         <dt>登録簿 34</dt>
-        <dd>訂正の記録そのものの形と履歴。<strong>54 件</strong>を、いま立っている・未解決・直せない・直した・撤回したの五つに分ける。<strong>うち 30 件はあとからの再構成である</strong>ことも記録に入れ、書いた日は git の履歴と突き合わせる。<strong>第三者が確かめられるのは 46 件で、残る 8 件は著者の証言しか根拠が無い</strong>ことも欄にしてある。いま立っている主張に覆し方が書いてあるか、直せない項目に理由が書いてあるか、そして <strong>過去に一度でも載った項目が消されていないか</strong>（<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>）</dd>
+        <dd>訂正の記録そのものの形と履歴。<strong>55 件</strong>を、いま立っている・未解決・直せない・直した・撤回したの五つに分ける。<strong>うち 30 件はあとからの再構成である</strong>ことも記録に入れ、書いた日は git の履歴と突き合わせる。<strong>第三者が確かめられるのは 47 件で、残る 8 件は著者の証言しか根拠が無い</strong>ことも欄にしてある。いま立っている主張に覆し方が書いてあるか、直せない項目に理由が書いてあるか、そして <strong>過去に一度でも載った項目が消されていないか</strong>（<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>）</dd>
       </div>
       <div class="fact">
         <dt>紙面の数値 31</dt>
@@ -946,7 +949,7 @@ footer::before {
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">撤回と、直せなかったこと</h2>
-      <p>改訂で撤回したものと、&lt;b&gt;あとから分かって、もう直せなかったもの&lt;/b&gt;です。&lt;b&gt;消していません。&lt;/b&gt;凍結された PDF は直せないので、直せるのは記録のほうだけです。四つの成果物ぶんの記録は &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;登録簿（54 件）&lt;/a&gt; にあります。</p>
+      <p>改訂で撤回したものと、&lt;b&gt;あとから分かって、もう直せなかったもの&lt;/b&gt;です。&lt;b&gt;消していません。&lt;/b&gt;凍結された PDF は直せないので、直せるのは記録のほうだけです。四つの成果物ぶんの記録は &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;登録簿（55 件）&lt;/a&gt; にあります。</p>
     </div>
 
     <div class="facts reveal">

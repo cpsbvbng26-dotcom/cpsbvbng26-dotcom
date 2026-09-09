@@ -34,8 +34,8 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
-| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits |
-| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective |
+| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 9 September 2026) |
+| ZEN University — 知能情報社会学部 知能情報社会学科 | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026) |
 
 ### Courses I have credit for
 
@@ -43,11 +43,11 @@ Two aims. To take over the business my father is planning to found. To teach at 
 
 | Course | Category | Credits |
 | --- | --- | --- |
-| Instructional Design (taught in English) | in-person session | 2 |
+| Instructional Design (仕事の上手な教え方) | in-person session | 2 |
 
-**1 course, 2 credits**
+**1 course, 2 credits (as of 9 September 2026)**
 
-**Online university, information-and-society faculty** — more to come.
+**ZEN University — 知能情報社会学部 知能情報社会学科** — more to come.
 
 | Course | Category | Credits |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | Introduction to Publishing on the Internet | elective | 2 |
 | Internet Culture through the History of Derivative Works | elective | 2 |
 
-**11 courses, 22 credits — 14 required, 4 required elective, 4 elective**
+**11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)**
 
 <!-- 経歴:ここまで -->
 ---
@@ -133,7 +133,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | The three Trinity-Infinity papers with 143 verification checks (15 on the theorems, 32 on the printed numerics, 78 on the errata, 18 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 172 checks | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **Audits an errata document against a frozen, already-published artifact.** A DOI'd PDF cannot be revised; only the errata can, so the errata drifts. Checks that every quotation appears verbatim, that occurrences are not undercounted, that an item declared unresolvable has not been quietly resolved, and that the artifact itself has not been swapped. **No inference is used in the judgement** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 54 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 55 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | The transcription from the source note, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down | CC BY 4.0 | — |
 
 ---
@@ -203,12 +203,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 432 checks.** There are no dependencies to install.
+**Every push runs 436 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 223 checks
+node verification/check_site.js      # site structure, 227 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
