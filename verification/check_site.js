@@ -522,19 +522,18 @@ ok('本文の核に置かないと決めたものが出ていない', offenders.
 
 /* ------------------------------------------------- 10.5 修得した科目の合計
  *
- * 合計は cv.html の側で行から数えて印字している。README の側は手書きである。
- * **手書きの合計は、科目が増えた日にずれる。**だから cv.html の行から数え直し、
- * README が名乗る数と突き合わせる。単位数は data-credits に持たせてある。
+ * 同じ科目が三箇所にある —— cv.html の節、トップの学歴、README の表。
+ * **README は手で書かない。**トップの頁から組み直したものと一致すること。
+ * 単位は 124 単位まで増える予定で、手で写せばいつか必ず写し忘れる。
  */
 section('10.5 修得した科目の合計');
 
 {
   const cv = read('cv.html');
-  const i = cv.indexOf('id="courses"');
-  const sec = i < 0 ? '' : cv.slice(i, cv.indexOf('</section>', i));
+  const i2 = cv.indexOf('id="courses"');
+  const sec = i2 < 0 ? '' : cv.slice(i2, cv.indexOf('</section>', i2));
   ok('cv.html に修得した科目の節がある', sec.length > 0);
 
-  /* 群ごとに、行から数え直す。 */
   const groups = sec.split('<div class="group">').slice(1);
   ok('修得した科目の群が二つある', groups.length === 2, String(groups.length));
 
@@ -550,65 +549,38 @@ section('10.5 修得した科目の合計');
     return { n: rows.length, credits, byCat, printed: printed ? printed[1] : '' };
   });
 
-  sums.forEach((s2, i2) => {
-    ok('cv.html の群 ' + (i2 + 1) + ' が印字した合計と行の数が合う',
+  sums.forEach((s2, k) => {
+    ok('cv.html の群 ' + (k + 1) + ' が印字した合計と行が合う',
        s2.printed.indexOf(s2.n + ' 科目 ' + s2.credits + ' 単位') === 0,
-       s2.printed + ' / 行 ' + s2.n + ' 科目 ' + s2.credits + ' 単位');
-    Object.keys(s2.byCat).forEach((k) => {
-      if (Object.keys(s2.byCat).length < 2) return;
-      ok('cv.html の群 ' + (i2 + 1) + ' の内訳「' + k + '」が行と合う',
-         s2.printed.indexOf(k + ' ' + s2.byCat[k]) >= 0,
-         k + ' ' + s2.byCat[k]);
+       s2.printed);
+    if (Object.keys(s2.byCat).length < 2) return;
+    Object.keys(s2.byCat).forEach((c) => {
+      ok('cv.html の群 ' + (k + 1) + ' の内訳「' + c + '」が行と合う',
+         s2.printed.indexOf(c + ' ' + s2.byCat[c]) >= 0, c + ' ' + s2.byCat[c]);
     });
   });
 
-  /* README が名乗る数。日英とも、cv.html の行から数え直した数と合うこと。 */
-  const z = sums[1] || { n: 0, credits: 0, byCat: {} };
-  const t = sums[0] || { n: 0, credits: 0 };
-  const ja = read('README.md');
-  const en = read('README.en.md');
-  ok('README.md が名乗る短期大学の合計が実際と合う',
-     ja.indexOf('**' + t.n + ' 科目 ' + t.credits + ' 単位。**') >= 0,
-     t.n + ' 科目 ' + t.credits + ' 単位');
-  ok('README.md が名乗るオンライン大学の合計が実際と合う',
-     ja.indexOf('**' + z.n + ' 科目 ' + z.credits + ' 単位** —— 必修 ' + (z.byCat['必修'] || 0)
-                + '・選択必修 ' + (z.byCat['選択必修'] || 0)
-                + '・選択 ' + (z.byCat['選択'] || 0) + '。') >= 0,
-     z.n + ' 科目 ' + z.credits + ' 単位');
-  ok('README.en.md が名乗る短期大学の合計が実際と合う',
-     en.indexOf('**' + t.n + ' course, ' + t.credits + ' credits.**') >= 0);
-  ok('README.en.md が名乗るオンライン大学の合計が実際と合う',
-     en.indexOf('**' + z.n + ' courses, ' + z.credits + ' credits** — '
-                + (z.byCat['必修'] || 0) + ' required, '
-                + (z.byCat['選択必修'] || 0) + ' required elective, '
-                + (z.byCat['選択'] || 0) + ' elective.') >= 0);
+  /* トップの学歴にも同じ科目が並ぶ。cv.html と数が合うこと。 */
+  const z = sums[1] || { n: 0, credits: 0 };
+  ['index.html', 'index.en.html'].forEach((page) => {
+    const lists = [...read(page).matchAll(/<ul class="path-courses">([\s\S]*?)<\/ul>/g)];
+    ok(page + ' の学歴に科目の一覧がある', lists.length === 2, String(lists.length));
+    const last = lists.length ? lists[lists.length - 1][1] : '';
+    const cells = [...last.matchAll(/data-credits="(\d+)"/g)];
+    const sum = cells.reduce((n, m) => n + Number(m[1]), 0);
+    ok(page + ' の学歴の科目数と単位数が cv.html と合う',
+       cells.length === z.n && sum === z.credits,
+       cells.length + ' 科目 ' + sum + ' 単位');
+  });
 
-  /* 学歴の欄の単位欄。表の行と、科目の一覧の合計が食い違ってはいけない。 */
-  ok('README.md の学歴の単位欄が実際と合う',
-     ja.indexOf('| ' + z.n + ' 科目 ' + z.credits + ' 単位（必修 ' + (z.byCat['必修'] || 0)
-                + '・選択必修 ' + (z.byCat['選択必修'] || 0)
-                + '・選択 ' + (z.byCat['選択'] || 0) + '） |') >= 0
-     && ja.indexOf('| ' + t.n + ' 科目 ' + t.credits + ' 単位 |') >= 0);
-  ok('README.en.md の学歴の単位欄が実際と合う',
-     en.indexOf('| ' + z.n + ' courses, ' + z.credits + ' credits ('
-                + (z.byCat['必修'] || 0) + ' required, '
-                + (z.byCat['選択必修'] || 0) + ' required elective, '
-                + (z.byCat['選択'] || 0) + ' elective) |') >= 0
-     && en.indexOf('| ' + t.n + ' course, ' + t.credits + ' credits |') >= 0);
-
-  /* トップの自己紹介にも同じ科目が並んでいる。**二箇所に置いた以上、突き合わせる。** */
-  [['index.html', ['科目', '単位']], ['index.en.html', ['courses', 'credits']]]
-    .forEach(([page, [unit, credit]]) => {
-      const html = read(page);
-      const rows = [...html.matchAll(/<ul class="path-courses">([\s\S]*?)<\/ul>/g)];
-      ok(page + ' の学歴に科目の一覧がある', rows.length === 2, String(rows.length));
-      const last = rows.length ? rows[rows.length - 1][1] : '';
-      const cells = [...last.matchAll(/data-credits="(\d+)"/g)];
-      const sum = cells.reduce((n, m) => n + Number(m[1]), 0);
-      ok(page + ' の学歴の科目数と単位数が cv.html と合う',
-         cells.length === z.n && sum === z.credits,
-         cells.length + ' ' + unit + ' ' + sum + ' ' + credit);
-    });
+  /* README は生成物である。組み直したものと一字一句合うこと。 */
+  const rc = require('./readme_courses');
+  rc.PAIRS.forEach(([readme, page, lang]) => {
+    const r = rc.apply(readme, page, lang);
+    ok(readme + ' の学歴と科目が、トップから組み直したものと一致する',
+       r.before === r.after,
+       'node verification/update_readme_courses.js');
+  });
 }
 
 /* ------------------------------------------------- 11. 30 秒で読める入口
