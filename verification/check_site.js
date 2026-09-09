@@ -520,6 +520,70 @@ PUBLIC_FACES.forEach((f) => {
 });
 ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
 
+/* ------------------------------------------------- 10.5 修得した科目の合計
+ *
+ * 合計は cv.html の側で行から数えて印字している。README の側は手書きである。
+ * **手書きの合計は、科目が増えた日にずれる。**だから cv.html の行から数え直し、
+ * README が名乗る数と突き合わせる。単位数は data-credits に持たせてある。
+ */
+section('10.5 修得した科目の合計');
+
+{
+  const cv = read('cv.html');
+  const i = cv.indexOf('id="courses"');
+  const sec = i < 0 ? '' : cv.slice(i, cv.indexOf('</section>', i));
+  ok('cv.html に修得した科目の節がある', sec.length > 0);
+
+  /* 群ごとに、行から数え直す。 */
+  const groups = sec.split('<div class="group">').slice(1);
+  ok('修得した科目の群が二つある', groups.length === 2, String(groups.length));
+
+  const sums = groups.map((g) => {
+    const rows = [...g.matchAll(/<li data-category="([^"]*)" data-credits="(\d+)"/g)];
+    const byCat = {};
+    let credits = 0;
+    rows.forEach((m) => {
+      credits += Number(m[2]);
+      byCat[m[1]] = (byCat[m[1]] || 0) + Number(m[2]);
+    });
+    const printed = /<p class="courses-total">([^<]*)<\/p>/.exec(g);
+    return { n: rows.length, credits, byCat, printed: printed ? printed[1] : '' };
+  });
+
+  sums.forEach((s2, i2) => {
+    ok('cv.html の群 ' + (i2 + 1) + ' が印字した合計と行の数が合う',
+       s2.printed.indexOf(s2.n + ' 科目 ' + s2.credits + ' 単位') === 0,
+       s2.printed + ' / 行 ' + s2.n + ' 科目 ' + s2.credits + ' 単位');
+    Object.keys(s2.byCat).forEach((k) => {
+      if (Object.keys(s2.byCat).length < 2) return;
+      ok('cv.html の群 ' + (i2 + 1) + ' の内訳「' + k + '」が行と合う',
+         s2.printed.indexOf(k + ' ' + s2.byCat[k]) >= 0,
+         k + ' ' + s2.byCat[k]);
+    });
+  });
+
+  /* README が名乗る数。日英とも、cv.html の行から数え直した数と合うこと。 */
+  const z = sums[1] || { n: 0, credits: 0, byCat: {} };
+  const t = sums[0] || { n: 0, credits: 0 };
+  const ja = read('README.md');
+  const en = read('README.en.md');
+  ok('README.md が名乗る短期大学の合計が実際と合う',
+     ja.indexOf('**' + t.n + ' 科目 ' + t.credits + ' 単位。**') >= 0,
+     t.n + ' 科目 ' + t.credits + ' 単位');
+  ok('README.md が名乗るオンライン大学の合計が実際と合う',
+     ja.indexOf('**' + z.n + ' 科目 ' + z.credits + ' 単位** —— 必修 ' + (z.byCat['必修'] || 0)
+                + '・選択必修 ' + (z.byCat['選択必修'] || 0)
+                + '・選択 ' + (z.byCat['選択'] || 0) + '。') >= 0,
+     z.n + ' 科目 ' + z.credits + ' 単位');
+  ok('README.en.md が名乗る短期大学の合計が実際と合う',
+     en.indexOf('**' + t.n + ' course, ' + t.credits + ' credits.**') >= 0);
+  ok('README.en.md が名乗るオンライン大学の合計が実際と合う',
+     en.indexOf('**' + z.n + ' courses, ' + z.credits + ' credits** — '
+                + (z.byCat['必修'] || 0) + ' required, '
+                + (z.byCat['選択必修'] || 0) + ' required elective, '
+                + (z.byCat['選択'] || 0) + ' elective.') >= 0);
+}
+
 /* ------------------------------------------------- 11. 30 秒で読める入口
  *
  * README の先頭は、外から来た人が 30 秒で読み切れる入口である。
