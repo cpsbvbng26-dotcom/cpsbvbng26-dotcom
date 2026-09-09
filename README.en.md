@@ -20,7 +20,7 @@
 
 I am enrolled in an information-science faculty at an online university, in its first autumn-entry cohort, studying computer science and artificial intelligence.
 
-Two aims. To succeed my father in his business. To teach at an online university after a doctorate.
+Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
 
 | Education | |
 | --- | --- |
