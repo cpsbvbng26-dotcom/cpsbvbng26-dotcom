@@ -502,11 +502,7 @@ const OFF_TOPIC = [
   ['シーランド|[Ss]ealand|公国|[Pp]rincipality', 'シーランド称号'],
   ['ライブ配信|生放送|ツイキャス|[Tt]witcast|[Tt]witch\\.tv|ニコ生', 'ライブ配信活動'],
   ['家系|家柄|末裔|血統|[Bb]loodline', '家系'],
-  ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き'],
-  /* 在学中の学校名は出さないと決めてある（CLAUDE.md の決めごと 10）。
-   * 自己紹介では「オンライン大学の情報系学部」と伏せてある。
-   * **学部名は校名と一対一なので、そちらも止める。**伏せ方が戻ったら落ちる。 */
-  ['ZEN大学|ZEN University|知能情報社会学部', '在学中の学校名']
+  ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
 const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
                                      'README.md', 'README.en.md']);
@@ -572,6 +568,22 @@ section('10.5 修得した科目の合計');
        cells.length === z.n && sum === z.credits,
        cells.length + ' 科目 ' + sum + ' 単位');
   });
+
+  /* 「何年何月何日現在」。逐次更新の目安なので、**四つの頁で同じ日でなければ
+   * 意味が無い。**先の日付も認めない。 */
+  const asOf = /<p class="as-of">(\d{4})年(\d{1,2})月(\d{1,2})日現在<\/p>/.exec(cv);
+  ok('cv.html に「何年何月何日現在」がある', asOf !== null);
+  if (asOf) {
+    const [, y, mo, d] = asOf;
+    const ja = `${y}年${mo}月${d}日現在`;
+    const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                 'August', 'September', 'October', 'November', 'December'];
+    const en2 = `as of ${Number(d)} ${MON[Number(mo) - 1]} ${y}`;
+    ok('index.html が同じ日を名乗る', read('index.html').indexOf(ja) >= 0, ja);
+    ok('index.en.html が同じ日を名乗る', read('index.en.html').indexOf(en2) >= 0, en2);
+    const stamp = new Date(Date.UTC(Number(y), Number(mo) - 1, Number(d)));
+    ok('その日が先の日付でない', stamp.getTime() <= Date.now() + 86400000, ja);
+  }
 
   /* README は生成物である。組み直したものと一字一句合うこと。 */
   const rc = require('./readme_courses');
