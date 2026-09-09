@@ -69,6 +69,11 @@
           "repo": "self-correction",
           "file": "register.toml",
           "regex": "道具自身は (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "「道具自身 (\\d+)」"
         }
       ]
     },
@@ -114,6 +119,11 @@
           "repo": "self-correction",
           "file": "register.toml",
           "regex": "(\\d+) 通りに壊して"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "「壊す先 (\\d+) 通り」"
         }
       ]
     },
@@ -177,6 +187,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "<dt>(\\d+) checks on the operator</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "検査 (\\d+) 項目、乱数種"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "the counterexample\\. (\\d+) checks"
         }
       ]
     },
@@ -235,6 +255,21 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "<strong>(\\d+) entries</strong> across five statuses"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "\\*\\*いま (\\d+) 件。"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "「登録簿 (\\d+) 件」"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "never deleted\\.\\*\\* (\\d+) entries"
         }
       ]
     },
@@ -363,6 +398,16 @@
           "repo": "self-correction",
           "file": "register.toml",
           "regex": "三篇の PDF に対して (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "・正誤表の監査 (\\d+)・"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "(\\d+) on the errata,"
         }
       ]
     },
@@ -392,6 +437,16 @@
           "repo": "self-correction",
           "file": "register.toml",
           "regex": "別の種でもう一度だけ引く\\*\\*（(\\d+) 項目）"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "・印字された数値 (\\d+)・"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "(\\d+) on the printed numerics"
         }
       ]
     },
@@ -415,6 +470,16 @@
           "repo": "trinity-infinity",
           "file": ".github/workflows/verify.yml",
           "regex": "経路 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "・経路 (\\d+)）"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "(\\d+) on the route"
         }
       ]
     },
@@ -519,6 +584,157 @@
           "regex": "(\\d+) on the naval gazette source note"
         }
       ]
+    },
+    {
+      "名前": "trinity-infinity 定理",
+      "実際": {
+        "repo": "trinity-infinity",
+        "cmd": [
+          "python3",
+          "verification/independent_check.py"
+        ],
+        "regex": "(\\d+) checks, \\d+ passed"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-infinity",
+          "file": ".github/workflows/verify.yml",
+          "regex": "定理 (\\d+)"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "定理 (\\d+)"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "\\((\\d+) on the theorems"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-operator 証書",
+      "実際": {
+        "repo": "trinity-operator",
+        "cmd": [
+          "python3",
+          "verification/check_certificate.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-operator",
+          "file": ".github/workflows/verify.yml",
+          "regex": "証書 (\\d+) 項目"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-operator 展望",
+      "実際": {
+        "repo": "trinity-operator",
+        "cmd": [
+          "python3",
+          "verification/check_roadmap.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-operator",
+          "file": ".github/workflows/verify.yml",
+          "regex": "展望 (\\d+) 項目"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-operator 引用情報",
+      "実際": {
+        "repo": "trinity-operator",
+        "cmd": [
+          "python3",
+          "verification/check_citation.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-operator",
+          "file": ".github/workflows/verify.yml",
+          "regex": "引用情報 (\\d+) 項目"
+        }
+      ]
+    },
+    {
+      "名前": "cpsbvbng26-dotcom 配色",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "verification/check_contrast.js"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "配色の読みやすさ (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "colour contrast, (\\d+) checks"
+        }
+      ]
+    },
+    {
+      "名前": "cpsbvbng26-dotcom サイトの構造",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "サイトの構造 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "site structure, (\\d+) checks"
+        }
+      ]
+    },
+    {
+      "名前": "cpsbvbng26-dotcom 作用素のページ",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "verification/check_trinity.js"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "作用素の数値 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "operator numerics, (\\d+) checks"
+        }
+      ]
     }
   ],
   "和": [
@@ -539,6 +755,68 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) checks on the errata(?! itself)"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-infinity の検証の合計",
+      "足すもの": [
+        "trinity-infinity 定理",
+        "trinity-infinity 印字された数値",
+        "trinity-infinity 正誤表の監査",
+        "trinity-infinity 経路"
+      ],
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "その検証 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "with (\\d+) verification checks"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-operator の検査の合計",
+      "足すもの": [
+        "trinity-operator 作用素の検査",
+        "trinity-operator 証書",
+        "trinity-operator 展望",
+        "trinity-operator 引用情報"
+      ],
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "検査 (\\d+) 項目 \\|"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "(\\d+) checks \\|"
+        }
+      ]
+    },
+    {
+      "名前": "このリポジトリの検査の合計",
+      "足すもの": [
+        "cpsbvbng26-dotcom 配色",
+        "cpsbvbng26-dotcom サイトの構造",
+        "cpsbvbng26-dotcom 作用素のページ"
+      ],
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "push のたびに (\\d+) 項目の検査"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "regex": "Every push runs (\\d+) checks"
         }
       ]
     }
@@ -633,6 +911,26 @@
       "first edition",
       "original preprint",
       "対象としている"
+    ]
+  },
+  "ライセンス": {
+    "_": "散文と論文は CC BY 4.0、実装は MIT。両方が入っているリポジトリは LICENSE と LICENSE-CODE を分けて置き、README がどちらがどちらかを書く。",
+    "_なぜ": "LICENSE が CC BY 4.0 しか無いのに実装が入っていると、検査スクリプトを CC BY 4.0 だと読む余地が残る。**実際に四つのリポジトリがその状態だった。**",
+    "散文の見出し": "Creative Commons Attribution 4.0 International",
+    "実装の見出し": "MIT License",
+    "README が指す先": "[MIT](LICENSE-CODE)",
+    "両方": [
+      "cpsbvbng26-dotcom",
+      "trinity-infinity",
+      "autonomy-and-self-cultivation",
+      "naval-gazette-notes",
+      "justice-and-algorithms"
+    ],
+    "実装のみ": [
+      "errata-check",
+      "self-correction",
+      "researcher-profile",
+      "trinity-operator"
     ]
   }
 }

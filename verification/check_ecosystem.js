@@ -377,11 +377,52 @@ console.log('\n8. 引用してはいけない DOI の札');
     naked.length ? [...new Set(naked)].join(', ') : found + ' 箇所すべてに札がある');
 }
 
+/* ---------- ライセンスの分け方 ---------- */
+
+/* 散文と論文は CC BY 4.0、実装は MIT。両方が入っているリポジトリで LICENSE が
+ * CC BY 4.0 しか無いと、検査スクリプトを CC BY 4.0 だと読む余地が残る。
+ * **実際に四つのリポジトリがその状態だった。** */
+
+console.log('\n9. ライセンスの分け方');
+
+{
+  const L = DECL['ライセンス'];
+  for (const repo of L['両方']) {
+    const prose = read(repo, 'LICENSE');
+    const code = read(repo, 'LICENSE-CODE');
+    const readme = read(repo, 'README.md') || '';
+    check(repo + '  散文が CC BY 4.0 である',
+      prose !== null && prose.indexOf(L['散文の見出し']) === 0);
+    check(repo + '  実装の MIT が別に置いてある',
+      code !== null && code.indexOf(L['実装の見出し']) === 0);
+    check(repo + '  README がどちらがどちらかを書いている',
+      readme.indexOf(L['README が指す先']) >= 0, L['README が指す先']);
+  }
+  for (const repo of L['実装のみ']) {
+    const prose = read(repo, 'LICENSE');
+    check(repo + '  LICENSE が MIT である',
+      prose !== null && prose.indexOf(L['実装の見出し']) === 0);
+    check(repo + '  分けていない（LICENSE-CODE を置いていない）',
+      read(repo, 'LICENSE-CODE') === null);
+  }
+
+  /* 写した errata_check.py に、MIT の権利表示が入っているか。
+   * MIT は「著作権表示と許諾表示を全ての複製に含める」ことを条件にしている。
+   * 写した先の LICENSE は CC BY 4.0 なので、表示が無いと辿れる先が無くなる。 */
+  for (const item of DECL['写した版と DOI']) {
+    const src = read(item.repo, 'verification/errata_check.py') || '';
+    const head = src.slice(0, 2000);
+    check(item.repo + '  写した道具に MIT の権利表示がある',
+      head.indexOf(L['実装の見出し']) >= 0
+        && head.indexOf('The above copyright notice') >= 0);
+  }
+}
+
 /* この検査自身が名乗る件数も、実際と合わせる。
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n9. この検査が名乗る件数');
+console.log('\n10. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
