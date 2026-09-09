@@ -237,7 +237,7 @@ points fall out in the same shape.
 | The authority that grants the seal | Zenodo. It cannot be rewritten from here, which is why the artifacts are frozen |
 | Crest and seal | ORCID. The only thing that separates the author from a namesake |
 | Outposts | SSRN / PhilArchive / Knowledge Commons / researchmap / HAL. Entrances, not canonical records |
-| Another house's inspectors | External review and metrics. Records outside the author's control |
+| Another house's inspectors | External review and metrics. Records outside the author's control. The frozen papers are run through the **Stanford Agentic Reviewer** (`paperreview.ai`, built by Yixing Jiang and Andrew Ng); every point it raises is checked one by one and recorded in [`docs/external-evaluations.md`](docs/external-evaluations.md) (in Japanese). What it got right and what it got wrong are both kept. **It is not peer review.** It grounds its reviews in arXiv, which puts these papers on the side where its accuracy is lower — that caveat is recorded with the reviews |
 
 ### The field camp is not inside the castle
 

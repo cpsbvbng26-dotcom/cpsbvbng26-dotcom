@@ -173,7 +173,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 99 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 107 項目
 ```
 
 **`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
@@ -275,7 +275,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 墨付を出す側 | Zenodo。こちらから書き換えられない。だから凍結される |
 | 家紋・印判 | ORCID。同名の者と区別する唯一のものである |
 | 飛び地・陣屋 | SSRN / PhilArchive / Knowledge Commons / researchmap / HAL。正本ではない。入口である |
-| 他家の目付 | 外部の査読と計測。こちらの支配下に無い記録である |
+| 他家の目付 | 外部の評価と計測。こちらの支配下に無い記録である。凍結済みの論文を **Stanford Agentic Reviewer**（`paperreview.ai`、開発 Yixing Jiang・Andrew Ng）に掛け、返ってきた指摘を一つずつ当たって [`docs/external-evaluations.md`](docs/external-evaluations.md) に記録している。当てたものも外したものも残す。**査読ではない。**arXiv に接地する作りなので、ここで出している論文は精度が落ちる側に当たる —— その前提ごと書いてある |
 
 ### 本陣は城の中に無い
 
