@@ -377,13 +377,55 @@ console.log('\n8. 引用してはいけない DOI の札');
     naked.length ? [...new Set(naked)].join(', ') : found + ' 箇所すべてに札がある');
 }
 
+/* ---------- 先に立てておく反論 ---------- */
+
+/* 三つの反論は、実際に受けた形のまま置いてある。**当たっている部分を先に書く。**
+ * ここが「反論を黙らせる文書」に書き換わると、記録ではなく宣伝になる。
+ * 認めるところと、崩し方が消えたら落ちるようにしてある。 */
+
+console.log('\n9. 先に立てておく反論');
+
+{
+  const O = DECL['反論'];
+  const text = read('cpsbvbng26-dotcom', O.file);
+  check('反論を先に立てた文書がある', text !== null, O.file);
+  if (text !== null) {
+    for (const item of O['項目']) {
+      check('反論が原文のまま置いてある  ' + item['見出し'],
+        text.indexOf(item['原文']) >= 0, item['原文']);
+      const i = text.indexOf(item['原文']);
+      const j = text.indexOf('## 反論', i + 1);
+      const sec = text.slice(i, j < 0 ? text.length : j);
+      check('  認めるところが書いてある  ' + item['見出し'],
+        sec.indexOf('### 認めるところ') >= 0 && sec.indexOf(item['認める']) >= 0,
+        item['認める']);
+      check('  崩し方が書いてある  ' + item['見出し'],
+        sec.indexOf('### この答えの崩し方') >= 0);
+    }
+    check('答えきれない部分を、答えきれないと書いてある',
+      text.indexOf(O['限界']) >= 0, O['限界']);
+    for (const f of O['入口']) {
+      const r = read('cpsbvbng26-dotcom', f) || '';
+      check('入口から辿れる  ' + f, r.indexOf(O.file) >= 0);
+    }
+  }
+
+  /* 反論 1 の核は解けていない。**登録簿でも open のままであること。**
+   * ここが standing や corrected に変わったら、解けたと名乗ったことになる。 */
+  const reg = read('self-correction', 'register.toml') || '';
+  const k = reg.indexOf('id = "' + O['未解決の項目'] + '"');
+  const blk = k < 0 ? '' : reg.slice(k, k + 400);
+  check('価値を判定できないことが、登録簿で未解決のままである',
+    /status\s*=\s*"open"/.test(blk), O['未解決の項目']);
+}
+
 /* ---------- ライセンスの分け方 ---------- */
 
 /* 散文と論文は CC BY 4.0、実装は MIT。両方が入っているリポジトリで LICENSE が
  * CC BY 4.0 しか無いと、検査スクリプトを CC BY 4.0 だと読む余地が残る。
  * **実際に四つのリポジトリがその状態だった。** */
 
-console.log('\n9. ライセンスの分け方');
+console.log('\n10. ライセンスの分け方');
 
 {
   const L = DECL['ライセンス'];
@@ -422,7 +464,7 @@ console.log('\n9. ライセンスの分け方');
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n10. この検査が名乗る件数');
+console.log('\n11. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
