@@ -26,14 +26,16 @@ What this record holds is my study of computer science and artificial intelligen
 
 Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
 
+<!-- 経歴:ここから -->
+
 ### Education
 
 | | | Credits earned |
 | --- | --- | --- |
-| Tochigi Prefectural Tochigi High School | left partway through | |
-| Upper Secondary School Equivalency Examination | passed | |
+| Tochigi Prefectural Tochigi High School | left partway through |  |
+| Upper Secondary School Equivalency Examination | passed |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits |
-| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | 11 courses, 22 credits (14 required, 4 required elective, 4 elective) |
+| Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective |
 
 ### Courses I have credit for
 
@@ -43,7 +45,7 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | --- | --- | --- |
 | Instructional Design (taught in English) | in-person session | 2 |
 
-**1 course, 2 credits.**
+**1 course, 2 credits**
 
 **Online university, information-and-society faculty** — more to come.
 
@@ -61,8 +63,9 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | Introduction to Publishing on the Internet | elective | 2 |
 | Internet Culture through the History of Derivative Works | elective | 2 |
 
-**11 courses, 22 credits** — 14 required, 4 required elective, 4 elective.
+**11 courses, 22 credits — 14 required, 4 required elective, 4 elective**
 
+<!-- 経歴:ここまで -->
 ---
 
 ## In 30 seconds
@@ -200,12 +203,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 436 checks.** There are no dependencies to install.
+**Every push runs 432 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 227 checks
+node verification/check_site.js      # site structure, 223 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
