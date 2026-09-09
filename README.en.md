@@ -16,17 +16,18 @@
 
 ---
 
+<!-- 自己紹介:ここから -->
+
 ## About me
 
-I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. The programme spans the humanities and the sciences.
+I am enrolled at ZEN University — 知能情報社会学部 知能情報社会学科 — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
-My coursework is mainly philosophy and business practice. Mathematics is on offer as well.
+My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
-What this record holds is my study of computer science and artificial intelligence.
+**Two aims**
 
-Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
-
-<!-- 経歴:ここから -->
+- To take over the business my father is planning to found
+- To teach at an online university after a doctorate
 
 ### Education
 
@@ -65,7 +66,7 @@ Two aims. To take over the business my father is planning to found. To teach at 
 
 **11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)**
 
-<!-- 経歴:ここまで -->
+<!-- 自己紹介:ここまで -->
 ---
 
 ## In 30 seconds
