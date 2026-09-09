@@ -18,9 +18,16 @@
 
 ## About me
 
-My aims are to succeed my father in his business and, after a doctorate, to teach at an online university. I work toward that daily.
+I am enrolled in an information-science faculty at an online university, in its first autumn-entry cohort, studying computer science and artificial intelligence.
 
-I left Tochigi Prefectural Tochigi High School partway through and passed the national Upper Secondary School Equivalency Examination. I then spent two years on the Business Management course of the Efficiency Department at Jiyugaoka Sanno College before withdrawing of my own accord, and I am now enrolled in an information-science faculty at an online university (its first autumn-entry cohort).
+Two aims. To succeed my father in his business. To teach at an online university after a doctorate.
+
+| Education | |
+| --- | --- |
+| Tochigi Prefectural Tochigi High School | left partway through |
+| Upper Secondary School Equivalency Examination | passed |
+| Jiyugaoka Sanno College, Efficiency Dept., Business Management course | two years, then withdrew |
+| Online university, information-science faculty | enrolled (first autumn-entry cohort) |
 
 ---
 
