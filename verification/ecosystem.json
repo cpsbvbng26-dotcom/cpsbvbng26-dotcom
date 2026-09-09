@@ -64,6 +64,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "<dt>(\\d+) checks on the tool itself</dt>"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "道具自身は (\\d+) 項目"
         }
       ]
     },
@@ -104,6 +109,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "broken in (\\d+) distinct ways"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "(\\d+) 通りに壊して"
         }
       ]
     },
@@ -348,6 +358,40 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) on the three Trinity-Infinity papers"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "三篇の PDF に対して (\\d+) 項目"
+        }
+      ]
+    },
+    {
+      "名前": "trinity-infinity 印字された数値",
+      "_": "論文に印字されている数値を計算し直す突き合わせ。**登録簿がこの数を名乗っている。**",
+      "実際": {
+        "repo": "trinity-infinity",
+        "cmd": [
+          "python3",
+          "verification/claims_audit.py"
+        ],
+        "regex": "(\\d+) 項目 —— MATCH"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-infinity",
+          "file": ".github/workflows/verify.yml",
+          "regex": "印字された数値 (\\d+) 項目"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "claims_audit\\.py (\\d+) 項目"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "別の種でもう一度だけ引く\\*\\*（(\\d+) 項目）"
         }
       ]
     },
@@ -394,6 +438,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) on the three philosophical papers"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "機械で固定しており（(\\d+) 項目）"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_errata\\.py が落ちる（(\\d+) 項目）"
         }
       ]
     },
