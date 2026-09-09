@@ -38,25 +38,29 @@ Two aims. To take over the business my father is planning to found. To teach at 
 
 **Jiyugaoka Sanno College, Efficiency Dept., Business Management course**
 
-| Course | |
-| --- | --- |
-| Instructional Design (仕事の上手な教え方) | 2 credits, at in-person sessions |
+| Course | Category | Credits |
+| --- | --- | --- |
+| Instructional Design (仕事の上手な教え方) | in-person session | 2 |
+
+**1 course, 2 credits.**
 
 **Online university, information-and-society faculty** — more to come.
 
-| Course | |
-| --- | --- |
-| Introduction to the Humanities and Social Sciences | |
-| IT Literacy | |
-| Academic Literacy | |
-| Introduction to Publishing on the Internet | |
-| Internet Culture through the History of Derivative Works | |
-| Multilingual IT Communication | |
-| Applied Practice in Artificial Intelligence | |
-| Introduction to Economics | |
-| Using Digital Tools | |
-| Introduction to Information Security | |
-| History of Mathematics | required elective |
+| Course | Category | Credits |
+| --- | --- | --- |
+| Introduction to the Humanities and Social Sciences | required | 2 |
+| IT Literacy | required | 2 |
+| Academic Literacy | required | 2 |
+| Using Digital Tools | required | 2 |
+| Multilingual IT Communication | required | 2 |
+| Applied Practice in Artificial Intelligence | required | 2 |
+| Introduction to Economics | required | 2 |
+| Introduction to Information Security | required elective | 2 |
+| History of Mathematics | required elective | 2 |
+| Introduction to Publishing on the Internet | elective | 2 |
+| Internet Culture through the History of Derivative Works | elective | 2 |
+
+**11 courses, 22 credits** — 14 required, 4 required elective, 4 elective.
 
 </details>
 
@@ -197,12 +201,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 419 checks.** There are no dependencies to install.
+**Every push runs 430 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 210 checks
+node verification/check_site.js      # site structure, 221 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
