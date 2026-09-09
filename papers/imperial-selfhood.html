@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-0z4q286EN7goxiZBfQiREQUdvgpBvZpr1e35Wot4Kl8=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-nLIuHGBlECTSnZUVhoHrzI35Kv9eOZpgFtO78AzDLsA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-0z4q286EN7goxiZBfQiREQUdvgpBvZpr1e35Wot4Kl8=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-+mEIKFjMKPsUw08kBEgJniCQk1RF3Tz2TZwPI5EweeU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Manifesto of Imperial Selfhood | 根本卓哉</title>
 <meta name="description" content="断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える。三者の対立を解消せず、構造の中身として引き受ける。">
 <meta name="robots" content="index, follow">
@@ -321,6 +321,22 @@ header::after {
   box-shadow: 0 0 0 .22rem var(--accent-soft);
 }
 .path-name { font-size: .88rem; line-height: 1.7; color: var(--text); }
+/* 行に属する科目。単位欄の中身をそのまま置く。 */
+.path-courses {
+  grid-column: 1 / -1; list-style: none;
+  margin: .5rem 0 .2rem; padding: 0 0 0 .8rem;
+  display: grid; gap: .3rem;
+  border-left: 2px solid var(--accent-soft);
+}
+.path-courses li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem;
+  font-size: .8rem; line-height: 1.65; color: var(--muted);
+}
+.path-courses li i {
+  font-style: normal; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--accent); background: var(--accent-soft);
+}
 .path-now .path-name { color: var(--accent); }
 .path-state {
   font-size: .76rem; letter-spacing: .04em; color: var(--muted);
