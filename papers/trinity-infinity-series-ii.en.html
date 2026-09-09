@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-0eIrAbNDasEGwA2IgRt7tEQ53xycNrCUenYm0byq2TE=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DLZDcjzriXq6xdjn3B0rDUA8c9mLcrmVTMYj8/8ECRA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-0eIrAbNDasEGwA2IgRt7tEQ53xycNrCUenYm0byq2TE=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-4RhGhQTEI3Jm63zWg7hlOoC47dw80TaH116bFZOeXXM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series II | Takuya Nemoto</title>
 <meta name="description" content="Shows that uniqueness of the fixed point survives when the mixing rate varies coordinate by coordinate, and adds a characterization of the equilibrium payoff set and a fully worked spring-network example.">
 <meta name="robots" content="index, follow">
@@ -348,6 +348,25 @@ header::after {
   .profile { padding: 1.15rem 1.15rem 1.25rem; }
   .path li { grid-template-columns: 1fr; gap: .1rem; }
   .path-state { white-space: normal; }
+}
+
+/* ---------- 修得した科目 ----------
+   修了証と違って検証ページが無い。だからカードにせず、行で並べる。 */
+.courses { list-style: none; margin: 0; padding: 0; max-width: 42rem; }
+.courses li {
+  display: grid; grid-template-columns: 1fr auto; gap: .3rem 1rem;
+  align-items: baseline;
+  padding: .6rem 0; border-top: 1px solid var(--line-soft);
+}
+.courses li:first-child { border-top: 1px solid var(--line); }
+.course-name { font-size: .9rem; line-height: 1.7; color: var(--text); }
+.course-note {
+  font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .courses li { grid-template-columns: 1fr; gap: .1rem; }
+  .course-note { white-space: normal; }
 }
 
 /* ---------- ノートへの導線 ----------

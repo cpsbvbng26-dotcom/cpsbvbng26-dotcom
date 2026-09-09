@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DLZDcjzriXq6xdjn3B0rDUA8c9mLcrmVTMYj8/8ECRA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-4RhGhQTEI3Jm63zWg7hlOoC47dw80TaH116bFZOeXXM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -394,6 +394,25 @@ header::after {
   .path-state { white-space: normal; }
 }
 
+/* ---------- 修得した科目 ----------
+   修了証と違って検証ページが無い。だからカードにせず、行で並べる。 */
+.courses { list-style: none; margin: 0; padding: 0; max-width: 42rem; }
+.courses li {
+  display: grid; grid-template-columns: 1fr auto; gap: .3rem 1rem;
+  align-items: baseline;
+  padding: .6rem 0; border-top: 1px solid var(--line-soft);
+}
+.courses li:first-child { border-top: 1px solid var(--line); }
+.course-name { font-size: .9rem; line-height: 1.7; color: var(--text); }
+.course-note {
+  font-size: .76rem; letter-spacing: .04em; color: var(--faint); white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .courses li { grid-template-columns: 1fr; gap: .1rem; }
+  .course-note { white-space: normal; }
+}
+
 /* ---------- ノートへの導線 ----------
    核に置かなかったものは、消さずにここから辿れる。 */
 .notes-list { max-width: 42rem; }
@@ -678,6 +697,7 @@ footer::before {
     <a class="mark serif" href="#main">TN</a>
     <nav class="nav">
       <a href="#credentials">修了証</a>
+      <a href="#courses">修得した科目</a>
       <a href="#areas">学習領域</a>
       <a href="#links">リンク</a>
       <a href="./index.html">トップ</a>
@@ -758,6 +778,39 @@ footer::before {
           <span class="verify">バッジを確認</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="courses" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">修得した科目</h2>
+      <p>大学・短期大学で単位を修得した科目です。修了証と違って検証ページが無いので、別に置いています。オンライン大学の分はこれから増えます。</p>
+    </div>
+
+    <div class="group">
+      <div class="group-name reveal">自由が丘産能短期大学 能率科 経営管理コース</div>
+      <ul class="courses reveal">
+        <li><span class="course-name">仕事の上手な教え方（インストラクショナルデザイン）</span><span class="course-note">スクーリング・2 単位</span></li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <div class="group-name reveal">オンライン大学 情報社会系の学部</div>
+      <ul class="courses reveal">
+        <li><span class="course-name">人文社会入門</span></li>
+        <li><span class="course-name">IT リテラシー</span></li>
+        <li><span class="course-name">アカデミックリテラシー</span></li>
+        <li><span class="course-name">ネット情報発信概論</span></li>
+        <li><span class="course-name">二次創作の歴史から見るネット文化</span></li>
+        <li><span class="course-name">多言語 IT コミュニケーション</span></li>
+        <li><span class="course-name">人工知能活用実践</span></li>
+        <li><span class="course-name">経済入門</span></li>
+        <li><span class="course-name">デジタルツールの使い方</span></li>
+        <li><span class="course-name">情報セキュリティ概論</span></li>
+        <li><span class="course-name">数学史</span><span class="course-note">選択必修科目</span></li>
+      </ul>
     </div>
   </section>
 
