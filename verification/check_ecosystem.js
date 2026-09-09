@@ -257,6 +257,17 @@ console.log('\n6. 外部からの評価');
       wrong.length === 0, wrong.length ? ('ずれ: ' + wrong.join(', ')) : pairs.length + ' 件');
     const digits = /PlumX[^\n]*?[:：]\s*\d|閲覧\s*\d|ビュー\s*\d|保存\s*\d|言及\s*\d/;
     check('PlumX の数値が転記されていない', !digits.test(plum));
+
+    /* autonomy の ERRATA の N7 は、この記録のいずれもニーチェに言及していないと
+     * 述べている。述べたのなら、突き合わせられるようにする。
+     * 記録に言及が増えたら、N7 の書き方を直すことになる。 */
+    const errataN7 = read('autonomy-and-self-cultivation', 'ERRATA.md') || '';
+    const 主張 = errataN7.indexOf('ニーチェに言及していない') >= 0;
+    const 言及 = /ニーチェ|Nietzsche/.test(text);
+    check('外部評価の記録にニーチェへの言及が無い（N7 の前提）',
+      !主張 || !言及,
+      主張 ? (言及 ? '記録に言及がある。N7 を直す' : '言及は無い')
+           : 'N7 がその主張をしていない');
   }
 }
 
