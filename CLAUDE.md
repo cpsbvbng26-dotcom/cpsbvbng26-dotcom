@@ -78,7 +78,7 @@ node verification/check_contrast.js    # 配色（WCAG の比）
 node verification/check_site.js        # サイトの構造
 node verification/check_trinity.js     # 作用素のページの数値
 node verification/check_ecosystem.js   # 9 リポジトリ横断（要: 兄弟ディレクトリ）
-bash verification/check_all.sh         # 9 リポジトリの検査を全部回す
+node verification/check_all.js         # 9 リポジトリの検査を全部回す
 ```
 
 **生成物 —— 手で編集しない。**
