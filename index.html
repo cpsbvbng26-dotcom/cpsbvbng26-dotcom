@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-br2uO9HTZ7+zSbFJH3ganrTjESELf1ukqbS5zTh/Jn8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-++AvQK68T/mb7bXfSadJyiML4Qo26f/46IRvwsQRrS8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -436,6 +436,8 @@ header::after {
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
 }
+.profile-study { margin-top: .7rem; color: var(--muted); }
+.profile-study b, .profile-study strong { color: var(--text); font-weight: 600; }
 
 /* 来た道。縦の線を左に一本引き、節ごとに丸を置く。 */
 .path {
@@ -793,7 +795,8 @@ footer::before {
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <div class="profile reveal">
       <h2 class="profile-label">自己紹介</h2>
-      <p class="profile-now">オンライン大学の情報社会系の学部に在籍しています（秋入学一期生）。大学では主に哲学と実務を学んでいます。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。</p>
+      <p class="profile-now">オンライン大学の情報社会系の学部に在籍しています（秋入学一期生）。文理を横断する課程です。</p>
+      <p class="profile-now profile-study">大学では主に<strong>哲学</strong>と<strong>実務</strong>を学んでいます。数学も履修でき、選択必修科目の<strong>数学史</strong>を修得しました。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。</p>
       <ol class="path">
       <li><span class="path-name">栃木県立栃木高等学校</span><span class="path-state">中途退学</span></li>
       <li><span class="path-name">高等学校卒業程度認定試験規則による認定試験</span><span class="path-state">合格</span></li>
