@@ -37,7 +37,7 @@ The three philosophical papers are not refutable in this shape, and they have no
 ### If you read three more things
 
 1. **[trinity-infinity / ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)** — what is wrong in the three papers and what was withdrawn. One error sends readers to the wrong edition
-2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** — the implementation of the claim above, and the counterexample. 22 checks, fixed seed
+2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** — the implementation of the claim above, and the counterexample. 29 checks, fixed seed
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** — the series' own retrospective on what it established and what it withdrew
 
 > **Nothing published here has been peer reviewed.** None of it has gone through a journal or a conference. Having a DOI does not mean a work was reviewed.
@@ -76,10 +76,10 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | A tool that generates a static researcher profile site from a single configuration file | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | Full text, PDFs and citation metadata for the three philosophical papers, with a generator for the reading site | CC BY 4.0 | — |
-| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | The three Trinity-Infinity papers with 44 verification checks, an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
-| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 136 checks | MIT | — |
+| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | The three Trinity-Infinity papers with 143 verification checks (15 on the theorems, 32 on the printed numerics, 78 on the errata, 18 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
+| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 172 checks | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **Audits an errata document against a frozen, already-published artifact.** A DOI'd PDF cannot be revised; only the errata can, so the errata drifts. Checks that every quotation appears verbatim, that occurrences are not undercounted, that an item declared unresolvable has not been quietly resolved, and that the artifact itself has not been swapped. **No inference is used in the judgement** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** Fifteen entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 53 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | The transcription from the source note, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down | CC BY 4.0 | — |
 
 ---
@@ -149,12 +149,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 111 checks.** There are no dependencies to install.
+**Every push runs 419 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 119 checks
-node verification/check_site.js      # site structure, 168 checks
+node verification/check_site.js      # site structure, 210 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

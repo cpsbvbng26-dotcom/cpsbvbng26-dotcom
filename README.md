@@ -45,7 +45,7 @@
 ### 次に読むなら、この 3 つ
 
 1. **[trinity-infinity / ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)** —— 三篇の何が誤っていて、何が撤回されたか。読者が誤った版に辿り着く誤りが 1 件ある
-2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 22 項目、乱数種は固定
+2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 29 項目、乱数種は固定
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** —— 系列が自分で何を確立し、何を撤回したかを書いた回顧
 
 > **公開しているものは、すべて査読を受けていない。** 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
@@ -84,10 +84,10 @@
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
-| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | Trinity-Infinity の三篇と、その検証 95 項目（定理 13・紙面の数値 31・正誤表の監査 51）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
-| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 136 項目 | MIT | — |
+| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | Trinity-Infinity の三篇と、その検証 143 項目（定理 15・印字された数値 32・正誤表の監査 78・経路 18）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
+| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 172 項目 | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する。**DOI が付いた PDF は直せない。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。**いま 15 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。**いま 53 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | — |
 
 ---
@@ -160,7 +160,7 @@
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 377 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 419 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
@@ -173,10 +173,10 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 116 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 180 項目
 ```
 
-**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 63」「登録簿 25 件」「壊す先 21 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
+**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 68」「登録簿 53 件」「壊す先 26 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にする（CI は 9 つを checkout してから回す）。
 
