@@ -18,7 +18,11 @@
 
 ## About me
 
-I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. My coursework there is mainly philosophy and business practice. What this record holds is my study of computer science and artificial intelligence.
+I am enrolled in an information-and-society faculty at an online university, in its first autumn-entry cohort. The programme spans the humanities and the sciences.
+
+My coursework is mainly philosophy and business practice. Mathematics is also on offer, and I have completed History of Mathematics as a required elective.
+
+What this record holds is my study of computer science and artificial intelligence.
 
 Two aims. To take over the business my father is planning to found. To teach at an online university after a doctorate.
 
