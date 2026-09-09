@@ -997,5 +997,37 @@
     "一覧": "docs/doi-index.md",
     "一覧に必ずあること": "**番号の存在は疑っていない。**",
     "未確認の番号": "10.5281/zenodo.22335691"
+  },
+  "書籍の撤回": {
+    "_": "論文の外で撤回した一般向けの電子書籍。登録簿の BK-001。",
+    "_なぜ": "**登録簿の奥にしか無いと、外からは見つからない。**実際に外部の評価が、この本を撤回されていないものとして挙げた。撤回したのなら、読まれる場所に書く。",
+    "題名": "グランドセオリーというロマン",
+    "項目": "BK-001",
+    "出す場所": [
+      {
+        "repo": "trinity-infinity",
+        "file": "README.md"
+      },
+      {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "README.md"
+      },
+      {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "README.en.md"
+      },
+      {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "index.html"
+      },
+      {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "index.en.html"
+      }
+    ],
+    "必ず添えること": [
+      "販売停止",
+      "確かめられない"
+    ]
   }
 }

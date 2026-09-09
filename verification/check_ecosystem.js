@@ -377,13 +377,37 @@ console.log('\n8. 引用してはいけない DOI の札');
     naked.length ? [...new Set(naked)].join(', ') : found + ' 箇所すべてに札がある');
 }
 
+/* ---------- 論文の外で撤回した書籍 ---------- */
+
+/* **登録簿の奥にしか無いものは、外からは見つからない。**
+ * 実際に外部の評価が、この本を撤回されていないものとして挙げた。
+ * 撤回したのなら、読まれる場所に書く。 */
+
+console.log('\n9. 論文の外で撤回した書籍');
+
+{
+  const B = DECL['書籍の撤回'];
+  const reg = read('self-correction', 'register.toml') || '';
+  check('登録簿に項目がある', reg.indexOf('id = "' + B['項目'] + '"') >= 0, B['項目']);
+  B['出す場所'].forEach((p) => {
+    const text = read(p.repo, p.file) || '';
+    check(p.repo + '/' + p.file + ' が題名を出している',
+      text.indexOf(B['題名']) >= 0, B['題名']);
+  });
+  /* 題名だけ出して、何が起きたかを書かないのは出したことにならない。 */
+  const ti = read('trinity-infinity', 'README.md') || '';
+  B['必ず添えること'].forEach((w) => {
+    check('trinity-infinity の README が「' + w + '」を添えている', ti.indexOf(w) >= 0);
+  });
+}
+
 /* ---------- Zenodo との連携の但書 ---------- */
 
 /* 「Zenodo が正」とだけ書くと、仕組みで保証されていると読まれる。
  * **実際には、この環境から Zenodo へは何も送れない。**番号は転記であって確認ではなく、
  * 版の DOI か概念 DOI かの判別も付かない。その但書が消えたら落ちる。 */
 
-console.log('\n9. Zenodo との連携の但書');
+console.log('\n10. Zenodo との連携の但書');
 
 {
   const Z = DECL['Zenodo の但書'];
@@ -414,7 +438,7 @@ console.log('\n9. Zenodo との連携の但書');
  * ここが「反論を黙らせる文書」に書き換わると、記録ではなく宣伝になる。
  * 認めるところと、崩し方が消えたら落ちるようにしてある。 */
 
-console.log('\n10. 先に立てておく反論');
+console.log('\n11. 先に立てておく反論');
 
 {
   const O = DECL['反論'];
@@ -456,7 +480,7 @@ console.log('\n10. 先に立てておく反論');
  * CC BY 4.0 しか無いと、検査スクリプトを CC BY 4.0 だと読む余地が残る。
  * **実際に四つのリポジトリがその状態だった。** */
 
-console.log('\n11. ライセンスの分け方');
+console.log('\n12. ライセンスの分け方');
 
 {
   const L = DECL['ライセンス'];
@@ -495,7 +519,7 @@ console.log('\n11. ライセンスの分け方');
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
-console.log('\n12. この検査が名乗る件数');
+console.log('\n13. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
