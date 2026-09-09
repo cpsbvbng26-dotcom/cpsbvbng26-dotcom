@@ -33,6 +33,33 @@ Two aims. To take over the business my father is planning to found. To teach at 
 | Jiyugaoka Sanno College, Efficiency Dept., Business Management course | two years, then withdrew | 2 credits, at in-person sessions |
 | Online university, information-and-society faculty | enrolled (first autumn-entry cohort) | History of Mathematics (required elective) |
 
+<details>
+<summary>Courses I have credit for (also listed in the <a href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html">CV</a>)</summary>
+
+**Jiyugaoka Sanno College, Efficiency Dept., Business Management course**
+
+| Course | |
+| --- | --- |
+| Instructional Design (仕事の上手な教え方) | 2 credits, at in-person sessions |
+
+**Online university, information-and-society faculty** — more to come.
+
+| Course | |
+| --- | --- |
+| Introduction to the Humanities and Social Sciences | |
+| IT Literacy | |
+| Academic Literacy | |
+| Introduction to Publishing on the Internet | |
+| Internet Culture through the History of Derivative Works | |
+| Multilingual IT Communication | |
+| Applied Practice in Artificial Intelligence | |
+| Introduction to Economics | |
+| Using Digital Tools | |
+| Introduction to Information Security | |
+| History of Mathematics | required elective |
+
+</details>
+
 ---
 
 ## In 30 seconds
