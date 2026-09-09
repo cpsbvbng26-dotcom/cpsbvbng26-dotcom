@@ -39,6 +39,11 @@
       "priority": "0.4"
     },
     {
+      "file": "venues.html",
+      "loc": "venues.html",
+      "priority": "0.4"
+    },
+    {
       "file": "papers/trinity-infinity-series-i.html",
       "loc": "papers/trinity-infinity-series-i.html",
       "priority": "0.6"
