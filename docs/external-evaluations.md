@@ -1,6 +1,6 @@
 # 外部からの評価
 
-**いま 6 件。**
+**いま 7 件。**
 
 この文書は、外部の場から受けた評価を記録するためのものである。
 **評価が来る前に作ってある。**あとから作ると、都合の悪いものだけ載せない、が
@@ -36,7 +36,7 @@
 
 ## 使っている場
 
-正式名称は **Stanford Agentic Reviewer**（`paperreview.ai`）。下の表の五件はここから
+正式名称は **Stanford Agentic Reviewer**（`paperreview.ai`）。下の表の六件はここから
 出ている。残る一件は Grok（xAI）で、こちらは論文への評価ではなく、この記録群全体への
 評価である。
 
@@ -80,6 +80,7 @@
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Trinity-Infinity Series II | 確かめられない | 全項目を当たった（下記） | `ERRATA` の N2・N9・N10、登録簿の `EX-004`・`EX-007` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | Manifesto of Imperial Selfhood（改訂版） | 確かめられない | 版を同定し、全項目を当たった（下記） | `autonomy` の `ERRATA` E7、登録簿の `PH-008`・`EX-008` |
 | Stanford Agentic Reviewer（paperreview.ai） | 機械 | The Nobility and Exemplarity of the Celibate Individual（v2） | 確かめられない | 版を同定し、全項目を当たった（下記） | `autonomy` の `ERRATA` N5・N6、登録簿の `PH-009` |
+| Stanford Agentic Reviewer（paperreview.ai） | 機械 | Fragmentarian Spiritual Individualism | 確かめられない | 全項目を当たった（下記） | `autonomy` の `ERRATA` E9・N8、登録簿の `PH-011`・`EX-009` |
 | Grok（xAI） | 機械 | この記録群全体（人物・枠組み・電子書籍） | 確かめられない | 全項目を当たった（下記） | `BK-001` を五つの面に出した、`docs/objections.md` の反論 4 |
 
 **場** —— 評価を出した先の名前。URL は書かない。消えるものを所在として書くと、
@@ -421,6 +422,69 @@ and cross-cultural breadth, it could mature into a compelling and field-shaping 
 **紙面の誤りは一つも出ていない。**数学三本では E1・E5・E7 を見落としたが、
 哲学では見落とす対象そのものが少ない —— **正誤が数値や引用の形で存在しないためである。**
 
+
+---
+
+### Stanford Agentic Reviewer — Fragmentarian Spiritual Individualism
+
+**六件目。**七篇のうち六篇目である。残るのは海軍公報の史料ノート一篇だけになった。
+
+#### 当てたもの —— 退ける相手が挙がっていない
+
+紙面は、近代の四つの構造的欠陥のひとつとして**物語的自己**を挙げている。
+`narrative` は紙面に **15 回**現れる。**参考文献欄 16 件に、物語論の文献は一つも無い。**
+
+| 査読が挙げた文献 | その論に対する位置 | 紙面 |
+| --- | --- | --- |
+| Galen Strawson, `Against Narrativity` | **味方である** | **0 回** |
+| Paul Ricœur, `Time and Narrative` | 相手である | **0 回** |
+| Alasdair MacIntyre, `After Virtue` | 相手である | **0 回** |
+| Charles Taylor, `Sources of the Self` | 相手である | **0 回** |
+| Levinas / ケアの倫理 / 正義論 | 第7節が自分で挙げた限界の相手 | **0 回** |
+| Catherine Bell（儀礼論）/ Sennett（技芸） | 第5節の形式論の支え | **0 回** |
+
+**当たっている。**`ERRATA` の `N8` に入れた。無いことは `audit.toml` が紙面に当たって
+確かめている。**退ける相手を挙げないことは、退けたことにならない。**
+
+#### 査読が指摘しなかったほうで出たもの
+
+査読は武士道の歴史性について「もっと踏み込め」と述べ、Oleg Benesch の
+`Inventing the Way of the Samurai` を挙げた。**紙面はすでに踏み込んでいる** ——
+第7節が、今日流通する「武士道」は幕末から明治にかけて事後的に体系化されたものだと述べ、
+新渡戸稲造の普及書をその例として名指ししている。**そこまでは査読の見立てが外れている。**
+
+**その周りを当たって、別のものが出た。参考文献欄に新渡戸が無い。**16 件のうちどれも
+当たらない。`ERRATA` の `E9` である。`E8`（参考文献欄にあって本文が引いていない項目）と
+**向きが逆**で、`check_references.py` はこの向きを見ていなかった。`body_only` を足した。
+
+#### 外したもの —— 自分の手元にある文献を勧めている
+
+査読は七つの arXiv の番号を挙げ、それらを引くよう勧めている。
+`2505.09747`（AI 統治の healthy distrust）、`2402.02061`（イスラームの生活アプリ）、
+`2603.10019`（GPTheology）、`2411.13223`、`2510.19450`、`2603.11353`、`2601.12938`。
+
+**査読自身が `using the summaries provided` と書いている。**与えられた要約の中から勧めている。
+**この論文の分野の文献ではない。**物語論・レヴィナス・儀礼論を挙げた側は当たっているのに、
+「関連研究との比較」の節では arXiv の AI 論文に寄る。**arXiv に載っているものしか
+引けない、という制約がそのまま出ている**（[使っている場](#使っている場)）。
+
+**そのうえ、こちらからは開けない。**作業環境から arxiv.org へ出られない。
+**確かめられない番号を引かない。**七つとも記録に入れない。
+
+#### 当たらないもの
+
+`Experimental rigor and validation`、`Experimental evaluation assessment` ——
+**査読自身が「概念的な論文に実証は求められない」と書いたうえで、実証の助言を続けている。**
+枠が固定されており、対象に合わせて落ちない。
+
+#### 総評について
+
+`promising but needs further argumentative deepening and contextualization to meet
+top-tier standards`。評点は記録しない。
+
+**哲学三篇に共通していること。**指摘はどれも「足りていないもの」である。
+**査読が見つけた紙面の誤りは、三篇を通して一つも無い。**`E9` は査読が挙げた文献を
+手掛かりに、こちらが当たって出したものである。**手掛かりと発見は別に数える。**
 
 ---
 
