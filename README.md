@@ -231,7 +231,7 @@ node verification/check_all.js        # 9 リポジトリの検査を全部（33
 node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
 ```
 
-**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 68」「登録簿 64 件」「壊す先 26 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
+**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 72」「登録簿 64 件」「壊す先 26 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にする（CI は 9 つを checkout してから回す）。
 
