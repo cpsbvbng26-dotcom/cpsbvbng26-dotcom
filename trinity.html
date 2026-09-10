@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-twvR2DBBQB/Cbyl20QBXoYi0Rl6BLbAhFzmzRJ5S4pU=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-oFlzL8lOEXg9yL+Jt10I6qk1upYI5kOfVIp8QFAwW3E=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -53,6 +53,7 @@
 </script>
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#faf9f7">
+<script>document.documentElement.className+=" js";</script>
 <style>
 :root {
   --bg: #faf9f7;
@@ -333,11 +334,11 @@ footer::before {
 
 /* ---------- 登場演出 ---------- */
 .reveal {
-  opacity: 0; transform: translateY(12px);
   transition: opacity .7s cubic-bezier(.22, .68, .28, 1), transform .7s cubic-bezier(.22, .68, .28, 1);
   transition-delay: calc(var(--i, 0) * 70ms);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal { opacity: 0; transform: translateY(12px); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 /* 登場の時間差。以前は JS で --i を書き込んでいたが、CSP の style-src が
    インラインの style 適用を拒むため、CSS だけで与える。JS も一つ減る。 */
@@ -387,7 +388,7 @@ footer::before {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
   .cert:hover { transform: none; }
 }
 
@@ -396,7 +397,7 @@ footer::before {
   header, footer, .theme-toggle, .skip-link { display: none !important; }
   body { background: #fff; color: #000; }
   .cert { break-inside: avoid; border-color: #ccc; box-shadow: none; }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }
 </style>
 </style>

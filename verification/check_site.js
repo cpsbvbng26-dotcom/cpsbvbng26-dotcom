@@ -628,6 +628,45 @@ section('10.55 割愛の頁の日付');
      v.indexOf('3 か月前から 5 年前までの間に出されたもの') >= 0);
 }
 
+/* ------------------------------------------------- 10.53 JS が無くても読めるか
+ *
+ * **本文の既定は「見える」でなければならない。**以前は .reveal に opacity:0 を
+ * 直接当てており、JS が動かない環境では 31 要素すべてが出なかった。CSP の
+ * ハッシュが一つずれるだけで白紙になる作りだった。
+ * 暗い側も同じで、data-theme が立つのは JS のときだけだった。
+ */
+section('10.53 JS が無くても読めるか');
+
+{
+  const pages = ['index.html', 'index.en.html', 'cv.html', 'venues.html',
+                 'research.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html'];
+  pages.forEach((p) => {
+    const h = read(p);
+    if (h === null) { ok(p + ' がある', false); return; }
+    /* 隠すのは .js が立ったときだけ。**素の .reveal に opacity:0 があってはならない。**
+     * 選択子を切り出して見る —— 「.js .reveal」を「.reveal」と読み違えないため。 */
+    const bare = h.split('}').some((chunk) => {
+      const i = chunk.lastIndexOf('{');
+      if (i < 0) return false;
+      const sel = chunk.slice(0, i).split(/[\n;]/).pop().trim();
+      return /(^|,)\s*\.reveal\s*$/.test(sel) && /opacity:\s*0/.test(chunk.slice(i));
+    });
+    ok(p + ' が JS 無しで本文を隠していない', !bare);
+    ok(p + ' が js の目印を head で立てている',
+       h.indexOf('document.documentElement.className+=" js";') >= 0);
+  });
+  const h = read('index.html');
+  ok('暗い側が OS の設定だけでも出る',
+     h.indexOf('@media (prefers-color-scheme: dark)') >= 0
+     && h.indexOf(':root:not([data-theme="light"])') >= 0);
+  /* 暗い側の指定は二か所にある。**食い違ったら、片方だけ直した証拠である。** */
+  const grab = (re) => { const m = re.exec(h); return m ? m[1].replace(/\s+/g, ' ').trim() : null; };
+  const a1 = grab(/:root\[data-theme="dark"\]\s*\{([^}]*)\}/);
+  const a2 = grab(/:root:not\(\[data-theme="light"\]\)\s*\{([^}]*)\}/);
+  ok('暗い側の二つの指定が一字一句同じ', a1 !== null && a1 === a2,
+     a1 === a2 ? (a1 || '').slice(0, 40) + '…' : '食い違っている');
+}
+
 /* ------------------------------------------------- 10.56 出さないと書いた頁が、出すと決めた日に何を残したか
  *
  * **方針が変わったとき、いちばん都合がいいのは古い理由を消すことである。**
