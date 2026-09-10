@@ -501,10 +501,13 @@ ENTRIES.forEach((page) => {
 const OFF_TOPIC = [
   ['シーランド|[Ss]ealand|公国|[Pp]rincipality', 'シーランド称号'],
   ['ライブ配信|生放送|ツイキャス|[Tt]witcast|[Tt]witch\\.tv|ニコ生', 'ライブ配信活動'],
-  ['家系|家柄|末裔|血統|[Bb]loodline', '家系'],
+  /* 「家系」そのものは 2026-09-11 に決めごとから外した（登録簿 SC-017）。
+   * **外していないのは、家柄・末裔・血統という語のほうである。**記録が残っているか
+   * どうかを書くことと、血筋を誇ることは別で、後者の語は核にも先祖の頁にも置かない。 */
+  ['家柄|末裔|血統|[Bb]loodline', '血筋を誇る語'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
-const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
+const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html', 'lineage.html',
                                      'README.md', 'README.en.md']);
 const offenders = [];
 PUBLIC_FACES.forEach((f) => {
