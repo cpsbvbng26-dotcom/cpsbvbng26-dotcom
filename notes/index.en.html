@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-og/WMoYw/pz8ma8iPT/fx3lpl2GmLf+WtNuCLtRpaaE='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-fYyBkmk1m4/a1f/m8FOLXdGvVsjs7/rPD6/F1bJW/ms='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Notes | Takuya Nemoto</title>
 <meta name="description" content="What is not on the front page: three papers in philosophy, a naval gazette source note, and repositories outside the core. Moved here, not deleted.">
 <meta name="robots" content="index, follow">
@@ -822,10 +822,15 @@ footer::before {
 
 /* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
 @media (max-width: 30rem) {
-  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem; }
+  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem;
+              padding-top: .7rem; padding-bottom: .7rem; }
   .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: .95rem; }
   .nav a { font-size: .76rem; }
   .wrap { padding: 0 1.1rem; }
+
+  /* **狭い画面では貼り付けない。**折り返した項目が三行になり、貼り付けたままだと
+     画面の高さを常に一割以上ふさぐ。上へ戻れば出てくるので、隠したことにはならない。 */
+  header { position: static; }
 }
 
 @media (max-width: 22rem) {

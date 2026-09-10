@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-HP7eIvQn7aft0BCqH9Yodo6EYc1+Z49ybnvKCtN/g98=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-og/WMoYw/pz8ma8iPT/fx3lpl2GmLf+WtNuCLtRpaaE='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-HP7eIvQn7aft0BCqH9Yodo6EYc1+Z49ybnvKCtN/g98=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-fYyBkmk1m4/a1f/m8FOLXdGvVsjs7/rPD6/F1bJW/ms='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>割愛 —— どこに出し、どこに出さなかったか | 根本卓哉</title>
 <meta name="description" content="SSRN・PhilArchive・Zenodo と arXiv を、公表されている受け付けの規則の違いで並べる。どの場も下げない。arXiv に出さなかった理由と、出すことにした経緯を書く。">
 <meta name="robots" content="index, follow">
@@ -652,10 +652,15 @@ footer::before {
 
 /* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
 @media (max-width: 30rem) {
-  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem; }
+  .head-row { flex-wrap: wrap; align-items: flex-start; row-gap: .55rem;
+              padding-top: .7rem; padding-bottom: .7rem; }
   .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: .95rem; }
   .nav a { font-size: .76rem; }
   .wrap { padding: 0 1.1rem; }
+
+  /* **狭い画面では貼り付けない。**折り返した項目が三行になり、貼り付けたままだと
+     画面の高さを常に一割以上ふさぐ。上へ戻れば出てくるので、隠したことにはならない。 */
+  header { position: static; }
 }
 
 @media (max-width: 22rem) {
