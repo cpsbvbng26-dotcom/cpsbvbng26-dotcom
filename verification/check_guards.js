@@ -255,6 +255,12 @@ const CASES = [
    swap('<b>三篇が一様ではない</b>', '<b>三篇はすべて門が下りている</b>'),
    'check_site.js', '三篇が一様でないと書いてある'],
 
+  /* **表の流れる指定を外す。**頁ごと横へ流れる状態に戻る。 */
+  ['表が頁を押し広げる状態に戻すと落ちる', 'venues.html',
+   swap('.notes-list table, .prose table {\n  display: block; max-width: 100%; overflow-x: auto;\n}',
+        '.notes-list table, .prose table {\n  max-width: 100%;\n}'),
+   'check_site.js', '表が自分の中で横へ流れる'],
+
   /* **プロフィールの公開を、通過の一つに見せる。**基準が無いところを到達点にする。 */
   ['プロフィールの公開を到達点にすると落ちる', 'venues.html',
    swap('<b>プロフィールの公開を、到達点として数えない。</b>',
