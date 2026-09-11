@@ -201,6 +201,16 @@ const CASES = [
         '三篇について、公開前に人が見て、落とさなかった'),
    'check_site.js', '到達点を三篇に広げていない'],
 
+  /* **片方の門だけを細かく書く。**厳しいほうだけを見せる形になる。 */
+  ['PhilArchive の基準を省くと落ちる', 'index.html',
+   swap('<code>cross-disciplinary and of clear interest to philosophers</code>', '学際的なもの'),
+   'check_site.js', 'PhilArchive の基準を省略していない'],
+
+  /* **頁にだけ出して README に出さない。**実際に一度そうなった。 */
+  ['GitHub のプロフィールから根幹を落とすと落ちる', 'README.md',
+   swap('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである', '独学である'),
+   'check_site.js', 'GitHub のプロフィールに根幹の一段がある'],
+
   ['運営者が査読しないと書いている箇所を消すと落ちる', 'venues.html',
    swap('質と関連性の最小限の基準', '一定の基準'),
    'check_site.js', '運営者が査読しないと書いていることを載せている'],

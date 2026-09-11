@@ -1099,6 +1099,34 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
     ok('到達点を三篇に広げていない',
        ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
        && en.indexOf('For two papers, a person looked before publication') >= 0);
+
+    /* **PhilArchive の側を省略しない。**SSRN だけ細かく書くと、
+     * 厳しいほうの門だけを見せていることになる。同じ深さで並べる。 */
+    ok('PhilArchive の基準を省略していない',
+       ['works of all types (articles, books, dissertations)',
+        'cross-disciplinary and of clear interest to philosophers',
+        'All books and papers submitted should be of professional quality',
+        'reject any submissions',
+        '事前ではなく事後に効く'].every((x) => ja.indexOf(x) >= 0));
+    ok('英語版も PhilArchive の基準を省略していない',
+       ['works of all types (articles, books, dissertations)',
+        'cross-disciplinary and of clear interest to philosophers',
+        'All books and papers submitted should be of professional quality',
+        'reject any submissions',
+        'after the fact, not before'].every((x) => en.indexOf(x) >= 0));
+
+    /* **GitHub のプロフィールは、頁とは別の入口である。**
+     * 頁にだけ出て README に出ない状態が実際に起きた —— readme_courses.js が
+     * profile-core を拾っていなかった。**写す仕組みごと留める。** */
+    const rj = read('README.md'), re_ = read('README.en.md');
+    ok('GitHub のプロフィールに根幹の一段がある',
+       rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+       && re_.indexOf('What is here rests on self-study and on working with language models') >= 0);
+    ok('GitHub のプロフィールに通過基準と到達点がある',
+       rj.indexOf('part of the world-wide scholarly discourse') >= 0
+       && rj.indexOf('All books and papers submitted should be of professional quality') >= 0
+       && rj.indexOf('そこから導ける到達点は、はっきりしている') >= 0
+       && rj.indexOf('そこから導けないものも、はっきりしている') >= 0);
   }
 }
 
