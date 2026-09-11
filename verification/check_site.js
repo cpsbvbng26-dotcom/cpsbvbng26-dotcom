@@ -905,6 +905,26 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
   ok('英語の割愛の頁から日本語版へ行ける', w.indexOf('./venues.html') >= 0);
   ok('英語のトップから英語の先祖の頁へ行ける',
      read('index.en.html').indexOf('./lineage.en.html') >= 0);
+
+  /* **訳を公式名のように出さない。**英語の科目名 11 件は、こちらで訳したもので
+   * あって大学の英語表記ではない。公式のシラバスは作業環境から開けないので、
+   * 突き合わせていない。断りが消えたら落ちる。頁と README の両方に当てる ——
+   * **片方だけに出しても、もう片方を読んだ人は公式名だと思う。** */
+  const CAVEAT = 'unofficial translations, not the university';
+  const OFFICIAL = 'official English titles have not been checked';
+  ok('英語のトップが、科目名は公式名ではないと断っている',
+     read('index.en.html').indexOf(CAVEAT) >= 0
+     && read('index.en.html').indexOf(OFFICIAL) >= 0);
+  ok('英語の README が、科目名は公式名ではないと断っている',
+     read('README.en.md').indexOf(CAVEAT) >= 0
+     && read('README.en.md').indexOf(OFFICIAL) >= 0);
+
+  /* 学部学科は、公式の英語表記を確かめていないので日本語のまま出している。
+   * **英語に置き換わったら、それは確かめた誰かがやったことになる** ——
+   * そのときはこの検査を外す。外さずに置き換われば落ちる。 */
+  ok('学部学科が日本語のまま出ている',
+     read('index.en.html').indexOf('知能情報社会学部 知能情報社会学科') >= 0
+     && read('README.en.md').indexOf('知能情報社会学部 知能情報社会学科') >= 0);
 }
 
 /* ------------------------------------------------- 10.58 キーボードで辿れるか

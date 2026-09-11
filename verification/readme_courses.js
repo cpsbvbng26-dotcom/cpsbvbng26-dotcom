@@ -49,6 +49,9 @@ function readProfile(html) {
     now: grab(/<p class="profile-now">([\s\S]*?)<\/p>/),
     study: grab(/<p class="profile-now profile-study">([\s\S]*?)<\/p>/),
     aimsLabel: grab(/<p class="aims-label">([\s\S]*?)<\/p>/),
+    /* 科目名についての断り。**頁に出ているなら README にも出す。**
+     * 片方だけに出すと、README を読んだ人は訳を公式名だと思う。 */
+    caveat: grab(/<p class="path-caveat">([\s\S]*?)<\/p>/),
     aims: [...block.matchAll(/<li>([\s\S]*?)<\/li>/g)]
       .filter((m) => m[1].indexOf('path-') < 0)
       .map((m) => proseOf(m[1]))
@@ -108,6 +111,7 @@ function blockFor(page, lang) {
     '| | | ' + w.earned + ' |', '| --- | --- | --- |');
   rows.forEach((r) => out.push(`| ${r.name} | ${r.state} | ${r.total} |`));
   out.push('', '### ' + w.courses, '');
+  if (p && p.caveat) out.push('> ' + p.caveat, '');
   rows.filter((r) => r.items.length).forEach((r, i, all) => {
     out.push(`**${r.name}**` + (i === all.length - 1 ? w.more : ''), '',
       `| ${w.course} | ${w.category} | ${w.credits} |`, '| --- | --- | --- |');

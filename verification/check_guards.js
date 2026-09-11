@@ -173,6 +173,18 @@ const CASES = [
   ['外部の点検に第三者の氏名を戻すと落ちる', 'docs/external-evaluations.md',
    swap('〔氏名を伏せた一名〕', '小島勤'),
    'check_site.js', '第三者の氏名を伏せてある'],
+
+  ['英語の科目名から断りを消すと落ちる', 'index.en.html',
+   swap("unofficial translations, not the university's own", 'official titles'),
+   'check_site.js', '科目名は公式名ではないと断っている'],
+
+  ['英語の README から断りを消すと落ちる', 'README.en.md',
+   swap("unofficial translations, not the university's own", 'official titles'),
+   'check_site.js', 'README が、科目名は公式名ではないと断っている'],
+
+  ['学部学科を確かめずに英語へ置き換えると落ちる', 'index.en.html',
+   swap('知能情報社会学部 知能情報社会学科', 'Faculty of Social Informatics'),
+   'check_site.js', '学部学科が日本語のまま出ている'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
