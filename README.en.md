@@ -206,12 +206,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1063 checks.** There are no dependencies to install.
+**Every push runs 1068 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 431 checks
-node verification/check_site.js      # site structure, 542 checks
+node verification/check_site.js      # site structure, 547 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

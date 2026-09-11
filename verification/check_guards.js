@@ -194,6 +194,15 @@ const CASES = [
    swap('基準を通ったことは、分野が専門職の仕事として受理したことではない',
         '基準を通っており、分野が専門職の仕事として受理している'),
    'check_site.js', '三段を分けている'],
+
+  /* **到達の主張から限界だけを外す。**いちばん都合のいい壊し方である。 */
+  ['独学で通ったことから限界を外すと落ちる', 'venues.html',
+   swap('通ったのは受け付けの門である。', ''),
+   'check_site.js', '独学で通ったことに限界が添えてある'],
+
+  ['英語版で「独学のみ」に寄せると落ちる', 'venues.en.html',
+   swap('Philosophy is taken at', 'No philosophy is taken at'),
+   'check_site.js', '大学で履修していることと食い違わせていない'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {

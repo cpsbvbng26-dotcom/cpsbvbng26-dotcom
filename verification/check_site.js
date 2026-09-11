@@ -911,6 +911,25 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
      v2.indexOf('順序を断定しない') >= 0
      && w.indexOf('The order is not asserted here') >= 0);
 
+  /* **到達の主張と、その限界は、離してはならない。**
+   * 「独学と Claude だけで SSRN と PhilArchive を通った」は、そこで切ると
+   * 分野が受理したように読める。**限界のほうが消えたら落ちる。** */
+  ok('独学で通ったことを書いている',
+     v2.indexOf('三篇は、独学と Claude だけで書いている') >= 0
+     && v2.indexOf('PhilArchive の明文の基準') >= 0);
+  ok('独学で通ったことに限界が添えてある',
+     v2.indexOf('通ったのは受け付けの門である') >= 0
+     && v2.indexOf('独学で門を通れることと、分野が受理することは別である') >= 0);
+  ok('英語版も独学で通ったことを書いている',
+     w.indexOf('written by self-study and Claude alone') >= 0);
+  ok('英語版も限界が添えてある',
+     w.indexOf('What they passed is a gate on acceptance') >= 0
+     && w.indexOf('Clearing a gate by self-study and the field') >= 0);
+  /* 大学で哲学を履修していることと食い違わせない。**「独学のみ」とは書かない。** */
+  ok('大学で履修していることと食い違わせていない',
+     v2.indexOf('大学で哲学は履修しているが') >= 0
+     && /Philosophy is taken at\s+university/.test(w));
+
   /* 日本語版と英語版で、節の数が同じであること。**片方だけ節を足すと落ちる。** */
   const count = (h) => (h.match(/<section id="/g) || []).length;
   ok('先祖の頁の節の数が日本語版と同じ',
