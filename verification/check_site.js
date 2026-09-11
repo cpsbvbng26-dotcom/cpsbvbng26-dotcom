@@ -731,6 +731,36 @@ section('10.59 自己紹介が名乗っていること');
   ok('到達点を三篇に広げていない',
      ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
      && en.indexOf('For two papers, a person looked before publication') >= 0);
+  /* **数学の側でも同じ門を通した。**通したのは Series II だけである。
+   * **系列ぜんぶが通ったと読める書き方をしない。**出していない二篇も明記する。 */
+  ok('自己紹介に Trinity-Infinity の SSRN 通過が書いてある',
+     ja.indexOf('同じ門を、数学の側でも通している') >= 0
+     && ja.indexOf('Trinity-Infinity Series II') >= 0
+     && ja.indexOf('10.2139/ssrn.7446961') >= 0);
+  ok('通っていない二篇を、通ったように書いていない',
+     ja.indexOf('Series I と Series III は、まだ出していない') >= 0
+     && en.indexOf('Series I and Series III have not been submitted') >= 0);
+  ok('英語版も数学の側の通過を書いている',
+     en.indexOf('The same gate has also been passed on the mathematics side') >= 0
+     && en.indexOf('10.2139/ssrn.7446961') >= 0);
+  /* **道具を特定できないのは哲学三篇だけである。**Trinity-Infinity の側は特定できる。
+   * 特定できる側まで「分からない」に混ぜると、開示が薄まる。 */
+  ok('Trinity-Infinity の道具は特定できると書いてある',
+     ja.indexOf('Trinity-Infinity の側は特定できる') >= 0
+     && ja.indexOf('ChatGPT / OpenAI') >= 0
+     && ja.indexOf('Claude Code（Anthropic）') >= 0
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
+  /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
+  [['index.de.html', 'Dieselbe Aufnahmeprüfung ist auch auf der mathematischen Seite bestanden',
+    'Serie I und Serie III sind nicht eingereicht'],
+   ['index.fr.html', 'Le même filtre a également été franchi du côté des mathématiques',
+    'Les séries I et III n’ont pas été soumises'],
+   ['index.it.html', 'La stessa porta è stata superata anche dal lato della matematica',
+    'Le serie I e III non sono state inviate']].forEach(([f, passed, notyet]) => {
+    const h = read(f);
+    ok(f + ' に数学の側の通過が書いてある', h.indexOf(passed) >= 0 && h.indexOf('10.2139/ssrn.7446961') >= 0);
+    ok(f + ' が出していない二篇を明記している', h.indexOf(notyet) >= 0);
+  });
   /* **片方の門だけを細かく書かない。** */
   ok('PhilArchive の基準を省略していない',
      ['works of all types (articles, books, dissertations)',
@@ -755,11 +785,12 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('Co-Authored-By: Claude Opus 5') >= 0);
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
-     && ja.indexOf('道具の名前を一つに絞れるのは、こちら側だけである') >= 0);
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
   ok('英語版も同じ二つを書いてある',
      en.indexOf('This site itself is built with Claude, by Anthropic') >= 0
      && en.indexOf('cannot be identified') >= 0
-     && en.indexOf('Only on this side can the tool be named') >= 0);
+     && en.indexOf('The three philosophy papers are the only ones where the tool cannot be pinned to a single name') >= 0
+     && en.indexOf('On the Trinity-Infinity side it can be identified') >= 0);
   ok('GitHub のプロフィールにも同じ二つがある',
      rj.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
      && rj.indexOf('哲学三篇に何を使ったかは特定できない') >= 0);
