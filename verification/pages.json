@@ -44,8 +44,18 @@
       "priority": "0.4"
     },
     {
+      "file": "venues.en.html",
+      "loc": "venues.en.html",
+      "priority": "0.4"
+    },
+    {
       "file": "lineage.html",
       "loc": "lineage.html",
+      "priority": "0.5"
+    },
+    {
+      "file": "lineage.en.html",
+      "loc": "lineage.en.html",
       "priority": "0.5"
     },
     {
