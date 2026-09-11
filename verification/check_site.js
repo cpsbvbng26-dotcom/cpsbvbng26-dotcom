@@ -940,6 +940,30 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
   ok('英語版も審査を経ていない一篇を書いている',
      w.indexOf('One of the three went through no screening at all') >= 0
      && w.indexOf("This is the author's testimony") >= 0);
+
+  /* **言い換えると弱くも強くもなる。**明文はそのまま置く。
+   * 要約だけになったら落ちる。 */
+  ok('門の明文をそのまま置いている',
+     v2.indexOf('SSRN does not peer review preprints') >= 0
+     && v2.indexOf('minimal standards of quality and relevance') >= 0
+     && v2.indexOf('All books and papers submitted should be of professional quality') >= 0);
+  ok('英語版も門の明文をそのまま置いている',
+     w.indexOf('SSRN does not peer review preprints') >= 0
+     && w.indexOf('minimal standards of quality and relevance') >= 0);
+
+  /* **一篇で門が下りなかった以上、残り二篇で下りたと決めてかかれない。**
+   * 三篇まとめて「通った」に戻す壊し方を、ここで止める。 */
+  ok('残る二篇を分かっていないと書いてある',
+     v2.indexOf('残る二篇について、PhilArchive の側で門が下りたかどうかは分かっていない') >= 0
+     && v2.indexOf('分かっていないものを「通った」とは書かない') >= 0);
+  ok('英語版も残る二篇を分かっていないと書いてある',
+     w.indexOf('whether a gate came down on the PhilArchive side is not known') >= 0
+     && w.indexOf('What is not known is not written as') >= 0);
+
+  /* 三篇それぞれの識別子。**まとめて書くと、どれが何かが消える。** */
+  ok('三篇それぞれの識別子を出している',
+     ['NEMTNA', 'NEMMOI', 'NEMFSI', '10.2139/ssrn.7358779', '10.2139/ssrn.7358818']
+       .every((x) => v2.indexOf(x) >= 0 && w.indexOf(x) >= 0));
   /* **道具は特定できない、と正誤表が書いている。**頁がそこに名前を一つだけ
    * 挙てれば、同じ生態系の正誤表（E5）と食い違う。一度そう書いて公開した。 */
   ok('使った道具を特定していないと書いてある',

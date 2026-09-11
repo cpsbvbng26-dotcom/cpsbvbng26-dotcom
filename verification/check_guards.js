@@ -218,6 +218,17 @@ const CASES = [
   ['証言だという断りを消すと落ちる', 'venues.html',
    swap('<b>著者の証言である。</b>紙面では確かめられない。', ''),
    'check_site.js', 'それが証言であると断っている'],
+
+  /* **分かっていない二篇を「通った」に戻す。**三篇を揃えたくなる力が働く場所である。 */
+  ['残る二篇を通ったことにすると落ちる', 'venues.html',
+   swap('<b>残る二篇について、PhilArchive の側で門が下りたかどうかは分かっていない。</b>',
+        '<b>残る二篇は、PhilArchive の側でも門が下りている。</b>'),
+   'check_site.js', '残る二篇を分かっていないと書いてある'],
+
+  /* **明文を要約に戻す。**弱くも強くもできるようになる。 */
+  ['門の明文を要約に戻すと落ちる', 'venues.html',
+   swap('SSRN does not peer review preprints', '査読はしない'),
+   'check_site.js', '門の明文をそのまま置いている'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
