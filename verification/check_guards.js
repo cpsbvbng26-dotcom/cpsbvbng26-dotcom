@@ -1,0 +1,157 @@
+/* 検査そのものを検査する。
+ *
+ *   node verification/check_guards.js
+ *
+ * **検査の道具は、通ることでは信用できない。**何も見ていなくても全部通る
+ * からである。そこで、通る状態を一つずつ壊し、**壊したところがちょうど
+ * 落ちること**を確かめる。落ちなければ、その検査は何も見ていない。
+ *
+ * errata-check の tests/check_tool.py と同じ考え方である。あちらは Python の
+ * 道具に当てている。こちらは JS の検査（サイト・配色・作用素）に当てる。
+ * 約 500 項目が「通っている」という理由だけで信用されていた。
+ *
+ * やり方。リポジトリを一度だけ複製し、場合ごとに一つのファイルを書き換え、
+ * 検査を走らせ、書き戻す。**本物のリポジトリには触らない。**
+ */
+
+'use strict';
+
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const { execFileSync, spawnSync } = require('child_process');
+
+const ROOT = path.resolve(__dirname, '..');
+
+let pass = 0;
+const failures = [];
+
+function ok(label, cond, detail) {
+  if (cond) { console.log('  OK   ' + label + (detail ? '  ' + detail : '')); pass++; return; }
+  console.log('  FAIL ' + label + (detail ? ' — ' + detail : ''));
+  failures.push(label);
+}
+function section(n) { console.log('\n' + n); }
+
+/* ---------- 複製 ---------- */
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'guards-'));
+const COPY = path.join(TMP, 'site');
+execFileSync('cp', ['-a', ROOT, COPY]);
+
+function run(script) {
+  const r = spawnSync('node', [path.join(COPY, 'verification', script)],
+                      { cwd: COPY, encoding: 'utf8' });
+  const bad = (r.stdout || '').split('\n')
+    .filter((l) => l.trim().startsWith('FAIL'))
+    .map((l) => l.trim().slice(4).trim());
+  return { code: r.status, bad };
+}
+
+/* 一箇所だけ書き換えて走らせ、書き戻す。 */
+function broken(file, mutate, script) {
+  const p = path.join(COPY, file);
+  const before = fs.readFileSync(p, 'utf8');
+  const after = mutate(before);
+  if (after === before) return { code: -1, bad: ['書き換えが効いていない: ' + file] };
+  fs.writeFileSync(p, after);
+  try {
+    return run(script);
+  } finally {
+    fs.writeFileSync(p, before);
+  }
+}
+
+const swap = (from, to) => (s) => s.split(from).join(to);
+
+/* ---------- 壊す前に、通ることを確かめる ---------- */
+section('0. 壊す前');
+
+['check_site.js', 'check_contrast.js', 'check_trinity.js'].forEach((s) => {
+  const r = run(s);
+  ok('複製した状態で ' + s + ' が通る', r.code === 0, r.bad.slice(0, 2).join(' / '));
+});
+
+/* ---------- 壊す ---------- */
+section('1. 壊した箇所がちょうど落ちるか');
+
+const CASES = [
+  ['sitemap の lastmod を古くすると落ちる', 'sitemap.xml',
+   (s) => s.replace(/<lastmod>2026-09-\d\d<\/lastmod>/, '<lastmod>2020-01-01</lastmod>'),
+   'check_site.js', 'lastmod が git の記録より古くない'],
+
+  ['CSP のハッシュを一つ変えると落ちる', 'index.html',
+   (s) => s.replace(/'sha256-([A-Za-z0-9+/=]{10})/, "'sha256-AAAAAAAAAA"),
+   'check_site.js', 'CSP'],
+
+  ['核の頁に、置かないと決めた語を入れると落ちる', 'index.html',
+   swap('</h1>', '</h1><p>コンサルタント</p>'),
+   'check_site.js', '本文の核に置かないと決めたもの'],
+
+  ['先祖の頁が、断りの外で階級を断定すると落ちる', 'lineage.html',
+   swap('<b>海軍大尉 大谷恒</b>', '<b>海軍少佐 大谷恒</b>'),
+   'check_site.js', '公報から確定できないものを断定していない'],
+
+  ['先祖の頁から、戸籍を出さない宣言を消すと落ちる', 'lineage.html',
+   swap('戸籍・除籍の写し、その転写、本籍', '（削除）'),
+   'check_site.js', '戸籍の写しと本籍を出さないと書いてある'],
+
+  ['先祖の頁から、訂正の申し出先を消すと落ちる', 'lineage.html',
+   swap('訂正または削除の申し出を受け付ける', '（削除）'),
+   'check_site.js', '訂正と削除の申し出先がある'],
+
+  ['JS 無しで本文を隠すと落ちる', 'index.html',
+   swap('.js .reveal { opacity: 0;', '.reveal { opacity: 0;'),
+   'check_site.js', 'JS 無しで本文を隠していない'],
+
+  ['暗い側の二つの指定を食い違わせると落ちる', 'index.html',
+   (s) => s.replace('--bg: #121214;', '--bg: #121215;'),
+   'check_site.js', '暗い側の二つの指定が一字一句同じ'],
+
+  ['割愛の頁から、方針を変えた断りを消すと落ちる', 'venues.html',
+   swap('<b>2026年9月9日、著者が出すことに決めた。</b>', '（削除）'),
+   'check_site.js', '出すことに決めたと書いてある'],
+
+  ['トップから三篇の結論を消すと落ちる', 'index.html',
+   swap('枠組みは残らなかった', '（削除）'),
+   'check_site.js', '枠組みは残らなかった'],
+
+  ['配っている頁へのリンクを壊すと落ちる', 'index.html',
+   swap('href="./cv.html"', 'href="./cv-none.html"'),
+   'check_site.js', 'リンク'],
+
+  ['本文の色を薄くすると配色が落ちる', 'index.html',
+   (s) => s.replace('--muted: #63636b;', '--muted: #c9c9cf;'),
+   'check_contrast.js', ''],
+
+  ['作用素の照合用の数値をずらすと落ちる', 'verification/trinity_fixtures.json',
+   (s) => s.replace('0.5025', '0.5026'),
+   'check_trinity.js', ''],
+];
+
+CASES.forEach(([label, file, mutate, script, expect]) => {
+  const r = broken(file, mutate, script);
+  const hit = expect ? r.bad.some((b) => b.indexOf(expect) >= 0) : r.bad.length > 0;
+  ok(label, r.code === 1 && hit,
+     r.bad.length ? ('落ちた: ' + r.bad.slice(0, 2).join(' / ')) : '何も落ちなかった');
+});
+
+/* ---------- 数を名乗る ---------- */
+section('2. 壊す先の数');
+
+{
+  const self = fs.readFileSync(path.join(ROOT, 'verification', 'check_guards.js'), 'utf8');
+  const declared = /壊す先は (\d+) 通り/.exec(fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8'));
+  ok('README が名乗る壊す先の数が実際と合う',
+     declared !== null && Number(declared[1]) === CASES.length,
+     declared ? ('名乗り ' + declared[1] + ' / 実際 ' + CASES.length) : '名乗っていない');
+}
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+console.log('\n' + '-'.repeat(58));
+if (failures.length) {
+  console.log(pass + ' 件が通り、' + failures.length + ' 件が通りませんでした。');
+  failures.forEach((f) => console.log('  - ' + f));
+  process.exit(1);
+}
+console.log(pass + ' 件すべて通りました。');
