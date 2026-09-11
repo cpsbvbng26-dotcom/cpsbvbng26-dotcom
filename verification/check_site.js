@@ -916,7 +916,30 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
    * 分野が受理したように読める。**限界のほうが消えたら落ちる。** */
   ok('独学で通ったことを書いている',
      v2.indexOf('三篇は、独学で書いている') >= 0
-     && v2.indexOf('PhilArchive の明文の基準') >= 0);
+     && v2.indexOf('三篇は <b>PhilArchive に載っている</b>') >= 0);
+
+  /* **門があることと、何を見ているかは別である。**
+   * SSRN が見るのは射程・体裁・最低限の学術性・研究公正であって、
+   * 方法の当否でも内容の実質でもない。そこが消えると、
+   * 「事前審査を通った」が中身を通ったように読める。 */
+  ok('門がどこまで見ているかを書いてある',
+     v2.indexOf('方法の当否も、内容の実質も見ない') >= 0
+     && v2.indexOf('論証の当否は見ない') >= 0);
+  ok('英語版も門がどこまで見ているかを書いてある',
+     w.indexOf('Neither the soundness of the method nor the substance') >= 0
+     && w.indexOf('Not whether the argument holds') >= 0);
+
+  /* **一篇は審査を経ていない。**「門を通った」と書けるのは門が下りた場合だけである。
+   * これは著者の証言であって紙面ではない。**その区別ごと留める。** */
+  ok('審査を経ていない一篇があると書いてある',
+     v2.indexOf('三篇のうち一篇は、審査を経ていない') >= 0
+     && v2.indexOf('アカウントが公開されたのと同時に、そのまま出た') >= 0);
+  ok('それが証言であると断っている',
+     v2.indexOf('著者の証言である') >= 0
+     && v2.indexOf('紙面では確かめられない') >= 0);
+  ok('英語版も審査を経ていない一篇を書いている',
+     w.indexOf('One of the three went through no screening at all') >= 0
+     && w.indexOf("This is the author's testimony") >= 0);
   /* **道具は特定できない、と正誤表が書いている。**頁がそこに名前を一つだけ
    * 挙てれば、同じ生態系の正誤表（E5）と食い違う。一度そう書いて公開した。 */
   ok('使った道具を特定していないと書いてある',
@@ -932,13 +955,13 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
     ok('道具の名前を一つだけ挙げていない', hit.length === 0, hit.join(' '));
   }
   ok('独学で通ったことに限界が添えてある',
-     v2.indexOf('通ったのは受け付けの門である') >= 0
-     && v2.indexOf('独学で門を通れることと、分野が受理することは別である') >= 0);
+     v2.indexOf('門が下りた分についても、それは受け付けの門である') >= 0
+     && v2.indexOf('独学で出せることと、分野が受理することは別である') >= 0);
   ok('英語版も独学で通ったことを書いている',
      w.indexOf('written by self-study') >= 0);
   ok('英語版も限界が添えてある',
-     w.indexOf('What they passed is a gate on acceptance') >= 0
-     && w.indexOf('Clearing a gate by self-study and the field') >= 0);
+     w.indexOf('Where a gate did come down, it is a gate on acceptance') >= 0
+     && w.indexOf('Getting work out by self-study and') >= 0);
   /* 大学で哲学を履修していることと食い違わせない。**「独学のみ」とは書かない。** */
   ok('大学で履修していることと食い違わせていない',
      v2.indexOf('大学で哲学は履修しているが') >= 0
