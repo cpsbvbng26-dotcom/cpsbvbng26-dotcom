@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-oFlzL8lOEXg9yL+Jt10I6qk1upYI5kOfVIp8QFAwW3E=' 'sha256-QZhRBDuzkADvnLO+FA7H2C6/fnn7K2YPGoVQzK3GVJk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-UlgLZhelXrJUXL/9v8feByheiaf8piusprhjCE42mCc=' 'sha256-F2on0ZpMkQizc5jQhas+TLUfEpMhkgdFPY7lJnP+wPU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>研究ブログ | 根本卓哉</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
 <meta name="robots" content="index, follow">
@@ -336,6 +336,12 @@ footer::before {
 .js .reveal { opacity: 0; transform: translateY(12px); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* **焦点の入った塊は、待たずに見せる。**登場はスクロールに合わせているが、
+   Tab で辿るとスクロールより先に焦点が入る。そのままだと opacity 0 の行に
+   焦点が置かれる ―― 枠は出ているのに、中身が見えない。
+   :focus-within は祖先にも掛かるので、入れ子の塊もまとめて出る。 */
+.js .reveal:focus-within { opacity: 1; transform: none; transition: none; }
+
 /* 登場の時間差。以前は JS で --i を書き込んでいたが、CSP の style-src が
    インラインの style 適用を拒むため、CSS だけで与える。JS も一つ減る。 */
 .cards > *:nth-child(1), .areas > *:nth-child(1) { --i: 0; }
@@ -352,7 +358,9 @@ footer::before {
 .cards > *:nth-child(12), .areas > *:nth-child(12) { --i: 11; }
 
 
-:where(a, button, [tabindex]):focus-visible {
+/* 入力欄も同じ枠を出す。既定の枠を消して境界線の色だけで示すと、
+   変わるのは 1px 分でしかなく、焦点の在りかが読めない。 */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: .3rem;
@@ -420,7 +428,7 @@ footer::before {
   font-family: Georgia, serif;
   font-size: .7rem; letter-spacing: .18em; color: var(--accent);
 }
-.primary-card h3 { margin: .5rem 0 .4rem; font-size: 1.2rem; font-weight: 600; letter-spacing: .03em; }
+.primary-card h2 { margin: .5rem 0 .4rem; font-size: 1.2rem; font-weight: 600; letter-spacing: .03em; }
 .primary-card p { margin: 0; font-size: .88rem; color: var(--muted); }
 .primary-card .verify { display: inline-block; margin-top: 1rem; font-size: .76rem; color: var(--faint); letter-spacing: .06em; }
 .primary-card:hover .verify { color: var(--accent); }
@@ -483,7 +491,7 @@ footer::before {
 
     <a class="primary-card reveal" href="https://researchmap.jp/takuyanemoto/research_blogs" target="_blank" rel="noopener">
       <span class="code">researchmap</span>
-      <h3>研究ブログ 一覧</h3>
+      <h2>研究ブログ 一覧</h2>
       <p>投稿した記事の一覧を researchmap 上で読めます。</p>
       <span class="verify">researchmap で読む</span>
     </a>

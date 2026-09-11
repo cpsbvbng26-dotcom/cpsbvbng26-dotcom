@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-oFlzL8lOEXg9yL+Jt10I6qk1upYI5kOfVIp8QFAwW3E=' 'sha256-miBPAPZq3Q2quo8qAIvrrB/gkrEvrXuLnKRIcgK0V3w='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-UlgLZhelXrJUXL/9v8feByheiaf8piusprhjCE42mCc=' 'sha256-xkIgyIC8BbjfJ5Ltm/rdYyyOKB3MHT9yue2UZyxjv4k='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -340,6 +340,12 @@ footer::before {
 .js .reveal { opacity: 0; transform: translateY(12px); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* **焦点の入った塊は、待たずに見せる。**登場はスクロールに合わせているが、
+   Tab で辿るとスクロールより先に焦点が入る。そのままだと opacity 0 の行に
+   焦点が置かれる ―― 枠は出ているのに、中身が見えない。
+   :focus-within は祖先にも掛かるので、入れ子の塊もまとめて出る。 */
+.js .reveal:focus-within { opacity: 1; transform: none; transition: none; }
+
 /* 登場の時間差。以前は JS で --i を書き込んでいたが、CSP の style-src が
    インラインの style 適用を拒むため、CSS だけで与える。JS も一つ減る。 */
 .cards > *:nth-child(1), .areas > *:nth-child(1) { --i: 0; }
@@ -356,7 +362,9 @@ footer::before {
 .cards > *:nth-child(12), .areas > *:nth-child(12) { --i: 11; }
 
 
-:where(a, button, [tabindex]):focus-visible {
+/* 入力欄も同じ枠を出す。既定の枠を消して境界線の色だけで示すと、
+   変わるのは 1px 分でしかなく、焦点の在りかが読めない。 */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: .3rem;
@@ -435,7 +443,7 @@ select#size {
   color: var(--text); background: var(--card);
   border: 1px solid var(--line); border-radius: .5rem;
 }
-select#size:focus { outline: none; border-color: var(--accent); }
+select#size:focus-visible { border-color: var(--accent); }
 
 .note { margin: 1rem 0 0; font-size: .8rem; line-height: 1.8; color: var(--faint); }
 
@@ -461,7 +469,7 @@ select#size:focus { outline: none; border-color: var(--accent); }
   border: 1px solid var(--line); border-radius: .35rem;
   transition: border-color .15s;
 }
-.mcell:focus { outline: none; border-color: var(--accent); }
+.mcell:focus-visible { border-color: var(--accent); }
 .mcell.a { border-color: var(--accent-soft); }
 
 /* 判定 */
