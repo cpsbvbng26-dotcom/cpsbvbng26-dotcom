@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 431 項目 / サイトの構造 597 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 363 項目 / サイトの構造 437 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
   # ブラウザが要る検査は別の仕事にする。**環境の都合で落ちたのか、中身が
   # 壊れたのかを見分けられなくなる**ので、上の並びには混ぜない。
   keyboard:
-    name: キーボードで辿れるか 288 項目
+    name: キーボードで辿れるか 244 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

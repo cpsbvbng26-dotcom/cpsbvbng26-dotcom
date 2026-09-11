@@ -30,7 +30,7 @@ The bar that was cleared, in the venues' own wording. SSRN — the subject must 
 
 What follows from that is definite. Work written by self-study and language models was judged by SSRN's editorial staff to belong to the scholarly discourse of its field. For two papers, a person looked before publication and did not turn them away. Three papers are on PhilArchive, two of them through a gate that came down; its stated standard is the one above.
 
-What does not follow is equally definite. Neither gate looked at whether the argument holds. What was passed is a gate on acceptance, not peer review; on the PhilArchive side two of the three passed a gate and one passed none at all. All of the wording is set out verbatim on [the venues page](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/venues.en.html).
+What does not follow is equally definite. Neither gate looked at whether the argument holds. What was passed is a gate on acceptance, not peer review; on the PhilArchive side two of the three passed a gate and one passed none at all. All of the wording is set out verbatim above.
 
 **Two aims**
 
@@ -144,7 +144,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **The framework did not survive.** What remains is one fact about one operator — for `Q` an n-cycle and `D` diagonal, `(DQ)ⁿ = (∏ᵢ aᵢ)·I` exactly, so convergence is governed by the geometric mean of the coefficients. **The fact is correct, machine-checked, and at the level of a second- or third-year undergraduate exercise.** The error is the confusion that course sets on its exam. Only the tool used to repair it belongs to **graduate linear systems and matrix analysis**. The closest department is linear systems and control. The three papers, with 238 verification checks (15 on the theorems, 32 on the printed numerics, 83 on the errata, 108 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 172 checks | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **Audits an errata document against a frozen, already-published artifact.** A DOI'd PDF cannot be revised; only the errata can, so the errata drifts. Checks that every quotation appears verbatim, that occurrences are not undercounted, that an item declared unresolvable has not been quietly resolved, and that the artifact itself has not been swapped. **No inference is used in the judgement** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 81 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 82 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | The transcription from the source note, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down | CC BY 4.0 | — |
 
 ---
@@ -214,12 +214,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1118 checks.** There are no dependencies to install.
+**Every push runs 890 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 431 checks
-node verification/check_site.js      # site structure, 597 checks
+node verification/check_contrast.js  # colour contrast, 363 checks
+node verification/check_site.js      # site structure, 437 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -229,10 +229,10 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 288 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 244 checks (needs Chromium)
 ```
 
-It tabs through 26 pages and looks for focus traps, elements that receive focus while
+It tabs through 22 pages and looks for focus traps, elements that receive focus while
 still transparent, elements with no focus ring, elements with no size, and a tab order
 that diverges from reading order. **If the tools are absent it exits 1.** A check that
 did not run is not a check that passed.

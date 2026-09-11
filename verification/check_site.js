@@ -507,7 +507,7 @@ const OFF_TOPIC = [
   ['家柄|末裔|血統|[Bb]loodline', '血筋を誇る語'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
-const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html', 'lineage.html',
+const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
                                      'README.md', 'README.en.md']);
 const offenders = [];
 PUBLIC_FACES.forEach((f) => {
@@ -598,39 +598,6 @@ section('10.5 修得した科目の合計');
   });
 }
 
-/* ------------------------------------------------- 10.55 割愛の頁の日付
- *
- * 外側の規則を要約した頁である。**規則は動く。**いつ時点かを出しておかないと、
- * 変わった日から「事実と違う記述を公開している」状態になる。
- */
-section('10.55 割愛の頁の日付');
-
-{
-  const v = read('venues.html');
-  const m = /<p class="as-of reveal">(\d{4})年(\d{1,2})月(\d{1,2})日現在<\/p>/.exec(v);
-  ok('venues.html に「何年何月何日現在」がある', m !== null);
-  if (m) {
-    const t = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
-    ok('その日が先の日付でない', t.getTime() <= Date.now() + 86400000,
-       m[1] + '年' + m[2] + '月' + m[3] + '日');
-  }
-  ok('規則が動くことを断っている', v.indexOf('<b>規則は動く。</b>') >= 0);
-  ok('その日より後の変更が反映されていないと書いてある',
-     v.indexOf('それより後の変更は反映されていない') >= 0);
-  ok('どの場も下げないと先頭に書いてある',
-     v.indexOf('<b>どの場も下げるつもりはない。</b>') >= 0);
-  ok('どの場も勧めていないと書いてある', v.indexOf('どの場を勧めてもいない') >= 0);
-  ok('規則の記述が未確認だと書いてある', v.indexOf('<b>規則の記述は未確認である。</b>') >= 0);
-  ok('覆し方が書いてある', v.indexOf('一つ示せば、その行は覆る') >= 0);
-  // **数学の区分だけ、日付が早い。**全区分の改定と混ぜると、この件では
-  // 一か月半ずれた規則を書いていることになる。
-  ok('数学の自動推薦の日付を、全区分の改定と分けている',
-     v.indexOf('<b>2025年12月10日から、数学の区分では機関のメールだけでは下りない。</b>') >= 0
-     && v.indexOf('<b>数学の区分では、それより早い 2025年12月10日から下りていない。</b>') >= 0);
-  ok('推薦者の資格の範囲を書いている',
-     v.indexOf('3 か月前から 5 年前までの間に出されたもの') >= 0);
-}
-
 /* ------------------------------------------------- 10.53 JS が無くても読めるか
  *
  * **本文の既定は「見える」でなければならない。**以前は .reveal に opacity:0 を
@@ -671,104 +638,6 @@ section('10.53 JS が無くても読めるか');
      a1 === a2 ? (a1 || '').slice(0, 40) + '…' : '食い違っている');
 }
 
-/* ------------------------------------------------- 10.54 先祖の頁が、確度を守っているか
- *
- * **記録が残っているかを書く頁であって、血筋を誇る頁ではない。**根拠の強さを
- * 混ぜないこと、戸籍の写しを出さないこと、そして **公報から確定できないものを
- * 書かないこと**を保つ。GitHub の外に別の記述があると外部の点検が述べたので、
- * こちらが確度の低いほうへ寄らないことを機械で留める。
- */
-section('10.54 先祖の頁が、確度を守っているか');
-
-{
-  const h = read('lineage.html');
-  ok('先祖の頁がある', h !== null);
-  if (h !== null) {
-    ok('根拠を段階に分けている',
-       h.indexOf('言えること') >= 0 && h.indexOf('文書') >= 0
-       && h.indexOf('証言') >= 0 && h.indexOf('この頁は主張しない') >= 0);
-    /* **同一性を主張しないこと。**名が一致することと同一人物であることは別で、
-     * 突き合わせていない以上、繋いで書かない。ここが緩むと誤った血縁の公表になる。 */
-    ok('同一性を主張しないと書いてある',
-       h.indexOf('同一性を主張しないことが、この頁のいちばん重い断りである') >= 0
-       && (h.match(/この頁は主張しない/g) || []).length >= 2);
-    ok('戸籍の写しと本籍を出さないと書いてある',
-       h.indexOf('戸籍・除籍の写し、その転写、本籍') >= 0
-       && h.indexOf('公開するのは「確認した」という事実までにする') >= 0);
-    ok('存命の人物を挙げていないと書いてある',
-       h.indexOf('存命の人物は一人も挙げていない') >= 0);
-    ok('原典の本文と図版を転載していないと書いてある',
-       h.indexOf('本文も図版も頁数も転載していない') >= 0
-       && h.indexOf('原典の本文・図版・頁数') >= 0);
-    ok('原資料の画像を置かないと書いてある',
-       h.indexOf('原資料の画像は置いていない') >= 0);
-    ok('訂正と削除の申し出先がある',
-       h.indexOf('訂正または削除の申し出を受け付ける') >= 0
-       && h.indexOf('確かめたうえで直すか落とす') >= 0
-       && h.indexOf('理由を述べる必要は無い') >= 0);
-    ok('法的な判断を述べないと書いてある',
-       h.indexOf('この頁は法的な判断を述べない') >= 0);
-    /* **本籍は、それ自体が出してはならない欄である。**語として出るのは
-     * 「出さない」と宣言する箇所だけでよい。 */
-    ok('本籍を実際に書いていない',
-       (h.match(/本籍/g) || []).length === 1);
-    ok('著者の仕事の根拠にしないと書いてある',
-       h.indexOf('この頁は、著者の仕事について何も言わない') >= 0);
-    ok('同名異人の可能性を残している', h.indexOf('同名異人') >= 0);
-  ok('祖父の証言が刊本に及んでいないと書いてある',
-     h.indexOf('刊本 2 件を、祖父が挙げたのではない') >= 0
-     && h.indexOf('二つを結びつけたのは、祖父の証言ではない') >= 0);
-  ok('肩書きの形を著者によるものとして分けてある',
-     h.indexOf('祖父から聞いたのは「議員であった」までである') >= 0);
-    ok('別の媒体との差について断りがある',
-       h.indexOf('別の媒体に、別の記述があること') >= 0
-       && h.indexOf('その媒体は作業環境から開けない') >= 0);
-    ok('確度の低いほうへ合わせないと書いてある',
-       h.indexOf('確度の低いほうへ合わせることはしない') >= 0);
-    /* **公報から確定できないものは、この頁に書かない。**史料ノート自身が
-     * 最終階級・乗艦・配置を確定できないと述べている。
-     * ただし断りの節は、それらの語を引いて説明する必要がある。**引くことと
-     * 断定することは別なので、断りの節を外してから探す。** */
-    const i0 = h.indexOf('id="elsewhere"');
-    const i1 = i0 >= 0 ? h.indexOf('</section>', i0) : -1;
-    const outside = (i0 >= 0 && i1 >= 0) ? h.slice(0, i0) + h.slice(i1) : h;
-    ok('断りの節を切り出せる', i0 >= 0 && i1 > i0);
-    const OVERCLAIM = ['少佐', '愛国丸', '機関長', '中佐', '大佐'];
-    const found = OVERCLAIM.filter((w) => outside.indexOf(w) >= 0);
-    ok('断りの節の外で、公報から確定できないものを断定していない',
-       found.length === 0, found.join(' '));
-  }
-}
-
-/* ------------------------------------------------- 10.56 出さないと書いた頁が、出すと決めた日に何を残したか
- *
- * **方針が変わったとき、いちばん都合がいいのは古い理由を消すことである。**
- * 消せば、はじめから出すつもりだったように読める。三つの理由はそのまま残し、
- * そのうち決定で変わらないものを名指しする。却下の見込みも、結果が出る前に置く。
- */
-section('10.56 割愛の頁が、方針の変更を隠していないか');
-
-{
-  const v = read('venues.html');
-  ok('出すことに決めたと書いてある',
-     v.indexOf('<b>2026年9月9日、著者が出すことに決めた。</b>') >= 0);
-  ok('出さなかった三つの理由を消していない',
-     ['一つめ。推薦が要る', '二つめ。残った内容に新しい結果が無い',
-      '三つめ。経緯を説明する機会が無い'].every((w) => v.indexOf(w) >= 0));
-  ok('決定で変わらない理由を名指ししている',
-     v.indexOf('<b>二つめには片付け方が無い。</b>') >= 0
-     && v.indexOf('出すと決めたことと、新しい結果があることは別である') >= 0);
-  ok('却下の見込みを結果より先に書いたと述べている',
-     v.indexOf('<b>却下される見込みのほうを、結果が出る前に書いてある。</b>') >= 0);
-  ok('通っても新規性の証明にならないと書いてある',
-     v.indexOf('<b>通ったとしても、通ったことは新規性の証明にならない。</b>') >= 0);
-  ok('合う場が無いまま出すと表に書いてある',
-     v.indexOf('<b>合う場は無い。それでも arXiv に出す</b>') >= 0
-     && v.indexOf('<b>合わないと分かったうえで出す。</b>') >= 0);
-  ok('経緯の置き場を指している',
-     v.indexOf('trinity-infinity/blob/main/ARXIV.md') >= 0);
-}
-
 /* ------------------------------------------------- 10.57 arXiv の著者識別子
  *
  * ORCID を結び付けると出る頁であって、arXiv に載ったことを意味しない。
@@ -786,430 +655,92 @@ section('10.57 arXiv の著者識別子');
     const t = read(p);
     ok(p + ' が「論文は無い」と添えている', NO.some((w) => t.indexOf(w) >= 0));
   });
-  const v = read('venues.html');
-  ok('抜け道ではないと書いてある', v.indexOf('抜け道ではない') >= 0);
-  ok('頁の表示を確かめていないと書いてある',
-     v.indexOf('作業環境から開けないので確かめていない') >= 0);
-  const ve = read('venues.en.html');
-  ok('英語版も抜け道ではないと書いてある',
-     ve.indexOf('not a way around anything') >= 0);
-  ok('英語版も頁の表示を確かめていないと書いてある',
-     ve.indexOf('has not been confirmed, because it cannot be opened') >= 0);
 }
 
-/* ------------------------------------------------- 10.61 表が頁を押し広げないか
+/* ------------------------------------------------- 10.59 自己紹介が名乗っていること
  *
- * **表には最小幅がある。**四列の表は 390px の画面で 482px になり、頁ごと横へ
- * 流れていた。本文の一行目から読めなくなる。表の CSS がそもそも無く、
- * 既定のまま置いていたのが原因である。
- *
- * 実際に測るのは check_keyboard.js のほうで、そちらはブラウザが要る。**遅いので
- * 毎回は回らない。**実際、表を足してから数回、一度も回さずに push した。
- * ここは字面だけで見る —— **表を持つ頁に、表が自分の中で流れる指定があること。**
+ * **割愛の頁と先祖の頁を消したとき、節ごと落として、無関係な検査まで一緒に消した。**
+ * ここにあるのは、その頁を読まない検査だけである —— トップ、英語のトップ、
+ * GitHub のプロフィール、そして外部の点検の引用。
  */
-section('10.61 表が頁を押し広げないか');
+section('10.59 自己紹介が名乗っていること');
 
 {
-  const withTable = PAGES.filter((p) => read(p).indexOf('<table>') >= 0);
-  ok('表を持つ頁がある', withTable.length > 0, withTable.join(', '));
-  withTable.forEach((p) => {
-    const h = read(p);
-    ok(p + ' の表が自分の中で横へ流れる',
-       /table\s*\{[^}]*overflow-x:\s*auto/.test(h)
-       && /table\s*\{[^}]*display:\s*block/.test(h));
-  });
-}
+  const ja = read('index.html'), en = read('index.en.html');
+  const rj = read('README.md'), re_ = read('README.en.md');
 
-/* ------------------------------------------------- 10.59 英語版が、日本語版と同じ確度で書いてあるか
- *
- * **訳したときに、いちばん先に落ちるのは断りである。**断りは本文より短く、
- * 論旨に効かないように見えるからである。先祖の頁の守りは、ほとんどが断りで
- * できている —— 同一性を主張しない、戸籍の写しを出さない、確定できないものを
- * 書かない、訂正の申し出を受ける。**英語版でそれが一つでも落ちれば、
- * 守りはそこから崩れる。**
- *
- * だから日本語版と同じ数だけ、英語版にも当てる。**片方だけ直すと落ちる。**
- */
-section('10.59 英語版が、日本語版と同じ確度で書いてあるか');
-
-{
-  const e = read('lineage.en.html');
-  ok('英語の先祖の頁がある', e !== null);
-  ok('根拠を段階に分けている',
-     e.indexOf('What can be said') >= 0 && e.indexOf('<b>Document</b>') >= 0
-     && e.indexOf('Testimony') >= 0 && e.indexOf('This page does not assert it') >= 0);
-  ok('同一性を主張しないと書いてある',
-     e.indexOf('Declining to assert identity is the heaviest reservation on this page') >= 0
-     && (e.match(/This page does not assert it/g) || []).length >= 2);
-  ok('戸籍の写しと本籍を出さないと書いてある',
-     e.indexOf('Copies or transcriptions of the family register, and the registered domicile') >= 0
-     && e.indexOf('What is published stops at the fact that it was consulted') >= 0);
-  ok('存命の人物を挙げていないと書いてある',
-     e.indexOf('No living person is named at all') >= 0);
-  ok('原典の本文と図版を転載していないと書いてある',
-     e.indexOf('Neither text nor images nor page numbers are reproduced') >= 0);
-  ok('原資料の画像を置かないと書いてある',
-     e.indexOf('No image of the source document is posted') >= 0);
-  ok('訂正と削除の申し出先がある',
-     e.indexOf('Requests to correct or remove anything on this page are accepted') >= 0
-     && e.indexOf('it is checked and then corrected or taken down') >= 0
-     && e.indexOf('No reason need be given') >= 0);
-  ok('法的な判断を述べないと書いてある',
-     e.indexOf('This page states no legal conclusion') >= 0);
-  ok('著者の仕事の根拠にしないと書いてある',
-     e.indexOf("This page says nothing about the author's work") >= 0);
-  ok('同名異人の可能性を残している', e.indexOf('The possibility of a namesake') >= 0);
-  /* **伝聞の範囲を、伝聞そのものより広く書かない。**
-   * 祖父から聞いたのは「議員であった」までである。刊本 2 件を挙げたのは祖父ではない。
-   * 一度、刊本との結びつけまで祖父の伝聞として書いた。 */
-  ok('祖父の証言が刊本に及んでいないと書いてある',
-     e.indexOf('The two printed books were not cited by the grandfather') >= 0
-     && e.indexOf("Joining the two is not the grandfather's testimony") >= 0);
-  ok('肩書きの形を著者によるものとして分けてある',
-     e.indexOf("What the grandfather said reached only as far as") >= 0);
-  ok('別の媒体との差について断りがある',
-     e.indexOf('A different account, in a different medium') >= 0
-     && e.indexOf('That medium cannot be opened from the working environment') >= 0);
-  ok('確度の低いほうへ合わせないと書いてある',
-     e.indexOf('will not be brought down to the weaker grade') >= 0);
-  /* **本籍は、それ自体が出してはならない欄である。**語として出てよいのは
-   * 「出さない」と宣言する箇所だけである。日本語版（10.54）にはこの検査が
-   * あったが、英語版には無かった。訳すときに落ちたのはこれ一つである。 */
-  ok('本籍を実際に書いていない',
-     (e.match(/domicile/g) || []).length === 1,
-     String((e.match(/domicile/g) || []).length));
-
-  /* この頁が指している外部の点検に、第三者の氏名が残っていないこと。
-   * **引用であっても、公開しているのはこのリポジトリである。**
-   * ここが留めるのは伏せ字が残っていることだけで、別の氏名が新たに
-   * 入るのは捕まえられない。人名を機械で数え上げる方法が無いためである。 */
-  const ev = read('docs/external-evaluations.md');
-  ok('外部の点検の引用で、第三者の氏名を伏せてある',
-     ev.indexOf('〔氏名を伏せた一名〕') >= 0 && ev.indexOf('小島') < 0);
-
-  /* 断りの節の外で、公報から確定できないものを断定していないこと。
-   * 日本語版と同じ切り出し方をする。 */
-  const i0 = e.indexOf('id="elsewhere"');
-  const i1 = i0 >= 0 ? e.indexOf('</section>', i0) : -1;
-  const outside = (i0 >= 0 && i1 >= 0) ? e.slice(0, i0) + e.slice(i1) : e;
-  ok('断りの節を切り出せる', i0 >= 0 && i1 > i0);
-  const OVERCLAIM = ['Lieutenant Commander', 'Aikoku Maru', 'chief engineer',
-                     'Commander', 'Captain'];
-  const found = OVERCLAIM.filter((w) => outside.indexOf(w) >= 0);
-  ok('断りの節の外で、公報から確定できないものを断定していない',
-     found.length === 0, found.join(' '));
-
-  /* 割愛の頁。方針の変更を隠していないことを、英語でも留める。 */
-  const w = read('venues.en.html');
-  ok('英語の割愛の頁がある', w !== null);
-  ok('出すことに決めたと書いてある',
-     w.indexOf('<b>On 9 September 2026 the author decided to post it.</b>') >= 0);
-  ok('出さなかった三つの理由を消していない',
-     ['First. An endorsement is required',
-      'Second. What survives contains no new result',
-      'Third. There is no occasion to explain how it came about']
-       .every((x) => w.indexOf(x) >= 0));
-  ok('決定で変わらない理由を名指ししている',
-     w.indexOf('<b>The second has no way to deal with it.</b>') >= 0
-     && w.indexOf('Deciding to post and having a new result are separate') >= 0);
-  ok('却下の見込みを結果より先に書いたと述べている',
-     w.indexOf('The expectation of rejection is written down before the outcome is known') >= 0);
-  ok('通っても新規性の証明にならないと書いてある',
-     w.indexOf('acceptance is not proof') >= 0);
-  ok('どの場も査読ではないと書いてある',
-     w.indexOf('<b>None of these is peer review.</b>') >= 0
-     && w.indexOf('Nor does having a DOI mean anything was peer reviewed') >= 0);
-  ok('規則の記述が未確認であると書いてある',
-     w.indexOf('Every source below was taken from search results') >= 0
-     && w.indexOf('The descriptions of the rules are unconfirmed') >= 0);
-  ok('経緯の置き場を指している',
-     w.indexOf('trinity-infinity/blob/main/ARXIV.md') >= 0);
-
-  /* **基準を通ったことと、分野が受理したことは別である。**
-   * PhilArchive は「専門職の水準」を明文にしているが、同じ運営者が 2017年に
-   * 「査読はしない」と書いている。**片方だけを引けば、強くも弱くもできる。**
-   * 両方が載っていること、三段の切り分けが残っていることを留める。 */
-  const v2 = read('venues.html');
-  ok('運営者が査読しないと書いていることを載せている',
-     v2.indexOf('査読されない') >= 0
-     && v2.indexOf('質と関連性の最小限の基準') >= 0);
-  ok('英語版も運営者の言葉を載せている',
-     w.indexOf('not peer reviewed') >= 0
-     && w.indexOf('minimal standards of quality and relevance') >= 0);
-  ok('三段を分けている',
-     v2.indexOf('基準を通ったことは、分野が専門職の仕事として受理したことではない') >= 0
-     && v2.indexOf('professional author') >= 0);
-  ok('英語版も三段を分けている',
-     w.indexOf('not the field accepting the work as professional work') >= 0
-     && w.indexOf('professional author') >= 0);
-  /* **観察された順序と、仕組みの記述を、同じ欄に置かない。**
-   * 二篇はプロフィールの公開前に審査を通り、一篇は公開と同時に審査なしで出た。
-   * **前後で扱いが違ったことは証言できる。公開が原因だとは言えない。** */
-  ok('観察されたのは順序であって仕組みではないと書いてある',
-     v2.indexOf('観察されたのは順序であって、仕組みではない') >= 0
-     && v2.indexOf('それが公開のせいだとは書かない') >= 0);
-  ok('英語版も順序と仕組みを分けている',
-     w.indexOf('What was observed\nis an order, not a mechanism') >= 0
-     || /What was observed\s+is an order, not a mechanism/.test(w));
-  ok('証言と手順の記述を同じ欄に置いていない',
-     v2.indexOf('証言は手順の記述ではない') >= 0
-     && v2.indexOf('二つを同じ欄に置かない') >= 0
-     && w.indexOf('Testimony is not a description of procedure') >= 0);
-  /* **プロフィールの公開そのものには基準が無い。**誰でも作れる。
-   * 基準があるのは既定の一覧に出るかどうかのほうで、そこは pro の条件である。
-   * **公開を到達点として数えない。**「公開された」を通過の一つに見せる形を止める。 */
-  ok('プロフィールの公開に基準が無いと書いてある',
-     v2.indexOf('プロフィールの公開そのものには、基準が無い') >= 0
-     && v2.indexOf('誰でも作れる') >= 0
-     && v2.indexOf('プロフィールの公開を、到達点として数えない') >= 0);
-  ok('基準があるのは既定の一覧のほうだと書いてある',
-     v2.indexOf('基準があるのは公開のほうではなく') >= 0
-     && v2.indexOf('Find Philosophers') >= 0);
-  ok('英語版も公開に基準が無いと書いてある',
-     w.indexOf('Making the profile public clears no bar') >= 0
-     && w.indexOf('Anyone may create a profile') >= 0
-     && w.indexOf('is not counted as') >= 0);
-
-  ok('前後で扱いが違ったことを書いてある',
-     v2.indexOf('プロフィールを公開する前に出した') >= 0
-     && v2.indexOf('プロフィールが公開されたのと同時に出た') >= 0
-     && w.indexOf('Submitted before the profile was public') >= 0);
-
-  /* **到達の主張と、その限界は、離してはならない。**
-   * 「独学と Claude だけで SSRN と PhilArchive を通った」は、そこで切ると
-   * 分野が受理したように読める。**限界のほうが消えたら落ちる。** */
-  ok('独学で通ったことを書いている',
-     v2.indexOf('三篇は、独学で書いている') >= 0
-     && v2.indexOf('三篇は <b>PhilArchive に載っている</b>') >= 0);
-
-  /* **門があることと、何を見ているかは別である。**
-   * SSRN が見るのは射程・体裁・最低限の学術性・研究公正であって、
-   * 方法の当否でも内容の実質でもない。そこが消えると、
-   * 「事前審査を通った」が中身を通ったように読める。 */
-  ok('門がどこまで見ているかを書いてある',
-     v2.indexOf('方法の当否も、内容の実質も見ない') >= 0
-     && v2.indexOf('論証の当否は見ない') >= 0);
-  ok('英語版も門がどこまで見ているかを書いてある',
-     w.indexOf('Neither the soundness of the method nor the substance') >= 0
-     && w.indexOf('Not whether the argument holds') >= 0);
-
-  /* **一篇は審査を経ていない。**「門を通った」と書けるのは門が下りた場合だけである。
-   * これは著者の証言であって紙面ではない。**その区別ごと留める。** */
-  ok('審査を経ていない一篇があると書いてある',
-     v2.indexOf('三篇のうち一篇は、審査を経ていない') >= 0
-     && v2.indexOf('アカウントが公開されたのと同時に、そのまま出た') >= 0);
-  ok('それが証言であると断っている',
-     v2.indexOf('著者の証言である') >= 0
-     && v2.indexOf('紙面では確かめられない') >= 0);
-  ok('英語版も審査を経ていない一篇を書いている',
-     w.indexOf('One of the three went through no screening at all') >= 0
-     && w.indexOf("This is the author's testimony") >= 0);
-
-  /* **言い換えると弱くも強くもなる。**明文はそのまま置く。
-   * 要約だけになったら落ちる。 */
-  ok('門の明文をそのまま置いている',
-     v2.indexOf('SSRN does not peer review preprints') >= 0
-     && v2.indexOf('minimal standards of quality and relevance') >= 0
-     && v2.indexOf('All books and papers submitted should be of professional quality') >= 0);
-  ok('英語版も門の明文をそのまま置いている',
-     w.indexOf('SSRN does not peer review preprints') >= 0
-     && w.indexOf('minimal standards of quality and relevance') >= 0);
-
-  /* **一篇で門が下りなかった以上、残り二篇で下りたと決めてかかれない。**
-   * 三篇まとめて「通った」に戻す壊し方を、ここで止める。 */
-  /* **三篇は一様ではない。**同じ場に同じ著者が出したものでも、門が下りた二篇と、
-   * 下りなかった一篇がある。**まとめて「通った」とも「通っていない」とも書かない。**
-   * 一度まとめて「通った」と書き、次にまとめて「分かっていない」と書いた。両方とも誤りだった。 */
-  ok('三篇が一様でないと書いてある',
-     v2.indexOf('残る二篇は、PhilArchive の側でも門が下りている') >= 0
-     && v2.indexOf('三篇が一様ではない') >= 0
-     && v2.indexOf('まとめて「通った」とも、まとめて「通っていない」とも書かない') >= 0);
-  ok('英語版も三篇が一様でないと書いてある',
-     w.indexOf('a gate did come down on the PhilArchive side') >= 0
-     && w.indexOf('The three are not uniform') >= 0);
-
-  /* **到達点は、明文の段差ごと書く。**SSRN の方針は
-   * `rigorous methodology and original findings` を掲げているが、手続きは
-   * `does not peer review` である。**前者だけを引くと、方法が確かめられたように読める。**
-   * 同じ運営者の言葉が二つあることを、対で留める。 */
-  ok('SSRN の明文の水準を引いている',
-     v2.indexOf('rigorous methodology and original findings') >= 0);
-  ok('その水準が確かめられたのではないと書いてある',
-     v2.indexOf('明文の中に段差がある') >= 0
-     && v2.indexOf('二篇が通ったのは後者の手続きであって、前者が確かめられたのではない') >= 0);
-  ok('英語版も段差を書いている',
-     w.indexOf('rigorous methodology and original findings') >= 0
-     && w.indexOf('There is a step inside the published wording') >= 0
-     && w.indexOf('What the two\npapers passed is the procedure') >= 0);
-
-  /* **どこまでを到達点と呼べるかの上限。**ここが消えると、表が資格の証明に見える。 */
-  ok('到達点の上限を書いてある',
-     v2.indexOf('到達点として言えるのは、上の表の「満たしたということ」の列までである') >= 0
-     && /What can be claimed as attainment reaches exactly as far as/.test(w));
-
-  /* 具体の除外基準。**「学術性」だけでは何も言っていないのと同じである。** */
-  ok('通らないものを具体に名指ししている',
-     v2.indexOf('articles with no references') >= 0
-     && w.indexOf('articles with no references') >= 0);
-
-  /* 三篇それぞれの識別子。**まとめて書くと、どれが何かが消える。** */
-  ok('三篇それぞれの識別子を出している',
-     ['NEMTNA', 'NEMMOI', 'NEMFSI', '10.2139/ssrn.7358779', '10.2139/ssrn.7358818']
-       .every((x) => v2.indexOf(x) >= 0 && w.indexOf(x) >= 0));
-  /* **道具は特定できない、と正誤表が書いている。**頁がそこに名前を一つだけ
-   * 挙てれば、同じ生態系の正誤表（E5）と食い違う。一度そう書いて公開した。 */
-  ok('使った道具を特定していないと書いてある',
-     v2.indexOf('どの道具を使ったかは特定できない') >= 0
-     && v2.indexOf('名前を一つだけ挙げることはしない') >= 0);
-  ok('英語版も道具を特定していないと書いてある',
-     w.indexOf('Which tools cannot be identified') >= 0
-     && w.indexOf('No single name is given here') >= 0);
-  {
-    /* **道具の名前を一つだけ挙げた形が、どこにも無いこと。** */
-    const SOLE = ['Claude だけ', 'Claude のみ', 'Claude alone', 'Claude only'];
-    const hit = SOLE.filter((x) => v2.indexOf(x) >= 0 || w.indexOf(x) >= 0);
-    ok('道具の名前を一つだけ挙げていない', hit.length === 0, hit.join(' '));
-  }
-  ok('独学で通ったことに限界が添えてある',
-     v2.indexOf('門が下りた分についても、それは受け付けの門である') >= 0
-     && v2.indexOf('独学で出せることと、分野が受理することは別である') >= 0);
-  ok('英語版も独学で通ったことを書いている',
-     w.indexOf('written by self-study') >= 0);
-  ok('英語版も限界が添えてある',
-     w.indexOf('Where a gate did come down, it is a gate on acceptance') >= 0
-     && w.indexOf('Getting work out by self-study and') >= 0);
-  /* 大学で哲学を履修していることと食い違わせない。**「独学のみ」とは書かない。** */
-  ok('大学で履修していることと食い違わせていない',
-     v2.indexOf('大学で哲学は履修しているが') >= 0
-     && /Philosophy is taken at\s+university/.test(w));
-
-  /* 日本語版と英語版で、節の数が同じであること。**片方だけ節を足すと落ちる。** */
-  const count = (h) => (h.match(/<section id="/g) || []).length;
-  ok('先祖の頁の節の数が日本語版と同じ',
-     count(e) === count(read('lineage.html')),
-     'en ' + count(e) + ' / ja ' + count(read('lineage.html')));
-  ok('割愛の頁の節の数が日本語版と同じ',
-     count(w) === count(read('venues.html')),
-     'en ' + count(w) + ' / ja ' + count(read('venues.html')));
-
-  /* 互いへの導線。**片方からしか行けないと、片方は読まれない。** */
-  ok('日本語の先祖の頁から英語版へ行ける', read('lineage.html').indexOf('./lineage.en.html') >= 0);
-  ok('英語の先祖の頁から日本語版へ行ける', e.indexOf('./lineage.html') >= 0);
-  ok('日本語の割愛の頁から英語版へ行ける', read('venues.html').indexOf('./venues.en.html') >= 0);
-  ok('英語の割愛の頁から日本語版へ行ける', w.indexOf('./venues.html') >= 0);
-  ok('英語のトップから英語の先祖の頁へ行ける',
-     read('index.en.html').indexOf('./lineage.en.html') >= 0);
-
-  /* **訳を公式名のように出さない。**英語の科目名 11 件は、こちらで訳したもので
-   * あって大学の英語表記ではない。公式のシラバスは作業環境から開けないので、
-   * 突き合わせていない。断りが消えたら落ちる。頁と README の両方に当てる ——
-   * **片方だけに出しても、もう片方を読んだ人は公式名だと思う。** */
+  /* **訳を公式名のように出さない。**英語の科目名はこちらで訳したものである。 */
   const CAVEAT = 'unofficial translations, not the university';
   const OFFICIAL = 'official English titles have not been checked';
   ok('英語のトップが、科目名は公式名ではないと断っている',
-     read('index.en.html').indexOf(CAVEAT) >= 0
-     && read('index.en.html').indexOf(OFFICIAL) >= 0);
+     en.indexOf(CAVEAT) >= 0 && en.indexOf(OFFICIAL) >= 0);
   ok('英語の README が、科目名は公式名ではないと断っている',
-     read('README.en.md').indexOf(CAVEAT) >= 0
-     && read('README.en.md').indexOf(OFFICIAL) >= 0);
+     re_.indexOf(CAVEAT) >= 0 && re_.indexOf(OFFICIAL) >= 0);
 
-  /* 学部名は英語にした。**検索結果が一致して公式の英語頁に帰しているが、頁そのものは
-   * 開けていない。**だから名前だけでなく、その出所の断りも一緒に留める。
-   * 断りが消えて名前だけが残る形が、いちばん強く読める形である。 */
+  /* 学部名は英語にしたが、頁そのものは開けていない。**出所の断りごと留める。** */
   ok('英語の学部名を英語で出している',
-     read('index.en.html').indexOf('ZEN University, Faculty of Social Informatics') >= 0
-     && read('README.en.md').indexOf('ZEN University, Faculty of Social Informatics') >= 0);
+     en.indexOf('ZEN University, Faculty of Social Informatics') >= 0
+     && re_.indexOf('ZEN University, Faculty of Social Informatics') >= 0);
   ok('学部名の出所を断っている',
-     read('index.en.html').indexOf("the form the university's English pages\nare reported to use") >= 0
-     || /the form the university's English pages\s+are reported to use/.test(read('index.en.html')));
-  ok('英語の頁に学科の段を作っていない',
-     read('index.en.html').indexOf('Department of') < 0);
-  /* 日本語の側は日本語のままであること。**片方だけ直すと食い違う。** */
+     /the form the university's English pages\s+are reported to use/.test(en));
+  ok('英語の頁に学科の段を作っていない', en.indexOf('Department of') < 0);
   ok('日本語の頁は日本語のまま出ている',
-     read('index.html').indexOf('知能情報社会学部 知能情報社会学科') >= 0
-     && read('README.md').indexOf('知能情報社会学部 知能情報社会学科') >= 0);
+     ja.indexOf('知能情報社会学部 知能情報社会学科') >= 0
+     && rj.indexOf('知能情報社会学部 知能情報社会学科') >= 0);
 
-  /* **根幹の一段は、自己紹介の中に置く。**下のほうに置けば読み手は辿り着かない。
-   * そして、そこから限界への導線が切れていないこと —— 到達点だけが残る形にしない。 */
+  /* **根幹の一段は、自己紹介の中に置く。**通過基準・到達点・導けないものが揃っていること。 */
   ok('根幹の一段が自己紹介にある',
-     read('index.html').indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
-     && /What is here rests on self-study and on working with language models/
-          .test(read('index.en.html')));
-  ok('根幹の一段から限界へ辿れる',
-     read('index.html').indexOf('./venues.html') >= 0
-     && read('index.html').indexOf('通ったのは受け付けの門であって査読ではなく') >= 0
-     && read('index.en.html').indexOf('./venues.en.html') >= 0
-     && read('index.en.html').indexOf('not peer review') >= 0);
+     ja.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+     && /What is here rests on self-study and on working with language models/.test(en));
+  ok('大学の単位が独学ではないと書いてある',
+     ja.indexOf('ただし、大学の単位は独学ではない') >= 0
+     && ja.indexOf('授業を受け、課題を出し、評価を受けて得たものである') >= 0
+     && ja.indexOf('独学と言語モデルの話は、その外にある') >= 0);
+  ok('英語版も大学の単位が独学ではないと書いてある',
+     /The university credits, though, are not\s+self-study/.test(en));
+  ok('GitHub のプロフィールにも単位の断りがある',
+     rj.indexOf('ただし、大学の単位は独学ではない') >= 0
+     && /The university credits, though, are not\s+self-study/.test(re_));
+  ok('自己紹介に通過基準が具体に書いてある',
+     ja.indexOf('通した基準は、明文で次のとおりである') >= 0
+     && ja.indexOf('part of the world-wide scholarly discourse') >= 0
+     && ja.indexOf('professional quality') >= 0
+     && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
+  ok('自己紹介に到達点の質が書いてある',
+     ja.indexOf('そこから導ける到達点は、はっきりしている') >= 0
+     && ja.indexOf('その分野の学術的言説の一部として扱われた') >= 0);
+  ok('自己紹介に導けないものが書いてある',
+     ja.indexOf('そこから導けないものも、はっきりしている') >= 0
+     && ja.indexOf('論証が正しいことは、どちらの門も見ていない') >= 0
+     && ja.indexOf('通ったのは受け付けの門であって査読ではなく') >= 0);
+  ok('英語版も三つが揃っている',
+     en.indexOf("The bar that was cleared, in the venues' own wording") >= 0
+     && en.indexOf('What follows from that is definite') >= 0
+     && en.indexOf('What does not follow is equally definite') >= 0
+     && en.indexOf('not peer review') >= 0);
+  /* **SSRN で確かめられたのは二篇である。** */
+  ok('到達点を三篇に広げていない',
+     ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
+     && en.indexOf('For two papers, a person looked before publication') >= 0);
+  /* **片方の門だけを細かく書かない。** */
+  ok('PhilArchive の基準を省略していない',
+     ['works of all types (articles, books, dissertations)',
+      'cross-disciplinary and of clear interest to philosophers',
+      'All books and papers submitted should be of professional quality',
+      'reject any submissions',
+      '事前ではなく事後に効く'].every((x) => ja.indexOf(x) >= 0));
+  ok('GitHub のプロフィールに根幹の一段がある',
+     rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+     && re_.indexOf('What is here rests on self-study and on working with language models') >= 0);
+  ok('GitHub のプロフィールに通過基準と到達点がある',
+     rj.indexOf('part of the world-wide scholarly discourse') >= 0
+     && rj.indexOf('そこから導ける到達点は、はっきりしている') >= 0
+     && rj.indexOf('そこから導けないものも、はっきりしている') >= 0);
 
-  /* **通過基準・到達点・導けないもの、この三つは自己紹介の中で揃っている。**
-   * 頁の外に送ると、到達点だけが読まれる。基準を書かずに到達点だけ書けば
-   * 何を通したのか分からず、限界を書かなければ査読を通ったように読める。
-   * 三つのうち一つでも消えたら落ちる。 */
-  {
-    const ja = read('index.html'), en = read('index.en.html');
-    /* **大学の単位は独学ではない。**この段のすぐ下に単位の表が並ぶので、
-     * 断らなければ、授業で得た単位まで独学の成果として読まれる。
-     * 頁と README の両方に当てる —— README は表も同じ並びで出る。 */
-    ok('大学の単位が独学ではないと書いてある',
-       ja.indexOf('ただし、大学の単位は独学ではない') >= 0
-       && ja.indexOf('授業を受け、課題を出し、評価を受けて得たものである') >= 0
-       && ja.indexOf('独学と言語モデルの話は、その外にある') >= 0);
-    ok('英語版も大学の単位が独学ではないと書いてある',
-       en.indexOf('The university credits, though, are not\nself-study') >= 0
-       || /The university credits, though, are not\s+self-study/.test(en));
-    ok('GitHub のプロフィールにも単位の断りがある',
-       read('README.md').indexOf('ただし、大学の単位は独学ではない') >= 0
-       && /The university credits, though, are not\s+self-study/.test(read('README.en.md')));
-
-    ok('自己紹介に通過基準が具体に書いてある',
-       ja.indexOf('通した基準は、明文で次のとおりである') >= 0
-       && ja.indexOf("part of the world-wide scholarly discourse") >= 0
-       && ja.indexOf('professional quality') >= 0
-       && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
-    ok('自己紹介に到達点の質が書いてある',
-       ja.indexOf('そこから導ける到達点は、はっきりしている') >= 0
-       && ja.indexOf('その分野の学術的言説の一部として扱われた') >= 0);
-    ok('自己紹介に導けないものが書いてある',
-       ja.indexOf('そこから導けないものも、はっきりしている') >= 0
-       && ja.indexOf('論証が正しいことは、どちらの門も見ていない') >= 0);
-    ok('英語版も三つが揃っている',
-       en.indexOf("The bar that was cleared, in the venues' own wording") >= 0
-       && en.indexOf('What follows from that is definite') >= 0
-       && en.indexOf('What does not follow is equally definite') >= 0
-       && en.indexOf('articles with no references') >= 0);
-    /* **SSRN で確かめられたのは二篇である。**三篇に広げると、門が下りていない一篇を含む。 */
-    ok('到達点を三篇に広げていない',
-       ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
-       && en.indexOf('For two papers, a person looked before publication') >= 0);
-
-    /* **PhilArchive の側を省略しない。**SSRN だけ細かく書くと、
-     * 厳しいほうの門だけを見せていることになる。同じ深さで並べる。 */
-    ok('PhilArchive の基準を省略していない',
-       ['works of all types (articles, books, dissertations)',
-        'cross-disciplinary and of clear interest to philosophers',
-        'All books and papers submitted should be of professional quality',
-        'reject any submissions',
-        '事前ではなく事後に効く'].every((x) => ja.indexOf(x) >= 0));
-    ok('英語版も PhilArchive の基準を省略していない',
-       ['works of all types (articles, books, dissertations)',
-        'cross-disciplinary and of clear interest to philosophers',
-        'All books and papers submitted should be of professional quality',
-        'reject any submissions',
-        'after the fact, not before'].every((x) => en.indexOf(x) >= 0));
-
-    /* **GitHub のプロフィールは、頁とは別の入口である。**
-     * 頁にだけ出て README に出ない状態が実際に起きた —— readme_courses.js が
-     * profile-core を拾っていなかった。**写す仕組みごと留める。** */
-    const rj = read('README.md'), re_ = read('README.en.md');
-    ok('GitHub のプロフィールに根幹の一段がある',
-       rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
-       && re_.indexOf('What is here rests on self-study and on working with language models') >= 0);
-    ok('GitHub のプロフィールに通過基準と到達点がある',
-       rj.indexOf('part of the world-wide scholarly discourse') >= 0
-       && rj.indexOf('All books and papers submitted should be of professional quality') >= 0
-       && rj.indexOf('そこから導ける到達点は、はっきりしている') >= 0
-       && rj.indexOf('そこから導けないものも、はっきりしている') >= 0);
-  }
+  /* 外部の点検の引用に、第三者の氏名が残っていないこと。 */
+  const ev = read('docs/external-evaluations.md');
+  ok('外部の点検の引用で、第三者の氏名を伏せてある',
+     ev.indexOf('〔氏名を伏せた一名〕') >= 0 && ev.indexOf('小島') < 0);
 }
 
 /* ------------------------------------------------- 10.58 キーボードで辿れるか
