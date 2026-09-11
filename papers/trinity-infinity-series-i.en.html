@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-W9YwRpgHvhtvBoIWBsZxzUamHosVkMhx+nSxAwp/I3I=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DX0CcxxWJCi+o8eAYRGA/a2kn650lgnENXPs5YjTpJc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-W9YwRpgHvhtvBoIWBsZxzUamHosVkMhx+nSxAwp/I3I=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series I | Takuya Nemoto</title>
 <meta name="description" content="Proves that the three-element recursive operator converges geometrically to a unique fixed point, and sets out the connections to game theory, logic and engineering with proved results, known results and analogies marked apart.">
 <meta name="robots" content="index, follow">
@@ -384,6 +384,17 @@ header::after {
   margin-top: .2rem; padding-left: .8rem;
   font-size: .76rem; line-height: 1.7; color: var(--faint);
   border-left: 2px solid var(--accent-soft);
+}
+
+/* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
+   表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
+   482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
+   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+.notes-list table, .prose table {
+  display: block; max-width: 100%; overflow-x: auto;
+}
+.notes-list table code, .prose table code {
+  white-space: normal; overflow-wrap: anywhere;
 }
 
 /* 根幹の一段。自己紹介の地の文より少し強く、見出しよりは弱く置く。 */

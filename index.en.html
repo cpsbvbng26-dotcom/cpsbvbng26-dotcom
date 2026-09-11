@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DX0CcxxWJCi+o8eAYRGA/a2kn650lgnENXPs5YjTpJc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -531,6 +531,17 @@ header::after {
   border-left: 2px solid var(--accent-soft);
 }
 
+/* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
+   表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
+   482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
+   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+.notes-list table, .prose table {
+  display: block; max-width: 100%; overflow-x: auto;
+}
+.notes-list table code, .prose table code {
+  white-space: normal; overflow-wrap: anywhere;
+}
+
 /* 根幹の一段。自己紹介の地の文より少し強く、見出しよりは弱く置く。 */
 .profile-core {
   margin: 1rem 0 0; padding: .85rem 1rem;
@@ -1029,7 +1040,7 @@ footer::before {
       </div>
       <div class="fact">
         <dt>34 checks on the register</dt>
-        <dd>The shape and history of the correction record itself. <strong>80 entries</strong> across five statuses, <strong>32 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>64 can be checked by anyone against a frozen artifact; the remaining 16 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
+        <dd>The shape and history of the correction record itself. <strong>81 entries</strong> across five statuses, <strong>32 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>65 can be checked by anyone against a frozen artifact; the remaining 16 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
       </div>
       <div class="fact">
         <dt>31 printed numbers</dt>
@@ -1063,7 +1074,7 @@ footer::before {
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Withdrawn, and unfixable</h2>
-      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (80 entries)&lt;/a&gt;.</p>
+      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (81 entries)&lt;/a&gt;.</p>
     </div>
 
     <div class="facts reveal">
@@ -1176,7 +1187,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">
         <span class="code">Record / MIT</span>
         <h3>self-correction</h3>
-        <p class="issuer">Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted. 80 entries so far. Five statuses only; standing claims must carry a refutation route and unresolvable ones must say why. Identifiers can never be removed: the check walks the git history and fails if any entry that was ever published has since disappeared.</p>
+        <p class="issuer">Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted. 81 entries so far. Five statuses only; standing claims must carry a refutation route and unresolvable ones must say why. Identifiers can never be removed: the check walks the git history and fails if any entry that was ever published has since disappeared.</p>
         <span class="verify">View on GitHub</span>
       </a>
       <a class="cert reveal" href="./trinity.html">

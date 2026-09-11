@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DX0CcxxWJCi+o8eAYRGA/a2kn650lgnENXPs5YjTpJc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-oTGkzOU6xE9xWH2F608qwDxuo66nNpu7JWKAmB7Yu5M=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -531,6 +531,17 @@ header::after {
   border-left: 2px solid var(--accent-soft);
 }
 
+/* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
+   表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
+   482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
+   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+.notes-list table, .prose table {
+  display: block; max-width: 100%; overflow-x: auto;
+}
+.notes-list table code, .prose table code {
+  white-space: normal; overflow-wrap: anywhere;
+}
+
 /* 根幹の一段。自己紹介の地の文より少し強く、見出しよりは弱く置く。 */
 .profile-core {
   margin: 1rem 0 0; padding: .85rem 1rem;
@@ -1028,7 +1039,7 @@ footer::before {
       </div>
       <div class="fact">
         <dt>登録簿 34</dt>
-        <dd>訂正の記録そのものの形と履歴。<strong>80 件</strong>を、いま立っている・未解決・直せない・直した・撤回したの五つに分ける。<strong>うち 32 件はあとからの再構成である</strong>ことも記録に入れ、書いた日は git の履歴と突き合わせる。<strong>第三者が確かめられるのは 64 件で、残る 16 件は著者の証言しか根拠が無い</strong>ことも欄にしてある。いま立っている主張に覆し方が書いてあるか、直せない項目に理由が書いてあるか、そして <strong>過去に一度でも載った項目が消されていないか</strong>（<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>）</dd>
+        <dd>訂正の記録そのものの形と履歴。<strong>81 件</strong>を、いま立っている・未解決・直せない・直した・撤回したの五つに分ける。<strong>うち 32 件はあとからの再構成である</strong>ことも記録に入れ、書いた日は git の履歴と突き合わせる。<strong>第三者が確かめられるのは 65 件で、残る 16 件は著者の証言しか根拠が無い</strong>ことも欄にしてある。いま立っている主張に覆し方が書いてあるか、直せない項目に理由が書いてあるか、そして <strong>過去に一度でも載った項目が消されていないか</strong>（<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>）</dd>
       </div>
       <div class="fact">
         <dt>紙面の数値 31</dt>
@@ -1062,7 +1073,7 @@ footer::before {
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">撤回と、直せなかったこと</h2>
-      <p>改訂で撤回したものと、&lt;b&gt;あとから分かって、もう直せなかったもの&lt;/b&gt;です。&lt;b&gt;消していません。&lt;/b&gt;凍結された PDF は直せないので、直せるのは記録のほうだけです。四つの成果物ぶんの記録は &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;登録簿（80 件）&lt;/a&gt; にあります。</p>
+      <p>改訂で撤回したものと、&lt;b&gt;あとから分かって、もう直せなかったもの&lt;/b&gt;です。&lt;b&gt;消していません。&lt;/b&gt;凍結された PDF は直せないので、直せるのは記録のほうだけです。四つの成果物ぶんの記録は &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;登録簿（81 件）&lt;/a&gt; にあります。</p>
     </div>
 
     <div class="facts reveal">
@@ -1175,7 +1186,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">
         <span class="code">記録 / MIT</span>
         <h3>self-correction</h3>
-        <p class="issuer">自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。いま 80 件。状態は五つに限り、いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。識別子は永久に消せない —— git の履歴を遡って、過去に一度でも載った項目がいまも残っているかを検査する。消したら落ちる。</p>
+        <p class="issuer">自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。いま 81 件。状態は五つに限り、いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。識別子は永久に消せない —— git の履歴を遡って、過去に一度でも載った項目がいまも残っているかを検査する。消したら落ちる。</p>
         <span class="verify">GitHub で見る</span>
       </a>
       <a class="cert reveal" href="./trinity.html">
