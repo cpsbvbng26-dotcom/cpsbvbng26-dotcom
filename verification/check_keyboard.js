@@ -19,6 +19,7 @@
 
 const fs = require('fs');
 const http = require('http');
+const os = require('os');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -48,16 +49,33 @@ function loadPlaywright() {
   return null;
 }
 
+/* playwright が自分で見つけられるなら、それに任せる（CI はそちら）。
+ * この作業環境では版がずれているので、置いてある実行ファイルを直に指す。 */
 function findChromium() {
   if (process.env.PLAYWRIGHT_CHROMIUM) return process.env.PLAYWRIGHT_CHROMIUM;
-  const base = process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/pw-browsers';
-  if (!fs.existsSync(base)) return null;
-  const dirs = fs.readdirSync(base).filter((d) => /^chromium-/.test(d)).sort();
-  for (const d of dirs.reverse()) {
-    const exe = path.join(base, d, 'chrome-linux', 'chrome');
-    if (fs.existsSync(exe)) return exe;
+  const bases = [process.env.PLAYWRIGHT_BROWSERS_PATH, '/opt/pw-browsers',
+                 path.join(os.homedir(), '.cache', 'ms-playwright')].filter(Boolean);
+  for (const base of bases) {
+    if (!fs.existsSync(base)) continue;
+    const dirs = fs.readdirSync(base).filter((d) => /^chromium-/.test(d)).sort().reverse();
+    for (const d of dirs) {
+      const exe = path.join(base, d, 'chrome-linux', 'chrome');
+      if (fs.existsSync(exe)) return exe;
+    }
   }
   return null;
+}
+
+/* 実行ファイルを指しても、指さなくても、とにかく起こす。
+ * **どちらでも駄目なら止まる。**黙って通したことにはしない。 */
+async function launch(pw, exe) {
+  const args = ['--no-sandbox'];
+  if (exe) {
+    try { return { browser: await pw.chromium.launch({ executablePath: exe, args }), exe }; }
+    catch (e) { /* playwright 自身の一式を試す */ }
+  }
+  return { browser: await pw.chromium.launch({ args }),
+           exe: pw.chromium.executablePath() };
 }
 
 /* ------------------------------------------------------------------ *
@@ -141,16 +159,18 @@ async function walk(pg) {
     console.error('走らなかった検査は、通った検査ではない。');
     process.exit(1);
   }
-  const exe = findChromium();
-  if (!exe) {
-    console.error('Chromium が見つからない。この検査は走らなかった。');
-    console.error('PLAYWRIGHT_CHROMIUM に実行ファイルを指すか、PLAYWRIGHT_BROWSERS_PATH を置く。');
+  let browser, exe;
+  try {
+    ({ browser, exe } = await launch(pw, findChromium()));
+  } catch (e) {
+    console.error('Chromium を起こせなかった。この検査は走らなかった。');
+    console.error('PLAYWRIGHT_CHROMIUM に実行ファイルを指すか、playwright install chromium を先に走らせる。');
+    console.error(String(e.message || e).split('\n')[0]);
     process.exit(1);
   }
 
   const server = await serve();
   const port = server.address().port;
-  const browser = await pw.chromium.launch({ executablePath: exe, args: ['--no-sandbox'] });
 
   console.log('キーボードで辿れるか —— Chromium で ' + PAGES.length + ' ページを Tab で辿る\n');
   console.log('  ' + exe);

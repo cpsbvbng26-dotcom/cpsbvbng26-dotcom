@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 119 項目 / サイトの構造 210 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 431 項目 / サイトの構造 531 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,3 +27,24 @@ jobs:
         run: node verification/check_site.js
       - name: 作用素の数値（NumPy の記録との突き合わせ）
         run: node verification/check_trinity.js
+      # 検査そのものを壊して、壊した箇所がちょうど落ちることを確かめる。
+      # 通ることでは信用できないので、ここを最後に置く。
+      - name: 検査そのものを壊して確かめる
+        run: node verification/check_guards.js
+
+  # ブラウザが要る検査は別の仕事にする。**環境の都合で落ちたのか、中身が
+  # 壊れたのかを見分けられなくなる**ので、上の並びには混ぜない。
+  keyboard:
+    name: キーボードで辿れるか 184 項目
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: playwright と Chromium を入れる
+        run: |
+          npm install -g playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Tab で辿って測る
+        run: NODE_PATH="$(npm root -g)" node verification/check_keyboard.js

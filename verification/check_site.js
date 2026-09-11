@@ -1172,6 +1172,52 @@ section('13. 第三者の標章と引用情報');
   ok('CITATION.cff の DOI が README にもある', unknown.length === 0, unknown.join(', '));
 })();
 
+/* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
+ *
+ * **仕事の名前は、いちばん見られていない散文である。**GitHub の画面に毎回出るのに、
+ * 中身を直すときに開く場所ではない。実際、「サイトの構造 210 項目」と名乗ったまま
+ * 検査は 527 項目になっていた。**倍以上ずれていて、誰も気づかない。**
+ * 決めごと 5 —— 散文に数を書いたら、その数を機械で確かめられるようにする。
+ */
+section('10.60 CI の仕事の名前が名乗っている数');
+
+{
+  const yml = read('.github/workflows/verify.yml');
+  const run = (script) => {
+    const r = require('child_process').spawnSync(
+      'node', [path.join(ROOT, 'verification', script)], { cwd: ROOT, encoding: 'utf8' });
+    const m = /(\d+) 件すべて通りました。/.exec(r.stdout || '');
+    return m ? Number(m[1]) : null;
+  };
+  /* check_site.js 自身は呼ばない —— 呼べば自分を無限に呼ぶ。
+   * いまの pass に、この節で足す分を加えたものが総数になる。 */
+  const SELF_REMAINING = 1;   /* 最後の ok() の中で数えるので、残りは自分だけ */
+  const counts = {
+    '配色': run('check_contrast.js'),
+    'サイトの構造': null,      /* 下で自分の数から出す */
+    '作用素': run('check_trinity.js'),
+    'キーボードで辿れるか': null,  /* ブラウザが要るので走らせない。頁数 × 7 + 2 で出す */
+  };
+  counts['キーボードで辿れるか'] = PAGES.length * 7 + 2;
+
+  ok('配色の名乗りが実際と合う',
+     new RegExp('配色 ' + counts['配色'] + ' 項目').test(yml),
+     '実際 ' + counts['配色']);
+  ok('作用素の名乗りが実際と合う',
+     new RegExp('作用素 ' + counts['作用素'] + ' 項目').test(yml),
+     '実際 ' + counts['作用素']);
+  ok('キーボードの名乗りが実際と合う',
+     new RegExp('キーボードで辿れるか ' + counts['キーボードで辿れるか'] + ' 項目').test(yml),
+     '実際 ' + counts['キーボードで辿れるか']);
+  {
+    const m = /サイトの構造 (\d+) 項目/.exec(yml);
+    const total = pass + SELF_REMAINING;
+    ok('サイトの構造の名乗りが実際と合う',
+       m !== null && Number(m[1]) === total,
+       (m ? '名乗り ' + m[1] : '名乗りが無い') + ' / 実際 ' + total);
+  }
+}
+
 /* ------------------------------------------------------------- 結果 */
 console.log('\n' + '-'.repeat(56));
 if (failures.length) {
