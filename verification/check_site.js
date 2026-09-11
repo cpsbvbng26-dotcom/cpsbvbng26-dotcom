@@ -773,7 +773,8 @@ section('10.56 割愛の頁が、方針の変更を隠していないか');
 section('10.57 arXiv の著者識別子');
 
 {
-  const NO = ['arXiv に出した論文は無い', '並ぶ論文は無い'];
+  const NO = ['arXiv に出した論文は無い', '並ぶ論文は無い',
+               'There are no papers to list'];
   const carriers = PAGES.filter((p) => (read(p) || '').indexOf('arxiv.org/a/') >= 0);
   ok('著者識別子を載せている頁がある', carriers.length > 0, carriers.join(', '));
   carriers.forEach((p) => {
@@ -784,6 +785,112 @@ section('10.57 arXiv の著者識別子');
   ok('抜け道ではないと書いてある', v.indexOf('抜け道ではない') >= 0);
   ok('頁の表示を確かめていないと書いてある',
      v.indexOf('作業環境から開けないので確かめていない') >= 0);
+  const ve = read('venues.en.html');
+  ok('英語版も抜け道ではないと書いてある',
+     ve.indexOf('not a way around anything') >= 0);
+  ok('英語版も頁の表示を確かめていないと書いてある',
+     ve.indexOf('has not been confirmed, because it cannot be opened') >= 0);
+}
+
+/* ------------------------------------------------- 10.59 英語版が、日本語版と同じ確度で書いてあるか
+ *
+ * **訳したときに、いちばん先に落ちるのは断りである。**断りは本文より短く、
+ * 論旨に効かないように見えるからである。先祖の頁の守りは、ほとんどが断りで
+ * できている —— 同一性を主張しない、戸籍の写しを出さない、確定できないものを
+ * 書かない、訂正の申し出を受ける。**英語版でそれが一つでも落ちれば、
+ * 守りはそこから崩れる。**
+ *
+ * だから日本語版と同じ数だけ、英語版にも当てる。**片方だけ直すと落ちる。**
+ */
+section('10.59 英語版が、日本語版と同じ確度で書いてあるか');
+
+{
+  const e = read('lineage.en.html');
+  ok('英語の先祖の頁がある', e !== null);
+  ok('根拠を段階に分けている',
+     e.indexOf('What can be said') >= 0 && e.indexOf('<b>Document</b>') >= 0
+     && e.indexOf('Testimony') >= 0 && e.indexOf('This page does not assert it') >= 0);
+  ok('同一性を主張しないと書いてある',
+     e.indexOf('Declining to assert identity is the heaviest reservation on this page') >= 0
+     && (e.match(/This page does not assert it/g) || []).length >= 2);
+  ok('戸籍の写しと本籍を出さないと書いてある',
+     e.indexOf('Copies or transcriptions of the family register, and the registered domicile') >= 0
+     && e.indexOf('What is published stops at the fact that it was consulted') >= 0);
+  ok('存命の人物を挙げていないと書いてある',
+     e.indexOf('No living person is named at all') >= 0);
+  ok('原典の本文と図版を転載していないと書いてある',
+     e.indexOf('Neither text nor images nor page numbers are reproduced') >= 0);
+  ok('原資料の画像を置かないと書いてある',
+     e.indexOf('No image of the source document is posted') >= 0);
+  ok('訂正と削除の申し出先がある',
+     e.indexOf('Requests to correct or remove anything on this page are accepted') >= 0
+     && e.indexOf('it is checked and then corrected or taken down') >= 0
+     && e.indexOf('No reason need be given') >= 0);
+  ok('法的な判断を述べないと書いてある',
+     e.indexOf('This page states no legal conclusion') >= 0);
+  ok('著者の仕事の根拠にしないと書いてある',
+     e.indexOf("This page says nothing about the author's work") >= 0);
+  ok('同名異人の可能性を残している', e.indexOf('The possibility of a namesake') >= 0);
+  ok('別の媒体との差について断りがある',
+     e.indexOf('A different account, in a different medium') >= 0
+     && e.indexOf('That medium cannot be opened from the working environment') >= 0);
+  ok('確度の低いほうへ合わせないと書いてある',
+     e.indexOf('will not be brought down to the weaker grade') >= 0);
+
+  /* 断りの節の外で、公報から確定できないものを断定していないこと。
+   * 日本語版と同じ切り出し方をする。 */
+  const i0 = e.indexOf('id="elsewhere"');
+  const i1 = i0 >= 0 ? e.indexOf('</section>', i0) : -1;
+  const outside = (i0 >= 0 && i1 >= 0) ? e.slice(0, i0) + e.slice(i1) : e;
+  ok('断りの節を切り出せる', i0 >= 0 && i1 > i0);
+  const OVERCLAIM = ['Lieutenant Commander', 'Aikoku Maru', 'chief engineer',
+                     'Commander', 'Captain'];
+  const found = OVERCLAIM.filter((w) => outside.indexOf(w) >= 0);
+  ok('断りの節の外で、公報から確定できないものを断定していない',
+     found.length === 0, found.join(' '));
+
+  /* 割愛の頁。方針の変更を隠していないことを、英語でも留める。 */
+  const w = read('venues.en.html');
+  ok('英語の割愛の頁がある', w !== null);
+  ok('出すことに決めたと書いてある',
+     w.indexOf('<b>On 9 September 2026 the author decided to post it.</b>') >= 0);
+  ok('出さなかった三つの理由を消していない',
+     ['First. An endorsement is required',
+      'Second. What survives contains no new result',
+      'Third. There is no occasion to explain how it came about']
+       .every((x) => w.indexOf(x) >= 0));
+  ok('決定で変わらない理由を名指ししている',
+     w.indexOf('<b>The second has no way to deal with it.</b>') >= 0
+     && w.indexOf('Deciding to post and having a new result are separate') >= 0);
+  ok('却下の見込みを結果より先に書いたと述べている',
+     w.indexOf('The expectation of rejection is written down before the outcome is known') >= 0);
+  ok('通っても新規性の証明にならないと書いてある',
+     w.indexOf('acceptance is not proof') >= 0);
+  ok('どの場も査読ではないと書いてある',
+     w.indexOf('<b>None of these is peer review.</b>') >= 0
+     && w.indexOf('Nor does having a DOI mean anything was peer reviewed') >= 0);
+  ok('規則の記述が未確認であると書いてある',
+     w.indexOf('Every source below was taken from search results') >= 0
+     && w.indexOf('The descriptions of the rules are unconfirmed') >= 0);
+  ok('経緯の置き場を指している',
+     w.indexOf('trinity-infinity/blob/main/ARXIV.md') >= 0);
+
+  /* 日本語版と英語版で、節の数が同じであること。**片方だけ節を足すと落ちる。** */
+  const count = (h) => (h.match(/<section id="/g) || []).length;
+  ok('先祖の頁の節の数が日本語版と同じ',
+     count(e) === count(read('lineage.html')),
+     'en ' + count(e) + ' / ja ' + count(read('lineage.html')));
+  ok('割愛の頁の節の数が日本語版と同じ',
+     count(w) === count(read('venues.html')),
+     'en ' + count(w) + ' / ja ' + count(read('venues.html')));
+
+  /* 互いへの導線。**片方からしか行けないと、片方は読まれない。** */
+  ok('日本語の先祖の頁から英語版へ行ける', read('lineage.html').indexOf('./lineage.en.html') >= 0);
+  ok('英語の先祖の頁から日本語版へ行ける', e.indexOf('./lineage.html') >= 0);
+  ok('日本語の割愛の頁から英語版へ行ける', read('venues.html').indexOf('./venues.en.html') >= 0);
+  ok('英語の割愛の頁から日本語版へ行ける', w.indexOf('./venues.html') >= 0);
+  ok('英語のトップから英語の先祖の頁へ行ける',
+     read('index.en.html').indexOf('./lineage.en.html') >= 0);
 }
 
 /* ------------------------------------------------- 10.58 キーボードで辿れるか

@@ -147,6 +147,24 @@ const CASES = [
   ['見出しの階層を飛ばすと落ちる', 'research.html',
    swap('<h2 class="serif">リンク</h2>', '<h4 class="serif">リンク</h4>'),
    'check_site.js', '見出しが階層を飛ばさない'],
+
+  /* 英語版のほうだけを緩めても落ちること。**訳で断りが落ちるのがいちばん起きやすい。** */
+
+  ['英語の先祖の頁から、同一性の断りを消すと落ちる', 'lineage.en.html',
+   swap('Declining to assert identity is the heaviest reservation on this page', '(removed)'),
+   'check_site.js', '同一性を主張しないと書いてある'],
+
+  ['英語の先祖の頁が、断りの外で階級を断定すると落ちる', 'lineage.en.html',
+   swap('<b>Lieutenant Otani Tsune</b>', '<b>Lieutenant Commander Otani Tsune</b>'),
+   'check_site.js', '公報から確定できないものを断定していない'],
+
+  ['英語の割愛の頁から、出さなかった理由を消すと落ちる', 'venues.en.html',
+   swap('Second. What survives contains no new result', '(removed)'),
+   'check_site.js', '出さなかった三つの理由を消していない'],
+
+  ['英語版の節の数が日本語版とずれると落ちる', 'lineage.en.html',
+   swap('<section id="limits"', '<div id="limits"'),
+   'check_site.js', '節の数が日本語版と同じ'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {

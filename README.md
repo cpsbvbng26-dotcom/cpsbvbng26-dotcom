@@ -215,12 +215,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 680 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1048 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 119 項目
-node verification/check_site.js      # サイトの構造 471 項目
+node verification/check_contrast.js  # 配色の読みやすさ 431 項目
+node verification/check_site.js      # サイトの構造 527 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -229,10 +229,10 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 Chromium を起こして測る。playwright と Chromium が要るので、上の並びには入れていない。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 170 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 184 項目（要: Chromium）
 ```
 
-24 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+26 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見る。**道具が無ければ 1 を返して止まる。**
 走らなかった検査は、通った検査ではない。
 
@@ -241,11 +241,11 @@ node verification/check_keyboard.js  # Tab で辿って測る 170 項目（要: 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 20 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 24 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 16 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 20 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、

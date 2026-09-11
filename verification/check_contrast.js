@@ -16,8 +16,11 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'index.en.html', 'cv.html', 'research.html',
-               'trinity.html', 'notes/index.html', 'notes/index.en.html'];
+/* **一覧は pages.json からにする。**ここに 7 ページをベタ書きしていたため、
+ * あとから足した割愛の頁も先祖の頁も論文の頁も測っていなかった。
+ * 同じ作りが check_site.js の 10.53 にもあり、そちらでは JS 無しで本文が
+ * 出ない版が論文の 14 頁に残り続けた。**ベタ書きの一覧は、足した頁を必ず取りこぼす。** */
+const PAGES = require('./pages.json').pages.map((p) => p.file);
 
 let pass = 0;
 const failures = [];
