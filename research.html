@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-UlgLZhelXrJUXL/9v8feByheiaf8piusprhjCE42mCc=' 'sha256-F2on0ZpMkQizc5jQhas+TLUfEpMhkgdFPY7lJnP+wPU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-npmoMMnaTTKkUYa2g1WOlDFpiQvN0U3fbNxcK4Mt8hs=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-nRend436xXYrdJav0DpXWTggT6slqwXkSHkij5LJlls=' 'sha256-F2on0ZpMkQizc5jQhas+TLUfEpMhkgdFPY7lJnP+wPU='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>研究ブログ | 根本卓哉</title>
 <meta name="description" content="根本卓哉（Takuya Nemoto）の研究ブログ。researchmap で公開している記事への入口です。">
 <meta name="robots" content="index, follow">
@@ -140,13 +140,18 @@ header::after {
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-top: 1rem; padding-bottom: 1rem;
+  /* **折り返しは、狭い画面だけの話ではない。**節の多い頁では、1440px でも
+     ナビが横幅を押し広げ、頁ごと横スクロールしていた。 */
+  flex-wrap: wrap; row-gap: .5rem;
 }
 .mark {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
   text-decoration: none;
 }
-.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav { display: flex; align-items: center; gap: 1.5rem;
+       flex-wrap: wrap; row-gap: .55rem; justify-content: flex-end;
+       min-width: 0; }
 .nav a {
   font-size: .82rem; color: var(--muted); text-decoration: none;
   letter-spacing: .04em; white-space: nowrap;
