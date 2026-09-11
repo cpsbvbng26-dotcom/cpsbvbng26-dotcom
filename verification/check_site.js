@@ -889,6 +889,28 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
   ok('経緯の置き場を指している',
      w.indexOf('trinity-infinity/blob/main/ARXIV.md') >= 0);
 
+  /* **基準を通ったことと、分野が受理したことは別である。**
+   * PhilArchive は「専門職の水準」を明文にしているが、同じ運営者が 2017年に
+   * 「査読はしない」と書いている。**片方だけを引けば、強くも弱くもできる。**
+   * 両方が載っていること、三段の切り分けが残っていることを留める。 */
+  const v2 = read('venues.html');
+  ok('運営者が査読しないと書いていることを載せている',
+     v2.indexOf('査読されない') >= 0
+     && v2.indexOf('質と関連性の最小限の基準') >= 0);
+  ok('英語版も運営者の言葉を載せている',
+     w.indexOf('not peer reviewed') >= 0
+     && w.indexOf('minimal standards of quality and relevance') >= 0);
+  ok('三段を分けている',
+     v2.indexOf('基準を通ったことは、分野が専門職の仕事として受理したことではない') >= 0
+     && v2.indexOf('professional author') >= 0);
+  ok('英語版も三段を分けている',
+     w.indexOf('not the field accepting the work as professional work') >= 0
+     && w.indexOf('professional author') >= 0);
+  /* **確かめられなかったことを、確かめたことにしない。** */
+  ok('投稿の引き金を断定していない',
+     v2.indexOf('順序を断定しない') >= 0
+     && w.indexOf('The order is not asserted here') >= 0);
+
   /* 日本語版と英語版で、節の数が同じであること。**片方だけ節を足すと落ちる。** */
   const count = (h) => (h.match(/<section id="/g) || []).length;
   ok('先祖の頁の節の数が日本語版と同じ',

@@ -185,6 +185,15 @@ const CASES = [
   ['学部学科を確かめずに英語へ置き換えると落ちる', 'index.en.html',
    swap('知能情報社会学部 知能情報社会学科', 'Faculty of Social Informatics'),
    'check_site.js', '学部学科が日本語のまま出ている'],
+
+  ['運営者が査読しないと書いている箇所を消すと落ちる', 'venues.html',
+   swap('質と関連性の最小限の基準', '一定の基準'),
+   'check_site.js', '運営者が査読しないと書いていることを載せている'],
+
+  ['基準を通ったことを受理まで伸ばすと落ちる', 'venues.html',
+   swap('基準を通ったことは、分野が専門職の仕事として受理したことではない',
+        '基準を通っており、分野が専門職の仕事として受理している'),
+   'check_site.js', '三段を分けている'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
