@@ -818,6 +818,22 @@ section('10.62 訳した頁が、訳だと名乗っているか');
        h.indexOf(reached) >= 0 && h.indexOf('professional quality') >= 0);
   });
 
+  /* **訳した頁は、短くてよい。だが載せる所在を削ってよいことにはならない。**
+   * 日本語の頁が並べている DOI と PhilArchive の記号を、三言語も同じだけ並べる。
+   * 片方にだけ番号が増えると、訳がいつの間にか古い一覧になる。 */
+  {
+    const ja = read('index.html');
+    const ID = /10\.5281\/zenodo\.\d+|10\.2139\/ssrn\.\d+|philarchive\.org\/rec\/[A-Z]+/g;
+    const want = [...new Set(ja.match(ID) || [])].sort();
+    ok('日本語の頁から所在が取れる', want.length > 0, want.length + ' 種');
+    ['index.de.html', 'index.fr.html', 'index.it.html'].forEach((f) => {
+      const got = new Set(read(f).match(ID) || []);
+      const missing = want.filter((d) => !got.has(d));
+      ok(f + ' が日本語と同じ所在を並べている', missing.length === 0,
+         missing.length ? ('足りない: ' + missing.join(', ')) : (want.length + ' 種すべて'));
+    });
+  }
+
   /* 日本語と英語から、三つへ辿れること。**辿れない頁は無いのと同じである。** */
   ['index.html', 'index.en.html'].forEach((f) => {
     const h = read(f);
