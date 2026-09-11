@@ -1079,6 +1079,20 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
    * 三つのうち一つでも消えたら落ちる。 */
   {
     const ja = read('index.html'), en = read('index.en.html');
+    /* **大学の単位は独学ではない。**この段のすぐ下に単位の表が並ぶので、
+     * 断らなければ、授業で得た単位まで独学の成果として読まれる。
+     * 頁と README の両方に当てる —— README は表も同じ並びで出る。 */
+    ok('大学の単位が独学ではないと書いてある',
+       ja.indexOf('ただし、大学の単位は独学ではない') >= 0
+       && ja.indexOf('授業を受け、課題を出し、評価を受けて得たものである') >= 0
+       && ja.indexOf('独学と言語モデルの話は、その外にある') >= 0);
+    ok('英語版も大学の単位が独学ではないと書いてある',
+       en.indexOf('The university credits, though, are not\nself-study') >= 0
+       || /The university credits, though, are not\s+self-study/.test(en));
+    ok('GitHub のプロフィールにも単位の断りがある',
+       read('README.md').indexOf('ただし、大学の単位は独学ではない') >= 0
+       && /The university credits, though, are not\s+self-study/.test(read('README.en.md')));
+
     ok('自己紹介に通過基準が具体に書いてある',
        ja.indexOf('通した基準は、明文で次のとおりである') >= 0
        && ja.indexOf("part of the world-wide scholarly discourse") >= 0
