@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ugQ8M1W7IFsmFcIwHNZdVfnIXczHS4O2ZkqzFVNWaHw=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-pgtlHVtwCBv6BUu0gIhYLYtnuQFiMA9ebOHD4pj2ID0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ugQ8M1W7IFsmFcIwHNZdVfnIXczHS4O2ZkqzFVNWaHw=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Vs/wW915ugFlqd49Acp2fc8i/LAWIgByRDXufb2AFLo='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Ancestors in the public record — a great-great-grandfather and a great-grandfather | Takuya Nemoto</title>
 <meta name="description" content="Ancestors for whom a public record survives, listed with identifiers from the National Diet Library Digital Collections and the Japan Center for Asian Historical Records. It has no bearing on whether the author’s work is correct. What has not been checked is stated as such.">
 <meta name="robots" content="index, follow">
@@ -159,13 +159,19 @@ header::after {
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-top: 1rem; padding-bottom: 1rem;
+  /* **折り返しは、狭い画面だけの話ではない。**節の多い頁では、1440px でも
+     ナビが横幅を 776px 押し広げ、頁ごと横スクロールしていた。
+     折り返さない作りは、項目が増えた分だけ黙って壊れる。 */
+  flex-wrap: wrap; row-gap: .5rem;
 }
 .mark {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
   text-decoration: none;
 }
-.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav { display: flex; align-items: center; gap: 1.5rem;
+       flex-wrap: wrap; row-gap: .55rem; justify-content: flex-end;
+       min-width: 0; }
 .nav a {
   font-size: .82rem; color: var(--muted); text-decoration: none;
   letter-spacing: .04em; white-space: nowrap;
@@ -727,11 +733,11 @@ footer::before {
     <nav class="nav">
       <a href="#stance">What this page is</a>
       <a href="#list">The list</a>
-      <a href="#nemoto">Nemoto Kaichiro — great-great-grandfather</a>
-      <a href="#otani">Otani Tsune — great-grandfather</a>
-      <a href="#elsewhere">A different account, in a different medium</a>
-      <a href="#legal">On legal matters</a>
-      <a href="#limits">What has not been checked</a>
+      <a href="#nemoto">Nemoto Kaichiro</a>
+      <a href="#otani">Otani Tsune</a>
+      <a href="#elsewhere">Another account</a>
+      <a href="#legal">Legal</a>
+      <a href="#limits">Not checked</a>
       <a href="./index.en.html">Back to the core</a>
       <a href="./trinity.html">Operator</a>
       <a href="./cv.html">CV</a>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-bIEwgxGraeUnwuIxxKUyN00+gf/eRA3f94CAjLCxLy4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-pgtlHVtwCBv6BUu0gIhYLYtnuQFiMA9ebOHD4pj2ID0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-bIEwgxGraeUnwuIxxKUyN00+gf/eRA3f94CAjLCxLy4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Vs/wW915ugFlqd49Acp2fc8i/LAWIgByRDXufb2AFLo='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Fragmentarian Spiritual Individualism | Takuya Nemoto</title>
 <meta name="description" content="Treats life, faith, society, thought and finitude as discrete fragments rather than one continuous story, and builds a discipline for inhabiting fragmentation rather than repairing it.">
 <meta name="robots" content="index, follow">
@@ -191,13 +191,19 @@ header::after {
 .head-row {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-top: 1rem; padding-bottom: 1rem;
+  /* **折り返しは、狭い画面だけの話ではない。**節の多い頁では、1440px でも
+     ナビが横幅を 776px 押し広げ、頁ごと横スクロールしていた。
+     折り返さない作りは、項目が増えた分だけ黙って壊れる。 */
+  flex-wrap: wrap; row-gap: .5rem;
 }
 .mark {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.05rem; letter-spacing: .16em; color: var(--accent);
   text-decoration: none;
 }
-.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav { display: flex; align-items: center; gap: 1.5rem;
+       flex-wrap: wrap; row-gap: .55rem; justify-content: flex-end;
+       min-width: 0; }
 .nav a {
   font-size: .82rem; color: var(--muted); text-decoration: none;
   letter-spacing: .04em; white-space: nowrap;
