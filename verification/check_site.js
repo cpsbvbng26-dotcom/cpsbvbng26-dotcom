@@ -743,6 +743,47 @@ section('10.59 自己紹介が名乗っていること');
      ev.indexOf('〔氏名を伏せた一名〕') >= 0 && ev.indexOf('小島') < 0);
 }
 
+/* ------------------------------------------------- 10.62 訳した頁が、訳だと名乗っているか
+ *
+ * **ドイツ語・フランス語・イタリア語の頁は、言語モデルで訳したものである。**
+ * 日本語と英語より短く、そこで新たに確かめたものは一つも無い。
+ * **訳であることが消えれば、原文と同じ重さで読まれる。**
+ */
+section('10.62 訳した頁が、訳だと名乗っているか');
+
+{
+  const TR = [
+    ['index.de.html', 'de', 'Diese Seite ist eine Übersetzung, angefertigt mit einem Sprachmodell',
+     'Maßgeblich sind die japanische und die englische Seite'],
+    ['index.fr.html', 'fr', 'Cette page est une traduction, réalisée avec un modèle de langue',
+     'Ce sont les pages japonaise et anglaise'],
+    ['index.it.html', 'it', 'Questa pagina è una traduzione, realizzata con un modello linguistico',
+     'Fanno fede le pagine giapponese e inglese'],
+  ];
+  TR.forEach(([f, lang, made, source]) => {
+    const h = read(f);
+    ok(f + ' の lang が ' + lang, new RegExp('<html lang="' + lang + '"').test(h));
+    ok(f + ' が言語モデルで訳したと書いている', h.indexOf(made) >= 0);
+    ok(f + ' が日本語と英語を正としている', h.indexOf(source) >= 0);
+    /* **数は、日本語の README が名乗っているものと同じでなければならない。** */
+    const rm = read('README.md');
+    const checks = /push のたびに (\d+) 項目の検査を通す/.exec(rm);
+    const reg = /「登録簿 (\d+) 件」/.exec(rm);
+    ok(f + ' の検査の数が README と合う',
+       checks !== null && h.indexOf('>' + checks[1] + ' ') >= 0,
+       checks ? checks[1] : '名乗りが無い');
+    ok(f + ' の登録簿の数が README と合う',
+       reg !== null && h.indexOf('>' + reg[1] + ' ') >= 0,
+       reg ? reg[1] : '名乗りが無い');
+  });
+  /* 日本語と英語から、三つへ辿れること。**辿れない頁は無いのと同じである。** */
+  ['index.html', 'index.en.html'].forEach((f) => {
+    const h = read(f);
+    ok(f + ' から三つの言語へ辿れる',
+       ['./index.de.html', './index.fr.html', './index.it.html'].every((u) => h.indexOf(u) >= 0));
+  });
+}
+
 /* ------------------------------------------------- 10.58 キーボードで辿れるか
  *
  * **見えないものに焦点を当てない。**Chromium で 14 ページを Tab で辿ったところ、

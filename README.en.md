@@ -214,12 +214,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 890 checks.** There are no dependencies to install.
+**Every push runs 991 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 363 checks
-node verification/check_site.js      # site structure, 437 checks
+node verification/check_contrast.js  # colour contrast, 414 checks
+node verification/check_site.js      # site structure, 487 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -229,10 +229,10 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 244 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 277 checks (needs Chromium)
 ```
 
-It tabs through 22 pages and looks for focus traps, elements that receive focus while
+It tabs through 25 pages and looks for focus traps, elements that receive focus while
 still transparent, elements with no focus ring, elements with no size, and a tab order
 that diverges from reading order. **If the tools are absent it exits 1.** A check that
 did not run is not a check that passed.

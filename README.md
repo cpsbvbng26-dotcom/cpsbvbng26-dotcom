@@ -223,12 +223,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 890 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 991 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 363 項目
-node verification/check_site.js      # サイトの構造 437 項目
+node verification/check_contrast.js  # 配色の読みやすさ 414 項目
+node verification/check_site.js      # サイトの構造 487 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -237,10 +237,10 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 Chromium を起こして測る。playwright と Chromium が要るので、上の並びには入れていない。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 244 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 277 項目（要: Chromium）
 ```
 
-22 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+25 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見る。**道具が無ければ 1 を返して止まる。**
 走らなかった検査は、通った検査ではない。
 
