@@ -68,6 +68,16 @@ Zenodo に到達できるようになったら、次のどちらかにする。
 | --- | --- | --- |
 | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA` |
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI` |
+| Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
+
+## 第三者の SSRN DOI
+
+著者のものではない。引用している他人の論文である。**書き換えない。**
+
+| DOI | 文献 | 所在 |
+| --- | --- | --- |
+| `10.2139/ssrn.2477899` | Barocas & Selbst, "Big Data's Disparate Impact" (2016) | `justice-and-algorithms/docs/issues/disparate-impact.md` |
+| `10.2139/ssrn.3063289` | Wachter, Mittelstadt & Russell, "Counterfactual Explanations without Opening the Black Box" (2018) | `justice-and-algorithms/docs/issues/explainability.md` |
 
 ## 実在しない番号
 

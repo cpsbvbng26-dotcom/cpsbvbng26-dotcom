@@ -134,7 +134,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 | [Fragmentarian Spiritual Individualism](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/fragmentarian-spiritual-individualism.md) | 断片化を修復すべき傷とみなさず、そこに住まうための規律を組み立てる | 2026年8月 | [10.5281/zenodo.22064241](https://doi.org/10.5281/zenodo.22064241)<br>PhilArchive [NEMFSI](https://philarchive.org/rec/NEMFSI) |
 | [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709)<br>Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
 | [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示す。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
-| [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777) |
+| [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
 > **Series I についての注記。** Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。**撤回した内容は消していない。**
@@ -250,7 +250,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 277 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 225 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 
