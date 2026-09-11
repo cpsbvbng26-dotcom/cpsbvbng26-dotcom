@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Vs/wW915ugFlqd49Acp2fc8i/LAWIgByRDXufb2AFLo='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-sgGiAAM1awJVSxv0m+xfQIC8gPNVZ8QiCDBUOIgPE+o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -531,6 +531,17 @@ header::after {
   border-left: 2px solid var(--accent-soft);
 }
 
+/* 科目名についての断り。**訳を公式名のように見せない。**
+   本文より小さくするが、薄くはしない —— 読み飛ばされると断りにならない。 */
+.path-caveat {
+  margin: 1rem 0 0; padding: .7rem .9rem;
+  font-size: .8rem; line-height: 1.85; color: var(--muted);
+  background: var(--accent-wash);
+  border-left: 2px solid var(--accent);
+  border-radius: .3rem;
+}
+.path-caveat b { color: var(--text); }
+
 /* これからの二つ。数ではなく並びで見せる。 */
 .aims-label { margin: 1.5rem 0 .6rem; }
 .aims { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
@@ -940,6 +951,7 @@ footer::before {
       <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span><span class="path-note">1 course, 2 credits (as of 9 September 2026)</span><ul class="path-courses"><li data-category="in-person session" data-credits="2">Instructional Design (仕事の上手な教え方)<i>in-person session</i></li></ul></li>
       <li class="path-now"><span class="path-name">ZEN University — 知能情報社会学部 知能情報社会学科</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)</span><ul class="path-courses"><li data-category="required" data-credits="2">Introduction to the Humanities and Social Sciences<i>required</i></li><li data-category="required" data-credits="2">IT Literacy<i>required</i></li><li data-category="required" data-credits="2">Academic Literacy<i>required</i></li><li data-category="required" data-credits="2">Using Digital Tools<i>required</i></li><li data-category="required" data-credits="2">Multilingual IT Communication<i>required</i></li><li data-category="required" data-credits="2">Applied Practice in Artificial Intelligence<i>required</i></li><li data-category="required" data-credits="2">Introduction to Economics<i>required</i></li><li data-category="required elective" data-credits="2">Introduction to Information Security<i>required elective</i></li><li data-category="required elective" data-credits="2">History of Mathematics<i>required elective</i></li><li data-category="elective" data-credits="2">Introduction to Publishing on the Internet<i>elective</i></li><li data-category="elective" data-credits="2">Internet Culture through the History of Derivative Works<i>elective</i></li></ul></li>
       </ol>
+      <p class="path-caveat">The English course titles below are <b>unofficial translations, not the university's own</b>. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty and department are left in Japanese for the same reason.</p>
       <p class="aims-label">Two aims</p>
       <ul class="aims">
       <li>To take over the business my father is planning to found</li>

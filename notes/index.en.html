@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-Vs/wW915ugFlqd49Acp2fc8i/LAWIgByRDXufb2AFLo='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-sgGiAAM1awJVSxv0m+xfQIC8gPNVZ8QiCDBUOIgPE+o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Notes | Takuya Nemoto</title>
 <meta name="description" content="What is not on the front page: three papers in philosophy, a naval gazette source note, and repositories outside the core. Moved here, not deleted.">
 <meta name="robots" content="index, follow">
@@ -524,6 +524,17 @@ header::after {
   font-size: .76rem; line-height: 1.7; color: var(--faint);
   border-left: 2px solid var(--accent-soft);
 }
+
+/* 科目名についての断り。**訳を公式名のように見せない。**
+   本文より小さくするが、薄くはしない —— 読み飛ばされると断りにならない。 */
+.path-caveat {
+  margin: 1rem 0 0; padding: .7rem .9rem;
+  font-size: .8rem; line-height: 1.85; color: var(--muted);
+  background: var(--accent-wash);
+  border-left: 2px solid var(--accent);
+  border-radius: .3rem;
+}
+.path-caveat b { color: var(--text); }
 
 /* これからの二つ。数ではなく並びで見せる。 */
 .aims-label { margin: 1.5rem 0 .6rem; }
