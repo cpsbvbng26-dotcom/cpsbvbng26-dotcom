@@ -148,6 +148,16 @@ const CASES = [
    swap('are reported to use', 'use'),
    'check_site.js', '学部名の出所を断っている'],
 
+  /* **Claude と名指ししたまま、特定できない断りだけを消す。**
+   * 三篇まで Claude が書いたように読める形になる。 */
+  ['道具の名前だけ残して断りを消すと落ちる', 'index.html',
+   swap('<b>ただし、哲学三篇に何を使ったかは特定できない</b>', '<b>三篇も同じである</b>'),
+   'check_site.js', '三篇の道具は特定できないと、同じ段に書いてある'],
+
+  ['訳した頁から明文の水準への指しを消すと落ちる', 'index.de.html',
+   swap(' Der im Wortlaut festgehaltene Maßstab ist der oben genannte.', ''),
+   'check_site.js', '明文の水準を指している'],
+
   ['根幹の一段から限界を外すと落ちる', 'index.html',
    swap('通ったのは受け付けの門であって査読ではなく', '査読を受けており'),
    'check_site.js', '自己紹介に導けないものが書いてある'],

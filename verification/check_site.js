@@ -737,6 +737,24 @@ section('10.59 自己紹介が名乗っていること');
      && rj.indexOf('そこから導ける到達点は、はっきりしている') >= 0
      && rj.indexOf('そこから導けないものも、はっきりしている') >= 0);
 
+  /* **道具の名前を一つに絞れるのは、こちら側だけである。**
+   * サイト・検査・記録は Claude（Anthropic）で作っており、git の履歴が証拠になる。
+   * 哲学三篇に何を使ったかは特定できない（三篇の正誤表 E5）。
+   * **名前だけが残って、その断りが消える形を止める。** */
+  ok('この場所が Claude を使っていると書いてある',
+     ja.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
+     && ja.indexOf('Co-Authored-By: Claude Opus 5') >= 0);
+  ok('三篇の道具は特定できないと、同じ段に書いてある',
+     ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
+     && ja.indexOf('道具の名前を一つに絞れるのは、こちら側だけである') >= 0);
+  ok('英語版も同じ二つを書いてある',
+     en.indexOf('This site itself is built with Claude, by Anthropic') >= 0
+     && en.indexOf('cannot be identified') >= 0
+     && en.indexOf('Only on this side can the tool be named') >= 0);
+  ok('GitHub のプロフィールにも同じ二つがある',
+     rj.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
+     && rj.indexOf('哲学三篇に何を使ったかは特定できない') >= 0);
+
   /* 外部の点検の引用に、第三者の氏名が残っていないこと。 */
   const ev = read('docs/external-evaluations.md');
   ok('外部の点検の引用で、第三者の氏名を伏せてある',
@@ -776,6 +794,19 @@ section('10.62 訳した頁が、訳だと名乗っているか');
        reg !== null && h.indexOf('>' + reg[1] + ' ') >= 0,
        reg ? reg[1] : '名乗りが無い');
   });
+  /* 三言語の側も、名前と断りを対で持つこと。**片方だけを訳さない。** */
+  [['index.de.html', 'mit Claude von Anthropic gebaut', 'lässt sich dagegen nicht bestimmen',
+    'Maßstab ist der oben genannte'],
+   ['index.fr.html', 'construite avec Claude, d’Anthropic', 'ne peuvent être identifiés',
+    'critère énoncé est celui cité plus haut'],
+   ['index.it.html', 'costruita con Claude, di Anthropic', 'non è invece determinabile',
+    'criterio enunciato è quello citato sopra']].forEach(([f, named, caveat, standard]) => {
+    const h = read(f);
+    ok(f + ' が Claude を名指ししている', h.indexOf(named) >= 0);
+    ok(f + ' が三篇の道具は特定できないと添えている', h.indexOf(caveat) >= 0);
+    ok(f + ' が明文の水準を指している', h.indexOf(standard) >= 0);
+  });
+
   /* 日本語と英語から、三つへ辿れること。**辿れない頁は無いのと同じである。** */
   ['index.html', 'index.en.html'].forEach((f) => {
     const h = read(f);
