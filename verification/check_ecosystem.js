@@ -205,6 +205,48 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* SSRN の DOI も同じ扱いにする。Zenodo と違い、番号は SSRN が発行し、
+ * 著者が読み取って渡す。**実在は確かめない**（この環境から届かない）。
+ * 確かめるのは、写した番号がリポジトリ間でずれていないことだけである。
+ * 一箇所だけ直して他を直し忘れると、ここで落ちる。 */
+
+{
+  const DOI = /10\.2139\/ssrn\.\d+/g;
+  const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
+                        '__pycache__', 'assets', 'data']);
+  const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
+
+  function scan(dir, out) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (SKIP.has(e.name)) continue;
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { scan(full, out); continue; }
+      if (!EXT.includes(path.extname(e.name))) continue;
+      for (const d of fs.readFileSync(full, 'utf8').match(DOI) || []) out.add(d);
+    }
+  }
+
+  const INDEX = path.join('docs', 'doi-index.md');
+  const index = read('cpsbvbng26-dotcom', INDEX);
+  const listed = new Set(index === null ? [] : index.match(DOI) || []);
+
+  const found = new Set();
+  for (const repo of C.repos) {
+    const dir = path.join(ROOT, repo);
+    if (fs.existsSync(dir)) scan(dir, found);
+  }
+
+  const missing = [...found].filter((d) => !listed.has(d)).sort();
+  const orphan = [...listed].filter((d) => !found.has(d)).sort();
+
+  check('出てくる SSRN の番号が、すべて一覧に載っている',
+    index !== null && missing.length === 0,
+    missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
+  check('一覧の SSRN の番号が、すべてどこかに出てくる',
+    index !== null && orphan.length === 0,
+    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
+}
+
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
 
