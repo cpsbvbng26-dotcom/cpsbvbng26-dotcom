@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uFsPQLEY/2eA/3+Ry5Z9nc93CzGvs/ZEP07CtqmT4JY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-sgGiAAM1awJVSxv0m+xfQIC8gPNVZ8QiCDBUOIgPE+o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uFsPQLEY/2eA/3+Ry5Z9nc93CzGvs/ZEP07CtqmT4JY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DX0CcxxWJCi+o8eAYRGA/a2kn650lgnENXPs5YjTpJc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>先祖の公的記録 —— 高祖父と曾祖父 | 根本卓哉</title>
 <meta name="description" content="公的な記録が残っている先祖を、国立国会図書館デジタルコレクションとアジア歴史資料センターの識別子つきで並べる。著者の仕事の正しさとは関係が無い。確かめていないことも書く。">
 <meta name="robots" content="index, follow">
@@ -354,6 +354,16 @@ header::after {
   font-size: .76rem; line-height: 1.7; color: var(--faint);
   border-left: 2px solid var(--accent-soft);
 }
+
+/* 根幹の一段。自己紹介の地の文より少し強く、見出しよりは弱く置く。 */
+.profile-core {
+  margin: 1rem 0 0; padding: .85rem 1rem;
+  font-size: .9rem; line-height: 1.95; color: var(--text);
+  background: var(--accent-wash);
+  border-left: 2px solid var(--accent);
+  border-radius: .3rem;
+}
+.profile-core a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
 
 /* 科目名についての断り。**訳を公式名のように見せない。**
    本文より小さくするが、薄くはしない —— 読み飛ばされると断りにならない。 */

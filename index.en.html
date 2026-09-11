@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-sgGiAAM1awJVSxv0m+xfQIC8gPNVZ8QiCDBUOIgPE+o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WEOmKtumjcYi+AB+1ZVby0vISDNahyZf8mp9XzaUqs4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-DX0CcxxWJCi+o8eAYRGA/a2kn650lgnENXPs5YjTpJc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -531,6 +531,16 @@ header::after {
   border-left: 2px solid var(--accent-soft);
 }
 
+/* 根幹の一段。自己紹介の地の文より少し強く、見出しよりは弱く置く。 */
+.profile-core {
+  margin: 1rem 0 0; padding: .85rem 1rem;
+  font-size: .9rem; line-height: 1.95; color: var(--text);
+  background: var(--accent-wash);
+  border-left: 2px solid var(--accent);
+  border-radius: .3rem;
+}
+.profile-core a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+
 /* 科目名についての断り。**訳を公式名のように見せない。**
    本文より小さくするが、薄くはしない —— 読み飛ばされると断りにならない。 */
 .path-caveat {
@@ -943,15 +953,16 @@ footer::before {
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
     <div class="profile reveal">
       <h2 class="profile-label">About me</h2>
-      <p class="profile-now">I am enrolled at ZEN University — 知能情報社会学部 知能情報社会学科 — in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
+      <p class="profile-now">I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
       <p class="profile-now profile-study">My coursework is mainly <strong>philosophy</strong> and <strong>business practice</strong>. <strong>Mathematics</strong> is on offer as well. The courses I have credit for are listed in the <a href="./cv.html">CV</a> (in Japanese). What this place holds is my study of computer science and artificial intelligence.</p>
+      <p class="profile-core"><b>What is here rests on self-study and on working with language models.</b> There was no supervisor and no collaborator. Three papers in philosophy are on PhilArchive; two of them passed SSRN's editorial screening. <b>Exactly which bar that clears is set out, in the venues' own wording, on <a href="./venues.en.html">the venues page</a></b> — what was passed is a gate on acceptance, not peer review, and one of the three passed no gate at all.</p>
       <ol class="path">
       <li><span class="path-name">Tochigi Prefectural Tochigi High School</span><span class="path-state">left partway through</span></li>
       <li><span class="path-name">Upper Secondary School Equivalency Examination</span><span class="path-state">passed</span></li>
       <li><span class="path-name">Jiyugaoka Sanno College, Business Management course</span><span class="path-state">two years, then withdrew</span><span class="path-note">1 course, 2 credits (as of 9 September 2026)</span><ul class="path-courses"><li data-category="in-person session" data-credits="2">Instructional Design (仕事の上手な教え方)<i>in-person session</i></li></ul></li>
-      <li class="path-now"><span class="path-name">ZEN University — 知能情報社会学部 知能情報社会学科</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)</span><ul class="path-courses"><li data-category="required" data-credits="2">Introduction to the Humanities and Social Sciences<i>required</i></li><li data-category="required" data-credits="2">IT Literacy<i>required</i></li><li data-category="required" data-credits="2">Academic Literacy<i>required</i></li><li data-category="required" data-credits="2">Using Digital Tools<i>required</i></li><li data-category="required" data-credits="2">Multilingual IT Communication<i>required</i></li><li data-category="required" data-credits="2">Applied Practice in Artificial Intelligence<i>required</i></li><li data-category="required" data-credits="2">Introduction to Economics<i>required</i></li><li data-category="required elective" data-credits="2">Introduction to Information Security<i>required elective</i></li><li data-category="required elective" data-credits="2">History of Mathematics<i>required elective</i></li><li data-category="elective" data-credits="2">Introduction to Publishing on the Internet<i>elective</i></li><li data-category="elective" data-credits="2">Internet Culture through the History of Derivative Works<i>elective</i></li></ul></li>
+      <li class="path-now"><span class="path-name">ZEN University, Faculty of Social Informatics</span><span class="path-state">enrolled (first autumn-entry cohort)</span><span class="path-note">11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)</span><ul class="path-courses"><li data-category="required" data-credits="2">Introduction to the Humanities and Social Sciences<i>required</i></li><li data-category="required" data-credits="2">IT Literacy<i>required</i></li><li data-category="required" data-credits="2">Academic Literacy<i>required</i></li><li data-category="required" data-credits="2">Using Digital Tools<i>required</i></li><li data-category="required" data-credits="2">Multilingual IT Communication<i>required</i></li><li data-category="required" data-credits="2">Applied Practice in Artificial Intelligence<i>required</i></li><li data-category="required" data-credits="2">Introduction to Economics<i>required</i></li><li data-category="required elective" data-credits="2">Introduction to Information Security<i>required elective</i></li><li data-category="required elective" data-credits="2">History of Mathematics<i>required elective</i></li><li data-category="elective" data-credits="2">Introduction to Publishing on the Internet<i>elective</i></li><li data-category="elective" data-credits="2">Internet Culture through the History of Derivative Works<i>elective</i></li></ul></li>
       </ol>
-      <p class="path-caveat">The English course titles below are <b>unofficial translations, not the university's own</b>. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty and department are left in Japanese for the same reason.</p>
+      <p class="path-caveat">The English course titles below are <b>unofficial translations, not the university's own</b>. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. <b>The faculty name is the form the university's English pages are reported to use</b>; those pages present a single faculty with no department level, and they could not be opened from here either.</p>
       <p class="aims-label">Two aims</p>
       <ul class="aims">
       <li>To take over the business my father is planning to found</li>
@@ -1018,7 +1029,7 @@ footer::before {
       </div>
       <div class="fact">
         <dt>34 checks on the register</dt>
-        <dd>The shape and history of the correction record itself. <strong>77 entries</strong> across five statuses, <strong>32 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>64 can be checked by anyone against a frozen artifact; the remaining 13 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
+        <dd>The shape and history of the correction record itself. <strong>78 entries</strong> across five statuses, <strong>32 of them reconstructed after the fact</strong> and marked as such, with the recording date checked against git history. <strong>64 can be checked by anyone against a frozen artifact; the remaining 14 rest on the author’s word alone</strong>, and that too is a field. That standing claims carry a refutation route, that unresolvable items give a reason, and that <strong>no entry ever published has since been removed</strong> (<a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">self-correction</a>)</dd>
       </div>
       <div class="fact">
         <dt>31 printed numbers</dt>
@@ -1052,7 +1063,7 @@ footer::before {
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Withdrawn, and unfixable</h2>
-      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (77 entries)&lt;/a&gt;.</p>
+      <p>Claims withdrawn in revision, and &lt;b&gt;things found later that could no longer be fixed&lt;/b&gt;. &lt;b&gt;Nothing has been deleted.&lt;/b&gt; A frozen PDF cannot be corrected; only the record can. The record across all four bodies of work is the &lt;a href=&quot;https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;register (78 entries)&lt;/a&gt;.</p>
     </div>
 
     <div class="facts reveal">
@@ -1165,7 +1176,7 @@ footer::before {
       <a class="cert reveal" href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">
         <span class="code">Record / MIT</span>
         <h3>self-correction</h3>
-        <p class="issuer">Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted. 77 entries so far. Five statuses only; standing claims must carry a refutation route and unresolvable ones must say why. Identifiers can never be removed: the check walks the git history and fails if any entry that was ever published has since disappeared.</p>
+        <p class="issuer">Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted. 78 entries so far. Five statuses only; standing claims must carry a refutation route and unresolvable ones must say why. Identifiers can never be removed: the check walks the git history and fails if any entry that was ever published has since disappeared.</p>
         <span class="verify">View on GitHub</span>
       </a>
       <a class="cert reveal" href="./trinity.html">
