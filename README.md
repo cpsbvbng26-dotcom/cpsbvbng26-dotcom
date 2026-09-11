@@ -215,12 +215,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1081 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1086 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 431 項目
-node verification/check_site.js      # サイトの構造 560 項目
+node verification/check_site.js      # サイトの構造 565 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -241,11 +241,11 @@ node verification/check_keyboard.js  # Tab で辿って測る 288 項目（要: 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 38 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 40 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 34 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 36 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、

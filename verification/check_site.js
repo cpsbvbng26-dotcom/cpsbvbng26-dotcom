@@ -960,6 +960,30 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
      w.indexOf('whether a gate came down on the PhilArchive side is not known') >= 0
      && w.indexOf('What is not known is not written as') >= 0);
 
+  /* **到達点は、明文の段差ごと書く。**SSRN の方針は
+   * `rigorous methodology and original findings` を掲げているが、手続きは
+   * `does not peer review` である。**前者だけを引くと、方法が確かめられたように読める。**
+   * 同じ運営者の言葉が二つあることを、対で留める。 */
+  ok('SSRN の明文の水準を引いている',
+     v2.indexOf('rigorous methodology and original findings') >= 0);
+  ok('その水準が確かめられたのではないと書いてある',
+     v2.indexOf('明文の中に段差がある') >= 0
+     && v2.indexOf('二篇が通ったのは後者の手続きであって、前者が確かめられたのではない') >= 0);
+  ok('英語版も段差を書いている',
+     w.indexOf('rigorous methodology and original findings') >= 0
+     && w.indexOf('There is a step inside the published wording') >= 0
+     && w.indexOf('What the two\npapers passed is the procedure') >= 0);
+
+  /* **どこまでを到達点と呼べるかの上限。**ここが消えると、表が資格の証明に見える。 */
+  ok('到達点の上限を書いてある',
+     v2.indexOf('到達点として言えるのは、上の表の「満たしたということ」の列までである') >= 0
+     && /What can be claimed as attainment reaches exactly as far as/.test(w));
+
+  /* 具体の除外基準。**「学術性」だけでは何も言っていないのと同じである。** */
+  ok('通らないものを具体に名指ししている',
+     v2.indexOf('articles with no references') >= 0
+     && w.indexOf('articles with no references') >= 0);
+
   /* 三篇それぞれの識別子。**まとめて書くと、どれが何かが消える。** */
   ok('三篇それぞれの識別子を出している',
      ['NEMTNA', 'NEMMOI', 'NEMFSI', '10.2139/ssrn.7358779', '10.2139/ssrn.7358818']
