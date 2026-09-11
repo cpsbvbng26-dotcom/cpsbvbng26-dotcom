@@ -165,6 +165,14 @@ const CASES = [
   ['英語版の節の数が日本語版とずれると落ちる', 'lineage.en.html',
    swap('<section id="limits"', '<div id="limits"'),
    'check_site.js', '節の数が日本語版と同じ'],
+
+  ['英語の先祖の頁が本籍を書くと落ちる', 'lineage.en.html',
+   swap('<b>Document</b>', '<b>Document</b>（registered domicile: —）'),
+   'check_site.js', '本籍を実際に書いていない'],
+
+  ['外部の点検に第三者の氏名を戻すと落ちる', 'docs/external-evaluations.md',
+   swap('〔氏名を伏せた一名〕', '小島勤'),
+   'check_site.js', '第三者の氏名を伏せてある'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
