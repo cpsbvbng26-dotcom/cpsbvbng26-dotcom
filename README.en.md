@@ -24,7 +24,7 @@ I am enrolled at ZEN University, Faculty of Social Informatics — in its first 
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
-What is here rests on self-study and on working with language models. There was no supervisor and no collaborator.
+What is here rests on self-study and on working with language models. There was no supervisor and no collaborator. The university credits, though, are not self-study. They came from taking courses, submitting work and being assessed. They are what the table below lists, and what self-study and language models refer to lies outside them — the three papers in philosophy, and the tools and records kept here.
 
 The bar that was cleared, in the venues' own wording. SSRN — the subject must be `part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks`; it must not be non-scholarly, `articles with no references` being named; title, date written, abstract and full author details must be present; it must clear research-integrity checks. Editorial staff look at it before it goes up. PhilArchive — it takes `works of all types (articles, books, dissertations) in all areas of academic philosophy`; non-philosophy only where `cross-disciplinary and of clear interest to philosophers`; `All books and papers submitted should be of professional quality`; threats and harassment, personal information without consent and impersonation are prohibited; the right to `reject any submissions` is reserved; and more than six hundred category editors keep irrelevant or misfiled items out of their categories — which acts after the fact, not before.
 
@@ -214,12 +214,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1100 checks.** There are no dependencies to install.
+**Every push runs 1103 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 431 checks
-node verification/check_site.js      # site structure, 579 checks
+node verification/check_site.js      # site structure, 582 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
