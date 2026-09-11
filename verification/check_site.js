@@ -915,13 +915,27 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
    * 「独学と Claude だけで SSRN と PhilArchive を通った」は、そこで切ると
    * 分野が受理したように読める。**限界のほうが消えたら落ちる。** */
   ok('独学で通ったことを書いている',
-     v2.indexOf('三篇は、独学と Claude だけで書いている') >= 0
+     v2.indexOf('三篇は、独学で書いている') >= 0
      && v2.indexOf('PhilArchive の明文の基準') >= 0);
+  /* **道具は特定できない、と正誤表が書いている。**頁がそこに名前を一つだけ
+   * 挙てれば、同じ生態系の正誤表（E5）と食い違う。一度そう書いて公開した。 */
+  ok('使った道具を特定していないと書いてある',
+     v2.indexOf('どの道具を使ったかは特定できない') >= 0
+     && v2.indexOf('名前を一つだけ挙げることはしない') >= 0);
+  ok('英語版も道具を特定していないと書いてある',
+     w.indexOf('Which tools cannot be identified') >= 0
+     && w.indexOf('No single name is given here') >= 0);
+  {
+    /* **道具の名前を一つだけ挙げた形が、どこにも無いこと。** */
+    const SOLE = ['Claude だけ', 'Claude のみ', 'Claude alone', 'Claude only'];
+    const hit = SOLE.filter((x) => v2.indexOf(x) >= 0 || w.indexOf(x) >= 0);
+    ok('道具の名前を一つだけ挙げていない', hit.length === 0, hit.join(' '));
+  }
   ok('独学で通ったことに限界が添えてある',
      v2.indexOf('通ったのは受け付けの門である') >= 0
      && v2.indexOf('独学で門を通れることと、分野が受理することは別である') >= 0);
   ok('英語版も独学で通ったことを書いている',
-     w.indexOf('written by self-study and Claude alone') >= 0);
+     w.indexOf('written by self-study') >= 0);
   ok('英語版も限界が添えてある',
      w.indexOf('What they passed is a gate on acceptance') >= 0
      && w.indexOf('Clearing a gate by self-study and the field') >= 0);

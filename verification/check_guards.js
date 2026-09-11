@@ -203,6 +203,11 @@ const CASES = [
   ['英語版で「独学のみ」に寄せると落ちる', 'venues.en.html',
    swap('Philosophy is taken at', 'No philosophy is taken at'),
    'check_site.js', '大学で履修していることと食い違わせていない'],
+
+  /* **道具の名前を一つだけ挙げる。**一度そう書いて公開した壊し方である。 */
+  ['使った道具を一つに絞ると落ちる', 'venues.html',
+   swap('三篇は、独学で書いている。', '三篇は、独学と Claude だけで書いている。'),
+   'check_site.js', '道具の名前を一つだけ挙げていない'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
