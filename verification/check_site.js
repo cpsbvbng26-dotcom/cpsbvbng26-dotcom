@@ -1045,12 +1045,33 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
      read('README.en.md').indexOf(CAVEAT) >= 0
      && read('README.en.md').indexOf(OFFICIAL) >= 0);
 
-  /* 学部学科は、公式の英語表記を確かめていないので日本語のまま出している。
-   * **英語に置き換わったら、それは確かめた誰かがやったことになる** ——
-   * そのときはこの検査を外す。外さずに置き換われば落ちる。 */
-  ok('学部学科が日本語のまま出ている',
-     read('index.en.html').indexOf('知能情報社会学部 知能情報社会学科') >= 0
-     && read('README.en.md').indexOf('知能情報社会学部 知能情報社会学科') >= 0);
+  /* 学部名は英語にした。**検索結果が一致して公式の英語頁に帰しているが、頁そのものは
+   * 開けていない。**だから名前だけでなく、その出所の断りも一緒に留める。
+   * 断りが消えて名前だけが残る形が、いちばん強く読める形である。 */
+  ok('英語の学部名を英語で出している',
+     read('index.en.html').indexOf('ZEN University, Faculty of Social Informatics') >= 0
+     && read('README.en.md').indexOf('ZEN University, Faculty of Social Informatics') >= 0);
+  ok('学部名の出所を断っている',
+     read('index.en.html').indexOf("the form the university's English pages\nare reported to use") >= 0
+     || /the form the university's English pages\s+are reported to use/.test(read('index.en.html')));
+  ok('英語の頁に学科の段を作っていない',
+     read('index.en.html').indexOf('Department of') < 0);
+  /* 日本語の側は日本語のままであること。**片方だけ直すと食い違う。** */
+  ok('日本語の頁は日本語のまま出ている',
+     read('index.html').indexOf('知能情報社会学部 知能情報社会学科') >= 0
+     && read('README.md').indexOf('知能情報社会学部 知能情報社会学科') >= 0);
+
+  /* **根幹の一段は、自己紹介の中に置く。**下のほうに置けば読み手は辿り着かない。
+   * そして、そこから限界への導線が切れていないこと —— 到達点だけが残る形にしない。 */
+  ok('根幹の一段が自己紹介にある',
+     read('index.html').indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+     && /What is here rests on self-study and on working with language models/
+          .test(read('index.en.html')));
+  ok('根幹の一段から限界へ辿れる',
+     read('index.html').indexOf('./venues.html') >= 0
+     && read('index.html').indexOf('通ったのは受け付けの門であって査読ではなく') >= 0
+     && read('index.en.html').indexOf('./venues.en.html') >= 0
+     && read('index.en.html').indexOf('not peer review') >= 0);
 }
 
 /* ------------------------------------------------- 10.58 キーボードで辿れるか

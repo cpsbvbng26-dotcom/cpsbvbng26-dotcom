@@ -182,9 +182,13 @@ const CASES = [
    swap("unofficial translations, not the university's own", 'official titles'),
    'check_site.js', 'README が、科目名は公式名ではないと断っている'],
 
-  ['学部学科を確かめずに英語へ置き換えると落ちる', 'index.en.html',
-   swap('知能情報社会学部 知能情報社会学科', 'Faculty of Social Informatics'),
-   'check_site.js', '学部学科が日本語のまま出ている'],
+  ['英語の学部名から出所の断りを消すと落ちる', 'index.en.html',
+   swap('are reported to use', 'use'),
+   'check_site.js', '学部名の出所を断っている'],
+
+  ['根幹の一段から限界への導線を切ると落ちる', 'index.html',
+   swap('通ったのは受け付けの門であって査読ではなく', '査読を受けており'),
+   'check_site.js', '根幹の一段から限界へ辿れる'],
 
   ['運営者が査読しないと書いている箇所を消すと落ちる', 'venues.html',
    swap('質と関連性の最小限の基準', '一定の基準'),
