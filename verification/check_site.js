@@ -641,20 +641,21 @@ section('10.55 割愛の頁の日付');
 section('10.53 JS が無くても読めるか');
 
 {
-  const pages = ['index.html', 'index.en.html', 'cv.html', 'venues.html',
-                 'research.html', 'trinity.html', 'notes/index.html', 'notes/index.en.html'];
-  pages.forEach((p) => {
+  /* **数え上げは pages.json からにする。**ここには 8 ページをベタ書きしていた。
+   * 論文の 14 ページと先祖の頁がその外にあり、同じ opacity:0 が半年残った。
+   * 直したのはトップだけで、検査もトップだけを見ていたからである。 */
+  const bareOpacity = (h) => h.split('}').some((chunk) => {
+    const i = chunk.lastIndexOf('{');
+    if (i < 0) return false;
+    const sel = chunk.slice(0, i).split(/[\n;]/).pop().trim();
+    return /(^|,)\s*\.reveal\s*$/.test(sel) && /opacity:\s*0/.test(chunk.slice(i));
+  });
+  const revealPages = PAGES.filter((p) => /\.reveal\b/.test(read(p)));
+  ok('登場演出を使う頁が pages.json の大半である', revealPages.length >= 20,
+     revealPages.length + ' / ' + PAGES.length);
+  revealPages.forEach((p) => {
     const h = read(p);
-    if (h === null) { ok(p + ' がある', false); return; }
-    /* 隠すのは .js が立ったときだけ。**素の .reveal に opacity:0 があってはならない。**
-     * 選択子を切り出して見る —— 「.js .reveal」を「.reveal」と読み違えないため。 */
-    const bare = h.split('}').some((chunk) => {
-      const i = chunk.lastIndexOf('{');
-      if (i < 0) return false;
-      const sel = chunk.slice(0, i).split(/[\n;]/).pop().trim();
-      return /(^|,)\s*\.reveal\s*$/.test(sel) && /opacity:\s*0/.test(chunk.slice(i));
-    });
-    ok(p + ' が JS 無しで本文を隠していない', !bare);
+    ok(p + ' が JS 無しで本文を隠していない', !bareOpacity(h));
     ok(p + ' が js の目印を head で立てている',
        h.indexOf('document.documentElement.className+=" js";') >= 0);
   });
@@ -783,6 +784,80 @@ section('10.57 arXiv の著者識別子');
   ok('抜け道ではないと書いてある', v.indexOf('抜け道ではない') >= 0);
   ok('頁の表示を確かめていないと書いてある',
      v.indexOf('作業環境から開けないので確かめていない') >= 0);
+}
+
+/* ------------------------------------------------- 10.58 キーボードで辿れるか
+ *
+ * **見えないものに焦点を当てない。**Chromium で 14 ページを Tab で辿ったところ、
+ * トップだけで 40 個の a が opacity 0 のまま焦点を受けていた。登場演出が
+ * スクロールに合わせて出る作りで、Tab はスクロールより先に進むからである。
+ * 枠は出ているのに、枠の中に何も見えない状態だった。
+ *
+ * 作用素の頁では逆に、入力欄の枠を outline:none で消して境界線の色だけに
+ * していた。変わるのは 1px 分で、焦点の在りかが読めない。
+ *
+ * ここは HTML を文字列として見る。ブラウザを起こす測定は別に置いてある
+ * （verification/check_keyboard.js）。こちらは毎回走る側で、**直した形が
+ * 消えていないこと**だけを確かめる。
+ */
+section('10.58 キーボードで辿れるか');
+
+{
+  const revealPages = PAGES.filter((p) => /\.js \.reveal/.test(read(p)));
+  revealPages.forEach((p) => {
+    const h = read(p);
+    ok(p + ' が焦点の入った塊をすぐ出す',
+       /\.js \.reveal:focus-within\s*\{[^}]*opacity:\s*1/.test(h));
+  });
+
+  /* 焦点の枠。入力欄を選択子から落とすと、既定の枠も消える組み合わせがある。 */
+  PAGES.forEach((p) => {
+    const h = read(p);
+    if (h.indexOf(':focus-visible') < 0) return;
+    ok(p + ' の焦点の枠が入力欄にも掛かる',
+       /:where\(a, button, input, select, textarea, \[tabindex\]\):focus-visible/.test(h));
+  });
+
+  /* **焦点の枠を消した指定が、どこにもないこと。** */
+  const killed = PAGES.filter((p) => /:focus[^{]*\{[^}]*outline:\s*none/.test(read(p)));
+  ok('焦点の枠を消している頁が無い', killed.length === 0, killed.join(', '));
+
+  /* 見出しの階層。h1 は一つ、飛ばさない。 */
+  PAGES.forEach((p) => {
+    const h = read(p);
+    const levels = [...h.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
+    ok(p + ' の h1 がちょうど一つ',
+       levels.filter((l) => l === 1).length === 1,
+       String(levels.filter((l) => l === 1).length));
+    let prev = 0;
+    const skips = [];
+    levels.forEach((l) => { if (prev && l > prev + 1) skips.push('h' + prev + '→h' + l); prev = l; });
+    ok(p + ' の見出しが階層を飛ばさない', skips.length === 0, skips.join(', '));
+  });
+
+  /* 地標。本文の塊が一つあること。 */
+  PAGES.forEach((p) => {
+    const n = (read(p).match(/<main[\s>]/g) || []).length;
+    ok(p + ' に main が一つ', n === 1, String(n));
+  });
+
+  /* 飛ばす導線の行き先。**外れていても見た目には出ない。** */
+  PAGES.forEach((p) => {
+    const h = read(p);
+    const m = /class="skip-link"[^>]*href="#([^"]+)"/.exec(h)
+           || /href="#([^"]+)"[^>]*class="skip-link"/.exec(h);
+    if (!m) return;
+    ok(p + ' の飛ばす導線に行き先がある', h.indexOf('id="' + m[1] + '"') >= 0, '#' + m[1]);
+  });
+
+  /* id の重複。同じ id が二つあると、# の行き先が先着に固定される。 */
+  const dup = [];
+  PAGES.forEach((p) => {
+    const ids = [...read(p).matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+    const d = [...new Set(ids.filter((v, i) => ids.indexOf(v) !== i))];
+    if (d.length) dup.push(p + ': ' + d.join(' '));
+  });
+  ok('id の重複が無い', dup.length === 0, dup.join(' / '));
 }
 
 /* ------------------------------------------------- 10.6 三篇の結論

@@ -12,6 +12,11 @@
  *
  * やり方。リポジトリを一度だけ複製し、場合ごとに一つのファイルを書き換え、
  * 検査を走らせ、書き戻す。**本物のリポジトリには触らない。**
+ *
+ * 落とし穴が一つある。**<style> の中を書き換えると、CSP のハッシュが合わなくなり、
+ * ブラウザは配色ごと丸ごと捨てる。**壊したつもりが、全部が既定の見た目に戻って
+ * 通ってしまう。ここで壊す先は字面を読む検査に限ってあるので当たらないが、
+ * ブラウザを起こす検査を壊すときは update_csp.js を挟むこと。
  */
 
 'use strict';
@@ -126,6 +131,22 @@ const CASES = [
   ['作用素の照合用の数値をずらすと落ちる', 'verification/trinity_fixtures.json',
    (s) => s.replace('0.5025', '0.5026'),
    'check_trinity.js', ''],
+
+  /* 以下の三つは、Tab で辿ったときに出た不備に当てている。
+   * check_keyboard.js はブラウザを起こすので、ここでは字面を見る側だけを壊す。 */
+
+  ['焦点の入った塊をすぐ出す指定を消すと落ちる', 'index.html',
+   swap('.js .reveal:focus-within { opacity: 1; transform: none; transition: none; }', ''),
+   'check_site.js', '焦点の入った塊をすぐ出す'],
+
+  ['焦点の枠を消すと落ちる', 'trinity.html',
+   swap('.mcell:focus-visible { border-color: var(--accent); }',
+        '.mcell:focus { outline: none; border-color: var(--accent); }'),
+   'check_site.js', '焦点の枠を消している頁が無い'],
+
+  ['見出しの階層を飛ばすと落ちる', 'research.html',
+   swap('<h2 class="serif">リンク</h2>', '<h4 class="serif">リンク</h4>'),
+   'check_site.js', '見出しが階層を飛ばさない'],
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
