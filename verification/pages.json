@@ -14,6 +14,21 @@
       "priority": "0.9"
     },
     {
+      "file": "index.de.html",
+      "loc": "index.de.html",
+      "priority": "0.7"
+    },
+    {
+      "file": "index.fr.html",
+      "loc": "index.fr.html",
+      "priority": "0.7"
+    },
+    {
+      "file": "index.it.html",
+      "loc": "index.it.html",
+      "priority": "0.7"
+    },
+    {
       "file": "research.html",
       "loc": "research.html",
       "priority": "0.8"
