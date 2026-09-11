@@ -932,6 +932,21 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
      v2.indexOf('証言は手順の記述ではない') >= 0
      && v2.indexOf('二つを同じ欄に置かない') >= 0
      && w.indexOf('Testimony is not a description of procedure') >= 0);
+  /* **プロフィールの公開そのものには基準が無い。**誰でも作れる。
+   * 基準があるのは既定の一覧に出るかどうかのほうで、そこは pro の条件である。
+   * **公開を到達点として数えない。**「公開された」を通過の一つに見せる形を止める。 */
+  ok('プロフィールの公開に基準が無いと書いてある',
+     v2.indexOf('プロフィールの公開そのものには、基準が無い') >= 0
+     && v2.indexOf('誰でも作れる') >= 0
+     && v2.indexOf('プロフィールの公開を、到達点として数えない') >= 0);
+  ok('基準があるのは既定の一覧のほうだと書いてある',
+     v2.indexOf('基準があるのは公開のほうではなく') >= 0
+     && v2.indexOf('Find Philosophers') >= 0);
+  ok('英語版も公開に基準が無いと書いてある',
+     w.indexOf('Making the profile public clears no bar') >= 0
+     && w.indexOf('Anyone may create a profile') >= 0
+     && w.indexOf('is not counted as') >= 0);
+
   ok('前後で扱いが違ったことを書いてある',
      v2.indexOf('プロフィールを公開する前に出した') >= 0
      && v2.indexOf('プロフィールが公開されたのと同時に出た') >= 0
