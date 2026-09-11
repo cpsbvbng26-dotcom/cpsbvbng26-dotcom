@@ -28,9 +28,9 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（`part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks`）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（`works of all types (articles, books, dissertations) in all areas of academic philosophy`）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（`cross-disciplinary and of clear interest to philosophers`）。投稿されるすべての本と論文が専門職の水準を満たすこと（`All books and papers submitted should be of professional quality`）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（`reserve the right to reject any submissions`）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
-そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。PhilArchive には三篇が載っており、明文の水準は上のとおりである。
+そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。PhilArchive には三篇が載っており、うち二篇は門が下りている。明文の水準は上のとおりである。
 
-そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち一篇は門が下りておらず、残る二篇は下りたかどうか分かっていない。明文はすべて[割愛の頁](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/venues.html)に、場の側の言葉のまま置いた。
+そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。明文はすべて[割愛の頁](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/venues.html)に、場の側の言葉のまま置いた。
 
 **これからの二つ**
 
@@ -150,7 +150,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった。**残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均である。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である。**犯した誤りは、その講義が試験で問う取り違えである。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御である。三篇と、その検証 238 項目（定理 15・印字された数値 32・正誤表の監査 83・経路 108）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 172 項目 | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する。**DOI が付いた PDF は直せない。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。**いま 78 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する。**いま 80 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | — |
 
 ---
@@ -223,12 +223,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1103 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1107 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 431 項目
-node verification/check_site.js      # サイトの構造 582 項目
+node verification/check_site.js      # サイトの構造 586 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -249,18 +249,18 @@ node verification/check_keyboard.js  # Tab で辿って測る 288 項目（要: 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 46 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 47 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 42 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 43 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
 焦点の枠を消す、見出しの階層を飛ばす、など。
 **落ちなければ、その検査は何も見ていない。**
 
-**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 74」「登録簿 78 件」「壊す先 28 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
+**`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 74」「登録簿 80 件」「壊す先 28 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にする（CI は 9 つを checkout してから回す）。
 
