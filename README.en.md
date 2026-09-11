@@ -40,6 +40,8 @@ My coursework is mainly **philosophy** and **business practice**. **Mathematics*
 
 ### Courses I have credit for
 
+> The English course titles below are unofficial translations, not the university's own. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty and department are left in Japanese for the same reason.
+
 **Jiyugaoka Sanno College, Business Management course**
 
 | Course | Category | Credits |
@@ -204,12 +206,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1055 checks.** There are no dependencies to install.
+**Every push runs 1058 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 431 checks
-node verification/check_site.js      # site structure, 534 checks
+node verification/check_site.js      # site structure, 537 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
