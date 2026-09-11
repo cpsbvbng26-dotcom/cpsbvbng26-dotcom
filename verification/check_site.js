@@ -1198,7 +1198,15 @@ section('10.60 CI の仕事の名前が名乗っている数');
     '作用素': run('check_trinity.js'),
     'キーボードで辿れるか': null,  /* ブラウザが要るので走らせない。頁数 × 7 + 2 で出す */
   };
-  counts['キーボードで辿れるか'] = PAGES.length * 7 + 2;
+  /* 1 頁あたり 7 件と、幅ごとに 1 件。幅の数は check_keyboard.js から読む。
+   * **ここに数を書くと、幅を足したときにここだけ古くなる。** */
+  {
+    const kb = read('verification/check_keyboard.js');
+    const m = /const WIDTHS = \[([^\]]*)\]/.exec(kb);
+    const widths = m ? m[1].split(',').filter((x) => x.trim()).length : 0;
+    ok('check_keyboard.js から測る幅の数を読める', widths > 0, String(widths));
+    counts['キーボードで辿れるか'] = PAGES.length * (7 + widths) + 2;
+  }
 
   ok('配色の名乗りが実際と合う',
      new RegExp('配色 ' + counts['配色'] + ' 項目').test(yml),

@@ -25,6 +25,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const PAGES = require('./pages.json').pages.map((p) => p.file);
 const BASE = '/cpsbvbng26-dotcom';
+/* 横へ流れないことを測る幅。広い側を入れてあるのは、**ここで壊れていたから**である。 */
+const WIDTHS = [1440, 1200, 900, 390];
 
 let pass = 0;
 const failures = [];
@@ -213,6 +215,26 @@ async function walk(pg) {
     ok('読み込みで例外が出ない', errors.length === 0, errors.join(' / '));
 
     await ctx.close();
+
+    /* **横スクロールは、狭い画面だけの話ではない。**ナビが折り返さない作りだと、
+     * 節の多い頁では 1440px でも横幅を 776px 押し広げ、頁ごと横へ流れていた。
+     * 項目が増えた分だけ黙って壊れるので、広い側から狭い側まで測る。 */
+    for (const w of WIDTHS) {
+      const c2 = await browser.newContext({ viewport: { width: w, height: 900 } });
+      const p2 = await c2.newPage();
+      await p2.goto('http://127.0.0.1:' + port + BASE + '/' + page, { waitUntil: 'networkidle' });
+      const over = await p2.evaluate(() => {
+        const de = document.documentElement;
+        const nav = document.querySelector('.nav');
+        return {
+          doc: de.scrollWidth - de.clientWidth,
+          nav: nav ? Math.round(nav.getBoundingClientRect().right) - window.innerWidth : 0,
+        };
+      });
+      ok(w + 'px で横へ流れない', over.doc <= 1 && over.nav <= 1,
+         '頁 ' + over.doc + ' / ナビ ' + over.nav);
+      await c2.close();
+    }
   }
 
   await browser.close();
@@ -224,7 +246,7 @@ async function walk(pg) {
    * expected は、この二件を足したあとの総数である。 */
   section('名乗っている数');
   {
-    const expected = pass + 2;
+    const expected = pass + 2;   /* 1 頁あたり 7 + WIDTHS.length 件、最後にこの二件 */
     [['README.md', /check_keyboard\.js\s+# Tab で辿って測る (\d+) 項目/],
      ['README.en.md', /check_keyboard\.js\s+# Tab traversal, (\d+) checks/]].forEach(([f, re]) => {
       const m = re.exec(fs.readFileSync(path.join(ROOT, f), 'utf8'));
