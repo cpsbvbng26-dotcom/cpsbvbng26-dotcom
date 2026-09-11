@@ -26,6 +26,8 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ここにあるものの根幹は、独学と、言語モデルを使って進めたことである。指導教員も共同研究者もいない。ただし、大学の単位は独学ではない。授業を受け、課題を出し、評価を受けて得たものである。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にある —— 哲学の三篇と、ここに置いた道具と記録のことである。
 
+この場所そのものは、Anthropic の Claude を使って作っている。頁の生成、検査の道具、記録 —— git の履歴に `Co-Authored-By: Claude Opus 5` が並んでいる。ただし、哲学三篇に何を使ったかは特定できない —— 記録が残っておらず、著者の記憶でも定まらない（三篇の正誤表 E5）。道具の名前を一つに絞れるのは、こちら側だけである。
+
 通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（`part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks`）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（`works of all types (articles, books, dissertations) in all areas of academic philosophy`）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（`cross-disciplinary and of clear interest to philosophers`）。投稿されるすべての本と論文が専門職の水準を満たすこと（`All books and papers submitted should be of professional quality`）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（`reserve the right to reject any submissions`）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
 そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。PhilArchive には三篇が載っており、うち二篇は門が下りている。明文の水準は上のとおりである。
@@ -223,12 +225,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 991 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1004 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 414 項目
-node verification/check_site.js      # サイトの構造 487 項目
+node verification/check_site.js      # サイトの構造 500 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -249,11 +251,11 @@ node verification/check_keyboard.js  # Tab で辿って測る 277 項目（要: 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 223 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 26 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 22 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 24 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、

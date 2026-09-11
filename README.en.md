@@ -26,6 +26,8 @@ My coursework is mainly **philosophy** and **business practice**. **Mathematics*
 
 What is here rests on self-study and on working with language models. There was no supervisor and no collaborator. The university credits, though, are not self-study. They came from taking courses, submitting work and being assessed. They are what the table below lists, and what self-study and language models refer to lies outside them — the three papers in philosophy, and the tools and records kept here.
 
+This site itself is built with Claude, by Anthropic. The page generation, the checking tools, the records — the git history carries `Co-Authored-By: Claude Opus 5` throughout. Which tools went into the three philosophy papers, though, cannot be identified — no record was kept and the author’s memory does not settle it (E5 in the errata for the three). Only on this side can the tool be named.
+
 The bar that was cleared, in the venues' own wording. SSRN — the subject must be `part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks`; it must not be non-scholarly, `articles with no references` being named; title, date written, abstract and full author details must be present; it must clear research-integrity checks. Editorial staff look at it before it goes up. PhilArchive — it takes `works of all types (articles, books, dissertations) in all areas of academic philosophy`; non-philosophy only where `cross-disciplinary and of clear interest to philosophers`; `All books and papers submitted should be of professional quality`; threats and harassment, personal information without consent and impersonation are prohibited; the right to `reject any submissions` is reserved; and more than six hundred category editors keep irrelevant or misfiled items out of their categories — which acts after the fact, not before.
 
 What follows from that is definite. Work written by self-study and language models was judged by SSRN's editorial staff to belong to the scholarly discourse of its field. For two papers, a person looked before publication and did not turn them away. Three papers are on PhilArchive, two of them through a gate that came down; its stated standard is the one above.
@@ -214,12 +216,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 991 checks.** There are no dependencies to install.
+**Every push runs 1004 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 414 checks
-node verification/check_site.js      # site structure, 487 checks
+node verification/check_site.js      # site structure, 500 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
