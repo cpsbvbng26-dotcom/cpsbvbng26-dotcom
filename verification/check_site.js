@@ -1072,6 +1072,34 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
      && read('index.html').indexOf('通ったのは受け付けの門であって査読ではなく') >= 0
      && read('index.en.html').indexOf('./venues.en.html') >= 0
      && read('index.en.html').indexOf('not peer review') >= 0);
+
+  /* **通過基準・到達点・導けないもの、この三つは自己紹介の中で揃っている。**
+   * 頁の外に送ると、到達点だけが読まれる。基準を書かずに到達点だけ書けば
+   * 何を通したのか分からず、限界を書かなければ査読を通ったように読める。
+   * 三つのうち一つでも消えたら落ちる。 */
+  {
+    const ja = read('index.html'), en = read('index.en.html');
+    ok('自己紹介に通過基準が具体に書いてある',
+       ja.indexOf('通した基準は、明文で次のとおりである') >= 0
+       && ja.indexOf("part of the world-wide scholarly discourse") >= 0
+       && ja.indexOf('professional quality') >= 0
+       && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
+    ok('自己紹介に到達点の質が書いてある',
+       ja.indexOf('そこから導ける到達点は、はっきりしている') >= 0
+       && ja.indexOf('その分野の学術的言説の一部として扱われた') >= 0);
+    ok('自己紹介に導けないものが書いてある',
+       ja.indexOf('そこから導けないものも、はっきりしている') >= 0
+       && ja.indexOf('論証が正しいことは、どちらの門も見ていない') >= 0);
+    ok('英語版も三つが揃っている',
+       en.indexOf("The bar that was cleared, in the venues' own wording") >= 0
+       && en.indexOf('What follows from that is definite') >= 0
+       && en.indexOf('What does not follow is equally definite') >= 0
+       && en.indexOf('articles with no references') >= 0);
+    /* **SSRN で確かめられたのは二篇である。**三篇に広げると、門が下りていない一篇を含む。 */
+    ok('到達点を三篇に広げていない',
+       ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
+       && en.indexOf('For two papers, a person looked before publication') >= 0);
+  }
 }
 
 /* ------------------------------------------------- 10.58 キーボードで辿れるか
