@@ -20,7 +20,7 @@
 
 ## About me
 
-I am enrolled at ZEN University — 知能情報社会学部 知能情報社会学科 — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
+I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
@@ -36,11 +36,11 @@ My coursework is mainly **philosophy** and **business practice**. **Mathematics*
 | Tochigi Prefectural Tochigi High School | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 9 September 2026) |
-| ZEN University — 知能情報社会学部 知能情報社会学科 | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026) |
+| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026) |
 
 ### Courses I have credit for
 
-> The English course titles below are unofficial translations, not the university's own. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty and department are left in Japanese for the same reason.
+> The English course titles below are unofficial translations, not the university's own. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty name is the form the university's English pages are reported to use; those pages present a single faculty with no department level, and they could not be opened from here either.
 
 **Jiyugaoka Sanno College, Business Management course**
 
@@ -50,7 +50,7 @@ My coursework is mainly **philosophy** and **business practice**. **Mathematics*
 
 **1 course, 2 credits (as of 9 September 2026)**
 
-**ZEN University — 知能情報社会学部 知能情報社会学科** — more to come.
+**ZEN University, Faculty of Social Informatics** — more to come.
 
 | Course | Category | Credits |
 | --- | --- | --- |
@@ -136,7 +136,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **The framework did not survive.** What remains is one fact about one operator — for `Q` an n-cycle and `D` diagonal, `(DQ)ⁿ = (∏ᵢ aᵢ)·I` exactly, so convergence is governed by the geometric mean of the coefficients. **The fact is correct, machine-checked, and at the level of a second- or third-year undergraduate exercise.** The error is the confusion that course sets on its exam. Only the tool used to repair it belongs to **graduate linear systems and matrix analysis**. The closest department is linear systems and control. The three papers, with 238 verification checks (15 on the theorems, 32 on the printed numerics, 83 on the errata, 108 on the route), an errata record, and an account of what the series established and what it withdrew | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | The operator of those three papers, implemented without their restriction to a permutation and a uniform blend. Convergence is governed by the spectral radius; the operator-norm condition the papers assume is stronger than it needs to be. 172 checks | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **Audits an errata document against a frozen, already-published artifact.** A DOI'd PDF cannot be revised; only the errata can, so the errata drifts. Checks that every quotation appears verbatim, that occurrences are not undercounted, that an item declared unresolvable has not been quietly resolved, and that the artifact itself has not been swapped. **No inference is used in the judgement** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 77 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **Every claim I have published that turned out to be wrong, was withdrawn, or cannot be fixed — recorded one by one and never deleted.** 78 entries. Standing claims must carry a refutation route; unresolvable ones must say why. **Identifiers can never be removed** — the check walks the git history and fails if any entry that was ever published has since disappeared | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | The transcription from the source note, made machine-readable. Ranks repeated by a ditto mark in the original are expanded per row, with a column separating what was printed from what was carried down | CC BY 4.0 | — |
 
 ---
@@ -206,12 +206,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1086 checks.** There are no dependencies to install.
+**Every push runs 1091 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 431 checks
-node verification/check_site.js      # site structure, 565 checks
+node verification/check_site.js      # site structure, 570 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
