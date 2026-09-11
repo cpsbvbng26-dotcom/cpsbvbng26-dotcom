@@ -706,9 +706,18 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('part of the world-wide scholarly discourse') >= 0
      && ja.indexOf('professional quality') >= 0
      && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
-  ok('自己紹介に到達点の質が書いてある',
+  /* **到達点は、門ごとに書く。**SSRN だけ書いて PhilArchive を「上のとおり」で
+   * 済ませていた。**片方が空欄なら、到達点を書いたことにならない。** */
+  ok('自己紹介に SSRN の到達点が書いてある',
      ja.indexOf('そこから導ける到達点は、はっきりしている') >= 0
      && ja.indexOf('その分野の学術的言説の一部として扱われた') >= 0);
+  ok('自己紹介に PhilArchive の到達点が書いてある',
+     ja.indexOf('学術哲学の領域にあり、専門職の水準') >= 0
+     && ja.indexOf('却下権は留保されているが、その二篇には行使されなかった') >= 0);
+  ok('英語版も門ごとに到達点が書いてある',
+     en.indexOf('belong to the scholarly discourse') >= 0
+     && en.indexOf('taken to lie within academic philosophy and to be') >= 0
+     && en.indexOf('it was not exercised') >= 0);
   ok('自己紹介に導けないものが書いてある',
      ja.indexOf('そこから導けないものも、はっきりしている') >= 0
      && ja.indexOf('論証が正しいことは、どちらの門も見ていない') >= 0
@@ -796,15 +805,17 @@ section('10.62 訳した頁が、訳だと名乗っているか');
   });
   /* 三言語の側も、名前と断りを対で持つこと。**片方だけを訳さない。** */
   [['index.de.html', 'mit Claude von Anthropic gebaut', 'lässt sich dagegen nicht bestimmen',
-    'Maßstab ist der oben genannte'],
+    'als der akademischen Philosophie zugehörig und als von'],
    ['index.fr.html', 'construite avec Claude, d’Anthropic', 'ne peuvent être identifiés',
-    'critère énoncé est celui cité plus haut'],
+    'tenus pour relevant de la philosophie'],
    ['index.it.html', 'costruita con Claude, di Anthropic', 'non è invece determinabile',
-    'criterio enunciato è quello citato sopra']].forEach(([f, named, caveat, standard]) => {
+    'considerati appartenenti alla filosofia']].forEach(([f, named, caveat, reached]) => {
     const h = read(f);
     ok(f + ' が Claude を名指ししている', h.indexOf(named) >= 0);
     ok(f + ' が三篇の道具は特定できないと添えている', h.indexOf(caveat) >= 0);
-    ok(f + ' が明文の水準を指している', h.indexOf(standard) >= 0);
+    /* **PhilArchive の到達点を、上への指しで済ませない。** */
+    ok(f + ' に PhilArchive の到達点が書いてある',
+       h.indexOf(reached) >= 0 && h.indexOf('professional quality') >= 0);
   });
 
   /* 日本語と英語から、三つへ辿れること。**辿れない頁は無いのと同じである。** */

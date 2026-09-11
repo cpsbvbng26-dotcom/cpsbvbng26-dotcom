@@ -154,9 +154,11 @@ const CASES = [
    swap('<b>ただし、哲学三篇に何を使ったかは特定できない</b>', '<b>三篇も同じである</b>'),
    'check_site.js', '三篇の道具は特定できないと、同じ段に書いてある'],
 
-  ['訳した頁から明文の水準への指しを消すと落ちる', 'index.de.html',
-   swap(' Der im Wortlaut festgehaltene Maßstab ist der oben genannte.', ''),
-   'check_site.js', '明文の水準を指している'],
+  /* **PhilArchive の到達点を、上への指しに戻す。**片方の門だけ空欄になる。 */
+  ['PhilArchive の到達点を上への指しに戻すと落ちる', 'index.html',
+   swap('<b>PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（<code>professional quality</code>）を満たすものとして扱われた。</b>',
+        '明文の水準は上のとおりである。'),
+   'check_site.js', 'PhilArchive の到達点が書いてある'],
 
   ['根幹の一段から限界を外すと落ちる', 'index.html',
    swap('通ったのは受け付けの門であって査読ではなく', '査読を受けており'),
