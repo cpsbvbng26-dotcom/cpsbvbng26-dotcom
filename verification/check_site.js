@@ -919,10 +919,23 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
   ok('英語版も三段を分けている',
      w.indexOf('not the field accepting the work as professional work') >= 0
      && w.indexOf('professional author') >= 0);
-  /* **確かめられなかったことを、確かめたことにしない。** */
-  ok('投稿の引き金を断定していない',
-     v2.indexOf('順序を断定しない') >= 0
-     && w.indexOf('The order is not asserted here') >= 0);
+  /* **観察された順序と、仕組みの記述を、同じ欄に置かない。**
+   * 二篇はプロフィールの公開前に審査を通り、一篇は公開と同時に審査なしで出た。
+   * **前後で扱いが違ったことは証言できる。公開が原因だとは言えない。** */
+  ok('観察されたのは順序であって仕組みではないと書いてある',
+     v2.indexOf('観察されたのは順序であって、仕組みではない') >= 0
+     && v2.indexOf('それが公開のせいだとは書かない') >= 0);
+  ok('英語版も順序と仕組みを分けている',
+     w.indexOf('What was observed\nis an order, not a mechanism') >= 0
+     || /What was observed\s+is an order, not a mechanism/.test(w));
+  ok('証言と手順の記述を同じ欄に置いていない',
+     v2.indexOf('証言は手順の記述ではない') >= 0
+     && v2.indexOf('二つを同じ欄に置かない') >= 0
+     && w.indexOf('Testimony is not a description of procedure') >= 0);
+  ok('前後で扱いが違ったことを書いてある',
+     v2.indexOf('プロフィールを公開する前に出した') >= 0
+     && v2.indexOf('プロフィールが公開されたのと同時に出た') >= 0
+     && w.indexOf('Submitted before the profile was public') >= 0);
 
   /* **到達の主張と、その限界は、離してはならない。**
    * 「独学と Claude だけで SSRN と PhilArchive を通った」は、そこで切ると
