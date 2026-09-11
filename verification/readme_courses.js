@@ -52,6 +52,10 @@ function readProfile(html) {
     /* 科目名についての断り。**頁に出ているなら README にも出す。**
      * 片方だけに出すと、README を読んだ人は訳を公式名だと思う。 */
     caveat: grab(/<p class="path-caveat">([\s\S]*?)<\/p>/),
+    /* 根幹の一段。**頁に出ているなら README にも出す。**
+     * 複数の段に分かれるので、まとめて拾う。GitHub のプロフィールはここが本体である。 */
+    core: [...block.matchAll(/<p class="profile-core">([\s\S]*?)<\/p>/g)]
+      .map((m) => proseOf(m[1])).filter(Boolean),
     aims: [...block.matchAll(/<li>([\s\S]*?)<\/li>/g)]
       .filter((m) => m[1].indexOf('path-') < 0)
       .map((m) => proseOf(m[1]))
@@ -101,6 +105,7 @@ function blockFor(page, lang) {
     out.push('## ' + p.label, '');
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');
+    p.core.forEach((c) => out.push(c, ''));
     if (p.aims.length) {
       out.push('**' + p.aimsLabel + '**', '');
       p.aims.forEach((a) => out.push('- ' + a));
