@@ -715,6 +715,11 @@ section('10.54 先祖の頁が、確度を守っているか');
     ok('著者の仕事の根拠にしないと書いてある',
        h.indexOf('この頁は、著者の仕事について何も言わない') >= 0);
     ok('同名異人の可能性を残している', h.indexOf('同名異人') >= 0);
+  ok('祖父の証言が刊本に及んでいないと書いてある',
+     h.indexOf('刊本 2 件を、祖父が挙げたのではない') >= 0
+     && h.indexOf('二つを結びつけたのは、祖父の証言ではない') >= 0);
+  ok('肩書きの形を著者によるものとして分けてある',
+     h.indexOf('祖父から聞いたのは「議員であった」までである') >= 0);
     ok('別の媒体との差について断りがある',
        h.indexOf('別の媒体に、別の記述があること') >= 0
        && h.indexOf('その媒体は作業環境から開けない') >= 0);
@@ -831,6 +836,14 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
   ok('著者の仕事の根拠にしないと書いてある',
      e.indexOf("This page says nothing about the author's work") >= 0);
   ok('同名異人の可能性を残している', e.indexOf('The possibility of a namesake') >= 0);
+  /* **伝聞の範囲を、伝聞そのものより広く書かない。**
+   * 祖父から聞いたのは「議員であった」までである。刊本 2 件を挙げたのは祖父ではない。
+   * 一度、刊本との結びつけまで祖父の伝聞として書いた。 */
+  ok('祖父の証言が刊本に及んでいないと書いてある',
+     e.indexOf('The two printed books were not cited by the grandfather') >= 0
+     && e.indexOf("Joining the two is not the grandfather's testimony") >= 0);
+  ok('肩書きの形を著者によるものとして分けてある',
+     e.indexOf("What the grandfather said reached only as far as") >= 0);
   ok('別の媒体との差について断りがある',
      e.indexOf('A different account, in a different medium') >= 0
      && e.indexOf('That medium cannot be opened from the working environment') >= 0);
@@ -953,12 +966,16 @@ section('10.59 英語版が、日本語版と同じ確度で書いてあるか')
 
   /* **一篇で門が下りなかった以上、残り二篇で下りたと決めてかかれない。**
    * 三篇まとめて「通った」に戻す壊し方を、ここで止める。 */
-  ok('残る二篇を分かっていないと書いてある',
-     v2.indexOf('残る二篇について、PhilArchive の側で門が下りたかどうかは分かっていない') >= 0
-     && v2.indexOf('分かっていないものを「通った」とは書かない') >= 0);
-  ok('英語版も残る二篇を分かっていないと書いてある',
-     w.indexOf('whether a gate came down on the PhilArchive side is not known') >= 0
-     && w.indexOf('What is not known is not written as') >= 0);
+  /* **三篇は一様ではない。**同じ場に同じ著者が出したものでも、門が下りた二篇と、
+   * 下りなかった一篇がある。**まとめて「通った」とも「通っていない」とも書かない。**
+   * 一度まとめて「通った」と書き、次にまとめて「分かっていない」と書いた。両方とも誤りだった。 */
+  ok('三篇が一様でないと書いてある',
+     v2.indexOf('残る二篇は、PhilArchive の側でも門が下りている') >= 0
+     && v2.indexOf('三篇が一様ではない') >= 0
+     && v2.indexOf('まとめて「通った」とも、まとめて「通っていない」とも書かない') >= 0);
+  ok('英語版も三篇が一様でないと書いてある',
+     w.indexOf('a gate did come down on the PhilArchive side') >= 0
+     && w.indexOf('The three are not uniform') >= 0);
 
   /* **到達点は、明文の段差ごと書く。**SSRN の方針は
    * `rigorous methodology and original findings` を掲げているが、手続きは
