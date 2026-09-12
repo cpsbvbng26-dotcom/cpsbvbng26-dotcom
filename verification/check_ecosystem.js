@@ -312,6 +312,76 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     cff === null ? 'CITATION.cff が無い' : 'type: generic');
 }
 
+/* **自己分析の欄は、良い側に倒れやすい。**書く側しか気づけない誤りだからである。
+ * そこで、置いた数はすべて他のファイルから数え直す。論文の数は papers.json、
+ * Zenodo の番号は doi-index.md、登録簿は register.toml。
+ * **等級を書ける欄ではないことも、文書自身に書かせる。** */
+
+console.log('\n7. 研究者としての位置');
+
+{
+  const F = path.join('docs', 'self-assessment.md');
+  const text = read('cpsbvbng26-dotcom', F);
+  check('自己分析の文書がある', text !== null, F);
+
+  if (text !== null) {
+    /* 限界を先に名乗っていること。**塞がっている射程を黙って広げない。** */
+    check('価値を語れないと先に書いてある',
+      text.indexOf('ST-002') >= 0
+      && text.indexOf('意義の水準では構造的に反証不可能') >= 0
+      && text.indexOf('書けないことを埋めない') >= 0);
+    check('自称の肩書きでないと書いてある',
+      text.indexOf('自称の肩書きを書かない') >= 0
+      && text.indexOf('これらは肩書きではない') >= 0 === false
+      && text.indexOf('以下の位置づけは肩書きではない') >= 0);
+    check('根拠を三つに分けてある',
+      ['`紙面`', '`証言`', '`未確認`'].every((x) => text.indexOf(x) >= 0));
+    check('総合点を作らないと書いてある',
+      text.indexOf('総合点は作らない') >= 0);
+    check('比較の相手を先に定義してある',
+      text.indexOf('比較の相手を先に定義する') >= 0);
+    check('覆し方が書いてある',
+      text.indexOf('## 覆し方') >= 0
+      && text.indexOf('査読を通った論文を一篇示せば') >= 0);
+
+    /* 数を他から数え直す。 */
+    const papers = (() => {
+      const raw = read('researcher-profile', 'papers.json');
+      if (raw === null) return null;
+      try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length; }
+      catch (e) { return null; }
+    })();
+    const zen = (() => {
+      const raw = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md'));
+      if (raw === null) return null;
+      return (raw.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+`/gm) || []).length;
+    })();
+    const reg = (() => {
+      const raw = read('self-correction', 'register.toml');
+      if (raw === null) return null;
+      return (raw.match(/^\[\[entry\]\]/gm) || []).length;
+    })();
+
+    const rows = [['公開した成果物', papers, '篇'],
+                  ['Zenodo の DOI', zen, '件'],
+                  ['登録簿', reg, '件']];
+    const wrong = [];
+    for (const [label, actual, unit] of rows) {
+      if (actual === null) { wrong.push(label + ' を数えられない'); continue; }
+      if (text.indexOf('**' + actual + ' ' + unit + '**') < 0) {
+        wrong.push(label + ' 実際 ' + actual + unit + ' が書かれていない');
+      }
+    }
+    check('置いた数が、他のファイルから数え直したものと合う', wrong.length === 0,
+      wrong.length ? wrong.join(' / ') : rows.map((r) => r[1]).join(' / '));
+
+    /* **査読 0 篇は、この文書の土台である。**ここが動けば全部動く。 */
+    check('査読を通った論文が 0 篇だと書いてある',
+      text.indexOf('| 査読を通った論文 | 学術誌・学会 | **0 篇** |') >= 0
+      && text.indexOf('低い段にいるのではなく、段に乗っていない') >= 0);
+  }
+}
+
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
 
