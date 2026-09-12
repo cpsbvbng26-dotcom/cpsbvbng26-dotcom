@@ -247,6 +247,42 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* **落ちた理由の推定に数を書いた。だから数え直す。**
+ * 参考文献の項目数と、版元の記載がある項目数を、紙面の書き起こしから数える。
+ * 散文の表と一つでも違えば落ちる。**推定であることは変わらないが、
+ * 推定の土台になっている数は動かせない。** */
+
+{
+  const F = path.join('docs', 'external-evaluations.md');
+  const text = read('cpsbvbng26-dotcom', F);
+  const PUB = /(University Press|Univ\. Press|Press|Verlag|Routledge|Penguin|de Gruyter|Simon & Schuster|Brothers|Books|Publishers?|Publishing|Oxford|Cambridge|Harvard|Chicago|Princeton)/;
+  const PAPERS = [
+    ['独身者論（通った）', 'celibate-individual'],
+    ['人格的帝国主義（通った）', 'imperial-selfhood'],
+    ['断片主義（落ちた）', 'fragmentarian-spiritual-individualism'],
+  ];
+  const wrong = [];
+  for (const [label, slug] of PAPERS) {
+    const md = read('autonomy-and-self-cultivation', path.join('papers', slug + '.md'));
+    if (md === null) { wrong.push(slug + ' の書き起こしが無い'); continue; }
+    const h = /\n#+ *(References|Bibliography|参考文献)[^\n]*\n/i.exec(md);
+    if (!h) { wrong.push(slug + ' に参考文献の節が無い'); continue; }
+    const lines = md.slice(h.index + h[0].length).split('\n')
+      .map((l) => l.trim()).filter((l) => l && l[0] !== '#');
+    const items = lines.length;
+    const pub = lines.filter((l) => PUB.test(l)).length;
+    const row = new RegExp('\\|\\s*' + label + '\\s*\\|\\s*(\\d+)\\s*\\|\\s*\\**(\\d+)\\**\\s*\\|').exec(text || '');
+    if (!row) { wrong.push(label + ' の行が無い'); continue; }
+    if (parseInt(row[1], 10) !== items) wrong.push(label + ' 項目 名乗り ' + row[1] + ' / 実際 ' + items);
+    if (parseInt(row[2], 10) !== pub) wrong.push(label + ' 版元 名乗り ' + row[2] + ' / 実際 ' + pub);
+  }
+  check('落ちた理由の推定に書いた数が、紙面と合う', wrong.length === 0,
+    wrong.length ? wrong.join(' / ') : PAPERS.length + ' 篇');
+  check('推定であることを名乗っている',
+    text !== null && text.indexOf('これは推定である') >= 0
+    && text.indexOf('SSRN がそう判断したという証拠ではない') >= 0);
+}
+
 /* **同じものを、片方は論文と呼び、片方は論文ではないと書いていた。**
  * doi-index.md は「史料ノートであり論文ではない」と書き、naval-gazette-notes の
  * README は見出しを「論文」とし、本文でも二十回そう呼んでいた。
