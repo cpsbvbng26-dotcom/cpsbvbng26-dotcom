@@ -217,12 +217,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1031 checks.** There are no dependencies to install.
+**Every push runs 1001 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 414 checks
-node verification/check_site.js      # site structure, 527 checks
+node verification/check_contrast.js  # colour contrast, 397 checks
+node verification/check_site.js      # site structure, 514 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -232,7 +232,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 277 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 266 checks (needs Chromium)
 ```
 
 It tabs through 25 pages and looks for focus traps, elements that receive focus while
@@ -268,7 +268,7 @@ This repository holds two kinds of thing, so it carries two licences.
 | | Licence | |
 | --- | --- | --- |
 | **Prose and structured data** — the profile text, the paper and work descriptions, `README.md`, `README.en.md`, the JSON-LD | [CC BY 4.0](LICENSE) | Free to use, including modification, with attribution |
-| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
+| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
 
 © 2026 Takuya Nemoto (根本卓哉)
 
@@ -354,7 +354,7 @@ This repository is written with [Claude Code](https://claude.com/claude-code). [
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-The site implementation in this repository (`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
+The site implementation in this repository (`index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`) was built with **Claude Code** (Anthropic). **Grok** (xAI) was asked for wording suggestions on text that appears publicly. Design decisions, review of content, and final judgement rest with the author, Takuya Nemoto. **AI is not an author.**
 
 **The record of how it was made** is not only a claim — it can be checked against the repository history itself.
 

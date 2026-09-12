@@ -226,12 +226,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1031 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1001 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 414 項目
-node verification/check_site.js      # サイトの構造 527 項目
+node verification/check_contrast.js  # 配色の読みやすさ 397 項目
+node verification/check_site.js      # サイトの構造 514 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -240,7 +240,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 Chromium を起こして測る。playwright と Chromium が要るので、上の並びには入れていない。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 277 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: Chromium）
 ```
 
 25 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
@@ -310,7 +310,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | | ライセンス | |
 | --- | --- | --- |
 | **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使える |
-| **サイトの実装** —— `index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
+| **サイトの実装** —— `index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
 
 © 2026 根本卓哉（Takuya Nemoto）
 
@@ -394,7 +394,7 @@ DOI を持っていない。引用できる識別子の無い石垣である。
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
-本リポジトリのサイト実装（`index.html` / `index.en.html` / `research.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作している。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させた。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っている。AI は著作者ではない。
+本リポジトリのサイト実装（`index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`）は、AIコーディング支援ツール **Claude Code**（Anthropic）を使用して制作している。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させた。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っている。AI は著作者ではない。
 
 **制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できる。
 

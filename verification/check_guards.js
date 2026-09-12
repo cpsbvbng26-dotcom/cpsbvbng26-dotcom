@@ -128,8 +128,8 @@ const CASES = [
         '.mcell:focus { outline: none; border-color: var(--accent); }'),
    'check_site.js', '焦点の枠を消している頁が無い'],
 
-  ['見出しの階層を飛ばすと落ちる', 'research.html',
-   swap('<h2 class="serif">リンク</h2>', '<h4 class="serif">リンク</h4>'),
+  ['見出しの階層を飛ばすと落ちる', 'cv.html',
+   swap('<h2 class="serif">修了証</h2>', '<h4 class="serif">修了証</h4>'),
    'check_site.js', '見出しが階層を飛ばさない'],
 
   ['外部の点検に第三者の氏名を戻すと落ちる', 'docs/external-evaluations.md',

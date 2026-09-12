@@ -519,7 +519,7 @@ const OFF_TOPIC = [
   ['家柄|末裔|血統|[Bb]loodline', '血筋を誇る語'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
-const PUBLIC_FACES = ENTRIES.concat(['research.html', 'trinity.html',
+const PUBLIC_FACES = ENTRIES.concat(['trinity.html',
                                      'README.md', 'README.en.md']);
 const offenders = [];
 PUBLIC_FACES.forEach((f) => {
@@ -1095,7 +1095,7 @@ const entryOf = (md) => {
 section('12. 構造化データとページの一致');
 
 const LD_PAGES = ['index.html', 'index.en.html', 'notes/index.html', 'notes/index.en.html',
-  'cv.html', 'research.html', 'trinity.html'];
+  'cv.html', 'trinity.html'];
 
 function graphOf(html) {
   const m = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html);

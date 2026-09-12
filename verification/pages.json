@@ -29,11 +29,6 @@
       "priority": "0.7"
     },
     {
-      "file": "research.html",
-      "loc": "research.html",
-      "priority": "0.8"
-    },
-    {
       "file": "trinity.html",
       "loc": "trinity.html",
       "priority": "0.7"
