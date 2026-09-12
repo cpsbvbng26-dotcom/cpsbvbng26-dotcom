@@ -743,6 +743,28 @@ section('10.59 自己紹介が名乗っていること');
   ok('到達点を三篇に広げていない',
      ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
      && en.indexOf('For two papers, a person looked before publication') >= 0);
+  /* **落ちた一篇を書かないと、門が何も落とさないように見える。**
+   * 通った二篇だけを並べるのは、誤りではないが、厚く見せる方向にだけ欠ける。
+   * 落とす門であることは、落とされた側にしか示せない（SC-035）。 */
+  ok('落とされた一篇が書いてある',
+     ja.indexOf('そして、三篇目は落とされた') >= 0
+     && ja.indexOf('SSRN に出して弾かれている') >= 0
+     && ja.indexOf('10.5281/zenodo.22064241') >= 0);
+  ok('落とされたことから導けないものも書いてある',
+     ja.indexOf('論証が誤っていると判定されたわけではない') >= 0
+     && ja.indexOf('理由は示されておらず') >= 0);
+  ok('英語版も落とされた一篇を書いている',
+     en.indexOf('The third was turned away') >= 0
+     && en.indexOf('was submitted to SSRN and rejected') >= 0
+     && en.indexOf('not that the argument was found wanting') >= 0);
+  [['index.de.html', 'Der dritte wurde abgewiesen'],
+   ['index.fr.html', 'Le troisième a été écarté'],
+   ['index.it.html', 'Il terzo è stato respinto']].forEach(([f, turned]) => {
+    const h = read(f);
+    ok(f + ' が落とされた一篇を書いている',
+       h.indexOf(turned) >= 0 && h.indexOf('10.5281/zenodo.22064241') >= 0);
+  });
+
   /* **数学の側でも同じ門を通した。**通したのは Series II だけである。
    * **系列ぜんぶが通ったと読める書き方をしない。**出していない二篇も明記する。 */
   /* **場の言葉のまま置いた引用が、翻訳に食われないこと。**

@@ -615,6 +615,18 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | --- | --- | --- | --- |
 | 外部の公開レビューの場（名前は最初の評価が届いた時点で記す） | The Nobility and Exemplarity of the Celibate Individual | `10.2139/ssrn.7358779` | 受付済み。評価なし |
 | 同上 | Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | 受付済み。評価なし |
+| SSRN | Fragmentarian Spiritual Individualism | —（付かなかった） | **弾かれた。**受け付けられていない |
+
+**三篇目は SSRN に落とされている。**Fragmentarian Spiritual Individualism
+（`10.5281/zenodo.22064241`、PhilArchive `NEMFSI`）は出して弾かれた。
+SSRN の DOI は付いていない。
+
+**理由は示されていない。**落とされたということ以外に分かっていることは無い。
+**日付も記録していない。**分かるのは、通った二篇と同じ門に出して、同じ扱いに
+ならなかったという一点である。
+
+**この行を消さない。**通った二篇だけを並べると、門が何も落とさないように見える。
+落とす門であることは、落とされた側にしか示せない。
 
 ## 計測されているもの —— **これは評価ではない**
 
