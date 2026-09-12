@@ -493,6 +493,35 @@ console.log('\n7. 研究者としての位置');
     }
     check('五言語の頁にも相対ティアが同じ段で出ている', pbad.length === 0,
       pbad.length ? pbad.join(' / ') : PAGES.length + ' 枚');
+
+    /* **免責を、段と同じ場所に置く。**段だけが独り歩きすると、他人を測る表として
+     * 読まれる。**他の誰も、この表に載ることに同意していない。**
+     * 娯楽の形式を借りていることも、事実と作り物の切り分けも、同じ節に置く。 */
+    const DISC = [
+      ['docs/self-assessment.md', ['学術の世界のどこにも存在しない', '他人を測る物差しではない',
+                                   'この表に載ることに同意していない', '結論を軽くするためではない']],
+      ['README.md', ['学術の世界に存在しない', '他人を測る物差しでもない',
+                     'この表に載ることに同意していない', '絶対ではない']],
+      ['index.html', ['学術の世界に存在しない', '他人を測る物差しでもない',
+                      'この表に載ることに同意していない']],
+      ['index.en.html', ['exists nowhere in academia', 'not a yardstick for other people',
+                         'consented to appear on this table']],
+      ['index.de.html', ['existiert in der Wissenschaft nirgends', 'kein Maßstab für andere Menschen',
+                         'eingewilligt, in dieser Tabelle zu stehen']],
+      ['index.fr.html', ['n’existe nulle part dans le monde académique', 'pas une toise pour autrui',
+                         'consenti à figurer dans ce tableau']],
+      ['index.it.html', ['non esiste in alcun luogo del mondo accademico', 'Non è un metro per altre persone',
+                         'acconsentito a comparire in questa tabella']],
+    ];
+    const dbad = [];
+    for (const [file, phrases] of DISC) {
+      const t = read('cpsbvbng26-dotcom', file);
+      if (t === null) { dbad.push(file + ' が無い'); continue; }
+      const miss = phrases.filter((x) => t.indexOf(x) < 0);
+      if (miss.length) dbad.push(file + ' に免責が無い');
+    }
+    check('段を置いた場所すべてに免責がある', dbad.length === 0,
+      dbad.length ? dbad.join(' / ') : DISC.length + ' 箇所');
     check('段の基準が EX から F まで並んでいる',
       ORDER.slice().reverse().every((t) => text.indexOf('| **' + t + '** |') >= 0));
     check('総合を最低の分野に合わせると書いてある',
