@@ -745,15 +745,30 @@ section('10.59 自己紹介が名乗っていること');
      && en.indexOf('For two papers, a person looked before publication') >= 0);
   /* **数学の側でも同じ門を通した。**通したのは Series II だけである。
    * **系列ぜんぶが通ったと読める書き方をしない。**出していない二篇も明記する。 */
+  /* **場の言葉のまま置いた引用が、翻訳に食われないこと。**
+   * ブラウザの翻訳は、<code> の中身も周りの日本語も書き換える。基準の原文が
+   * 別の語に化け、引用の位置まで動く。translate="no" と notranslate を付けて
+   * 除ける。**付け忘れれば、引用であることが読み手の画面から消える。** */
+  ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].forEach((f) => {
+    const h = read(f);
+    const bare = (h.match(/<code(?![^>]*translate="no")/g) || []).length;
+    ok(f + ' の引用が翻訳除けを持っている', bare === 0,
+       bare ? (bare + ' 箇所が素の <code>') : ((h.match(/<code /g) || []).length + ' 箇所'));
+  });
+
+  /* **「同じ門」で済ませない。**何を通したのかを、哲学の側と同じ言葉で書く。
+   * 指しで済ませると、読む側は上に戻らないかぎり中身に辿り着けない。 */
   ok('自己紹介に Trinity-Infinity の SSRN 通過が書いてある',
-     ja.indexOf('同じ門を、数学の側でも通している') >= 0
-     && ja.indexOf('Trinity-Infinity Series II') >= 0
+     ja.indexOf('数学の側でも同じことが起きている') >= 0
+     && ja.indexOf('Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた') >= 0
+     && ja.indexOf('一篇について、公開前に人が見て、落とさなかった') >= 0
      && ja.indexOf('10.2139/ssrn.7446961') >= 0);
   ok('通っていない二篇を、通ったように書いていない',
      ja.indexOf('Series I と Series III は、まだ出していない') >= 0
      && en.indexOf('Series I and Series III have not been submitted') >= 0);
   ok('英語版も数学の側の通過を書いている',
-     en.indexOf('The same gate has also been passed on the mathematics side') >= 0
+     en.indexOf('Trinity-Infinity Series II was judged by SSRN’s editorial staff to belong to the scholarly discourse of its field') >= 0
+     && en.indexOf('For one paper, a person looked before publication and did not turn it away') >= 0
      && en.indexOf('10.2139/ssrn.7446961') >= 0);
   /* **道具を特定できないのは哲学三篇だけである。**Trinity-Infinity の側は特定できる。
    * 特定できる側まで「分からない」に混ぜると、開示が薄まる。 */
@@ -763,11 +778,11 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('Claude Code（Anthropic）') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
   /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
-  [['index.de.html', 'Dieselbe Aufnahmeprüfung ist auch auf der mathematischen Seite bestanden',
+  [['index.de.html', 'Trinity-Infinity Serie II wurde von der Redaktion von SSRN dem wissenschaftlichen Diskurs ihres Fachs zugerechnet',
     'Serie I und Serie III sind nicht eingereicht'],
-   ['index.fr.html', 'Le même filtre a également été franchi du côté des mathématiques',
+   ['index.fr.html', 'Trinity-Infinity série II a été rattachée par la rédaction de SSRN au discours savant de son domaine',
     'Les séries I et III n’ont pas été soumises'],
-   ['index.it.html', 'La stessa porta è stata superata anche dal lato della matematica',
+   ['index.it.html', 'Trinity-Infinity serie II è stata ricondotta dalla redazione di SSRN al discorso scientifico del proprio ambito',
     'Le serie I e III non sono state inviate']].forEach(([f, passed, notyet]) => {
     const h = read(f);
     ok(f + ' に数学の側の通過が書いてある', h.indexOf(passed) >= 0 && h.indexOf('10.2139/ssrn.7446961') >= 0);

@@ -156,7 +156,7 @@ const CASES = [
 
   /* **PhilArchive の到達点を、上への指しに戻す。**片方の門だけ空欄になる。 */
   ['PhilArchive の到達点を上への指しに戻すと落ちる', 'index.html',
-   swap('<b>PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（<code>professional quality</code>）を満たすものとして扱われた。</b>',
+   swap('<b>PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（<code translate="no" class="notranslate">professional quality</code>）を満たすものとして扱われた。</b>',
         '明文の水準は上のとおりである。'),
    'check_site.js', 'PhilArchive の到達点が書いてある'],
 
@@ -177,7 +177,7 @@ const CASES = [
 
   /* **片方の門だけを細かく書く。**厳しいほうだけを見せる形になる。 */
   ['PhilArchive の基準を省くと落ちる', 'index.html',
-   swap('<code>cross-disciplinary and of clear interest to philosophers</code>', '学際的なもの'),
+   swap('<code translate="no" class="notranslate">cross-disciplinary and of clear interest to philosophers</code>', '学際的なもの'),
    'check_site.js', 'PhilArchive の基準を省略していない'],
 
   /* **頁にだけ出して README に出さない。**実際に一度そうなった。 */

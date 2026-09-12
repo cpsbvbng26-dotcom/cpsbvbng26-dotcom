@@ -26,11 +26,11 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ここにあるものの根幹は、独学と、言語モデルを使って進めたことである。指導教員も共同研究者もいない。ただし、大学の単位は独学ではない。授業を受け、課題を出し、評価を受けて得たものである。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にある —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことである。
 
-この場所そのものは、Anthropic の Claude を使って作っている。頁の生成、検査の道具、記録 —— git の履歴に `Co-Authored-By: Claude Opus 5` が並んでいる。ただし、哲学三篇に何を使ったかは特定できない —— 記録が残っておらず、著者の記憶でも定まらない（三篇の正誤表 E5）。Trinity-Infinity の側は特定できる —— 2025年の初稿は言語モデル（ChatGPT / OpenAI）が生成し、2026年の改訂は Claude Code（Anthropic）で書いている。道具の名前を一つに絞れないのは、哲学三篇だけである。
+この場所そのものは、Anthropic の Claude を使って作っている。頁の生成、検査の道具、記録 —— git の履歴に Co-Authored-By: Claude Opus 5 が並んでいる。ただし、哲学三篇に何を使ったかは特定できない —— 記録が残っておらず、著者の記憶でも定まらない（三篇の正誤表 E5）。Trinity-Infinity の側は特定できる —— 2025年の初稿は言語モデル（ChatGPT / OpenAI）が生成し、2026年の改訂は Claude Code（Anthropic）で書いている。道具の名前を一つに絞れないのは、哲学三篇だけである。
 
-通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（`part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks`）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（`works of all types (articles, books, dissertations) in all areas of academic philosophy`）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（`cross-disciplinary and of clear interest to philosophers`）。投稿されるすべての本と論文が専門職の水準を満たすこと（`All books and papers submitted should be of professional quality`）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（`reserve the right to reject any submissions`）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
+通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（cross-disciplinary and of clear interest to philosophers）。投稿されるすべての本と論文が専門職の水準を満たすこと（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（reserve the right to reject any submissions）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
-そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（`professional quality`）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。同じ門を、数学の側でも通している —— Trinity-Infinity Series II（SSRN `10.2139/ssrn.7446961`）。Series I と Series III は、まだ出していない。
+そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I と Series III は、まだ出していない。
 
 そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。Series II も同じで、SSRN が見たのは主題と体裁である。明文は上に、場の側の言葉のまま置いてある。
 
@@ -212,6 +212,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 - ORCID — [0009-0000-1406-0547](https://orcid.org/0009-0000-1406-0547)
 - Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [論文リポジトリ](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
+- Kudos — [公開した成果物の紹介](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
 - LinkedIn — [職務プロフィール](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Wantedly — [職務プロフィール](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
@@ -225,12 +226,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1020 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1025 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 414 項目
-node verification/check_site.js      # サイトの構造 516 項目
+node verification/check_site.js      # サイトの構造 521 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
