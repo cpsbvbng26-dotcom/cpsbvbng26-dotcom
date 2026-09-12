@@ -466,6 +466,33 @@ console.log('\n7. 研究者としての位置');
     }
     check('README にも相対ティアが独立の節としてある', rbad.length === 0,
       rbad.length ? rbad.join(' / ') : '数学哲学歴史 ' + ['数学', '哲学', '歴史'].map((f) => tiers[f]).join('') + ' / 総合 ' + overall);
+
+    /* **頁にも置く。**README と docs は読みに行かないと見えない。
+     * 五言語すべてに、同じ段で出ていること。**訳だけ古い段のまま残さない。** */
+    const PAGES = [['index.html', ['数学', '哲学', '歴史', '総合']],
+                   ['index.en.html', ['Mathematics', 'Philosophy', 'History', 'Overall']],
+                   ['index.de.html', ['Mathematik', 'Philosophie', 'Geschichte', 'Gesamt']],
+                   ['index.fr.html', ['Mathématiques', 'Philosophie', 'Histoire', 'Ensemble']],
+                   ['index.it.html', ['Matematica', 'Filosofia', 'Storia', 'Complessivo']]];
+    const pbad = [];
+    for (const [file, labels] of PAGES) {
+      const h = read('cpsbvbng26-dotcom', file);
+      if (h === null) { pbad.push(file + ' が無い'); continue; }
+      if (h.indexOf('id="tier"') < 0) { pbad.push(file + ' に節が無い'); continue; }
+      if (!ORDER.every((t) => h.indexOf('<b>' + t + '</b>') >= 0)) {
+        pbad.push(file + ' の段の基準が揃っていない');
+      }
+      const want = [tiers['数学'], tiers['哲学'], tiers['歴史'], overall];
+      labels.forEach((label, n) => {
+        const re = new RegExp('<b>' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                              + '</b> — <b>([A-Z]+)</b>');
+        const m = re.exec(h);
+        if (!m) pbad.push(file + ' に ' + label + ' の行が無い');
+        else if (m[1] !== want[n]) pbad.push(file + ' ' + label + ' 名乗り ' + m[1] + ' / 計算 ' + want[n]);
+      });
+    }
+    check('五言語の頁にも相対ティアが同じ段で出ている', pbad.length === 0,
+      pbad.length ? pbad.join(' / ') : PAGES.length + ' 枚');
     check('段の基準が EX から F まで並んでいる',
       ORDER.slice().reverse().every((t) => text.indexOf('| **' + t + '** |') >= 0));
     check('総合を最低の分野に合わせると書いてある',
