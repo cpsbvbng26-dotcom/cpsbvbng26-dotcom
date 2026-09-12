@@ -247,6 +247,35 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* **同じものを、片方は論文と呼び、片方は論文ではないと書いていた。**
+ * doi-index.md は「史料ノートであり論文ではない」と書き、naval-gazette-notes の
+ * README は見出しを「論文」とし、本文でも二十回そう呼んでいた。
+ * 番号は突き合わせていたが、**何と呼んでいるかは突き合わせていなかった。**
+ * 呼び方が割れたまま外の場に出すと、出した先と記録が食い違う。 */
+
+{
+  const F = path.join('docs', 'doi-index.md');
+  const idx = read('cpsbvbng26-dotcom', F);
+  check('一覧が海軍公報の一件を史料ノートと呼んでいる',
+    idx !== null && idx.indexOf('史料ノートであり論文ではない') >= 0, F);
+
+  const files = [['naval-gazette-notes', 'README.md'],
+                 ['naval-gazette-notes', 'CITATION.cff']];
+  const called = [];
+  for (const [repo, f] of files) {
+    const t = read(repo, f);
+    if (t === null) { called.push(f + ' が無い'); continue; }
+    if (t.indexOf('論文') >= 0) called.push(f);
+  }
+  check('海軍公報の側も論文と呼んでいない', called.length === 0,
+    called.length ? ('論文と呼んでいる: ' + called.join(', ')) : (files.length + ' ファイル'));
+
+  const cff = read('naval-gazette-notes', 'CITATION.cff');
+  check('引用情報でも article と名乗っていない',
+    cff !== null && cff.indexOf('- type: article') < 0,
+    cff === null ? 'CITATION.cff が無い' : 'type: generic');
+}
+
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
 
