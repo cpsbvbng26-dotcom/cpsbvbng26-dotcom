@@ -290,7 +290,8 @@ console.log('\n6. 外部からの評価');
     check('PlumX の数を書き写さないと書いてある',
       text.indexOf('この記録に転記しない') >= 0);
     const pairs = [['7358818', '10.2139/ssrn.7358818'],
-                   ['7358779', '10.2139/ssrn.7358779']];
+                   ['7358779', '10.2139/ssrn.7358779'],
+                   ['7446961', '10.2139/ssrn.7446961']];
     const wrong = pairs.filter(([id, doi]) => {
       const row = plum.split('\n').find((l) => l.indexOf('ssrn_id=' + id) >= 0);
       return !row || row.indexOf(doi) < 0;
@@ -299,6 +300,11 @@ console.log('\n6. 外部からの評価');
       wrong.length === 0, wrong.length ? ('ずれ: ' + wrong.join(', ')) : pairs.length + ' 件');
     const digits = /PlumX[^\n]*?[:：]\s*\d|閲覧\s*\d|ビュー\s*\d|保存\s*\d|言及\s*\d/;
     check('PlumX の数値が転記されていない', !digits.test(plum));
+    /* **確かめていない行を、確かめた行と同じ顔で並べない。**
+     * Series II の PlumX は宛先の形から組み立てただけで、頁は見ていない。 */
+    check('確かめていない PlumX の行が、そう名乗っている',
+      plum.indexOf('頁があるかは確かめていない') >= 0
+      && plum.indexOf('宛先の形から組み立てた URL である') >= 0);
 
     /* autonomy の ERRATA の N7 は、この記録のいずれもニーチェに言及していないと
      * 述べている。述べたのなら、突き合わせられるようにする。

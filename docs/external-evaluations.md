@@ -624,6 +624,12 @@ PlumX（Elsevier）が、SSRN 版の二篇について数を出している。
 | --- | --- | --- |
 | Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | https://plu.mx/plum/a/?ssrn_id=7358818 |
 | The Nobility and Exemplarity of the Celibate Individual | `10.2139/ssrn.7358779` | https://plu.mx/plum/a/?ssrn_id=7358779 |
+| Trinity-Infinity Series II | `10.2139/ssrn.7446961` | https://plu.mx/plum/a/?ssrn_id=7446961 —— **頁があるかは確かめていない** |
+
+**三行目は、二行目までと重みが違う。**Series II が SSRN に載ったのは 2026年9月11日で、
+PlumX がこの番号で頁を作っているかは見ていない。**宛先の形から組み立てた URL である。**
+開いて何も無かったとしても、この記録は誤っていない —— 上の二篇のように「数を出している」
+とは書いていない。
 
 **PlumX が出すのは計測であって評価ではない。**閲覧・保存・言及・引用の数を
 集めたものであり、**中身が正しいかについては何も言わない。**査読でもない。
