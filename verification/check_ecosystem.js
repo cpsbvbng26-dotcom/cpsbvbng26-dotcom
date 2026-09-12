@@ -399,6 +399,63 @@ console.log('\n7. 研究者としての位置');
       gitDate !== '' && shown === gitDate,
       gitDate === '' ? '浅い複製では判定できない' : ('名乗り ' + shown + ' / git ' + gitDate));
 
+    /* **ティアは手で上げられないようにする。**段の定義は「誰がどう通したか」で、
+     * 通った記録は papers.json にある。**だから計算できる。**
+     * 一篇でも SSRN の所在を持つ分野は C、持たない分野は D。査読を通った論文が
+     * 出れば A 以上になるが、いまは 0 篇である。**総合は最低の分野に合わせる。**
+     * 書いた段と計算した段が違えば落ちる。 */
+    const FIELD = { TI: '数学', PH: '哲学', NG: '歴史' };
+    const ORDER = ['F', 'E', 'D', 'C', 'B', 'A', 'S', 'SS', 'SSS', 'EX'];
+    const tiers = {};
+    const rawPapers = read('researcher-profile', 'papers.json');
+    let papersOk = rawPapers !== null;
+    if (papersOk) {
+      try {
+        const j = JSON.parse(rawPapers);
+        const list = Array.isArray(j) ? j : j.papers;
+        for (const paper of list) {
+          const field = FIELD[paper.registerPrefix];
+          if (!field) continue;
+          const screened = (paper.locations || [])
+            .some((l) => /SSRN/i.test(l.name || ''));
+          const now = screened ? 'C' : 'D';
+          if (!tiers[field] || ORDER.indexOf(now) > ORDER.indexOf(tiers[field])) {
+            tiers[field] = now;
+          }
+        }
+      } catch (e) { papersOk = false; }
+    }
+    const fields = Object.keys(tiers);
+    const overall = fields.length
+      ? fields.map((f) => tiers[f])
+          .reduce((a, b) => (ORDER.indexOf(a) < ORDER.indexOf(b) ? a : b))
+      : '';
+    const bad = [];
+    for (const f of ['数学', '哲学', '歴史']) {
+      const re = new RegExp('\\|\\s*\\*\\*' + f + '\\*\\*\\s*\\|\\s*\\*\\*([A-Z]+)\\*\\*\\s*\\|');
+      const m = re.exec(text);
+      if (!m) { bad.push(f + ' の行が無い'); continue; }
+      if (m[1] !== tiers[f]) bad.push(f + ' 名乗り ' + m[1] + ' / 計算 ' + tiers[f]);
+    }
+    const mo = /\|\s*\*\*総合\*\*\s*\|\s*\*\*([A-Z]+)\*\*\s*\|/.exec(text);
+    if (!mo) bad.push('総合の行が無い');
+    else if (mo[1] !== overall) bad.push('総合 名乗り ' + mo[1] + ' / 計算 ' + overall);
+
+    check('ティアを papers.json から計算できる', papersOk && fields.length === 3,
+      papersOk ? fields.map((f) => f + '=' + tiers[f]).join(' ') : 'papers.json が読めない');
+    check('書いたティアが、記録から計算した段と合う', bad.length === 0,
+      bad.length ? bad.join(' / ') : ['数学', '哲学', '歴史'].map((f) => tiers[f]).join('') + ' / 総合 ' + overall);
+    check('段の基準が EX から F まで並んでいる',
+      ORDER.slice().reverse().every((t) => text.indexOf('| **' + t + '** |') >= 0));
+    check('総合を最低の分野に合わせると書いてある',
+      text.indexOf('最も低い分野に合わせる') >= 0
+      && text.indexOf('総合を最高の分野に合わせない') >= 0
+      && text.indexOf('重みつきの総合点は作らない') >= 0);
+    check('ティアが質の等級でないと書いてある',
+      text.indexOf('このティアは、質の等級ではない') >= 0
+      && text.indexOf('段は、通った門の種類しか表さない') >= 0
+      && text.indexOf('出して落ちたのではない') >= 0);
+
     /* **査読 0 篇は、この文書の土台である。**ここが動けば全部動く。 */
     check('査読を通った論文が 0 篇だと書いてある',
       text.indexOf('| 査読を通った論文 | 学術誌・学会 | **0 篇** |') >= 0
