@@ -30,7 +30,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（cross-disciplinary and of clear interest to philosophers）。投稿されるすべての本と論文が専門職の水準を満たすこと（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（reserve the right to reject any submissions）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
-そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 哲学三篇は Philosophy Research Network のContinental Philosophy、Trinity-Infinity Series II は Mathematics Research Network のNumerical Analysisである。SSRN では区分がそのまま eJournal になっている。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I と Series III は、まだ出していない。
+そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 哲学三篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）である。SSRN では区分がそのまま eJournal になっている。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I と Series III は、まだ出していない。
 
 そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。Series II も同じで、SSRN が見たのは主題と体裁である。落とされたことも、通ったことの裏返しでしかない。弾かれた一篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではない。理由は示されておらず、こちらも確かめていない。明文は上に、場の側の言葉のまま置いてある。
 
@@ -226,12 +226,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1006 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1007 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 397 項目
-node verification/check_site.js      # サイトの構造 519 項目
+node verification/check_site.js      # サイトの構造 520 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 

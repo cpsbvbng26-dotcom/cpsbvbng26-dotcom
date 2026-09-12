@@ -773,6 +773,12 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('Numerical Analysis') >= 0
      && ja.indexOf('Philosophy Research Network') >= 0
      && ja.indexOf('Mathematics Research Network') >= 0);
+  /* **日本語の頁には訳を添える。**場の言葉は残す —— <code> の中は原文のままで、
+   * 翻訳除けが掛かっている。訳だけにすると場の言葉が消え、原文だけにすると
+   * 日本語で読む者に区分が渡らない。**両方置く。** */
+  ok('日本語の頁に区分の訳が添えてある',
+     ja.indexOf('哲学研究網') >= 0 && ja.indexOf('大陸哲学') >= 0
+     && ja.indexOf('数学研究網') >= 0 && ja.indexOf('数値解析') >= 0);
   ok('英語版も分野の名前を書いている',
      en.indexOf('Continental Philosophy') >= 0
      && en.indexOf('Numerical Analysis') >= 0

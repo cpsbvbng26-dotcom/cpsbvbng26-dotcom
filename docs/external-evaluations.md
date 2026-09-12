@@ -635,17 +635,19 @@ SSRN の DOI は付いていない。
 
 | 論文 | 研究網 | 分野（eJournal） |
 | --- | --- | --- |
-| The Nobility and Exemplarity of the Celibate Individual | Philosophy Research Network（**PRN**） | **Continental Philosophy** |
-| Manifesto of Imperial Selfhood | 同上 | **Continental Philosophy** |
-| Trinity-Infinity Series II | Mathematics Research Network（**MathRN**） | **Numerical Analysis** |
+| The Nobility and Exemplarity of the Celibate Individual | 哲学研究網 Philosophy Research Network（**PRN**） | 大陸哲学 **Continental Philosophy** |
+| Manifesto of Imperial Selfhood | 同上 | 大陸哲学 **Continental Philosophy** |
+| Trinity-Infinity Series II | 数学研究網 Mathematics Research Network（**MathRN**） | 数値解析 **Numerical Analysis** |
 
-`Continental Philosophy` は PRN の区分の一つである。並んでいるのは
-`Epistemology`、`Ethics`、`Metaphysics`、`Philosophy of Mind`、
-`Social & Political Philosophy` などで、その中の一つに当たる。
+大陸哲学（`Continental Philosophy`）は PRN の区分の一つである。並んでいるのは
+認識論（`Epistemology`）、倫理学（`Ethics`）、形而上学（`Metaphysics`）、
+心の哲学（`Philosophy of Mind`）、社会・政治哲学（`Social & Political Philosophy`）
+などで、その中の一つに当たる。
 
-`Numerical Analysis` は MathRN の区分の一つである。並んでいるのは `Algebra`、
-`Analysis`、`Dynamical Systems`、`Logic`、`Optimization & Control`、
-`Topology` などである。**`Dynamical Systems` は第二希望に当たる**
+数値解析（`Numerical Analysis`）は MathRN の区分の一つである。並んでいるのは
+代数（`Algebra`）、解析（`Analysis`）、力学系（`Dynamical Systems`）、
+論理（`Logic`）、最適化と制御（`Optimization & Control`）、位相（`Topology`）
+などである。**力学系（`Dynamical Systems`）は第二希望に当たる**
 （`trinity-infinity/ARXIV.md` の「分類」で `math.DS` を第二希望としているのと同じ理由）。
 
 **落とされた一篇は、この表に無い。**受け付けられていないので、どの eJournal にも
