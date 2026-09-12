@@ -779,6 +779,26 @@ section('10.59 自己紹介が名乗っていること');
   ok('日本語の頁に区分の訳が添えてある',
      ja.indexOf('哲学研究網') >= 0 && ja.indexOf('大陸哲学') >= 0
      && ja.indexOf('数学研究網') >= 0 && ja.indexOf('数値解析') >= 0);
+  /* **eJournal に載っているのは二篇である。**三篇目は同じ区分に出して弾かれた。
+   * 「哲学三篇は大陸哲学」と書くと、載っていない一篇まで載っているように読める。
+   * 一度そう書いて公開した（SC-036）。**「三篇」でこの区分を語らせない。** */
+  ok('eJournal に載っているのが二篇だと書いてある',
+     ja.indexOf('通った哲学二篇') >= 0
+     && ja.indexOf('弾かれた一篇も同じ大陸哲学に出している') >= 0
+     && ja.indexOf('どの eJournal にも載っていない') >= 0);
+  ok('哲学三篇がその区分に載っていると書いていない',
+     /哲学三篇[^。]{0,40}大陸哲学/.test(ja) === false
+     && /three philosophy papers[^.]{0,60}Continental Philosophy/.test(en) === false);
+  ok('英語版も二篇だと書いている',
+     en.indexOf('the two philosophy papers that were accepted') >= 0
+     && en.indexOf('it sits in no eJournal at all') >= 0);
+  [['index.de.html', 'die zwei angenommenen philosophischen Aufsätze', 'steht in keinem eJournal'],
+   ['index.fr.html', 'les deux articles de philosophie acceptés', 'ne figure dans aucun eJournal'],
+   ['index.it.html', 'i due saggi di filosofia accettati', 'non compare in alcun eJournal']]
+    .forEach(([f, two, none]) => {
+      const h = read(f);
+      ok(f + ' も二篇だと書いている', h.indexOf(two) >= 0 && h.indexOf(none) >= 0);
+    });
   ok('英語版も分野の名前を書いている',
      en.indexOf('Continental Philosophy') >= 0
      && en.indexOf('Numerical Analysis') >= 0
