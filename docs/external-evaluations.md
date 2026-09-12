@@ -628,6 +628,34 @@ SSRN の DOI は付いていない。
 **この行を消さない。**通った二篇だけを並べると、門が何も落とさないように見える。
 落とす門であることは、落とされた側にしか示せない。
 
+### 出した分野
+
+**SSRN は分野の区分がそのまま eJournal になっている。**どの網のどの区分に置いたかで、
+「その分野の学術的言説」が指すものが決まる。
+
+| 論文 | 研究網 | 分野（eJournal） |
+| --- | --- | --- |
+| The Nobility and Exemplarity of the Celibate Individual | Philosophy Research Network（**PRN**） | **Continental Philosophy** |
+| Manifesto of Imperial Selfhood | 同上 | **Continental Philosophy** |
+| Trinity-Infinity Series II | Mathematics Research Network（**MathRN**） | **Numerical Analysis** |
+
+`Continental Philosophy` は PRN の区分の一つである。並んでいるのは
+`Epistemology`、`Ethics`、`Metaphysics`、`Philosophy of Mind`、
+`Social & Political Philosophy` などで、その中の一つに当たる。
+
+`Numerical Analysis` は MathRN の区分の一つである。並んでいるのは `Algebra`、
+`Analysis`、`Dynamical Systems`、`Logic`、`Optimization & Control`、
+`Topology` などである。**`Dynamical Systems` は第二希望に当たる**
+（`trinity-infinity/ARXIV.md` の「分類」で `math.DS` を第二希望としているのと同じ理由）。
+
+**落とされた一篇は、この表に無い。**受け付けられていないので、どの eJournal にも
+載っていない。出したときの区分は `Continental Philosophy` であると著者が述べている
+（著者の証言。SSRN に到達できないため、こちらでは確かめていない）。
+
+**区分と網の名前は、検索結果から取ったものである。**`ssrn.com` の頁は開いていない
+（外部への接続が遮断されている）。区分が実在することは確かめたが、**eJournal の
+正式な題が `Continental Philosophy eJournal` の形であるかは確かめていない。**
+
 ### 理由の見当 —— **これは推定である**
 
 SSRN の明文の却下理由に「参考文献の無い非学術的なもの」（`articles with no

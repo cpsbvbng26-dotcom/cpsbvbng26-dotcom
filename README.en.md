@@ -30,7 +30,7 @@ This site itself is built with Claude, by Anthropic. The page generation, the ch
 
 The bar that was cleared, in the venues' own wording. SSRN — the subject must be part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks; it must not be non-scholarly, articles with no references being named; title, date written, abstract and full author details must be present; it must clear research-integrity checks. Editorial staff look at it before it goes up. PhilArchive — it takes works of all types (articles, books, dissertations) in all areas of academic philosophy; non-philosophy only where cross-disciplinary and of clear interest to philosophers; All books and papers submitted should be of professional quality; threats and harassment, personal information without consent and impersonation are prohibited; the right to reject any submissions is reserved; and more than six hundred category editors keep irrelevant or misfiled items out of their categories — which acts after the fact, not before.
 
-What follows from that is definite. Work written by self-study and language models was judged by SSRN's editorial staff to belong to the scholarly discourse of its field. For two papers, a person looked before publication and did not turn them away. The third was turned away. Fragmentarian Spiritual Individualism (10.5281/zenodo.22064241) was submitted to SSRN and rejected. This gate does turn work away. On PhilArchive, two of the three were taken to lie within academic philosophy and to be of professional quality. The right of rejection is reserved; for those two it was not exercised. The same thing has happened on the mathematics side: Trinity-Infinity Series II was judged by SSRN’s editorial staff to belong to the scholarly discourse of its field (SSRN 10.2139/ssrn.7446961). For one paper, a person looked before publication and did not turn it away. Series I and Series III have not been submitted.
+What follows from that is definite. Work written by self-study and language models was judged by SSRN's editorial staff to belong to the scholarly discourse of its field. For two papers, a person looked before publication and did not turn them away. The third was turned away. Fragmentarian Spiritual Individualism (10.5281/zenodo.22064241) was submitted to SSRN and rejected. This gate does turn work away. The field is named, not left vague: the three philosophy papers went to Continental Philosophy in the Philosophy Research Network, and Trinity-Infinity Series II to Numerical Analysis in the Mathematics Research Network. On SSRN a subject area is itself an eJournal. On PhilArchive, two of the three were taken to lie within academic philosophy and to be of professional quality. The right of rejection is reserved; for those two it was not exercised. The same thing has happened on the mathematics side: Trinity-Infinity Series II was judged by SSRN’s editorial staff to belong to the scholarly discourse of its field (SSRN 10.2139/ssrn.7446961). For one paper, a person looked before publication and did not turn it away. Series I and Series III have not been submitted.
 
 What does not follow is equally definite. Neither gate looked at whether the argument holds. What was passed is a gate on acceptance, not peer review; on the PhilArchive side two of the three passed a gate and one passed none at all. The same holds for Series II: what SSRN looked at was subject and form. The rejection is the same coin, the other face. All that follows from it is that SSRN did not accept the paper — not that the argument was found wanting. No reason was given, and none has been established here. All of the wording is set out verbatim above.
 
@@ -217,12 +217,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1001 checks.** There are no dependencies to install.
+**Every push runs 1006 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 397 checks
-node verification/check_site.js      # site structure, 514 checks
+node verification/check_site.js      # site structure, 519 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

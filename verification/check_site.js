@@ -765,6 +765,27 @@ section('10.59 自己紹介が名乗っていること');
        h.indexOf(turned) >= 0 && h.indexOf('10.5281/zenodo.22064241') >= 0);
   });
 
+  /* **「その分野」で済ませない。**どの網のどの区分に置いたかで、
+   * 「その分野の学術的言説」が指すものが決まる。名前を書かないと、
+   * 通った門の範囲が読み手に決められない。 */
+  ok('置いた分野の名前が書いてある',
+     ja.indexOf('Continental Philosophy') >= 0
+     && ja.indexOf('Numerical Analysis') >= 0
+     && ja.indexOf('Philosophy Research Network') >= 0
+     && ja.indexOf('Mathematics Research Network') >= 0);
+  ok('英語版も分野の名前を書いている',
+     en.indexOf('Continental Philosophy') >= 0
+     && en.indexOf('Numerical Analysis') >= 0
+     && en.indexOf('Philosophy Research Network') >= 0
+     && en.indexOf('Mathematics Research Network') >= 0);
+  ['index.de.html', 'index.fr.html', 'index.it.html'].forEach((f) => {
+    const h = read(f);
+    ok(f + ' も分野の名前を書いている',
+       h.indexOf('Continental Philosophy') >= 0 && h.indexOf('Numerical Analysis') >= 0
+       && h.indexOf('Philosophy Research Network') >= 0
+       && h.indexOf('Mathematics Research Network') >= 0);
+  });
+
   /* **数学の側でも同じ門を通した。**通したのは Series II だけである。
    * **系列ぜんぶが通ったと読める書き方をしない。**出していない二篇も明記する。 */
   /* **場の言葉のまま置いた引用が、翻訳に食われないこと。**
