@@ -375,6 +375,30 @@ console.log('\n7. 研究者としての位置');
     check('置いた数が、他のファイルから数え直したものと合う', wrong.length === 0,
       wrong.length ? wrong.join(' / ') : rows.map((r) => r[1]).join(' / '));
 
+    /* **現状評価は、日付とともにしか成り立たない。**日付を手で据え置くと、
+     * 古い評価が現状評価の顔で残る。**git が持っている日付と突き合わせる。**
+     * 中身を直して日付を直さなければ落ちる。 */
+    const declared = (/(\d{4})年(\d{1,2})月(\d{1,2})日時点の現状評価/.exec(text) || null);
+    const iso = (/`(\d{4}-\d{2}-\d{2})` 時点で確かめられたことだけ/.exec(text) || null);
+    let gitDate = '';
+    try {
+      gitDate = require('child_process')
+        .execFileSync('git', ['log', '-1', '--format=%cs', '--', F],
+                      { cwd: path.join(ROOT, 'cpsbvbng26-dotcom'), encoding: 'utf8' }).trim();
+    } catch (e) { gitDate = ''; }
+    const shown = declared
+      ? declared[1] + '-' + String(declared[2]).padStart(2, '0')
+        + '-' + String(declared[3]).padStart(2, '0')
+      : '';
+    check('現状評価の日付を名乗っている', declared !== null && iso !== null,
+      declared ? shown : '「NNNN年N月N日時点の現状評価」が無い');
+    check('名乗った日付が、見出しと本文で揃っている',
+      declared !== null && iso !== null && shown === iso[1],
+      declared && iso ? (shown + ' / ' + iso[1]) : '取れない');
+    check('名乗った日付が、git の記録と合う',
+      gitDate !== '' && shown === gitDate,
+      gitDate === '' ? '浅い複製では判定できない' : ('名乗り ' + shown + ' / git ' + gitDate));
+
     /* **査読 0 篇は、この文書の土台である。**ここが動けば全部動く。 */
     check('査読を通った論文が 0 篇だと書いてある',
       text.indexOf('| 査読を通った論文 | 学術誌・学会 | **0 篇** |') >= 0

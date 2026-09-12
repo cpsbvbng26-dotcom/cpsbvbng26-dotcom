@@ -251,7 +251,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 240 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 243 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 
@@ -354,7 +354,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 高札場 | `ERRATA.md`。誰でも読める所に、何を間違えたかを貼ってある |
 | 検地帳 | [`docs/doi-index.md`](docs/doi-index.md) |
 | 城絵図 | [`docs/canonical-sources.md`](docs/canonical-sources.md)。どれを正とするかの縄張り図 |
-| 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた位置。**等級は書けない**（登録簿の `ST-002`） |
+| 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた日付つきの現状評価。**等級は書けない**（登録簿の `ST-002`） |
 
 ### 城外（自分の領地ではない）
 
