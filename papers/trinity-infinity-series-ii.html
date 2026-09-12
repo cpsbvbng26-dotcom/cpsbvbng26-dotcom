@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-x1jzirJuABj2yt0ERS6SOmpFTnykumgCA/B1eaWWMRU=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-x1jzirJuABj2yt0ERS6SOmpFTnykumgCA/B1eaWWMRU=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series II | 根本卓哉</title>
 <meta name="description" content="混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。">
 <meta name="robots" content="index, follow">
@@ -390,7 +390,7 @@ header::after {
 /* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
    表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
    482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
-   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+   長い引用を <code translate="no" class="notranslate"> で入れるので、そちらも折り返せるようにする。 */
 .notes-list table, .prose table {
   display: block; max-width: 100%; overflow-x: auto;
 }
@@ -858,7 +858,7 @@ footer::before {
       <p>どの作業に AI を用いたかです。AI は著者ではありません。</p>
     </div>
     <div class="notes-list reveal">
-      <p>参考文献欄が改訂版 Series I を<strong>初版の DOI で引いている</strong>（正誤表の E1）。縮小率として印字されている <code>maxᵢ aᵢ</code> は<strong>上界であって漸近率ではない</strong>（N9）。</p>
+      <p>参考文献欄が改訂版 Series I を<strong>初版の DOI で引いている</strong>（正誤表の E1）。縮小率として印字されている <code translate="no" class="notranslate">maxᵢ aᵢ</code> は<strong>上界であって漸近率ではない</strong>（N9）。</p>
       <p><a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity#ai-の利用" target="_blank" rel="noopener">このリポジトリの AI 開示</a><span>どの作業に AI を用いたかです。AI は著者ではありません。</span></p>
       <p><strong>査読を受けていません</strong><span>DOI があることは、査読を受けたことを意味しません</span></p>
     </div>
@@ -872,7 +872,7 @@ footer::before {
       <p>版が分かる形で引用してください。</p>
     </div>
     <div class="notes-list reveal">
-      <p><code>Nemoto, T. (2026). The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications. Zenodo. https://doi.org/10.5281/zenodo.22058777</code><span>版が分かる形で引用してください。</span></p>
+      <p><code translate="no" class="notranslate">Nemoto, T. (2026). The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications. Zenodo. https://doi.org/10.5281/zenodo.22058777</code><span>版が分かる形で引用してください。</span></p>
     </div>
   </section>
 </main>

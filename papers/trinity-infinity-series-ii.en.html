@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ksmKvrKdxz/a6QJcM1ZUqCyCFqqS/oh8GFYUsBdCWYc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ksmKvrKdxz/a6QJcM1ZUqCyCFqqS/oh8GFYUsBdCWYc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series II | Takuya Nemoto</title>
 <meta name="description" content="Shows that uniqueness of the fixed point survives when the mixing rate varies coordinate by coordinate, and adds a characterization of the equilibrium payoff set and a fully worked spring-network example.">
 <meta name="robots" content="index, follow">
@@ -390,7 +390,7 @@ header::after {
 /* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
    表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
    482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
-   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+   長い引用を <code translate="no" class="notranslate"> で入れるので、そちらも折り返せるようにする。 */
 .notes-list table, .prose table {
   display: block; max-width: 100%; overflow-x: auto;
 }
@@ -858,7 +858,7 @@ footer::before {
       <p>What AI was used for. AI is not an author.</p>
     </div>
     <div class="notes-list reveal">
-      <p>Its bibliography cites the revised Series I <strong>under the DOI of the superseded first edition</strong> (errata E1). The printed contraction rate <code>maxᵢ aᵢ</code> is <strong>an upper bound, not the asymptotic rate</strong> (N9).</p>
+      <p>Its bibliography cites the revised Series I <strong>under the DOI of the superseded first edition</strong> (errata E1). The printed contraction rate <code translate="no" class="notranslate">maxᵢ aᵢ</code> is <strong>an upper bound, not the asymptotic rate</strong> (N9).</p>
       <p><a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity#ai-の利用" target="_blank" rel="noopener">This repository's AI disclosure</a><span>What AI was used for. AI is not an author.</span></p>
       <p><strong>Not peer-reviewed</strong><span>A DOI does not imply peer review</span></p>
     </div>
@@ -872,7 +872,7 @@ footer::before {
       <p>Cite in a form that makes the version clear.</p>
     </div>
     <div class="notes-list reveal">
-      <p><code>Nemoto, T. (2026). The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications. Zenodo. https://doi.org/10.5281/zenodo.22058777</code><span>Cite in a form that makes the version clear.</span></p>
+      <p><code translate="no" class="notranslate">Nemoto, T. (2026). The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications. Zenodo. https://doi.org/10.5281/zenodo.22058777</code><span>Cite in a form that makes the version clear.</span></p>
     </div>
   </section>
 </main>

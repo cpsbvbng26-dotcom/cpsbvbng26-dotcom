@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-xG4JpePpURlAEmYTXFhqMgAqvgxPh7nZHWpUcFw25OA='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -433,7 +433,7 @@ header::after {
 /* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
    表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
    482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。
-   長い引用を <code> で入れるので、そちらも折り返せるようにする。 */
+   長い引用を <code translate="no" class="notranslate"> で入れるので、そちらも折り返せるようにする。 */
 .notes-list table, .prose table {
   display: block; max-width: 100%; overflow-x: auto;
 }
@@ -1011,6 +1011,7 @@ footer::before {
           <a class="link" href="https://openalex.org/A5133339711" target="_blank" rel="noopener">OpenAlex <span>A5133339711</span></a>
           <a class="link" href="https://scholar.google.com/citations?user=_HEl3dYAAAAJ&amp;hl=ja" target="_blank" rel="noopener">Google Scholar <span>論文データベース</span></a>
           <a class="link" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280" target="_blank" rel="noopener">SSRN <span>論文リポジトリ</span></a>
+          <a class="link" href="https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC" target="_blank" rel="noopener">Kudos <span>公開した成果物の紹介</span></a>
         </div>
       </div>
       <div class="group reveal">
