@@ -123,6 +123,8 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ---
 
+---
+
 ✴︎Papers✴︎
 
 いずれも査読前のプレプリントである。哲学の三篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、Trinity-Infinity の三篇は [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) に置いている。史料ノートを含め、DOI のあるものは Zenodo が正である。
@@ -138,6 +140,42 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
 > **Series I についての注記。** Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。**撤回した内容は消していない。**
+
+---
+
+## 相対ティア —— 2026年9月12日時点
+
+**質の等級ではない。**測るのは**誰がどう通したか**だけである。段の定義に著者の判断は入らない。
+根拠と方法は [docs/self-assessment.md](docs/self-assessment.md) にある。
+
+| 分野 | ティア | 根拠 |
+| --- | --- | --- |
+| **数学** | **C** | Trinity-Infinity Series II が SSRN の受け付けを通っている。残る二篇は自己登録のみ |
+| **哲学** | **C** | 二篇が SSRN、二篇が PhilArchive の門を通っている。一篇は SSRN に落ちている |
+| **歴史** | **D** | 史料ノートは Zenodo と Knowledge Commons にあるが、**どちらも自己登録である** |
+| **総合** | **D** | **最も低い分野に合わせる。**最高に合わせると、通っていない分野の不在が消える |
+
+| ティア | 基準 —— 誰がどう通したか |
+| --- | --- |
+| **EX** | 分野の標準参照に取り込まれている。教科書や総説が標準として引く |
+| **SSS** | 分野の最上位誌に載り、広く引かれている |
+| **SS** | 分野の最上位誌に載っている（査読通過） |
+| **S** | 定評のある査読誌に載っている |
+| **A** | 査読誌に載っている（誌の格を問わない） |
+| **B** | 査読に出し、査読者の報告を受けている（受理には至らない） |
+| **C** | 受け付けの門を、人が見て通したプレプリントがある |
+| **D** | DOI つきで公開しているが、人の選別を通っていない（自己登録のみ） |
+| **E** | 公開しているが、恒久識別子が無い |
+| **F** | 公開していない |
+
+**`A` と `B` の境目に査読があり、`C` と `D` の境目に人が見たかどうかがある。**
+査読を通った論文は **0 篇**である。したがって `A` 以上は名乗れない。
+
+**`B` に届いていないのは、査読に出していないからである。出して落ちたのではない。**
+
+**この段は手で上げられない。**`papers.json` から計算し、書いた段と違えば
+`check_ecosystem.js` が落ちる。ある分野の論文が一篇でも SSRN の所在を持てば `C`、
+持たなければ `D` である。
 
 ---
 
@@ -251,7 +289,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 248 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 249 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 

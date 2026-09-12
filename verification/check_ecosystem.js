@@ -445,6 +445,27 @@ console.log('\n7. 研究者としての位置');
       papersOk ? fields.map((f) => f + '=' + tiers[f]).join(' ') : 'papers.json が読めない');
     check('書いたティアが、記録から計算した段と合う', bad.length === 0,
       bad.length ? bad.join(' / ') : ['数学', '哲学', '歴史'].map((f) => tiers[f]).join('') + ' / 総合 ' + overall);
+
+    /* **README にも独立の節として置く。**文書の奥にしか無いと、読む者に届かない。
+     * 表の一行として埋めていたのを、節に立て直した。**段は同じものでなければならない。** */
+    const rm = read('cpsbvbng26-dotcom', 'README.md');
+    const rbad = [];
+    if (rm === null) rbad.push('README.md が無い');
+    else {
+      if (rm.indexOf('## 相対ティア') < 0) rbad.push('独立の節が無い');
+      for (const f of ['数学', '哲学', '歴史', '総合']) {
+        const want = (f === '総合') ? overall : tiers[f];
+        const re = new RegExp('\\|\\s*\\*\\*' + f + '\\*\\*\\s*\\|\\s*\\*\\*([A-Z]+)\\*\\*\\s*\\|');
+        const m = re.exec(rm);
+        if (!m) { rbad.push(f + ' の行が無い'); continue; }
+        if (m[1] !== want) rbad.push(f + ' 名乗り ' + m[1] + ' / 計算 ' + want);
+      }
+      if (!ORDER.slice().reverse().every((t) => rm.indexOf('| **' + t + '** |') >= 0)) {
+        rbad.push('段の基準が EX から F まで並んでいない');
+      }
+    }
+    check('README にも相対ティアが独立の節としてある', rbad.length === 0,
+      rbad.length ? rbad.join(' / ') : '数学哲学歴史 ' + ['数学', '哲学', '歴史'].map((f) => tiers[f]).join('') + ' / 総合 ' + overall);
     check('段の基準が EX から F まで並んでいる',
       ORDER.slice().reverse().every((t) => text.indexOf('| **' + t + '** |') >= 0));
     check('総合を最低の分野に合わせると書いてある',
