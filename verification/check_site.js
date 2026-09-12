@@ -216,8 +216,20 @@ ok('公開ページがすべて sitemap にある', notListed.length === 0, notL
     if (e.mod < d) stale.push(rel + '  sitemap ' + e.mod + ' / git ' + d);
   });
   ok('lastmod が git の記録より古くない', stale.length === 0, stale.join(' | '));
-  ok('すべてのページの履歴が読めている（浅いクローンではない）', unknown === 0,
-     unknown + ' ページの日付が取れませんでした。fetch-depth: 0 が要ります');
+  /* **浅い複製では、この二件は当てにならない。**深さ 1 の複製では、HEAD が
+   * 触ったファイルだけが HEAD の日付を返し、残りは空を返す。前者は「sitemap が
+   * 古い」に化け、後者だけが unknown に数えられる。**化けたほうは理由を名乗らない。**
+   * 2026年9月12日、横断の仕事がこれで落ちた —— 深さ 1 で、押した日が
+   * sitemap の日付の翌日だったためである。浅いかどうかを先に見る。 */
+  let shallow = false;
+  try {
+    shallow = cp.execFileSync('git', ['rev-parse', '--is-shallow-repository'],
+                              { cwd: ROOT, encoding: 'utf8' }).trim() === 'true';
+  } catch (e) { shallow = false; }
+  ok('すべてのページの履歴が読めている（浅いクローンではない）',
+     unknown === 0 && !shallow,
+     shallow ? '浅い複製である。fetch-depth: 0 が要る'
+             : (unknown + ' ページの日付が取れませんでした。fetch-depth: 0 が要ります'));
 })();
 
 /* --------------------------------------------- 6c. 言語版の相互参照 */
