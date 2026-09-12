@@ -195,7 +195,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 <details>
 <summary>External profiles and writing (ORCID and Zenodo are the authoritative ones)</summary>
 
-- researchmap — [profile](https://researchmap.jp/takuyanemoto) / [research blog](https://researchmap.jp/takuyanemoto/research_blogs)
+- researchmap — [profile](https://researchmap.jp/takuyanemoto)
 - PhilPeople — [philosophy profile](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [researcher profile](https://cv.hal.science/nemoto-takuya)
 - Knowledge Commons — [humanities profile](https://profile.hcommons.org/members/nemoto200101/)

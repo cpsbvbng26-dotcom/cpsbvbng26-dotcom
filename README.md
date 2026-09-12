@@ -204,7 +204,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 <details>
 <summary>外部のプロフィールと記事（正は ORCID と Zenodo である）</summary>
 
-- researchmap — [プロフィール](https://researchmap.jp/takuyanemoto) / [研究ブログ](https://researchmap.jp/takuyanemoto/research_blogs)
+- researchmap — [プロフィール](https://researchmap.jp/takuyanemoto)
 - PhilPeople — [哲学者プロフィール](https://philpeople.org/profiles/takuyanemoto)
 - HAL — [欧州拠点研究者プロフィール](https://cv.hal.science/nemoto-takuya)
 - Knowledge Commons — [人文学のプロフィール](https://profile.hcommons.org/members/nemoto200101/)
