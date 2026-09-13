@@ -188,7 +188,26 @@ const CASES = [
   /* **単位の断りを消す。**すぐ下に単位の表が並ぶので、授業の成果まで独学に読まれる。 */
   ['大学の単位の断りを消すと落ちる', 'index.html',
    swap('<b>ただし、大学の単位は独学ではない。</b>', ''),
-   'check_site.js', '大学の単位が独学ではないと書いてある']
+   'check_site.js', '大学の単位が独学ではないと書いてある'],
+
+  /* 外部プロフィールの一覧は 4 か所にある。**片方にだけ足すと、そこで割れる。**
+   * 並びを入れ替えるだけでも落ちることを見る。数が合っていても割れているため。 */
+  ['README の外部プロフィールの並びを入れ替えると落ちる', 'README.en.md',
+   (s) => s.replace(
+     '- Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)\n'
+     + '- DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)\n',
+     '- DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)\n'
+     + '- Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)\n'),
+   'check_site.js', '外部プロフィールを同じ順で並べている'],
+
+  ['README にある行き先が cv.html から消えると落ちる', 'cv.html',
+   swap('https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC',
+        'https://www.growkudos.com/profile/none'),
+   'check_site.js', 'cv.html にも出ている'],
+
+  ['英語の頁の sameAs だけを削ると落ちる', 'index.en.html',
+   swap('        "https://dev.to/cpsbvbng26dotcom",\n', ''),
+   'check_site.js', 'sameAs が一致する']
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
@@ -207,6 +226,18 @@ section('2. 壊す先の数');
   ok('README が名乗る壊す先の数が実際と合う',
      declared !== null && Number(declared[1]) === CASES.length,
      declared ? ('名乗り ' + declared[1] + ' / 実際 ' + CASES.length) : '名乗っていない');
+}
+
+/* 壊す先の数だけでは足りない。**この道具が名乗る総数のほうは、誰も見ていなかった。**
+ * 壊す先を足したときに、README の「NN 項目」だけが古いまま残る。
+ * check_site.js と同じやり方で、この検査自身を足した数と突き合わせる。 */
+{
+  const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const m = /検査そのものを壊して確かめる (\d+) 項目/.exec(readme);
+  const total = pass + 1;
+  ok('README が名乗るこの道具の項目数が実際と合う',
+     m !== null && Number(m[1]) === total,
+     m ? ('名乗り ' + m[1] + ' / 実際 ' + total) : '名乗っていない');
 }
 
 fs.rmSync(TMP, { recursive: true, force: true });

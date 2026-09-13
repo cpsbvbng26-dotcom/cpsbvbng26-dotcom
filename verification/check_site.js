@@ -1133,6 +1133,51 @@ const entryOf = (md) => {
      (md.match(/<details>/g) || []).length >= 2);
 });
 
+/* 外部プロフィールの一覧は 4 か所にある。README 二つ、cv.html、そして
+ * index の JSON-LD である。源は researcher-profile の cv.json と site*.json で、
+ * README だけが手で並べてある。片方にだけ足すと、そこで割れる。
+ * 数を数えるのではなく、並びそのものを突き合わせる。 */
+const 外部プロフィール = (f) => {
+  const md = read(f);
+  const block = (md.match(/✴︎Links✴︎[\s\S]*?<\/details>/) || [''])[0];
+  return (block.match(/\]\((https?:\/\/[^)]+)\)/g) || [])
+    .map((m) => m.slice(2, -1))
+    .filter((u) => u.indexOf('cpsbvbng26-dotcom.github.io') < 0);
+};
+
+const 和 = 外部プロフィール('README.md');
+const 英 = 外部プロフィール('README.en.md');
+ok('README.md と README.en.md が外部プロフィールを同じ順で並べている',
+   和.length > 0 && 和.join('\n') === 英.join('\n'),
+   和.length + ' / ' + 英.length);
+
+/* cv.html は生成物である。README に書いた行き先が、そこに出ていないなら、
+ * 手で足した側が源に戻っていない。 */
+const cvHtml = read('cv.html');
+[['README.md', 和], ['README.en.md', 英]].forEach(([f, us]) => {
+  const 欠け = us.filter((u) => cvHtml.indexOf(u.replace(/&/g, '&amp;')) < 0);
+  ok(f + ' の外部プロフィールが cv.html にも出ている', 欠け.length === 0, 欠け.join(', '));
+});
+
+/* JSON-LD の sameAs は、日本語と英語で別の設定から出る。片方だけ直せば割れる。 */
+const 人物のsameAs = (f) => {
+  const m = read(f).match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  const 出 = [];
+  (function walk(o) {
+    if (Array.isArray(o)) { o.forEach(walk); return; }
+    if (o && typeof o === 'object') {
+      if (Array.isArray(o.sameAs)) 出.push(o.sameAs.join('\n'));
+      Object.keys(o).forEach((k) => walk(o[k]));
+    }
+  }(JSON.parse(m[1])));
+  return 出;
+};
+const sa和 = 人物のsameAs('index.html');
+const sa英 = 人物のsameAs('index.en.html');
+ok('index.html と index.en.html の sameAs が一致する',
+   sa和.length > 0 && sa和.join('\u0000') === sa英.join('\u0000'),
+   sa和.length + ' / ' + sa英.length);
+
 /* ---------------------------------- 12. 構造化データとページの一致
  *
  * JSON-LD は機械にしか見えない。ページに出していないものを、そこだけで
