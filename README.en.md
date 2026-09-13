@@ -213,6 +213,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 - LinkedIn — [professional profile](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Wantedly — [career profile](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
+- DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)
 - Lancers — [freelance profile](https://www.lancers.jp/profile/Itizyou)
 - Coconala — [freelance profile](https://coconala.com/users/4974247)
 - This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
