@@ -261,7 +261,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 301 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 312 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 
@@ -365,6 +365,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 検地帳 | [`docs/doi-index.md`](docs/doi-index.md) |
 | 城絵図 | [`docs/canonical-sources.md`](docs/canonical-sources.md)。どれを正とするかの縄張り図 |
 | 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた日付つきの現状評価。**等級は書けない**（登録簿の `ST-002`） |
+| 借りた物差し | [`docs/frames.md`](docs/frames.md)。科学哲学・科学社会学の枠組み九つを、出典つきで当てはめたもの。**記録ではない。当てはめは知見ではない**（`ST-002`） |
 
 ### 城外（自分の領地ではない）
 
