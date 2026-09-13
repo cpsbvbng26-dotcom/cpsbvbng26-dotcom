@@ -495,6 +495,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "(\\d+) on the route"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "check_route\\.py` の \\*\\*(\\d+) 項目\\*\\*"
         }
       ]
     },
