@@ -13,7 +13,7 @@ on:
 
 jobs:
   ecosystem:
-    name: 9 リポジトリ横断 297 項目
+    name: 9 リポジトリ横断 301 項目
     runs-on: ubuntu-latest
     steps:
       # sitemap の lastmod を git の記録と突き合わせる検査がある。
