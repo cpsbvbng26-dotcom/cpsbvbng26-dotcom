@@ -124,6 +124,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.md",
           "regex": "「壊す先 (\\d+) 通り」"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "壊す先 \\*\\*(\\d+) 件\\*\\*"
         }
       ]
     },
@@ -755,6 +760,27 @@
           "regex": "operator numerics, (\\d+) checks"
         }
       ]
+    },
+    {
+      "_": [
+        "キーボードの検査はブラウザが要る。横断の場に Chromium は無いので、",
+        "走らせた数ではなく、走らせる場が名乗っている数を元にする。",
+        "つまりこれは宣言どうしの突き合わせであって、実行との突き合わせではない。",
+        "止められるのは『片方だけ動かす』ことだけである。そこは断っておく。"
+      ],
+      "名前": "キーボードで辿れるか",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": ".github/workflows/verify.yml",
+        "regex": "キーボードで辿れるか (\\d+) 項目"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "キーボード \\*\\*(\\d+) 項目\\*\\*"
+        }
+      ]
     }
   ],
   "和": [
@@ -837,6 +863,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "Every push runs (\\d+) checks"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "検査 \\*\\*(\\d+) 項目\\*\\*"
         }
       ]
     }
