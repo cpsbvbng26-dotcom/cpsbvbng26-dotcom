@@ -464,10 +464,13 @@ console.log('\n7. 研究者としての位置');
       check('経路の種別の内訳が、ROUTE.md から数え直したものと合う',
         欠け.length === 0,
         欠け.length ? ('書かれていない: ' + 欠け.join(' / ')) : 内訳.join('、'));
-      const i0 = text.indexOf('はそこを刻んでいる');
+      const i0 = text.indexOf('**種別で数えると、こうなる**');
       const seg = i0 < 0 ? '' : text.slice(i0, text.indexOf('。', i0));
       const 名乗り = [...seg.matchAll(/([^\s、—]+) (\d+)/g)]
         .map((m) => m[1] + ' ' + m[2]).sort();
+      check('内訳が、種別の欄だけを数えたものだと書いてある',
+        text.indexOf('この数は種別の欄だけを数えたものである') >= 0
+        && text.indexOf('欄をまたいで足していない') >= 0);
       check('内訳に、ROUTE.md に無い種別が混ざっていない',
         名乗り.length > 0 && 名乗り.join('／') === 内訳.join('／'),
         名乗り.length ? 名乗り.join('、') : '内訳の文が見つからない');
@@ -487,6 +490,12 @@ console.log('\n7. 研究者としての位置');
 
       /* バナッハは再発見ではなく利用である。段の番号ごと突き合わせる。
        * 番号を手で書くと、経路に行が挿入されたときに黙ってずれる。 */
+      const 段の番号 = (種 ) => cells.filter((r) => r.種別 === 種).map((r) => r.n);
+      const 否定行 = 段の番号('発見の否定');
+      check('「発見の否定」と書いた段の番号が、ROUTE.md と合う',
+        否定行.length === 1
+        && text.indexOf('経路の ' + 否定行[0] + ' は種別が「発見の否定」だが') >= 0,
+        否定行.join('・'));
       const 利用行 = cells.filter((r) => r.種別 === '利用').map((r) => r.n);
       check('「利用」と書いた段の番号が、ROUTE.md と合う',
         利用行.length === 1
