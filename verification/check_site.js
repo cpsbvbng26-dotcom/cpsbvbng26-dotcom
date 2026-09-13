@@ -519,7 +519,9 @@ const OFF_TOPIC = [
   ['家柄|末裔|血統|[Bb]loodline', '血筋を誇る語'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
-const PUBLIC_FACES = ENTRIES.concat(['trinity.html',
+/* **配っている頁も公の面である。**リンクの説明文は cv.html にしか無いので、
+ * ここを外すと、肩書きの語が cv.html にだけ残せてしまう。 */
+const PUBLIC_FACES = ENTRIES.concat(['trinity.html', 'cv.html',
                                      'README.md', 'README.en.md']);
 const offenders = [];
 PUBLIC_FACES.forEach((f) => {
@@ -530,6 +532,26 @@ PUBLIC_FACES.forEach((f) => {
   });
 });
 ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
+
+/* **独立での受注は、四つの場に出している。**説明文が一つだけずれると、
+ * そこだけ別の売り方に見える。四つとも同じ一語で揃っていることを見る。
+ * **肩書きでは書かない**（決めごと 10）。上の禁止語がそちらを押さえている。 */
+{
+  const 受注 = [['ランサーズ', 'lancers.jp'], ['ココナラ', 'coconala.com'],
+                ['クラウドワークス', 'crowdworks.jp'], ['LinkedIn', 'linkedin.com']];
+  const cv = read('cv.html');
+  const ずれ = 受注.filter(([name, host]) => !new RegExp(
+    '<a class="link" href="https://[^"]*' + host.replace('.', '\\.')
+    + '[^"]*"[^>]*>' + name + ' <span>独立での案件募集</span></a>').test(cv));
+  ok('配っている頁で、四つの受注先が同じ説明文で揃っている',
+     ずれ.length === 0, ずれ.map((x) => x[0]).join(', '));
+
+  const md = read('README.md');
+  const 抜け = 受注.filter(([, host]) => !new RegExp(
+    '— \\[独立での案件募集\\]\\(https://[^)]*' + host.replace('.', '\\.')).test(md));
+  ok('README でも、四つの受注先が同じ説明文で揃っている',
+     抜け.length === 0, 抜け.map((x) => x[0]).join(', '));
+}
 
 /* ------------------------------------------------- 10.5 修得した科目の合計
  *

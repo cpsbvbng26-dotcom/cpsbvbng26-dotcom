@@ -225,12 +225,13 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 - Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [論文リポジトリ](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - Kudos — [公開した成果物の紹介](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
-- LinkedIn — [職務プロフィール](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
+- LinkedIn — [独立での案件募集](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Wantedly — [職務プロフィール](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [記事一覧](https://dev.to/cpsbvbng26dotcom)
-- ランサーズ — [受注プロフィール](https://www.lancers.jp/profile/Itizyou)
-- ココナラ — [受注プロフィール](https://coconala.com/users/4974247)
+- ランサーズ — [独立での案件募集](https://www.lancers.jp/profile/Itizyou)
+- ココナラ — [独立での案件募集](https://coconala.com/users/4974247)
+- クラウドワークス — [独立での案件募集](https://crowdworks.jp/public/employees/7030074)
 - このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 </details>
@@ -239,12 +240,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1017 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1019 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 397 項目
-node verification/check_site.js      # サイトの構造 530 項目
+node verification/check_site.js      # サイトの構造 532 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -265,11 +266,11 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
 node verification/check_ecosystem.js  # 9 リポジトリ横断 335 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 32 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 33 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 27 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 28 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、

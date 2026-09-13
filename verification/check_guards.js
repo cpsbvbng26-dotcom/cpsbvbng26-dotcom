@@ -207,7 +207,14 @@ const CASES = [
 
   ['英語の頁の sameAs だけを削ると落ちる', 'index.en.html',
    swap('        "https://dev.to/cpsbvbng26dotcom",\n', ''),
-   'check_site.js', 'sameAs が一致する']
+   'check_site.js', 'sameAs が一致する'],
+
+  /* **肩書きは cv.html にも置かない**（決めごと 10）。受注先の説明文をここに
+   * 足したとき、この頁だけ公の面の外に居た。 */
+  ['配っている頁に肩書きを入れると落ちる', 'cv.html',
+   swap('ランサーズ <span>独立での案件募集</span>',
+        'ランサーズ <span>独立コンサルタントとしての案件募集</span>'),
+   'check_site.js', 'コンサルタント肩書き']
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {

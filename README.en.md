@@ -210,12 +210,13 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 - Google Scholar — [publications](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - Kudos — [plain-language summaries of published work](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
-- LinkedIn — [professional profile](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
+- LinkedIn — [available for independent work](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
 - Wantedly — [career profile](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)
-- Lancers — [freelance profile](https://www.lancers.jp/profile/Itizyou)
-- Coconala — [freelance profile](https://coconala.com/users/4974247)
+- Lancers — [available for independent work](https://www.lancers.jp/profile/Itizyou)
+- Coconala — [available for independent work](https://coconala.com/users/4974247)
+- CrowdWorks — [available for independent work](https://crowdworks.jp/public/employees/7030074)
 - This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 </details>
@@ -224,12 +225,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1017 checks.** There are no dependencies to install.
+**Every push runs 1019 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 397 checks
-node verification/check_site.js      # site structure, 530 checks
+node verification/check_site.js      # site structure, 532 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
