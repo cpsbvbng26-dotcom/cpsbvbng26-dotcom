@@ -665,6 +665,19 @@ console.log('\n7. 研究者としての位置');
       const 欠け = 両方.filter(([a, b]) => text.indexOf(a) < 0 || ti.indexOf(b) < 0)
         .map(([a]) => a)
         .concat(片側.filter(([src, x]) => src.indexOf(x) < 0).map(([, x]) => x));
+      /* 「真であることに尽きる」は、新規性 0 の受け皿である。
+       * **片方だけ動かせば、受け皿の無い 0 か、根拠の無い価値になる。** */
+      const 尽きる = ['**論文としての価値は、真であることに尽きる。**',
+                      '主張していないものが新規でなかったことは、紙面の何も偽にしない',
+                      '下限と上限が一致している'];
+      const 片方 = 尽きる.filter((x) => text.indexOf(x.replace('**そして、', '**')) < 0
+                                    && text.indexOf('**そして、' + x.slice(2)) < 0);
+      const ti欠 = 尽きる.filter((x) => ti.indexOf(x) < 0);
+      check('「真であることに尽きる」が、記録と結論の両方にある',
+        片方.length === 0 && ti欠.length === 0,
+        (片方.length ? '自己分析に無い: ' + 片方.length + ' 件 ' : '')
+        + (ti欠.length ? 'trinity-infinity に無い: ' + ti欠.length + ' 件' : '')
+        || 尽きる.length + ' 件');
       check('相乗平均の主張が、trinity-infinity の結論と揃っている',
         欠け.length === 0,
         欠け.length ? ('欠けている: ' + 欠け.join(' / ')) : (両方.length + 片側.length) + ' 件');
