@@ -163,7 +163,7 @@ SSRN 版があるのは二篇だけなので、**Trinity-Infinity の三本・Fr
 
 | 場所 | 役割 |
 |---|---|
-| researchmap | 日本国内向けの登録。内容は Zenodo と ORCID の写し |
+| researchmap | 日本国内向けの登録。内容は Zenodo と ORCID の写し。**推薦ではなく、HAL に登録したプレプリントを業績として出して審査を通っている**（証言。[external-evaluations.md](external-evaluations.md)） |
 | HAL | 欧州向けの登録。同上 |
 | PhilPeople | 哲学分野の登録。同上 |
 | Google Scholar | 自動収集。**こちらから内容を管理していません** |
