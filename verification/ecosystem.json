@@ -1041,7 +1041,7 @@
   },
   "外の等級": {
     "_": "研究の外で他人が出している等級。docs/self-assessment.md の表が正で、頁はその写しである。",
-    "_なぜ": "**段が一つも無いことと、年数を書かないことが、写した先で落ちると、欄は肩書きの並びに変わる。**五言語あるので、一つだけ直して残りが古いまま、が起きる。",
+    "_なぜ": "**段が一つも無いことと、年数を書かないことが、写した先で落ちると、欄は肩書きの並びに変わる。**五言語あるので、一つだけ直して残りが古いまま、が起きる。**金を払って出してもらった分を、五言語のどれかで落とせば、そこだけ強く見える。**",
     "記録": {
       "repo": "cpsbvbng26-dotcom",
       "file": "docs/self-assessment.md",
@@ -1058,35 +1058,40 @@
         "file": "index.html",
         "必ず書いてあること": [
           "四つとも級である。段は一つも無い。",
-          "稽古や対局の年数は書かない。"
+          "稽古や対局の年数は書かない。",
+          "費用が掛かった部分について通ったのは、選別ではなく支払いである。"
         ]
       },
       {
         "file": "index.en.html",
         "必ず書いてあること": [
           "All four are kyu grades. Not one is a dan.",
-          "Years of practice are not stated."
+          "Years of practice are not stated.",
+          "Where money changed hands, what passed was payment, not selection."
         ]
       },
       {
         "file": "index.de.html",
         "必ず書いてあること": [
           "Alle vier sind Kyū-Grade. Kein einziger ist ein Dan.",
-          "Übungsjahre werden nicht genannt."
+          "Übungsjahre werden nicht genannt.",
+          "Wo Geld geflossen ist, hat nicht eine Auswahl, sondern eine Zahlung stattgefunden."
         ]
       },
       {
         "file": "index.fr.html",
         "必ず書いてあること": [
           "Les quatre sont des kyu. Aucun n’est un dan.",
-          "Les années de pratique ne sont pas indiquées."
+          "Les années de pratique ne sont pas indiquées.",
+          "Là où de l’argent a été versé, ce qui a été franchi est un paiement, non une sélection."
         ]
       },
       {
         "file": "index.it.html",
         "必ず書いてあること": [
           "Tutti e quattro sono kyu. Nessuno è un dan.",
-          "Gli anni di pratica non sono indicati."
+          "Gli anni di pratica non sono indicati.",
+          "Dove è stato versato del denaro, ciò che è passato è un pagamento, non una selezione."
         ]
       }
     ]
