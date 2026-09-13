@@ -1127,5 +1127,60 @@
       "販売停止",
       "確かめられない"
     ]
+  },
+  "再発見の相手": {
+    "_": "再発見した相手が何者かを、入口と自己紹介にも出す。正は trinity-infinity の ERRATA E8。",
+    "_なぜ": "**「既知だった」だけでは、相手が骨董か旗艦か分からない。**そして格を書いたら、**何を落とした特殊例かも同じ場所に書く。**片方だけだと、卑下か自慢のどちらかに倒れる。五言語あるので、一つだけ直して残りが古いまま、が起きる。",
+    "名前": "Friedkin–Johnsen",
+    "出す場所": [
+      {
+        "file": "index.html",
+        "必ず書いてあること": [
+          "DeGroot と Friedkin–Johnsen の二つを並べて挙げる",
+          "各主体がちょうど一人の隣人だけを聴く輪",
+          "社会学を抜いた数学的な躯体と、要の一項である"
+        ]
+      },
+      {
+        "file": "index.en.html",
+        "必ず書いてあること": [
+          "DeGroot and Friedkin–Johnsen together",
+          "a ring in which each party listens to exactly one neighbour",
+          "with the sociology taken out"
+        ]
+      },
+      {
+        "file": "index.de.html",
+        "必ず書いてあること": [
+          "DeGroot und Friedkin–Johnsen gemeinsam",
+          "ein Ring, in dem jeder genau einem Nachbarn zuhört",
+          "ohne die Soziologie"
+        ]
+      },
+      {
+        "file": "index.fr.html",
+        "必ず書いてあること": [
+          "DeGroot et Friedkin–Johnsen ensemble",
+          "un cercle où chacun n’écoute qu’un seul voisin",
+          "sociologie ôtée"
+        ]
+      },
+      {
+        "file": "index.it.html",
+        "必ず書いてあること": [
+          "DeGroot e Friedkin–Johnsen insieme",
+          "un cerchio in cui ciascuno ascolta esattamente un vicino",
+          "tolta la sociologia"
+        ]
+      },
+      {
+        "file": "README.md",
+        "必ず書いてあること": [
+          "DeGroot と Friedkin–Johnsen の二つを並べて挙げる",
+          "各主体がちょうど一人の隣人だけを聴く輪",
+          "一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項"
+        ]
+      }
+    ]
   }
 }
