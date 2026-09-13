@@ -1182,5 +1182,66 @@
         ]
       }
     ]
+  },
+  "出す先の決め": {
+    "_": "決めごと 14（ダイヤモンド・オープンアクセス縛り）を、自己紹介にも出す。",
+    "_なぜ": "**方針は、行使して初めて意味を持つ。**そして行使した事実を書くなら、**相手を評価していないことも同じ場所に書く。**片方だけだと、勧誘してきた側への判定に読める。五言語あるので、一つだけ直して残りが古いまま、が起きる。",
+    "決めごと": 14,
+    "出す場所": [
+      {
+        "file": "index.html",
+        "必ず書いてあること": [
+          "ダイヤモンド・オープンアクセスの場にしか出さない",
+          "無償を謳う勧誘にも応じない",
+          "返信していない",
+          "相手を評価したのではない"
+        ]
+      },
+      {
+        "file": "index.en.html",
+        "必ず書いてあること": [
+          "goes only to diamond open-access venues",
+          "Solicitations that advertise being free are declined as well",
+          "no reply was sent",
+          "That was not a judgment about them"
+        ]
+      },
+      {
+        "file": "index.de.html",
+        "必ず書いてあること": [
+          "geht ausschließlich an Diamond-Open-Access-Orte",
+          "Auch Angebote, die mit Kostenfreiheit werben, werden abgelehnt",
+          "es wurde nicht geantwortet",
+          "Das war kein Urteil über den Verlag"
+        ]
+      },
+      {
+        "file": "index.fr.html",
+        "必ず書いてあること": [
+          "ne va qu’à des lieux en accès ouvert diamant",
+          "Les sollicitations qui se disent gratuites sont également déclinées",
+          "aucune réponse n’a été envoyée",
+          "Ce n’était pas un jugement sur lui"
+        ]
+      },
+      {
+        "file": "index.it.html",
+        "必ず書いてあること": [
+          "va soltanto in sedi ad accesso aperto diamante",
+          "Anche le sollecitazioni che si dichiarano gratuite vengono rifiutate",
+          "non è stata inviata alcuna risposta",
+          "Non era un giudizio su di lui"
+        ]
+      }
+    ],
+    "社名を出さない": [
+      "index.html",
+      "index.en.html",
+      "index.de.html",
+      "index.fr.html",
+      "index.it.html",
+      "README.md",
+      "README.en.md"
+    ]
   }
 }
