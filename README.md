@@ -263,7 +263,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 319 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 324 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 28 項目
 ```
 
