@@ -628,6 +628,45 @@ SSRN の DOI は付いていない。
 **この行を消さない。**通った二篇だけを並べると、門が何も落とさないように見える。
 落とす門であることは、落とされた側にしか示せない。
 
+### 「専門職」という語は三つある
+
+**同じ `professional` が、三つの別のものに付いている。**混ぜると、載っていることが
+審査を通ったことに化ける。
+
+| 語 | 何に付くか | 何を決めるか |
+| --- | --- | --- |
+| `professional quality` | 投稿される作品 | PhilArchive の投稿要件 |
+| `professional status` | 収録された作品 | 既定の検索と分類一覧に出るか |
+| `pro` | 人 | 既定の哲学者一覧（Find a Philosopher）に出るか |
+
+**明文は場の側の言葉のまま置く。**
+
+> All books and papers submitted should be of professional quality
+
+> Not all indexed works appear by default in search, category listings, reading lists,
+> and other listings. By default, only works which have professional status and are
+> available online are displayed.
+
+> An individual is considered 'pro' if they meet either of the following conditions:
+> a) they have PhD in philosophy or equivalent recorded in their profile; b) they have,
+> associated with their profile, a publication in one of the philosophy journals listed
+> as 'most popular' on PhilPapers.
+
+**人の側の条件は二つしか無い。**哲学の博士号か、PhilPapers が「最も人気のある」と挙げる
+雑誌への掲載である。**どちらも満たしていない。**
+
+**そして、ここが取り違えの起きる場所である。既定の一覧に出ることは、門が下りたことではない。**
+断片主義的精神的個人主義は PhilArchive に載っている。**門は下りていない**（SC-027）。
+**一覧に出すかどうかを決める区分と、誰かが読んだかどうかは、別の事柄である。**
+
+**確かめていないことを、先に書く。**
+
+- **どの作品に `professional status` が付いているかは、この作業環境から見ていない。**
+  `philarchive.org`、`philpeople.org`、`philpapers.org` のいずれにも届かない ——
+  egress proxy が `connect_rejected` を返す。
+- **明文の三つも、検索の結果から写している。原典の頁は読んでいない。**
+- **だから、この節が言えるのは区分の存在までである。**どの区分に入っているかは言えない。
+
 ### 登録の審査 —— **中身の審査ではない**
 
 **researchmap の登録は、誰かの推薦で入ったものではない。**
