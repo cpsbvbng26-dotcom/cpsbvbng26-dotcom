@@ -34,6 +34,8 @@ What follows from that is definite. Work written by self-study and language mode
 
 What does not follow is equally definite. Neither gate looked at whether the argument holds. What was passed is a gate on acceptance, not peer review; on the PhilArchive side two of the three passed a gate and one passed none at all. The same holds for Series II: what SSRN looked at was subject and form. The rejection is the same coin, the other face. All that follows from it is that SSRN did not accept the paper — not that the argument was found wanting. No reason was given, and none has been established here. All of the wording is set out verbatim above.
 
+Judgments from outside also exist outside the research. Shinshin Toitsu Aikido 5th kyu and Shinshin Toitsu Do elementary grade (Shinshin Toitsu Aikido Association), Go 19th kyu (Nihon Ki-in), Shogi 9th kyu (Japan Shogi Association). All four are kyu grades. Not one is a dan. They are not listed to lengthen the list. They are the only things here the author did not write — the checks, the register and the route are all written and run by the author. Only the grades were issued by someone else. Years of practice are not stated. Years have passed no examination. All four rest on the author’s word and will stay there until a certificate can be pointed at (self-assessment).
+
 **Two aims**
 
 - To take over the business my father is planning to found
