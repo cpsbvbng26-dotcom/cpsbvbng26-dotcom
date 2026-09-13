@@ -553,6 +553,32 @@ console.log('\n7. 研究者としての位置');
         && text.indexOf('根拠はすべて `証言` である') >= 0
         && text.indexOf('免状または認定状を指せるようになれば `紙面` に上がる') >= 0,
         根拠.join(' / '));
+
+      /* **記録が正で、頁はその写しである。**写しは五言語ある。
+       * **一つだけ直して残りが古いまま、が起きる。**宣言は ecosystem.json にある。
+       * 宣言が行数を持っているので、表に行を足せば宣言も直すことになり、
+       * そのとき翻訳された一文が目に入る。 */
+      const G = DECL['外の等級'];
+      check('記録の行数が、宣言と合う', G && G['記録'].行数 === n,
+        G ? ('宣言 ' + G['記録'].行数 + ' / 表 ' + n) : '宣言が無い');
+      if (G) {
+        const ja = read('cpsbvbng26-dotcom', 'index.html') || '';
+        const 欠け = 行.map((r) => r[0].replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'))
+          .filter((x) => ja.indexOf(x) < 0);
+        check('日本語の頁が、表と同じ等級を出している', 欠け.length === 0,
+          欠け.length ? ('出ていない: ' + 欠け.join(' / ')) : (n + ' 件'));
+        const 主 = G['出しているもの'].filter((x) => ja.indexOf(x) < 0);
+        check('日本語の頁が、等級を出しているところの名前を書いている',
+          主.length === 0,
+          主.length ? ('書いていない: ' + 主.join(' / ')) : G['出しているもの'].join('・'));
+        for (const 場 of G['出す場所']) {
+          const html = read('cpsbvbng26-dotcom', 場.file);
+          const 無い = html === null ? ['頁が無い']
+            : 場['必ず書いてあること'].filter((x) => html.indexOf(x) < 0);
+          check('  ' + 場.file + ' が、段の無いことと年数を書かないことを言っている',
+            無い.length === 0, 無い.length ? 無い.join(' / ') : '2 件');
+        }
+      }
     }
     check('等級が、著者が書いた記録ではないと書いてある',
       text.indexOf('この体系で唯一、**著者が書いた記録ではない**') >= 0
