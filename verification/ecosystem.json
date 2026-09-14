@@ -1277,7 +1277,10 @@
           "どちらも六か月に足りない",
           "まだ出していない",
           "リンクと強調の記法だけ外してある",
-          "出すのは九つ全部である"
+          "出すのは九つ全部である",
+          "論文の側は出さない",
+          "プレプリントの棚に留める",
+          "取り下げるのではない"
         ]
       },
       {
@@ -1292,7 +1295,10 @@
           "Neither reaches six months",
           "Nothing has been submitted",
           "with only link and emphasis markup removed",
-          "All nine are to be submitted"
+          "All nine are to be submitted",
+          "will not be submitted",
+          "stay on the preprint shelf",
+          "This is not a withdrawal"
         ]
       },
       {
@@ -1302,7 +1308,10 @@
           "ohne Publikations- und ohne Einreichungsgebühren",
           "Erreicht ist davon noch nichts",
           "Eingereicht wurde noch nichts",
-          "Eingereicht werden sollen alle neun"
+          "Eingereicht werden sollen alle neun",
+          "werden nicht eingereicht",
+          "im Preprint-Regal",
+          "Zurückgezogen wird nichts"
         ]
       },
       {
@@ -1312,7 +1321,10 @@
           "sans frais de publication ni de soumission",
           "Rien de tout cela n’est atteint",
           "Rien n’a encore été soumis",
-          "Les neuf doivent tous être soumis"
+          "Les neuf doivent tous être soumis",
+          "ne seront pas soumis",
+          "l’étagère des préprints",
+          "Rien n’est retiré"
         ]
       },
       {
@@ -1322,7 +1334,10 @@
           "senza spese di pubblicazione né di sottomissione",
           "Nulla di ciò è ancora raggiunto",
           "Nulla è stato ancora inviato",
-          "Devono essere inviati tutti e nove"
+          "Devono essere inviati tutti e nove",
+          "non verranno inviati",
+          "scaffale dei preprint",
+          "Nulla viene ritirato"
         ]
       },
       {
@@ -1331,7 +1346,9 @@
           "直近の目標がある",
           "どちらも六か月に足りない",
           "まだ出していない",
-          "出すのは九つ全部である"
+          "出すのは九つ全部である",
+          "論文の側は出さない",
+          "プレプリントの棚に留める"
         ]
       },
       {
@@ -1340,7 +1357,9 @@
           "there is a nearer goal",
           "Neither reaches six months",
           "Nothing has been submitted",
-          "All nine are to be submitted"
+          "All nine are to be submitted",
+          "will not be submitted",
+          "stay on the preprint shelf"
         ]
       }
     ]

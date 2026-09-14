@@ -42,6 +42,8 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。そして、いまは届いていない。ここの九つで最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。どちらも六か月に足りない。作業も数週間に集中している。まだ出していない。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは九つ全部である。どれがどの門に届いていないかは、九つの状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
 
+そして、論文の側は出さない。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に投稿しない。費用の問題ではない。生成 AI の使用を開示できないからである。いまの学術誌は、道具と版、使った場所、そして人が検証したことを書かせる。哲学三篇については、それが書けない —— 記録が残っておらず、著者の記憶でも定まらない（ERRATA の E5）。不完全な開示は、費用より重い。COPE に沿う場は、それを倫理違反として扱う。だから六篇は、プレプリントの棚に留める。Zenodo と PhilArchive と SSRN に置いたままにして、査読誌へは動かさない。取り下げるのではない。場所を変えないだけである。出すのは、道具の側と、これから書く稿だけである —— そちらは git の履歴が commit ごとに開示を裏づける。二つの決めは、同じ一つの理由から出ている —— 書けない開示を書かない、ということである（九つの状態）。
+
 **これからの二つ**
 
 - 事業を承継すること
@@ -267,7 +269,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 266 項目（要: 
 
 ```
 node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 357 項目
+node verification/check_ecosystem.js  # 9 リポジトリ横断 361 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 33 項目
 ```
 
