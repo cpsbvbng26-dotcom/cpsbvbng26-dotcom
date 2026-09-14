@@ -1276,7 +1276,8 @@
           "これから使われるという言明では足りない",
           "どちらも六か月に足りない",
           "まだ出していない",
-          "リンクと強調の記法だけ外してある"
+          "リンクと強調の記法だけ外してある",
+          "出すのは九つ全部である"
         ]
       },
       {
@@ -1290,7 +1291,8 @@
           "saying it will be used is not enough",
           "Neither reaches six months",
           "Nothing has been submitted",
-          "with only link and emphasis markup removed"
+          "with only link and emphasis markup removed",
+          "All nine are to be submitted"
         ]
       },
       {
@@ -1299,7 +1301,8 @@
           "ein näheres Ziel",
           "ohne Publikations- und ohne Einreichungsgebühren",
           "Erreicht ist davon noch nichts",
-          "Eingereicht wurde noch nichts"
+          "Eingereicht wurde noch nichts",
+          "Eingereicht werden sollen alle neun"
         ]
       },
       {
@@ -1308,7 +1311,8 @@
           "un but plus proche",
           "sans frais de publication ni de soumission",
           "Rien de tout cela n’est atteint",
-          "Rien n’a encore été soumis"
+          "Rien n’a encore été soumis",
+          "Les neuf doivent tous être soumis"
         ]
       },
       {
@@ -1317,7 +1321,8 @@
           "un obiettivo più vicino",
           "senza spese di pubblicazione né di sottomissione",
           "Nulla di ciò è ancora raggiunto",
-          "Nulla è stato ancora inviato"
+          "Nulla è stato ancora inviato",
+          "Devono essere inviati tutti e nove"
         ]
       },
       {
@@ -1325,7 +1330,8 @@
         "必ず書いてあること": [
           "直近の目標がある",
           "どちらも六か月に足りない",
-          "まだ出していない"
+          "まだ出していない",
+          "出すのは九つ全部である"
         ]
       },
       {
@@ -1333,7 +1339,8 @@
         "必ず書いてあること": [
           "there is a nearer goal",
           "Neither reaches six months",
-          "Nothing has been submitted"
+          "Nothing has been submitted",
+          "All nine are to be submitted"
         ]
       }
     ]

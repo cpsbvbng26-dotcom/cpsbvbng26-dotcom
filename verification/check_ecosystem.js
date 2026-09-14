@@ -1020,6 +1020,74 @@ console.log('\n7.10 直近の目標（JOSS）');
     '実際 ' + (九つ[0] || '取れない') + ' / ' + (道具[0] || '取れない'));
 }
 
+/* **「全部出す」と書いたなら、全部の状態を数える。**九つそれぞれについて、
+ * 最初のコミットと、公開されたタグと、門 1 に届く最短日を git から取り直す。
+ * **ローカルのタグを数えると足りない。**一度そう数えて、三つを一つと書いている。 */
+
+console.log('\n7.11 JOSS —— 九つの状態');
+
+{
+  const F = path.join('docs', 'joss.md');
+  const md = read('cpsbvbng26-dotcom', F) || '';
+  const 行 = {};
+  for (const line of md.split('\n')) {
+    if (!line.startsWith('| ')) continue;
+    const c = line.split('|').map((x) => x.trim());
+    if (c.length !== 9) continue;
+    if (!C.repos.includes(c[1])) continue;
+    行[c[1]] = { タグ: c[4], 初: c[6], 最短: c[7] };
+  }
+  check('九つが全部、表の行として立っている',
+    Object.keys(行).length === C.repos.length,
+    Object.keys(行).length + ' / ' + C.repos.length);
+
+  const g = (repo, args) => {
+    try {
+      return execFileSync('git', args,
+        { cwd: path.join(ROOT, repo), encoding: 'utf8' });
+    } catch (e) { return null; }
+  };
+  /* 六か月を「超えて」である。丸六か月の翌日が最短になる。 */
+  const 最短 = (iso) => {
+    const d = new Date(iso + 'T00:00:00Z');
+    d.setUTCMonth(d.getUTCMonth() + 6);
+    d.setUTCDate(d.getUTCDate() + 1);
+    return d.toISOString().slice(0, 10);
+  };
+  const ずれ = [];
+  for (const repo of C.repos) {
+    const r = 行[repo];
+    if (!r) { ずれ.push(repo + ' の行が無い'); continue; }
+    const out = g(repo, ['log', '--reverse', '--format=%as']);
+    const 初 = out === null ? '' : out.split('\n')[0].trim();
+    if (初 !== r.初) ずれ.push(repo + ' の最初のコミット ' + r.初 + ' / git ' + (初 || '取れない'));
+    else if (最短(初) !== r.最短) ずれ.push(repo + ' の最短 ' + r.最短 + ' / 実際 ' + 最短(初));
+  }
+  check('表の最初のコミットと、門 1 に届く最短が、git と合う', ずれ.length === 0,
+    ずれ.length ? ずれ.join(' / ') : C.repos.length + ' 件');
+
+  /* **公開されたタグを数える。**ここが、手元のタグと食い違っていた箇所である。 */
+  const タグずれ = [];
+  for (const repo of C.repos) {
+    const r = 行[repo];
+    if (!r) continue;
+    const out = g(repo, ['ls-remote', '--tags', 'origin']);
+    if (out === null) { タグずれ.push(repo + ' のタグが取れない'); continue; }
+    const n = out.split('\n').filter((l) => /refs\/tags\/[^^]*$/.test(l.trim())).length;
+    const 名乗り = r.タグ === '**無い**' ? 0 : parseInt((/(\d+)/.exec(r.タグ) || [0, '-1'])[1], 10);
+    if (n !== 名乗り) タグずれ.push(repo + ' 名乗り ' + 名乗り + ' / 実際 ' + n);
+  }
+  check('表の公開されたタグの数が、git ls-remote と合う', タグずれ.length === 0,
+    タグずれ.length ? タグずれ.join(' / ') : C.repos.length + ' 件');
+
+  /* **出すのは全部である**と書いた以上、九つのどれも外していないこと。 */
+  check('全部出すと書いてあり、届いていない門も同じ文書にある',
+    md.indexOf('**出すのは九つ全部である。**') >= 0
+    && md.indexOf('**いちばん早いものでも、六か月を超えていない。**') >= 0
+    && md.indexOf('**九つとも、著者以外に使われた記録が無い。**') >= 0
+    && md.indexOf('**論文と史料ノートは、そもそも software ではない。**') >= 0);
+}
+
 console.log('\n7.9 「専門職」という語の三つの範囲');
 
 {
