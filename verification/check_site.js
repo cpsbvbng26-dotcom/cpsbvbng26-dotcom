@@ -523,7 +523,7 @@ const OFF_TOPIC = [
  * 同じことをしないための条件を、頁が自分に課している。**課しただけでは守られない。**
  * 定義が一行のまま動かないこと、覆し方が立っていること、人の名を冠さないこと。 */
 {
-  const W = read(path.join('notes', 'weak-men.html'));
+  const W = read(path.join('notes', 'monk-problem.html'));
   /* **定義は命題である。**問いの形にすると、相手側への拘束しか残らない。
    * **名が指しているのは交差点のほうである** —— 範例が共同体付きだったという一点。 */
   const 定義 = '<b>性愛と家族を持たない男の歴史的範例は、孤立者ではなく共同体の成員だった。'
@@ -551,7 +551,7 @@ const OFF_TOPIC = [
  * 最終更新を印字してある。**印字した日付は、放っておくと古くなる。**
  * docs/self-assessment.md と同じやり方で、git の記録と突き合わせる。 */
 {
-  const F = path.join('notes', 'weak-men.html');
+  const F = path.join('notes', 'monk-problem.html');
   const html = read(F);
   const m = /最終更新 (\d{4}-\d{2}-\d{2})/.exec(html);
   let gitDate = '';
@@ -560,7 +560,7 @@ const OFF_TOPIC = [
       .execFileSync('git', ['log', '-1', '--format=%as', '--', F],
                     { cwd: ROOT, encoding: 'utf8' }).trim();
   } catch (e) { gitDate = ''; }
-  ok('弱者男性の頁が名乗る最終更新が、git の記録と合う',
+  ok('修道士問題の頁が名乗る最終更新が、git の記録と合う',
      m !== null && gitDate !== '' && m[1] === gitDate,
      m ? ('印字 ' + m[1] + ' / git ' + (gitDate || '取れない')) : '名乗っていない');
 }
