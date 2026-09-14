@@ -244,7 +244,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 266 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 277 checks (needs Chromium)
 ```
 
 It tabs through 25 pages and looks for focus traps, elements that receive focus while

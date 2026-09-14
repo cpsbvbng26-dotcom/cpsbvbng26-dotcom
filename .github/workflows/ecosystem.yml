@@ -21,21 +21,21 @@ jobs:
       - uses: actions/checkout@v4
         with: { path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check }
+        with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check, fetch-depth: 0 }
       - uses: actions/checkout@v4
         with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity }
+        with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator }
+        with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation }
+        with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes }
+        with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile }
+        with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile, fetch-depth: 0 }
       - uses: actions/checkout@v4
-        with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms }
+        with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms, fetch-depth: 0 }
 
       - uses: actions/setup-python@v5
         with:
