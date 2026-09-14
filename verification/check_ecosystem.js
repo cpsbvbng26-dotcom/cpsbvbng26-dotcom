@@ -953,6 +953,73 @@ console.log('\n7.7 受けた勧誘');
  * 審査を通ったことに化ける。**一度そう書いて直している**（SC-027）。
  * ここで見るのは、三つが範囲つきで分かれていることと、区分と審査を分ける一文である。 */
 
+/* **出す先を決めただけでは、出したことにならない。**直近の目標として一つの場を挙げるなら、
+ * その場の明文と、いま届いていない分を同じところに書く。**将来の言明は、この場では
+ * 根拠にならない**と場の側が明記している（<code>Aspirational statements…</code>）ので、
+ * こちらもそれに合わせる。日付は git から取って突き合わせる。 */
+
+console.log('\n7.10 直近の目標（JOSS）');
+
+{
+  const J = DECL['直近の目標'];
+  const 面 = J['出す場所'];
+  for (const 場 of 面) {
+    const text = read('cpsbvbng26-dotcom', 場.file);
+    const 無い = text === null ? ['頁が無い']
+      : 場['必ず書いてあること'].filter((x) => text.indexOf(x) < 0);
+    check('  ' + 場.file + ' が、場の名前と条件と届いていない分を書いている',
+      無い.length === 0,
+      無い.length ? 無い.join(' / ') : 場['必ず書いてあること'].length + ' 件');
+  }
+
+  /* **識別子は五つの面で同じでなければならない。**一つだけ直すと、そこが古くなる。 */
+  for (const [名, 値] of Object.entries(J['どの面にも同じもの'])) {
+    const 欠け = 面.map((x) => x.file)
+      .filter((f) => (read('cpsbvbng26-dotcom', f) || '').indexOf(値) < 0);
+    check('  ' + 名 + ' が、五つの面すべてで同じ', 欠け.length === 0,
+      欠け.length ? 欠け.join(', ') : 値);
+  }
+
+  /* **四つの門は四つである。**一つ落としても散文は読めてしまう。 */
+  const ja = read('cpsbvbng26-dotcom', 'index.html') || '';
+  const 門 = ['<b>一つ目、公開の期間。</b>', '<b>二つ目、研究に使われている証拠。</b>',
+              '<b>三つ目、開かれた開発の実践。</b>', '<b>四つ目、反復した開発。</b>'];
+  const 立っている = 門.filter((x) => ja.indexOf(x) >= 0);
+  check('査読の前の門が、四つとも立っている', 立っている.length === 4,
+    立っている.length + ' / 4');
+
+  /* **日付は git から取る。**散文に書いた二つが、実際の最初のコミットと合うか。 */
+  const 最初 = (repo) => {
+    try {
+      return execFileSync('git', ['log', '--reverse', '--format=%as'],
+        { cwd: path.join(ROOT, repo), encoding: 'utf8' }).split('\n')[0].trim();
+    } catch (e) { return ''; }
+  };
+  const 九つ = C.repos.map(最初).filter(Boolean).sort();
+  const 道具 = J['道具'].map(最初).filter(Boolean).sort();
+
+  /* **頁に印字された日付そのものを読む。**宣言と git だけを突き合わせても、
+   * 頁の数字を書き換えたら素通りする。**実際に一度そう組んで、直している。** */
+  const 印字 = (text, re) => { const m = re.exec(text || ''); return m ? m[1] : ''; };
+  const 面の日付 = [['index.html', /最も早い最初のコミットは <b>(\d{4}-\d{2}-\d{2})<\/b>/,
+                                   /いちばん早いもので <b>(\d{4}-\d{2}-\d{2})<\/b>/],
+                    ['index.en.html', /nine repositories is\s*<b>(\d{4}-\d{2}-\d{2})<\/b>/,
+                                      /the earliest is <b>(\d{4}-\d{2}-\d{2})<\/b>/]];
+  for (const [file, re九, re道] of 面の日付) {
+    const text = read('cpsbvbng26-dotcom', file);
+    const a = 印字(text, re九);
+    const b = 印字(text, re道);
+    check('  ' + file + ' の二つの日付が、git の最初のコミットと合う',
+      a === 九つ[0] && b === 道具[0] && a !== '' && b !== '',
+      '印字 ' + (a || '取れない') + ' / ' + (b || '取れない')
+      + '　git ' + 九つ[0] + ' / ' + 道具[0]);
+  }
+  check('宣言した二つの日付も、git と合う',
+    九つ.length === C.repos.length && 九つ[0] === J['九つで最も早い']
+    && 道具.length === J['道具'].length && 道具[0] === J['道具で最も早い'],
+    '実際 ' + (九つ[0] || '取れない') + ' / ' + (道具[0] || '取れない'));
+}
+
 console.log('\n7.9 「専門職」という語の三つの範囲');
 
 {

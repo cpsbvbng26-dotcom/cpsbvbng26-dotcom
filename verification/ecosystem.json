@@ -1243,5 +1243,99 @@
       "README.md",
       "README.en.md"
     ]
+  },
+  "直近の目標": {
+    "_": "直近の目標として JOSS を挙げる。名前・識別子・明文の条件・届いていない分を、五つの面と README 二つに同じだけ置く。",
+    "_なぜ": "**目標だけを書くと、達成の宣言に読める。**場の側は将来の言明を根拠として認めないと明記している。こちらも、いま届いていない分を同じ場所に書く。日付は git から取って突き合わせる。",
+    "九つで最も早い": "2026-06-12",
+    "道具で最も早い": "2026-09-05",
+    "道具": [
+      "errata-check",
+      "researcher-profile",
+      "trinity-operator",
+      "self-correction"
+    ],
+    "どの面にも同じもの": {
+      "場の名前": "Journal of Open Source Software",
+      "ISSN": "2475-9066",
+      "DOI の接頭辞": "10.21105",
+      "返される先": "desk rejection",
+      "将来の言明は足りない": "Aspirational statements about future use are not sufficient",
+      "一度の集中では足りない": "not a single burst of commits",
+      "AI の開示": "AI usage disclosure"
+    },
+    "出す場所": [
+      {
+        "file": "index.html",
+        "必ず書いてあること": [
+          "直近の目標がある",
+          "掲載料も投稿料も取らない場である",
+          "The software must be open source as per the OSI definition",
+          "The repository must have been public for more than six months prior to submission",
+          "There must be evidence that the software is being used for research",
+          "これから使われるという言明では足りない",
+          "どちらも六か月に足りない",
+          "まだ出していない",
+          "リンクと強調の記法だけ外してある"
+        ]
+      },
+      {
+        "file": "index.en.html",
+        "必ず書いてあること": [
+          "there is a nearer goal",
+          "charges neither publication nor submission fees",
+          "The software must be open source as per the OSI definition",
+          "The repository must have been public for more than six months prior to submission",
+          "There must be evidence that the software is being used for research",
+          "saying it will be used is not enough",
+          "Neither reaches six months",
+          "Nothing has been submitted",
+          "with only link and emphasis markup removed"
+        ]
+      },
+      {
+        "file": "index.de.html",
+        "必ず書いてあること": [
+          "ein näheres Ziel",
+          "ohne Publikations- und ohne Einreichungsgebühren",
+          "Erreicht ist davon noch nichts",
+          "Eingereicht wurde noch nichts"
+        ]
+      },
+      {
+        "file": "index.fr.html",
+        "必ず書いてあること": [
+          "un but plus proche",
+          "sans frais de publication ni de soumission",
+          "Rien de tout cela n’est atteint",
+          "Rien n’a encore été soumis"
+        ]
+      },
+      {
+        "file": "index.it.html",
+        "必ず書いてあること": [
+          "un obiettivo più vicino",
+          "senza spese di pubblicazione né di sottomissione",
+          "Nulla di ciò è ancora raggiunto",
+          "Nulla è stato ancora inviato"
+        ]
+      },
+      {
+        "file": "README.md",
+        "必ず書いてあること": [
+          "直近の目標がある",
+          "どちらも六か月に足りない",
+          "まだ出していない"
+        ]
+      },
+      {
+        "file": "README.en.md",
+        "必ず書いてあること": [
+          "there is a nearer goal",
+          "Neither reaches six months",
+          "Nothing has been submitted"
+        ]
+      }
+    ]
   }
 }
