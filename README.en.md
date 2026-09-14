@@ -44,7 +44,7 @@ Apart from those two, there is a nearer goal. Acceptance in the Journal of Open 
 
 The papers, by contrast, will not be submitted. Neither the three philosophy papers nor the three Trinity-Infinity papers will go to a diamond open-access refereed journal. The reason is not cost. It is that the use of generative AI cannot be disclosed. Journals now ask for the tools and versions, where they were used, and confirmation that a human verified the output. For the three philosophy papers that cannot be written — no record was kept and the author’s memory does not settle it (E5 in the errata). An incomplete disclosure weighs more than a fee. Venues following COPE treat it as an ethical breach. So the six stay on the preprint shelf. They remain on Zenodo, PhilArchive and SSRN, and are not moved to a refereed journal. This is not a withdrawal. Nothing is being taken down; it simply is not moved. What gets submitted is the tooling, and whatever is written from here on — there the git history backs the disclosure commit by commit. Both decisions come from one reason: a disclosure that cannot be written is not written (the nine repositories).
 
-The outlook, stated plainly. Nothing outside those two is in view — taking over the business, and teaching at an online university after a doctorate. And life will be lived with contact with others cut back as far as it will go. That way of living points the same way as the writing. What The Nobility and Exemplarity of the Celibate Individual defends is precisely that form — a happiness dependent neither on others nor on the cycle of desire (C2 in that paper). Whether that form can actually be taken up, however, is not established. C2 rests on two sources the author has not read (E6 in the errata, severity high), and the statistics on isolation press exactly on whether it can be taken up (The Monk Problem). A way of living is not evidence for a claim. The order runs the other way: the claim is the part not yet standing on its own feet.
+The outlook, stated plainly. Nothing outside those two is in view — taking over the business, and teaching at an online university after a doctorate. And life will be lived with contact with others cut back as far as it will go. That way of living points the same way as the writing. What The Nobility and Exemplarity of the Celibate Individual defends is precisely that form — a happiness dependent neither on others nor on the cycle of desire (C2 in that paper). Whether that form can actually be taken up, however, is not established. C2 rests on two sources the author has not read (E6 in the errata, severity high), and the statistics on isolation press exactly on whether it can be taken up. A way of living is not evidence for a claim. The order runs the other way: the claim is the part not yet standing on its own feet.
 
 **Two aims**
 
@@ -231,12 +231,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1046 checks.** There are no dependencies to install.
+**Every push runs 1019 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 543 checks
+node verification/check_contrast.js  # colour contrast, 397 checks
+node verification/check_site.js      # site structure, 532 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -246,7 +246,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 302 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 290 checks (needs Chromium)
 ```
 
 It tabs through 25 pages and looks for focus traps, elements that receive focus while
