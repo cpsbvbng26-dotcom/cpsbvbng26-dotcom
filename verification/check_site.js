@@ -1348,7 +1348,7 @@ section('10.60 CI の仕事の名前が名乗っている数');
     const m = /const WIDTHS = \[([^\]]*)\]/.exec(kb);
     const widths = m ? m[1].split(',').filter((x) => x.trim()).length : 0;
     ok('check_keyboard.js から測る幅の数を読める', widths > 0, String(widths));
-    counts['キーボードで辿れるか'] = PAGES.length * (7 + widths) + 2;
+    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths) + 2;
   }
 
   ok('配色の名乗りが実際と合う',

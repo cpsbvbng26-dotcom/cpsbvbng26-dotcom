@@ -35,7 +35,7 @@ jobs:
   # ブラウザが要る検査は別の仕事にする。**環境の都合で落ちたのか、中身が
   # 壊れたのかを見分けられなくなる**ので、上の並びには混ぜない。
   keyboard:
-    name: キーボードで辿れるか 277 項目
+    name: キーボードで辿れるか 302 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -235,6 +235,38 @@ async function walk(pg) {
          '頁 ' + over.doc + ' / ナビ ' + over.nav);
       await c2.close();
     }
+
+    /* **画面に出ているかは、辿れるかとは別に測る。**
+     * 現れる仕掛けは「要素の何割が見えたら出すか」で判定していた。
+     * **画面より高い塊は、その割合に永久に届かない。**自己紹介が 8819px まで
+     * 伸びたとき、844px の画面では最大 9.6% しか見えず、頁の上半分が丸ごと
+     * 消えていた。落ちるまで誰も気づかなかったので、ここで測る。 */
+    {
+      const c3 = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const p3 = await c3.newPage();
+      await p3.goto('http://127.0.0.1:' + port + BASE + '/' + page, { waitUntil: 'networkidle' });
+      await p3.evaluate(async () => {
+        const h = document.body.scrollHeight;
+        for (let y = 0; y < h; y += 400) {
+          window.scrollTo(0, y);
+          await new Promise((r) => setTimeout(r, 16));
+        }
+        window.scrollTo(0, h);
+      });
+      await p3.waitForTimeout(600);
+      const 出ない = await p3.evaluate(() => {
+        const out = [];
+        document.querySelectorAll('.reveal').forEach((el) => {
+          if (parseFloat(getComputedStyle(el).opacity) < 0.5) {
+            out.push((el.className || '').trim().slice(0, 30));
+          }
+        });
+        return out;
+      });
+      ok('最後まで送ると、現れる塊が全部出る', 出ない.length === 0,
+         出ない.slice(0, 3).join(' / '));
+      await c3.close();
+    }
   }
 
   await browser.close();
@@ -246,7 +278,7 @@ async function walk(pg) {
    * expected は、この二件を足したあとの総数である。 */
   section('名乗っている数');
   {
-    const expected = pass + 2;   /* 1 頁あたり 7 + WIDTHS.length 件、最後にこの二件 */
+    const expected = pass + 2;   /* 1 頁あたり 8 + WIDTHS.length 件、最後にこの二件 */
     [['README.md', /check_keyboard\.js\s+# Tab で辿って測る (\d+) 項目/],
      ['README.en.md', /check_keyboard\.js\s+# Tab traversal, (\d+) checks/]].forEach(([f, re]) => {
       const m = re.exec(fs.readFileSync(path.join(ROOT, f), 'utf8'));

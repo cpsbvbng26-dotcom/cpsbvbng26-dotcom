@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-BFGAq5xeEznkWws2dbQZBQGxLvjEKUDrty1zOUx31Q8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-BFGAq5xeEznkWws2dbQZBQGxLvjEKUDrty1zOUx31Q8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profilo di ricerca | Takuya Nemoto</title>
 <meta name="description" content="Profilo di Takuya Nemoto. Quanto si trova qui poggia sullo studio da autodidatta e sul lavoro con modelli linguistici. I criteri superati, e quelli non superati, sono riportati nelle parole stesse delle piattaforme.">
 <meta name="robots" content="index, follow">
@@ -896,7 +896,10 @@ footer::before {
         entry.target.classList.add('is-visible');
         io.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    /* 閾値は 0 にする。割合で判定すると、画面より高い塊が永久に出ない。
+     * 自己紹介が 8819px まで伸びたとき、844px の画面では最大 9.6% しか
+     * 見えず、1 割の条件に届かなかった。頁の上半分が丸ごと消えていた。 */
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
   });
 })();

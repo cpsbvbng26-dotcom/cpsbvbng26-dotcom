@@ -258,7 +258,7 @@ node verification/check_trinity.js   # 作用素の数値 90 項目
 Chromium を起こして測る。playwright と Chromium が要るので、上の並びには入れていない。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 277 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: Chromium）
 ```
 
 25 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
