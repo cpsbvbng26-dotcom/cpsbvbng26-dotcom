@@ -519,6 +519,24 @@ const OFF_TOPIC = [
   ['家柄|末裔|血統|[Bb]loodline', '血筋を誇る語'],
   ['コンサルタント|[Cc]onsultant', 'コンサルタント肩書き']
 ];
+/* **改訂される頁は、いつの版かを自分で名乗る。**引く側が閲覧日を付けられるように
+ * 最終更新を印字してある。**印字した日付は、放っておくと古くなる。**
+ * docs/self-assessment.md と同じやり方で、git の記録と突き合わせる。 */
+{
+  const F = path.join('notes', 'weak-men.html');
+  const html = read(F);
+  const m = /最終更新 (\d{4}-\d{2}-\d{2})/.exec(html);
+  let gitDate = '';
+  try {
+    gitDate = require('child_process')
+      .execFileSync('git', ['log', '-1', '--format=%as', '--', F],
+                    { cwd: ROOT, encoding: 'utf8' }).trim();
+  } catch (e) { gitDate = ''; }
+  ok('弱者男性の頁が名乗る最終更新が、git の記録と合う',
+     m !== null && gitDate !== '' && m[1] === gitDate,
+     m ? ('印字 ' + m[1] + ' / git ' + (gitDate || '取れない')) : '名乗っていない');
+}
+
 /* **配っている頁も公の面である。**リンクの説明文は cv.html にしか無いので、
  * ここを外すと、肩書きの語が cv.html にだけ残せてしまう。 */
 const PUBLIC_FACES = ENTRIES.concat(['trinity.html', 'cv.html',
