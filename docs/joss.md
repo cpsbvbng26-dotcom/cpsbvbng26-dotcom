@@ -23,15 +23,15 @@
 
 | リポジトリ | 種別 | OSI のライセンス | 公開したタグ | CONTRIBUTING | 最初のコミット | 門 1 に届く最短 |
 | --- | --- | --- | --- | --- | --- | --- |
-| cpsbvbng26-dotcom | 場所と横断の検査 | `LICENSE-CODE` が MIT | **無い** | **無い** | 2026-06-12 | 2026-12-13 |
-| researcher-profile | 道具 | `LICENSE` が MIT | **1 件** | **無い** | 2026-09-05 | 2027-03-06 |
-| trinity-infinity | 論文 | `LICENSE-CODE` が MIT | **無い** | **無い** | 2026-09-05 | 2027-03-06 |
-| autonomy-and-self-cultivation | 論文 | `LICENSE-CODE` が MIT | **無い** | **無い** | 2026-09-05 | 2027-03-06 |
+| cpsbvbng26-dotcom | 場所と横断の検査 | `LICENSE-CODE` が MIT | **無い** | ある | 2026-06-12 | 2026-12-13 |
+| researcher-profile | 道具 | `LICENSE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
+| trinity-infinity | 論文 | `LICENSE-CODE` が MIT | **無い** | ある | 2026-09-05 | 2027-03-06 |
+| autonomy-and-self-cultivation | 論文 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
 | justice-and-algorithms | 論文 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
-| naval-gazette-notes | 史料ノート | `LICENSE-CODE` が MIT | **無い** | **無い** | 2026-09-05 | 2027-03-06 |
-| trinity-operator | 道具 | `LICENSE` が MIT | **無い** | **無い** | 2026-09-06 | 2027-03-07 |
+| naval-gazette-notes | 史料ノート | `LICENSE-CODE` が MIT | **無い** | ある | 2026-09-05 | 2027-03-06 |
+| trinity-operator | 道具 | `LICENSE` が MIT | **無い** | ある | 2026-09-06 | 2027-03-07 |
 | errata-check | 道具 | `LICENSE` が MIT | **3 件** | ある | 2026-09-07 | 2027-03-08 |
-| self-correction | 記録と道具 | `LICENSE` が MIT | **無い** | **無い** | 2026-09-07 | 2027-03-08 |
+| self-correction | 記録と道具 | `LICENSE` が MIT | **無い** | ある | 2026-09-07 | 2027-03-08 |
 
 **「門 1 に届く最短」は、最初のコミットの日から公開されていた場合の日付である。**
 **公開に切り替えた日は、最初のコミットと同じとは限らない。こちらでは確かめていない。**
@@ -57,21 +57,24 @@ Trinity-Infinity の三篇も同じ道具で監査している。
 **それが証拠として足りるかは、編集側の判断である。こちらでは決まらない。**
 そして、場の側は釘を刺している —— `Aspirational statements about future use are not sufficient`。
 
-## 門 3 —— タグが一つのリポジトリにしか無い
+## 門 3 —— 残っているのはタグである
 
 単独の著者の場合、複数の指標が同時に要る ——
 公開された履歴、タグ付きの版または変更履歴、試験と CI、文書、`CONTRIBUTING`、支援の方針である。
 **九つとも、試験と CI と文書は揃っている。**
 
-**タグを公開しているのは三つである。**`errata-check`（**3 件**）、`researcher-profile`（**1 件**）、
-`justice-and-algorithms`（**1 件**）である。**残る六つは一つも公開していない。**
+**`CONTRIBUTING` は九つとも揃った。**2026-09-15 に、欠けていた七つへ置いた。
+支援の範囲とこれからの見込みも、そのそれぞれに書いてある。
+
+**タグを公開しているのは四つである。**`errata-check`（**3 件**）、`researcher-profile`（**1 件**）、
+`justice-and-algorithms`（**1 件**）、`autonomy-and-self-cultivation`（**1 件**）である。
+**残る五つは一つも公開していない。**
 **理由は環境にある** —— この作業環境からタグを push すると 403 で返る。
 **利用者の手作業にしか置き換えられない。**
 
 **ローカルのタグと、公開されたタグは別である。**数え直すまで、こちらは一つだけだと書いていた。
 手元に残っているタグを数えていたためである。**検査は `git ls-remote` のほうを見る。**
-
-**`CONTRIBUTING` があるのは二つだけである。**`errata-check` と `justice-and-algorithms` である。
+`autonomy-and-self-cultivation` の一件も、この検査が拾った。
 
 ## 門 4 —— 九つとも、作業が数週間に集中している
 
