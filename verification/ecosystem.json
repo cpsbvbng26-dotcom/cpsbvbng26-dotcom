@@ -1223,8 +1223,8 @@
           "出すのはその先である",
           "リンクと強調の記法だけ外してある",
           "出すのは十全部である",
-          "論文の側は出さない",
-          "プレプリントの棚に留める",
+          "論文の側も出す",
+          "プレプリントは動かさない",
           "取り下げるのではない"
         ]
       },
@@ -1241,8 +1241,8 @@
           "Submission comes after that",
           "with only link and emphasis markup removed",
           "All ten are to be submitted",
-          "will not be submitted",
-          "stay on the preprint shelf",
+          "are being submitted too",
+          "The preprints do not move",
           "This is not a withdrawal"
         ]
       },
@@ -1292,8 +1292,8 @@
           "六か月の条件から逆算すると",
           "出すのはその先である",
           "出すのは十全部である",
-          "論文の側は出さない",
-          "プレプリントの棚に留める"
+          "論文の側も出す",
+          "プレプリントは動かさない"
         ]
       },
       {
@@ -1303,8 +1303,8 @@
           "Counting back from the six-month requirement",
           "Submission comes after that",
           "All ten are to be submitted",
-          "will not be submitted",
-          "stay on the preprint shelf"
+          "are being submitted too",
+          "The preprints do not move"
         ]
       }
     ]
