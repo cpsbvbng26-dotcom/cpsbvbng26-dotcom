@@ -38,9 +38,9 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
-これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。そして、いまは届いていない。ここの九つで最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。どちらも六か月に足りない。作業も数週間に集中している。まだ出していない。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは九つ全部である。どれがどの門に届いていないかは、九つの状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
+これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。そして、いまは届いていない。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。どちらも六か月に足りない。作業も数週間に集中している。まだ出していない。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは十全部である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
 
-そして、論文の側は出さない。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に投稿しない。費用の問題ではない。生成 AI の使用を開示できないからである。いまの学術誌は、道具と版、使った場所、そして人が検証したことを書かせる。哲学三篇については、それが書けない —— 記録が残っておらず、著者の記憶でも定まらない（ERRATA の E5）。不完全な開示は、費用より重い。COPE に沿う場は、それを倫理違反として扱う。だから六篇は、プレプリントの棚に留める。Zenodo と PhilArchive と SSRN に置いたままにして、査読誌へは動かさない。取り下げるのではない。場所を変えないだけである。出すのは、道具の側と、これから書く稿だけである —— そちらは git の履歴が commit ごとに開示を裏づける。二つの決めは、同じ一つの理由から出ている —— 書けない開示を書かない、ということである（九つの状態）。
+そして、論文の側は出さない。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に投稿しない。費用の問題ではない。生成 AI の使用を開示できないからである。いまの学術誌は、道具と版、使った場所、そして人が検証したことを書かせる。哲学三篇については、それが書けない —— 記録が残っておらず、著者の記憶でも定まらない（ERRATA の E5）。不完全な開示は、費用より重い。COPE に沿う場は、それを倫理違反として扱う。だから六篇は、プレプリントの棚に留める。Zenodo と PhilArchive と SSRN に置いたままにして、査読誌へは動かさない。取り下げるのではない。場所を変えないだけである。出すのは、道具の側と、これから書く稿だけである —— そちらは git の履歴が commit ごとに開示を裏づける。二つの決めは、同じ一つの理由から出ている —— 書けない開示を書かない、ということである（十の状態）。
 
 先の見通しも書いておく。上の二つ以外は眼中にない。事業を承継すること、博士号を取ったのちオンライン大学で教えること。そして、他者と接する機会を極限まで削った状態で生きることになるだろう。この暮らし方は、書いたものと同じ向きを向いている。独身者の模範性と貴族性が擁護したのは、まさにその型である —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていない。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっている。暮らし方が主張の裏付けになるわけではない。順序は逆で、主張のほうが、まだ足で立っていない。
 
@@ -265,11 +265,11 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 大きさの無い要素、辿る順と読む順のずれを見る。**道具が無ければ 1 を返して止まる。**
 走らなかった検査は、通った検査ではない。
 
-**リポジトリをまたぐずれは、これだけでは捕まらない。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きる（実際に起きた）。そこで 9 つを並べて隙間だけを見る検査を別に置いている。
+**リポジトリをまたぐずれは、これだけでは捕まらない。**各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きる（実際に起きた）。そこで 10 を並べて隙間だけを見る検査を別に置いている。
 
 ```
-node verification/check_all.js        # 9 リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断 344 項目
+node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
+node verification/check_ecosystem.js  # 10 リポジトリ横断 347 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 33 項目
 ```
 
@@ -283,7 +283,7 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 
 **`check_ecosystem.js`** が見るのは三つである。散文が名乗る数（「道具自身 74」「登録簿 91 件」「壊す先 28 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
-宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 9 つ並んでいることを前提にする（CI は 9 つを checkout してから回す）。
+宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にある。どちらも兄弟ディレクトリに 10 並んでいることを前提にする（CI は 10 を checkout してから回す）。
 
 各リポジトリの `CLAUDE.md` の共通部分が**一字一句同じか**も、ここで見ている。一つだけ直すと落ちる。
 
@@ -342,7 +342,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 <details>
 <summary>城の縄張りに喩えると、どれがどれに相当するか</summary>
 
-九つのリポジトリと、その外側の関係を、城の部位に当てて並べる。
+十のリポジトリと、その外側の関係を、城の部位に当てて並べる。
 喩えであって設計図ではない。ただし当てはめると、弱点の位置が同じ形で出てくる。
 
 ### 城内（GitHub）
@@ -397,7 +397,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 石垣に墨付が無い。`self-correction` は全曲輪が訂正の正本として指しているのに、
 DOI を持っていない。引用できる識別子の無い石垣である。
 
-望楼が見ているのは九つである。**九つで全部である** —— そう確かめたのは、
+望楼が見ているのは十である。**十で全部である** —— そう確かめたのは、
 利用者から「無いはずだ」と指摘されたあとである。それまで、この縄張りには
 存在しないリポジトリが一つ載っていた。根拠はこの作業環境に残っていた
 クローンだけで、リモートを確かめていなかった。登録簿の `WS-003` にある。

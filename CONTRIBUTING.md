@@ -36,7 +36,7 @@ node verification/check_contrast.js    # 配色（WCAG の比）
 node verification/check_site.js        # サイトの構造
 node verification/check_trinity.js     # 作用素の頁の数値
 node verification/check_guards.js      # 検査そのものを壊して確かめる
-node verification/check_ecosystem.js   # 9 リポジトリ横断（兄弟ディレクトリが要る）
+node verification/check_ecosystem.js   # 10 リポジトリ横断（兄弟ディレクトリが要る）
 ```
 
 **通ってから出す。**依存パッケージは要らない。`check_keyboard.js` だけ Chromium を使う。
@@ -61,7 +61,7 @@ node verification/check_ecosystem.js   # 9 リポジトリ横断（兄弟ディ�
 
 - **維持しているのは著者一人である**（根本卓哉）。組織の後ろ盾は無い
 - issue への返答は**数日から一週間**を目安とする。約束ではない
-- **範囲。**この場所の頁と、9 リポジトリ横断の検査に限る。各リポジトリの中身は、
+- **範囲。**この場所の頁と、10 リポジトリ横断の検査に限る。各リポジトリの中身は、
   それぞれのリポジトリで扱う
 - **後方互換。**`verification/*.js` は依存パッケージを持たない方針を変えない
 

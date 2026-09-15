@@ -1,11 +1,11 @@
 # cpsbvbng26-dotcom
 
 プロフィールサイト。GitHub Pages で配信している入口である。
-**このリポジトリ群 9 つ全体の横断検査（`verification/check_ecosystem.js`）も
+**このリポジトリ群 10 全体の横断検査（`verification/check_ecosystem.js`）も
 ここに置いてある。**
 
 <!-- 共通ここから -->
-<!-- この区間は 9 つのリポジトリで一字一句同じである。
+<!-- この区間は 10 のリポジトリで一字一句同じである。
      cpsbvbng26-dotcom/verification/check_ecosystem.js が一致を見ている。
      一つだけ直すと落ちる。直すときは全部直す。 -->
 
@@ -83,8 +83,8 @@ node verification/check_text.js        # 誤変換・使わないと決めた語
 node verification/check_contrast.js    # 配色（WCAG の比）
 node verification/check_site.js        # サイトの構造
 node verification/check_trinity.js     # 作用素のページの数値
-node verification/check_ecosystem.js   # 9 リポジトリ横断（要: 兄弟ディレクトリ）
-node verification/check_all.js         # 9 リポジトリの検査を全部回す
+node verification/check_ecosystem.js   # 10 リポジトリ横断（要: 兄弟ディレクトリ）
+node verification/check_all.js         # 10 リポジトリの検査を全部回す
 ```
 
 **生成物 —— 手で編集しない。**
