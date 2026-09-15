@@ -615,6 +615,7 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | --- | --- | --- | --- |
 | 外部の公開レビューの場（名前は最初の評価が届いた時点で記す） | The Nobility and Exemplarity of the Celibate Individual | `10.2139/ssrn.7358779` | 受付済み。評価なし |
 | 同上 | Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | 受付済み。評価なし |
+| 同上 | The Trinity-Infinity Framework, Series II | `10.2139/ssrn.7446961` | 受付済み。評価なし |
 | SSRN | Fragmentarian Spiritual Individualism | —（付かなかった） | **弾かれた。**受け付けられていない |
 
 **三篇目は SSRN に落とされている。**Fragmentarian Spiritual Individualism
