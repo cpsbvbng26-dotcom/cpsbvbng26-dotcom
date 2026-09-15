@@ -119,6 +119,11 @@
       "priority": "0.6"
     },
     {
+      "file": "notes/solitary-school.html",
+      "loc": "notes/solitary-school.html",
+      "priority": "0.5"
+    },
+    {
       "file": "404.html",
       "loc": null,
       "priority": null,
