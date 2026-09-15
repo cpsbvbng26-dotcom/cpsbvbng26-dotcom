@@ -25,7 +25,7 @@
 | 7 | `10.5281/zenodo.22058964` | Trinity-Infinity Series III | 現行 |
 | 8 | `10.5281/zenodo.22064241` | Fragmentarian Spiritual Individualism | 現行 |
 | 9 | `10.5281/zenodo.22335676` | 正義論とアルゴリズム | 現行。論点の整理であり研究成果ではない |
-| 10 | `10.5281/zenodo.22335691` | **未確認** | 下の「未確認の番号」を見ること |
+| 10 | `10.5281/zenodo.22335691` | researcher-profile —— **一部だけ確認した** | 下の「未確認の番号」を見ること |
 | 11 | `10.5281/zenodo.22335692` | researcher-profile v1.0.0 | 現行 |
 | 12 | `10.5281/zenodo.22649054` | errata-check v0.1.0 | 旧版。**だが消してはいけない**（下記） |
 | 13 | `10.5281/zenodo.22649899` | errata-check v0.2.0 | 旧版。**だが消してはいけない**（下記） |
@@ -51,12 +51,22 @@
 `10.5281/zenodo.22335691` は `researcher-profile/README.md` の Software Heritage
 リンクの中に一度だけ出る。他の六箇所は `22335692` である。
 
-Zenodo が概念 DOI と版 DOI に連番を振ることがあるため、`...691` が
-researcher-profile の概念 DOI である可能性はある。**確かめていない。**
-Zenodo に到達できるようになったら、次のどちらかにする。
+**誤記ではないところまでは分かった。**Software Heritage がこの DOI を origin として
+持っており、その snapshot `83f09cc8…` に researcher-profile の版がある。木の名前は
+`cpsbvbng26-dotcom-researcher-profile-65b3622` である。
+
+**その版は、機械で確かめた。**commit `65b3622`（`Add Zenodo and citation metadata`、
+2026-09-05）は researcher-profile の履歴に実在する。`check_ecosystem.js` が当たっている。
+
+**残っているのは、概念 DOI か、もう一つの版 DOI かの区別である。**Zenodo が概念 DOI と
+版 DOI に連番を振ることがあるので、`...691` が概念 DOI である可能性は高い。だが
+**Zenodo にも Software Heritage にもこの作業環境から出られないので、そこは確かめていない。**
+上の Software Heritage の中身は、利用者から受け取ったものである（`証言`）。
+
+到達できるようになったら、次のどちらかにする。
 
 - 概念 DOI であれば、その旨を一語添える
-- そうでなければ誤記なので直す
+- 版 DOI であれば、どの版かを書く
 
 **推測で直さない。**
 
