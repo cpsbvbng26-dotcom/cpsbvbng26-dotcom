@@ -152,7 +152,7 @@ GitHub に Release が並んでいないことから、Zenodo の登録状況を
 対象外です。つまり「引用は Zenodo で」と固定している一方で、**第三者の評価は
 SSRN 側にしか残りません。**片方だけを見た読者は、もう片方に気づきません。
 
-SSRN 版があるのは二篇だけなので、**Trinity-Infinity の三本・Fragmentarian・
+SSRN 版があるのは三篇です。**Trinity-Infinity の Series I と III、Fragmentarian、
 史料ノートは、この経路では評価を受けられません。**
 
 記録は [external-evaluations.md](external-evaluations.md) にあります。
