@@ -1229,6 +1229,25 @@ console.log('\n10. Zenodo との連携の但書');
     idx.indexOf(Z['一覧に必ずあること']) >= 0, Z['一覧に必ずあること']);
   check('一覧に未確認の番号が残っている',
     idx.indexOf(Z['未確認の番号']) >= 0, Z['未確認の番号']);
+  /* **Software Heritage が指している版が、実際に履歴にあるか。**
+   * 一覧が木の名前を印字している。そこから短縮ハッシュを取り出して
+   * researcher-profile の履歴に当たる。**印字を書き換えれば落ちる。**
+   * 番号そのものは Zenodo に出られないので確かめられない。
+   * **確かめられるのは、指し先の版が実在することだけである。** */
+  {
+    const m = /`cpsbvbng26-dotcom-researcher-profile-([0-9a-f]{7,})`/.exec(idx);
+    let 件名 = '';
+    if (m) {
+      try {
+        件名 = require('child_process')
+          .execFileSync('git', ['log', '-1', '--format=%s', m[1]],
+                        { cwd: path.join(ROOT, 'researcher-profile'), encoding: 'utf8' }).trim();
+      } catch (e) { 件名 = ''; }
+    }
+    check('Software Heritage が指す版が、researcher-profile の履歴にある',
+      m !== null && 件名 !== '',
+      m ? (m[1] + ' —— ' + (件名 || '履歴に無い')) : '木の名前が印字されていない');
+  }
 }
 
 /* ---------- 先に立てておく反論 ---------- */
