@@ -1219,8 +1219,8 @@
           "The repository must have been public for more than six months prior to submission",
           "There must be evidence that the software is being used for research",
           "これから使われるという言明では足りない",
-          "どちらも六か月に足りない",
-          "まだ出していない",
+          "六か月の条件から逆算すると",
+          "出すのはその先である",
           "リンクと強調の記法だけ外してある",
           "出すのは十全部である",
           "論文の側は出さない",
@@ -1237,8 +1237,8 @@
           "The repository must have been public for more than six months prior to submission",
           "There must be evidence that the software is being used for research",
           "saying it will be used is not enough",
-          "Neither reaches six months",
-          "Nothing has been submitted",
+          "Counting back from the six-month requirement",
+          "Submission comes after that",
           "with only link and emphasis markup removed",
           "All ten are to be submitted",
           "will not be submitted",
@@ -1289,8 +1289,8 @@
         "file": "README.md",
         "必ず書いてあること": [
           "直近の目標がある",
-          "どちらも六か月に足りない",
-          "まだ出していない",
+          "六か月の条件から逆算すると",
+          "出すのはその先である",
           "出すのは十全部である",
           "論文の側は出さない",
           "プレプリントの棚に留める"
@@ -1300,8 +1300,8 @@
         "file": "README.en.md",
         "必ず書いてあること": [
           "there is a nearer goal",
-          "Neither reaches six months",
-          "Nothing has been submitted",
+          "Counting back from the six-month requirement",
+          "Submission comes after that",
           "All ten are to be submitted",
           "will not be submitted",
           "stay on the preprint shelf"
