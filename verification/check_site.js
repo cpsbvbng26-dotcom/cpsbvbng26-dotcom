@@ -983,6 +983,17 @@ section('10.59 自己紹介が名乗っていること');
   ok('外部の点検の引用で、第三者の氏名を伏せてある',
      ev.indexOf('〔氏名を伏せた一名〕') >= 0 && ev.indexOf('小島') < 0);
 
+  /* **タグが文字のまま出ていないこと。**build.js が esc() を掛ける欄に
+   * 記法を書くと、<b> や <a href=…> がそのまま紙面に出る。実際に出ていた。
+   * 見出しの下の一文が壊れ、登録簿へのリンクも死んでいた。 */
+  ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html']
+    .forEach((f) => {
+      const h = read(f);
+      ok(f + ' に記法が文字のまま出ていない',
+         h.indexOf('&lt;b&gt;') < 0 && h.indexOf('&lt;a href') < 0
+         && h.indexOf('&lt;/b&gt;') < 0);
+    });
+
   /* MERLOT の番号は、表の欄と URL の二か所に出る。**片方だけ直すとずれる。** */
   const 番 = /viewMaterial\.htm\?id=(\d+)/.exec(ev);
   ok('MERLOT の番号が、表と URL で同じである',
