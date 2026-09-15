@@ -617,6 +617,9 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | 同上 | Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | 受付済み。評価なし |
 | 同上 | The Trinity-Infinity Framework, Series II | `10.2139/ssrn.7446961` | 受付済み。評価なし |
 | SSRN | Fragmentarian Spiritual Individualism | —（付かなかった） | **弾かれた。**受け付けられていない |
+| SSRN | The Trinity-Infinity Framework, Series I | **まだ無い** | 出した。受け付けの結果はまだ |
+| SSRN | The Trinity-Infinity Framework, Series III | **まだ無い** | 出した。受け付けの結果はまだ |
+| SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | **まだ無い** | 出した。受け付けの結果はまだ |
 
 **三篇目は SSRN に落とされている。**Fragmentarian Spiritual Individualism
 （`10.5281/zenodo.22064241`、PhilArchive `NEMFSI`）は出して弾かれた。
