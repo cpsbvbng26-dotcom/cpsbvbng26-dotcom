@@ -62,7 +62,9 @@ const CHECKS = [
 
   ['justice-and-algorithms', '誤変換ほか', 'node', 'verification/check_text.js'],
   ['justice-and-algorithms', '生成', 'node', 'build.js'],
-  ['justice-and-algorithms', 'サイトの構造', 'node', 'verification/check_site.js']
+  ['justice-and-algorithms', 'サイトの構造', 'node', 'verification/check_site.js'],
+
+  ['solitary-school', '誤変換ほかと二つの面の一致', 'node', 'verification/check_text.js']
 ];
 
 /* 全角は 2 桁ぶん取る。ここを数えないと表がずれる。 */

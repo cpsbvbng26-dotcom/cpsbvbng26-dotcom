@@ -20,7 +20,8 @@
       "autonomy-and-self-cultivation",
       "naval-gazette-notes",
       "researcher-profile",
-      "justice-and-algorithms"
+      "justice-and-algorithms",
+      "solitary-school"
     ]
   },
   "数": [
@@ -975,7 +976,8 @@
       "trinity-infinity",
       "autonomy-and-self-cultivation",
       "naval-gazette-notes",
-      "justice-and-algorithms"
+      "justice-and-algorithms",
+      "solitary-school"
     ],
     "実装のみ": [
       "errata-check",
@@ -1190,7 +1192,7 @@
   "直近の目標": {
     "_": "直近の目標として JOSS を挙げる。名前・識別子・明文の条件・届いていない分を、五つの面と README 二つに同じだけ置く。",
     "_なぜ": "**目標だけを書くと、達成の宣言に読める。**場の側は将来の言明を根拠として認めないと明記している。こちらも、いま届いていない分を同じ場所に書く。日付は git から取って突き合わせる。",
-    "九つで最も早い": "2026-06-12",
+    "十で最も早い": "2026-06-12",
     "道具で最も早い": "2026-09-05",
     "道具": [
       "errata-check",
@@ -1220,7 +1222,7 @@
           "どちらも六か月に足りない",
           "まだ出していない",
           "リンクと強調の記法だけ外してある",
-          "出すのは九つ全部である",
+          "出すのは十全部である",
           "論文の側は出さない",
           "プレプリントの棚に留める",
           "取り下げるのではない"
@@ -1238,7 +1240,7 @@
           "Neither reaches six months",
           "Nothing has been submitted",
           "with only link and emphasis markup removed",
-          "All nine are to be submitted",
+          "All ten are to be submitted",
           "will not be submitted",
           "stay on the preprint shelf",
           "This is not a withdrawal"
@@ -1289,7 +1291,7 @@
           "直近の目標がある",
           "どちらも六か月に足りない",
           "まだ出していない",
-          "出すのは九つ全部である",
+          "出すのは十全部である",
           "論文の側は出さない",
           "プレプリントの棚に留める"
         ]
@@ -1300,7 +1302,7 @@
           "there is a nearer goal",
           "Neither reaches six months",
           "Nothing has been submitted",
-          "All nine are to be submitted",
+          "All ten are to be submitted",
           "will not be submitted",
           "stay on the preprint shelf"
         ]

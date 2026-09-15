@@ -1,15 +1,15 @@
 ---
-description: 9 リポジトリの検査を全部回し、横断のずれも見る
+description: 10 リポジトリの検査を全部回し、横断のずれも見る
 ---
 
 次の二つを、この順で走らせてください。
 
 ```
-node verification/check_all.js        # 各リポジトリの検査を全部（33 本）
-node verification/check_ecosystem.js  # 9 リポジトリ横断のずれ（344 項目）
+node verification/check_all.js        # 各リポジトリの検査を全部（34 本）
+node verification/check_ecosystem.js  # 10 リポジトリ横断のずれ（347 項目）
 ```
 
-どちらも兄弟ディレクトリに 9 つのリポジトリが並んでいることを前提にします。
+どちらも兄弟ディレクトリに 10 のリポジトリが並んでいることを前提にします。
 無ければ `check_all.js` は「無い」と表に出し、`check_ecosystem.js` は落ちます。
 
 **結果は表のまま報告してください。**要約して数を丸めない。

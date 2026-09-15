@@ -906,7 +906,7 @@ console.log('\n7.10 直近の目標（JOSS）');
         { cwd: path.join(ROOT, repo), encoding: 'utf8' }).split('\n')[0].trim();
     } catch (e) { return ''; }
   };
-  const 九つ = C.repos.map(最初).filter(Boolean).sort();
+  const 全部 = C.repos.map(最初).filter(Boolean).sort();
   const 道具 = J['道具'].map(最初).filter(Boolean).sort();
 
   /* **頁に印字された日付そのものを読む。**宣言と git だけを突き合わせても、
@@ -914,28 +914,28 @@ console.log('\n7.10 直近の目標（JOSS）');
   const 印字 = (text, re) => { const m = re.exec(text || ''); return m ? m[1] : ''; };
   const 面の日付 = [['index.html', /最も早い最初のコミットは <b>(\d{4}-\d{2}-\d{2})<\/b>/,
                                    /いちばん早いもので <b>(\d{4}-\d{2}-\d{2})<\/b>/],
-                    ['index.en.html', /nine repositories is\s*<b>(\d{4}-\d{2}-\d{2})<\/b>/,
+                    ['index.en.html', /ten repositories is\s*<b>(\d{4}-\d{2}-\d{2})<\/b>/,
                                       /the earliest is <b>(\d{4}-\d{2}-\d{2})<\/b>/]];
   for (const [file, re九, re道] of 面の日付) {
     const text = read('cpsbvbng26-dotcom', file);
     const a = 印字(text, re九);
     const b = 印字(text, re道);
     check('  ' + file + ' の二つの日付が、git の最初のコミットと合う',
-      a === 九つ[0] && b === 道具[0] && a !== '' && b !== '',
+      a === 全部[0] && b === 道具[0] && a !== '' && b !== '',
       '印字 ' + (a || '取れない') + ' / ' + (b || '取れない')
-      + '　git ' + 九つ[0] + ' / ' + 道具[0]);
+      + '　git ' + 全部[0] + ' / ' + 道具[0]);
   }
   check('宣言した二つの日付も、git と合う',
-    九つ.length === C.repos.length && 九つ[0] === J['九つで最も早い']
+    全部.length === C.repos.length && 全部[0] === J['十で最も早い']
     && 道具.length === J['道具'].length && 道具[0] === J['道具で最も早い'],
-    '実際 ' + (九つ[0] || '取れない') + ' / ' + (道具[0] || '取れない'));
+    '実際 ' + (全部[0] || '取れない') + ' / ' + (道具[0] || '取れない'));
 }
 
-/* **「全部出す」と書いたなら、全部の状態を数える。**九つそれぞれについて、
+/* **「全部出す」と書いたなら、全部の状態を数える。**十それぞれについて、
  * 最初のコミットと、公開されたタグと、門 1 に届く最短日を git から取り直す。
  * **ローカルのタグを数えると足りない。**一度そう数えて、三つを一つと書いている。 */
 
-console.log('\n7.11 JOSS —— 九つの状態');
+console.log('\n7.11 JOSS —— 十の状態');
 
 {
   const F = path.join('docs', 'joss.md');
@@ -948,7 +948,7 @@ console.log('\n7.11 JOSS —— 九つの状態');
     if (!C.repos.includes(c[1])) continue;
     行[c[1]] = { タグ: c[4], 初: c[6], 最短: c[7] };
   }
-  check('九つが全部、表の行として立っている',
+  check('十が全部、表の行として立っている',
     Object.keys(行).length === C.repos.length,
     Object.keys(行).length + ' / ' + C.repos.length);
 
@@ -1013,11 +1013,11 @@ console.log('\n7.11 JOSS —— 九つの状態');
       '哲学 ' + 哲 + ' / Trinity-Infinity ' + ti);
   }
 
-  /* **出すのは全部である**と書いた以上、九つのどれも外していないこと。 */
+  /* **出すのは全部である**と書いた以上、十のどれも外していないこと。 */
   check('全部出すと書いてあり、届いていない門も同じ文書にある',
-    md.indexOf('**出すのは九つ全部である。**') >= 0
+    md.indexOf('**出すのは十全部である。**') >= 0
     && md.indexOf('**いちばん早いものでも、六か月を超えていない。**') >= 0
-    && md.indexOf('**九つとも、著者以外に使われた記録が無い。**') >= 0
+    && md.indexOf('**十とも、著者以外に使われた記録が無い。**') >= 0
     && md.indexOf('**論文と史料ノートは、そもそも software ではない。**') >= 0);
 }
 
@@ -1342,8 +1342,8 @@ console.log('\n13. この検査が名乗る件数');
 {
   const total = passed + failures.length + 1;
   const claims = [
-    ['README.md', /9 リポジトリ横断 (\d+) 項目/],
-    ['.github/workflows/ecosystem.yml', /9 リポジトリ横断 (\d+) 項目/],
+    ['README.md', /10 リポジトリ横断 (\d+) 項目/],
+    ['.github/workflows/ecosystem.yml', /10 リポジトリ横断 (\d+) 項目/],
     ['.claude/commands/check.md', /横断のずれ（(\d+) 項目）/],
     ['.claude/commands/開始.md', /check_ecosystem\.js`（(\d+) 項目）/],
     ['docs/self-assessment.md', /横断 \*\*(\d+) 項目\*\*/]
