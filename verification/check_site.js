@@ -1153,17 +1153,18 @@ section('10.58 キーボードで辿れるか');
  *
  * **枠組みは残らなかった、が Trinity-Infinity の根幹である。**
  * 下のほうに置けば読み手が辿り着かない。トップの主張の欄に出ていること。
- * **命題がどの範囲にあるかも、そこで言い切っていること。**
- * 言い方は 2026-09-15 に変えた。自分を値踏みする書き方をやめ、
- * 範囲を述べる書き方にした。**述べている事実は同じである。**
+ * **水準の分類も、そこで言い切っていること。**
+ * 言い方は 2026-09-15 に変えた。分類はそのまま残し、
+ * 自分を断罪する側の一文を、次につながる一文に替えた。
+ * **述べている事実は同じである。**
  */
 section('10.6 三篇の結論');
 
-[['index.html', ['枠組みは残らなかった', '初等的な範囲にある命題',
+[['index.html', ['枠組みは残らなかった', '学部 2〜3 年の演習問題',
                  '大学院の線形システム論と行列解析',
                  '道具の水準と、直された中身の水準は別']],
  ['index.en.html', ['The framework did not survive',
-                    'an elementary proposition',
+                    'second- or third-year undergraduate exercise',
                     'graduate linear systems and matrix analysis',
                     'two different things']]].forEach(([page, words]) => {
   const html = read(page);
