@@ -167,4 +167,80 @@ Zenodo・HAL・arXiv などが置き場所として使える。**六篇はすで
 
 ---
 
+## 編集者へのコメント —— Conatus に独身論を出す場合
+
+投稿欄の `Comments for the Editor` に入れるものである。**そのまま貼る。**
+
+題名と三つの番号を入れ替えれば、他の二篇にも使える。
+
+| 論文 | Zenodo | SSRN | PhilArchive |
+| --- | --- | --- | --- |
+| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | `10.2139/ssrn.7358779` | `NEMTNA` |
+| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | `10.2139/ssrn.7358818` | `NEMMOI` |
+| Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | —（SSRN に弾かれた） | `NEMFSI` |
+
+**肩書きを名乗らない**（決めごと 6）。凍結された PDF の扉には使わないと決めた語が
+印字されているが、そこは直せないし直さない。**新しく書く文では使わない。**
+状態を述べるだけにする。`check_text.js` がこの文書も見ている。
+
+### 貼る文
+
+> **Dear Editors,**
+>
+> I am submitting "The Nobility and Exemplarity of the Celibate Individual: An
+> Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life" for
+> consideration. The paper argues that the standard case for treating sexual
+> activity as ethically required moves from a demographic fact to an individual
+> obligation, that this move does not survive the antinatalist objection, and that
+> celibacy can then be positively assessed through the Epicurean distinction
+> between kinetic and katastematic pleasure together with Schopenhauer's metaphysics
+> of will.
+>
+> **Three things should be on the record before any reviewer time is spent.**
+>
+> **1. The paper is already public as a preprint.** It is deposited on Zenodo
+> (10.5281/zenodo.22058254, v2, August 2026), SSRN (10.2139/ssrn.7358779) and
+> PhilArchive (NEMTNA), under CC BY 4.0. I understand your guidelines to permit
+> this. It has never been peer reviewed, and it is not under consideration at any
+> other journal.
+>
+> **2. Disclosure of generative AI use.** The manuscript was written by me in
+> Japanese. The English text was produced with generative AI, which translated it
+> and expanded the prose; I reviewed the result and take responsibility for the
+> whole of it. The deposited paper discloses AI assistance and names Claude
+> (Anthropic).
+>
+> **The specific tool used for the translation cannot be determined.** No record
+> was kept at the time, and my own recollection does not settle it. I have recorded
+> this gap, and the reason it cannot be closed, as erratum E5 in the public errata
+> for these papers. I am telling you rather than presenting a tidier account than I
+> can support. **If this is disqualifying under your policy, I would rather be told
+> at the desk stage than have reviewers read the paper first.**
+>
+> **3. I hold no research affiliation.** I am an undergraduate student, working
+> without a supervisor or a co-author. The errata for these papers are public and
+> are checked mechanically on every commit; corrections are recorded rather than
+> silently applied.
+>
+> Errata: https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/ERRATA.md
+>
+> Thank you for your time.
+>
+> Takuya Nemoto
+> ORCID 0009-0000-1406-0547
+
+### 気をつけること
+
+**同じ稿を二つの誌に同時に出さない。**「他誌で審査中ではない」と書いている。
+Conatus に出しているあいだ、その一篇を Episciences へ出すことはできない。
+**三篇それぞれ別の誌へ出すのは差し支えない。**
+
+**PhilArchive と SSRN と Zenodo は誌ではない。**置いたままで問題にならない。
+そのことも文中で先に言ってある。
+
+**断章論には SSRN の番号が無い。**弾かれているので、その行だけ落とす。
+**落とされたこと自体は書かない。**編集者に関係が無い。
+
+---
+
 出した先と結果は [`external-evaluations.md`](external-evaluations.md) の「出した先」に記録する。
