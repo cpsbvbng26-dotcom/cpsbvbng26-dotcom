@@ -223,9 +223,16 @@ Zenodo・HAL・arXiv などが置き場所として使える。**六篇はすで
 >
 > **1. The paper is already public as a preprint.** It is deposited on Zenodo
 > (10.5281/zenodo.22058254, v2, August 2026), SSRN (10.2139/ssrn.7358779) and
-> PhilArchive (NEMTNA), under CC BY 4.0. I understand your guidelines to permit
-> this. It has never been peer reviewed, and it is not under consideration at any
-> other journal.
+> PhilArchive (NEMTNA), under CC BY 4.0. A further copy is currently in moderation
+> for deposit in HAL. I note that your copyright terms expressly permit and
+> encourage posting a work online before and during submission.
+>
+> **It has never been peer reviewed, and it is not under consideration at any other
+> journal.** I have an open review request outstanding for this paper on PREreview,
+> which is a platform for community review of preprints rather than a publisher;
+> no review has appeared there to date. Should one appear while the paper is with
+> you, it would be public, and I would rather you knew of the request now than
+> came upon it later.
 >
 > **2. Disclosure of generative AI use.** The manuscript was written by me in
 > Japanese. The English text was produced with generative AI, which translated it
@@ -251,6 +258,33 @@ Zenodo・HAL・arXiv などが置き場所として使える。**六篇はすで
 >
 > Takuya Nemoto
 > ORCID 0009-0000-1406-0547
+
+### 二文を足した理由
+
+**PREreview と HAL は、どちらも「他誌で審査中」には当たらない。**
+PREreview は出版者ではなく、公開のレビューを募る場である。HAL は保管庫である。
+**それでも書く。**
+
+理由は二つある。**一つ。**この稿には PREreview の依頼が立っている。
+審査中に評価が付けば、それは公開の場に出る。**編集者が後から見つける形にしない。**
+**二つ。**Conatus の著作権条項が、投稿前と投稿期間中の公開を明文で勧めている。
+書いても不利にならない。
+
+> 著者は、投稿前および投稿期間中に、自身の研究成果をオンラインに掲載することが
+> 許可されており、また推奨されています。
+
+**この条項が、「これまで出版されたことはなく」の読み方を決めている。**
+指しているのは正式な出版と他誌投稿であって、プレプリントではない。
+
+### ライセンスが版ごとに割れる
+
+Zenodo の公開版は **CC BY 4.0**、誌が付けるのは **CC BY-NC 4.0** である。
+
+**衝突はしない。**著作権は著者が保持し、供与するのは非独占のライセンスなので、
+版ごとに条件が違って構わない。**Zenodo の CC BY 4.0 は撤回できない。**そのまま残る。
+
+決めごと 7 は「論文は CC BY 4.0」と定めている。**誌の版だけ NC が付く。**
+記録の外側の話だが、黙って通さずに書いておく。
 
 ### 気をつけること
 
