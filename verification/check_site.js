@@ -982,6 +982,14 @@ section('10.59 自己紹介が名乗っていること');
   const ev = read('docs/external-evaluations.md');
   ok('外部の点検の引用で、第三者の氏名を伏せてある',
      ev.indexOf('〔氏名を伏せた一名〕') >= 0 && ev.indexOf('小島') < 0);
+
+  /* MERLOT の番号は、表の欄と URL の二か所に出る。**片方だけ直すとずれる。** */
+  const 番 = /viewMaterial\.htm\?id=(\d+)/.exec(ev);
+  ok('MERLOT の番号が、表と URL で同じである',
+     番 !== null && ev.indexOf('番号は `' + 番[1] + '`') >= 0);
+  ok('MERLOT の頁を確かめていないと書いてある',
+     ev.indexOf('**この頁は確かめていない。**') >= 0
+     && ev.indexOf('MERLOT に DOI は付かない') >= 0);
 }
 
 /* ------------------------------------------------- 10.62 訳した頁が、訳だと名乗っているか
