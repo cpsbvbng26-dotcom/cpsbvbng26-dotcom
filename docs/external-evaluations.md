@@ -620,6 +620,7 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | SSRN | The Trinity-Infinity Framework, Series I | **まだ無い** | 出した。受け付けの結果はまだ |
 | SSRN | The Trinity-Infinity Framework, Series III | **まだ無い** | 出した。受け付けの結果はまだ |
 | SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | **まだ無い** | 出した。受け付けの結果はまだ |
+| MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録した。**査読は自動では始まらない** |
 
 **三篇目は SSRN に落とされている。**Fragmentarian Spiritual Individualism
 （`10.5281/zenodo.22064241`、PhilArchive `NEMFSI`）は出して弾かれた。
