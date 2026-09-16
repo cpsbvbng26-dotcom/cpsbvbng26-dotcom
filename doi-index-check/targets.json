@@ -1,0 +1,119 @@
+{
+  "_": "DOI 一件が、どの索引に載っているかを確かめる先の一覧。鍵の要るものは requires_key を真にして、確かめないと書く。",
+  "_規約": "各項目の terms に、その場が公に出している条件を書く。robots.txt や利用規約で自動取得を禁じている場は載せない。Google Scholar は規約で自動取得を禁じているので、この一覧に無い。",
+  "_礼儀": "順番に一件ずつ当たる。間隔を空ける。User-Agent に道具の名と連絡先を入れる。429 と Retry-After に従う。",
+  "targets": [
+    { "id": "doi.org", "name": "DOI 解決（Handle）", "kind": "登録", "method": "HEAD",
+      "url": "https://doi.org/{doi}", "hit": { "status_lt": 400 },
+      "terms": "DOI Foundation の解決器。公開。認証不要" },
+
+    { "id": "doi.ra", "name": "登録機関の判定", "kind": "登録", "method": "GET",
+      "url": "https://doi.org/ra/{doi}", "hit": { "json_not_empty": "0.RA" },
+      "terms": "DOI Foundation が公開している判定の口。認証不要" },
+
+    { "id": "doi.csl", "name": "内容交渉（CSL-JSON）", "kind": "登録", "method": "GET",
+      "url": "https://doi.org/{doi}", "headers": { "Accept": "application/vnd.citationstyles.csl+json" },
+      "hit": { "json_has": "title" },
+      "terms": "DOI の内容交渉。仕様どおりの使い方" },
+
+    { "id": "crossref", "name": "Crossref", "kind": "登録機関", "method": "GET",
+      "url": "https://api.crossref.org/works/{doi}", "hit": { "json_has": "message.DOI" },
+      "terms": "公開 REST。鍵は不要。mailto を付けると polite pool に入る" },
+
+    { "id": "datacite", "name": "DataCite", "kind": "登録機関", "method": "GET",
+      "url": "https://api.datacite.org/dois/{doi}", "hit": { "json_has": "data.id" },
+      "terms": "公開 REST。鍵は不要" },
+
+    { "id": "openalex", "name": "OpenAlex", "kind": "索引", "method": "GET",
+      "url": "https://api.openalex.org/works/doi:{doi}", "hit": { "json_has": "id" },
+      "terms": "公開。鍵は不要。mailto を付けると polite pool に入る" },
+
+    { "id": "openaire", "name": "OpenAIRE", "kind": "索引", "method": "GET",
+      "url": "https://api.openaire.eu/search/publications?doi={doi}&format=json",
+      "hit": { "json_gt0": "response.header.total.$" },
+      "terms": "公開の検索口。鍵は不要" },
+
+    { "id": "semanticscholar", "name": "Semantic Scholar", "kind": "索引", "method": "GET",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:{doi}?fields=title,externalIds",
+      "hit": { "json_has": "paperId" },
+      "terms": "鍵なしでも使えるが上限が低い。間隔を広く取る" },
+
+    { "id": "unpaywall", "name": "Unpaywall", "kind": "索引", "method": "GET",
+      "url": "https://api.unpaywall.org/v2/{doi}?email={mail}", "needs_mail": true,
+      "hit": { "json_has": "doi" },
+      "terms": "鍵は不要だが、連絡先のメールを問い合わせに入れることを求めている" },
+
+    { "id": "opencitations", "name": "OpenCitations", "kind": "被引用", "method": "GET",
+      "url": "https://opencitations.net/index/api/v1/citations/{doi}", "hit": { "json_array_nonempty": "$" },
+      "terms": "公開 API。鍵は不要" },
+
+    { "id": "europepmc", "name": "Europe PMC", "kind": "索引", "method": "GET",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{doi}%22&format=json",
+      "hit": { "json_gt0": "hitCount" },
+      "terms": "EMBL-EBI の公開 REST。鍵は不要" },
+
+    { "id": "fatcat", "name": "Internet Archive Scholar（fatcat）", "kind": "保存", "method": "GET",
+      "url": "https://api.fatcat.wiki/v0/release/lookup?doi={doi}", "hit": { "json_has": "ident" },
+      "terms": "公開 API。鍵は不要" },
+
+    { "id": "zenodo", "name": "Zenodo", "kind": "保管庫", "method": "GET",
+      "url": "https://zenodo.org/api/records?q=doi:%22{doi}%22", "hit": { "json_gt0": "hits.total" },
+      "terms": "公開 REST。読むだけなら鍵は不要" },
+
+    { "id": "doaj", "name": "DOAJ", "kind": "索引", "method": "GET",
+      "url": "https://doaj.org/api/search/articles/doi:{doi}", "hit": { "json_gt0": "total" },
+      "terms": "公開 API。鍵は不要" },
+
+    { "id": "wikidata", "name": "Wikidata", "kind": "索引", "method": "GET",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement:P356={doi_upper}&format=json",
+      "hit": { "json_array_nonempty": "query.search" },
+      "terms": "MediaWiki の公開 API。**User-Agent に連絡先を入れることを求めている。**この道具はリポジトリの所在を入れている" },
+
+    { "id": "swh", "name": "Software Heritage", "kind": "保存", "method": "GET",
+      "url": "https://archive.softwareheritage.org/api/1/origin/search/{doi_url}/?limit=1",
+      "hit": { "json_array_nonempty": "$" },
+      "terms": "公開 API。鍵なしでも使えるが上限が低い" },
+
+    { "id": "altmetric", "name": "Altmetric", "kind": "計測", "method": "GET",
+      "url": "https://api.altmetric.com/v1/doi/{doi}", "hit": { "json_has": "altmetric_id" },
+      "terms": "バッジ用の公開の口。認証不要。**非商用に限られる。**大量取得は登録が要る。ここは一件ずつしか当たらない。404 は「言及が無い」であって「存在しない」ではない" },
+
+    { "id": "cinii", "name": "CiNii Research", "kind": "索引", "method": "GET",
+      "url": "https://cir.nii.ac.jp/opensearch/all?q={doi}&format=json", "hit": { "json_gt0": "@graph.0.opensearch:totalResults" },
+      "terms": "国立情報学研究所の OpenSearch。公開" },
+
+    { "id": "ndl", "name": "国立国会図書館サーチ", "kind": "索引", "method": "GET",
+      "url": "https://ndlsearch.ndl.go.jp/api/opensearch?any={doi}", "hit": { "xml_gt0": "openSearch:totalResults" },
+      "terms": "NDL の公開 OpenSearch" },
+
+    { "id": "base", "name": "BASE", "kind": "索引", "requires_key": true,
+      "terms": "自動取得には登録と IP の届け出が要る。**確かめない**" },
+
+    { "id": "core", "name": "CORE", "kind": "索引", "requires_key": true,
+      "terms": "API に鍵が要る。**確かめない**" },
+
+    { "id": "scopus", "name": "Scopus", "kind": "索引", "requires_key": true,
+      "terms": "購読と鍵が要る。**確かめない**" },
+
+    { "id": "wos", "name": "Web of Science", "kind": "索引", "requires_key": true,
+      "terms": "購読と鍵が要る。**確かめない**" },
+
+    { "id": "dimensions", "name": "Dimensions", "kind": "索引", "requires_key": true,
+      "terms": "API に鍵が要る。**確かめない**" },
+
+    { "id": "lens", "name": "Lens.org", "kind": "索引", "requires_key": true,
+      "terms": "API に鍵が要る。**確かめない**" },
+
+    { "id": "plumx", "name": "PlumX", "kind": "計測", "requires_key": true,
+      "terms": "公開の口が無い。**確かめない**" },
+
+    { "id": "gscholar", "name": "Google Scholar", "kind": "索引", "forbidden": true,
+      "terms": "**規約が自動取得を禁じている。この道具は当たらない。**人が手で見ること" },
+
+    { "id": "researchgate", "name": "ResearchGate", "kind": "共有", "forbidden": true,
+      "terms": "**robots.txt と規約が自動取得を禁じている。当たらない**" },
+
+    { "id": "academia", "name": "Academia.edu", "kind": "共有", "forbidden": true,
+      "terms": "**規約が自動取得を禁じている。当たらない**" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "doi.org":        { "status": 302, "body": "" },
+  "doi.ra":         { "status": 200, "body": "[{\"DOI\":\"10.5281/zenodo.22058254\",\"RA\":\"DataCite\"}]" },
+  "doi.csl":        { "status": 200, "body": "{\"title\":\"The Nobility and Exemplarity of the Celibate Individual\",\"DOI\":\"10.5281/zenodo.22058254\"}" },
+  "crossref":       { "status": 404, "body": "Resource not found." },
+  "datacite":       { "status": 200, "body": "{\"data\":{\"id\":\"10.5281/zenodo.22058254\",\"type\":\"dois\"}}" },
+  "openalex":       { "status": 200, "body": "{\"id\":\"https://openalex.org/W123\",\"doi\":\"https://doi.org/10.5281/zenodo.22058254\"}" },
+  "openaire":       { "status": 200, "body": "{\"response\":{\"header\":{\"total\":{\"$\":1}}}}" },
+  "semanticscholar":{ "status": 404, "body": "{\"error\":\"Paper not found\"}" },
+  "unpaywall":      { "status": 404, "body": "{\"error\":true,\"message\":\"not in unpaywall\"}" },
+  "opencitations":  { "status": 200, "body": "[]" },
+  "europepmc":      { "status": 200, "body": "{\"hitCount\":0,\"resultList\":{\"result\":[]}}" },
+  "fatcat":         { "status": 404, "body": "{\"success\":false}" },
+  "zenodo":         { "status": 200, "body": "{\"hits\":{\"total\":1,\"hits\":[{}]}}" },
+  "doaj":           { "status": 200, "body": "{\"total\":0,\"results\":[]}" },
+  "wikidata":       { "status": 200, "body": "{\"query\":{\"search\":[]}}" },
+  "swh":            { "status": 200, "body": "[]" },
+  "altmetric":      { "status": 404, "body": "Not Found" },
+  "cinii":          { "status": 200, "body": "{\"@graph\":[{\"opensearch:totalResults\":\"0\"}]}" },
+  "ndl":            { "status": 200, "body": "<rss><channel><openSearch:totalResults>0</openSearch:totalResults></channel></rss>" }
+}

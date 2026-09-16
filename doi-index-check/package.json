@@ -1,0 +1,10 @@
+{
+  "name": "doi-index-check",
+  "version": "0.1.0",
+  "description": "DOI 一件が、どの索引に載っているかを、鍵なしで開いている口だけに当たって確かめる",
+  "license": "MIT",
+  "bin": { "doi-index-check": "./check.js" },
+  "scripts": { "test": "node verification/check_tool.js", "break": "node verification/check_tool.js --break" },
+  "dependencies": {},
+  "engines": { "node": ">=18" }
+}
