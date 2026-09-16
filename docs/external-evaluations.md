@@ -619,7 +619,7 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | SSRN | Fragmentarian Spiritual Individualism | —（付かなかった） | **弾かれた。**受け付けられていない |
 | SSRN | The Trinity-Infinity Framework, Series I | **まだ無い** | 出した。受け付けの結果はまだ |
 | SSRN | The Trinity-Infinity Framework, Series III | **まだ無い** | 出した。受け付けの結果はまだ |
-| SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | **まだ無い** | 出した。受け付けの結果はまだ |
+| SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.2139/ssrn.7449338` | **受け付けられた。**評価はこれから |
 | MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録した。番号は `824240178`。**査読は自動では始まらない** |
 | Conatus – Journal of Philosophy（アテネ大学） | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | **落ちた。**`Decline Submission`。理由は示されていない |
 

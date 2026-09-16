@@ -45,7 +45,7 @@
 |---|---|---|
 | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779` |
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818` |
-| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
 | The Trinity-Infinity Framework, Series II | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
 
 SSRN 版は同一本文です。片方だけを直すと食い違うため、**Zenodo を正**とします。
@@ -152,8 +152,9 @@ GitHub に Release が並んでいないことから、Zenodo の登録状況を
 対象外です。つまり「引用は Zenodo で」と固定している一方で、**第三者の評価は
 SSRN 側にしか残りません。**片方だけを見た読者は、もう片方に気づきません。
 
-SSRN 版があるのは三篇です。**Trinity-Infinity の Series I と III、Fragmentarian、
-史料ノートは、この経路では評価を受けられません。**
+SSRN 版があるのは四篇です。**Trinity-Infinity の Series I と III、Fragmentarian は、
+この経路では評価を受けられません。**Series I と III は出したまま結果を待っており、
+Fragmentarian は弾かれています。
 
 記録は [external-evaluations.md](external-evaluations.md) にあります。
 
