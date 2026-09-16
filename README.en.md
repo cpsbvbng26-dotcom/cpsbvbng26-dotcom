@@ -53,7 +53,7 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 
 | | | Credits earned |
 | --- | --- | --- |
-| Tochigi Prefectural Tochigi High School | left partway through |  |
+| Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 16 September 2026) |
 | ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 16 September 2026) |
