@@ -915,6 +915,8 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | --- | --- | --- |
 | 2026年9月 | **Eliva Press**（編集者を名乗る者から。**個人名は記録しない**） | `Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence` を含む著作を書籍にしたい |
 | 2026年9月（二通目） | **同上。**追いかけの一通 | 同じ著作。**新しい条件は付いていない。**返事が無いことへの催促だけ |
+| 2026年9月 | **Journal of Engineering and Artificial Intelligence**（`ISSN 3117-3357`。編集部名義） | `The Trinity-Infinity Framework, Series II` を読んだとして、論文・総説・症例報告の投稿を勧めるもの |
+| 2026年9月（二通目） | 同上 | 同じ誌から再度。**一通目は記録に入れていなかった。**この行で両方を記す |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
@@ -1000,6 +1002,36 @@ OASPA（オープンアクセス学術出版協会）にも、会員として現
 **そして、これは相手についての判定ではない。**この記録は出版社を評価していないし、
 評価できる材料も持っていない。**決めたのは自分の側の規則であって、相手の性質ではない。**
 **判定できないことを判定しない**、というのはこの記録の他の欄と同じ扱いである。
+
+### 二つ目の誌からの勧誘
+
+**Journal of Engineering and Artificial Intelligence** を名乗る編集部から届いた。
+**名指しされているのは `The Trinity-Infinity Framework, Series II` である。**
+
+文面から読めることを並べる。**相手の性質についての判定ではない。**
+
+> `We have reviewed your preprint ... and found it to be insightful and informative.`
+
+**この系列に新しい結果は無い。**Friedkin–Johnsen 意見動学の特殊例であることを、
+著者自身が紙面と README に書いており、正誤表の `E8` が全部を並べている。
+**中身を読んで「洞察に富む」と述べるなら、再発見であることに触れないのは難しい。**
+触れていない。
+
+> `We offer a rapid peer review process for accepted manuscripts.`
+
+**受理された原稿に対して査読を行う、と読める順序である。**
+
+> `please feel free to submit your article as an attachment to this email`
+
+**投稿の仕組みが無い。**添付で受ける形である。
+
+**費用については何も書かれていない。**無償とも有償とも述べていない。
+
+**返信していない。**決めごと 14 が先に決めている。
+
+**一通目を記録していなかった。**同じ誌から以前にも届いていたが、そのときは
+書かなかった。**書かなければ、来なかったことと区別が付かない。**
+遅れて書く。日付は、この行を足したコミットの日付である。
 
 ### なぜ書くか
 
