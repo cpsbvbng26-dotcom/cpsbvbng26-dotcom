@@ -55,8 +55,8 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
-| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 9 September 2026) |
-| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026) |
+| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 16 September 2026) |
+| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 16 September 2026) |
 
 ### Courses I have credit for
 
@@ -68,7 +68,7 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 | --- | --- | --- |
 | Instructional Design (仕事の上手な教え方) | in-person session | 2 |
 
-**1 course, 2 credits (as of 9 September 2026)**
+**1 course, 2 credits (as of 16 September 2026)**
 
 **ZEN University, Faculty of Social Informatics** — more to come.
 
@@ -85,8 +85,14 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 | History of Mathematics | required elective | 2 |
 | Introduction to Publishing on the Internet | elective | 2 |
 | Internet Culture through the History of Derivative Works | elective | 2 |
+| A History of the Japanese Game Industry | required elective | 2 |
+| Business Management | required elective | 2 |
+| Law I | required elective | 2 |
+| Psychology | required elective | 2 |
+| Applied Machine Translation (Informatics) | required elective | 2 |
+| Applied Machine Translation (Law) | required elective | 2 |
 
-**11 courses, 22 credits — 14 required, 4 required elective, 4 elective (as of 9 September 2026)**
+**17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 16 September 2026)**
 
 <!-- 自己紹介:ここまで -->
 ---
