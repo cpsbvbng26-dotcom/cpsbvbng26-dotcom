@@ -106,6 +106,7 @@
 | `10.5281/zenodo.00000001` | `errata-check/examples/minimal/` |
 | `10.5281/zenodo.00000002` | 同上、および `errata-check/README.md` |
 | `10.5281/zenodo.99999999` | `errata-check/tests/check_tool.py` |
+| `10.5281/zenodo.1` | `doi-index-check/verification/check_tool.js`。DOI の斜線を潰さないことを見る |
 
 ## DOI を持たないもの
 
