@@ -994,6 +994,19 @@ section('10.59 自己紹介が名乗っていること');
          && h.indexOf('&lt;/b&gt;') < 0);
     });
 
+  /* **出す先の条件の数を、実際に並んでいる数と突き合わせる。**
+   * 条件は落ちるたびに増える。散文の数を直し忘れると、少なく名乗ることになる。 */
+  {
+    const sd = read('docs/submission-disclosure.md');
+    const i = sd.indexOf('## 出す先の条件');
+    const j = sd.indexOf('### いま分かっている候補');
+    const 節 = (i >= 0 && j > i) ? sd.slice(i, j) : '';
+    const n = (節.match(/^\d+\. \*\*/gm) || []).length;
+    const 漢 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][n] || '?';
+    ok('出す先の条件の数が、散文と実際で合う（' + n + ' つ）',
+       節.indexOf('**' + 漢 + 'つ全部を満たす場にだけ出す。**') >= 0);
+  }
+
   /* MERLOT の番号は、表の欄と URL の二か所に出る。**片方だけ直すとずれる。** */
   const 番 = /viewMaterial\.htm\?id=(\d+)/.exec(ev);
   ok('MERLOT の番号が、表と URL で同じである',
