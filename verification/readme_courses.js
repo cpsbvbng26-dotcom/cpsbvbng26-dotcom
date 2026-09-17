@@ -18,10 +18,10 @@ const MARK = ['<!-- 自己紹介:ここから -->', '<!-- 自己紹介:ここま
 
 const WORDS = {
   ja: { history: '経歴', earned: '修得', courses: '修得した科目',
-        course: '科目', category: '区分', credits: '単位',
+        course: '科目', category: '区分', credits: '単位', grade: '評価',
         more: ' —— これから増える。' },
   en: { history: 'Education', earned: 'Credits earned', courses: 'Courses I have credit for',
-        course: 'Course', category: 'Category', credits: 'Credits',
+        course: 'Course', category: 'Category', credits: 'Credits', grade: 'Grade',
         more: ' — more to come.' },
 };
 
@@ -81,11 +81,19 @@ function readPath(html) {
     const note = /<span class="path-note">([\s\S]*?)<\/span>/.exec(row);
     const list = /<ul class="path-courses">([\s\S]*?)<\/ul>/.exec(row);
     const items = list
-      ? [...list[1].matchAll(/<li data-category="([^"]*)" data-credits="(\d+)">([\s\S]*?)<\/li>/g)]
-          .map((c) => ({ category: c[1], credits: Number(c[2]),
-                         /* 区分の札は名前ではない。外してから読む。 */
-                         name: strip(c[3].replace(/<i>[\s\S]*?<\/i>/g, '')) }))
+      ? [...list[1].matchAll(
+          /<li data-category="([^"]*)" data-credits="(\d+)" data-grade="([^"]*)">([\s\S]*?)<\/li>/g)]
+          .map((c) => ({ category: c[1], credits: Number(c[2]), grade: c[3],
+                         /* 区分と評語の札は名前ではない。外してから読む。 */
+                         name: strip(c[4].replace(/<i>[\s\S]*?<\/i>/g, '')
+                                         .replace(/<b>[\s\S]*?<\/b>/g, '')) }))
       : [];
+    /* **一覧があるのに一行も取れなかったら、そこで止める。**
+     * 属性が一つ増えただけで上の正規表現は静かに空を返す。実際に一度返した。
+     * 空のまま進むと、README から表がまるごと消える。 */
+    if (list && !items.length) {
+      throw new Error('path-courses を読めませんでした。属性の並びが変わった疑いがあります。');
+    }
     return {
       name: strip(name ? name[1] : ''),
       state: strip(state ? state[1] : ''),
@@ -119,8 +127,10 @@ function blockFor(page, lang) {
   if (p && p.caveat) out.push('> ' + p.caveat, '');
   rows.filter((r) => r.items.length).forEach((r, i, all) => {
     out.push(`**${r.name}**` + (i === all.length - 1 ? w.more : ''), '',
-      `| ${w.course} | ${w.category} | ${w.credits} |`, '| --- | --- | --- |');
-    r.items.forEach((c) => out.push(`| ${c.name} | ${c.category} | ${c.credits} |`));
+      `| ${w.course} | ${w.category} | ${w.credits} | ${w.grade} |`,
+      '| --- | --- | --- | --- |');
+    r.items.forEach((c) => out.push(
+      `| ${c.name} | ${c.category} | ${c.credits} | ${c.grade || ''} |`));
     out.push('', `**${r.total}**`, '');
   });
   out.push(MARK[1]);

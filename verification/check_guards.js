@@ -214,7 +214,32 @@ const CASES = [
   ['配っている頁に肩書きを入れると落ちる', 'cv.html',
    swap('ランサーズ <span>独立での案件募集</span>',
         'ランサーズ <span>独立コンサルタントとしての案件募集</span>'),
-   'check_site.js', 'コンサルタント肩書き']
+   'check_site.js', 'コンサルタント肩書き'],
+
+  /* **評語。**受け取った一文字をそのまま出す欄である。四つの壊れ方を見る ——
+   * 一つ落ちる、知らない評語が混ざる、頁のあいだで食い違う、換算した数が混ざる。 */
+  ['評語が一つ抜けると落ちる', 'index.html',
+   swap('data-grade="D">心理学', 'data-grade="">心理学'),
+   'check_site.js', '評語を持つ'],
+
+  ['知らない評語が混ざると落ちる', 'index.html',
+   swap('data-grade="A"', 'data-grade="S"'),
+   'check_site.js', '知らない評語が混ざっていない'],
+
+  ['英語の頁だけ評語が変わると落ちる', 'index.en.html',
+   swap('data-grade="D">Psychology', 'data-grade="B">Psychology'),
+   'check_site.js', '同じ並びである'],
+
+  ['GPA を書き足すと落ちる', 'cv.html',
+   swap('<h2 class="serif">修得した科目</h2>',
+        '<h2 class="serif">修得した科目</h2><p>GPA 2.1</p>'),
+   'check_site.js', 'GPA を書いていない'],
+
+  /* 短大の分の評語は受け取っていない。**空でなければ、どこかで埋めている。** */
+  ['短大の科目に評語を作ると落ちる', 'index.html',
+   swap('data-grade="">仕事の上手な教え方',
+        'data-grade="B">仕事の上手な教え方'),
+   'check_site.js', '評語を作っていない']
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {

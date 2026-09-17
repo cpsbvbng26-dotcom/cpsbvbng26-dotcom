@@ -671,6 +671,47 @@ section('10.5 修得した科目の合計');
        cells.length + ' 科目 ' + sum + ' 単位');
   });
 
+  /* **評語。**利用者から受け取った一文字をそのまま出す。
+   *
+   * 換算しない。GPA も優良可も書かない。ZEN大学が印字したのは A・B・C・D・P で
+   * あって、その序列を別の尺度に移せば、移した先はもう発行元の言ったことではない。
+   * ここが見るのは三つである —— 全部の科目に付いていること、知らない評語が
+   * 混ざっていないこと、頁と README で同じ並びであること。 */
+  {
+    const GRADES = ['A', 'B', 'C', 'D', 'P'];
+    const 並び = (html) =>
+      [...html.matchAll(/<ul class="path-courses">([\s\S]*?)<\/ul>/g)]
+        .map((m) => [...m[1].matchAll(/data-grade="([^"]*)"/g)].map((g) => g[1]));
+
+    const 基準 = 並び(read('index.html'));
+    ok('index.html の学歴に評語の欄がある', 基準.length === 2, String(基準.length));
+    const zen = 基準[基準.length - 1] || [];
+
+    ok('ZEN大学の科目が全部、評語を持つ（' + zen.length + ' 科目）',
+       zen.length === z.n && zen.every(Boolean),
+       zen.length + ' / ' + z.n);
+    ok('知らない評語が混ざっていない',
+       zen.every((g) => GRADES.indexOf(g) >= 0), zen.join(' '));
+
+    /* 短大の分は受け取っていない。**空で出す。**推測で埋めない。 */
+    ok('短大の科目に評語を作っていない',
+       (基準[0] || []).every((g) => g === ''), (基準[0] || []).join('|'));
+
+    ok('index.en.html の評語が index.html と同じ並びである',
+       JSON.stringify(並び(read('index.en.html'))) === JSON.stringify(基準));
+
+    /* cv.html は別の刷り方をする。地の文の札で数える。 */
+    const 札 = (cv.match(/評価 ([ABCDP])/g) || []).map((x) => x.slice(3));
+    ok('cv.html の評語が学歴と同じ並びである',
+       JSON.stringify(札) === JSON.stringify(zen), 札.join(' '));
+
+    /* **換算した数を書いていない。**書けば、発行元が言っていないことになる。 */
+    ['index.html', 'index.en.html', 'cv.html', 'README.md', 'README.en.md']
+      .forEach((f) => {
+        ok(f + ' に GPA を書いていない', !/GPA|ＧＰＡ|成績平均/.test(read(f)));
+      });
+  }
+
   /* 「何年何月何日現在」。逐次更新の目安なので、**四つの頁で同じ日でなければ
    * 意味が無い。**先の日付も認めない。 */
   const asOf = /<p class="as-of">(\d{4})年(\d{1,2})月(\d{1,2})日現在<\/p>/.exec(cv);
