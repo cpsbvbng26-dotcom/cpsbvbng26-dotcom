@@ -88,7 +88,7 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 | A History of the Japanese Game Industry | required elective | 2 |
 | Business Management | required elective | 2 |
 | Law I | required elective | 2 |
-| Psychology I | required elective | 2 |
+| Psychology | required elective | 2 |
 | Applied Machine Translation (Informatics) | required elective | 2 |
 | Applied Machine Translation (Law) | required elective | 2 |
 
