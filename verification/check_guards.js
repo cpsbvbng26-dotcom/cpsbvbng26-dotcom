@@ -254,6 +254,27 @@ const CASES = [
    swap('**本丸だからといって、正本に勝つことはない。**', ''),
    'check_site.js', '本丸が正本に勝たないと書いてある'],
 
+  /* **運営母体。**同じ手に幾つあるかを数えている欄である。三つの壊れ方を見る ——
+   * 表から一行減る、Jxiv を表に入れる、調べていない場を混ぜる。 */
+  ['同じ手が持つ場の数が減ると落ちる', 'docs/canonical-sources.md',
+   swap('| **J-GLOBAL** | **JST** |', '| **J-GLOBAL** | 運営は分からない |'),
+   'check_site.js', 'JST が持つ場の数'],
+
+  ['候補の Jxiv を運営母体の表に入れると落ちる', 'docs/canonical-sources.md',
+   swap('| **J-GLOBAL** | **JST** |',
+        '| **J-GLOBAL** | **JST** |\n| **Jxiv** | **JST** |'),
+   'check_site.js', 'Jxiv が候補として'],
+
+  ['調べていない場を運営母体の表に混ぜると落ちる', 'docs/canonical-sources.md',
+   swap('| **MERLOT** | **California State University** |',
+        '| **MERLOT** | **California State University** |\n'
+        + '| **GitHub** | **Microsoft** |'),
+   'check_site.js', 'GitHub を運営母体の表に入れていない'],
+
+  ['Figshare の所属を締め出しの理由と結ぶと落ちる', 'docs/canonical-sources.md',
+   swap('**それが締め出しの理由だとは書かない。**', '**それが締め出しの理由である。**'),
+   'check_site.js', '締め出しの理由と結んでいない'],
+
   /* 短大の分の評語は受け取っていない。**空でなければ、どこかで埋めている。** */
   ['短大の科目に評語を作ると落ちる', 'index.html',
    swap('data-grade="">仕事の上手な教え方',
