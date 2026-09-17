@@ -235,6 +235,25 @@ const CASES = [
         '<h2 class="serif">修得した科目</h2><p>GPA 2.1</p>'),
    'check_site.js', 'GPA を書いていない'],
 
+  /* **本丸。**特性ごとに三つ置いた欄である。四つの壊れ方を見る ——
+   * 一つ減る、Zenodo が混ざる、国の機関でないものが消える、
+   * そして「正本に勝たない」の一行が落ちる。 */
+  ['本丸が一つ減ると落ちる', 'docs/canonical-sources.md',
+   (s2) => s2.replace(/^\| \*\*哲学分野\*\*.*\n/m, ''),
+   'check_site.js', '本丸の数が、散文と表で合う'],
+
+  ['本丸の表に Zenodo を入れると落ちる', 'docs/canonical-sources.md',
+   swap('| **国内** | **researchmap** |', '| **国内** | **Zenodo** |'),
+   'check_site.js', '本丸の表に Zenodo が入っていない'],
+
+  ['国の機関でない本丸が消えると落ちる', 'docs/canonical-sources.md',
+   swap('**学界の非営利。国の機関ではない。**', '**学界の非営利。**'),
+   'check_site.js', '国の機関でない本丸の数'],
+
+  ['本丸が正本に勝たない一行を消すと落ちる', 'docs/canonical-sources.md',
+   swap('**本丸だからといって、正本に勝つことはない。**', ''),
+   'check_site.js', '本丸が正本に勝たないと書いてある'],
+
   /* 短大の分の評語は受け取っていない。**空でなければ、どこかで埋めている。** */
   ['短大の科目に評語を作ると落ちる', 'index.html',
    swap('data-grade="">仕事の上手な教え方',
