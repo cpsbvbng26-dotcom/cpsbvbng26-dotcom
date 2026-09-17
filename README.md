@@ -250,12 +250,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1106 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1119 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 603 項目
+node verification/check_site.js      # サイトの構造 616 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -278,11 +278,11 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（3
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断 350 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 53 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 56 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 48 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 51 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
