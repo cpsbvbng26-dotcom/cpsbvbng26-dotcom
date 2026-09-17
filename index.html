@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-GAMRwZtN06M/aIdniZVUL6G2NNp96AAmF2zislEmWFc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-GAMRwZtN06M/aIdniZVUL6G2NNp96AAmF2zislEmWFc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-0m5rxAhbY4LHbMYSJl44aO1W00NbCfapAKgr3F2AVfc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -519,6 +519,13 @@ header::after {
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
 }
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
+}
 .path-now .path-name { color: var(--accent); }
 .path-state {
   font-size: .76rem; letter-spacing: .04em; color: var(--muted);
@@ -973,8 +980,8 @@ footer::before {
       <ol class="path">
       <li><span class="path-name">栃木県立栃木高等学校（120 期）</span><span class="path-state">中途退学</span></li>
       <li><span class="path-name">高等学校卒業程度認定試験規則による認定試験</span><span class="path-state">合格</span></li>
-      <li><span class="path-name">自由が丘産能短期大学 能率科 経営管理コース</span><span class="path-state">二年間在籍後、自主退学</span><span class="path-note">1 科目 2 単位（2026年9月16日現在）</span><ul class="path-courses"><li data-category="スクーリング" data-credits="2">仕事の上手な教え方（Instructional Design）<i>スクーリング</i></li></ul></li>
-      <li class="path-now"><span class="path-name">ZEN大学 知能情報社会学部 知能情報社会学科</span><span class="path-state">在籍（秋入学一期生）</span><span class="path-note">17 科目 34 単位 —— 必修 14・選択必修 16・選択 4（2026年9月16日現在）</span><ul class="path-courses"><li data-category="必修" data-credits="2">人文社会入門<i>必修</i></li><li data-category="必修" data-credits="2">IT リテラシー<i>必修</i></li><li data-category="必修" data-credits="2">アカデミックリテラシー<i>必修</i></li><li data-category="必修" data-credits="2">デジタルツールの使い方<i>必修</i></li><li data-category="必修" data-credits="2">多言語 IT コミュニケーション<i>必修</i></li><li data-category="必修" data-credits="2">人工知能活用実践<i>必修</i></li><li data-category="必修" data-credits="2">経済入門<i>必修</i></li><li data-category="選択必修" data-credits="2">情報セキュリティ概論<i>選択必修</i></li><li data-category="選択必修" data-credits="2">数学史<i>選択必修</i></li><li data-category="選択" data-credits="2">ネット情報発信概論<i>選択</i></li><li data-category="選択" data-credits="2">二次創作の歴史から見るネット文化<i>選択</i></li><li data-category="選択必修" data-credits="2">日本のゲーム産業史<i>選択必修</i></li><li data-category="選択必修" data-credits="2">企業経営<i>選択必修</i></li><li data-category="選択必修" data-credits="2">法学Ⅰ<i>選択必修</i></li><li data-category="選択必修" data-credits="2">心理学<i>選択必修</i></li><li data-category="選択必修" data-credits="2">機械翻訳実践（情報）<i>選択必修</i></li><li data-category="選択必修" data-credits="2">機械翻訳実践（法学）<i>選択必修</i></li></ul></li>
+      <li><span class="path-name">自由が丘産能短期大学 能率科 経営管理コース</span><span class="path-state">二年間在籍後、自主退学</span><span class="path-note">1 科目 2 単位（2026年9月17日現在）</span><ul class="path-courses"><li data-category="スクーリング" data-credits="2" data-grade="">仕事の上手な教え方（Instructional Design）<i>スクーリング</i></li></ul></li>
+      <li class="path-now"><span class="path-name">ZEN大学 知能情報社会学部 知能情報社会学科</span><span class="path-state">在籍（秋入学一期生）</span><span class="path-note">17 科目 34 単位 —— 必修 14・選択必修 16・選択 4（2026年9月17日現在）</span><ul class="path-courses"><li data-category="必修" data-credits="2" data-grade="B">人文社会入門<i>必修</i><b>B</b></li><li data-category="必修" data-credits="2" data-grade="C">IT リテラシー<i>必修</i><b>C</b></li><li data-category="必修" data-credits="2" data-grade="P">アカデミックリテラシー<i>必修</i><b>P</b></li><li data-category="必修" data-credits="2" data-grade="B">デジタルツールの使い方<i>必修</i><b>B</b></li><li data-category="必修" data-credits="2" data-grade="B">多言語 IT コミュニケーション<i>必修</i><b>B</b></li><li data-category="必修" data-credits="2" data-grade="C">人工知能活用実践<i>必修</i><b>C</b></li><li data-category="必修" data-credits="2" data-grade="C">経済入門<i>必修</i><b>C</b></li><li data-category="選択必修" data-credits="2" data-grade="C">情報セキュリティ概論<i>選択必修</i><b>C</b></li><li data-category="選択必修" data-credits="2" data-grade="B">数学史<i>選択必修</i><b>B</b></li><li data-category="選択" data-credits="2" data-grade="A">ネット情報発信概論<i>選択</i><b>A</b></li><li data-category="選択" data-credits="2" data-grade="B">二次創作の歴史から見るネット文化<i>選択</i><b>B</b></li><li data-category="選択必修" data-credits="2" data-grade="C">日本のゲーム産業史<i>選択必修</i><b>C</b></li><li data-category="選択必修" data-credits="2" data-grade="C">企業経営<i>選択必修</i><b>C</b></li><li data-category="選択必修" data-credits="2" data-grade="C">法学Ⅰ<i>選択必修</i><b>C</b></li><li data-category="選択必修" data-credits="2" data-grade="D">心理学<i>選択必修</i><b>D</b></li><li data-category="選択必修" data-credits="2" data-grade="D">機械翻訳実践（情報）<i>選択必修</i><b>D</b></li><li data-category="選択必修" data-credits="2" data-grade="D">機械翻訳実践（法学）<i>選択必修</i><b>D</b></li></ul></li>
       </ol>
       <p class="aims-label">これからの二つ</p>
       <ul class="aims">

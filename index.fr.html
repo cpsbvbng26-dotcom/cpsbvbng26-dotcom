@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-0m5rxAhbY4LHbMYSJl44aO1W00NbCfapAKgr3F2AVfc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profil de recherche | Takuya Nemoto</title>
 <meta name="description" content="Profil de Takuya Nemoto. Ce qui est ici repose sur l’étude en autodidacte et sur le travail avec des modèles de langue. Les critères franchis, et ceux qui ne l’ont pas été, sont donnés dans les termes mêmes des plateformes.">
 <meta name="robots" content="index, follow">
@@ -341,6 +341,13 @@ header::after {
   font-style: normal; font-size: .68rem; letter-spacing: .08em;
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
 }
 .path-now .path-name { color: var(--accent); }
 .path-state {
@@ -819,7 +826,7 @@ footer::before {
       <h2 class="serif">Vérification</h2>
       
     </div>
-    <div class="notes-list reveal"><p>Chaque push déclenche <b>1057 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>92 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
+    <div class="notes-list reveal"><p>Chaque push déclenche <b>1068 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>92 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
   </section>
 
   <hr class="rule">

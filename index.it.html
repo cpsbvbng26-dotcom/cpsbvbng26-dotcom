@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-BFGAq5xeEznkWws2dbQZBQGxLvjEKUDrty1zOUx31Q8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-BFGAq5xeEznkWws2dbQZBQGxLvjEKUDrty1zOUx31Q8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-0m5rxAhbY4LHbMYSJl44aO1W00NbCfapAKgr3F2AVfc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profilo di ricerca | Takuya Nemoto</title>
 <meta name="description" content="Profilo di Takuya Nemoto. Quanto si trova qui poggia sullo studio da autodidatta e sul lavoro con modelli linguistici. I criteri superati, e quelli non superati, sono riportati nelle parole stesse delle piattaforme.">
 <meta name="robots" content="index, follow">
@@ -341,6 +341,13 @@ header::after {
   font-style: normal; font-size: .68rem; letter-spacing: .08em;
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
 }
 .path-now .path-name { color: var(--accent); }
 .path-state {
@@ -819,7 +826,7 @@ footer::before {
       <h2 class="serif">Verifica</h2>
       
     </div>
-    <div class="notes-list reveal"><p>A ogni push vengono eseguiti <b>1057 controlli</b>. Riguardano la struttura del sito, la leggibilità dei contrasti cromatici e i valori numerici della pagina dell’operatore.</p><p><b>Un registro a parte annota ciò che si è rivelato falso</b> — allo stato <b>92 voci</b>. <b>Nulla vi viene cancellato.</b> Anche gli strumenti di verifica sono verificati: uno stato valido viene rotto di proposito e si accerta che a fallire sia esattamente il controllo corrispondente.</p></div>
+    <div class="notes-list reveal"><p>A ogni push vengono eseguiti <b>1068 controlli</b>. Riguardano la struttura del sito, la leggibilità dei contrasti cromatici e i valori numerici della pagina dell’operatore.</p><p><b>Un registro a parte annota ciò che si è rivelato falso</b> — allo stato <b>92 voci</b>. <b>Nulla vi viene cancellato.</b> Anche gli strumenti di verifica sono verificati: uno stato valido viene rotto di proposito e si accerta che a fallire sia esattamente il controllo corrispondente.</p></div>
   </section>
 
   <hr class="rule">

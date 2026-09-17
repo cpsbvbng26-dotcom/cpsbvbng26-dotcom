@@ -55,8 +55,8 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
-| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 16 September 2026) |
-| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 16 September 2026) |
+| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 17 September 2026) |
+| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026) |
 
 ### Courses I have credit for
 
@@ -64,35 +64,35 @@ The outlook, stated plainly. Nothing outside those two is in view — taking ove
 
 **Jiyugaoka Sanno College, Business Management course**
 
-| Course | Category | Credits |
-| --- | --- | --- |
-| Instructional Design (仕事の上手な教え方) | in-person session | 2 |
+| Course | Category | Credits | Grade |
+| --- | --- | --- | --- |
+| Instructional Design (仕事の上手な教え方) | in-person session | 2 |  |
 
-**1 course, 2 credits (as of 16 September 2026)**
+**1 course, 2 credits (as of 17 September 2026)**
 
 **ZEN University, Faculty of Social Informatics** — more to come.
 
-| Course | Category | Credits |
-| --- | --- | --- |
-| Introduction to the Humanities and Social Sciences | required | 2 |
-| IT Literacy | required | 2 |
-| Academic Literacy | required | 2 |
-| Using Digital Tools | required | 2 |
-| Multilingual IT Communication | required | 2 |
-| Applied Practice in Artificial Intelligence | required | 2 |
-| Introduction to Economics | required | 2 |
-| Introduction to Information Security | required elective | 2 |
-| History of Mathematics | required elective | 2 |
-| Introduction to Publishing on the Internet | elective | 2 |
-| Internet Culture through the History of Derivative Works | elective | 2 |
-| A History of the Japanese Game Industry | required elective | 2 |
-| Business Management | required elective | 2 |
-| Law I | required elective | 2 |
-| Psychology | required elective | 2 |
-| Applied Machine Translation (Informatics) | required elective | 2 |
-| Applied Machine Translation (Law) | required elective | 2 |
+| Course | Category | Credits | Grade |
+| --- | --- | --- | --- |
+| Introduction to the Humanities and Social Sciences | required | 2 | B |
+| IT Literacy | required | 2 | C |
+| Academic Literacy | required | 2 | P |
+| Using Digital Tools | required | 2 | B |
+| Multilingual IT Communication | required | 2 | B |
+| Applied Practice in Artificial Intelligence | required | 2 | C |
+| Introduction to Economics | required | 2 | C |
+| Introduction to Information Security | required elective | 2 | C |
+| History of Mathematics | required elective | 2 | B |
+| Introduction to Publishing on the Internet | elective | 2 | A |
+| Internet Culture through the History of Derivative Works | elective | 2 | B |
+| A History of the Japanese Game Industry | required elective | 2 | C |
+| Business Management | required elective | 2 | C |
+| Law I | required elective | 2 | C |
+| Psychology | required elective | 2 | D |
+| Applied Machine Translation (Informatics) | required elective | 2 | D |
+| Applied Machine Translation (Law) | required elective | 2 | D |
 
-**17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 16 September 2026)**
+**17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026)**
 
 <!-- 自己紹介:ここまで -->
 ---
@@ -235,12 +235,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1057 checks.** There are no dependencies to install.
+**Every push runs 1068 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 554 checks
+node verification/check_site.js      # site structure, 565 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

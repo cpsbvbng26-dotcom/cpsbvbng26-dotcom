@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uAtNj5l+YPBcg5ixNsUl5zA3UUbHAGk4ZYrlhXy/0tg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uAtNj5l+YPBcg5ixNsUl5zA3UUbHAGk4ZYrlhXy/0tg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-0m5rxAhbY4LHbMYSJl44aO1W00NbCfapAKgr3F2AVfc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — Forschungsprofil | Takuya Nemoto</title>
 <meta name="description" content="Profil von Takuya Nemoto. Was hier steht, beruht auf Selbststudium und auf der Arbeit mit Sprachmodellen. Die Kriterien, die dabei erfüllt wurden, und die, die nicht erfüllt wurden, stehen im Wortlaut der jeweiligen Plattform.">
 <meta name="robots" content="index, follow">
@@ -341,6 +341,13 @@ header::after {
   font-style: normal; font-size: .68rem; letter-spacing: .08em;
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
 }
 .path-now .path-name { color: var(--accent); }
 .path-state {
@@ -819,7 +826,7 @@ footer::before {
       <h2 class="serif">Prüfung</h2>
       
     </div>
-    <div class="notes-list reveal"><p>Bei jedem Push laufen <b>1057 Prüfungen</b>. Sie decken den Aufbau der Seite, die Lesbarkeit der Farbkontraste und die Zahlenwerte der Operator-Seite ab.</p><p><b>Ein eigenes Register hält fest, was sich als falsch erwiesen hat</b> — derzeit <b>92 Einträge</b>. <b>Nichts darin wird gelöscht.</b> Auch die Prüfwerkzeuge werden geprüft: ein gültiger Stand wird gezielt beschädigt, und es wird nachgewiesen, dass genau die zugehörige Prüfung fehlschlägt.</p></div>
+    <div class="notes-list reveal"><p>Bei jedem Push laufen <b>1068 Prüfungen</b>. Sie decken den Aufbau der Seite, die Lesbarkeit der Farbkontraste und die Zahlenwerte der Operator-Seite ab.</p><p><b>Ein eigenes Register hält fest, was sich als falsch erwiesen hat</b> — derzeit <b>92 Einträge</b>. <b>Nichts darin wird gelöscht.</b> Auch die Prüfwerkzeuge werden geprüft: ein gültiger Stand wird gezielt beschädigt, und es wird nachgewiesen, dass genau die zugehörige Prüfung fehlschlägt.</p></div>
   </section>
 
   <hr class="rule">
