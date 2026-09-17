@@ -679,19 +679,19 @@ section('10.5 修得した科目の合計');
    * ものの数が散文と合うこと、そして本丸が正本に勝たないと書いてあること。 */
   {
     const cs = read('docs/canonical-sources.md');
-    const i = cs.indexOf('## 本丸は三つある');
-    const j = cs.indexOf('### 三つとも写しである');
+    const i = cs.indexOf('## 本丸は');
+    const j = cs.indexOf('とも写しである');
     const 節 = (i >= 0 && j > i) ? cs.slice(i, j) : '';
     ok('canonical-sources.md に本丸の節がある', 節.length > 0);
 
     /* 特性ごとの表だけを取る。行の頭が ** で始まるものだけが本丸である。 */
     const k = 節.indexOf('| 特性 | 本丸 | 運営 | 性格 |');
     const 表 = k >= 0 ? 節.slice(k).split('\n').filter((l) => /^\| \*\*/.test(l)) : [];
-    const 漢 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][表.length] || '?';
+    const 漢 = (n) => ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][n] || '?';
     ok('本丸の数が、散文と表で合う（' + 表.length + ' つ）',
-       節.indexOf('## 本丸は' + 漢 + 'つある') >= 0, '表は ' + 表.length + ' 行');
+       節.indexOf('## 本丸は' + 漢(表.length) + 'つある') >= 0, '表は ' + 表.length + ' 行');
 
-    ['researchmap', 'HAL', 'PhilPeople'].forEach((n) => {
+    ['researchmap', 'HAL', 'PhilPeople', 'SSRN'].forEach((n) => {
       ok('本丸の表に ' + n + ' がある', 表.some((l) => l.indexOf(n) >= 0));
     });
 
@@ -703,16 +703,26 @@ section('10.5 修得した科目の合計');
 
     /* 国の機関でないものの数。**もう一つの文書が「一つ」と名乗る。** */
     const 非国 = 表.filter((l) => l.indexOf('国の機関ではない') >= 0).length;
-    const 漢2 = ['零', '一', '二', '三'][非国] || '?';
     ok('国の機関でない本丸の数が、散文と表で合う（' + 非国 + ' つ）',
        read('docs/external-evaluations.md')
-         .indexOf('三つのうち' + 漢2 + 'つは国の機関ではない') >= 0, String(非国));
+         .indexOf(漢(表.length) + 'つのうち' + 漢(非国)
+                  + 'つは国の機関ではない') >= 0, String(非国));
 
     /* **本丸は正本に勝たない。**この二行が落ちたら、規則そのものが消える。 */
     ok('本丸が正本に勝たないと書いてある',
        cs.indexOf('本丸だからといって、正本に勝つことはない') >= 0);
     ok('食い違いを正本に合わせる向きが書いてある',
-       cs.indexOf('Zenodo と ORCID に合わせて三つの側を直す。逆はしない') >= 0);
+       cs.indexOf('Zenodo と ORCID に合わせて' + 漢(表.length)
+                  + 'つの側を直す。逆はしない') >= 0);
+
+    /* **営利が本丸に入った。**数を散文と突き合わせる。
+     * そして同じ会社が計測も持っている。**そこを書き落とせない。** */
+    const 営利 = 表.filter((l) => l.indexOf('営利企業') >= 0).length;
+    ok('営利企業が持つ本丸の数が、散文と表で合う（' + 営利 + ' つ）',
+       節.indexOf('**' + 漢(表.length) + 'つのうち' + 漢(営利)
+                  + 'つは営利企業が持っている。**') >= 0, String(営利));
+    ok('本丸と計測が同じ手にあることを書いてある',
+       節.indexOf('**本丸と計測が同じ手にある。**') >= 0);
   }
 
   /* **運営母体の表。**散文が「JST が三つ」「Elsevier が二つ」と名乗る。
