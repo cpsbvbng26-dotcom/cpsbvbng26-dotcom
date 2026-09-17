@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/:path*",
+      "permanent": false
+    }
+  ]
+}
