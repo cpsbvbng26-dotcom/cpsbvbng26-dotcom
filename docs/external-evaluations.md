@@ -1348,12 +1348,14 @@ DOI が割れている話だけで、**どこが本丸に見えるかは書い�
 
 **運営母体を全部調べた。**researchmap は JST と NII、HAL は CNRS の
 CCSD、PhilPeople は PhilPapers Foundation と Western University の
-Centre for Digital Philosophy、SSRN は Elsevier、**Google Scholar は Google**である。
-**五つのうち三つは国の機関ではない。**
+Centre for Digital Philosophy、SSRN は Elsevier、Google Scholar は Google、
+**Kudos は Kudos Innovations Ltd** である。**六つのうち四つは国の機関ではない。**
 
-**SSRN と Google Scholar を本丸に加えたのは、プロフィールの頁を持つからである**
-（どちらも利用者の指摘）。**加えた結果、本丸の二つが営利企業の手に入った。**
+**SSRN・Google Scholar・Kudos を本丸に加えたのは、プロフィールの頁を持つからである**
+（いずれも利用者の指摘）。**加えた結果、本丸の三つが営利企業の手に入った。**
 
-**そしてその二つは、同じ手が計測も持っている。**Elsevier は SSRN と PlumX、
-Google は Google Scholar と被引用数である。**本丸と計測が同じ手にある例が
-二つになった。**置いた先が数えているとき、その数は独立した外部の目ではない。
+**そしてその三つは、同じ手が計測も持っている。**Elsevier は SSRN と PlumX、
+Google は Google Scholar と被引用数、Kudos は面と共有の経路の数である。
+**本丸と計測が同じ手にある例が三つになった。**置いた先が数えているとき、
+その数は独立した外部の目ではない。**これは規則ではなく、いま三つがそうだという
+だけである。**
