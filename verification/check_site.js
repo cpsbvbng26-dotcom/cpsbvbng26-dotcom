@@ -671,6 +671,48 @@ section('10.5 修得した科目の合計');
        cells.length + ' 科目 ' + sum + ' 単位');
   });
 
+  /* **城内。**本丸は外にあり、写される元がこちらに揃っている。
+   *
+   * 散文が「10 のリポジトリ」と名乗り、名前も並べている。**源は
+   * ecosystem.json である。**数も名前も、そこと突き合わせる。
+   * 散文のほうを源にすれば、リポジトリが増えた日にずれる。 */
+  {
+    const cs = read('docs/canonical-sources.md');
+    const i = cs.indexOf('## 城内 —— GitHub の側');
+    const j = cs.indexOf('## 同じ人物について');
+    const 節 = (i >= 0 && j > i) ? cs.slice(i, j) : '';
+    ok('canonical-sources.md に城内の節がある', 節.length > 0);
+
+    const 役 = 節.indexOf('| 役 | どこ | 確かめ方 |') >= 0
+      ? 節.slice(節.indexOf('| 役 | どこ | 確かめ方 |'))
+          .split('\n').filter((l) => /^\| \*\*/.test(l))
+      : [];
+    ok('城内の表に役がある（' + 役.length + ' 役）', 役.length >= 5, String(役.length));
+    ['天守', '蔵', '作事場', '石垣', '過書', '大手門'].forEach((r) => {
+      ok('城内の表に「' + r + '」がある', 役.some((l) => l.indexOf(r) >= 0));
+    });
+
+    /* **リポジトリの数と名前。**源は ecosystem.json である。 */
+    const eco = JSON.parse(read('verification/ecosystem.json'));
+    const repos = eco['共通の決めごと'].repos;
+    ok('城内の散文が名乗るリポジトリの数が、ecosystem.json と合う',
+       節.indexOf('**' + repos.length + ' のリポジトリ**') >= 0,
+       'ecosystem.json は ' + repos.length + ' 件');
+    const 抜け = repos.filter((r) => 節.indexOf(r) < 0);
+    ok('城内に並べた名前が、ecosystem.json を網羅している',
+       抜け.length === 0, 抜け.join(' '));
+
+    /* **天守は正本ではない。**そこを取り違えると、紙面が正本の顔になる。 */
+    ok('天守が正本でないと書いてある',
+       節.indexOf('**天守は一枚の紙面であって、そこに正本は無い。**') >= 0);
+
+    /* **城内にしか無いものを、二つとも書いてある。** */
+    ok('過書が城内にしか置けないと書いてある',
+       節.indexOf('城内にしか置けない') >= 0);
+    ok('石垣が外から見えないことを書いてある',
+       節.indexOf('外から見えないが') >= 0);
+  }
+
   /* **本丸の数。**「三つある」と散文が名乗る。**表の行と突き合わせる。**
    *
    * 本丸と正本は別のものである。混ぜれば、どちらの規則も効かなくなる。

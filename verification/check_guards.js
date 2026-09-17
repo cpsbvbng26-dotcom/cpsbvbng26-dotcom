@@ -254,6 +254,21 @@ const CASES = [
    swap('**本丸だからといって、正本に勝つことはない。**', ''),
    'check_site.js', '本丸が正本に勝たないと書いてある'],
 
+  /* **城内。**リポジトリの数と名前を、散文ではなく ecosystem.json から測る。
+   * 三つの壊れ方を見る —— 役が一つ落ちる、名前が一つ抜ける、
+   * そして「天守は正本ではない」が消える。 */
+  ['城内の役が一つ落ちると落ちる', 'docs/canonical-sources.md',
+   (s2) => s2.replace(/^\| \*\*過書\*\* \|.*\n/m, ''),
+   'check_site.js', '城内の表に「過書」がある'],
+
+  ['城内に並べた名前が一つ抜けると落ちる', 'docs/canonical-sources.md',
+   swap('solitary-school', 'solitary-shcool'),
+   'check_site.js', 'ecosystem.json を網羅している'],
+
+  ['天守が正本でないという一行を消すと落ちる', 'docs/canonical-sources.md',
+   swap('**天守は一枚の紙面であって、そこに正本は無い。**', ''),
+   'check_site.js', '天守が正本でないと書いてある'],
+
   /* **営利の本丸。**四つのうち一つが営利企業の手にある。
    * **その一つを消しても、数の検査が気づくこと**を見る。 */
   ['営利の本丸の性格を書き換えると落ちる', 'docs/canonical-sources.md',
