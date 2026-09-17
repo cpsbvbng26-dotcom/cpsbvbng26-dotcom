@@ -17,6 +17,51 @@
 
 ---
 
+## 城内 —— GitHub の側
+
+**本丸は外にある。中はここである。**外の五つはいずれも写しで、
+**写される元がこちらに揃っている。**
+
+| 役 | どこ | 確かめ方 |
+| --- | --- | --- |
+| **天守** | GitHub Pages の一枚 —— `index.html` | 外から最初に見えるもの。主張・撤回・全成果への導線が一枚にある |
+| **蔵** | Zenodo に凍った PDF と DOI | **論文の正本。**版が固定される |
+| **作事場** | **10 のリポジトリ** | 履歴・差分・CI がある。実装の正本 |
+| **石垣** | `verification/` の検査 | `node verification/check_all.js` で 10 リポジトリ分が回る |
+| **過書** | `trinity-infinity/ERRATA.md` と `self-correction/REGISTER.md` | **撤回と誤りは、ここだけが正** |
+| **大手門** | リポジトリの About → Website | **いまは Vercel 経由で正本へ転送している**（下の「配信先」） |
+
+**10 のリポジトリは横断検査が数えている。**
+
+```
+cpsbvbng26-dotcom  errata-check  self-correction  trinity-infinity
+trinity-operator   autonomy-and-self-cultivation  naval-gazette-notes
+researcher-profile justice-and-algorithms  solitary-school
+```
+
+**この一覧は `verification/ecosystem.json` が持っている。**散文に写していない ——
+**写せば、増えた日にずれる。**
+
+### 城内には、外に無いものが二つある
+
+**過書である。**外の五つは業績を並べるが、**撤回した主張と、犯した誤りを並べる欄が無い。**
+researchmap にも SSRN にも、その欄は無い。**`ERRATA.md` と `REGISTER.md` は
+城内にしか置けない。**
+
+**石垣である。**外の五つは、書いたことが正しいかを機械で確かめない。
+**こちらは push のたびに検査が回る。**外から見えないが、外の記述がこちらと
+食い違ったときに気づけるのは、これがあるからである。
+
+### 天守は正本ではない
+
+**天守は一枚の紙面であって、そこに正本は無い。**論文の正本は蔵（Zenodo）、
+実装の正本は作事場（GitHub）、撤回の正本は過書である。
+**天守が持っているのは導線だけである。**
+
+**焼けても正本は残る。**逆に、**蔵が焼ければ天守の導線は行き先を失う。**
+
+---
+
 ## 同じ人物について、別の媒体に別の記述があるとき
 
 **大谷恒について、GitHub の外にも記述があると外部の点検が述べている**（Google Sites の家系図。
