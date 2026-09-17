@@ -982,7 +982,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年9月（二通目） | **同上。**追いかけの一通 | 同じ著作。**新しい条件は付いていない。**返事が無いことへの催促だけ |
 | 2026年9月 | **Journal of Engineering and Artificial Intelligence**（`ISSN 3117-3357`。編集部名義） | `The Trinity-Infinity Framework, Series II` を読んだとして、論文・総説・症例報告の投稿を勧めるもの |
 | 2026年9月（二通目） | 同上 | 同じ誌から再度。**一通目は記録に入れていなかった。**この行で両方を記す |
-| 2026年9月17日 | **誌名が書かれていない**（`Editorial Office` の署名のみ） | `A Naval Gazette Entry for Lieutenant Otani Tsune` について、完全版の原稿を Word で送るよう求めるもの |
+| 2026年9月17日 | **誌名が書かれていない**（`Editorial Office` の署名のみ。領域名は `celestialacademia.com`） | `A Naval Gazette Entry for Lieutenant Otani Tsune` について、完全版の原稿を Word で送るよう求めるもの |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
@@ -1108,11 +1108,35 @@ OASPA（オープンアクセス学術出版協会）にも、会員として現
 `A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒)` である。
 
 **どの誌からなのか、文面に書かれていない。**署名は `Editorial Office` だけで、
-誌名も ISSN も URL も個人名も無い。本文は `our journal` と述べるが、
+誌名も ISSN も URL も無い。本文は `our journal` と述べるが、
 その `our` が指す先が文面に無い。
 
 **これは推測ではなく、文面から確かめられることである。**Eliva Press にも
 Journal of Engineering and Artificial Intelligence にも名があった。ここには無い。
+
+### 差出人の領域名だけが手掛かりになる
+
+**分かるのは領域名だけである** —— `celestialacademia.com`。
+**差出人の番地は記録しない。**個人の連絡先を新規に公開しない（決めごと 9）。
+Eliva Press の欄で個人名を落としたのと同じ扱いである。
+
+**この領域名を調べた。何も出てこなかった。**
+
+| 当たった先 | 結果 |
+| --- | --- |
+| 領域名そのもの | **検索の結果に一件も現れない** |
+| `Celestial Academia` という名の誌・出版社 | **見つからない。**同名の小説の叢書と、無関係の学習サイトが出るだけである |
+| 掲載料・査読方針 | **文面にも、検索の結果にも無い** |
+
+**サイトそのものは読んでいない。**作業環境から `celestialacademia.com` へ出られない。
+egress proxy が塞いでいる。**領域が生きているかどうかも確かめていない**（`未確認`）。
+
+**見つからないことは、無いことの証明ではない。**Eliva Press の会員資格の欄と
+同じ扱いにする。**新しい誌かもしれないし、索引に入っていないだけかもしれない。**
+分かるのは、こちらが探した範囲に現れなかった、ということだけである。
+
+**それでも一つ言えることがある。**誌名を名乗らない勧誘は、名乗る勧誘より
+確かめる手掛かりが少ない。**手掛かりが少ないほど、決めごと 14 は先に効く。**
 
 > `Following our editorial assessment of your preprint ... we would like to invite you
 > to submit the full-length manuscript for editorial consideration.`
