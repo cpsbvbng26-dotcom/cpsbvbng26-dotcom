@@ -200,6 +200,57 @@ HAL に登録したプレプリントを業績として出している（証言�
 **食い違いが見つかったときは、Zenodo と ORCID に合わせて三つの側を直す。逆はしない。**
 **本丸だからといって、正本に勝つことはない。**
 
+### 使っている場の運営母体
+
+**誰が動かしているかを並べる。**格を測るためではない。**同じ手に二つ以上あるかを
+見るためである。**置き場と計測が同じ会社なら、独立した二つの目があるように見えて、
+実は一つである。
+
+**この表は全部 `検索で確認（原典未読）` である。**どの頁にも作業環境から届かない。
+
+| 場 | 運営 |
+| --- | --- |
+| **Zenodo** | **CERN**（欧州原子核研究機構）。欧州委員会のために運用。OpenAIRE の計画で 2013年に開始 |
+| **SSRN** | **Elsevier**。2016年5月に買収 |
+| **PlumX** | **Elsevier**。Plum Analytics を 2017年ごろに買収 |
+| **PhilPeople** | **PhilPapers Foundation** と、Western University の Centre for Digital Philosophy |
+| **PhilArchive** | **PhilPapers Foundation**。PhilPeople と同じ手である |
+| **HAL** | **CCSD** —— **CNRS**（フランス国立科学研究センター）の一部門 |
+| **researchmap** | **JST**（科学技術振興機構）が提供、**NII**（国立情報学研究所）が研究開発 |
+| **J-GLOBAL** | **JST** |
+| **Knowledge Commons / KCWorks** | 学界が持つ非営利の網。**Michigan State University** が運営。もとは MLA（現代言語学会） |
+| **OSF / SocArXiv** | 土台は **Center for Open Science**（非営利）。SocArXiv は **University of Maryland** の行政単位で、2021年から大学図書館が institutional home |
+| **MERLOT** | **California State University** |
+| **PREreview** | **Code for Science & Society**（米国の 501(c)(3)）の会計上の被支援事業 |
+| **ORCID** | **ORCID, Inc.** —— 国際的な非営利 |
+| **Figshare** | **Digital Science** —— **Springer Nature** の子会社 |
+| **Kudos**（growkudos） | **Kudos Innovations Ltd**（英国オックスフォード。2013年設立） |
+
+**GitHub・Vercel・Google Scholar・Crossref・DataCite・Medium・DEV Community・
+ランサーズ・ココナラは、まだこの表に入れていない。**この session で調べていないためである。
+**知っていると思っていることを、調べたことの欄に混ぜない。**
+
+### 同じ手に二つ以上あるもの
+
+**JST が二つ持っている。**researchmap（提供）と J-GLOBAL である。
+**候補に挙げた Jxiv を入れると三つになる。**
+**国内側の窓口が、ほぼ一つの機関に寄っている。**そこが止まれば同時に止まる。
+
+**Elsevier が二つ持っている。**SSRN と PlumX である。
+**これは置き場と計測が同じ会社だということである。**SSRN に置いた論文の数を
+PlumX が数えている。**独立した二つの目に見えて、一つである。**
+[external-evaluations.md](external-evaluations.md) の「計測されているもの」を
+読むときは、そこを分けて読む。
+
+**PhilPapers Foundation が二つ持っている。**PhilPeople（本丸）と PhilArchive（置き場）。
+**哲学分野の本丸と置き場が同じ手にある。**
+
+**CNRS が二つに関わる。**HAL と、候補に挙げた Episciences である。どちらも CCSD が動かしている。
+
+**Figshare は Springer Nature の系列である。**締め出された先が、大手出版の子会社の
+子会社だった。**それが締め出しの理由だとは書かない。**運営母体と締め出しの理由を
+結ぶ材料を持っていない。**並べたのは所属だけである。**
+
 ### 本丸ではないもの
 
 | 場所 | 役割 |
