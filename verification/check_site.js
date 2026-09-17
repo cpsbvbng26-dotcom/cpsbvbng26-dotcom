@@ -733,7 +733,8 @@ section('10.5 修得した科目の合計');
     ok('本丸の数が、散文と表で合う（' + 表.length + ' つ）',
        節.indexOf('## 本丸は' + 漢(表.length) + 'つある') >= 0, '表は ' + 表.length + ' 行');
 
-    ['researchmap', 'HAL', 'PhilPeople', 'SSRN', 'Google Scholar'].forEach((n) => {
+    ['researchmap', 'HAL', 'PhilPeople', 'SSRN', 'Google Scholar', 'Kudos']
+      .forEach((n) => {
       ok('本丸の表に ' + n + ' がある', 表.some((l) => l.indexOf(n) >= 0));
     });
 
@@ -746,8 +747,25 @@ section('10.5 修得した科目の合計');
        && read('index.html').indexOf('cv.hal.science/nemoto-takuya') >= 0);
     ok('面と置き場を分ける表がある',
        節.indexOf('| 本丸（面） | その下の置き場 |') >= 0);
-    ok('面と置き場が一つである本丸を、名指ししてある',
-       節.indexOf('**researchmap と PhilPeople は、面と置き場が同じ一つである。**') >= 0);
+    /* **面と置き場が一つの本丸。**名前を検査に書き込まない。
+     * 散文が並べた名前が、本丸の表にあることだけを見る。 */
+    {
+      const m = /\*\*([^*]+?)は、面と置き場が同じ一つである。\*\*/.exec(節);
+      ok('面と置き場が一つである本丸を、名指ししてある', m !== null);
+      const 一 = m ? m[1].split(/ と /).map((x) => x.trim()) : [];
+      ok('面と置き場が一つの本丸が、本丸の表にある',
+         一.length > 0 && 一.every((n) => 表.some((l) => l.indexOf(n) >= 0)),
+         一.join('・'));
+    }
+
+    /* **計測の出所を混ぜない。**同じ画面に並んでいても、数え手が違う。 */
+    ok('Kudos の欄に、他所から引いた数が混ざることを書いてある',
+       節.indexOf('**Kudos の欄には、他所の数も混ざる。**') >= 0
+       && 節.indexOf('引いてきたものである') >= 0);
+
+    /* **観察を規則に格上げしない。** */
+    ok('営利と計測の重なりを、規則だと書いていない',
+       節.indexOf('**これは規則ではない。**') >= 0);
 
     /* **Zenodo を本丸に入れない。**プロフィールの頁が無い。 */
     ok('本丸の表に Zenodo が入っていない', !表.some((l) => l.indexOf('Zenodo') >= 0));
