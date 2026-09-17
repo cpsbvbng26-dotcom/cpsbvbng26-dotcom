@@ -264,6 +264,17 @@ const CASES = [
    swap('**本丸と計測が同じ手にある。**', ''),
    'check_site.js', '本丸と計測が同じ手にある'],
 
+  /* **表にある場を「まだ入れていない」側にも並べると落ちる。**両方に書けば矛盾する。
+   * この壊し方が要るのは、検査に名前を書き込まない形に直したためである。 */
+  ['表にある場を、入れていない側にも並べると落ちる', 'docs/canonical-sources.md',
+   swap('**GitHub・Vercel・Crossref', '**Zenodo・GitHub・Vercel・Crossref'),
+   'check_site.js', '入れていない側に並んでいない'],
+
+  /* **本丸と計測が同じ手にある例の数。**一行消せば、散文の「二例」が外れる。 */
+  ['同じ手が計測を持つ例が一つ減ると落ちる', 'docs/canonical-sources.md',
+   (s2) => s2.replace(/^\| Google Scholar（Google） \|.*\n/m, ''),
+   'check_site.js', '同じ手にある例の数'],
+
   /* **運営母体。**同じ手に幾つあるかを数えている欄である。三つの壊れ方を見る ——
    * 表から一行減る、Jxiv を表に入れる、調べていない場を混ぜる。 */
   ['同じ手が持つ場の数が減ると落ちる', 'docs/canonical-sources.md',
