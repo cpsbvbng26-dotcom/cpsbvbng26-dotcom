@@ -267,13 +267,28 @@ const CASES = [
   /* **表にある場を「まだ入れていない」側にも並べると落ちる。**両方に書けば矛盾する。
    * この壊し方が要るのは、検査に名前を書き込まない形に直したためである。 */
   ['表にある場を、入れていない側にも並べると落ちる', 'docs/canonical-sources.md',
-   swap('**GitHub・Vercel・Crossref', '**Zenodo・GitHub・Vercel・Crossref'),
+   swap('**Internet Archive・NDL WARP', '**Zenodo・Internet Archive・NDL WARP'),
    'check_site.js', '入れていない側に並んでいない'],
 
   /* **本丸と計測が同じ手にある例の数。**一行消せば、散文の「二例」が外れる。 */
   ['同じ手が計測を持つ例が一つ減ると落ちる', 'docs/canonical-sources.md',
    (s2) => s2.replace(/^\| Google Scholar（Google） \|.*\n/m, ''),
    'check_site.js', '同じ手にある例の数'],
+
+  /* **運営は入れ替わる。**買収で移った先と、表が書いた日のものである断り。
+   * どちらも落とせば、古い表が現在の顔で残る。 */
+  ['買収で運営が変わった先を消すと落ちる', 'docs/canonical-sources.md',
+   swap('**DEV Community は 2026年2月18日に Major League Hacking へ移った。**', ''),
+   'check_site.js', '運営が買収で変わった先を書いてある'],
+
+  ['運営母体の表が書いた日のものである断りを消すと落ちる', 'docs/canonical-sources.md',
+   swap('**運営母体の表は、書いた日のものである。**', ''),
+   'check_site.js', '書いた日のものだと断ってある'],
+
+  ['運営母体の表に善し悪しを持ち込むと落ちる', 'docs/canonical-sources.md',
+   swap('**この表は誰が動かしているかだけを書く。**善し悪しを書かない。',
+        '**この表は運営の良い先と悪い先を分ける。**'),
+   'check_site.js', '善し悪しを書かないと断ってある'],
 
   /* **運営母体。**同じ手に幾つあるかを数えている欄である。三つの壊れ方を見る ——
    * 表から一行減る、Jxiv を表に入れる、調べていない場を混ぜる。 */
@@ -286,11 +301,14 @@ const CASES = [
         '| **J-GLOBAL** | **JST** |\n| **Jxiv** | **JST** |'),
    'check_site.js', 'Jxiv が候補として'],
 
+  /* **調べていない場を表に混ぜると落ちる。**混ぜる名前は、散文が
+   * 「まだ入れていない」と並べているもののうち一つでなければならない。
+   * GitHub を使っていたが、あれは表に入ったので当たらなくなった。 */
   ['調べていない場を運営母体の表に混ぜると落ちる', 'docs/canonical-sources.md',
    swap('| **MERLOT** | **California State University** |',
         '| **MERLOT** | **California State University** |\n'
-        + '| **GitHub** | **Microsoft** |'),
-   'check_site.js', 'GitHub を運営母体の表に入れていない'],
+        + '| **Internet Archive** | 非営利 |'),
+   'check_site.js', 'Internet Archive を運営母体の表に入れていない'],
 
   ['Figshare の所属を締め出しの理由と結ぶと落ちる', 'docs/canonical-sources.md',
    swap('**それが締め出しの理由だとは書かない。**', '**それが締め出しの理由である。**'),
