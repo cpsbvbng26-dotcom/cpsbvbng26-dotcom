@@ -273,6 +273,16 @@ const CASES = [
    swap('**欧州の陣屋は CV HAL であって、HAL そのものではない**', 'HAL である'),
    'check_site.js', '欧州の陣屋が CV HAL であると'],
 
+  /* **縄張りの網羅。**十のうち一つが図に無いまま残っていた。
+   * 数だけ合っていても、当てていないものは見つからない。 */
+  ['縄張りからリポジトリが一つ落ちると落ちる', 'README.md',
+   (s2) => s2.replace(/^\| 馬出 \| `solitary-school`.*\n/m, ''),
+   'check_site.js', 'ecosystem.json の 10 を網羅している'],
+
+  ['城内の部位名を城外でも使うと落ちる', 'README.md',
+   swap('| 馬出 | `solitary-school`', '| 飛び地・陣屋 | `solitary-school`'),
+   'check_site.js', '城外で使い回していない'],
+
   /* **縄張りの語の衝突。**城絵図が README の部位名を自分の見出しに使うと落ちる。
    * **今日これをやった。**外のプロフィール頁を `本丸` と呼び、README では
    * `本丸` が trinity-infinity を指していた。**数の検査では出なかった。** */

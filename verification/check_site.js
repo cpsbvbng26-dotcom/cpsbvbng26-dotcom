@@ -707,6 +707,40 @@ section('10.5 修得した科目の合計');
     ok('城絵図の見出しが、縄張りの部位名を奪っていない', 衝突.length === 0,
        衝突.join('・'));
 
+    /* **縄張りが十を網羅していること。**
+     *
+     * 望楼が見ているのは十である。**縄張りの表が九しか当てていなければ、
+     * 一つが図に無いまま残る。**実際に残った —— solitary-school である。
+     * 数だけ合っていても、当てていないものは見つからない。 */
+    {
+      const eco = JSON.parse(read('verification/ecosystem.json'));
+      const repos = eco['共通の決めごと'].repos;
+      const k2 = rd.indexOf('### 城内（GitHub）');
+      const k3 = rd.indexOf('### 城の設備');
+      const 城内 = (k2 >= 0 && k3 > k2) ? rd.slice(k2, k3) : '';
+      const 抜け = repos.filter((r) => 城内.indexOf('`' + r + '`') < 0);
+      ok('城内の縄張りが、ecosystem.json の ' + repos.length + ' を網羅している',
+         抜け.length === 0, 抜け.join(' '));
+    }
+
+    /* **城内の部位名を、城外で使い回さない。**同じ図の中で二度使えば、
+     * どちらを指しているか決まらない。 */
+    {
+      const k4 = rd.indexOf('### 城外（自分の領地ではない）');
+      const 城外 = k4 >= 0 ? rd.slice(k4, k4 + 4000) : '';
+      const k2 = rd.indexOf('### 城内（GitHub）');
+      const k3 = rd.indexOf('### 城の設備');
+      const 内の部位 = (k2 >= 0 && k3 > k2)
+        ? rd.slice(k2, k3).split('\n')
+            .filter((l) => l.indexOf('|') === 0 && !/^\| *-/.test(l))
+            .map((l) => l.split('|')[1].trim())
+            .filter((x) => x && x !== '城の部位')
+        : [];
+      const 重複 = 内の部位.filter((r) => 城外.indexOf('| ' + r + ' |') >= 0);
+      ok('城内の部位名を、城外で使い回していない', 重複.length === 0,
+         重複.join('・'));
+    }
+
     /* **外のプロフィール頁は陣屋である。**README の城外の表がそう置いている。 */
     ok('README の城外に、飛び地・陣屋の行がある',
        rd.indexOf('| 飛び地・陣屋 |') >= 0);
