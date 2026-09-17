@@ -154,6 +154,70 @@ files.forEach((file) => {
   });
 });
 
+/* **閉じない太字。**`**…である。**続き` は太字にならず、`**` が字のまま出る。
+ *
+ * CommonMark では、閉じの `**` は右側に接していなければならない。
+ * 直前が句読点のときは、直後が空白か句読点でなければ閉じと見なされない。
+ * **日本語でいちばん書きたくなる形が、ちょうどそれに当たる。**
+ *
+ * 直し方は一つ。**句読点を太字の外に出す** —— `**…である**。続き` にする。
+ * 読みは変わらない。
+ *
+ * **開きの `**` は触らない。**`…である。**ここから太字` は正しい。
+ * 開きか閉じかは、現れた順の偶奇でしか決まらない。 */
+{
+  const PUNCT = '。、）」！？';
+  const STOP = ' \u3000*_（「。、！？）」\n\t';
+  files.filter((f) => path.extname(f) === '.md').forEach((file) => {
+    const rel = path.relative(ROOT, file);
+    const src = fs.readFileSync(file, 'utf8').split('\n');
+    /* 囲みの中は Markdown ではない。外した本文だけを見る。 */
+    let infence = false;
+    const keep = [];
+    src.forEach((l, i) => {
+      if (l.trim().indexOf('```') === 0) { infence = !infence; return; }
+      if (!infence) keep.push([i + 1, l]);
+    });
+    const body = keep.map((x) => x[1]).join('\n');
+    /* 行番号を引くための索引。 */
+    const lineAt = (pos) => {
+      let n = 0;
+      for (let k = 0; k < keep.length; k++) {
+        n += keep[k][1].length + 1;
+        if (pos < n) return keep[k][0];
+      }
+      return keep.length ? keep[keep.length - 1][0] : 0;
+    };
+    let depth = 0;
+    const re = /\*\*/g;
+    let m;
+    while ((m = re.exec(body)) !== null) {
+      const opening = depth === 0;
+      depth = 1 - depth;
+      if (opening) continue;
+      const prev = m.index > 0 ? body[m.index - 1] : '';
+      const next = m.index + 2 < body.length ? body[m.index + 2] : '';
+      if (PUNCT.indexOf(prev) >= 0 && next !== '' && STOP.indexOf(next) < 0) {
+        hits.push({
+          file: rel, line: lineAt(m.index), kind: '閉じない太字',
+          msg: '「' + prev + '**」の直後が文字です。'
+               + '句読点を外に出してください（**…' + prev + '** → **…**' + prev + '）',
+          text: body.slice(Math.max(0, m.index - 30), m.index + 12).replace(/\n/g, ' ')
+        });
+      }
+    }
+    /* **数が奇数なら、どこかで閉じていない。**偶奇で判定しているので、
+     * ここが崩れると上の判定そのものが当てにならない。 */
+    if (depth !== 0) {
+      hits.push({
+        file: rel, line: 0, kind: '太字の数が奇数',
+        msg: '** の数が奇数です。開きと閉じの対応が取れません',
+        text: ''
+      });
+    }
+  });
+}
+
 console.log(files.length + ' ファイルを走査しました。');
 if (hits.length) {
   console.log('\n' + hits.length + ' 件見つかりました。\n');

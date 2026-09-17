@@ -46,9 +46,17 @@ execFileSync('cp', ['-a', ROOT, COPY]);
 function run(script) {
   const r = spawnSync('node', [path.join(COPY, 'verification', script)],
                       { cwd: COPY, encoding: 'utf8' });
-  const bad = (r.stdout || '').split('\n')
+  /* **落ちた項目の名前を拾う。**check_site / check_contrast / check_trinity は
+   * `FAIL …` で出すが、**check_text は `[種別] ファイル:行` で出す。**
+   * 片方しか読まないと、check_text に当てた壊す先が「何も落ちなかった」になる。
+   * 実際になった。 */
+  const lines = (r.stdout || '').split('\n');
+  const bad = lines
     .filter((l) => l.trim().startsWith('FAIL'))
-    .map((l) => l.trim().slice(4).trim());
+    .map((l) => l.trim().slice(4).trim())
+    .concat(lines
+      .filter((l) => /^ *\[[^\]]+\] .+:\d+$/.test(l))
+      .map((l) => l.trim()));
   return { code: r.status, bad };
 }
 
@@ -247,7 +255,7 @@ const CASES = [
    'check_site.js', '陣屋の表に Zenodo が入っていない'],
 
   ['国の機関でない陣屋が消えると落ちる', 'docs/canonical-sources.md',
-   swap('**学界の非営利。国の機関ではない。**', '**学界の非営利。**'),
+   swap('**学界の非営利。国の機関ではない**。', '**学界の非営利**。'),
    'check_site.js', '国の機関でない陣屋の数'],
 
   ['陣屋が正本に勝たない一行を消すと落ちる', 'docs/canonical-sources.md',
@@ -256,11 +264,11 @@ const CASES = [
 
   /* **計測の出所。**同じ画面に並んでいても数え手が違う。混ぜると落ちる。 */
   ['Kudos の数の出所をまとめると落ちる', 'docs/canonical-sources.md',
-   swap('**Kudos の欄には、他所の数も混ざる。**', ''),
+   swap('**Kudos の欄には、他所の数も混ざる**。', ''),
    'check_site.js', '他所から引いた数が混ざる'],
 
   ['営利と計測の重なりを規則に格上げすると落ちる', 'docs/canonical-sources.md',
-   swap('**これは規則ではない。**', '**これは規則である。**'),
+   swap('**これは規則ではない**。', '**これは規則である**。'),
    'check_site.js', '規則だと書いていない'],
 
   /* **面と置き場。**陣屋は面のほうである。二つの壊れ方を見る ——
@@ -273,14 +281,24 @@ const CASES = [
    swap('**欧州の陣屋は CV HAL であって、HAL そのものではない**', 'HAL である'),
    'check_site.js', '欧州の陣屋が CV HAL であると'],
 
+  /* **閉じない太字。**`**…である**。` を `**…である。**` に戻すと、
+   * GitHub では `**` が字のまま出る。**そのことを check_text が言えるか。** */
+  ['太字の句読点を中に入れ直すと落ちる', 'README.md',
+   swap('**墨付なし**。外から見える塔である', '**墨付なし。**外から見える塔である'),
+   'check_text.js', '閉じない太字'],
+
+  ['太字の数が奇数になると落ちる', 'README.md',
+   swap('**墨付なし**。外から見える塔である', '**墨付なし。外から見える塔である'),
+   'check_text.js', '太字の数が奇数'],
+
   /* **墨付。**各行が自分の DOI を持つかどうかを述べている。
    * 一行だけ落としても、数えているので出る。 */
   ['城内の一行から墨付の記述が消えると落ちる', 'README.md',
-   swap('| 石垣 | `self-correction` | **墨付なし。**', '| 石垣 | `self-correction` | '),
+   swap('| 石垣 | `self-correction` | **墨付なし**。', '| 石垣 | `self-correction` | '),
    'check_site.js', '墨付の有無を述べている'],
 
   ['墨付ありの数が表と散文でずれると落ちる', 'README.md',
-   swap('**墨付あり** `10.5281/zenodo.22765695`。', '**墨付なし。**'),
+   swap('**墨付あり** `10.5281/zenodo.22765695`。', '**墨付なし**。'),
    'check_site.js', '墨付を持つ曲輪の数'],
 
   /* **縄張りの網羅。**十のうち一つが図に無いまま残っていた。
@@ -315,7 +333,7 @@ const CASES = [
    'check_site.js', '営利企業が持つ陣屋の数'],
 
   ['陣屋と計測が同じ手にある一行を消すと落ちる', 'docs/canonical-sources.md',
-   swap('**陣屋と計測が同じ手にある。**', ''),
+   swap('**陣屋と計測が同じ手にある**。', ''),
    'check_site.js', '陣屋と計測が同じ手にある'],
 
   /* **表にある場を「まだ入れていない」側にも並べると落ちる。**両方に書けば矛盾する。
@@ -340,8 +358,8 @@ const CASES = [
    'check_site.js', '書いた日のものだと断ってある'],
 
   ['運営母体の表に善し悪しを持ち込むと落ちる', 'docs/canonical-sources.md',
-   swap('**この表は誰が動かしているかだけを書く。**善し悪しを書かない。',
-        '**この表は運営の良い先と悪い先を分ける。**'),
+   swap('**この表は誰が動かしているかだけを書く**。善し悪しを書かない。',
+        '**この表は運営の良い先と悪い先を分ける**。'),
    'check_site.js', '善し悪しを書かないと断ってある'],
 
   /* **運営母体。**同じ手に幾つあるかを数えている欄である。三つの壊れ方を見る ——
@@ -365,7 +383,7 @@ const CASES = [
    'check_site.js', 'Internet Archive を運営母体の表に入れていない'],
 
   ['Figshare の所属を締め出しの理由と結ぶと落ちる', 'docs/canonical-sources.md',
-   swap('**それが締め出しの理由だとは書かない。**', '**それが締め出しの理由である。**'),
+   swap('**それが締め出しの理由だとは書かない**。', '**それが締め出しの理由である**。'),
    'check_site.js', '締め出しの理由と結んでいない'],
 
   /* 短大の分の評語は受け取っていない。**空でなければ、どこかで埋めている。** */
