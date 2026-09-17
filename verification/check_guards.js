@@ -235,24 +235,24 @@ const CASES = [
         '<h2 class="serif">修得した科目</h2><p>GPA 2.1</p>'),
    'check_site.js', 'GPA を書いていない'],
 
-  /* **本丸。**特性ごとに三つ置いた欄である。四つの壊れ方を見る ——
+  /* **陣屋。**特性ごとに三つ置いた欄である。四つの壊れ方を見る ——
    * 一つ減る、Zenodo が混ざる、国の機関でないものが消える、
    * そして「正本に勝たない」の一行が落ちる。 */
-  ['本丸が一つ減ると落ちる', 'docs/canonical-sources.md',
+  ['陣屋が一つ減ると落ちる', 'docs/canonical-sources.md',
    (s2) => s2.replace(/^\| \*\*哲学分野\*\*.*\n/m, ''),
-   'check_site.js', '本丸の数が、散文と表で合う'],
+   'check_site.js', '陣屋の数が、散文と表で合う'],
 
-  ['本丸の表に Zenodo を入れると落ちる', 'docs/canonical-sources.md',
+  ['陣屋の表に Zenodo を入れると落ちる', 'docs/canonical-sources.md',
    swap('| **国内** | **researchmap** |', '| **国内** | **Zenodo** |'),
-   'check_site.js', '本丸の表に Zenodo が入っていない'],
+   'check_site.js', '陣屋の表に Zenodo が入っていない'],
 
-  ['国の機関でない本丸が消えると落ちる', 'docs/canonical-sources.md',
+  ['国の機関でない陣屋が消えると落ちる', 'docs/canonical-sources.md',
    swap('**学界の非営利。国の機関ではない。**', '**学界の非営利。**'),
-   'check_site.js', '国の機関でない本丸の数'],
+   'check_site.js', '国の機関でない陣屋の数'],
 
-  ['本丸が正本に勝たない一行を消すと落ちる', 'docs/canonical-sources.md',
-   swap('**本丸だからといって、正本に勝つことはない。**', ''),
-   'check_site.js', '本丸が正本に勝たないと書いてある'],
+  ['陣屋が正本に勝たない一行を消すと落ちる', 'docs/canonical-sources.md',
+   swap('**陣屋だからといって、正本に勝つことはない。**', ''),
+   'check_site.js', '陣屋が正本に勝たないと書いてある'],
 
   /* **計測の出所。**同じ画面に並んでいても数え手が違う。混ぜると落ちる。 */
   ['Kudos の数の出所をまとめると落ちる', 'docs/canonical-sources.md',
@@ -263,40 +263,40 @@ const CASES = [
    swap('**これは規則ではない。**', '**これは規則である。**'),
    'check_site.js', '規則だと書いていない'],
 
-  /* **面と置き場。**本丸は面のほうである。二つの壊れ方を見る ——
+  /* **面と置き場。**陣屋は面のほうである。二つの壊れ方を見る ——
    * 行き先が紙面とずれる、面と置き場を分ける断りが消える。 */
   ['CV HAL の行き先が紙面とずれると落ちる', 'docs/canonical-sources.md',
    swap('cv.hal.science/nemoto-takuya', 'cv.hal.science/takuya-nemoto'),
    'check_site.js', 'CV HAL の行き先が'],
 
-  ['欧州の本丸が CV HAL である断りを消すと落ちる', 'docs/canonical-sources.md',
-   swap('**欧州の本丸は CV HAL であって、HAL そのものではない**', 'HAL である'),
-   'check_site.js', '欧州の本丸が CV HAL であると'],
+  ['欧州の陣屋が CV HAL である断りを消すと落ちる', 'docs/canonical-sources.md',
+   swap('**欧州の陣屋は CV HAL であって、HAL そのものではない**', 'HAL である'),
+   'check_site.js', '欧州の陣屋が CV HAL であると'],
 
-  /* **城内。**リポジトリの数と名前を、散文ではなく ecosystem.json から測る。
-   * 三つの壊れ方を見る —— 役が一つ落ちる、名前が一つ抜ける、
-   * そして「天守は正本ではない」が消える。 */
-  ['城内の役が一つ落ちると落ちる', 'docs/canonical-sources.md',
-   (s2) => s2.replace(/^\| \*\*過書\*\* \|.*\n/m, ''),
-   'check_site.js', '城内の表に「過書」がある'],
+  /* **縄張りの語の衝突。**城絵図が README の部位名を自分の見出しに使うと落ちる。
+   * **今日これをやった。**外のプロフィール頁を `本丸` と呼び、README では
+   * `本丸` が trinity-infinity を指していた。**数の検査では出なかった。** */
+  ['城絵図の見出しが縄張りの部位名を奪うと落ちる', 'docs/canonical-sources.md',
+   swap('## 陣屋は六つある', '## 本丸は六つある'),
+   'check_site.js', '縄張りの部位名を奪っていない'],
 
-  ['城内に並べた名前が一つ抜けると落ちる', 'docs/canonical-sources.md',
-   swap('solitary-school', 'solitary-shcool'),
-   'check_site.js', 'ecosystem.json を網羅している'],
+  ['縄張りが README にあるという断りを消すと落ちる', 'docs/canonical-sources.md',
+   swap('## 縄張りは README にある', '## 縄張りについて'),
+   'check_site.js', '縄張りは README にあると書いてある'],
 
-  ['天守が正本でないという一行を消すと落ちる', 'docs/canonical-sources.md',
-   swap('**天守は一枚の紙面であって、そこに正本は無い。**', ''),
-   'check_site.js', '天守が正本でないと書いてある'],
+  ['陣屋が着地点であるという断りを README から消すと落ちる', 'README.md',
+   swap('人を探しに来た者が着いて、そこで止まる場所である', '入口である'),
+   'check_site.js', '陣屋が入口ではなく着地点だと'],
 
-  /* **営利の本丸。**四つのうち一つが営利企業の手にある。
+  /* **営利の陣屋。**四つのうち一つが営利企業の手にある。
    * **その一つを消しても、数の検査が気づくこと**を見る。 */
-  ['営利の本丸の性格を書き換えると落ちる', 'docs/canonical-sources.md',
+  ['営利の陣屋の性格を書き換えると落ちる', 'docs/canonical-sources.md',
    swap('| **営利企業。国の機関ではない** |', '| **国の機関** |'),
-   'check_site.js', '営利企業が持つ本丸の数'],
+   'check_site.js', '営利企業が持つ陣屋の数'],
 
-  ['本丸と計測が同じ手にある一行を消すと落ちる', 'docs/canonical-sources.md',
-   swap('**本丸と計測が同じ手にある。**', ''),
-   'check_site.js', '本丸と計測が同じ手にある'],
+  ['陣屋と計測が同じ手にある一行を消すと落ちる', 'docs/canonical-sources.md',
+   swap('**陣屋と計測が同じ手にある。**', ''),
+   'check_site.js', '陣屋と計測が同じ手にある'],
 
   /* **表にある場を「まだ入れていない」側にも並べると落ちる。**両方に書けば矛盾する。
    * この壊し方が要るのは、検査に名前を書き込まない形に直したためである。 */
@@ -304,7 +304,7 @@ const CASES = [
    swap('**Internet Archive・NDL WARP', '**Zenodo・Internet Archive・NDL WARP'),
    'check_site.js', '入れていない側に並んでいない'],
 
-  /* **本丸と計測が同じ手にある例の数。**一行消せば、散文の「二例」が外れる。 */
+  /* **陣屋と計測が同じ手にある例の数。**一行消せば、散文の「二例」が外れる。 */
   ['同じ手が計測を持つ例が一つ減ると落ちる', 'docs/canonical-sources.md',
    (s2) => s2.replace(/^\| Google Scholar（Google） \|.*\n/m, ''),
    'check_site.js', '同じ手にある例の数'],
