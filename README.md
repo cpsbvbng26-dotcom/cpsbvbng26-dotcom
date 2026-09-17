@@ -250,12 +250,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1127 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1120 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 624 項目
+node verification/check_site.js      # サイトの構造 617 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -389,7 +389,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | --- | --- |
 | 墨付を出す側 | Zenodo。こちらから書き換えられない。だから凍結される |
 | 家紋・印判 | ORCID。同名の者と区別する唯一のものである |
-| 飛び地・陣屋 | SSRN / PhilArchive / Knowledge Commons / researchmap / HAL。正本ではない。入口である |
+| 飛び地・陣屋 | researchmap / CV HAL / PhilPeople / SSRN / Google Scholar / Kudos。**正本ではない。**入口でもない —— **人を探しに来た者が着いて、そこで止まる場所である。**特性ごとに一つずつ、運営母体まで [`docs/canonical-sources.md`](docs/canonical-sources.md) に並べてある。PhilArchive と Knowledge Commons は陣屋ではなく置き場である |
 | 他家の目付 | 外部の評価と計測。こちらの支配下に無い記録である。凍結済みの論文を **Stanford Agentic Reviewer**（`paperreview.ai`、開発 Yixing Jiang・Andrew Ng）に掛け、返ってきた指摘を一つずつ当たって [`docs/external-evaluations.md`](docs/external-evaluations.md) に記録している。当てたものも外したものも残す。**査読ではない。**arXiv に接地する作りなので、ここで出している論文は精度が落ちる側に当たる —— その前提ごと書いてある |
 
 ### 本陣は城の中に無い
