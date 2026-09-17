@@ -982,6 +982,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年9月（二通目） | **同上。**追いかけの一通 | 同じ著作。**新しい条件は付いていない。**返事が無いことへの催促だけ |
 | 2026年9月 | **Journal of Engineering and Artificial Intelligence**（`ISSN 3117-3357`。編集部名義） | `The Trinity-Infinity Framework, Series II` を読んだとして、論文・総説・症例報告の投稿を勧めるもの |
 | 2026年9月（二通目） | 同上 | 同じ誌から再度。**一通目は記録に入れていなかった。**この行で両方を記す |
+| 2026年9月17日 | **誌名が書かれていない**（`Editorial Office` の署名のみ） | `A Naval Gazette Entry for Lieutenant Otani Tsune` について、完全版の原稿を Word で送るよう求めるもの |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
@@ -1100,6 +1101,47 @@ OASPA（オープンアクセス学術出版協会）にも、会員として現
 **一通目を記録していなかった。**同じ誌から以前にも届いていたが、そのときは
 書かなかった。**書かなければ、来なかったことと区別が付かない。**
 遅れて書く。日付は、この行を足したコミットの日付である。
+
+### 三つ目の勧誘 —— 誌名が書かれていない
+
+**2026年9月17日に届いた。**名指しされているのは
+`A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒)` である。
+
+**どの誌からなのか、文面に書かれていない。**署名は `Editorial Office` だけで、
+誌名も ISSN も URL も個人名も無い。本文は `our journal` と述べるが、
+その `our` が指す先が文面に無い。
+
+**これは推測ではなく、文面から確かめられることである。**Eliva Press にも
+Journal of Engineering and Artificial Intelligence にも名があった。ここには無い。
+
+> `Following our editorial assessment of your preprint ... we would like to invite you
+> to submit the full-length manuscript for editorial consideration.`
+
+**求められている「完全版」は存在しない。**置いてあるものが完全版である。
+本文は 3 頁の史料ノートで、短縮版でも要旨でもない。**送る先の稿が無い。**
+
+| 文面が前提していること | 実際 |
+| --- | --- |
+| 置いてあるのは短い前段で、別に完全版がある | **無い。**置いてあるものが全部である |
+| 主題が誌に合っている | **どの誌か書かれていないので、当てようが無い** |
+
+> `Kindly reply to this email with your full manuscript attached in MS Word format.`
+
+**投稿の仕組みが無い。**添付で受ける形である。二つ目の誌と同じ形である。
+
+**費用については何も書かれていない。**無償とも有償とも述べていない。
+
+**「Dr.」と呼ばれている。**博士号は持っていない。
+**この記録はその呼び方を引き継がない。**決めごと 6 が禁じているのは自称だが、
+他称をそのまま置けば、出所の区別が読み手から消える。
+
+**どこで見つけたかは書かれていない。**この稿は Zenodo・SSRN・Knowledge Commons の
+三つに置いてある。SSRN に番号が付いたのが数日前である。**そこから辿ったのだろう、
+とは書かない。**確かめていない。
+
+**返信していない。**決めごと 14 が先に決めている。**誌名が分からない以上、
+その誌が掲載料を取るかどうかも調べようが無い。**調べられないものを、
+無償と見なして進めることはしない。
 
 ### なぜ書くか
 
