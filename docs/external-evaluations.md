@@ -622,6 +622,7 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.2139/ssrn.7449338` | **受け付けられた。**評価はこれから |
 | MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録した。番号は `824240178`。**査読は自動では始まらない** |
 | Conatus – Journal of Philosophy（アテネ大学） | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | **落ちた。**`Decline Submission`。理由は示されていない |
+| SocArXiv（OSF Preprints） | The Nobility and Exemplarity of the Celibate Individual | —（付かなかった） | **受け付けられなかった。**理由は示されている —— 人文学の稿を受け付けない |
 
 ### Conatus に出した —— 査読誌への最初の投稿
 
@@ -767,6 +768,70 @@ SSRN の DOI は付いていない。
 **どちらも理由を示していない。**理由の書かれない拒絶が二つ並んだ、というのが
 いま分かっていることの全部である。**二つを一つの原因で説明しない。**
 別の場で、別の基準で、別の稿が落ちている。
+
+### SocArXiv に出して、受け付けられなかった
+
+**2026年9月17日、SocArXiv から不受理の報せが届いた。**出したのは Conatus に
+出したのと同じ稿である —— The Nobility and Exemplarity of the Celibate Individual。
+
+| | |
+| --- | --- |
+| 場 | SocArXiv（OSF Preprints。メリーランド大学の運営） |
+| 種別 | プレプリントの置き場。査読誌ではない |
+| 結果 | **受け付けられなかった**（`not been accepted`） |
+| 理由 | **示されている** |
+
+**理由が書かれている。**これまでの二つと違う点である。
+
+> SocArXiv no longer accepts papers in Arts and Humanities.
+
+**分野で外れた。**中身の判断ではない。SocArXiv が人文学の稿を受け付けなくなった、
+という運用の変更である。査読でも審査でもない。
+
+**戻す道も書かれている。**管理権限を持つ寄稿者が稿を直して出し直せば、
+再び保留の状態に戻り、司会者が見る。**分野が変わらない以上、直す先が無い。**
+
+### 落ちた三つを、一つの原因で説明しない
+
+**理由の書かれない拒絶が二つ、書かれた拒絶が一つになった。**
+
+| 場 | 稿 | 理由 |
+| --- | --- | --- |
+| SSRN | Fragmentarian Spiritual Individualism | **示されていない** |
+| Conatus | The Nobility and Exemplarity of the Celibate Individual | **示されていない** |
+| SocArXiv | 同上 | **示されている** —— 人文学を受け付けない |
+
+**三つを束ねない。**別の場で、別の基準で落ちている。SocArXiv の理由を
+他の二つに当てはめれば、示されていないものを示されたことにしてしまう。
+
+### 出す前に調べてあった —— それでも出した
+
+**SocArXiv が人文学を受け付けないことは、出す前に分かっていた。**
+置き場所を広げる先を調べたとき、この場が日本語の稿を通さないことと、
+人文学を主とする稿を断るようになったことの両方が出てきた。**利用者はそれを
+承知のうえで SocArXiv を選んだ。**
+
+**書いておく理由は一つである。**「調べずに出して落ちた」と「調べたうえで出して
+落ちた」は違う。後者を前者の顔で残せば、この記録は自分に甘い。
+
+**そして、調べたことのほうは記録していなかった。**出したことも、調べた結果も、
+どこにも書いていない。**落ちてから両方を書いている。**出した日に書いていれば、
+この節は予告の形で残っていた。
+
+### 司会者が示した行き先
+
+> We recommend submitting the paper to Knowledge Commons, at: https://hcommons.org/
+
+**Knowledge Commons にはすでに一篇置いてある。**大谷恒の稿である
+（[レコード](https://works.hcommons.org/records/q36z2-98e12)）。**この稿は置いていない。**
+
+**まだ出していない。**出すかどうかは決めていない。
+[`submission-disclosure.md`](submission-disclosure.md) の「出す先の条件」に
+当ててから決める。**置き場所を増やす前に規約を読む**、を Figshare のあとに
+足してある。同じ順で進める。
+
+**司会方針の頁も読んでいない。**`socopen.org` へ作業環境から出られない。
+示された URL は報せに書かれていたものをそのまま写している。
 
 ### 「専門職」という語は三つある
 
