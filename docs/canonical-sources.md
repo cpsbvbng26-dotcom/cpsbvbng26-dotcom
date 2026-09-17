@@ -222,7 +222,7 @@ Fragmentarian は弾かれています。
 | 特性 | 本丸 | 運営 | 性格 |
 | --- | --- | --- | --- |
 | **国内** | **researchmap** | **JST**（科学技術振興機構）が提供、**NII**（国立情報学研究所）が研究開発 | 国の機関 |
-| **欧州** | **HAL** | **CCSD**（Centre pour la communication scientifique directe）—— **CNRS** の一部門 | 国の機関 |
+| **欧州** | **CV HAL** `cv.hal.science/nemoto-takuya` | **CCSD**（Centre pour la communication scientifique directe）—— **CNRS** の一部門 | 国の機関 |
 | **哲学分野** | **PhilPeople** | **PhilPapers Foundation** と、Western University の **Centre for Digital Philosophy** | **学界の非営利。国の機関ではない。**購読で自立している |
 | **英語圏の社会科学** | **SSRN** | **Elsevier**。2016年5月に買収 | **営利企業。国の機関ではない** |
 | **引用の索引** | **Google Scholar** | **Google**。2004年11月20日に公開。Google は 2015年から Alphabet Inc. の完全子会社 | **営利企業。国の機関ではない** |
@@ -241,6 +241,20 @@ Fragmentarian は弾かれています。
 
 **本丸と計測が同じ手にある。**二例ある。**そこは分けて読む。**
 置いた先が数えているとき、数は独立した外部の目ではない。
+
+**欧州の本丸は CV HAL であって、HAL そのものではない**（利用者の指摘）。
+**HAL は置き場で、CV HAL がその上に立つ面である。**両方とも CCSD が動かしているが、
+**人を探しに来た者が着くのは面のほうである。**
+
+**置き場と面を分けるのは、他の本丸でも同じである。**
+
+| 本丸（面） | その下の置き場 |
+| --- | --- |
+| CV HAL | HAL |
+| SSRN の著者頁 | SSRN |
+| Google Scholar の著者頁 | Google Scholar の索引 |
+
+**researchmap と PhilPeople は、面と置き場が同じ一つである。**
 
 HAL は 2001年に École normale supérieure で始まり、のちに CCSD へ移っている。
 PhilPapers Foundation は David Bourget（Western）と David Chalmers（NYU・ANU）が
@@ -287,7 +301,7 @@ HAL に登録したプレプリントを業績として出している（証言�
 | **PlumX** | **Elsevier**。Plum Analytics を 2017年ごろに買収 |
 | **PhilPeople** | **PhilPapers Foundation** と、Western University の Centre for Digital Philosophy |
 | **PhilArchive** | **PhilPapers Foundation**。PhilPeople と同じ手である |
-| **HAL** | **CCSD** —— **CNRS**（フランス国立科学研究センター）の一部門 |
+| **HAL / CV HAL** | **CCSD** —— **CNRS**（フランス国立科学研究センター）の一部門 |
 | **researchmap** | **JST**（科学技術振興機構）が提供、**NII**（国立情報学研究所）が研究開発 |
 | **J-GLOBAL** | **JST** |
 | **Knowledge Commons / KCWorks** | 学界が持つ非営利の網。**Michigan State University** が運営。もとは MLA（現代言語学会） |
