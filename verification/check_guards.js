@@ -254,6 +254,16 @@ const CASES = [
    swap('**本丸だからといって、正本に勝つことはない。**', ''),
    'check_site.js', '本丸が正本に勝たないと書いてある'],
 
+  /* **面と置き場。**本丸は面のほうである。二つの壊れ方を見る ——
+   * 行き先が紙面とずれる、面と置き場を分ける断りが消える。 */
+  ['CV HAL の行き先が紙面とずれると落ちる', 'docs/canonical-sources.md',
+   swap('cv.hal.science/nemoto-takuya', 'cv.hal.science/takuya-nemoto'),
+   'check_site.js', 'CV HAL の行き先が'],
+
+  ['欧州の本丸が CV HAL である断りを消すと落ちる', 'docs/canonical-sources.md',
+   swap('**欧州の本丸は CV HAL であって、HAL そのものではない**', 'HAL である'),
+   'check_site.js', '欧州の本丸が CV HAL であると'],
+
   /* **城内。**リポジトリの数と名前を、散文ではなく ecosystem.json から測る。
    * 三つの壊れ方を見る —— 役が一つ落ちる、名前が一つ抜ける、
    * そして「天守は正本ではない」が消える。 */
