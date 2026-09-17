@@ -1346,6 +1346,11 @@ DOI が割れている話だけで、**どこが本丸に見えるかは書い�
 **Zenodo は本丸から外れた。**プロフィールの頁を持たないためである。
 論文の正本ではあるが、着いても人は出てこない。**利用者の指摘による。**
 
-**運営母体も三つとも調べた。**researchmap は JST と NII、HAL は CNRS の
+**運営母体を全部調べた。**researchmap は JST と NII、HAL は CNRS の
 CCSD、PhilPeople は PhilPapers Foundation と Western University の
-Centre for Digital Philosophy である。**三つのうち一つは国の機関ではない。**
+Centre for Digital Philosophy、**SSRN は Elsevier**である。
+**四つのうち二つは国の機関ではない。**
+
+**SSRN を本丸に加えたのは、プロフィールの頁を持つからである**（利用者の指摘）。
+**加えた結果、本丸の一つが営利企業の手に入った。**そして同じ会社が PlumX も
+持っている —— **本丸と計測が同じ手にある。**
