@@ -253,10 +253,22 @@ HAL に登録したプレプリントを業績として出している（証言�
 | **Figshare** | **Digital Science** —— **Springer Nature** の子会社 |
 | **Kudos**（growkudos） | **Kudos Innovations Ltd**（英国オックスフォード。2013年設立） |
 | **Google Scholar** | **Google** —— 2015年から **Alphabet Inc.** の完全子会社。2004年11月20日に公開 |
+| **GitHub / GitHub Pages** | **GitHub, Inc.** —— **Microsoft** の子会社。2018年10月25日に買収が完了 |
+| **Vercel** | **Vercel Inc.**（米国サンフランシスコ）。2015年に `ZEIT` として設立され、2020年に改称 |
+| **Crossref** | **Publishers International Linking Association, Inc.**（PILA）—— 米国ニューヨーク州法の非営利法人。1999年末に設立 |
+| **DataCite** | **DataCite – International Data Citation Initiative e.V.** —— ドイツの登記社団。本部はハノーファー。登記は `VR 201182` |
+| **Medium** | **A Medium Corporation**（米国サンフランシスコ）。2012年8月に公開 |
+| **DEV Community**（dev.to） | **Major League Hacking**（MLH）—— **2026年2月18日に買収された。**土台の Forem は MLH と DEV が共同で管理している |
+| **ランサーズ** | **ランサーズ株式会社**（東京都渋谷区）。東証グロース上場、証券コード `4484`。上場は2019年12月 |
+| **ココナラ** | **株式会社ココナラ**（東京都渋谷区）。東証グロース上場、証券コード `4176`。上場は2021年3月 |
 
-**GitHub・Vercel・Crossref・DataCite・Medium・DEV Community・
-ランサーズ・ココナラは、まだこの表に入れていない。**この session で調べていないためである。
+**Internet Archive・NDL WARP・Semantic Scholar・OpenAlex・Qeios・Preprints.org・
+ScienceOpen・Episciences は、まだこの表に入れていない。**この session で調べていないためである。
 **知っていると思っていることを、調べたことの欄に混ぜない。**
+
+**この表は誰が動かしているかだけを書く。**善し悪しを書かない。会員資格の有無も、
+第三者の一覧に載っているかどうかも、ここには入れない。
+**それは「受けた勧誘」の欄が出典ごとに分けて扱っている。**
 
 ### 同じ手に二つ以上あるもの
 
@@ -279,6 +291,24 @@ PlumX が数えている。**独立した二つの目に見えて、一つであ
 **Figshare は Springer Nature の系列である。**締め出された先が、大手出版の子会社の
 子会社だった。**それが締め出しの理由だとは書かない。**運営母体と締め出しの理由を
 結ぶ材料を持っていない。**並べたのは所属だけである。**
+
+**Microsoft が二つに関わる。**GitHub と GitHub Pages である。
+**正本の一つと、配信先の正が同じ手にある** —— 実装の正本が GitHub で、
+公開の入口が GitHub Pages である。どちらも止まれば同時に止まる。
+
+**受注の二社は日本の上場企業である。**ランサーズとココナラ。
+**研究成果とは別種であることは、上の表に書いてある。**運営母体をここに並べたのは、
+**同じ人物の面が幾つあるかを数えるためである。**格を測るためではない。
+
+### 買収で運営が変わった先がある
+
+**DEV Community は 2026年2月18日に Major League Hacking へ移った。**
+記事を置いた時点の運営と、いまの運営が違う。
+
+**この種の変化は、こちらが見ていなければ気づかない。**置いた先の運営が
+入れ替わっても、置いたものは残る。**運営母体の表は、書いた日のものである。**
+上の Elsevier（2016年）・Microsoft（2018年）・Figshare（Digital Science）も、
+いずれも買収を経た形である。
 
 ### 本丸ではないもの
 
