@@ -250,12 +250,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1122 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1125 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 619 項目
+node verification/check_site.js      # サイトの構造 622 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -278,11 +278,11 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（3
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断 350 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 62 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 64 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査する。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 57 通り**あって、
+何も見ていなくても全部通るからである。リポジトリを複製し、通る状態を**壊す先は 59 通り**あって、
 壊したところがちょうど落ちることを確かめる。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
@@ -357,15 +357,15 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 | 城の部位 | 相当するもの | なぜ |
 | --- | --- | --- |
-| 天守閣 | `cpsbvbng26-dotcom` | 外から見える塔である。実戦では使わない。防御は石垣と狭間がやっている。最上階に望楼がある（横断検査） |
-| 本丸 | `trinity-infinity` | 核である。定理・正誤表・経路。ここが落ちれば全部落ちる |
-| 石垣 | `self-correction` | 外からは見えない。全部これに載っている。git が全版から id を集めるので崩せない |
-| 出丸 | `trinity-operator` | 本丸の外に突き出た曲輪である。実際に撃ち合う場所。作用素ノルムとスペクトル半径の反例はここにある |
-| 武具蔵 | `errata-check` | 武器を打つ場所である。三つの曲輪に写しを配っている |
-| 作事方 | `researcher-profile` | 図面蔵である。天守も CV もノートも論文ページも、建物はここの出力である |
-| 二の丸 | `autonomy-and-self-cultivation` | 哲学三篇。独立した曲輪で、独自の正誤表と番所を持つ |
-| 三の丸 | `naval-gazette-notes` / `justice-and-algorithms` | 記録所と論点整理である。核ではないと明示してある |
-| 馬出 | `solitary-school` | **虎口の外に築いた構えである。**出ていくためにある。非流派が独我流を名乗るとき何が欠けるかを、自分に当てて書いた公開ノート。業績ではなく、立っている場所のほうを書いている |
+| 天守閣 | `cpsbvbng26-dotcom` | **墨付なし。**外から見える塔である。実戦では使わない。防御は石垣と狭間がやっている。最上階に望楼がある（横断検査） |
+| 本丸 | `trinity-infinity` | **墨付なし**（三篇の DOI はあるが、リポジトリ自身には無い）。核である。定理・正誤表・経路。ここが落ちれば全部落ちる |
+| 石垣 | `self-correction` | **墨付なし。**外からは見えない。全部これに載っている。git が全版から id を集めるので崩せない |
+| 出丸 | `trinity-operator` | **墨付なし。**本丸の外に突き出た曲輪である。実際に撃ち合う場所。作用素ノルムとスペクトル半径の反例はここにある |
+| 武具蔵 | `errata-check` | **墨付あり** `10.5281/zenodo.22685687`。武器を打つ場所である。三つの曲輪に写しを配っている |
+| 作事方 | `researcher-profile` | **墨付あり** `10.5281/zenodo.22335692`。図面蔵である。天守も CV もノートも論文ページも、建物はここの出力である |
+| 二の丸 | `autonomy-and-self-cultivation` | **墨付なし**（三篇の DOI はあるが、リポジトリ自身には無い）。哲学三篇。独立した曲輪で、独自の正誤表と番所を持つ |
+| 三の丸 | `naval-gazette-notes` / `justice-and-algorithms` | **`naval-gazette-notes` は墨付なし**（史料ノートの DOI はあるが、リポジトリ自身には無い）。**`justice-and-algorithms` は墨付あり** `10.5281/zenodo.22335676`。記録所と論点整理である。核ではないと明示してある |
+| 馬出 | `solitary-school` | **墨付あり** `10.5281/zenodo.22765695`。**虎口の外に築いた構えである。**出ていくためにある。非流派が独我流を名乗るとき何が欠けるかを、自分に当てて書いた公開ノート。業績ではなく、立っている場所のほうを書いている |
 
 ### 城の設備
 
@@ -403,8 +403,15 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 ### 縄張りから見える弱点
 
-石垣に墨付が無い。`self-correction` は全曲輪が訂正の正本として指しているのに、
-DOI を持っていない。引用できる識別子の無い石垣である。
+**墨付を持たない曲輪が六つある。**十のうち、リポジトリ自身の DOI を持つのは四つ
+（`errata-check` / `researcher-profile` / `justice-and-algorithms` / `solitary-school`）で、
+残る六つには無い。**天守閣・本丸・石垣が、その六つに含まれる。**
+
+いちばん効くのは石垣である。`self-correction` は全曲輪が訂正の正本として指しているのに、
+DOI を持っていない。**引用できる識別子の無い石垣である。**
+
+本丸と二の丸と三の丸の一部は、論文のほうに DOI がある。**リポジトリを引くことは
+できない。**論文を引くことはできる。
 
 望楼が見ているのは十である。**十で全部である** —— そう確かめたのは、
 利用者から「無いはずだ」と指摘されたあとである。それまで、この縄張りには
