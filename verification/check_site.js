@@ -1201,7 +1201,8 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('10.5281/zenodo.22064241') >= 0);
   ok('落とされたことから導けないものも書いてある',
      ja.indexOf('論証が誤っていると判定されたわけではない') >= 0
-     && ja.indexOf('理由は示されておらず') >= 0);
+     && ja.indexOf('断片主義については理由が示されていない') >= 0
+     && ja.indexOf('要件と範囲のどちらなのかは示されていない') >= 0);
   ok('英語版も落とされた一篇を書いている',
      en.indexOf('The third was turned away') >= 0
      && en.indexOf('was submitted to SSRN and rejected') >= 0
@@ -1281,9 +1282,27 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた') >= 0
      && ja.indexOf('一篇について、公開前に人が見て、落とさなかった') >= 0
      && ja.indexOf('10.2139/ssrn.7446961') >= 0);
-  ok('通っていない二篇を、通ったように書いていない',
-     ja.indexOf('Series I と Series III は、まだ出していない') >= 0
-     && en.indexOf('Series I and Series III have not been submitted') >= 0);
+  /* **2026-09-18 に結果が出た。**「まだ出していない」は偽になった。
+   * 当てる先を、結果そのものへ移す。**通ったように書いていないことだけでは足りない。**
+   * 落ちたことと、範囲外では説明が付かないことを、両方見る。 */
+  ok('落とされた二篇を、落とされたと書いてある',
+     ja.indexOf('Series I の改訂版と Series III は、出して落とされた') >= 0
+     && ja.indexOf('まだ出していない') < 0
+     && en.indexOf('Series I (revised) and Series III were submitted and turned away') >= 0
+     && en.indexOf('have not been submitted') < 0);
+  ok('範囲外では説明が付かないと書いてある',
+     ja.indexOf('数学が範囲外だということにはならない') >= 0
+     && ja.indexOf('この門は同じ系列の中でも選り分ける') >= 0
+     && en.indexOf('mathematics being out of scope cannot be the explanation') >= 0
+     && en.indexOf('this gate sorts within a single series') >= 0);
+  /* **落ちた投稿の受付番号を、どの頁にも出さない**（決めごと 1）。DOI ではない。 */
+  ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html']
+    .forEach((f) => {
+      const h = read(f);
+      const 受付 = ['7446959', '7446979'].filter((n) => h.indexOf(n) >= 0);
+      ok(f + ' に落ちた投稿の受付番号が出ていない', 受付.length === 0,
+         受付.length ? ('出ている: ' + 受付.join(', ')) : '無し');
+    });
   ok('英語版も数学の側の通過を書いている',
      en.indexOf('Trinity-Infinity Series II was judged by SSRN’s editorial staff to belong to the scholarly discourse of its field') >= 0
      && en.indexOf('For one paper, a person looked before publication and did not turn it away') >= 0
@@ -1297,14 +1316,18 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
   /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
   [['index.de.html', 'Trinity-Infinity Serie II wurde von der Redaktion von SSRN dem wissenschaftlichen Diskurs ihres Fachs zugerechnet',
+    'Serie I (überarbeitet) und Serie III wurden eingereicht und abgewiesen',
     'Serie I und Serie III sind nicht eingereicht'],
    ['index.fr.html', 'Trinity-Infinity série II a été rattachée par la rédaction de SSRN au discours savant de son domaine',
+    'La série I (révisée) et la série III ont été soumises et écartées',
     'Les séries I et III n’ont pas été soumises'],
    ['index.it.html', 'Trinity-Infinity serie II è stata ricondotta dalla redazione di SSRN al discorso scientifico del proprio ambito',
-    'Le serie I e III non sono state inviate']].forEach(([f, passed, notyet]) => {
+    'La serie I (rivista) e la serie III sono state inviate e respinte',
+    'Le serie I e III non sono state inviate']].forEach(([f, passed, turned, stale]) => {
     const h = read(f);
     ok(f + ' に数学の側の通過が書いてある', h.indexOf(passed) >= 0 && h.indexOf('10.2139/ssrn.7446961') >= 0);
-    ok(f + ' が出していない二篇を明記している', h.indexOf(notyet) >= 0);
+    ok(f + ' が落とされた二篇を明記している',
+       h.indexOf(turned) >= 0 && h.indexOf(stale) < 0);
   });
   /* **片方の門だけを細かく書かない。** */
   ok('PhilArchive の基準を省略していない',
