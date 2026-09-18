@@ -617,12 +617,58 @@ DNA の生データ、未確認の勲等・階級の断定。**この一覧は�
 | 同上 | Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | 受付済み。評価はこれから |
 | 同上 | The Trinity-Infinity Framework, Series II | `10.2139/ssrn.7446961` | 受付済み。評価はこれから |
 | SSRN | Fragmentarian Spiritual Individualism | —（付かなかった） | **弾かれた**。受け付けられていない |
-| SSRN | The Trinity-Infinity Framework, Series I | **まだ無い** | 出した。受け付けの結果はまだ |
-| SSRN | The Trinity-Infinity Framework, Series III | **まだ無い** | 出した。受け付けの結果はまだ |
+| SSRN | The Trinity-Infinity Framework, Series I 改訂版 | —（付かなかった） | **落とされた**。2026-09-18。定型の文面。要件か範囲のどちらかは示されていない |
+| SSRN | The Trinity-Infinity Framework, Series III | —（付かなかった） | **落とされた**。2026-09-18。同じ定型の文面 |
 | SSRN | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.2139/ssrn.7449338` | **受け付けられた**。評価はこれから |
 | MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録した。番号は `824240178`。**査読は自動では始まらない** |
 | Conatus – Journal of Philosophy（アテネ大学） | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | **落ちた**。`Decline Submission`。理由は示されていない |
 | SocArXiv（OSF Preprints） | The Nobility and Exemplarity of the Celibate Individual | —（付かなかった） | **受け付けられなかった**。理由は示されている —— 人文学の稿を受け付けない |
+
+### SSRN が Trinity-Infinity の二篇を落とした —— 2026-09-18
+
+**受けた評価の件数には入れない。** SSRN の文面自身が
+`this decision does not reflect a judgement on the merits of your work` と述べている。
+**受け付けの結果であって、評価ではない。**
+
+| | |
+| --- | --- |
+| 落ちた稿 | Series I の改訂版（受付番号 `7446959`）、Series III（受付番号 `7446979`） |
+| 示された理由 | `does not meet SSRN's submission requirements or falls outside the scope of our platform` |
+| **どちらなのか** | **示されていない。**「要件を満たさない」と「範囲外」を、文面は or で並べている |
+
+**受付番号は DOI ではない**（決めごと 1）。掲載されていない投稿に付いた整理番号である。
+引用に使えない。**DataCite にも Crossref にも無い。**
+
+#### 範囲外では説明が付かない
+
+**同じ系列の Series II は、SSRN の数学研究網（Mathematics Research Network）の
+数値解析（Numerical Analysis）に載っている**（`10.2139/ssrn.7446961`）。
+受付番号は `7446961` で、落ちた二つの `7446959` と `7446979` に挟まれている。
+**三篇は同じときに出してある。**
+
+したがって「数学がこの場の範囲外である」では説明が付かない。
+**範囲が理由なら、Series II も落ちていなければならない。**
+
+**この門は、同じ系列の中でも選り分ける。** 分野で切っているのではない。
+
+#### 何が違ったのかは分かっていない
+
+**分かっていないと書く。** 三篇に共通する不備（`E3` —— 同梱を謳う検証スクリプトが存在しない）は
+Series II にもある。**それが理由なら Series II も落ちる。**
+Series III だけが持つ不備（`E1`・`E2` —— 撤回された初版の DOI を指している）は、
+Series I の改訂版には無い。**それが理由なら Series I は落ちない。**
+
+**共通の不備でも、片方だけの不備でも説明が付かない。** ここで止める。
+
+#### 数がどう動いたか
+
+| | 前 | いま |
+| --- | --- | --- |
+| SSRN の受け付け | 3 通過 / 1 却下 | **4 通過 / 3 却下** |
+
+**通過の数も直っている。** 前の記録は 3 通過と書いていたが、実際は 4 篇に SSRN の DOI が付いている
+（史料ノートが入っていなかった）。**今回の二件とは別の、古いずれである。**
+`check_ecosystem.js` が、この数を `doi-index.md` の SSRN の行数から数え直す。
 
 ### Conatus に出した —— 査読誌への最初の投稿
 

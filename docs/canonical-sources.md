@@ -172,8 +172,8 @@ GitHub に Release が並んでいないことから、Zenodo の登録状況を
 SSRN 側にしか残りません**。片方だけを見た読者は、もう片方に気づきません。
 
 SSRN 版があるのは四篇です。**Trinity-Infinity の Series I と III、Fragmentarian は、
-この経路では評価を受けられません**。Series I と III は出したまま結果を待っており、
-Fragmentarian は弾かれています。
+この経路では評価を受けられません**。**三篇とも弾かれています。**
+Series I の改訂版と Series III は 2026-09-18 に落とされました。
 
 記録は [external-evaluations.md](external-evaluations.md) にあります。
 
@@ -257,9 +257,10 @@ Zenodo と ORCID から写したものである。
 外すこともできる。**選べないのは、収集が何を見つけるかと、被引用数の数え方である。**
 
 **SSRN だけは、全篇が揃っていない**。別の DOI が付いているのは四篇で、
-二篇は出したまま結果を待っており、一篇は**弾かれている**
-（Fragmentarian Spiritual Individualism。
-[external-evaluations.md](external-evaluations.md)）。
+**残る三篇は弾かれている** —— Fragmentarian Spiritual Individualism、
+Trinity-Infinity の Series I 改訂版と Series III である
+（[external-evaluations.md](external-evaluations.md)）。
+**七篇のうち三篇が落ちている。揃わないのは待っているからではない。**
 **本丸でありながら、そこだけを見た読者は全部を見ていないことになる。**
 
 **推薦ではなく、HAL に登録したプレプリントを業績として出して審査を通っている**
