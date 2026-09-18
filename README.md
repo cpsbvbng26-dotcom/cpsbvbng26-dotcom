@@ -30,9 +30,9 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（cross-disciplinary and of clear interest to philosophers）。投稿されるすべての本と論文が専門職の水準を満たすこと（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（reserve the right to reject any submissions）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
-そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）である。SSRN では区分がそのまま eJournal になっている。弾かれた一篇も同じ大陸哲学に出している。受け付けられていないので、どの eJournal にも載っていない。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I と Series III は、まだ出していない。
+そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）である。SSRN では区分がそのまま eJournal になっている。弾かれた一篇も同じ大陸哲学に出している。受け付けられていないので、どの eJournal にも載っていない。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I の改訂版と Series III は、出して落とされた。2026-09-18 に SSRN から二通が届いている。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていない。ここで確かなことが一つある —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはならない。落ちた二篇と通った一篇の違いは、まだ分かっていない。つまり、この門は同じ系列の中でも選り分ける。出した七篇のうち、受け付けられたのは四篇、落とされたのは三篇である。
 
-そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。Series II も同じで、SSRN が見たのは主題と体裁である。落とされたことも、通ったことの裏返しでしかない。弾かれた一篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではない。理由は示されておらず、こちらも確かめていない。明文は上に、場の側の言葉のまま置いてある。
+そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。Series II も同じで、SSRN が見たのは主題と体裁である。落とされたことも、通ったことの裏返しでしかない。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではない。場の側がそう書いている —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べている。断片主義については理由が示されていない。数学の二篇には定型の文面が届いたが、要件と範囲のどちらなのかは示されていない。こちらも確かめていない。明文は上に、場の側の言葉のまま置いてある。
 
 数学の側について、一つ確定したことがある。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型だった —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）である。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われている。脚注ではなく、その分野の二本柱の一本だった。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていない（ERRATA の E8、重大度・高）。ただし寸法は正確に書く。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪である。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としている。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項である。
 
@@ -250,12 +250,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、**push のたびに 1160 項目の検査を通す。** 依存パッケージはない。
+このリポジトリは、**push のたびに 1166 項目の検査を通す。** 依存パッケージはない。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 657 項目
+node verification/check_site.js      # サイトの構造 663 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -277,7 +277,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 384 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 393 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 75 項目
 ```
 
