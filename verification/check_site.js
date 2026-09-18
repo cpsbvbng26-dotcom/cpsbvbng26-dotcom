@@ -686,11 +686,21 @@ section('10.5 修得した科目の合計');
 
     /* README の縄張りの表から、部位と中身の対応を取る。 */
     const k = rd.indexOf('| 城の部位 | 相当するもの | なぜ |');
-    const 縄 = k >= 0
-      ? rd.slice(k).split('\n').slice(2)
-          .filter((l) => l.indexOf('|') === 0 && !/^\| *-/.test(l))
-          .map((l) => l.split('|')[1].trim())
-      : [];
+    /* **縄張りの表だけを取る。**行頭が | でなくなったところで切る。
+     * 節の末尾まで読むと、あとから足した別の表まで数える。実際に数えた。 */
+    const 表を = (head) => {
+      const i0 = rd.indexOf(head);
+      if (i0 < 0) return [];
+      const rows = [];
+      for (const l of rd.slice(i0).split('\n').slice(2)) {
+        if (l.indexOf('|') !== 0) break;
+        if (/^ *\| *-/.test(l)) continue;
+        rows.push(l);
+      }
+      return rows;
+    };
+    const 縄 = 表を('| 城の部位 | 相当するもの | なぜ |')
+      .map((l) => l.split('|')[1].trim()).filter(Boolean);
     ok('README に城の縄張りの表がある（' + 縄.length + ' 部位）', 縄.length >= 6,
        String(縄.length));
 
@@ -728,11 +738,7 @@ section('10.5 修得した科目の合計');
     {
       const k2 = rd.indexOf('### 城内（GitHub）');
       const k3 = rd.indexOf('### 城の設備');
-      const 行 = (k2 >= 0 && k3 > k2)
-        ? rd.slice(k2, k3).split('\n')
-            .filter((l) => l.indexOf('| ') === 0 && !/^\| *-/.test(l)
-                           && l.indexOf('| 城の部位') !== 0)
-        : [];
+      const 行 = 表を('| 城の部位 | 相当するもの | なぜ |');
       ok('城内のすべての行が、墨付の有無を述べている',
          行.length > 0 && 行.every((l) => l.indexOf('墨付') >= 0),
          行.filter((l) => l.indexOf('墨付') < 0).length + ' 行が述べていない');
@@ -744,6 +750,24 @@ section('10.5 修得した科目の合計');
       ok('墨付を持つ曲輪の数が、表と散文で合う（' + 有 + ' つ）',
          rd.indexOf('リポジトリ自身の DOI を持つのは' + 漢[有] + 'つ') >= 0,
          '表は ' + 有 + ' 件');
+      /* **凍結された版。**墨付と同じく、各行が持つか持たないかを述べている。 */
+      ok('城内のすべての行が、凍結の有無を述べている',
+         行.length > 0 && 行.every((l) => l.indexOf('凍結') >= 0),
+         行.filter((l) => l.indexOf('凍結') < 0).length + ' 行が述べていない');
+      const 凍無 = 行.filter((l) => l.indexOf('凍結なし') >= 0).length;
+      ok('凍結を持たない曲輪の数が、表と散文で合う（' + 凍無 + ' つ）',
+         rd.indexOf('| 凍結された版（タグ）を持たない | **' + 漢[凍無] + 'つ** |') >= 0,
+         '表は ' + 凍無 + ' 行');
+      /* **両方を欠くもの。**墨付も凍結も無い曲輪が、いちばん薄い。 */
+      /* **行ではなく、リポジトリを数える。**三の丸は二つ持っているので、
+       * 行で数えると一つ足りない。実際に足りなかった。 */
+      const 両 = (行.join('\n').match(/墨付なし・凍結なし/g) || []).length;
+      ok('墨付も凍結も欠く曲輪の数が、表と散文で合う（' + 両 + ' つ）',
+         rd.indexOf('| **両方を欠く** | **' + 漢[両] + 'つ** |') >= 0,
+         '表は ' + 両 + ' 行');
+      ok('中枢の四つが両方を欠くと書いてある',
+         rd.indexOf('**天守閣・本丸・石垣・出丸が、四つとも両方を欠いている**。') >= 0);
+
       ok('墨付を持たない曲輪の数も書いてある',
          rd.indexOf('**墨付を持たない曲輪が' + 漢[10 - 有] + 'つある**。') >= 0,
          String(10 - 有));
@@ -756,12 +780,7 @@ section('10.5 修得した科目の合計');
       const 城外 = k4 >= 0 ? rd.slice(k4, k4 + 4000) : '';
       const k2 = rd.indexOf('### 城内（GitHub）');
       const k3 = rd.indexOf('### 城の設備');
-      const 内の部位 = (k2 >= 0 && k3 > k2)
-        ? rd.slice(k2, k3).split('\n')
-            .filter((l) => l.indexOf('|') === 0 && !/^\| *-/.test(l))
-            .map((l) => l.split('|')[1].trim())
-            .filter((x) => x && x !== '城の部位')
-        : [];
+      const 内の部位 = 縄.filter((x) => x && x !== '城の部位');
       const 重複 = 内の部位.filter((r) => 城外.indexOf('| ' + r + ' |') >= 0);
       ok('城内の部位名を、城外で使い回していない', 重複.length === 0,
          重複.join('・'));
