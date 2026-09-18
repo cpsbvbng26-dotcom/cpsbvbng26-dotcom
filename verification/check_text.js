@@ -201,10 +201,76 @@ files.forEach((file) => {
         hits.push({
           file: rel, line: lineAt(m.index), kind: '閉じない太字',
           msg: '「' + prev + '**」の直後が文字です。'
-               + '句読点を外に出してください（**…' + prev + '** → **…**' + prev + '）',
+               + '句読点を外に出してください（**…' + prev + ' → …' + prev + '）',
           text: body.slice(Math.max(0, m.index - 30), m.index + 12).replace(/\n/g, ' ')
         });
       }
+    }
+    /* **指示書は対象外である**（書き方の但書）。CLAUDE.md と `.claude/commands/` は
+     * 記録ではなく指示書なので、5 と 6 を掛けない。 */
+    const 指示書 = rel === 'CLAUDE.md' || rel.indexOf('.claude/commands/') === 0;
+    /* **生成された欄も対象外である**（書き方の但書）。README の自己紹介は
+     * サイトの同じ欄からの写しで、文体は生成元に従う。**写しの文体をこちらで
+     * 変えれば、それは写しではなくなる。**印の間だけ落として数える。 */
+    const 写し = [['<!-- 自己紹介:ここから -->', '<!-- 自己紹介:ここまで -->'],
+                  ['<!-- 経歴:ここから -->', '<!-- 経歴:ここまで -->']];
+    let 生成中 = false;
+    const 地 = [];
+    keep.forEach(([ln, l]) => {
+      if (写し.some(([a]) => l.indexOf(a) >= 0)) { 生成中 = true; return; }
+      if (写し.some(([, b]) => l.indexOf(b) >= 0)) { 生成中 = false; return; }
+      if (!生成中) 地.push([ln, l]);
+    });
+
+    /* 書き方 5 —— 文を丸ごと太字にしない。
+     * 太字は語と数に掛けるものである。句点をまたいだ時点で、
+     * 掛かっているのは語ではなく声の大きさである。
+     * 一度これが 1487 個のうち 430 個まで増えて、地の文が読めなくなった。
+     *
+     * **偶奇で対を取る。**正規表現だけで挟むと、`**A**。**B**` の
+     * 「閉じ」と「次の開き」を一つの太字として拾う。**実際に 79 件の偽陽性が出た。** */
+    if (!指示書) {
+      const marks = [];
+      const re5 = /\*\*/g;
+      let mm;
+      while ((mm = re5.exec(body)) !== null) marks.push(mm.index);
+      for (let k = 0; k + 1 < marks.length; k += 2) {
+        const inner = body.slice(marks[k] + 2, marks[k + 1]);
+        if (inner.indexOf('。') < 0) continue;
+        hits.push({
+          file: rel, line: lineAt(marks[k]), kind: '文を太字にしている',
+          msg: '句点をまたぐ太字です。太字は語と数にだけ掛けます（書き方 5）',
+          text: inner.slice(0, 40).replace(/\n/g, ' ')
+        });
+      }
+    }
+    /* 書き方 6 —— ダッシュを連ねない。一つの段落に二つ以上置かない。 */
+    if (!指示書) {
+      let para = [], start = 0;
+      const flush = () => {
+        if (!para.length) return;
+        const n = (para.join('').match(/——/g) || []).length;
+        if (n >= 2) {
+          hits.push({
+            file: rel, line: start, kind: 'ダッシュが多い',
+            msg: '一つの段落にダッシュが ' + n + ' 個あります（書き方 6 は一つまで）',
+            text: para.join('').slice(0, 44)
+          });
+        }
+        para = [];
+      };
+      地.forEach(([ln, l]) => {
+        if (l.trim() === '') { flush(); return; }
+        /* **表の行は段落ではない。**欄の中のダッシュは、同格を示す記号として
+         * 一行に一つずつ立っている。**行をまとめて数えると、表が段落に化ける。** */
+        if (l.trim().indexOf('|') === 0) { flush(); return; }
+        /* **箇条も段落ではない。**項目ごとに「名 —— 説明」の形で一つ立つ。
+         * まとめて数えると、箇条書きが段落に化ける。 */
+        if (/^([-*+]|\d+\.)\s/.test(l.trim())) { flush(); return; }
+        if (!para.length) start = ln;
+        para.push(l);
+      });
+      flush();
     }
     /* **数が奇数なら、どこかで閉じていない。**偶奇で判定しているので、
      * ここが崩れると上の判定そのものが当てにならない。 */
