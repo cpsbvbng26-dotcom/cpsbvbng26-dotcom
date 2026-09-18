@@ -277,7 +277,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 358 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 373 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 75 項目
 ```
 
@@ -443,6 +443,7 @@ Google は Google Scholar と被引用数、Kudos は共有の経路の数であ
 | 検地帳 | [`docs/doi-index.md`](docs/doi-index.md) |
 | 城絵図 | [`docs/canonical-sources.md`](docs/canonical-sources.md)。どれを正とするかの縄張り図 |
 | 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた日付つきの現状評価。**等級は書けない**（登録簿の `ST-002`） |
+| 口上書 | [`docs/self-assessment-prompt.md`](docs/self-assessment-prompt.md)。検分状を外の者に書き直させるときに渡す文。**上限まで書かせる。ただし事実を超えさせない** |
 | 借りた物差し | [`docs/frames.md`](docs/frames.md)。科学哲学・科学社会学の枠組み九つを、出典つきで当てはめたもの。**記録ではない。当てはめは知見ではない**（`ST-002`） |
 
 ### 城外（自分の領地ではない）
