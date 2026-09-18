@@ -281,6 +281,19 @@ const CASES = [
    swap('**欧州の本丸は CV HAL であって、HAL そのものではない**', 'HAL である'),
    'check_site.js', '欧州の本丸が CV HAL であると'],
 
+  /* **下書きが、公開したものの顔をしないこと。**等級と限界の一行を消すと落ちる。 */
+  ['下書きの原典未読の断りを消すと落ちる', 'drafts/undisclosable-disclosure.md',
+   swap('いずれも原典を読んでいない', 'いずれも原典に当たった'),
+   'check_site.js', '原典未読だと書いてある'],
+
+  ['下書きの事例が一件である断りを消すと落ちる', 'drafts/undisclosable-disclosure.md',
+   swap('**事例が一件しかない**。', '事例は足りている。'),
+   'check_site.js', '事例が一件であることを'],
+
+  ['名指しで非難しない断りを消すと落ちる', 'drafts/undisclosable-disclosure.md',
+   swap('「開示を怠った」と書くことはしない', '「開示を怠った」と書く'),
+   'check_site.js', '名指しで開示を怠ったと'],
+
   /* **取り消した誤りを消さないこと。**「哲学の出し先が無い」と書いていた。
    * **取り消しを消せば、誤りを消したことになる。** */
   ['取り消しの一行を消すと落ちる', 'docs/submission-disclosure.md',
