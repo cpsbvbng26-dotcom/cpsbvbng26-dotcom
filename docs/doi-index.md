@@ -20,7 +20,7 @@
 | 2 | `10.5281/zenodo.22055709` | A Naval Gazette Entry for Lieutenant Otani Tsune | 現行。史料ノートであり論文ではない |
 | 3 | `10.5281/zenodo.22057583` | Manifesto of Imperial Selfhood | 現行（改訂版 2026年8月） |
 | 4 | `10.5281/zenodo.22058254` | The Nobility and Exemplarity of the Celibate Individual | 現行（v2 2026年8月） |
-| 5 | `10.5281/zenodo.22058624` | Trinity-Infinity Series I 改訂版 | **現行。Series I はこの番号で引く** |
+| 5 | `10.5281/zenodo.22058624` | Trinity-Infinity Series I 改訂版 | 現行。Series I はこの番号で引く |
 | 6 | `10.5281/zenodo.22058777` | Trinity-Infinity Series II 改訂版 | 現行 |
 | 7 | `10.5281/zenodo.22058964` | Trinity-Infinity Series III | 現行 |
 | 8 | `10.5281/zenodo.22064241` | Fragmentarian Spiritual Individualism | 現行 |
@@ -44,7 +44,7 @@
 `naval-gazette-notes`）を写したものである。番号だけ新しくすると、写した実物と
 食い違う。`check_ecosystem.js` が、写した版と書いてある DOI の対応を当たっている。
 
-**新しい番号を足したのは、道具そのものの現行版が v0.3.0 になったからである。**
+新しい番号を足したのは、道具そのものの現行版が v0.3.0 になったからである。
 `CITATION.cff` と README の記章がこれを指す。写しの側は動かない。
 
 ## 未確認の番号
@@ -61,7 +61,7 @@
 
 **残っているのは、概念 DOI か、もう一つの版 DOI かの区別である**。Zenodo が概念 DOI と
 版 DOI に連番を振ることがあるので、`...691` が概念 DOI である可能性は高い。だが
-**Zenodo にも Software Heritage にもこの作業環境から出られないので、そこは確かめていない。**
+Zenodo にも Software Heritage にもこの作業環境から出られないので、そこは確かめていない。
 上の Software Heritage の中身は、利用者から受け取ったものである（`証言`）。
 
 到達できるようになったら、次のどちらかにする。
@@ -69,12 +69,12 @@
 - 概念 DOI であれば、その旨を一語添える
 - 版 DOI であれば、どの版かを書く
 
-**推測で直さない。**
+推測で直さない。
 
 `10.5281/zenodo.22765695` も同じ形で未確認である。`solitary-school` の番号として
 利用者から受け取った。**概念 DOI か版 DOI かは確かめていない**。Zenodo へ出られない。
 
-同じ日に `10.5281/zenodo.22765621` も作られ、利用者が消した。**消えたことも確かめていない。**
+同じ日に `10.5281/zenodo.22765621` も作られ、利用者が消した。消えたことも確かめていない。
 この一覧には載せない。載せれば、実在する番号として引かれる余地が残る。
 
 ## 別の所在にある同一本文
@@ -90,7 +90,7 @@
 
 ## 第三者の SSRN DOI
 
-著者のものではない。引用している他人の論文である。**書き換えない。**
+著者のものではない。引用している他人の論文である。書き換えない。
 
 | DOI | 文献 | 所在 |
 | --- | --- | --- |
@@ -119,7 +119,7 @@
 | `trinity-operator` | 無い |
 | `cpsbvbng26-dotcom` | 無い |
 
-DOI を付けるには Zenodo での操作が要る。**それは利用者が行う。**
+DOI を付けるには Zenodo での操作が要る。それは利用者が行う。
 DOI が付くまでの間、恒久的な識別子が要るなら Software Heritage の SWHID がある
 （アカウント不要、費用なし）。
 
