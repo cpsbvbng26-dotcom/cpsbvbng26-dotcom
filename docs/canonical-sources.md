@@ -262,9 +262,8 @@ Zenodo と ORCID から写したものである。
 [external-evaluations.md](external-evaluations.md)）。
 **本丸でありながら、そこだけを見た読者は全部を見ていないことになる。**
 
-**researchmap の登録は、推薦ではなく審査を通ったものである** ——
-HAL に登録したプレプリントを業績として出している（証言。
-[external-evaluations.md](external-evaluations.md)）。
+**推薦ではなく、HAL に登録したプレプリントを業績として出して審査を通っている**
+（証言。[external-evaluations.md](external-evaluations.md)）。
 **ただし、その審査が見たのは登録の要件であって、論文の中身ではない。**
 
 **食い違いが見つかったときは、Zenodo と ORCID に合わせて六つの側を直す。逆はしない。**
