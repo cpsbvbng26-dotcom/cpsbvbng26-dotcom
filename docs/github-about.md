@@ -4,7 +4,7 @@
 **まだ適用していません**。GitHub の設定画面からの手作業になります（API での書き換えは
 このセッションの権限では通りません）。
 
-description は英語 1 本にしてください。**GitHub の description は 1 つしか持てません。**
+description は英語 1 本にしてください。GitHub の description は 1 つしか持てません。
 学術の読者は英語で探します。日本語は README の先頭が担っています。
 
 適用の手順は末尾にあります。
@@ -34,7 +34,7 @@ static-site  content-security-policy  json-ld  orcid  preprint
 https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/
 ```
 
-> ⚠️ **前回確認した時点では `https://cpsbvbng26-dotcom.vercel.app` が入っていました。**
+> ⚠️ 前回確認した時点では `https://cpsbvbng26-dotcom.vercel.app` が入っていました。
 > サイトの全ページの `canonical` は GitHub Pages を正としています。ここだけが
 > 別の配信先を指している状態です。
 
