@@ -799,6 +799,80 @@ console.log('\n7.13 掲載料を取らない誌の一覧');
     text.indexOf('史料ノートの受け皿が見つかっていない') >= 0);
 }
 
+/* **SSRN の通過と却下の数。**自己分析の欄が手で書いていた数が、実際とずれていた。
+ * 史料ノートが通っているのに 3 通過と書いてあった。**そこで数え直す先を決める。**
+ * 通過は `doi-index.md` の「別の所在」にある自分の SSRN DOI の数、
+ * 出した数は `papers.json` の篇数、却下はその差である。
+ * **第三者の SSRN DOI を数に入れない。**節が別なので、節を切って数える。 */
+
+console.log('\n7.14 SSRN の通過と却下');
+
+{
+  const idx = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md')) || '';
+  const 自分の節 = idx.slice(idx.indexOf('## 別の所在にある同一本文'),
+                            idx.indexOf('## 第三者の SSRN DOI'));
+  check('別の所在の節と、第三者の節が分かれている',
+    自分の節.length > 0 && idx.indexOf('## 第三者の SSRN DOI') > 0);
+
+  const 通過 = (自分の節.match(/SSRN `10\.2139\/ssrn\.\d+`/g) || []).length;
+  const 篇 = (() => {
+    const raw = read('researcher-profile', 'papers.json');
+    if (raw === null) return null;
+    try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length; }
+    catch (e) { return null; }
+  })();
+  const 却下 = (篇 === null) ? null : 篇 - 通過;
+
+  const 自己 = read('cpsbvbng26-dotcom', path.join('docs', 'self-assessment.md')) || '';
+  const m = /\| SSRN の受け付け \| SSRN 編集スタッフ \| \*\*(\d+) 通過 \/ (\d+) 却下\*\* \|/.exec(自己);
+  check('自己分析の SSRN の欄が、数え直したものと合う',
+    m !== null && 却下 !== null
+    && parseInt(m[1], 10) === 通過 && parseInt(m[2], 10) === 却下,
+    m ? ('名乗り ' + m[1] + ' 通過 / ' + m[2] + ' 却下  実際 ' + 通過 + ' / ' + 却下)
+      : '欄が読めない');
+
+  /* **落ちたことを、落ちたと書いてあること。**待っている顔のまま残さない。 */
+  const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
+  check('Series I と III の行が、落とされたと書いてある',
+    ev.indexOf('Series I 改訂版 | —（付かなかった） | **落とされた**') >= 0
+    && ev.indexOf('Series III | —（付かなかった） | **落とされた**') >= 0
+    && ev.indexOf('出した。受け付けの結果はまだ') < 0);
+
+  /* **受け付けの結果を、評価の件数に混ぜない。**場の側がそう書いている。 */
+  check('受け付けの結果を評価に数えないと書いてある',
+    ev.indexOf('**受けた評価の件数には入れない。**') >= 0
+    && ev.indexOf('does not reflect a judgement on the merits of your work') >= 0);
+
+  /* **範囲外では説明が付かないこと。**同じ網に Series II が載っている。
+   * ここが消えると、落ちた理由を分野のせいにできてしまう。 */
+  check('範囲外では説明が付かないと書いてある',
+    ev.indexOf('#### 範囲外では説明が付かない') >= 0
+    && ev.indexOf('**範囲が理由なら、Series II も落ちていなければならない。**') >= 0
+    && ev.indexOf('**この門は、同じ系列の中でも選り分ける。**') >= 0);
+
+  /* **分からないことを、分からないと書いてあること。**片側の不備で説明を作らない。 */
+  check('何が違ったか分かっていないと書いてある',
+    ev.indexOf('**共通の不備でも、片方だけの不備でも説明が付かない。** ここで止める。') >= 0);
+
+  /* **受付番号を DOI と読み違えさせない**（決めごと 1）。 */
+  check('受付番号が DOI ではないと書いてある',
+    ev.indexOf('**受付番号は DOI ではない**') >= 0
+    && ev.indexOf('**DataCite にも Crossref にも無い。**') >= 0);
+  const 受付 = ['7446959', '7446979'];
+  const 誤用 = 受付.filter((n) => idx.indexOf(n) >= 0);
+  check('受付番号が、番号の一覧に混ざっていない', 誤用.length === 0,
+    誤用.length ? ('混ざっている: ' + 誤用.join(', ')) : 受付.length + ' 件');
+
+  /* **入口の写しも、落ちたことを書いていること。**生成元は site.json である。 */
+  const top = read('cpsbvbng26-dotcom', 'index.html') || '';
+  const topEn = read('cpsbvbng26-dotcom', 'index.en.html') || '';
+  check('入口の自己紹介が、落とされたことを書いている',
+    top.indexOf('出して落とされた') >= 0
+    && top.indexOf('まだ出していない') < 0
+    && topEn.indexOf('were submitted and turned away') >= 0
+    && topEn.indexOf('have not been submitted') < 0);
+}
+
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
 
