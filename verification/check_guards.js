@@ -281,6 +281,24 @@ const CASES = [
    swap('**欧州の本丸は CV HAL であって、HAL そのものではない**', 'HAL である'),
    'check_site.js', '欧州の本丸が CV HAL であると'],
 
+  /* **取り消した誤りを消さないこと。**「哲学の出し先が無い」と書いていた。
+   * **取り消しを消せば、誤りを消したことになる。** */
+  ['取り消しの一行を消すと落ちる', 'docs/submission-disclosure.md',
+   swap('**「Janeway と OLH に哲学の出し先が無い」は誤りだった**', '誤りだった'),
+   'check_site.js', '取り消してある'],
+
+  ['旧誌の数字を新誌の格に使うと落ちる', 'docs/submission-disclosure.md',
+   swap('**旧誌の数字を新誌の格として使わない**', '旧誌の数字を新誌の格に使う'),
+   'check_site.js', '旧誌の数字を新誌の格に使わない'],
+
+  ['未確認の条件を満たしたことにすると落ちる', 'docs/submission-disclosure.md',
+   swap('**②で止まっている**', '②も満たしている'),
+   'check_site.js', '条件②が未確認だと'],
+
+  ['OLH の誌が一つ減ると落ちる', 'docs/submission-disclosure.md',
+   (s2) => s2.replace(/^\| \*\*Philosophical Logic\*\* \|.*\n/m, ''),
+   'check_site.js', 'OLH の哲学の誌の数'],
+
   /* **凍結された版。**各行が持つか持たないかを述べている。
    * 行ではなくリポジトリを数えているので、三の丸を書き換えても出る。 */
   ['凍結の記述が一行から消えると落ちる', 'README.md',
