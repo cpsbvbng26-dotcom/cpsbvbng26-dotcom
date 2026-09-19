@@ -1021,7 +1021,7 @@ console.log('\n7.17 予告 —— 結果が出る前に書いたもの');
     }
   }
   const 漢 = '〇一二三四五六七八九十'.split('');
-  const m = /\*\*(.)件あります。\*\*/.exec(P);
+  const m = /^(.)件あります。/m.exec(P);
   check('予告の件数が、表の行数と名乗りで合う',
     rows.length > 0 && m !== null && 漢.indexOf(m[1]) === rows.length,
     '表 ' + rows.length + ' 行 / 名乗り ' + (m ? m[1] : '無し'));
@@ -1054,7 +1054,7 @@ console.log('\n7.17 予告 —— 結果が出る前に書いたもの');
   /* **外部からの接触が 0 だと測って書いてあること。**
    * 装置の整備と、野戦の有無は別である。 */
   check('外部からの接触が 0 だと書いてある',
-    P.indexOf('**外部からの接触は、測ると 0 です。**') >= 0
+    P.indexOf('外部からの接触は、測ると 0 です。') >= 0
     && P.indexOf('star は\nすべて 1 件（著者自身）') >= 0);
 
   /* 反論の側。**この反論は、それ自体が同じ装置の動作であると書いてあること。** */
@@ -1079,14 +1079,124 @@ console.log('\n7.17 予告 —— 結果が出る前に書いたもの');
   check('城の比喩に、解釈という等級が付いている',
     Fr.indexOf('## この記録が自分で作った枠組み —— 城') >= 0
     && Fr.indexOf('| 解釈。検証不能 |') >= 0
-    && Fr.indexOf('外から借りた枠組みは「解釈」と札を立て、自分の枠組みは運用規則として書いていた') >= 0);
+    && Fr.indexOf('外から借りた枠組みには「解釈」と札を立て、自分の枠組みは運用規則として書いていました') >= 0);
   check('比喩の含意が検証されていないと書いてある',
     Fr.indexOf('検証されていないのは**含意**です') >= 0
-    && Fr.indexOf('**六つの本丸は他人が運営しています。**') >= 0);
+    && Fr.indexOf('六つの本丸は他人が運営しています。') >= 0);
 }
 
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
+
+console.log('\n7.18 ですます調 —— 書き方 2 の行き渡り');
+
+{
+  /* **壊れた活用が残っていないこと。**く 五段の音便に「ました」を繋いだ形と、
+   * 助詞を五段の語幹と見て活用させた形。漢字は正しいので目視では通り抜ける。
+   *
+   * **形は書き写さない。**check_text.js の表から読む。書き写せば、二つの並びが
+   * 黙ってずれる。表を持っている check_text.js 自身は走査から外す。 */
+  const CT0 = read('cpsbvbng26-dotcom', path.join('verification', 'check_text.js')) || '';
+  const 壊れ = [...CT0.matchAll(/\{ re: \/([^/]+)\/, right: '[^']+', note: '(?:「[^」]+」＋|助詞)/g)]
+    .map((m) => m[1]);
+  const 出た = [];
+
+  /* **対象の外を先に決める。**指示書・見本・逐語の翻刻・生成されたサイト・英語。
+   * CLAUDE.md の「2 番が掛からないところ」と同じ並びである。 */
+  const 外す = /(^|\/)(CLAUDE|CONTRIBUTING|SUBMIT)\.md$|(^|\/)(examples|tests|papers|site|node_modules|preprint|dist|fixtures|drafts)\//;
+  const 散文 = [];
+  const 全部 = [];
+  const walk = (repo, rel) => {
+    const abs = path.join(ROOT, repo, rel);
+    let ents;
+    try { ents = fs.readdirSync(abs, { withFileTypes: true }); } catch (e) { return; }
+    for (const e of ents) {
+      const r = rel ? rel + '/' + e.name : e.name;
+      if (e.isDirectory()) {
+        if (/^(\.git|node_modules|site|dist|__pycache__|fixtures)$/.test(e.name)) continue;
+        walk(repo, r);
+      } else if (/\.(md|toml)$/.test(e.name)) {
+        全部.push([repo, r]);
+        if (!外す.test(r) && !/\.en\.md$/.test(r)) 散文.push([repo, r]);
+      }
+    }
+  };
+  for (const repo of C.repos) walk(repo, '');
+
+  for (const [repo, rel] of 全部) {
+    if (repo === 'cpsbvbng26-dotcom' && rel === 'verification/check_text.js') continue;
+    const text = read(repo, rel);
+    if (text === null) continue;
+    for (const w of 壊れ) if (text.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ' の ' + w);
+  }
+  check('壊れた活用が、10 リポジトリのどこにも無い', 出た.length === 0,
+    出た.length ? 出た.slice(0, 4).join(' / ') : (全部.length + ' ファイル / ' + 壊れ.length + ' 形'));
+
+  /* **表に持っている形が五つであること。**推測で足せば、実際に混入した形という
+   * 根拠が消える。 */
+  const 対 = (CT0.match(/＋「ました」/g) || []).length;
+  const 助 = (CT0.match(/note: '助詞「/g) || []).length;
+  const CLm = read('cpsbvbng26-dotcom', 'CLAUDE.md') || '';
+  const 名乗り = /`CONJUGATION` が\*\*(.)つ\*\*を止める/.exec(CLm);
+  const 名乗り助 = /\*\*こちらは(.)つ\*\*を止める/.exec(CLm);
+  const 漢 = '〇一二三四五六七八九十'.split('');
+  check('止めている形の数が、CLAUDE.md の名乗りと合う',
+    対 > 0 && 名乗り !== null && 漢.indexOf(名乗り[1]) === 対
+    && 助 > 0 && 名乗り助 !== null && 漢.indexOf(名乗り助[1]) === 助,
+    '音便 ' + 対 + ' 形（名乗り ' + (名乗り ? 名乗り[1] : '無し') + '） / 助詞 '
+    + 助 + ' 形（名乗り ' + (名乗り助 ? 名乗り助[1] : '無し') + '）');
+
+  /* **である調の繋ぎの語が、対象の散文に残っていないこと。**
+   * 見ているのは繋ぎの語だけである —— である・ではない・でない・ていない。
+   * **動詞の活用までは見ていない。**形態素解析が要るので、そこは検査の外にある。
+   * 囲み・表・引用・見出し・生成された欄と、鉤括弧の中は外す。
+   * **読点の前も外す。**ですます調でも、連体修飾と引用の中は終止形のままである。
+   * 「論理が強制していない、いちばん高くつく割り当て」は正しい。 */
+  const COP = /(である|ではない|でない|ていない|ではなかった|ていなかった)(。|$|[（(])/;
+  const 残り = [];
+  for (const [repo, rel] of 散文) {
+    const text = read(repo, rel);
+    if (text === null) continue;
+    let infence = false, gen = false;
+    text.split('\n').forEach((l, i) => {
+      if (l.trim().indexOf('```') === 0) { infence = !infence; return; }
+      if (infence) return;
+      if (l.indexOf('ここから -->') >= 0) { gen = true; return; }
+      if (l.indexOf('ここまで -->') >= 0) { gen = false; return; }
+      if (gen) return;
+      const s = l.replace(/^\s+/, '');
+      if (s.indexOf('>') === 0 || s.indexOf('|') === 0 || s.indexOf('#') === 0) return;
+      if (/^\s*(must_say|must_not_say|where)\s*=/.test(l)) return;
+      const c = l.replace(/「[^」]*」/g, '＿').replace(/『[^』]*』/g, '＿')
+                 .replace(/`[^`]*`/g, '＿').replace(/"[^"]*"/g, '＿');
+      if (COP.test(c)) 残り.push(repo + '/' + rel + ':' + (i + 1));
+    });
+  }
+  check('である調の繋ぎの語が、対象の散文に残っていない', 残り.length === 0,
+    残り.length ? (残り.length + ' か所 —— ' + 残り.slice(0, 3).join(' / '))
+                : (散文.length + ' ファイル'));
+
+  /* **外したものを、表として書いてあること。**書いていなければ、次に触る側が
+   * 掛かる範囲を印象で決める。 */
+  const CL = read('cpsbvbng26-dotcom', 'CLAUDE.md') || '';
+  const i2 = CL.indexOf('### 2 番が掛からないところ');
+  const 行 = [];
+  if (i2 >= 0) {
+    for (const l of CL.slice(i2).split('\n')) {
+      if (l.indexOf('|') === 0) 行.push(l);
+      else if (行.length && l.indexOf('|') !== 0 && l.trim() !== '') break;
+    }
+  }
+  check('外したものの表がある', 行.length >= 3, '表 ' + 行.length + ' 行（見出しと罫線を含む）');
+  check('生成もとを直すと書いてある',
+    CL.indexOf('生成物は、生成もとを直して作り直す') >= 0
+    && CL.indexOf('生成された側を手で直すと、次の生成で戻る') >= 0);
+  check('期待値を動かしたら壊して確かめると書いてある',
+    CL.indexOf('これは検査を緩めることではない') >= 0
+    && CL.indexOf('動かしたら壊して確かめる') >= 0);
+  check('い形容詞を外したと書いてある', CL.indexOf('低いです') >= 0);
+  check('2 番も数えられると書いてある', CL.indexOf('このうち 1・2・5・6 は、書いたあとに数えられる') >= 0);
+}
 
 console.log('\n6. 外部からの評価');
 
@@ -1303,7 +1413,7 @@ console.log('\n7.7 受けた勧誘');
     && E.indexOf('**取れていない**。刊行点数も従業員数も') >= 0);
   check('会員として見つからないことが、証明ではないと書いてある',
     E.indexOf('**ただしこれは、会員でないことの証明ではありません**。') >= 0
-    && E.indexOf('見つからなかった、というだけである') >= 0);
+    && E.indexOf('見つからなかった、というだけです') >= 0);
   check('争われている一覧を、確定した事実として使っていない',
     E.indexOf('**そしてこの一覧自体が、学術界で争われているものである**') >= 0
     && E.indexOf('こちらは一覧そのものを読んでいない') >= 0
