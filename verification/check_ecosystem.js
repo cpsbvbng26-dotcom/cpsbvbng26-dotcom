@@ -931,6 +931,71 @@ console.log('\n7.15 X に書いたことの等級');
     && S.indexOf('Simons Foundation と') >= 0);
 }
 
+/* **マージコミットの開示。**枝を PR に切り替えてから、マージの行に
+ * `Co-Authored-By` が付いていなかった。API のマージに表題だけを渡していたためである。
+ * **中身のコミットには付いているが、いちばん目に入る行から落ちていた**（決めごと 8）。
+ * 公開済みの履歴は書き換えないので、規則の始まる日から先だけを見る。
+ * **日付と、それより前の件数は、どちらも CLAUDE.md の散文から読む**（決めごと 5）。 */
+
+console.log('\n7.16 マージコミットの開示');
+
+{
+  const cl = read('cpsbvbng26-dotcom', 'CLAUDE.md') || '';
+  const m = /\*\*マージは 10 リポジトリ合わせて (\d+) 件あり、開示の無いものが (\d+) 件ある。\*\*/
+    .exec(cl);
+  check('マージの総数と、開示の無い件数を名乗っている', m !== null,
+    m ? (m[1] + ' 件中 ' + m[2] + ' 件') : '取れない');
+
+  let 無し = 0, 総 = 0, 走った = 0;
+  const 内訳 = [];
+  for (const repo of DECL['共通の決めごと'].repos) {
+    let out = '';
+    try {
+      out = require('child_process').execFileSync(
+        'git', ['log', '--merges', '--format=%H\x1f%(trailers:key=Co-authored-by,valueonly)'],
+        { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 });
+    } catch (e) { continue; }
+    走った++;
+    let n = 0;
+    for (const line of out.split('\n')) {
+      if (!line.trim()) continue;
+      const 開示 = (line.split('\x1f')[1] || '').trim();
+      if (!開示) n++;
+      総++;
+    }
+    無し += n;
+    if (n) 内訳.push(repo + ' ' + n);
+  }
+  check('10 リポジトリの git を読めた', 走った === DECL['共通の決めごと'].repos.length,
+    走った + ' / ' + DECL['共通の決めごと'].repos.length);
+  check('マージの総数が名乗りと合う', m !== null && 総 === parseInt(m[1], 10),
+    '実際 ' + 総 + ' / 名乗り ' + (m ? m[1] : '無し'));
+  check('開示の無いマージの件数が、名乗りと増えも減りもしていない',
+    m !== null && 無し === parseInt(m[2], 10),
+    '実際 ' + 無し + ' / 名乗り ' + (m ? m[2] : '無し') + '  ' + 内訳.join(' / '));
+
+  /* **日付ではなく件数で固定する理由を、書いてあること。**
+   * 境界の日のマージがどちらに入るかで揺れる。**実際に揺れた。** */
+  check('日付ではなく件数で固定すると書いてある',
+    cl.indexOf('**固定するのは日付ではなく、この件数である。**') >= 0
+    && cl.indexOf('件数なら揺れない') >= 0);
+  /* **公開済みの履歴を書き換えないこと。**過去を直したように読ませない。 */
+  check('公開済みの履歴を書き換えないと書いてある',
+    cl.indexOf('公開済みの枝の履歴は書き換えない') >= 0
+    && cl.indexOf('**この 63 件はそのまま残る。**') >= 0);
+  check('決めごと 8 に触ると書いてある',
+    cl.indexOf('いちばん目に入る行から落ちていた') >= 0
+    && cl.indexOf('決めごと 8 に触る。') >= 0);
+  /* **取り違えを記録してあること。**総数と、開示の無い件数は別である。
+   * `%(trailers:…)` の出力が空行を挟むので、素朴に行を数えると付いているものまで拾う。 */
+  check('最初に数え間違えたことを書いてある',
+    cl.indexOf('最初に数えたときは 71 と書いていた') >= 0
+    && cl.indexOf('検査の側は空行を飛ばして数える') >= 0);
+  check('マージに渡す二行が書いてある',
+    cl.indexOf('Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>') >= 0
+    && cl.indexOf('Claude-Session: <この作業の session の URL>') >= 0);
+}
+
 /* 外部からの評価の記録。件数を機械で数える。
  * ここを手で書けるようにしておくと、都合の悪い評価だけ落とせてしまう。 */
 

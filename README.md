@@ -277,7 +277,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 405 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 414 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
