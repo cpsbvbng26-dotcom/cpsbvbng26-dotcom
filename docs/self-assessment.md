@@ -214,7 +214,7 @@ Varga (2000)、Householder (1964)、Horn & Johnson (2013) §5.6、そしてリ�
 
 そして、論文としての価値は、真であることに尽きる。ただし、いまは条件つきです。
 
-三篇は新しい数学理論を主張していない
+三篇は新しい数学理論を主張していません
 （Series I の要旨に `not as a new mathematical theory, but as a conceptual lens` とある）。
 **だが、貢献は主張しています**。紙面に四文ある —— `This paper's one substantive claim is
 Theorem 1`（Series I）、`This paper's contribution is Theorem 1`（Series II・III）、
