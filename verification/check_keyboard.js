@@ -158,7 +158,7 @@ async function walk(pg) {
   const pw = loadPlaywright();
   if (!pw) {
     console.error('playwright が無い。この検査は走らなかった。');
-    console.error('走らなかった検査は、通った検査ではない。');
+    console.error('走らなかった検査は、通った検査ではありません。');
     process.exit(1);
   }
   let browser, exe;
