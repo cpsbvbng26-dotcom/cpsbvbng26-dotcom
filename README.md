@@ -111,7 +111,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 自分で書いた三篇です。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置いたが、これは十分条件であって必要条件ではありません。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分です。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出ます。
 
-**そしてこの `x ← DQx + (I−D)p` 自体が、既知の模型でした**。社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型として **DeGroot と Friedkin–Johnsen の二つを並べて挙げる**のが通例です。2011 年に Cambridge から単著の理論書になり、2016 年に *Science* に載り、いまは制御理論と計算機科学でも使われています。**脚注ではなく、その分野の二本柱の一本でした**。しかも Series I は、自分の第1節で `consensus dynamics` と名指ししたうえで、その分野を一件も引いていない（[`ERRATA.md` の `E8`](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)、重大度・高）。
+**そしてこの `x ← DQx + (I−D)p` 自体が、既知の模型でした**。社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型として **DeGroot と Friedkin–Johnsen の二つを並べて挙げる**のが通例です。2011 年に Cambridge から単著の理論書になり、2016 年に *Science* に載り、いまは制御理論と計算機科学でも使われています。**脚注ではなく、その分野の二本柱の一本でした**。しかも Series I は、自分の第1節で `consensus dynamics` と名指ししたうえで、その分野を一件も引いていません（[`ERRATA.md` の `E8`](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)、重大度・高）。
 
 **ただし、寸法は正確に書きます**。この作用素は影響行列 `W` を巡回置換に限った特殊例で、それは**各主体がちょうど一人の隣人だけを聴く輪**です。誰が誰にどれだけ影響するかという一般の `W` を全部落としています。それが Friedkin–Johnsen を社会学たらしめている当のものです。再発見したのは、**一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項**（`(I−D)p`）です。
 
@@ -259,6 +259,18 @@ node verification/check_site.js      # サイトの構造 663 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
+**紙面の形は、字面からは数え直せません**。SSRN が三篇のうち一篇だけを受け付けた件で、
+`docs/external-evaluations.md` に紙面を測った表を置いています。そこの数は PDF から
+数え直します。`pypdf` が要るので、上の並びには入れていません。
+
+```
+python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要: pypdf・兄弟ディレクトリ）
+```
+
+頁・語・定理・表・小数・参考文献の項目と、社会の領域の語を三篇ぶん数え、散文の表と
+突き合わせます。**理由の説明ではないという断り**が消えていないかも見ます。表だけが
+残れば、数は推定の証拠に読めてしまうからです。
+
 **キーボードで辿れるかは、字面からは出ない**。焦点がどこに置かれ、そのとき何が
 見えているかは、祖先から掛かる不透明度と登場演出の時間で決まる。そこだけは
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
@@ -277,7 +289,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 427 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 437 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
@@ -445,7 +457,7 @@ Google は Google Scholar と被引用数、Kudos は共有の経路の数です
 | 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた日付つきの現状評価。**等級は書けない**（登録簿の `ST-002`） |
 | 口上書 | [`docs/self-assessment-prompt.md`](docs/self-assessment-prompt.md)。検分状を外の者に書き直させるときに渡す文。上限まで書かせます。ただし事実を超えさせない |
 | 借りた物差し | [`docs/frames.md`](docs/frames.md)。科学哲学・科学社会学の枠組み九つを、出典つきで当てはめたもの。**自分で作った枠組み（この城の比喩そのもの）も、同じ等級で一つ足してあります**。記録ではありません。当てはめは知見ではありません（`ST-002`） |
-| 触書 | [`docs/predictions.md`](docs/predictions.md)。結果が出る前に書いた予告 **六件**と、その失敗条件と期限。**登録簿は過去にしか効きません。ここだけ向きが逆です** |
+| 触書 | [`docs/predictions.md`](docs/predictions.md)。結果が出る前に書いた予告 **六件**と、その失敗条件と期限。登録簿は過去にしか効きません。ここだけ向きが逆です |
 
 ### 城外（自分の領地ではない）
 

@@ -295,7 +295,7 @@
         {
           "repo": "self-correction",
           "file": "register.toml",
-          "regex": "\\d+ 件のうち (\\d+) 件は再構成である"
+          "regex": "\\d+ 件のうち (\\d+) 件は再構成です"
         },
         {
           "repo": "cpsbvbng26-dotcom",
@@ -320,7 +320,7 @@
         {
           "repo": "self-correction",
           "file": "README.md",
-          "regex": "同時に記録したものは (\\d+) 件しかない"
+          "regex": "同時に記録したものは (\\d+) 件しかありません"
         },
         {
           "repo": "self-correction",
@@ -780,6 +780,25 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "docs/self-assessment.md",
           "regex": "キーボード \\*\\*(\\d+) 項目\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "cpsbvbng26-dotcom 三篇の PDF の形",
+      "_": "SSRN が三篇のうち一篇だけを受け付けた件で、紙面を測った表の数。**pypdf が要る。**",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "python3",
+          "verification/check_pdf_shape.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "三篇の PDF の形 (\\d+) 項目"
         }
       ]
     }
