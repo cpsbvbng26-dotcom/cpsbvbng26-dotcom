@@ -1394,6 +1394,26 @@ section('10.59 自己紹介が名乗っていること');
        欠委.length ? 欠委.join(' / ') : (断り.length + ' 言語とも'));
   }
 
+  /* **存命の人物は「両親」という語までにする**（決めごと 10）。
+   * 親がいることは当たり前なので、続柄の一語までは通す。
+   * **一人を指す語と、その人の名・職・計画は書かない。**
+   * 祖父・曾祖父・祖母は故人であり、この限りではないので外す。
+   * 「運営母体」のような複合語は、助詞が続かないので当たらない。
+   *
+   * 一度ここを越えていた —— 英語版だけが父の事業の計画を書いていた。
+   * 日本語は「事業を承継すること」だけである。**訳のほうが広かった。** */
+  {
+    const 越え = /(?<![祖曾伯叔義])(父|母)(が|の|は|を|も|に|と|へ)|父親|母親|my (father|mother)|mein Vater|meine Mutter|mon père|ma mère|mio padre|mia madre/;
+    const 出た = [];
+    ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
+     'README.md', 'README.en.md', 'cv.html'].forEach((f) => {
+      const m = 越え.exec(read(f));
+      if (m) 出た.push(f + ' に「' + m[0] + '」');
+    });
+    ok('存命の人物が、続柄の一語を超えて出ていない', 出た.length === 0,
+       出た.length ? 出た.join(' / ') : '8 面とも無し');
+  }
+
   ok('PhilArchive の基準を省略していない',
      ['works of all types (articles, books, dissertations)',
       'cross-disciplinary and of clear interest to philosophers',

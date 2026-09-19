@@ -56,7 +56,7 @@ The real name with its posthumous name on stone, the degree on paper, ORCID and 
 
 **Two aims**
 
-- To take over the business my father is planning to found
+- To take over the business
 - To teach at an online university after a doctorate
 
 ### Education
@@ -245,12 +245,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1171 checks.** There are no dependencies to install.
+**Every push runs 1172 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 668 checks
+node verification/check_site.js      # site structure, 669 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
