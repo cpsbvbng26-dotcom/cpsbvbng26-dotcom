@@ -19,7 +19,7 @@ description は英語 1 本にしてください。GitHub の description は 1 
 Profile site. One claim: a published artifact cannot be revised, only its errata — so errata drift from their sources, and the drift is machine-detectable without inference.
 ```
 
-> 参考訳: プロフィールサイト。主張は一つ —— 公開された成果物は直せず、直せるのは正誤表のほうだから、正誤表は元の資料からずれていく。そのずれは推論を使わずに機械で落とせる。
+> 参考訳: プロフィールサイト。主張は一つ —— 公開された成果物は直せず、直せるのは正誤表のほうだから、正誤表は元の資料からずれていく。そのずれは推論を使わずに機械で落とせます。
 
 **topics**
 
