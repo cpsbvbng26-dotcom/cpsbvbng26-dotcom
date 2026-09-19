@@ -1332,6 +1332,68 @@ section('10.59 自己紹介が名乗っていること');
        h.indexOf(turned) >= 0 && h.indexOf(stale) < 0);
   });
   /* **片方の門だけを細かく書かない。** */
+  /* **死後に残るものの三つ。**石・紙・デジタルである。
+   * **数えられる形で置く**（決めごと 5）。一つ落ちれば落ちる。 */
+  {
+    const 残る先 = [
+      ['index.html', ['石は、墓石と諡名', '紙は、博士（学術）', 'デジタルは、ORCID と DOI']],
+      ['index.en.html', ['Stone is the gravestone', 'Paper is the doctorate', 'The network is ORCID and DOI']],
+      ['index.de.html', ['Stein heißt Grabstein', 'Papier heißt der Doktorgrad', 'Das Netz heißt ORCID und DOI']],
+      ['index.fr.html', ['La pierre, c\'est la stèle', 'Le papier, c\'est le doctorat', 'Le réseau, c\'est ORCID et DOI']],
+      ['index.it.html', ['La pietra è la stele', 'La carta è il dottorato', 'La rete è ORCID e DOI']]
+    ];
+    const 欠け = [];
+    残る先.forEach(([f, xs]) => {
+      const h = read(f);
+      const 出た = xs.filter((x) => h.indexOf(x) >= 0);
+      if (出た.length !== 3) 欠け.push(f + ' は ' + 出た.length);
+    });
+    ok('死後に残る先が、五言語とも三つある', 欠け.length === 0,
+       欠け.length ? 欠け.join(' / ') : (残る先.length + ' 言語 × 3'));
+  }
+
+  /* **学位はまだ無い。**決めごと 6 に触る一行である。
+   * 「取得する計画」から「取得した」へ黙って動くと、自称の肩書きになる。 */
+  {
+    const 未取得 = [['index.html', 'まだ持っていない'], ['index.en.html', 'It is not held.'],
+                    ['index.de.html', 'Er ist nicht erworben.'],
+                    ['index.fr.html', 'Il n\'est pas détenu.'],
+                    ['index.it.html', 'Non è posseduto.']];
+    const 欠け = 未取得.filter(([f, x]) => read(f).indexOf(x) < 0).map(([f]) => f);
+    ok('博士をまだ持っていないと、五言語とも書いてある', 欠け.length === 0,
+       欠け.length ? 欠け.join(' / ') : (未取得.length + ' 言語とも'));
+  }
+
+  /* **確かめていないものに、確かめていないと書く**（決めごと 1）。
+   * 神道の形式も ORCID の FAQ も、作業環境から原典に当たれない。
+   * **断りが消えると、受け取った説明が確かめた事実に見える。** */
+  {
+    const 断り = [
+      ['index.html', '神道の形式については、原典に当たっていない', 'この説明は原典に当たっていない', 'いまは誰にも委ねていない'],
+      ['index.en.html', 'The Shinto forms have not been checked against sources',
+       'That statement has not been checked against the source', 'Nothing is delegated to anyone at present'],
+      ['index.de.html', 'Die Shintō-Formen sind hier nicht an Quellen geprüft',
+       'Diese Auskunft ist nicht an der Quelle geprüft', 'Derzeit ist nichts übertragen'],
+      ['index.fr.html', 'Les formes shintō ne sont pas vérifiées aux sources',
+       'Cette indication n\'est pas vérifiée à la source', 'Rien n\'est délégué pour le moment'],
+      ['index.it.html', 'Le forme shintō qui non sono verificate sulle fonti',
+       'Questa spiegazione non è verificata sulla fonte', 'Al momento non è delegato nulla']
+    ];
+    const 欠神 = [], 欠O = [], 欠委 = [];
+    断り.forEach(([f, s, o, d]) => {
+      const h = read(f);
+      if (h.indexOf(s) < 0) 欠神.push(f);
+      if (h.indexOf(o) < 0) 欠O.push(f);
+      if (h.indexOf(d) < 0) 欠委.push(f);
+    });
+    ok('神道の形式を確かめていないと、五言語とも断ってある', 欠神.length === 0,
+       欠神.length ? 欠神.join(' / ') : (断り.length + ' 言語とも'));
+    ok('ORCID の説明を確かめていないと、五言語とも断ってある', 欠O.length === 0,
+       欠O.length ? 欠O.join(' / ') : (断り.length + ' 言語とも'));
+    ok('ORCID をいま誰にも委ねていないと、五言語とも書いてある', 欠委.length === 0,
+       欠委.length ? 欠委.join(' / ') : (断り.length + ' 言語とも'));
+  }
+
   ok('PhilArchive の基準を省略していない',
      ['works of all types (articles, books, dissertations)',
       'cross-disciplinary and of clear interest to philosophers',
