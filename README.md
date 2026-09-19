@@ -277,7 +277,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 414 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 427 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
@@ -444,7 +444,8 @@ Google は Google Scholar と被引用数、Kudos は共有の経路の数です
 | 城絵図 | [`docs/canonical-sources.md`](docs/canonical-sources.md)。どれを正とするかの縄張り図 |
 | 検分状 | [`docs/self-assessment.md`](docs/self-assessment.md)。外部が決めた尺度に当てた日付つきの現状評価。**等級は書けない**（登録簿の `ST-002`） |
 | 口上書 | [`docs/self-assessment-prompt.md`](docs/self-assessment-prompt.md)。検分状を外の者に書き直させるときに渡す文。上限まで書かせます。ただし事実を超えさせない |
-| 借りた物差し | [`docs/frames.md`](docs/frames.md)。科学哲学・科学社会学の枠組み九つを、出典つきで当てはめたもの。記録ではありません。当てはめは知見ではありません（`ST-002`） |
+| 借りた物差し | [`docs/frames.md`](docs/frames.md)。科学哲学・科学社会学の枠組み九つを、出典つきで当てはめたもの。**自分で作った枠組み（この城の比喩そのもの）も、同じ等級で一つ足してあります**。記録ではありません。当てはめは知見ではありません（`ST-002`） |
+| 触書 | [`docs/predictions.md`](docs/predictions.md)。結果が出る前に書いた予告 **六件**と、その失敗条件と期限。**登録簿は過去にしか効きません。ここだけ向きが逆です** |
 
 ### 城外（自分の領地ではない）
 
