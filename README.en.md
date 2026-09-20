@@ -20,6 +20,8 @@
 
 ## About me
 
+<img src="portrait.jpg" alt="Portrait of Takuya Nemoto" width="150"> <img src="shinai-bag.png" alt="A black shinai bag with the surname Nemoto embroidered in red" width="150">
+
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
@@ -245,12 +247,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1177 checks.** There are no dependencies to install.
+**Every push runs 1178 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 674 checks
+node verification/check_site.js      # site structure, 675 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
