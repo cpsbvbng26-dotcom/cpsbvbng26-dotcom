@@ -1414,6 +1414,58 @@ section('10.59 自己紹介が名乗っていること');
        出た.length ? 出た.join(' / ') : '8 面とも無し');
   }
 
+  /* **顔写真。**貼るものは五言語とも同じ一枚である。
+   * 見るのは四つ —— ファイルがあること、五面とも同じものを指していること、
+   * alt が空でないこと、そして **APPn が残っていないこと**。
+   *
+   * **Exif は消してから貼る**（決めごと 9）。機種・撮影時刻・ときに位置が入る。
+   * 落としたのは APP0 と APP1 で、画像そのものは触っていない。
+   * **差し替えるときに素のまま貼ると、ここで落ちる。** */
+  {
+    const jpg = path.join(ROOT, 'portrait.jpg');
+    const ある = fs.existsSync(jpg);
+    ok('顔写真のファイルがある', ある, ある ? (fs.statSync(jpg).size + ' bytes') : 'portrait.jpg が無い');
+    if (ある) {
+      const b = fs.readFileSync(jpg);
+      /* APPn（0xFFE0〜0xFFEF）と COM（0xFFFE）を数える。SOS から先は画像である。 */
+      const 残り = [];
+      let i = 2;
+      let w = 0, h = 0;
+      while (i < b.length - 1) {
+        if (b[i] !== 0xFF) { i++; continue; }
+        const m = b[i + 1];
+        if (m === 0xD8 || m === 0xD9 || (m >= 0xD0 && m <= 0xD7)) { i += 2; continue; }
+        if (m === 0xDA) break;
+        const ln = b.readUInt16BE(i + 2);
+        if ((m >= 0xE0 && m <= 0xEF) || m === 0xFE) 残り.push('0xFF' + m.toString(16).toUpperCase());
+        if ([0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF].indexOf(m) >= 0) {
+          h = b.readUInt16BE(i + 5); w = b.readUInt16BE(i + 7);
+        }
+        i += 2 + ln;
+      }
+      ok('顔写真に APPn が残っていない', 残り.length === 0,
+         残り.length ? ('残っている: ' + 残り.join(', ')) : '落としてある');
+
+      /* **寸法は属性で書く。**書かないと読み込みのたびに本文が跳ねる。
+       * **実ファイルと食い違えば、跳ねる幅がそのままずれる。** */
+      const 面 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'];
+      const 寸法ずれ = [], alt無し = [], 指し先ずれ = [];
+      面.forEach((f) => {
+        const m = /<img class="profile-photo" src="([^"]*)" alt="([^"]*)" width="(\d+)" height="(\d+)"/.exec(read(f));
+        if (!m) { 指し先ずれ.push(f + ' に写真が無い'); return; }
+        if (m[1] !== './portrait.jpg') 指し先ずれ.push(f + ' が ' + m[1]);
+        if (!m[2].trim()) alt無し.push(f);
+        if (Number(m[3]) !== w || Number(m[4]) !== h) 寸法ずれ.push(f + ' が ' + m[3] + 'x' + m[4]);
+      });
+      ok('五言語とも同じ一枚を指している', 指し先ずれ.length === 0,
+         指し先ずれ.length ? 指し先ずれ.join(' / ') : (面.length + ' 面とも ./portrait.jpg'));
+      ok('顔写真の alt が空でなく、寸法が実ファイルと合う',
+         alt無し.length === 0 && 寸法ずれ.length === 0,
+         (alt無し.length ? ('alt が空: ' + alt無し.join(' / ') + ' ') : '')
+         + (寸法ずれ.length ? ('寸法: ' + 寸法ずれ.join(' / ')) : ('実ファイル ' + w + 'x' + h)));
+    }
+  }
+
   ok('PhilArchive の基準を省略していない',
      ['works of all types (articles, books, dissertations)',
       'cross-disciplinary and of clear interest to philosophers',
