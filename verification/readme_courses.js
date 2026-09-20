@@ -54,6 +54,14 @@ function readProfile(html) {
     caveat: grab(/<p class="path-caveat">([\s\S]*?)<\/p>/),
     /* 根幹の一段。**頁に出ているなら README にも出す。**
      * 複数の段に分かれるので、まとめて拾う。GitHub のプロフィールはここが本体である。 */
+    /* 写真。**頁に出ているなら README にも出す。**
+     * GitHub のプロフィールは README のほうなので、片方だけに貼ると
+     * 見に来た人が見るのは、貼っていないほうになる。
+     * **path は repo からの相対にする。**GitHub が raw に直してくれる。
+     * 高さは書かない。二枚とも 3:4 なので、幅を揃えれば高さも揃う。 */
+    photos: [...block.matchAll(
+      /<img class="profile-photo" src="\.\/([^"]+)" alt="([^"]*)"/g)]
+      .map((m) => ({ src: m[1], alt: m[2] })),
     core: [...block.matchAll(/<p class="profile-core">([\s\S]*?)<\/p>/g)]
       .map((m) => proseOf(m[1])).filter(Boolean),
     aims: [...block.matchAll(/<li>([\s\S]*?)<\/li>/g)]
@@ -111,6 +119,10 @@ function blockFor(page, lang) {
   const out = [MARK[0], ''];
   if (p) {
     out.push('## ' + p.label, '');
+    if (p.photos.length) {
+      out.push(p.photos.map(
+        (x) => `<img src="${x.src}" alt="${x.alt}" width="150">`).join(' '), '');
+    }
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');
     p.core.forEach((c) => out.push(c, ''));
