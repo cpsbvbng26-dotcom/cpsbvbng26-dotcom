@@ -1487,6 +1487,21 @@ section('10.59 自己紹介が名乗っていること');
        alt無し.length ? alt無し.join(' / ') : (面.length + ' 面とも'));
     ok('貼った写真の寸法が、実ファイルと合う', 寸法ずれ.length === 0,
        寸法ずれ.length ? 寸法ずれ.join(' / ') : '合っている');
+
+    /* **README にも同じ写真を貼る。**GitHub のプロフィールは README のほうである。
+     * 頁だけに貼ると、見に来た人が見るのは貼っていないほうになる。
+     * README は生成物なので、直すのは readme_courses.js の側である。 */
+    const 板 = 拾い['index.html'].map((x) => x.src.replace(/^\.\//, ''));
+    const 札 = [];
+    ['README.md', 'README.en.md'].forEach((f) => {
+      const h = read(f);
+      const xs = [...h.matchAll(/<img src="([^"]+)" alt="([^"]*)" width="\d+">/g)];
+      const srcs = xs.map((m) => m[1]);
+      if (srcs.join(',') !== 板.join(',')) { 札.push(f + ' が ' + (srcs.join(',') || '無し')); return; }
+      xs.forEach((m) => { if (!m[2].trim()) 札.push(f + ' の ' + m[1] + ' の alt が空'); });
+    });
+    ok('README にも同じ写真が、空でない alt で貼ってある', 札.length === 0,
+       札.length ? 札.join(' / ') : ('二つとも ' + 板.join(', ')));
   }
 
   ok('PhilArchive の基準を省略していない',
