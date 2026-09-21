@@ -59,7 +59,14 @@ function readProfile(html) {
      * 見に来た人が見るのは、貼っていないほうになる。
      * **path は repo からの相対にする。**GitHub が raw に直してくれる。
      * **幅ではなく高さを書く。**縦横比が違う二枚が並ぶので、幅を揃えると
-     * 高さがずれる。高さを揃えれば、幅は成り行きで揃って見える。 */
+     * 高さがずれる。高さを揃えれば、幅は成り行きで揃って見える。
+     *
+     * **高さは 150 にする。**GitHub は img に
+     * `height: auto; max-height: <属性>px; max-width: 100%` を注入する。
+     * だから並んだ二枚の合計幅は属性の高さで決まり、欄に入らなければ折り返す。
+     * GitHub が返した HTML の style をそのまま当てて測った ——
+     * 200 なら合計 350px で、343px 以下の欄で折り返す。電話の幅がそれである。
+     * 150 なら 263px で、280px の欄でも横に並ぶ。 */
     photos: [...block.matchAll(
       /<img class="profile-photo" src="\.\/([^"]+)" alt="([^"]*)"/g)]
       .map((m) => ({ src: m[1], alt: m[2] })),
@@ -122,7 +129,7 @@ function blockFor(page, lang) {
     out.push('## ' + p.label, '');
     if (p.photos.length) {
       out.push(p.photos.map(
-        (x) => `<img src="${x.src}" alt="${x.alt}" height="200">`).join(' '), '');
+        (x) => `<img src="${x.src}" alt="${x.alt}" height="150">`).join(' '), '');
     }
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');
