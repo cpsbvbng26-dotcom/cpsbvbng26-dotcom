@@ -70,6 +70,9 @@ function readProfile(html) {
     photos: [...block.matchAll(
       /<img class="profile-photo" src="\.\/([^"]+)" alt="([^"]*)"/g)]
       .map((m) => ({ src: m[1], alt: m[2] })),
+    /* 撮影の断り。**写真を出すなら、断りも一緒に出す。**
+     * 片方だけ出すと、どちらで撮ったものか分からない一枚が残る。 */
+    photoNote: grab(/<p class="profile-photo-note">([\s\S]*?)<\/p>/),
     core: [...block.matchAll(/<p class="profile-core">([\s\S]*?)<\/p>/g)]
       .map((m) => proseOf(m[1])).filter(Boolean),
     aims: [...block.matchAll(/<li>([\s\S]*?)<\/li>/g)]
@@ -130,6 +133,7 @@ function blockFor(page, lang) {
     if (p.photos.length) {
       out.push(p.photos.map(
         (x) => `<img src="${x.src}" alt="${x.alt}" height="150">`).join(' '), '');
+      if (p.photoNote) out.push('<sub>' + p.photoNote + '</sub>', '');
     }
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');

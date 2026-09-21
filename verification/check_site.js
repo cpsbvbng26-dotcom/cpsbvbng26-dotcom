@@ -1502,6 +1502,21 @@ section('10.59 自己紹介が名乗っていること');
     });
     ok('README にも同じ写真が、空でない alt で貼ってある', 札.length === 0,
        札.length ? 札.join(' / ') : ('二つとも ' + 板.join(', ')));
+
+    /* **撮影の断りは、写真を出す面すべてに出す。**
+     * 片方だけに出すと、どちらで撮ったものか分からない一枚が残る。
+     * **どの一枚についてかは、断りの側が名乗る。**位置で指さない。 */
+    const 断り無し = [];
+    面.forEach((f) => {
+      const m = /<p class="profile-photo-note">([^<]*)<\/p>/.exec(read(f));
+      if (!m || !m[1].trim()) 断り無し.push(f);
+    });
+    ['README.md', 'README.en.md'].forEach((f) => {
+      const m = /<sub>([^<]*)<\/sub>/.exec(read(f));
+      if (!m || !m[1].trim()) 断り無し.push(f);
+    });
+    ok('撮影の断りが、七つの面すべてにある', 断り無し.length === 0,
+       断り無し.length ? 断り無し.join(' / ') : '五言語と README 二つ');
   }
 
   ok('PhilArchive の基準を省略していない',

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-GAMRwZtN06M/aIdniZVUL6G2NNp96AAmF2zislEmWFc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-y9GJWufVCg6qOYDBEfsI8qM/H3MsxQCtisUqXAuLHtk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-GAMRwZtN06M/aIdniZVUL6G2NNp96AAmF2zislEmWFc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-hDRMFjuTi5rxt/vP9nDwtzRyDrK03/NpIHUEFK8C58o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="公開した成果物は、もう直せない。直せるのは訂正のほうで、だから訂正は元の資料からずれていく。そのずれを、推論を使わずに機械で落とす。自分の三篇を監査した記録と、その道具。">
 <meta name="robots" content="index, follow">
@@ -476,8 +476,10 @@ header::after {
   display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
   border-radius: .4rem; border: 1px solid var(--line);
 }
-.profile-photos {
-  display: flex; gap: .55rem; align-items: flex-start; margin: 0 0 1.1rem;
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
 }
 /* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
    対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
@@ -485,6 +487,7 @@ header::after {
   height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
   object-fit: cover; object-position: right center;
 }
+.profile-photos { max-width: 100%; }
 @media (min-width: 40rem) {
   .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
   .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
@@ -993,8 +996,11 @@ footer::before {
     <div class="profile reveal">
       <h2 class="profile-label">自己紹介</h2>
       <div class="profile-photos">
-        <img class="profile-photo" src="./portrait.jpg" alt="根本卓哉の顔写真" width="750" height="1000" loading="lazy" decoding="async">
-        <img class="profile-photo" src="./portrait-suit.jpg" alt="白いマスクを着け、背広を着た著者" width="800" height="800" loading="lazy" decoding="async">
+        <div class="profile-photos-row">
+          <img class="profile-photo" src="./portrait.jpg" alt="根本卓哉の顔写真" width="750" height="1000" loading="lazy" decoding="async">
+          <img class="profile-photo" src="./portrait-suit.jpg" alt="白いマスクを着け、背広を着た著者" width="800" height="800" loading="lazy" decoding="async">
+        </div>
+        <p class="profile-photo-note">顔写真は 25歳時。部屋で iPhone のインカメラで自撮り。</p>
       </div>
       <p class="profile-now">ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。</p>
       <p class="profile-now profile-study">大学では主に<strong>哲学</strong>と<strong>実務</strong>を学んでいます。<strong>数学</strong>も履修できます。修得した科目は <a href="./cv.html">CV</a> に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。</p>
