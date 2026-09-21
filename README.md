@@ -22,6 +22,8 @@
 
 <img src="portrait.jpg" alt="根本卓哉の顔写真" height="150"> <img src="portrait-suit.jpg" alt="白いマスクを着け、背広を着た著者" height="150">
 
+<sub>顔写真は 25歳時。部屋で iPhone のインカメラで自撮り。</sub>
+
 ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。
 
 大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
@@ -262,12 +264,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1178 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1179 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 675 項目
+node verification/check_site.js      # サイトの構造 676 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 

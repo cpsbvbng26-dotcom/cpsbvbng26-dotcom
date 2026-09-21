@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-y9GJWufVCg6qOYDBEfsI8qM/H3MsxQCtisUqXAuLHtk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-hDRMFjuTi5rxt/vP9nDwtzRyDrK03/NpIHUEFK8C58o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profil de recherche | Takuya Nemoto</title>
 <meta name="description" content="Profil de Takuya Nemoto. Ce qui est ici repose sur l’étude en autodidacte et sur le travail avec des modèles de langue. Les critères franchis, et ceux qui ne l’ont pas été, sont donnés dans les termes mêmes des plateformes.">
 <meta name="robots" content="index, follow">
@@ -299,8 +299,10 @@ header::after {
   display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
   border-radius: .4rem; border: 1px solid var(--line);
 }
-.profile-photos {
-  display: flex; gap: .55rem; align-items: flex-start; margin: 0 0 1.1rem;
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
 }
 /* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
    対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
@@ -308,6 +310,7 @@ header::after {
   height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
   object-fit: cover; object-position: right center;
 }
+.profile-photos { max-width: 100%; }
 @media (min-width: 40rem) {
   .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
   .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
@@ -811,8 +814,11 @@ footer::before {
     <div class="profile reveal">
       <h2 class="profile-label">À propos</h2>
       <div class="profile-photos">
-        <img class="profile-photo" src="./portrait.jpg" alt="Portrait de Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
-        <img class="profile-photo" src="./portrait-suit.jpg" alt="L'auteur en costume, portant un masque blanc" width="800" height="800" loading="lazy" decoding="async">
+        <div class="profile-photos-row">
+          <img class="profile-photo" src="./portrait.jpg" alt="Portrait de Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
+          <img class="profile-photo" src="./portrait-suit.jpg" alt="L'auteur en costume, portant un masque blanc" width="800" height="800" loading="lazy" decoding="async">
+        </div>
+        <p class="profile-photo-note">Le portrait a été pris à 25 ans, dans la chambre de l’auteur, avec la caméra frontale d’un iPhone.</p>
       </div>
       <p class="profile-now">Inscrit à la <b>ZEN University, Faculty of Social Informatics</b>, dans la première promotion de rentrée d’automne. Le cursus traverse les lettres et les sciences.</p>
       <p class="profile-now profile-study">Les études portent surtout sur la <b>philosophie</b> et la <b>pratique</b> ; les <b>mathématiques</b> sont accessibles. Ce qui est déposé ici relève de l’informatique et de l’intelligence artificielle.</p>
@@ -848,7 +854,7 @@ footer::before {
       <h2 class="serif">Vérification</h2>
       
     </div>
-    <div class="notes-list reveal"><p>Chaque push déclenche <b>1178 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>92 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
+    <div class="notes-list reveal"><p>Chaque push déclenche <b>1179 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>92 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
   </section>
 
   <hr class="rule">

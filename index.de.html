@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uAtNj5l+YPBcg5ixNsUl5zA3UUbHAGk4ZYrlhXy/0tg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-y9GJWufVCg6qOYDBEfsI8qM/H3MsxQCtisUqXAuLHtk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-uAtNj5l+YPBcg5ixNsUl5zA3UUbHAGk4ZYrlhXy/0tg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-hDRMFjuTi5rxt/vP9nDwtzRyDrK03/NpIHUEFK8C58o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — Forschungsprofil | Takuya Nemoto</title>
 <meta name="description" content="Profil von Takuya Nemoto. Was hier steht, beruht auf Selbststudium und auf der Arbeit mit Sprachmodellen. Die Kriterien, die dabei erfüllt wurden, und die, die nicht erfüllt wurden, stehen im Wortlaut der jeweiligen Plattform.">
 <meta name="robots" content="index, follow">
@@ -299,8 +299,10 @@ header::after {
   display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
   border-radius: .4rem; border: 1px solid var(--line);
 }
-.profile-photos {
-  display: flex; gap: .55rem; align-items: flex-start; margin: 0 0 1.1rem;
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
 }
 /* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
    対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
@@ -308,6 +310,7 @@ header::after {
   height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
   object-fit: cover; object-position: right center;
 }
+.profile-photos { max-width: 100%; }
 @media (min-width: 40rem) {
   .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
   .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
@@ -811,8 +814,11 @@ footer::before {
     <div class="profile reveal">
       <h2 class="profile-label">Über mich</h2>
       <div class="profile-photos">
-        <img class="profile-photo" src="./portrait.jpg" alt="Porträt von Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
-        <img class="profile-photo" src="./portrait-suit.jpg" alt="Der Autor im Anzug mit weißer Gesichtsmaske" width="800" height="800" loading="lazy" decoding="async">
+        <div class="profile-photos-row">
+          <img class="profile-photo" src="./portrait.jpg" alt="Porträt von Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
+          <img class="profile-photo" src="./portrait-suit.jpg" alt="Der Autor im Anzug mit weißer Gesichtsmaske" width="800" height="800" loading="lazy" decoding="async">
+        </div>
+        <p class="profile-photo-note">Das Porträt entstand mit 25, im Zimmer des Autors, mit der Frontkamera eines iPhone.</p>
       </div>
       <p class="profile-now">Eingeschrieben an der <b>ZEN University, Faculty of Social Informatics</b>, im ersten Jahrgang mit Herbstbeginn. Der Studiengang verbindet Geistes- und Naturwissenschaften.</p>
       <p class="profile-now profile-study">Studiert werden vor allem <b>Philosophie</b> und <b>Praxis</b>; <b>Mathematik</b> ist belegbar. Was hier abgelegt ist, betrifft Informatik und künstliche Intelligenz.</p>
@@ -848,7 +854,7 @@ footer::before {
       <h2 class="serif">Prüfung</h2>
       
     </div>
-    <div class="notes-list reveal"><p>Bei jedem Push laufen <b>1178 Prüfungen</b>. Sie decken den Aufbau der Seite, die Lesbarkeit der Farbkontraste und die Zahlenwerte der Operator-Seite ab.</p><p><b>Ein eigenes Register hält fest, was sich als falsch erwiesen hat</b> — derzeit <b>92 Einträge</b>. <b>Nichts darin wird gelöscht.</b> Auch die Prüfwerkzeuge werden geprüft: ein gültiger Stand wird gezielt beschädigt, und es wird nachgewiesen, dass genau die zugehörige Prüfung fehlschlägt.</p></div>
+    <div class="notes-list reveal"><p>Bei jedem Push laufen <b>1179 Prüfungen</b>. Sie decken den Aufbau der Seite, die Lesbarkeit der Farbkontraste und die Zahlenwerte der Operator-Seite ab.</p><p><b>Ein eigenes Register hält fest, was sich als falsch erwiesen hat</b> — derzeit <b>92 Einträge</b>. <b>Nichts darin wird gelöscht.</b> Auch die Prüfwerkzeuge werden geprüft: ein gültiger Stand wird gezielt beschädigt, und es wird nachgewiesen, dass genau die zugehörige Prüfung fehlschlägt.</p></div>
   </section>
 
   <hr class="rule">

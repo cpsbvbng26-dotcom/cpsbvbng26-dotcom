@@ -22,6 +22,8 @@
 
 <img src="portrait.jpg" alt="Portrait of Takuya Nemoto" height="150"> <img src="portrait-suit.jpg" alt="The author in a suit and a white face mask" height="150">
 
+<sub>The portrait was taken at 25, in the author’s room, with an iPhone front camera.</sub>
+
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
@@ -247,12 +249,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1178 checks.** There are no dependencies to install.
+**Every push runs 1179 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 675 checks
+node verification/check_site.js      # site structure, 676 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
