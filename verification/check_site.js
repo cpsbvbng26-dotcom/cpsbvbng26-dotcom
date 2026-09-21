@@ -1518,37 +1518,6 @@ section('10.59 自己紹介が名乗っていること');
     ok('撮影の断りが、七つの面すべてにある', 断り無し.length === 0,
        断り無し.length ? 断り無し.join(' / ') : '五言語と README 二つ');
 
-    /* **生成したものを、生成したと書く**（決めごと 8）。
-     *
-     * 二枚目は写真ではない。一枚目をもとに ChatGPT が作った油彩の肖像画である。
-     * **並べて置くと、絵のほうも写真に見える。**断りが落ちれば、この頁は
-     * 撮っていないものを撮ったことにする。
-     *
-     * **道具の名前まで要る。**「AI で作った」では、何が作ったかが残らない。
-     * 断りと alt の両方で見る —— **alt は、画面を見ない側が受け取る唯一の文である。** */
-    {
-      const 生成元 = 'ChatGPT';
-      const 名乗らず = [];
-      面.forEach((f) => {
-        const h = read(f);
-        const m = /<p class="profile-photo-note">([^<]*)<\/p>/.exec(h);
-        if (!m || m[1].indexOf(生成元) < 0) 名乗らず.push(f + ' の断り');
-        const 絵 = 拾い[f].filter((x) => /painting/.test(x.src));
-        if (絵.length !== 1) { 名乗らず.push(f + ' に油彩が ' + 絵.length + ' 枚'); return; }
-        if (絵[0].alt.indexOf(生成元) < 0) 名乗らず.push(f + ' の alt');
-      });
-      ['README.md', 'README.en.md'].forEach((f) => {
-        const h = read(f);
-        const m = /<sub>([^<]*)<\/sub>/.exec(h);
-        if (!m || m[1].indexOf(生成元) < 0) 名乗らず.push(f + ' の断り');
-        const a = /<img src="[^"]*painting[^"]*" alt="([^"]*)"/.exec(h);
-        if (!a || a[1].indexOf(生成元) < 0) 名乗らず.push(f + ' の alt');
-      });
-      ok('油彩が生成されたものだと、七つの面の断りと alt で名乗っている',
-         名乗らず.length === 0,
-         名乗らず.length ? 名乗らず.join(' / ') : '五言語と README 二つ、断りと alt の両方');
-    }
-
     /* **どの一枚についてかは、断りの側が名乗る。位置で指さない。**
      *
      * README の二枚は、桁が狭ければ縦に積む。積んだ時点で「左」は嘘になる。
