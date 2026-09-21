@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-samYoCNGKbrvuwdxmf7dmsoBQ0I1yzfw/Qixs3JTu9k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-xSJ3u6EiePLeWAHJyfCZlX9zSIWVD+9Z4Nq+w5xp7p0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-samYoCNGKbrvuwdxmf7dmsoBQ0I1yzfw/Qixs3JTu9k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-y9GJWufVCg6qOYDBEfsI8qM/H3MsxQCtisUqXAuLHtk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto | 根本卓哉</title>
 <meta name="description" content="A published artifact cannot be revised; only the errata can, so the errata drifts from its source. That drift is machine-detectable without inference. The record of auditing my own papers, and the tool.">
 <meta name="robots" content="index, follow">
@@ -479,11 +479,16 @@ header::after {
 .profile-photos {
   display: flex; gap: .55rem; align-items: flex-start; margin: 0 0 1.1rem;
 }
-.profile-photos .profile-photo { width: auto; height: 11rem; margin: 0; }
+/* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
+   対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
 @media (min-width: 40rem) {
   .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
   .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
-  .profile-photos .profile-photo { float: none; width: auto; height: 12.5rem; margin: 0; }
+  .profile-photos .profile-photo { float: none; height: 10.5rem; margin: 0; }
 }
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
@@ -989,7 +994,7 @@ footer::before {
       <h2 class="profile-label">About me</h2>
       <div class="profile-photos">
         <img class="profile-photo" src="./portrait.jpg" alt="Portrait of Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
-        <img class="profile-photo" src="./shinai-bag.png" alt="A black shinai bag with the surname Nemoto embroidered in red" width="242" height="322" loading="lazy" decoding="async">
+        <img class="profile-photo" src="./portrait-suit.jpg" alt="The author in a suit and a white face mask" width="800" height="800" loading="lazy" decoding="async">
       </div>
       <p class="profile-now">I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.</p>
       <p class="profile-now profile-study">My coursework is mainly <strong>philosophy</strong> and <strong>business practice</strong>. <strong>Mathematics</strong> is on offer as well. The courses I have credit for are listed in the <a href="./cv.html">CV</a> (in Japanese). What this place holds is my study of computer science and artificial intelligence.</p>
