@@ -156,7 +156,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [The Nobility and Exemplarity of the Celibate Individual](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/celibate-individual.md) | Argues that the demographic-necessity case for treating sexual activity as obligatory does not survive the antinatalist critique, and defends celibacy as a form of self-cultivation grounded in self-sustaining well-being | v2 — Aug 2026 | [10.5281/zenodo.22058254](https://doi.org/10.5281/zenodo.22058254)<br>SSRN [10.2139/ssrn.7358779](https://doi.org/10.2139/ssrn.7358779)<br>PhilArchive [NEMTNA](https://philarchive.org/rec/NEMTNA) |
 | [Manifesto of Imperial Selfhood](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/imperial-selfhood.md) | Assembles a reflexive account of self-integration from Kantian legislation, Nietzschean revaluation and Jüngerian mobilisation, treating the tension between them as the substance of the structure | Revised — Aug 2026 | [10.5281/zenodo.22057583](https://doi.org/10.5281/zenodo.22057583)<br>SSRN [10.2139/ssrn.7358818](https://doi.org/10.2139/ssrn.7358818)<br>PhilArchive [NEMMOI](https://philarchive.org/rec/NEMMOI) |
 | [Fragmentarian Spiritual Individualism](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/fragmentarian-spiritual-individualism.md) | Treats life, faith, society, thought and finitude as discrete fragments rather than one continuous story, and builds a discipline for inhabiting fragmentation rather than repairing it | Aug 2026 | [10.5281/zenodo.22064241](https://doi.org/10.5281/zenodo.22064241)<br>PhilArchive [NEMFSI](https://philarchive.org/rec/NEMFSI) |
-| [A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒)](https://doi.org/10.5281/zenodo.22055709) | Transcribes a single investiture entry for an Imperial Japanese Navy lieutenant from a gazette held by JACAR, and separates what the document establishes from what it does not | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709)<br>Knowledge Commons [record](https://works.hcommons.org/records/q36z2-98e12) |
+| [A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒)](https://doi.org/10.5281/zenodo.22055709) | Transcribes a single investiture entry for an Imperial Japanese Navy lieutenant from a gazette held by JACAR, and separates what the document establishes from what it does not | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709)<br>SSRN [10.2139/ssrn.7449338](https://doi.org/10.2139/ssrn.7449338)<br>Knowledge Commons [record](https://works.hcommons.org/records/q36z2-98e12) |
 | [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | Proves that a triadic recursion operator converges geometrically to a unique fixed point, and separates throughout what is proven from what is borrowed from other fields and what is only an analogy | Revised — Aug 2026 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | Generalises the blend to vary by coordinate without losing uniqueness, and adds a characterisation of the sustainable payoff set and a fully worked spring-network example | Revised — Aug 2026 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | Shows the convergence result never required three elements — it holds for every n ≥ 2 — and gives a retrospective on what the series established and what it withdrew | Aug 2026 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
@@ -249,12 +249,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1192 checks.** There are no dependencies to install.
+**Every push runs 1196 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 689 checks
+node verification/check_site.js      # site structure, 693 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

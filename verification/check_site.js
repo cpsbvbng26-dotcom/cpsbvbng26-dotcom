@@ -2094,6 +2094,90 @@ section('13. 第三者の標章と引用情報');
   ok('CITATION.cff の DOI が README にもある', unknown.length === 0, unknown.join(', '));
 })();
 
+/* ------------------------------------------------- 10.61 置き場が、紙面と記録で揃っている
+ *
+ * **番号が記録にあることと、紙面に出ていることは別である。**
+ *
+ * 実際にずれた —— 史料ノートの SSRN DOI は doi-index.md にも
+ * external-evaluations.md にも notes/ にも入っていたのに、**論文の頁と README の
+ * 論文表からは落ちていた**。`check_ecosystem.js` は番号の出入りを見るので、
+ * どこか一箇所にあれば通る。**「どの篇の、どの面に出ているか」を見ていなかった。**
+ *
+ * ここで見るのは、篇ごとの置き場が三つの面で揃っていることである ——
+ * 論文の頁（生成物。出所は researcher-profile の papers.json）、
+ * doi-index.md の「別の所在」の表、README 二つの論文表。
+ * **一面だけ足すと落ちる。一面だけ消しても落ちる。**
+ */
+section('10.61 置き場が、紙面と記録で揃っている');
+
+{
+  /* 論文の頁から、正の DOI と別の所在を拾う。**日本語の面だけを読む**
+   * —— 英語の面は同じ papers.json から出るので、数えれば二重になる。 */
+  const 頁 = fs.readdirSync(path.join(ROOT, 'papers'))
+    .filter((f) => /\.html$/.test(f) && !/\.en\.html$/.test(f)).sort();
+  ok('論文の頁がある（' + 頁.length + ' 枚）', 頁.length >= 7, String(頁.length));
+
+  const 別名 = (u) => {
+    let m = /doi\.org\/(10\.2139\/ssrn\.\d+)/.exec(u);
+    if (m) return 'SSRN ' + m[1];
+    m = /philarchive\.org\/rec\/([A-Z]+)/.exec(u);
+    if (m) return 'PhilArchive ' + m[1];
+    m = /works\.hcommons\.org\/records\/([a-z0-9-]+)/.exec(u);
+    if (m) return 'Knowledge Commons ' + m[1];
+    return null;
+  };
+
+  const 篇 = [];
+  頁.forEach((f) => {
+    const h = read(path.join('papers', f));
+    const 正 = (/<span class="label">DOI<\/span><a href="https:\/\/doi\.org\/(10\.5281\/zenodo\.\d+)"/.exec(h) || [])[1];
+    const 別 = [...new Set([...h.matchAll(/<a href="(https:\/\/[^"]+)"[^>]*>(?:SSRN|PhilArchive|Knowledge Commons)[^<]*<\/a>/g)]
+      .map((m) => 別名(m[1])).filter(Boolean))];
+    篇.push({ f, 正, 別 });
+  });
+
+  ok('論文の頁が、どれも正の DOI を出している',
+     篇.every((x) => x.正), 篇.filter((x) => !x.正).map((x) => x.f).join(', ') || '全部');
+
+  /* **doi-index.md の表。**別の所在がある篇は、全部そこに行がある。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 別の所在にある同一本文');
+    const j = di.indexOf('## 第三者の SSRN DOI');
+    const 表 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 落ち = [];
+    篇.filter((x) => x.別.length).forEach((x) => {
+      const 行 = 表.split('\n').filter((l) => l.indexOf('`' + x.正 + '`') >= 0);
+      if (行.length !== 1) { 落ち.push(x.f + ' の行が ' + 行.length + ' 本'); return; }
+      x.別.forEach((n) => {
+        const [場, id] = [n.slice(0, n.lastIndexOf(' ')), n.slice(n.lastIndexOf(' ') + 1)];
+        if (行[0].indexOf('`' + id + '`') < 0) 落ち.push(x.f + ' の ' + 場 + ' ' + id);
+      });
+    });
+    ok('論文の頁が出す置き場が、doi-index.md の表にも全部ある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : 篇.filter((x) => x.別.length).length + ' 篇とも');
+  }
+
+  /* **README 二つの論文表。**GitHub で最初に見られるのはこちらである。
+   * **史料ノートで落ちていたのが、まさにここである。** */
+  {
+    const 落ち = [];
+    ['README.md', 'README.en.md'].forEach((f) => {
+      const h = read(f);
+      篇.filter((x) => x.別.length).forEach((x) => {
+        const 行 = h.split('\n').filter((l) => /^\| \[/.test(l) && l.indexOf(x.正) >= 0);
+        if (行.length !== 1) { 落ち.push(f + ' の ' + x.正 + ' の行が ' + 行.length + ' 本'); return; }
+        x.別.forEach((n) => {
+          const id = n.slice(n.lastIndexOf(' ') + 1);
+          if (行[0].indexOf(id) < 0) 落ち.push(f + ' の ' + x.f + ' に ' + n + ' が無い');
+        });
+      });
+    });
+    ok('論文の頁が出す置き場が、README 二つの論文表にも全部ある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '二つとも');
+  }
+}
+
 /* ------------------------------------------------- 10.59 読み取りが通った日の記録
  *
  * **一度しか通らなかった読み取りは、記録のほうが証拠になる。**2026-09-21 に

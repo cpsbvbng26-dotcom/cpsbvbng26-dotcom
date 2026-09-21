@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-i3Y/XFtp65zc+RX83wPQ34vPStIA7NGTd7q1AYxglGw=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-rK+gt+6WBldxU+rEeT4OA3AV6HRYq7Or3ZJq+VC02IY='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-i3Y/XFtp65zc+RX83wPQ34vPStIA7NGTd7q1AYxglGw=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-hDRMFjuTi5rxt/vP9nDwtzRyDrK03/NpIHUEFK8C58o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series I | 根本卓哉</title>
 <meta name="description" content="三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示す。">
 <meta name="robots" content="index, follow">
@@ -326,6 +326,27 @@ header::after {
   font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
   color: var(--faint);
 }
+.profile-photo {
+  display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
+  border-radius: .4rem; border: 1px solid var(--line);
+}
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
+}
+/* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
+   対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
+.profile-photos { max-width: 100%; }
+@media (min-width: 40rem) {
+  .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos .profile-photo { float: none; height: 10.5rem; margin: 0; }
+}
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
 }
@@ -372,6 +393,13 @@ header::after {
   font-style: normal; font-size: .68rem; letter-spacing: .08em;
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
 }
 .path-now .path-name { color: var(--accent); }
 .path-state {
@@ -939,7 +967,10 @@ footer::before {
         entry.target.classList.add('is-visible');
         io.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    /* 閾値は 0 にする。割合で判定すると、画面より高い塊が永久に出ない。
+     * 自己紹介が 8819px まで伸びたとき、844px の画面では最大 9.6% しか
+     * 見えず、1 割の条件に届かなかった。頁の上半分が丸ごと消えていた。 */
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
   });
 })();
