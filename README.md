@@ -20,7 +20,7 @@
 
 ## 自己紹介
 
-<img src="portrait.jpg" alt="根本卓哉の顔写真" width="150"> <img src="shinai-bag.png" alt="赤い刺繍で「根本」と入った黒い竹刀袋" width="150">
+<img src="portrait.jpg" alt="根本卓哉の顔写真" height="200"> <img src="portrait-suit.jpg" alt="白いマスクを着け、背広を着た著者" height="200">
 
 ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。
 

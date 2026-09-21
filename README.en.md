@@ -20,7 +20,7 @@
 
 ## About me
 
-<img src="portrait.jpg" alt="Portrait of Takuya Nemoto" width="150"> <img src="shinai-bag.png" alt="A black shinai bag with the surname Nemoto embroidered in red" width="150">
+<img src="portrait.jpg" alt="Portrait of Takuya Nemoto" height="200"> <img src="portrait-suit.jpg" alt="The author in a suit and a white face mask" height="200">
 
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 

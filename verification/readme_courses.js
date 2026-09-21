@@ -58,7 +58,8 @@ function readProfile(html) {
      * GitHub のプロフィールは README のほうなので、片方だけに貼ると
      * 見に来た人が見るのは、貼っていないほうになる。
      * **path は repo からの相対にする。**GitHub が raw に直してくれる。
-     * 高さは書かない。二枚とも 3:4 なので、幅を揃えれば高さも揃う。 */
+     * **幅ではなく高さを書く。**縦横比が違う二枚が並ぶので、幅を揃えると
+     * 高さがずれる。高さを揃えれば、幅は成り行きで揃って見える。 */
     photos: [...block.matchAll(
       /<img class="profile-photo" src="\.\/([^"]+)" alt="([^"]*)"/g)]
       .map((m) => ({ src: m[1], alt: m[2] })),
@@ -121,7 +122,7 @@ function blockFor(page, lang) {
     out.push('## ' + p.label, '');
     if (p.photos.length) {
       out.push(p.photos.map(
-        (x) => `<img src="${x.src}" alt="${x.alt}" width="150">`).join(' '), '');
+        (x) => `<img src="${x.src}" alt="${x.alt}" height="200">`).join(' '), '');
     }
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');

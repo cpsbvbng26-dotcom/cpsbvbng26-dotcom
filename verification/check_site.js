@@ -1495,7 +1495,7 @@ section('10.59 自己紹介が名乗っていること');
     const 札 = [];
     ['README.md', 'README.en.md'].forEach((f) => {
       const h = read(f);
-      const xs = [...h.matchAll(/<img src="([^"]+)" alt="([^"]*)" width="\d+">/g)];
+      const xs = [...h.matchAll(/<img src="([^"]+)" alt="([^"]*)" height="\d+">/g)];
       const srcs = xs.map((m) => m[1]);
       if (srcs.join(',') !== 板.join(',')) { 札.push(f + ' が ' + (srcs.join(',') || '無し')); return; }
       xs.forEach((m) => { if (!m[2].trim()) 札.push(f + ' の ' + m[1] + ' の alt が空'); });

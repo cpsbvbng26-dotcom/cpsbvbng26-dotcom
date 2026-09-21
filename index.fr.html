@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-xSJ3u6EiePLeWAHJyfCZlX9zSIWVD+9Z4Nq+w5xp7p0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-F7oqA8fGyHDrPh12C43Pmo+qmF/bdNoXW7U1ScD1UGc=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-y9GJWufVCg6qOYDBEfsI8qM/H3MsxQCtisUqXAuLHtk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profil de recherche | Takuya Nemoto</title>
 <meta name="description" content="Profil de Takuya Nemoto. Ce qui est ici repose sur l’étude en autodidacte et sur le travail avec des modèles de langue. Les critères franchis, et ceux qui ne l’ont pas été, sont donnés dans les termes mêmes des plateformes.">
 <meta name="robots" content="index, follow">
@@ -302,11 +302,16 @@ header::after {
 .profile-photos {
   display: flex; gap: .55rem; align-items: flex-start; margin: 0 0 1.1rem;
 }
-.profile-photos .profile-photo { width: auto; height: 11rem; margin: 0; }
+/* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
+   対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
 @media (min-width: 40rem) {
   .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
   .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
-  .profile-photos .profile-photo { float: none; width: auto; height: 12.5rem; margin: 0; }
+  .profile-photos .profile-photo { float: none; height: 10.5rem; margin: 0; }
 }
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
@@ -807,7 +812,7 @@ footer::before {
       <h2 class="profile-label">À propos</h2>
       <div class="profile-photos">
         <img class="profile-photo" src="./portrait.jpg" alt="Portrait de Takuya Nemoto" width="750" height="1000" loading="lazy" decoding="async">
-        <img class="profile-photo" src="./shinai-bag.png" alt="Un étui à shinai noir, le nom Nemoto brodé en rouge" width="242" height="322" loading="lazy" decoding="async">
+        <img class="profile-photo" src="./portrait-suit.jpg" alt="L'auteur en costume, portant un masque blanc" width="800" height="800" loading="lazy" decoding="async">
       </div>
       <p class="profile-now">Inscrit à la <b>ZEN University, Faculty of Social Informatics</b>, dans la première promotion de rentrée d’automne. Le cursus traverse les lettres et les sciences.</p>
       <p class="profile-now profile-study">Les études portent surtout sur la <b>philosophie</b> et la <b>pratique</b> ; les <b>mathématiques</b> sont accessibles. Ce qui est déposé ici relève de l’informatique et de l’intelligence artificielle.</p>
