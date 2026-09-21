@@ -20,9 +20,9 @@
 
 ## 自己紹介
 
-<img src="portrait.jpg" alt="根本卓哉の顔写真" height="150"> <img src="portrait-suit.jpg" alt="白いマスクを着け、背広を着た著者" height="150">
+<img src="portrait.jpg" alt="根本卓哉の顔写真" height="150"> <img src="portrait-painting.jpg" alt="顔写真をもとに ChatGPT が生成した油彩の肖像画" height="150">
 
-<sub>顔写真は 25歳時。部屋で iPhone のインカメラで自撮り。</sub>
+<sub>顔写真は 25歳時。部屋で iPhone のインカメラで自撮り。油彩の肖像画は、その顔写真をもとに ChatGPT が生成したもの。</sub>
 
 ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。
 
@@ -264,12 +264,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1191 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1193 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 688 項目
+node verification/check_site.js      # サイトの構造 690 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
