@@ -1617,6 +1617,39 @@ section('10.59 自己紹介が名乗っていること');
       ok('順位ではないことと、仕組みを確かめていないことが、七つの面にある',
          断り落ち.length === 0,
          断り落ち.length ? 断り落ち.join(' / ') : '五言語と README 二つ');
+      /* **場が増えたら、散文のほうも動かす。**
+       *
+       * いまは二件で、中央値を出さないと書いてある。三つ目を足して数だけ
+       * 並べれば、「二件なので」が嘘になる。**名指しした場を数えて、
+       * 件数の名乗りと突き合わせる。**決めごと 5 である。
+       *
+       * **中央値を出さないという断りも、七面で固定する。**消して数だけ残せば、
+       * 二つの平均を中央値と読ませることになる。 */
+      {
+        const 場 = ['IKACHI', 'LUFT'];
+        const 中央値無し = {
+          'index.html': '二件なので中央値は出しません',
+          'index.en.html': 'With two figures, no median is given',
+          'index.de.html': 'Bei zwei Werten wird kein Median angegeben',
+          'index.fr.html': 'Avec deux valeurs, aucune médiane n’est donnée',
+          'index.it.html': 'Con due valori non viene data alcuna mediana',
+          'README.md': '二件なので中央値は出しません',
+          'README.en.md': 'With two figures, no median is given',
+        };
+        const 数ずれ = [], 断り落ち = [];
+        面7.forEach((f) => {
+          const x = 読む(f)[0] || '';
+          const n = 場.filter((s) => x.indexOf(s) >= 0).length;
+          if (n !== 場.length) 数ずれ.push(f + ' に ' + n + ' 場');
+          if (x.indexOf(中央値無し[f]) < 0) 断り落ち.push(f);
+        });
+        ok('掛けた場が、七つの面すべてで ' + 場.length + ' つ名指ししてある',
+           数ずれ.length === 0,
+           数ずれ.length ? 数ずれ.join(' / ') : 場.join('・'));
+        ok('中央値を出さない断りが、件数ごと七つの面で合っている',
+           断り落ち.length === 0,
+           断り落ち.length ? 断り落ち.join(' / ') : '五言語と README 二つ');
+      }
     }
 
   }

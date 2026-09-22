@@ -24,7 +24,7 @@
 
 <sub>The portrait was taken at 25, in the author’s room, with an iPhone front camera.</sub>
 
-<sub>Run through IKACHI’s facial score diagnosis, this photo returned 57.2 (2026-09-22). The stated top 23.58% is not a rank; it is the normal-distribution tail of that score, with mean 50 and standard deviation 10. The workings of the diagnosis have not been verified here.</sub>
+<sub>This photo was run through two services (2026-09-22). The facial score came out at 57.2 from IKACHI and 65 from LUFT. The top 23.58% that IKACHI adds is not a rank; it is the normal-distribution tail of that score, with mean 50 and standard deviation 10. With two figures, no median is given. The workings of both diagnoses have not been verified here.</sub>
 
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
@@ -251,12 +251,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1199 checks.** There are no dependencies to install.
+**Every push runs 1201 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 696 checks
+node verification/check_site.js      # site structure, 698 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
