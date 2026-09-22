@@ -85,7 +85,7 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 | --- | --- | --- |
 | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、HAL `hal-05758942` |
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、HAL `hal-05758968` |
-| Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI` |
+| Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI`、HAL `hal-05759279` |
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961`、HAL `hal-05759064` |
 | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、HAL `hal-05759080` |
 
