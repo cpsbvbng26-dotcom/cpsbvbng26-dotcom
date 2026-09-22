@@ -24,6 +24,8 @@
 
 <sub>顔写真は 25歳時。部屋で iPhone のインカメラで自撮り。</sub>
 
+<sub>この写真を IKACHI の顔面偏差値診断に掛けると 57.2 でした（2026-09-22）。上位 23.58% という表示は順位ではなく、平均 50・標準偏差 10 の正規分布から出した数です。診断の仕組みは確かめていません。</sub>
+
 ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。
 
 大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
@@ -264,12 +266,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1196 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1199 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 693 項目
+node verification/check_site.js      # サイトの構造 696 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 

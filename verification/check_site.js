@@ -1526,22 +1526,99 @@ section('10.59 自己紹介が名乗っていること');
       const 位置 = /左|右|\b(left|right|links|rechts|gauche|droite|sinistra|destra)\b/i;
       const 指した = [];
       面.forEach((f) => {
-        const m = /<p class="profile-photo-note">([^<]*)<\/p>/.exec(read(f));
-        const 語 = m ? 位置.exec(m[1]) : null;
-        if (語) 指した.push(f + ' に「' + 語[0] + '」');
+        /* **断りは複数ある。**一本目だけ見ると、二本目に書いた「左」が通る。 */
+        [...read(f).matchAll(/<p class="profile-photo-note">([^<]*)<\/p>/g)].forEach((m) => {
+          const 語 = 位置.exec(m[1]);
+          if (語) 指した.push(f + ' に「' + 語[0] + '」');
+        });
         拾い[f].forEach((x) => {
           const a = 位置.exec(x.alt);
           if (a) 指した.push(f + ' の alt に「' + a[0] + '」');
         });
       });
       ['README.md', 'README.en.md'].forEach((f) => {
-        const m = /<sub>([^<]*)<\/sub>/.exec(read(f));
-        const 語 = m ? 位置.exec(m[1]) : null;
-        if (語) 指した.push(f + ' に「' + 語[0] + '」');
+        [...read(f).matchAll(/<sub>([^<]*)<\/sub>/g)].forEach((m) => {
+          const 語 = 位置.exec(m[1]);
+          if (語) 指した.push(f + ' に「' + 語[0] + '」');
+        });
       });
       ok('断りと alt が、写真を位置で指していない', 指した.length === 0,
          指した.length ? 指した.join(' / ') : '七つの面とも');
     }
+    /* **外の道具が返した数は、返ってきたまま書く。そして、計算で出る分は計算する。**
+     *
+     * IKACHI が出すのは二つ —— 顔面偏差値 57.2 と「上位 23.58%」である。
+     * **後者は順位ではない。**場が自分で示している目盛り（60 が上位 15.9%、
+     * 70 が 2.3%、80 が 0.1%）は、平均 50・標準偏差 10 の正規分布の裾と
+     * 小数第一位まで一致する。57.2 の裾も 23.58% で、表示と合う。
+     *
+     * **だから % のほうには情報が無い。**偏差値を書けば決まる。
+     * ここで見るのは、**七つの面に出ている二つの数が、その関係を保っていること**である。
+     * 片方だけ直せば落ちる。決めごと 5 —— 散文に数を書いたら、機械で確かめる。
+     *
+     * **仕組みのほうは確かめていない。**何を見て 57.2 を出したかは分からない。
+     * その断りが消えていないことも、ここで見る。
+     */
+    {
+      /* Abramowitz & Stegun 7.1.26。誤差 1.5e-7 で、小数第二位には十分である。 */
+      const erf = (x) => {
+        const s = x < 0 ? -1 : 1; x = Math.abs(x);
+        const t = 1 / (1 + 0.3275911 * x);
+        const y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t
+          - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+        return s * y;
+      };
+      const 裾 = (T) => (1 - 0.5 * (1 + erf(((T - 50) / 10) / Math.SQRT2))) * 100;
+
+      const 面7 = 面.concat(['README.md', 'README.en.md']);
+      const 読む = (f) => {
+        const h = read(f);
+        const re = /README/.test(f) ? /<sub>([^<]*)<\/sub>/g
+                                    : /<p class="profile-photo-note">([^<]*)<\/p>/g;
+        return [...h.matchAll(re)].map((m) => m[1]).filter((x) => x.indexOf('IKACHI') >= 0);
+      };
+
+      const 無し = [], ずれ = [];
+      面7.forEach((f) => {
+        const xs = 読む(f);
+        if (xs.length !== 1) { 無し.push(f + ' に ' + xs.length + ' 本'); return; }
+        const t = /(\d{2})[.,](\d)(?![\d%])/.exec(xs[0]);
+        const p = /(\d{2})[.,](\d{2})\s*%/.exec(xs[0]);
+        if (!t || !p) { 無し.push(f + ' から数を読めない'); return; }
+        const T = Number(t[1] + '.' + t[2]), P = Number(p[1] + '.' + p[2]);
+        if (Math.abs(裾(T) - P) > 0.005) {
+          ずれ.push(f + ' が 偏差値 ' + T + ' / 上位 ' + P + '%（計算 '
+            + 裾(T).toFixed(2) + '%）');
+        }
+      });
+
+      ok('顔面偏差値の行が、七つの面すべてに一本ずつある', 無し.length === 0,
+         無し.length ? 無し.join(' / ') : '五言語と README 二つ');
+      ok('上位の % が、偏差値から計算した正規分布の裾と合う', 無し.length === 0 && ずれ.length === 0,
+         ずれ.length ? ずれ.join(' / ')
+           : (無し.length ? '読めない面がある: ' + 無し.join(' / ') : '七つの面とも'));
+
+      /* **順位ではないことと、仕組みを確かめていないことを、七面とも書く。**
+       * 数だけ残して断りが落ちれば、この頁は順位を名乗ったことになる。 */
+      const 断り落ち = [];
+      const 要る = {
+        'index.html': ['順位ではなく', '確かめていません'],
+        'index.en.html': ['is not a rank', 'have not been verified'],
+        'index.de.html': ['kein Rang', 'nicht geprüft'],
+        'index.fr.html': ['ne sont pas un rang', 'n’a pas été vérifié'],
+        'index.it.html': ['non è una posizione in classifica', 'non è stato verificato'],
+        'README.md': ['順位ではなく', '確かめていません'],
+        'README.en.md': ['is not a rank', 'have not been verified'],
+      };
+      面7.forEach((f) => {
+        const x = 読む(f)[0] || '';
+        (要る[f] || []).forEach((w) => { if (x.indexOf(w) < 0) 断り落ち.push(f + ' に「' + w + '」'); });
+      });
+      ok('順位ではないことと、仕組みを確かめていないことが、七つの面にある',
+         断り落ち.length === 0,
+         断り落ち.length ? 断り落ち.join(' / ') : '五言語と README 二つ');
+    }
+
   }
 
   ok('PhilArchive の基準を省略していない',
