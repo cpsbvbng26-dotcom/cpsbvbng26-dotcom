@@ -90,6 +90,7 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961`、HAL `hal-05759064` |
 | Trinity-Infinity Series III | `10.5281/zenodo.22058964` | HAL `hal-05759296` |
 | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、HAL `hal-05759080` |
+| 正義論とアルゴリズム | `10.5281/zenodo.22335676` | HAL `hal-05759717` |
 
 ## 第三者の SSRN DOI
 
