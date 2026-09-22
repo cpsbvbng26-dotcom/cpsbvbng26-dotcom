@@ -1995,6 +1995,8 @@ section('10.61 置き場が、紙面と記録で揃っている');
     if (m) return 'PhilArchive ' + m[1];
     m = /works\.hcommons\.org\/records\/([a-z0-9-]+)/.exec(u);
     if (m) return 'Knowledge Commons ' + m[1];
+    m = /hal\.science\/(hal-\d+)/.exec(u);
+    if (m) return 'HAL ' + m[1];
     return null;
   };
 
@@ -2002,7 +2004,7 @@ section('10.61 置き場が、紙面と記録で揃っている');
   頁.forEach((f) => {
     const h = read(path.join('papers', f));
     const 正 = (/<span class="label">DOI<\/span><a href="https:\/\/doi\.org\/(10\.5281\/zenodo\.\d+)"/.exec(h) || [])[1];
-    const 別 = [...new Set([...h.matchAll(/<a href="(https:\/\/[^"]+)"[^>]*>(?:SSRN|PhilArchive|Knowledge Commons)[^<]*<\/a>/g)]
+    const 別 = [...new Set([...h.matchAll(/<a href="(https:\/\/[^"]+)"[^>]*>(?:SSRN|PhilArchive|Knowledge Commons|HAL)[^<]*<\/a>/g)]
       .map((m) => 別名(m[1])).filter(Boolean))];
     篇.push({ f, 正, 別 });
   });
