@@ -1619,36 +1619,84 @@ section('10.59 自己紹介が名乗っていること');
          断り落ち.length ? 断り落ち.join(' / ') : '五言語と README 二つ');
       /* **場が増えたら、散文のほうも動かす。**
        *
-       * いまは二件で、中央値を出さないと書いてある。三つ目を足して数だけ
-       * 並べれば、「二件なので」が嘘になる。**名指しした場を数えて、
-       * 件数の名乗りと突き合わせる。**決めごと 5 である。
+       * 名指しした場を数えて、件数の名乗りと突き合わせる。そして
+       * **中央値は、並べた数から出し直す。**決めごと 5 である。
        *
-       * **中央値を出さないという断りも、七面で固定する。**消して数だけ残せば、
-       * 二つの平均を中央値と読ませることになる。 */
+       * **三つの目盛りは同じではない。**IKACHI は平均 50 の偏差値、
+       * face-score.com は `/100` で平均 65、LUFT は両方を返す（ここでは
+       * 偏差値の側を採る）。**それを承知で「顔面偏差値と名乗る数」の中央値を
+       * 取る、と決めた。**だから、目盛りが同じでないという断りも固定する。
+       * 断りが消えれば、同じ目盛りの三つを並べたことになる。
+       *
+       * **言語モデルを数に入れていないことも書く。**入れなかった理由は
+       * 利用者の判断である。書いておかなければ、探し漏れと区別がつかない。 */
       {
-        const 場 = ['IKACHI', 'LUFT'];
-        const 中央値無し = {
-          'index.html': '二件なので中央値は出しません',
-          'index.en.html': 'With two figures, no median is given',
-          'index.de.html': 'Bei zwei Werten wird kein Median angegeben',
-          'index.fr.html': 'Avec deux valeurs, aucune médiane n’est donnée',
-          'index.it.html': 'Con due valori non viene data alcuna mediana',
-          'README.md': '二件なので中央値は出しません',
-          'README.en.md': 'With two figures, no median is given',
+        const 場 = ['IKACHI', 'LUFT', 'face-score.com'];
+        /* 場の名前のうしろに続く数を拾う。**五言語とも「名前 数」の順に書いてある。**
+         * de・fr・it は小数点が読点なので、どちらも受ける。 */
+        const 拾数 = (x, s) => {
+          const i = x.indexOf(s);
+          if (i < 0) return null;
+          const m = /(\d{1,3})(?:[.,](\d))?/.exec(x.slice(i + s.length, i + s.length + 24));
+          return m ? Number(m[1] + '.' + (m[2] || '0')) : null;
         };
-        const 数ずれ = [], 断り落ち = [];
+        const 中 = (xs) => {
+          const a = xs.slice().sort((p, q) => p - q);
+          const h = a.length >> 1;
+          return a.length % 2 ? a[h] : (a[h - 1] + a[h]) / 2;
+        };
+        const 語 = (v, f) => {
+          const s = v === Math.round(v) ? String(Math.round(v))
+            : (/index\.(de|fr|it)\.html/.test(f) ? String(v).replace('.', ',') : String(v));
+          return ({
+            'index.html': '中央値は ' + s + ' です',
+            'index.en.html': 'The median is ' + s,
+            'index.de.html': 'Der Median liegt bei ' + s,
+            'index.fr.html': 'La médiane est de ' + s,
+            'index.it.html': 'La mediana è ' + s,
+            'README.md': '中央値は ' + s + ' です',
+            'README.en.md': 'The median is ' + s,
+          })[f];
+        };
+        const 目盛り = {
+          'index.html': 'ただし三つの目盛りは同じではありません',
+          'index.en.html': 'The three scales are not identical',
+          'index.de.html': 'Die drei Skalen sind allerdings nicht dieselben',
+          'index.fr.html': 'Les trois échelles ne sont pourtant pas les mêmes',
+          'index.it.html': 'Le tre scale non sono però le stesse',
+          'README.md': 'ただし三つの目盛りは同じではありません',
+          'README.en.md': 'The three scales are not identical',
+        };
+        const 言語モデル = {
+          'index.html': '言語モデルは数に入れていません',
+          'index.en.html': 'Language models are excluded from the count',
+          'index.de.html': 'Sprachmodelle bleiben aus der Zählung heraus',
+          'index.fr.html': 'Les modèles de langue sont écartés du décompte',
+          'index.it.html': 'I modelli linguistici sono esclusi dal conteggio',
+          'README.md': '言語モデルは数に入れていません',
+          'README.en.md': 'Language models are excluded from the count',
+        };
+        const 数ずれ = [], 中ずれ = [], 目落ち = [], 言落ち = [];
         面7.forEach((f) => {
           const x = 読む(f)[0] || '';
-          const n = 場.filter((s) => x.indexOf(s) >= 0).length;
-          if (n !== 場.length) 数ずれ.push(f + ' に ' + n + ' 場');
-          if (x.indexOf(中央値無し[f]) < 0) 断り落ち.push(f);
+          const vs = 場.map((s) => 拾数(x, s)).filter((v) => v !== null);
+          if (vs.length !== 場.length) { 数ずれ.push(f + ' に ' + vs.length + ' 場'); return; }
+          const w = 語(中(vs), f);
+          if (x.indexOf(w) < 0) 中ずれ.push(f + ' が「' + w + '」でない（拾った数 ' + vs.join(', ') + '）');
+          if (x.indexOf(目盛り[f]) < 0) 目落ち.push(f);
+          if (x.indexOf(言語モデル[f]) < 0) 言落ち.push(f);
         });
         ok('掛けた場が、七つの面すべてで ' + 場.length + ' つ名指ししてある',
            数ずれ.length === 0,
            数ずれ.length ? 数ずれ.join(' / ') : 場.join('・'));
-        ok('中央値を出さない断りが、件数ごと七つの面で合っている',
-           断り落ち.length === 0,
-           断り落ち.length ? 断り落ち.join(' / ') : '五言語と README 二つ');
+        ok('中央値が、並べた数から出し直したものと合う',
+           数ずれ.length === 0 && 中ずれ.length === 0,
+           中ずれ.length ? 中ずれ.join(' / ')
+             : (数ずれ.length ? '読めない面がある' : '七つの面とも'));
+        ok('三つの目盛りが同じでないという断りが、七つの面にある', 目落ち.length === 0,
+           目落ち.length ? 目落ち.join(' / ') : '五言語と README 二つ');
+        ok('言語モデルを数に入れていない断りが、七つの面にある', 言落ち.length === 0,
+           言落ち.length ? 言落ち.join(' / ') : '五言語と README 二つ');
       }
     }
 
