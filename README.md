@@ -36,15 +36,17 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 数学の側について、一つ確定したことがある。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型だった —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）である。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われている。脚注ではなく、その分野の二本柱の一本だった。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていない（ERRATA の E8、重大度・高）。ただし寸法は正確に書く。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪である。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としている。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項である。
 
-ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。これからのものは、趣味と呼ばずに済む形で書く。
+ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。趣味の研究は、学部一年で卒業した。これからのものは、趣味と呼ばずに済む形で書く。
 
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
-これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。作業が数週間に集中している点は、履歴が伸びるぶんで埋まる。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは十全部である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
+これからの二つとは別に、定期的な目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。一度通れば終わりにはしない。しばらくは、これを繰り返す目標として置く。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。作業が数週間に集中している点は、履歴が伸びるぶんで埋まる。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは十全部である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
 
 そして、論文の側も出す。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に出す。2026-09-15 に決めを変えた。それまでは出さないと決めていた。理由は費用ではなく、生成 AI の使用を完全には開示できないことであった。哲学三篇は、翻訳に用いた道具を特定できない —— 記録が残っておらず、著者の記憶でも定まらない（ERRATA の E5）。変えた理由は一点である。「何を使ったか再構成できない」と書くことは、分かっていることの全部を書くことである。不完全なのは開示ではなく、開示できる材料のほうである。受け付けるかどうかは場の判断であって、こちらで先回りして落とすものではない。COPE に沿う場の定めは守る —— AI を著作者に並べない。使用は開示する。プレプリントは動かさない。Zenodo と PhilArchive と SSRN に置いたままにする。取り下げるのではない。査読誌に出すこととは別である。道具の側は、git の履歴が commit ごとに開示を裏づける。丸を付けない欄が一つある —— 「文章は実質的に著者自身のものである」という申告には、丸を付けない。開示を求める場と、著者自身の筆であることを申告させる場は、別である（十の状態）。
 
-先の見通しも書いておく。上の二つ以外は眼中にない。事業を承継すること、博士号を取ったのちオンライン大学で教えること。そして、他者と接する機会を極限まで削った状態で生きることになるだろう。この暮らし方は、書いたものと同じ向きを向いている。独身者の模範性と貴族性が擁護したのは、まさにその型である —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていない。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっている。暮らし方が主張の裏付けになるわけではない。順序は逆で、主張のほうが、まだ足で立っていない。
+向きを一つ変えた。2026-09-23 に決めた。これからは、制度のなかで成果を出すことに注力する。学会で発表すること、そこで賞を受けることである。どちらもまだ一件もない。ここまでにあるのは、受け付けの門を通ったプレプリントと、置き場の控えだけである。その二つは、査読を通った実績ではない。JOSS を定期的な目標に置いたのも、同じ向きからである。
+
+先の見通しも書いておく。上の二つ以外は眼中にない。事業を承継すること、博士号を取ったのちオンライン大学で教えること。学会と賞は、その二つ目に向かう途上にある。目標が三つに増えたのではない。そして、他者と接する機会を極限まで削った状態で生きることになるだろう。この暮らし方は、書いたものと同じ向きを向いている。独身者の模範性と貴族性が擁護したのは、まさにその型である —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていない。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっている。暮らし方が主張の裏付けになるわけではない。順序は逆で、主張のほうが、まだ足で立っていない。
 
 死後に残るものを、生きているうちに整えている。残る先は三つある —— 石、紙、デジタルである。いま現に在るのは、墓と ORCID と DOI である。諡名は死後に刻み、学位はまだ無い。
 
@@ -262,12 +264,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1189 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1194 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 686 項目
+node verification/check_site.js      # サイトの構造 691 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
