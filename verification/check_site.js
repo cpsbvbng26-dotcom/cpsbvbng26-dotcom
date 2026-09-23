@@ -1577,6 +1577,81 @@ section('10.59 自己紹介が名乗っていること');
        + (ja.indexOf('どちらもまだ一件もない') >= 0 ? 'あり' : '無い'));
   }
 
+  /* **「学部一年時の実績」は、時が経つほど大きく読める。**学年が上がっても
+   * 同じ量のままなら、書いた側が黙って得をする。**だから量のほうを機械で数える。**
+   * 修了証も同じ段に入れている。**七件という数は、cv.html から数え直す。** */
+  {
+    const 一年 = {
+      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
+                     'ここに並べたものは全部、学部一年時の実績である',
+                     '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'index.en.html': ['finished in the first half of the first undergraduate year',
+                        'everything set out here is the work of that first undergraduate year',
+                        'The dates themselves have been checked against nothing',
+                        'The enrolment date is not printed here either'],
+      'index.de.html': ['in der ersten Hälfte des ersten Studienjahres abgeschlossen',
+                        'ist die Arbeit dieses ersten Studienjahres',
+                        'Die Daten selbst sind mit nichts abgeglichen',
+                        'Das Datum der Einschreibung steht hier ebenfalls nicht'],
+      'index.fr.html': ['achevées dans la première moitié de la première année de licence',
+                        'est le travail de cette première année',
+                        'Les dates elles-mêmes n’ont été confrontées à rien',
+                        'La date d’inscription n’est pas imprimée ici non plus'],
+      'index.it.html': ['conclusi nella prima metà del primo anno del corso di laurea',
+                        'è il lavoro di quel primo anno',
+                        'Le date stesse non sono state confrontate con nulla',
+                        'Anche la data di immatricolazione non è stampata qui'],
+      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
+                    'ここに並べたものは全部、学部一年時の実績である',
+                    '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'README.en.md': ['finished in the first half of the first undergraduate year',
+                       'everything set out here is the work of that first undergraduate year',
+                       'The dates themselves have been checked against nothing',
+                       'The enrolment date is not printed here either'],
+    };
+    const 落ち = [];
+    Object.keys(一年).forEach((f) => {
+      const h = read(f);
+      一年[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('学部一年時の実績だという宣言が、確かめていない分ごと七つの面にある',
+       落ち.length === 0, 落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+
+    /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
+     * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
+     * **一つ増えて散文が据え置きになる形を止める。** */
+    const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
+      .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length;
+    const di = read('docs/doi-index.md');
+    const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
+    const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
+    const jo = read('docs/joss.md');
+    const 十 = jo.slice(jo.indexOf('## 十の状態'), jo.indexOf('## 門 1'));
+    const リポジトリ = (十.match(/^\| [a-z][a-z0-9-]* \| /gm) || []).length;
+    const 修了証 = new Set((read('cv.html')
+      .match(/https:\/\/(?:courses\.edx\.org\/certificates|www\.openbadge-global\.com)\/[^"]+/g) || [])).size;
+    const ずれ = [];
+    if (篇 !== 7) ずれ.push('篇 ' + 篇);
+    if (DOI !== 15) ずれ.push('Zenodo の DOI ' + DOI);
+    if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
+    if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
+    const 散文 = ja.indexOf('七篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
+       ずれ.length === 0 && 散文,
+       ずれ.length ? ずれ.join(', ') : (散文 ? '7 / 15 / 10 / 7' : '散文の並びが無い'));
+  }
+
+  /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
+   * どちらが古いのか分からなくなる。**同じ語で両方に置く。** */
+  {
+    const A = read('docs/self-assessment.md');
+    const 行 = /^\| 実績の時期 \|[^|]*\| ([^|]*) \|/m.exec(A);
+    ok('現状評価の表に、実績の時期の軸がある',
+       行 !== null && 行[1].indexOf('学部一年') >= 0
+       && ja.indexOf('学部一年時の実績である') >= 0,
+       行 === null ? '軸が無い' : 行[1].trim());
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
