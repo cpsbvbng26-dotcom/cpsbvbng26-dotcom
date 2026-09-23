@@ -1436,6 +1436,37 @@ section('10.59 自己紹介が名乗っていること');
   ok('この場所が Claude を使っていると書いてある',
      ja.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
      && ja.indexOf('Co-Authored-By: Claude Opus 5') >= 0);
+  /* **ここまでのものを趣味と呼ぶ宣言。**自称を上げる語ではなく、下げる語である。
+   * **下げる語こそ消えやすい。**都合が良くなる方向だからである。七つの面で固定する。
+   *
+   * 理由まで含めて見る。**「査読を受けていない」と「寄与はゼロ」が落ちれば、
+   * 残るのは謙遜の一語だけになる。**そこが宣言の中身である。 */
+  {
+    const 趣味 = {
+      'index.html': ['ここまでのプレプリントは、趣味として書いたものである',
+                     'どれも査読を受けていない', '分野への寄与はゼロである'],
+      'index.en.html': ['written as a hobby', 'None of them has been peer-reviewed',
+                        'the contribution to the field is zero'],
+      'index.de.html': ['als Liebhaberei', 'Keines davon ist begutachtet worden',
+                        'der Beitrag zum Fach ist null'],
+      'index.fr.html': ['en amateur', 'Aucun n’a été évalué par les pairs',
+                        'l’apport au domaine est nul'],
+      'index.it.html': ['per diletto', 'Nessuno di essi è stato sottoposto a revisione paritaria',
+                        'il contributo al campo è nullo'],
+      'README.md': ['ここまでのプレプリントは、趣味として書いたものである',
+                    'どれも査読を受けていない', '分野への寄与はゼロである'],
+      'README.en.md': ['written as a hobby', 'None of them has been peer-reviewed',
+                       'the contribution to the field is zero'],
+    };
+    const 落ち = [];
+    Object.keys(趣味).forEach((f) => {
+      const h = read(f);
+      趣味[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('ここまでのものを趣味と呼ぶ宣言が、理由ごと七つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
