@@ -1467,6 +1467,116 @@ section('10.59 自己紹介が名乗っていること');
        落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
   }
 
+  /* **趣味を終えた日付は、宣言よりも消えやすい。**「趣味である」だけが残れば、
+   * いまも趣味のままだと読める。**終わりを書いた側を七つの面で固める。**
+   * 段の同一も見る。**別の段に移れば、何を卒業したのか分からなくなる。** */
+  {
+    const 卒業 = {
+      'index.html': '趣味の研究は、学部一年で卒業した',
+      'index.en.html': 'Hobby research ended in the first undergraduate year',
+      'index.de.html': 'Die Forschung als Liebhaberei endete im ersten Studienjahr',
+      'index.fr.html': 'La recherche en amateur s’est achevée en première année de licence',
+      'index.it.html': 'La ricerca per diletto si è conclusa al primo anno del corso di laurea',
+      'README.md': '趣味の研究は、学部一年で卒業した',
+      'README.en.md': 'Hobby research ended in the first undergraduate year',
+    };
+    const 落ち = Object.keys(卒業).filter((f) => read(f).indexOf(卒業[f]) < 0);
+    ok('趣味の研究を学部一年で卒業したと、七つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(', ') : '五言語と README 二つ');
+
+    /* **同じ段にあることを見る。**趣味と呼ぶ宣言の段から離れれば、
+     * 卒業したのが何なのかが宙に浮く。 */
+    const 同段 = { 'index.html': 'ここまでのプレプリントは、趣味として書いたものである',
+                   'index.en.html': 'written as a hobby' };
+    const 離れ = Object.keys(同段).filter((f) => {
+      const 段 = read(f).split('<p class="profile-core">');
+      return !段.some((p) => p.indexOf(同段[f]) >= 0 && p.indexOf(卒業[f]) >= 0);
+    });
+    ok('卒業したと書いた文が、趣味と呼ぶ宣言と同じ段にある', 離れ.length === 0,
+       離れ.length ? 離れ.join(', ') : 'index.html と index.en.html');
+  }
+
+  /* **向きを変えたと書くだけでは、変えたことにならない。**何に注力するのかと、
+   * それがまだ一件も無いことを、同じところに書く。**「これから出す」は、
+   * JOSS の側が根拠として認めない形である**（<code>Aspirational statements…</code>）。
+   * こちらの散文も同じ扱いにする。七つの面で固める。 */
+  {
+    const 向き = {
+      'index.html': ['これからは、制度のなかで成果を出すことに注力する',
+                     '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'index.en.html': ['the effort goes into producing results inside the institution',
+                        'Presenting at conferences, and being awarded there',
+                        'Neither has happened even once'],
+      'index.de.html': ['dem Erbringen von Leistungen innerhalb der Institution',
+                        'Vorträge auf Fachtagungen, und Auszeichnungen dort',
+                        'Beides ist noch nicht ein einziges Mal geschehen'],
+      'index.fr.html': ['l’effort porte sur des résultats obtenus dans le cadre institutionnel',
+                        'Des communications en congrès, et des distinctions obtenues là',
+                        'Ni l’une ni l’autre ne s’est encore produite une seule fois'],
+      'index.it.html': ['l’impegno va verso risultati ottenuti all’interno dell’istituzione',
+                        'Comunicazioni a convegni, e riconoscimenti ottenuti in quella sede',
+                        'Né l’una né l’altra cosa è ancora avvenuta nemmeno una volta'],
+      'README.md': ['これからは、制度のなかで成果を出すことに注力する',
+                    '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'README.en.md': ['the effort goes into producing results inside the institution',
+                       'Presenting at conferences, and being awarded there',
+                       'Neither has happened even once'],
+    };
+    const 落ち = [];
+    Object.keys(向き).forEach((f) => {
+      const h = read(f);
+      向き[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('制度のなかで成果を出す向きが、まだ一件も無いことごと七つの面にある',
+       落ち.length === 0, 落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+  }
+
+  /* **目標を二つと書いた頁に、三つ目に見えるものを足した。**学会と賞である。
+   * **途上だと書いておかないと、眼中にないと言った二つが三つに増える。**
+   * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
+  {
+    const 途上 = {
+      'index.html': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'index.en.html': ['Conferences and awards lie on the way to the second of those',
+                        'The count of goals has not become three'],
+      'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum zweiten dieser Ziele',
+                        'Es sind nicht drei Ziele geworden'],
+      'index.fr.html': ['Les congrès et les distinctions se situent sur le chemin du second de ces buts',
+                        'Les buts ne sont pas passés à trois'],
+      'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del secondo di quei due obiettivi',
+                        'Gli obiettivi non sono diventati tre'],
+      'README.md': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'README.en.md': ['Conferences and awards lie on the way to the second of those',
+                       'The count of goals has not become three'],
+    };
+    const 落ち = [];
+    Object.keys(途上).forEach((f) => {
+      const h = read(f);
+      途上[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('学会と賞が、三つ目の目標に読めない形で七つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+  }
+
+  /* **「まだ一件もない」は、頁の中だけで完結してしまう。**現状評価の表に同じ
+   * 二つの軸を置いて、そちらの数と突き合わせる。**片側だけが増えれば落ちる。**
+   * 一件でも出たときに、頁の側を直し忘れる形を止める。 */
+  {
+    const A = read('docs/self-assessment.md');
+    const 軸 = (名) => {
+      const re = new RegExp('^\\| ' + 名 + ' \\|[^|]*\\| \\*\\*(\\d+) 件\\*\\*', 'm');
+      const m = re.exec(A);
+      return m ? Number(m[1]) : null;
+    };
+    const 発表 = 軸('学会での発表');
+    const 賞 = 軸('受賞');
+    ok('現状評価の表の学会と受賞が、頁の「まだ一件もない」と合う',
+       発表 === 0 && 賞 === 0 && ja.indexOf('どちらもまだ一件もない') >= 0,
+       '表 ' + (発表 === null ? '軸が無い' : 発表) + ' / '
+       + (賞 === null ? '軸が無い' : 賞) + '　頁の断り '
+       + (ja.indexOf('どちらもまだ一件もない') >= 0 ? 'あり' : '無い'));
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
