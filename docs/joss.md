@@ -1,6 +1,6 @@
 # JOSS に出す —— 十の状態
 
-直近の目標は、Journal of Open Source Software（JOSS。ISSN `2475-9066`）に通すことです。
+定期的な目標は、Journal of Open Source Software（JOSS。ISSN `2475-9066`）に通すことです。
 **出すのは十全部です**。この文書は、十のそれぞれが、どの門をいつどう満たすかを並べる。
 
 **明文は `openjournals/joss` の `docs/` から写しています**。リンクと強調の記法だけ外してあります。
