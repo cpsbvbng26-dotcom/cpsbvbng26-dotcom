@@ -36,6 +36,8 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 数学の側について、一つ確定したことがある。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型だった —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）である。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われている。脚注ではなく、その分野の二本柱の一本だった。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていない（ERRATA の E8、重大度・高）。ただし寸法は正確に書く。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪である。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としている。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項である。
 
+ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。これからのものは、趣味と呼ばずに済む形で書く。
+
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
 これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。作業が数週間に集中している点は、履歴が伸びるぶんで埋まる。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは十全部である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
@@ -260,12 +262,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1188 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1189 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 685 項目
+node verification/check_site.js      # サイトの構造 686 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
