@@ -2265,6 +2265,32 @@ section('10.61 置き場が、紙面と記録で揃っている');
     ok('論文の頁が出す置き場が、README 二つの論文表にも全部ある', 落ち.length === 0,
        落ち.length ? 落ち.join(' / ') : '二つとも');
   }
+
+  /* **消した所在は、所在として残らない。**上の突き合わせは「頁にあるものが記録にもある」
+   * を見るだけで、消したものが残っていても気づかない。**削除の表から ID を拾い、
+   * その ID へのリンクがどこにも無いことを見る。**表にだけ残すのは、消した事実のほうである。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 削除した所在');
+    const j = di.indexOf('## 第三者の SSRN DOI');
+    const 節 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 消した = [...節.matchAll(/^\| `(hal-\d+)` \|/gm)].map((m) => m[1]);
+    const 面 = [...new Set(['README.md', 'README.en.md', 'docs/doi-index.md']
+      .concat(fs.readdirSync(path.join(ROOT, 'papers')).filter((x) => x.endsWith('.html'))
+        .map((x) => 'papers/' + x))
+      .concat(PAGES))];
+    const 残り = [];
+    消した.forEach((id) => {
+      面.forEach((f) => { if (read(f).indexOf('hal.science/' + id) >= 0) 残り.push(f + ' に ' + id); });
+    });
+    /* 別の所在の表に、消した ID が書き残っていないことも見る。リンクでなくても所在として読める。 */
+    const k = di.indexOf('## 別の所在にある同一本文');
+    const 別 = (k >= 0 && i > k) ? di.slice(k, i) : '';
+    消した.forEach((id) => { if (別.indexOf(id) >= 0) 残り.push('別の所在の表に ' + id); });
+    ok('削除した HAL の所在が、どこにも所在として残っていない',
+       消した.length > 0 && 残り.length === 0,
+       消した.length === 0 ? '削除の表が読めない' : (残り.length ? 残り.join(' / ') : 消した.length + ' 件'));
+  }
 }
 
 /* ------------------------------------------------- 10.59 読み取りが通った日の記録
