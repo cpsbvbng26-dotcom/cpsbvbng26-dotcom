@@ -42,7 +42,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
-載ったものをどの枠で数えるかも決めてある。researchmap と HAL の論文の枠に入れるのは、学位論文と、分野の区分で Q1 の誌、分野のダイヤモンド・オープンアクセスの査読誌に載ったものだけである。ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う。SSRN に載ったものも、この枠の外にある。いま論文の枠に入るものは一つも無い。出す先の決めは上の段のまま変えない。この段が決めるのは、載ったものの数え方だけである。
+載ったものをどの枠で数えるかも決めてある。researchmap と HAL の論文の枠に入れるのは、学位論文と、分野の区分で Q1 の誌、分野のダイヤモンド・オープンアクセスの査読誌に載ったものだけである。ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う。その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることである。Zenodo にしか無いものは、どちらの枠にも入れない。Zenodo は、それらのスクリーニングを通らなかったものを、研究の透明性のために置いておく場として扱う。引用に使う正の DOI が Zenodo であることは変わらない。SSRN に載ったものも、論文の枠の外にある。いま論文の枠に入るものは一つも無い。出す先の決めは上の段のまま変えない。この段が決めるのは、載ったものの数え方だけである。
 
 これからの二つとは別に、定期的な目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。一度通れば終わりにはしない。しばらくは、これを繰り返す目標として置く。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。出す一本の errata-check は、最初のコミットが 2026-09-07、最短が 2027-03-08 である。作業が数週間に集中している点は、待つだけでは埋まらない。使いながら手を入れ続けた跡が要る。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは errata-check 一本である。ほかは、論文・史料ノート・覚書か、JOSS の範囲に届かないと見ている道具である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
 
@@ -268,12 +268,12 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1200 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1201 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 697 項目
+node verification/check_site.js      # サイトの構造 698 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
