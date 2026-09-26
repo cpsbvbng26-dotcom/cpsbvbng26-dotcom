@@ -240,6 +240,11 @@ Series I の改訂版と Series III は 2026-09-18 に落とされました。
 
 researchmap と PhilPeople と Kudos は、面と置き場が同じ一つです。
 
+**researchmap と HAL の論文の枠に入れるものは限っています**。学位論文、分野の区分で Q1 の誌、
+分野のダイヤモンド・オープンアクセスの査読誌に載ったものだけです。ほかはワーキングペーパー・
+プレプリント・MISC として扱います（[submission-disclosure.md](submission-disclosure.md) の
+2026-09-26 の節）。
+
 HAL は 2001年に École normale supérieure で始まり、のちに CCSD へ移っています。
 PhilPapers Foundation は David Bourget（Western）と David Chalmers（NYU・ANU）が
 共同で運営しています。どちらも同じ等級です。
