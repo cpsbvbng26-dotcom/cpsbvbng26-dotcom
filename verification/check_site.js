@@ -1659,31 +1659,48 @@ section('10.59 自己紹介が名乗っていること');
     const 枠 = {
       'index.html': ['載ったものをどの枠で数えるかも決めてある',
                      'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
-                     'いま論文の枠に入るものは一つも無い'],
+                     'いま論文の枠に入るものは一つも無い',
+                     'その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることである',
+                     'Zenodo にしか無いものは、どちらの枠にも入れない'],
       'index.en.html': ['How published work is counted is fixed as well',
                         'Everything else is treated as a working paper, a preprint, or MISC',
-                        'Nothing qualifies at present'],
+                        'Nothing qualifies at present',
+                        'The floor for that is appearing on SSRN, PhilPapers, or arXiv',
+                        'Work that exists only on Zenodo goes into neither section'],
       'index.de.html': ['Auch die Einordnung ist festgelegt',
                         'Alles andere gilt als Working Paper, Preprint oder MISC',
-                        'Derzeit erfüllt nichts diese Bedingung'],
+                        'Derzeit erfüllt nichts diese Bedingung',
+                        'Die Untergrenze dafür ist ein Eintrag bei SSRN, PhilPapers oder arXiv',
+                        'Was nur auf Zenodo liegt, kommt in keine der beiden Rubriken'],
       'index.fr.html': ['Le classement est fixé lui aussi',
                         'Tout le reste est traité comme document de travail, préprint ou MISC',
-                        'Rien n’y entre pour l’instant'],
+                        'Rien n’y entre pour l’instant',
+                        'Le seuil pour cela est d’être présent sur SSRN, PhilPapers ou arXiv',
+                        'Ce qui n’existe que sur Zenodo n’entre dans aucune des deux rubriques'],
       'index.it.html': ['È stabilita anche la classificazione',
                         'Tutto il resto è trattato come working paper, preprint o MISC',
-                        'Al momento nulla vi rientra'],
+                        'Al momento nulla vi rientra',
+                        'La soglia per questo è la presenza su SSRN, PhilPapers o arXiv',
+                        'Ciò che esiste solo su Zenodo non entra in nessuna delle due sezioni'],
       'README.md': ['載ったものをどの枠で数えるかも決めてある',
                     'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
-                    'いま論文の枠に入るものは一つも無い'],
+                    'いま論文の枠に入るものは一つも無い',
+                    'Zenodo にしか無いものは、どちらの枠にも入れない'],
       'README.en.md': ['How published work is counted is fixed as well',
                        'Everything else is treated as a working paper, a preprint, or MISC',
-                       'Nothing qualifies at present'],
+                       'Nothing qualifies at present',
+                       'Work that exists only on Zenodo goes into neither section'],
       'docs/submission-disclosure.md': ['### 論文の枠に入れるもの',
                                         '**ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います**',
                                         '**出す先の決め（決めごと 14）は変えません**',
-                                        '**Q1 をどの指標で判定するかは、まだ決めていません**'],
-      'docs/self-assessment.md': ['| 論文の枠 | 著者の決め（2026-09-26） |'],
-      'docs/canonical-sources.md': ['**researchmap と HAL の論文の枠に入れるものは限っています**'],
+                                        '**Q1 をどの指標で判定するかは、まだ決めていません**',
+                                        '### 論文以外の枠の下限',
+                                        '**Zenodo にしか無いものは、どちらの枠にも入れません**',
+                                        '**引用に使う正の DOI が Zenodo であることは変わりません**'],
+      'docs/self-assessment.md': ['| 論文の枠 | 著者の決め（2026-09-26） |',
+                                  '| 論文以外の枠 | 著者の決め（2026-09-26） |'],
+      'docs/canonical-sources.md': ['**researchmap と HAL の論文の枠に入れるものは限っています**',
+                                    '**Zenodo にしか無いものは、業績の枠に入れません**'],
     };
     const 落ち = [];
     Object.keys(枠).forEach((f) => {
@@ -1706,6 +1723,23 @@ section('10.59 自己紹介が名乗っていること');
        枠行 !== null && 頁は空 === 表は空 && (!空のはず || 表は空),
        '表 ' + (枠行 ? 枠行[1] + ' 件' : '行が無い') + '　頁の断り ' + (頁は空 ? 'あり' : '無い')
        + '　査読 ' + (査読 ? 査読[1] + ' 篇' : '取れない') + '・学位 ' + (学位なし ? 'なし' : 'あり'));
+  }
+
+  /* **論文以外の枠の件数は、置き場の表から数え直す。**下限は SSRN・PhilPapers・arXiv の
+   * どれかに載っていることで、Zenodo だけのものは数えない。doi-index.md の「別の所在」の表で、
+   * SSRN か PhilArchive（PhilPapers の側の置き場）か arXiv を持つ行を数え、現状評価の行と合わせる。
+   * **置き場が一つ消えれば、表から消えて数が動く。**散文の数だけが据え置きになる形を止める。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 別の所在にある同一本文');
+    const j = di.indexOf('## 削除した所在');
+    const 表 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 行 = 表.split('\n').filter((l) => /^\| [^-|]/.test(l) && l.indexOf('`10.5281/zenodo.') >= 0);
+    const 数 = 行.filter((l) => /SSRN `|PhilArchive `|arXiv `/.test(l.split('|')[3] || '')).length;
+    const m = /^\| 論文以外の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(read('docs/self-assessment.md'));
+    ok('論文以外の枠の件数が、置き場の表から数え直したものと合う',
+       m !== null && 行.length > 0 && Number(m[1]) === 数,
+       '表から ' + 数 + ' 件 / 現状評価 ' + (m ? m[1] + ' 件' : '行が無い'));
   }
 
   ok('三篇の道具は特定できないと、同じ段に書いてある',
