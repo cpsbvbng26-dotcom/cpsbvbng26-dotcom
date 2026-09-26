@@ -1541,6 +1541,26 @@ console.log('\n7.10 定期的な目標（JOSS）');
       '印字 ' + (a || '取れない') + ' / ' + (b || '取れない')
       + '　git ' + 全部[0] + ' / ' + 道具[0]);
   }
+  /* **出す一本の日付も頁に印字してある。**十の最も早い日とは別の数なので、別に見る。 */
+  {
+    const 初 = 最初('errata-check');
+    const d = new Date(初 + 'T00:00:00Z');
+    d.setUTCMonth(d.getUTCMonth() + 6);
+    d.setUTCDate(d.getUTCDate() + 1);
+    const 短 = 初 ? d.toISOString().slice(0, 10) : '';
+    const ja = 印字(read('cpsbvbng26-dotcom', 'index.html'),
+      /errata-check は、最初のコミットが <b>(\d{4}-\d{2}-\d{2})<\/b>、最短が <b>\d{4}-\d{2}-\d{2}<\/b>/);
+    const ja短 = 印字(read('cpsbvbng26-dotcom', 'index.html'),
+      /errata-check は、最初のコミットが <b>\d{4}-\d{2}-\d{2}<\/b>、最短が <b>(\d{4}-\d{2}-\d{2})<\/b>/);
+    const en = 印字(read('cpsbvbng26-dotcom', 'index.en.html'),
+      /the first commit is <b>(\d{4}-\d{2}-\d{2})<\/b> and the earliest possible submission is <b>\d{4}-\d{2}-\d{2}<\/b>/);
+    const en短 = 印字(read('cpsbvbng26-dotcom', 'index.en.html'),
+      /the first commit is <b>\d{4}-\d{2}-\d{2}<\/b> and the earliest possible submission is <b>(\d{4}-\d{2}-\d{2})<\/b>/);
+    check('出す一本の最初のコミットと最短が、頁と git で合う',
+      初 !== '' && ja === 初 && en === 初 && ja短 === 短 && en短 === 短,
+      '印字 ' + (ja || '取れない') + ' / ' + (ja短 || '取れない') + '（en ' + (en || '取れない')
+      + ' / ' + (en短 || '取れない') + '）　git ' + (初 || '取れない') + ' / ' + 短);
+  }
   check('宣言した二つの日付も、git と合う',
     全部.length === C.repos.length && 全部[0] === J['十で最も早い']
     && 道具.length === J['道具'].length && 道具[0] === J['道具で最も早い'],
@@ -1638,12 +1658,36 @@ console.log('\n7.11 JOSS —— 十の状態');
       '哲学 ' + 哲 + ' / Trinity-Infinity ' + ti);
   }
 
-  /* **出すのは全部である**と書いた以上、十のどれも外していないこと。 */
-  check('全部出すと書いてあり、届いていない門も同じ文書にある',
-    md.indexOf('**出すのは十全部です**。') >= 0
+  /* **出すのは一本である。**2026-09-26 までは「十全部」と書いていた。規定の範囲に
+   * 照らして絞ったので、宣言の語が変わった。**届いていない門を書く条件はそのまま残す。** */
+  check('出すのは一本だと書いてあり、届いていない門も同じ文書にある',
+    md.indexOf('**出すのは `errata-check` 一本です**。') >= 0
+    && md.indexOf('それまでは「出すのは十全部です」と書いていました。') >= 0
     && md.indexOf('いちばん早いものでも、六か月を超えていません。') >= 0
     && md.indexOf('十とも、著者以外に使われた記録がありません。') >= 0
     && md.indexOf('**論文と史料ノートは、そもそも software ではありません**。') >= 0);
+
+  /* **絞ったなら、外したものも一つずつ挙げる。**「一本」とだけ書くと、残りを
+   * 黙って落としたように読める。絞った表が十を一度ずつ挙げ、**出す**が一行だけで、
+   * それが散文の一本と同じであることを見る。 */
+  {
+    const i = md.indexOf('## 一本に絞った —— 2026-09-26');
+    const j = md.indexOf('## 門は四つある');
+    const 節 = (i >= 0 && j > i) ? md.slice(i, j) : '';
+    const 行 = 節.split('\n').filter((l) => l.startsWith('| ') && !l.startsWith('| ---')
+      && !l.startsWith('| リポジトリ'))
+      .map((l) => l.split('|').map((x) => x.trim()));
+    const 名 = 行.map((c) => c[1]);
+    const 出す = 行.filter((c) => c[2] === '**出す**').map((c) => c[1]);
+    const 欠け = C.repos.filter((r) => 名.indexOf(r) < 0);
+    const 重複 = 名.filter((r, k) => 名.indexOf(r) !== k);
+    check('絞った表が十を一度ずつ挙げ、出すのは散文の一本と同じ',
+      行.length === C.repos.length && 欠け.length === 0 && 重複.length === 0
+      && 出す.length === 1 && 出す[0] === 'errata-check'
+      && md.indexOf('**出すのは `' + 出す[0] + '` 一本です**。') >= 0,
+      欠け.length ? '欠け ' + 欠け.join(', ') : (重複.length ? '重複 ' + 重複.join(', ')
+        : '出す ' + (出す.join(', ') || '無し') + ' / ' + 行.length + ' 行'));
+  }
 
   /* **software でないものの数を、表から数え直す。**
    * 散文に「この五つ」と書いた以上、表の種別と食い違えば落ちる。 */
@@ -1653,7 +1697,7 @@ console.log('\n7.11 JOSS —— 十の状態');
     const n = 行.filter((l) => 非.indexOf(l.split('|')[2].trim()) >= 0).length;
     const 漢 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][n];
     check('software でないものの数が、表と散文で合う',
-      md.indexOf('この' + 漢 + 'つを出すなら') >= 0,
+      md.indexOf('この' + 漢 + 'つは出しません。') >= 0,
       '表から数えて ' + n + ' 件');
   }
 }

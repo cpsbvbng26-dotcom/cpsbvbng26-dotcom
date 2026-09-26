@@ -1242,7 +1242,7 @@
           "六か月の条件から逆算すると",
           "出すのはその先である",
           "リンクと強調の記法だけ外してある",
-          "出すのは十全部である",
+          "出すのは errata-check 一本である",
           "論文の側も出す",
           "プレプリントは動かさない",
           "取り下げるのではない"
@@ -1261,7 +1261,7 @@
           "Counting back from the six-month requirement",
           "Submission comes after that",
           "with only link and emphasis markup removed",
-          "All ten are to be submitted",
+          "Only errata-check is to be submitted",
           "are being submitted too",
           "The preprints do not move",
           "This is not a withdrawal"
@@ -1275,7 +1275,7 @@
           "ohne Publikations- und ohne Einreichungsgebühren",
           "Erreicht ist davon noch nichts",
           "Eingereicht wurde noch nichts",
-          "Eingereicht werden sollen alle neun",
+          "Eingereicht wird nur errata-check",
           "werden nicht eingereicht",
           "im Preprint-Regal",
           "Zurückgezogen wird nichts"
@@ -1289,7 +1289,7 @@
           "sans frais de publication ni de soumission",
           "Rien de tout cela n’est atteint",
           "Rien n’a encore été soumis",
-          "Les neuf doivent tous être soumis",
+          "Seul errata-check sera soumis",
           "ne seront pas soumis",
           "l’étagère des préprints",
           "Rien n’est retiré"
@@ -1303,7 +1303,7 @@
           "senza spese di pubblicazione né di sottomissione",
           "Nulla di ciò è ancora raggiunto",
           "Nulla è stato ancora inviato",
-          "Devono essere inviati tutti e nove",
+          "Verrà inviato solo errata-check",
           "non verranno inviati",
           "scaffale dei preprint",
           "Nulla viene ritirato"
@@ -1316,7 +1316,7 @@
           "一度通れば終わりにはしない",
           "六か月の条件から逆算すると",
           "出すのはその先である",
-          "出すのは十全部である",
+          "出すのは errata-check 一本である",
           "論文の側も出す",
           "プレプリントは動かさない"
         ]
@@ -1328,7 +1328,7 @@
           "One acceptance will not close it",
           "Counting back from the six-month requirement",
           "Submission comes after that",
-          "All ten are to be submitted",
+          "Only errata-check is to be submitted",
           "are being submitted too",
           "The preprints do not move"
         ]
