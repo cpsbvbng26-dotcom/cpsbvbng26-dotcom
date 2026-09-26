@@ -1,10 +1,42 @@
-# JOSS に出す —— 十の状態
+# JOSS に出す —— 一本と、十の状態
 
-直近の目標は、Journal of Open Source Software（JOSS。ISSN `2475-9066`）に通すことです。
-**出すのは十全部です**。この文書は、十のそれぞれが、どの門をいつどう満たすかを並べる。
+定期的な目標は、Journal of Open Source Software（JOSS。ISSN `2475-9066`）に通すことです。
+**出すのは `errata-check` 一本です**。2026-09-26 に決めを変えました。
+それまでは「出すのは十全部です」と書いていました。
+この文書は、その一本がどの門をいつどう満たすかと、ほかを出さない理由を並べます。
 
 **明文は `openjournals/joss` の `docs/` から写しています**。リンクと強調の記法だけ外してあります。
 **`joss.theoj.org` にはこの作業環境から届きません**。照合したのは、その公開リポジトリの中身です。
+
+## 一本に絞った —— 2026-09-26
+
+**JOSS が載せるのは研究ソフトウェアです**（`JOSS publishes articles about research software.`）。
+範囲の外のものまで、出す数に入れていました。規定を読み直して、一つずつ当てました。
+
+| リポジトリ | 出すか | 理由 |
+| --- | --- | --- |
+| errata-check | **出す** | 公開した研究物の正誤表を監査する道具。範囲に入り、形もほぼ揃っている |
+| cpsbvbng26-dotcom | 出さない | この場所と、横断の検査。研究ソフトウェアではない |
+| researcher-profile | 出さない | プロフィールの頁を作る道具。研究ソフトウェアとは言いにくい |
+| trinity-operator | 出さない | 既知の数学の実装。数学の側はここで終えた |
+| self-correction | 出さない | 中心は訂正の登録簿で、検査はその付属 |
+| trinity-infinity | 出さない | 論文 |
+| autonomy-and-self-cultivation | 出さない | 論文 |
+| justice-and-algorithms | 出さない | 論文 |
+| naval-gazette-notes | 出さない | 史料ノート |
+| solitary-school | 出さない | 覚書 |
+
+**`errata-check` にも、まだ届いていないものがあります**。
+
+- **門 2**。使っているのは著者自身の正誤表だけで、外の利用者はいません。
+- **門 4**。作業は最初の数週間に集まっています。
+- **大きさ**。場の側は `"Minor utility" packages, including "thin" API clients, and single-function packages are not acceptable` と書いています。本体は一つのファイルです。
+
+**AI の使用は、それだけでは壁になりません**。場の側は使用を認めています
+（`The Journal of Open Source Software permits the use of generative AI in submissions with mandatory disclosure and human oversight requirements.`）。
+ただし、人が主要な設計を決めたと書かせます
+（`Authors must affirm that human team members thoroughly reviewed, modified, and validated all AI-generated content while making primary architectural and design decisions.`）。
+**`errata-check` のコミットの大半は、Claude との共作です**。この一文に署名できるかは、著者が決めることです。
 
 ## 門は四つある
 
@@ -46,6 +78,7 @@
 
 **この門は日付で決まる**。六か月を超えるのは、この場所そのものが 2026-12-13、
 道具の側が 2027-03-06 です。待てば満ちる唯一の門です。
+出す一本の `errata-check` は 2027-03-08 です。
 
 ## 門 2 —— 証拠の側に、一つだけ材料がある
 
@@ -85,15 +118,17 @@ Trinity-Infinity の三篇も同じ道具で監査しています。
 ## 門 4 —— 履歴が伸びるのを待つ
 
 **いまの作業は数週間に集中しています**。`not a single burst of commits` の逆です。
-足して直せるものではありません。**効くのは時間だけです**。門 1 と同じ日付で満ちる。
+足して直せるものではありません。**ただし、待つだけでも満ちません**。
+場の側が見るのは `evidence that the software has been refined through use and feedback over time` です。
+使いながら手を入れ続けた跡が要ります。
 
 ## 種別で分かれるもの
 
 **論文と史料ノートは、そもそも software ではありません**。覚書も同じです。
 `LICENSE` が CC BY 4.0 で、MIT は `LICENSE-CODE` のほうにある（決めごと 7）。
 JOSS が受けるのは research software であって、論文そのものではありません。
-この五つを出すなら、出せるのは同梱の検査の側だけです。
-切り出すのはこれからです。
+この五つは出しません。
+出せるとすれば同梱の検査の側ですが、切り出しません。
 
 ## 論文の側も出す —— 開示できない部分を、できないまま書いて出す
 

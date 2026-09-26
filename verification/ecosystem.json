@@ -1208,8 +1208,8 @@
       "README.en.md"
     ]
   },
-  "直近の目標": {
-    "_": "直近の目標として JOSS を挙げる。名前・識別子・明文の条件・届いていない分を、五つの面と README 二つに同じだけ置く。",
+  "定期的な目標": {
+    "_": "定期的な目標として JOSS を挙げる。名前・識別子・明文の条件・届いていない分を、五つの面と README 二つに同じだけ置く。一度で終わりにしないと書いた分も、同じところで固める。",
     "_なぜ": "**目標だけを書くと、達成の宣言に読める。**場の側は将来の言明を根拠として認めないと明記している。こちらも、いま届いていない分を同じ場所に書く。日付は git から取って突き合わせる。",
     "十で最も早い": "2026-06-12",
     "道具で最も早い": "2026-09-05",
@@ -1232,7 +1232,8 @@
       {
         "file": "index.html",
         "必ず書いてあること": [
-          "直近の目標がある",
+          "定期的な目標がある",
+          "一度通れば終わりにはしない",
           "掲載料も投稿料も取らない場である",
           "The software must be open source as per the OSI definition",
           "The repository must have been public for more than six months prior to submission",
@@ -1241,7 +1242,7 @@
           "六か月の条件から逆算すると",
           "出すのはその先である",
           "リンクと強調の記法だけ外してある",
-          "出すのは十全部である",
+          "出すのは errata-check 一本である",
           "論文の側も出す",
           "プレプリントは動かさない",
           "取り下げるのではない"
@@ -1250,7 +1251,8 @@
       {
         "file": "index.en.html",
         "必ず書いてあること": [
-          "there is a nearer goal",
+          "there is a recurring goal",
+          "One acceptance will not close it",
           "charges neither publication nor submission fees",
           "The software must be open source as per the OSI definition",
           "The repository must have been public for more than six months prior to submission",
@@ -1259,7 +1261,7 @@
           "Counting back from the six-month requirement",
           "Submission comes after that",
           "with only link and emphasis markup removed",
-          "All ten are to be submitted",
+          "Only errata-check is to be submitted",
           "are being submitted too",
           "The preprints do not move",
           "This is not a withdrawal"
@@ -1268,11 +1270,12 @@
       {
         "file": "index.de.html",
         "必ず書いてあること": [
-          "ein näheres Ziel",
+          "ein wiederkehrendes Ziel",
+          "Mit einer Annahme ist es nicht abgeschlossen",
           "ohne Publikations- und ohne Einreichungsgebühren",
           "Erreicht ist davon noch nichts",
           "Eingereicht wurde noch nichts",
-          "Eingereicht werden sollen alle neun",
+          "Eingereicht wird nur errata-check",
           "werden nicht eingereicht",
           "im Preprint-Regal",
           "Zurückgezogen wird nichts"
@@ -1281,11 +1284,12 @@
       {
         "file": "index.fr.html",
         "必ず書いてあること": [
-          "un but plus proche",
+          "un but récurrent",
+          "Une acceptation ne clôt pas l’affaire",
           "sans frais de publication ni de soumission",
           "Rien de tout cela n’est atteint",
           "Rien n’a encore été soumis",
-          "Les neuf doivent tous être soumis",
+          "Seul errata-check sera soumis",
           "ne seront pas soumis",
           "l’étagère des préprints",
           "Rien n’est retiré"
@@ -1294,11 +1298,12 @@
       {
         "file": "index.it.html",
         "必ず書いてあること": [
-          "un obiettivo più vicino",
+          "un obiettivo ricorrente",
+          "Un’accettazione non lo chiude",
           "senza spese di pubblicazione né di sottomissione",
           "Nulla di ciò è ancora raggiunto",
           "Nulla è stato ancora inviato",
-          "Devono essere inviati tutti e nove",
+          "Verrà inviato solo errata-check",
           "non verranno inviati",
           "scaffale dei preprint",
           "Nulla viene ritirato"
@@ -1307,10 +1312,11 @@
       {
         "file": "README.md",
         "必ず書いてあること": [
-          "直近の目標がある",
+          "定期的な目標がある",
+          "一度通れば終わりにはしない",
           "六か月の条件から逆算すると",
           "出すのはその先である",
-          "出すのは十全部である",
+          "出すのは errata-check 一本である",
           "論文の側も出す",
           "プレプリントは動かさない"
         ]
@@ -1318,10 +1324,11 @@
       {
         "file": "README.en.md",
         "必ず書いてあること": [
-          "there is a nearer goal",
+          "there is a recurring goal",
+          "One acceptance will not close it",
           "Counting back from the six-month requirement",
           "Submission comes after that",
-          "All ten are to be submitted",
+          "Only errata-check is to be submitted",
           "are being submitted too",
           "The preprints do not move"
         ]

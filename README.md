@@ -24,7 +24,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
 
-ここにあるものの根幹は、独学と、言語モデルを使って進めたことである。指導教員も共同研究者もいない。ただし、大学の単位は独学ではない。授業を受け、課題を出し、評価を受けて得たものである。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にある —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことである。
+ここにあるものの根幹は、独学と、言語モデルを使って進めたことである。指導教員も共同研究者もいない。「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。ただし、大学の単位は独学ではない。授業を受け、課題を出し、評価を受けて得たものである。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にある —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことである。
 
 この場所そのものは、Anthropic の Claude を使って作っている。頁の生成、検査の道具、記録 —— git の履歴に Co-Authored-By: Claude Opus 5 が並んでいる。ただし、哲学三篇に何を使ったかは特定できない —— 記録が残っておらず、著者の記憶でも定まらない（三篇の正誤表 E5）。Trinity-Infinity の側は特定できる —— 2025年の初稿は言語モデル（ChatGPT / OpenAI）が生成し、2026年の改訂は Claude Code（Anthropic）で書いている。道具の名前を一つに絞れないのは、哲学三篇だけである。
 
@@ -36,15 +36,21 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 数学の側について、一つ確定したことがある。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型だった —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）である。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われている。脚注ではなく、その分野の二本柱の一本だった。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていない（ERRATA の E8、重大度・高）。ただし寸法は正確に書く。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪である。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としている。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項である。
 
-ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。これからのものは、趣味と呼ばずに済む形で書く。
+ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。趣味の研究は、学部一年で卒業した。これからのものは、趣味と呼ばずに済む形で書く。
+
+edX と東北大学 MOOC の修了証も、学部一年の前半で終えている。七件ある。そして、ここに並べたものは全部、学部一年時の実績である。七篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件。日付そのものは突き合わせていない。修了証に印字されてはいるが、この作業環境から edX にも発行機関にも届かない。在籍の開始日も、ここには書かない。書けば、確かめていない日付を印字することになる。
 
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
-これからの二つとは別に、直近の目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。作業が数週間に集中している点は、履歴が伸びるぶんで埋まる。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは十全部である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
+載ったものをどの枠で数えるかも決めてある。researchmap と HAL の論文の枠に入れるのは、学位論文と、分野の区分で Q1 の誌、分野のダイヤモンド・オープンアクセスの査読誌に載ったものだけである。ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う。その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることである。Zenodo にしか無いものは、どちらの枠にも入れない。Zenodo は、それらのスクリーニングを通らなかったものを、研究の透明性のために置いておく場として扱う。引用に使う正の DOI が Zenodo であることは変わらない。SSRN に載ったものも、論文の枠の外にある。いま論文の枠に入るものは一つも無い。出す先の決めは上の段のまま変えない。この段が決めるのは、載ったものの数え方だけである。
+
+これからの二つとは別に、定期的な目標がある。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことである。一度通れば終わりにはしない。しばらくは、これを繰り返す目標として置く。掲載料も投稿料も取らない場である —— 決めごと 14 が許す側に当たる。通れば Crossref の DOI が付く。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になる。明文の条件は、場の言葉のまま次のとおりである。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門がある。一つでも欠ければ、査読に入らずに返される（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りない。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっている。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものである。道具の側は、いちばん早いもので 2026-09-05 である。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になる。出す一本の errata-check は、最初のコミットが 2026-09-07、最短が 2027-03-08 である。作業が数週間に集中している点は、待つだけでは埋まらない。使いながら手を入れ続けた跡が要る。出すのはその先である。この場は生成 AI の使用の開示も求めている（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせる。決めごと 8 が、同じことを先に決めている。出すのは errata-check 一本である。ほかは、論文・史料ノート・覚書か、JOSS の範囲に届かないと見ている道具である。どれがどの門に届いていないかは、十の状態に一つずつ並べてある。明文は openjournals/joss の docs/ から写した。リンクと強調の記法だけ外してある。
 
 そして、論文の側も出す。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に出す。2026-09-15 に決めを変えた。それまでは出さないと決めていた。理由は費用ではなく、生成 AI の使用を完全には開示できないことであった。哲学三篇は、翻訳に用いた道具を特定できない —— 記録が残っておらず、著者の記憶でも定まらない（ERRATA の E5）。変えた理由は一点である。「何を使ったか再構成できない」と書くことは、分かっていることの全部を書くことである。不完全なのは開示ではなく、開示できる材料のほうである。受け付けるかどうかは場の判断であって、こちらで先回りして落とすものではない。COPE に沿う場の定めは守る —— AI を著作者に並べない。使用は開示する。プレプリントは動かさない。Zenodo と PhilArchive と SSRN に置いたままにする。取り下げるのではない。査読誌に出すこととは別である。道具の側は、git の履歴が commit ごとに開示を裏づける。丸を付けない欄が一つある —— 「文章は実質的に著者自身のものである」という申告には、丸を付けない。開示を求める場と、著者自身の筆であることを申告させる場は、別である（十の状態）。
 
-先の見通しも書いておく。上の二つ以外は眼中にない。事業を承継すること、博士号を取ったのちオンライン大学で教えること。そして、他者と接する機会を極限まで削った状態で生きることになるだろう。この暮らし方は、書いたものと同じ向きを向いている。独身者の模範性と貴族性が擁護したのは、まさにその型である —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていない。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっている。暮らし方が主張の裏付けになるわけではない。順序は逆で、主張のほうが、まだ足で立っていない。
+向きを一つ変えた。2026-09-23 に決めた。これからは、制度のなかで成果を出すことに注力する。学会で発表すること、そこで賞を受けることである。どちらもまだ一件もない。ここまでにあるのは、受け付けの門を通ったプレプリントと、置き場の控えだけである。その二つは、査読を通った実績ではない。JOSS を定期的な目標に置いたのも、同じ向きからである。
+
+先の見通しも書いておく。上の二つ以外は眼中にない。事業を承継すること、博士号を取ったのちオンライン大学で教えること。学会と賞は、その二つ目に向かう途上にある。目標が三つに増えたのではない。そして、他者と接する機会を極限まで削った状態で生きることになるだろう。この暮らし方は、書いたものと同じ向きを向いている。独身者の模範性と貴族性が擁護したのは、まさにその型である —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていない。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっている。暮らし方が主張の裏付けになるわけではない。順序は逆で、主張のほうが、まだ足で立っていない。
 
 死後に残るものを、生きているうちに整えている。残る先は三つある —— 石、紙、デジタルである。いま現に在るのは、墓と ORCID と DOI である。諡名は死後に刻み、学位はまだ無い。
 
@@ -165,11 +171,11 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 | --- | --- | --- | --- |
 | [The Nobility and Exemplarity of the Celibate Individual](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/celibate-individual.md) | 性的活動を倫理的な義務とみなす通説を反出生主義の側から検討し、自足的な幸福という観点から独身を自己陶冶の型として擁護する | v2 — 2026年8月 | [10.5281/zenodo.22058254](https://doi.org/10.5281/zenodo.22058254)<br>SSRN [10.2139/ssrn.7358779](https://doi.org/10.2139/ssrn.7358779)<br>PhilArchive [NEMTNA](https://philarchive.org/rec/NEMTNA)<br>HAL [hal-05758942](https://hal.science/hal-05758942) |
 | [Manifesto of Imperial Selfhood](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/imperial-selfhood.md) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 | [10.5281/zenodo.22057583](https://doi.org/10.5281/zenodo.22057583)<br>SSRN [10.2139/ssrn.7358818](https://doi.org/10.2139/ssrn.7358818)<br>PhilArchive [NEMMOI](https://philarchive.org/rec/NEMMOI)<br>HAL [hal-05758968](https://hal.science/hal-05758968) |
-| [Fragmentarian Spiritual Individualism](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/fragmentarian-spiritual-individualism.md) | 断片化を修復すべき傷とみなさず、そこに住まうための規律を組み立てる | 2026年8月 | [10.5281/zenodo.22064241](https://doi.org/10.5281/zenodo.22064241)<br>PhilArchive [NEMFSI](https://philarchive.org/rec/NEMFSI)<br>HAL [hal-05759279](https://hal.science/hal-05759279) |
+| [Fragmentarian Spiritual Individualism](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/fragmentarian-spiritual-individualism.md) | 断片化を修復すべき傷とみなさず、そこに住まうための規律を組み立てる | 2026年8月 | [10.5281/zenodo.22064241](https://doi.org/10.5281/zenodo.22064241)<br>PhilArchive [NEMFSI](https://philarchive.org/rec/NEMFSI) |
 | [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709)<br>SSRN [10.2139/ssrn.7449338](https://doi.org/10.2139/ssrn.7449338)<br>Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12)<br>HAL [hal-05759080](https://hal.science/hal-05759080) |
-| [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示します。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624)<br>HAL [hal-05759325](https://hal.science/hal-05759325) |
+| [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示します。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961)<br>HAL [hal-05759064](https://hal.science/hal-05759064) |
-| [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964)<br>HAL [hal-05759296](https://hal.science/hal-05759296) |
+| [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 
 > Series I についての注記。 Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。撤回した内容は消していない。
 
@@ -183,7 +189,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
-| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった**。残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均です。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である**。犯した誤りは、その講義が試験で問う取り違えです。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御です。三篇と、その検証 294 項目（定理 15・印字された数値 32・正誤表の監査 108・経路 139）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
+| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった**。残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均です。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である**。犯した誤りは、その講義が試験で問う取り違えです。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御です。三篇と、その検証 298 項目（定理 15・印字された数値 32・正誤表の監査 108・経路 143）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 190 項目 | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する**。DOI が付いた PDF は直せません。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
 | [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する**。いま 92 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
@@ -262,12 +268,12 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1189 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1202 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 413 項目
-node verification/check_site.js      # サイトの構造 686 項目
+node verification/check_site.js      # サイトの構造 699 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -301,7 +307,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 302 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 437 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 439 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
