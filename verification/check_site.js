@@ -1652,6 +1652,62 @@ section('10.59 自己紹介が名乗っていること');
        行 === null ? '軸が無い' : 行[1].trim());
   }
 
+  /* **数え方の決めは、置いた面の数だけ固める。**論文の枠に入れるものを限ると決めても、
+   * 一つの面から消えれば、そこでは何でも論文として並べてよいように読める。
+   * 入口の五言語、README 二つ、それに記録の三つで同じ決めを見る。 */
+  {
+    const 枠 = {
+      'index.html': ['載ったものをどの枠で数えるかも決めてある',
+                     'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
+                     'いま論文の枠に入るものは一つも無い'],
+      'index.en.html': ['How published work is counted is fixed as well',
+                        'Everything else is treated as a working paper, a preprint, or MISC',
+                        'Nothing qualifies at present'],
+      'index.de.html': ['Auch die Einordnung ist festgelegt',
+                        'Alles andere gilt als Working Paper, Preprint oder MISC',
+                        'Derzeit erfüllt nichts diese Bedingung'],
+      'index.fr.html': ['Le classement est fixé lui aussi',
+                        'Tout le reste est traité comme document de travail, préprint ou MISC',
+                        'Rien n’y entre pour l’instant'],
+      'index.it.html': ['È stabilita anche la classificazione',
+                        'Tutto il resto è trattato come working paper, preprint o MISC',
+                        'Al momento nulla vi rientra'],
+      'README.md': ['載ったものをどの枠で数えるかも決めてある',
+                    'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
+                    'いま論文の枠に入るものは一つも無い'],
+      'README.en.md': ['How published work is counted is fixed as well',
+                       'Everything else is treated as a working paper, a preprint, or MISC',
+                       'Nothing qualifies at present'],
+      'docs/submission-disclosure.md': ['### 論文の枠に入れるもの',
+                                        '**ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います**',
+                                        '**出す先の決め（決めごと 14）は変えません**',
+                                        '**Q1 をどの指標で判定するかは、まだ決めていません**'],
+      'docs/self-assessment.md': ['| 論文の枠 | 著者の決め（2026-09-26） |'],
+      'docs/canonical-sources.md': ['**researchmap と HAL の論文の枠に入れるものは限っています**'],
+    };
+    const 落ち = [];
+    Object.keys(枠).forEach((f) => {
+      const h = read(f);
+      枠[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('論文の枠に入れるものを限る決めが、十の面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '五言語・README 二つ・記録三つ');
+
+    /* **「一つも無い」は、現状評価の表と合わせる。**査読を通った論文が 0 篇で学位も無いなら、
+     * 論文の枠は 0 件でしかありえない。頁の断りと表の行が食い違えば落ちる。 */
+    const A = read('docs/self-assessment.md');
+    const 査読 = /^\| 査読を通った論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(A);
+    const 学位なし = /^\| 学位 \| 大学 \| \*\*なし\*\*/m.test(A);
+    const 枠行 = /^\| 論文の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(A);
+    const 頁は空 = ja.indexOf('いま論文の枠に入るものは一つも無い') >= 0;
+    const 表は空 = 枠行 !== null && Number(枠行[1]) === 0;
+    const 空のはず = 査読 !== null && Number(査読[1]) === 0 && 学位なし;
+    ok('論文の枠が空だという断りが、現状評価の表と合う',
+       枠行 !== null && 頁は空 === 表は空 && (!空のはず || 表は空),
+       '表 ' + (枠行 ? 枠行[1] + ' 件' : '行が無い') + '　頁の断り ' + (頁は空 ? 'あり' : '無い')
+       + '　査読 ' + (査読 ? 査読[1] + ' 篇' : '取れない') + '・学位 ' + (学位なし ? 'なし' : 'あり'));
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
