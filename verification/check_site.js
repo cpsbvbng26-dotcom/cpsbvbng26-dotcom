@@ -1742,6 +1742,28 @@ section('10.59 自己紹介が名乗っていること');
        '表から ' + 数 + ' 件 / 現状評価 ' + (m ? m[1] + ' 件' : '行が無い'));
   }
 
+  /* **仮の肩書きは、注釈と一緒にしか出さない。**この仮の肩書きを使うと決めたのは
+   * 2026-09-26 で、実際には一学部生だという注釈と一体の一文としてだけである。
+   * 語だけが一人歩きする形は check_text.js が止める。ここでは、注釈つきの文が
+   * 置くと決めた面の全部にあることを見る。一つの面から落ちれば、そこだけ肩書きが消えて
+   * 見え方が揃わない。 */
+  {
+    const 注釈 = {
+      'index.html': '<b>「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。</b>',
+      'index.en.html': '<b>“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.</b>',
+      'index.de.html': '<b>„Unabhängiger Forscher“ ist ein vorläufiger Titel der Verständlichkeit halber; tatsächlich ist der Autor Bachelorstudent.</b>',
+      'index.fr.html': '<b>« Chercheur indépendant » est un titre provisoire, pour la clarté ; en réalité, l’auteur est étudiant de premier cycle.</b>',
+      'index.it.html': '<b>«Ricercatore indipendente» è un titolo provvisorio, per chiarezza; in realtà l’autore è uno studente universitario.</b>',
+      'README.md': '「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。',
+      'README.en.md': '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.',
+      'cv.html': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
+      'docs/self-assessment.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です（2026-09-26 に決めた。',
+    };
+    const 落ち = Object.keys(注釈).filter((f) => read(f).indexOf(注釈[f]) < 0);
+    ok('仮の肩書きが、実際には一学部生だという注釈つきで九つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(', ') : '五言語・README 二つ・CV・現状評価');
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
