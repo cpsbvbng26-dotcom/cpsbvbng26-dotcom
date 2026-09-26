@@ -47,6 +47,16 @@ const FORBIDDEN = [
   { term: 'Independent Researcher', note: '同上（英訳）' }
 ];
 
+/* **例外は、注釈と一体の一文だけ。**2026-09-26、著者が「独立研究者」を分かりやすさの
+ * ための仮の肩書きとして使うと決めた。**語を解禁したのではない。**実際には一学部生で
+ * あるという注釈が同じ一文に入っているときだけ通す。注釈を外して語だけ残せば、
+ * これまでどおり止まる。文は一字一句で照らすので、言い換えれば止まる。 */
+const ALLOWED_TITLE = [
+  '「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である',
+  '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です',
+  '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate'
+];
+
 
 /* ですます調から である調へ書き換えたとき、五段活用の連用形に「た」「ない」を
  * そのまま繋ぐ壊れ方が起きた。「載りました」→「載りた」、「使いません」→「使いない」。
@@ -123,8 +133,9 @@ files.forEach((file) => {
       }
     });
 
+    const 注釈を除いた行 = ALLOWED_TITLE.reduce((l, a) => l.split(a).join(''), line);
     FORBIDDEN.forEach((c) => {
-      if (line.indexOf(c.term) >= 0) {
+      if (注釈を除いた行.indexOf(c.term) >= 0) {
         hits.push({
           file: rel, line: i + 1, kind: '使わないと決めた語',
           msg: '「' + c.term + '」  ' + c.note,
