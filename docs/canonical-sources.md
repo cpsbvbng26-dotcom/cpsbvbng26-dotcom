@@ -245,6 +245,11 @@ researchmap と PhilPeople と Kudos は、面と置き場が同じ一つです�
 プレプリント・MISC として扱います（[submission-disclosure.md](submission-disclosure.md) の
 2026-09-26 の節）。
 
+**論文以外の枠の下限は、SSRN・PhilPapers・arXiv のどれかに載っていることです**。
+**Zenodo にしか無いものは、業績の枠に入れません**。Zenodo は、それらのスクリーニングを
+通らなかったものを研究の透明性のために置いておく場として扱います。
+引用に使う正の DOI が Zenodo であることは変わりません。
+
 HAL は 2001年に École normale supérieure で始まり、のちに CCSD へ移っています。
 PhilPapers Foundation は David Bourget（Western）と David Chalmers（NYU・ANU）が
 共同で運営しています。どちらも同じ等級です。
