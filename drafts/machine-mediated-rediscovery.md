@@ -44,8 +44,7 @@ A language model supplied the mathematical content of a short series of preprint
 presented as a new "framework". Less than a year later, the same author, now working with a
 different language model, established that the central operator was a special case of the Friedkin–Johnsen model of opinion dynamics, a standard model
 that the first preprint had itself named as a neighbouring field without citing any of its
-literature. The route from the first publication to the identification was recorded in nine
-stages, three of them contemporaneously. This paper uses the case to ask what existing
+literature. The route from the first publication to the identification was recorded in nine stages, the last three contemporaneously, before the identification itself. This paper uses the case to ask what existing
 frameworks in the philosophy and sociology of science can and cannot say about novelty claims
 when the generating step is performed by a machine. I argue that (i) the case is neither a
 Mertonian multiple nor a rediscovery in the usual sense, because the arrival was neither
@@ -64,13 +63,11 @@ example is a 1994 paper in *Diabetes Care* that presented, as a new "mathematica
 method for the total area under metabolic curves (Tai 1994). A letter in the same journal later
 that year identified the method as the trapezoidal rule (Monaco & Anderson 1994).
 
-What is new is the route by which such claims can now arise. Large language models return
-standard constructions without indicating their provenance, and their users may publish those
+What is new is the route by which such claims can now arise. Large language models can return standard constructions without indicating their provenance, and their users may publish those
 constructions as their own ideas. Mossel frames the question of what such models do in science
 as a contrast between reasoning and plagiarism, and argues that, because the training data and
 the interaction transcript remain opaque, claims of reasoning do not satisfy Popper's
-refutability principle (Mossel 2026). A study of problems listed as open in the Erdős problems database addressed 13 of them: 4 by
-seemingly novel solutions, and 9 by identifying solutions already in the literature. It names
+refutability principle (Mossel 2026). A study of problems listed as open in the Erdős problems database reports resolving 13 of them, 4 with seemingly novel solutions and 9 by locating solutions already in the literature. It raises
 "the risk of 'subconscious plagiarism' by AI", that is, reproducing knowledge acquired in
 training without attribution (Feng et al. 2026; the counts are those of version 3, and the
 first version reported 5 and 8). Among the known solutions, the authors include cases in which
@@ -81,12 +78,11 @@ Those studies examine expert settings in which the question is whether a model's
 already known. This paper examines a different configuration: a non-expert published a
 model-generated construction as a new framework, later established, while working with a second
 language model, that it was known, and kept a record of the route. One model produced the claim
-of novelty; work with another model withdrew it. The record is unusually complete. Frozen preprints fix
+of novelty; work with another model withdrew it. The record is unusually well documented. Frozen preprints fix
 what was claimed and when. A version-controlled history fixes the later stages. An errata file
 fixes what was retracted and why.
 
-The aim is modest. I do not propose a new theory of discovery. I ask how far four existing
-frameworks reach into this case, and where they stop.
+The aim is modest. I do not propose a new theory of discovery. I ask how far four existing frameworks reach into this case, and where they stop: the distinction between the contexts of discovery and justification (Reichenbach; Duede), Merton's distinction between multiples and singletons, recent accounts of credit for generative AI outputs (Khosrowi, Finn and Clark), and Chang's epistemic iteration.
 
 ### 2. The case
 
@@ -110,8 +106,7 @@ The later history is recorded in nine stages (Table 1). Stages 1–6 are reconst
 frozen preprints; stages 7–9 were recorded as they happened. From stage 2 onward the work was done
 with Claude Code (Anthropic), a second language model. The 2026 revisions of the three preprints
 were drafted, formulated and computationally checked with its help, and 145 of the 151 commits in
-the two repositories that record stages 7–9 and the later identification carry a co-authorship
-line for it. When this paper says "the author" for stages 2–9, it means the author working with
+the two repositories that record stages 7–9 and the later identification carry a co-authorship line naming it. When this paper says "the author" for stages 2–9, it means the author working with
 that model.
 
 **Table 1.** The route. "Contemporaneous" means recorded at the time in a version-controlled
@@ -120,7 +115,7 @@ repository.
 | # | Date | Event | Kind | Record |
 | --- | --- | --- | --- | --- |
 | 1 | 2025-10 | Model output published as a new framework | Generation | Reconstructed |
-| 2 | 2026-08 | Operator written as `x ← DQx + (I − D)p` | Rediscovery | Reconstructed |
+| 2 | 2026-08 | Operator written as `x ← DQx + (I − D)p` | Known form, not recognised as known | Reconstructed |
 | 3 | 2026-08 | Convergence by the Banach fixed-point theorem, correctly cited | Use of known result | Reconstructed |
 | 4 | 2026-08 | Contraction constant `maxᵢ aᵢ` for coordinate-wise rates | Re-derivation | Reconstructed |
 | 5 | 2026-08 | The revision shows that `n = 3` plays no role | Refutation of own claim | Reconstructed |
@@ -135,12 +130,7 @@ Stage 5 is the first point at which later work removed content that the first mo
 had supplied. The notation's "three" was shown to have no mathematical role: the proof
 goes through for every `n ≥ 2`.
 
-Stage 7 exposed an error that could not be seen on paper. Under the paper's assumptions the
-matrix `A = DQ` is normal, so its operator norm equals its spectral radius, and the distinction
-between them never changes an answer. Outside those assumptions it does. With
-`Q = [[1, 40], [0, 1]]` and every rate equal to 0.5, the matrix `A = DQ` has spectral radius
-0.5 but operator norm about 20.01. The iteration still converges, yet the error grows to 11.8
-times its initial size at the second step before it decays.
+Stage 7 exposed an error that could not have been seen on paper. Under the paper's assumptions (a permutation `Q` and rates in [0, 1)), both the operator norm and the spectral radius of `A = DQ` are below one, so the distinction between them never changes the verdict on convergence. When all rates are equal, `A` is normal and the two coincide; with coordinate-wise rates the norm is `maxᵢ aᵢ` and the spectral radius is the geometric mean of the rates, but both remain below one. Outside those assumptions the distinction matters. With `Q = [[1, 40], [0, 1]]` and every rate equal to 0.5, the matrix `A = DQ` has spectral radius 0.5 but operator norm about 20.01. The iteration still converges, yet the error first grows: for the initial error used in the demonstration, it rises from 5.0 to about 59.0, 11.8 times its initial size, by the second step before it decays. The worst-case amplification is about 20.
 
 #### 2.3 The identification with Friedkin–Johnsen
 
@@ -148,7 +138,7 @@ On 13 September 2026, in a working session with Claude Code, the operator was id
 special case of the Friedkin–Johnsen model of opinion dynamics. Two formulations need to be
 distinguished. The 1990 paper writes `Y_t = αWY_{t−1} + βXB`, with scalar weights α on the endogenous
 and β on the exogenous conditions (Friedkin & Johnsen 1990). The scalar version of the operator
-has this form with `β = 1 − α` and the fixed point `p` in the place of the exogenous term. The
+has this form with `β = 1 − α` and the anchor `p` in the place of the exogenous term. The
 form now standard in the literature writes `x(k + 1) = ΛWx(k) + (I − Λ)u`, with a
 row-stochastic influence matrix `W`, a diagonal matrix Λ of individual susceptibilities, and
 anchoring opinions `u` (Proskurnikov & Tempo 2017). The version of the operator with
@@ -166,9 +156,7 @@ reproduce a Friedkin–Johnsen equilibrium map `p ↦ x*` for every anchor `p`. 
 set of equilibrium maps realisable with a cyclic permutation has dimension `n`, against
 `n(n − 1)` for a general influence matrix, so the special case occupies a set of measure zero.
 At the same time, a single equilibrium cannot tell the two apart: every one of 8,000 equilibria generated from general
-influence matrices satisfied the necessary condition implied by the cyclic form. Looking at one
-trajectory, the special case and the general model are indistinguishable. Looking at the
-literature, they were distinguishable from the start.
+influence matrices satisfied the necessary condition implied by the cyclic form, namely that for some cyclic permutation σ each coordinate satisfies `x*ᵢ = aᵢ x*_{σ(i)} + (1 − aᵢ) pᵢ` for some rate `aᵢ` in [0, 1]. From a single equilibrium, the special case and the general model are indistinguishable. In the literature, the correspondence was available from the start.
 
 #### 2.4 What the record can and cannot show
 
@@ -200,19 +188,14 @@ normally surround it. The whole burden of establishing that the result is not al
 moves into the context of justification.
 
 The case shows what happens when that transfer is not noticed. The first preprint justified
-its claims internally (by fixed-point arguments) and never performed the external check. The
-generated text even named the relevant field, which is to say the model supplied the pointer
-to the literature and the user did not follow it.
+its claims internally (by fixed-point arguments) and never performed the external check. The generated text even named the relevant field: in effect, the model supplied a pointer to the literature that the user did not follow.
 
 ### 4. Multiples, singletons, and the delayed arrival
 
 Merton called independent arrivals at the same result "multiples", in contrast to
 "singletons" (Merton 1961). The argument below needs only that distinction.
 
-The case fits neither category cleanly. A multiple is an independent arrival at the same result. This
-arrival came decades after the Friedkin–Johnsen papers, and it was not independent in the
-relevant sense, since the construction came from a model trained on text that may well include
-that literature. Nor is it a rediscovery in the ordinary sense, in which a person reaches a
+The case fits neither category cleanly. A multiple is an independent arrival at the same result, and this arrival was not independent in the relevant sense: the construction came from a model trained on text that may well include that literature. It also came decades after the Friedkin–Johnsen papers, although the delay alone would not settle the question. Nor is it a rediscovery in the ordinary sense, in which a person reaches a
 known result without knowing it is known. The person here did not reach the result at all;
 they received it.
 
@@ -264,19 +247,16 @@ Table 1 is almost entirely of the second kind.
 Two features of the iteration stand out.
 
 First, the order in which errors were found was not the order of their difficulty. The
-meaninglessness of "three" was found on paper. The confusion between norm and spectral radius
-could not be found on paper at all, because under the paper's assumptions the two coincide. It
+meaninglessness of "three" was found on paper. The confusion between norm and spectral radius could not have been found on paper at all, because under the paper's assumptions it never changes the verdict on convergence. It
 appeared only when the operator was implemented outside those assumptions.
 
 Second, the final correction came from the literature, not from further iteration. The
-measurement in Section 2.3 shows why. Along any single trajectory the special case was
-indistinguishable from the general model, so no amount of computation on the author's own
-examples would have revealed the identification. The iteration corrected the starting point up
+measurement in Section 2.3 shows why. From any single equilibrium the special case was indistinguishable from the general model, so computing equilibria on the author's own examples would not have revealed the identification. The iteration corrected the starting point up
 to the limit of what the author's own materials could show. The literature supplied the rest.
 
 ### 7. Limits of the case
 
-There is one case, and its author is its subject. Self-report is exposed to the usual biases,
+There is a single case, and its author is also its subject. Self-report is exposed to the usual biases,
 and the author has an interest in presenting the correction favourably.
 
 Two-thirds of the route is reconstructed. For stages 1–6 the archive fixes what was published
