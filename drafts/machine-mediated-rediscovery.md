@@ -44,7 +44,7 @@ A language model supplied the mathematical content of a short series of preprint
 presented as a new "framework". Less than a year later, the same author, now working with a
 different language model, established that the central operator was a special case of the Friedkin–Johnsen model of opinion dynamics, a standard model
 that the first preprint had itself named as a neighbouring field without citing any of its
-literature. The route from the first publication to the identification was recorded in nine stages, the last three contemporaneously, before the identification itself. This paper uses the case to ask what existing
+literature. The route from the first publication ran through nine recorded stages, the last three recorded contemporaneously, and ended in that identification. This paper uses the case to ask what existing
 frameworks in the philosophy and sociology of science can and cannot say about novelty claims
 when the generating step is performed by a machine. I argue that (i) the case is neither a
 Mertonian multiple nor a rediscovery in the usual sense, because the arrival was neither
@@ -82,7 +82,7 @@ of novelty; work with another model withdrew it. The record is unusually well do
 what was claimed and when. A version-controlled history fixes the later stages. An errata file
 fixes what was retracted and why.
 
-The aim is modest. I do not propose a new theory of discovery. I ask how far four existing frameworks reach into this case, and where they stop: the distinction between the contexts of discovery and justification (Reichenbach; Duede), Merton's distinction between multiples and singletons, recent accounts of credit for generative AI outputs (Khosrowi, Finn and Clark), and Chang's epistemic iteration.
+The aim is modest. I do not propose a new theory of discovery. I ask how far four existing frameworks reach into this case, and where they stop: the distinction between the contexts of discovery and justification (Reichenbach; Duede), Merton's distinction between multiples and singletons, recent accounts of credit for generative AI outputs (Khosrowi, Finn & Clark), and Chang's epistemic iteration.
 
 ### 2. The case
 
@@ -130,7 +130,7 @@ Stage 5 is the first point at which later work removed content that the first mo
 had supplied. The notation's "three" was shown to have no mathematical role: the proof
 goes through for every `n ≥ 2`.
 
-Stage 7 exposed an error that could not have been seen on paper. Under the paper's assumptions (a permutation `Q` and rates in [0, 1)), both the operator norm and the spectral radius of `A = DQ` are below one, so the distinction between them never changes the verdict on convergence. When all rates are equal, `A` is normal and the two coincide; with coordinate-wise rates the norm is `maxᵢ aᵢ` and the spectral radius is the geometric mean of the rates, but both remain below one. Outside those assumptions the distinction matters. With `Q = [[1, 40], [0, 1]]` and every rate equal to 0.5, the matrix `A = DQ` has spectral radius 0.5 but operator norm about 20.01. The iteration still converges, yet the error first grows: for the initial error used in the demonstration, it rises from 5.0 to about 59.0, 11.8 times its initial size, by the second step before it decays. The worst-case amplification is about 20.
+Stage 7 exposed an error that could not have been seen on paper. Under the paper's assumptions (a cyclic permutation `Q` and rates in [0, 1)), both the operator norm and the spectral radius of `A = DQ` are below one, so the distinction between them never changes the verdict on convergence. When all rates are equal, `A` is normal and the two coincide; with coordinate-wise rates the norm is `maxᵢ aᵢ` and the spectral radius is the geometric mean of the rates, but both remain below one. Outside those assumptions the distinction matters. With `Q = [[1, 40], [0, 1]]` and every rate equal to 0.5, the matrix `A = DQ` has spectral radius 0.5 but operator norm about 20.01. The iteration still converges, yet the error first grows: for the initial error used in the demonstration, it rises from 5.0 to about 59.0, 11.8 times its initial size, by the second step before it decays. The worst-case amplification is about 20.
 
 #### 2.3 The identification with Friedkin–Johnsen
 
@@ -156,7 +156,7 @@ reproduce a Friedkin–Johnsen equilibrium map `p ↦ x*` for every anchor `p`. 
 set of equilibrium maps realisable with a cyclic permutation has dimension `n`, against
 `n(n − 1)` for a general influence matrix, so the special case occupies a set of measure zero.
 At the same time, a single equilibrium cannot tell the two apart: every one of 8,000 equilibria generated from general
-influence matrices satisfied the necessary condition implied by the cyclic form, namely that for some cyclic permutation σ each coordinate satisfies `x*ᵢ = aᵢ x*_{σ(i)} + (1 − aᵢ) pᵢ` for some rate `aᵢ` in [0, 1]. From a single equilibrium, the special case and the general model are indistinguishable. In the literature, the correspondence was available from the start.
+influence matrices satisfied the condition implied by the cyclic form, a condition that is necessary and, outside degenerate cases, sufficient: namely that for some cyclic permutation σ each coordinate satisfies `x*ᵢ = aᵢ x*_{σ(i)} + (1 − aᵢ) pᵢ` for some rate `aᵢ` in [0, 1]. From a single equilibrium, the special case and the general model are indistinguishable. In the literature, the correspondence was available from the start.
 
 #### 2.4 What the record can and cannot show
 
@@ -319,8 +319,7 @@ from three other models asked to open each source and quote it: ChatGPT (OpenAI)
 and Claude used outside Claude Code. The text was corrected where the reports disagreed with it,
 and a claim was treated as checked only where the reports agreed and at least one reached the
 original. The author
-chose the venue and the topic, approved the outline, and decided which claims to keep. The
-author will check every sentence against the sources before submission. The author is
+chose the venue and the topic, approved the outline, and decided which claims to keep. At the time of writing, the author has not checked every quotation against the original sources; the quotations rest on the model-assisted readings described above. The author is
 responsible for every sentence. No AI system is an author.
 
 ### References
