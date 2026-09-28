@@ -74,7 +74,7 @@ The real name with its posthumous name on stone, the degree on paper, ORCID and 
 | Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
 | Upper Secondary School Equivalency Examination | passed |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 17 September 2026) |
-| ZEN University, Faculty of Social Informatics | enrolled (first autumn-entry cohort) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026) |
+| ZEN University, Faculty of Social Informatics (1st cohort) | enrolled (autumn entry) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026) |
 
 ### Courses I have credit for
 
@@ -88,7 +88,7 @@ The real name with its posthumous name on stone, the degree on paper, ORCID and 
 
 **1 course, 2 credits (as of 17 September 2026)**
 
-**ZEN University, Faculty of Social Informatics** — more to come.
+**ZEN University, Faculty of Social Informatics (1st cohort)** — more to come.
 
 | Course | Category | Credits | Grade |
 | --- | --- | --- | --- |
