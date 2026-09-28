@@ -9,12 +9,13 @@
 | 事例（第2節）と限界（第7節） | 紙面。凍結した PDF、git の履歴、正誤表から書いています |
 | 先行研究に依る主張 | 模型による照合の報告で直した。著者の突き合わせは未了。残る札は `[VERIFY: …]` |
 
-作業環境から arXiv にも出版社にも届きません。先行研究は、利用者が ChatGPT（OpenAI）に
-原典を開かせて取った報告で照合しました（2026-09-28）。報告には、原典の URL と逐語の引用が
-付いています。それに合わせて本文を直し、支えられた箇所の札を外しました。
+作業環境から arXiv にも出版社にも届きません。先行研究は、利用者が ChatGPT（OpenAI）・
+Grok（xAI）・Claude（Anthropic、Claude Code の外）の三つに原典を開かせて取った報告で
+照合しました（2026-09-28）。報告には、原典の URL と逐語の引用が付いています。
+三つの報告で支えられた箇所だけ札を外しました。原典を開けたのが一つだけの箇所は、札を残しています。
 
-外した札も、著者が原典で確かめたことにはなっていません。Claude と Grok による照合の報告と
-突き合わせ、核になる引用は著者が原典を検索して確かめます。
+外した札も、著者が原典で確かめたことにはなっていません。核になる引用は、
+著者が原典を検索して確かめます。
 札が一つでも残っているうちは、出しません。
 
 事例が一件しかありません。しかも著者自身が研究の対象です。第7節に書いてあります。
@@ -69,8 +70,10 @@ the interaction transcript remain opaque, claims of reasoning do not satisfy Pop
 refutability principle (Mossel 2026). A study of problems listed as open in the Erdős problems database addressed 13 of them: 4 by
 seemingly novel solutions, and 9 by identifying solutions already in the literature. It names
 "the risk of 'subconscious plagiarism' by AI", that is, reproducing knowledge acquired in
-training without attribution (Feng et al. 2026; the counts are those of version 3, and an
-earlier version reported 5 and 8).
+training without attribution (Feng et al. 2026; the counts are those of version 3, and the
+first version reported 5 and 8). Among the known solutions, the authors include cases in which
+the system produced a solution itself that then turned out to be in the literature, which they
+call independent rediscoveries. That is close to the configuration examined here.
 
 Those studies examine expert settings in which the question is whether a model's output is
 already known. This paper examines a different configuration: a non-expert published a
@@ -147,7 +150,11 @@ has this form with `β = 1 − α` and the fixed point `p` in the place of the e
 later formulation writes `x(t + 1) = ΛWx(t) + (I − Λ)u`, with a diagonal matrix Λ of individual
 susceptibilities and initial opinions `u`; the version of the operator with coordinate-wise
 rates has this form [VERIFY: Friedkin & Johnsen 1999, *Advances in Group Processes* 16, 1–29;
-so far confirmed only through later literature, not in the original]. The operator restricts the influence matrix to a cyclic permutation, that is, to a
+so far confirmed only through later literature, not in the original. Later literature reports
+that the 1999 model sets the anchor to the initial opinions and couples `w_ii = 1 − λ_ii`. If the
+original imposes that coupling, a cyclic permutation (zero diagonal) forces every susceptibility
+to 1 and removes the anchor, and the operator is then a special case of the generalized form
+used in later literature, not of the 1999 model as originally stated]. The operator restricts the influence matrix to a cyclic permutation, that is, to a
 ring in which each agent listens to exactly one neighbour.
 
 The size of the restriction was then measured. The question was whether a cyclic operator can
@@ -170,7 +177,7 @@ this in Section 7.
 Reichenbach introduced the terms "context of discovery" and "context of justification" to mark
 the distinction between a thinker's way of finding a result and the way of presenting it to a
 public, and held that epistemology is occupied only in constructing the context of justification
-(Reichenbach 1938, 6–7). The separation has allowed philosophers to set aside the question
+(Reichenbach 1938, §1). The separation has allowed philosophers to set aside the question
 of who, or what, produced a hypothesis.
 
 Duede has used the same distinction to argue that the opacity of deep learning need not
@@ -196,7 +203,9 @@ to the literature and the user did not follow it.
 ### 4. Multiples, singletons, and the delayed arrival
 
 Merton argued that multiple independent discoveries are not exceptional but frequent in science
-(Merton 1961).
+(Merton 1961) [VERIFY: Merton 1961; only one of three model-assisted readings reached the
+original, and the quotation it returned contains an ellipsis. Later literature quotes the paper
+as treating singletons as the residual cases; confirm in the original before relying on it].
 
 The case fits neither category cleanly. A multiple is an independent arrival at the same result. This
 arrival came decades after the Friedkin–Johnsen papers, and it was not independent in the
@@ -225,7 +234,8 @@ makes the duty easier to skip, because the output arrives in finished form.
 
 Recent work on credit for generative AI outputs proposes that such outputs are created by
 collectives in the first instance, and that claims to creatorship come in degrees, depending on
-the nature and significance of individual contributions (Khosrowi, Finn & Clark 2023). The present case suggests a companion point about responsibility. Whatever
+the nature and significance of individual contributions (Khosrowi, Finn & Clark 2023). Their
+examples are chiefly image-generating systems, but the view is stated generally. The present case suggests a companion point about responsibility. Whatever
 the distribution of credit, the duty to search for priority cannot be distributed to the model.
 It falls on the person who asserts novelty, because only that person makes the assertion.
 
@@ -245,7 +255,9 @@ the correction of that starting point.
 Table 1 has that shape. The starting point, a notation that fixed only a setting together with
 the model's output built on it, was adopted without any assurance that it was correct. Each stage used the results of the previous one to remove part of the starting
 point: the role of "three" at stage 5, the unsupported applications at stage 6, the reliance on
-the operator norm at stage 7, and the claim of novelty at stage 9.
+the operator norm at stage 7, and the claim of novelty at stage 9. Chang distinguishes two
+outcomes of iteration, enrichment of the starting system and its self-correction. The route in
+Table 1 is almost entirely of the second kind.
 
 Two features of the iteration stand out.
 
@@ -322,8 +334,10 @@ at each step.
 **This paper.** Claude Code drafted almost all of the text from the author's records, located
 the candidate literature by search, and translated between Japanese and English. Because the
 drafting environment could not reach the sources, the literature was checked through reports
-from other models asked to open each source and quote it: ChatGPT (OpenAI) so far, with Claude
-and Grok (xAI) to follow. The text was corrected where those reports disagreed with it. The author
+from three other models asked to open each source and quote it: ChatGPT (OpenAI), Grok (xAI),
+and Claude used outside Claude Code. The text was corrected where the reports disagreed with it,
+and a claim was treated as checked only where the reports agreed and at least one reached the
+original. The author
 chose the venue and the topic, approved the outline, and decided which claims to keep. The
 author will check every sentence against the sources before submission. The author is
 responsible for every sentence. No AI system is an author.
@@ -334,13 +348,13 @@ Checked through a model-assisted reading of each source (see the disclosure), ex
 
 - Chang, H. (2004). *Inventing Temperature: Measurement and Scientific Progress*. Oxford University Press.
 - Duede, E. (2023). Deep learning opacity in scientific discovery. *Philosophy of Science*, 90(5), 1089–1099. doi:10.1017/psa.2023.8
-- Feng, T., Trinh, T., Bingham, G., Kang, J., et al. (2026). Semi-autonomous mathematics discovery with Gemini: A case study on the Erdős problems. arXiv:2601.22401, version 3.
-- Friedkin, N. E., & Johnsen, E. C. (1990). Social influence and opinions. *Journal of Mathematical Sociology*, 15(3–4), 193–206. doi:10.1080/0022250X.1990.9990069
+- Feng, T., Trinh, T., Bingham, G., Kang, J., Zhang, S., et al. (2026). Semi-autonomous mathematics discovery with Gemini: A case study on the Erdős problems. arXiv:2601.22401, version 3.
+- Friedkin, N. E., & Johnsen, E. C. (1990). Social influence and opinions. *Journal of Mathematical Sociology*, 15(3–4), 193–205 (the publisher's record gives 193–206). doi:10.1080/0022250X.1990.9990069
 - Friedkin, N. E., & Johnsen, E. C. (1999). Social influence networks and opinion change. *Advances in Group Processes*, 16, 1–29. (Not yet checked against the original.)
 - Khosrowi, D., Finn, F., & Clark, E. (2023). Diffusing the creator: Attributing credit for generative AI outputs. *AIES '23*, 890–900. doi:10.1145/3600211.3604716
 - Merton, R. K. (1957). Priorities in scientific discovery. *American Sociological Review*, 22(6), 635–659.
-- Merton, R. K. (1961). Singletons and multiples in scientific discovery. *Proceedings of the American Philosophical Society*, 105(5), 470–486.
+- Merton, R. K. (1961). Singletons and multiples in scientific discovery. *Proceedings of the American Philosophical Society*, 105(5), 470–486. (Not yet checked against the original.)
 - Monaco, J. H., & Anderson, R. L. (1994). Tai's formula is the trapezoidal rule. *Diabetes Care*, 17(10), 1224–1225. doi:10.2337/diacare.17.10.1224
-- Mossel, E. (2026). LLMs, reasoning and plagiarism. arXiv:2601.02380.
+- Mossel, E. (2026). LLMs, reasoning and plagiarism. arXiv:2601.02380, version 5.
 - Reichenbach, H. (1938). *Experience and Prediction*. University of Chicago Press.
 - Tai, M. M. (1994). A mathematical model for the determination of total area under glucose tolerance and other metabolic curves. *Diabetes Care*, 17(2), 152–154. doi:10.2337/diacare.17.2.152
