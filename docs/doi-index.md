@@ -85,13 +85,29 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 | --- | --- | --- |
 | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、HAL `hal-05758942` |
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、HAL `hal-05758968` |
-| Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI`、HAL `hal-05759279` |
-| Trinity-Infinity Series I 改訂版 | `10.5281/zenodo.22058624` | HAL `hal-05759325` |
+| Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI` |
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961`、HAL `hal-05759064` |
-| Trinity-Infinity Series III | `10.5281/zenodo.22058964` | HAL `hal-05759296` |
 | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、HAL `hal-05759080` |
-| 正義論とアルゴリズム | `10.5281/zenodo.22335676` | HAL `hal-05759717` |
-| 自己実験としての名乗り | `10.5281/zenodo.22765695` | HAL `hal-05759721` |
+
+## 削除した所在
+
+HAL に置いていた notice のうち、SSRN に同じ本文が無いものを 2026-09-26 に削除しました。
+notice は PDF を持たない書誌の登録で、モデレーションを通らずに公開されます。
+**人の門を一つも通っていない置き場を、業績の側から外すためです**。
+
+| HAL の ID | 本文 | 削除した日 | 本文が残る場所 |
+| --- | --- | --- | --- |
+| `hal-05759279` | Fragmentarian Spiritual Individualism | 2026-09-26 | Zenodo、PhilArchive |
+| `hal-05759325` | Trinity-Infinity Series I 改訂版 | 2026-09-26 | Zenodo |
+| `hal-05759296` | Trinity-Infinity Series III | 2026-09-26 | Zenodo |
+| `hal-05759717` | 正義論とアルゴリズム | 2026-09-26 | Zenodo |
+| `hal-05759721` | 自己実験としての名乗り | 2026-09-26 | Zenodo |
+
+**削除した ID は、この表にだけ残します**。ほかの記録からは所在として外してあります。
+`check_site.js` が、この表の ID へのリンクがどこにも残っていないことを確かめます。
+
+PhilArchive の `NEMFSI`（Fragmentarian Spiritual Individualism）も、同じ日に削除を依頼しました。
+PhilPapers は削除を依頼として受け付けるので、まだ消えていません。消えたら、この節に足します。
 
 ## 第三者の SSRN DOI
 

@@ -1467,6 +1467,303 @@ section('10.59 自己紹介が名乗っていること');
        落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
   }
 
+  /* **趣味を終えた日付は、宣言よりも消えやすい。**「趣味である」だけが残れば、
+   * いまも趣味のままだと読める。**終わりを書いた側を七つの面で固める。**
+   * 段の同一も見る。**別の段に移れば、何を卒業したのか分からなくなる。** */
+  {
+    const 卒業 = {
+      'index.html': '趣味の研究は、学部一年で卒業した',
+      'index.en.html': 'Hobby research ended in the first undergraduate year',
+      'index.de.html': 'Die Forschung als Liebhaberei endete im ersten Studienjahr',
+      'index.fr.html': 'La recherche en amateur s’est achevée en première année de licence',
+      'index.it.html': 'La ricerca per diletto si è conclusa al primo anno del corso di laurea',
+      'README.md': '趣味の研究は、学部一年で卒業した',
+      'README.en.md': 'Hobby research ended in the first undergraduate year',
+    };
+    const 落ち = Object.keys(卒業).filter((f) => read(f).indexOf(卒業[f]) < 0);
+    ok('趣味の研究を学部一年で卒業したと、七つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(', ') : '五言語と README 二つ');
+
+    /* **同じ段にあることを見る。**趣味と呼ぶ宣言の段から離れれば、
+     * 卒業したのが何なのかが宙に浮く。 */
+    const 同段 = { 'index.html': 'ここまでのプレプリントは、趣味として書いたものである',
+                   'index.en.html': 'written as a hobby' };
+    const 離れ = Object.keys(同段).filter((f) => {
+      const 段 = read(f).split('<p class="profile-core">');
+      return !段.some((p) => p.indexOf(同段[f]) >= 0 && p.indexOf(卒業[f]) >= 0);
+    });
+    ok('卒業したと書いた文が、趣味と呼ぶ宣言と同じ段にある', 離れ.length === 0,
+       離れ.length ? 離れ.join(', ') : 'index.html と index.en.html');
+  }
+
+  /* **向きを変えたと書くだけでは、変えたことにならない。**何に注力するのかと、
+   * それがまだ一件も無いことを、同じところに書く。**「これから出す」は、
+   * JOSS の側が根拠として認めない形である**（<code>Aspirational statements…</code>）。
+   * こちらの散文も同じ扱いにする。七つの面で固める。 */
+  {
+    const 向き = {
+      'index.html': ['これからは、制度のなかで成果を出すことに注力する',
+                     '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'index.en.html': ['the effort goes into producing results inside the institution',
+                        'Presenting at conferences, and being awarded there',
+                        'Neither has happened even once'],
+      'index.de.html': ['dem Erbringen von Leistungen innerhalb der Institution',
+                        'Vorträge auf Fachtagungen, und Auszeichnungen dort',
+                        'Beides ist noch nicht ein einziges Mal geschehen'],
+      'index.fr.html': ['l’effort porte sur des résultats obtenus dans le cadre institutionnel',
+                        'Des communications en congrès, et des distinctions obtenues là',
+                        'Ni l’une ni l’autre ne s’est encore produite une seule fois'],
+      'index.it.html': ['l’impegno va verso risultati ottenuti all’interno dell’istituzione',
+                        'Comunicazioni a convegni, e riconoscimenti ottenuti in quella sede',
+                        'Né l’una né l’altra cosa è ancora avvenuta nemmeno una volta'],
+      'README.md': ['これからは、制度のなかで成果を出すことに注力する',
+                    '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'README.en.md': ['the effort goes into producing results inside the institution',
+                       'Presenting at conferences, and being awarded there',
+                       'Neither has happened even once'],
+    };
+    const 落ち = [];
+    Object.keys(向き).forEach((f) => {
+      const h = read(f);
+      向き[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('制度のなかで成果を出す向きが、まだ一件も無いことごと七つの面にある',
+       落ち.length === 0, 落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+  }
+
+  /* **目標を二つと書いた頁に、三つ目に見えるものを足した。**学会と賞である。
+   * **途上だと書いておかないと、眼中にないと言った二つが三つに増える。**
+   * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
+  {
+    const 途上 = {
+      'index.html': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'index.en.html': ['Conferences and awards lie on the way to the second of those',
+                        'The count of goals has not become three'],
+      'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum zweiten dieser Ziele',
+                        'Es sind nicht drei Ziele geworden'],
+      'index.fr.html': ['Les congrès et les distinctions se situent sur le chemin du second de ces buts',
+                        'Les buts ne sont pas passés à trois'],
+      'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del secondo di quei due obiettivi',
+                        'Gli obiettivi non sono diventati tre'],
+      'README.md': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'README.en.md': ['Conferences and awards lie on the way to the second of those',
+                       'The count of goals has not become three'],
+    };
+    const 落ち = [];
+    Object.keys(途上).forEach((f) => {
+      const h = read(f);
+      途上[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('学会と賞が、三つ目の目標に読めない形で七つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+  }
+
+  /* **「まだ一件もない」は、頁の中だけで完結してしまう。**現状評価の表に同じ
+   * 二つの軸を置いて、そちらの数と突き合わせる。**片側だけが増えれば落ちる。**
+   * 一件でも出たときに、頁の側を直し忘れる形を止める。 */
+  {
+    const A = read('docs/self-assessment.md');
+    const 軸 = (名) => {
+      const re = new RegExp('^\\| ' + 名 + ' \\|[^|]*\\| \\*\\*(\\d+) 件\\*\\*', 'm');
+      const m = re.exec(A);
+      return m ? Number(m[1]) : null;
+    };
+    const 発表 = 軸('学会での発表');
+    const 賞 = 軸('受賞');
+    ok('現状評価の表の学会と受賞が、頁の「まだ一件もない」と合う',
+       発表 === 0 && 賞 === 0 && ja.indexOf('どちらもまだ一件もない') >= 0,
+       '表 ' + (発表 === null ? '軸が無い' : 発表) + ' / '
+       + (賞 === null ? '軸が無い' : 賞) + '　頁の断り '
+       + (ja.indexOf('どちらもまだ一件もない') >= 0 ? 'あり' : '無い'));
+  }
+
+  /* **「学部一年時の実績」は、時が経つほど大きく読める。**学年が上がっても
+   * 同じ量のままなら、書いた側が黙って得をする。**だから量のほうを機械で数える。**
+   * 修了証も同じ段に入れている。**七件という数は、cv.html から数え直す。** */
+  {
+    const 一年 = {
+      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
+                     'ここに並べたものは全部、学部一年時の実績である',
+                     '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'index.en.html': ['finished in the first half of the first undergraduate year',
+                        'everything set out here is the work of that first undergraduate year',
+                        'The dates themselves have been checked against nothing',
+                        'The enrolment date is not printed here either'],
+      'index.de.html': ['in der ersten Hälfte des ersten Studienjahres abgeschlossen',
+                        'ist die Arbeit dieses ersten Studienjahres',
+                        'Die Daten selbst sind mit nichts abgeglichen',
+                        'Das Datum der Einschreibung steht hier ebenfalls nicht'],
+      'index.fr.html': ['achevées dans la première moitié de la première année de licence',
+                        'est le travail de cette première année',
+                        'Les dates elles-mêmes n’ont été confrontées à rien',
+                        'La date d’inscription n’est pas imprimée ici non plus'],
+      'index.it.html': ['conclusi nella prima metà del primo anno del corso di laurea',
+                        'è il lavoro di quel primo anno',
+                        'Le date stesse non sono state confrontate con nulla',
+                        'Anche la data di immatricolazione non è stampata qui'],
+      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
+                    'ここに並べたものは全部、学部一年時の実績である',
+                    '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'README.en.md': ['finished in the first half of the first undergraduate year',
+                       'everything set out here is the work of that first undergraduate year',
+                       'The dates themselves have been checked against nothing',
+                       'The enrolment date is not printed here either'],
+    };
+    const 落ち = [];
+    Object.keys(一年).forEach((f) => {
+      const h = read(f);
+      一年[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('学部一年時の実績だという宣言が、確かめていない分ごと七つの面にある',
+       落ち.length === 0, 落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+
+    /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
+     * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
+     * **一つ増えて散文が据え置きになる形を止める。** */
+    const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
+      .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length;
+    const di = read('docs/doi-index.md');
+    const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
+    const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
+    const jo = read('docs/joss.md');
+    const 十 = jo.slice(jo.indexOf('## 十の状態'), jo.indexOf('## 門 1'));
+    const リポジトリ = (十.match(/^\| [a-z][a-z0-9-]* \| /gm) || []).length;
+    const 修了証 = new Set((read('cv.html')
+      .match(/https:\/\/(?:courses\.edx\.org\/certificates|www\.openbadge-global\.com)\/[^"]+/g) || [])).size;
+    const ずれ = [];
+    if (篇 !== 7) ずれ.push('篇 ' + 篇);
+    if (DOI !== 15) ずれ.push('Zenodo の DOI ' + DOI);
+    if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
+    if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
+    const 散文 = ja.indexOf('七篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
+       ずれ.length === 0 && 散文,
+       ずれ.length ? ずれ.join(', ') : (散文 ? '7 / 15 / 10 / 7' : '散文の並びが無い'));
+  }
+
+  /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
+   * どちらが古いのか分からなくなる。**同じ語で両方に置く。** */
+  {
+    const A = read('docs/self-assessment.md');
+    const 行 = /^\| 実績の時期 \|[^|]*\| ([^|]*) \|/m.exec(A);
+    ok('現状評価の表に、実績の時期の軸がある',
+       行 !== null && 行[1].indexOf('学部一年') >= 0
+       && ja.indexOf('学部一年時の実績である') >= 0,
+       行 === null ? '軸が無い' : 行[1].trim());
+  }
+
+  /* **数え方の決めは、置いた面の数だけ固める。**論文の枠に入れるものを限ると決めても、
+   * 一つの面から消えれば、そこでは何でも論文として並べてよいように読める。
+   * 入口の五言語、README 二つ、それに記録の三つで同じ決めを見る。 */
+  {
+    const 枠 = {
+      'index.html': ['載ったものをどの枠で数えるかも決めてある',
+                     'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
+                     'いま論文の枠に入るものは一つも無い',
+                     'その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることである',
+                     'Zenodo にしか無いものは、どちらの枠にも入れない'],
+      'index.en.html': ['How published work is counted is fixed as well',
+                        'Everything else is treated as a working paper, a preprint, or MISC',
+                        'Nothing qualifies at present',
+                        'The floor for that is appearing on SSRN, PhilPapers, or arXiv',
+                        'Work that exists only on Zenodo goes into neither section'],
+      'index.de.html': ['Auch die Einordnung ist festgelegt',
+                        'Alles andere gilt als Working Paper, Preprint oder MISC',
+                        'Derzeit erfüllt nichts diese Bedingung',
+                        'Die Untergrenze dafür ist ein Eintrag bei SSRN, PhilPapers oder arXiv',
+                        'Was nur auf Zenodo liegt, kommt in keine der beiden Rubriken'],
+      'index.fr.html': ['Le classement est fixé lui aussi',
+                        'Tout le reste est traité comme document de travail, préprint ou MISC',
+                        'Rien n’y entre pour l’instant',
+                        'Le seuil pour cela est d’être présent sur SSRN, PhilPapers ou arXiv',
+                        'Ce qui n’existe que sur Zenodo n’entre dans aucune des deux rubriques'],
+      'index.it.html': ['È stabilita anche la classificazione',
+                        'Tutto il resto è trattato come working paper, preprint o MISC',
+                        'Al momento nulla vi rientra',
+                        'La soglia per questo è la presenza su SSRN, PhilPapers o arXiv',
+                        'Ciò che esiste solo su Zenodo non entra in nessuna delle due sezioni'],
+      'README.md': ['載ったものをどの枠で数えるかも決めてある',
+                    'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
+                    'いま論文の枠に入るものは一つも無い',
+                    'Zenodo にしか無いものは、どちらの枠にも入れない'],
+      'README.en.md': ['How published work is counted is fixed as well',
+                       'Everything else is treated as a working paper, a preprint, or MISC',
+                       'Nothing qualifies at present',
+                       'Work that exists only on Zenodo goes into neither section'],
+      'docs/submission-disclosure.md': ['### 論文の枠に入れるもの',
+                                        '**ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います**',
+                                        '**出す先の決め（決めごと 14）は変えません**',
+                                        '**Q1 をどの指標で判定するかは、まだ決めていません**',
+                                        '### 論文以外の枠の下限',
+                                        '**Zenodo にしか無いものは、どちらの枠にも入れません**',
+                                        '**引用に使う正の DOI が Zenodo であることは変わりません**'],
+      'docs/self-assessment.md': ['| 論文の枠 | 著者の決め（2026-09-26） |',
+                                  '| 論文以外の枠 | 著者の決め（2026-09-26） |'],
+      'docs/canonical-sources.md': ['**researchmap と HAL の論文の枠に入れるものは限っています**',
+                                    '**Zenodo にしか無いものは、業績の枠に入れません**'],
+    };
+    const 落ち = [];
+    Object.keys(枠).forEach((f) => {
+      const h = read(f);
+      枠[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
+    });
+    ok('論文の枠に入れるものを限る決めが、十の面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(' / ') : '五言語・README 二つ・記録三つ');
+
+    /* **「一つも無い」は、現状評価の表と合わせる。**査読を通った論文が 0 篇で学位も無いなら、
+     * 論文の枠は 0 件でしかありえない。頁の断りと表の行が食い違えば落ちる。 */
+    const A = read('docs/self-assessment.md');
+    const 査読 = /^\| 査読を通った論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(A);
+    const 学位なし = /^\| 学位 \| 大学 \| \*\*なし\*\*/m.test(A);
+    const 枠行 = /^\| 論文の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(A);
+    const 頁は空 = ja.indexOf('いま論文の枠に入るものは一つも無い') >= 0;
+    const 表は空 = 枠行 !== null && Number(枠行[1]) === 0;
+    const 空のはず = 査読 !== null && Number(査読[1]) === 0 && 学位なし;
+    ok('論文の枠が空だという断りが、現状評価の表と合う',
+       枠行 !== null && 頁は空 === 表は空 && (!空のはず || 表は空),
+       '表 ' + (枠行 ? 枠行[1] + ' 件' : '行が無い') + '　頁の断り ' + (頁は空 ? 'あり' : '無い')
+       + '　査読 ' + (査読 ? 査読[1] + ' 篇' : '取れない') + '・学位 ' + (学位なし ? 'なし' : 'あり'));
+  }
+
+  /* **論文以外の枠の件数は、置き場の表から数え直す。**下限は SSRN・PhilPapers・arXiv の
+   * どれかに載っていることで、Zenodo だけのものは数えない。doi-index.md の「別の所在」の表で、
+   * SSRN か PhilArchive（PhilPapers の側の置き場）か arXiv を持つ行を数え、現状評価の行と合わせる。
+   * **置き場が一つ消えれば、表から消えて数が動く。**散文の数だけが据え置きになる形を止める。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 別の所在にある同一本文');
+    const j = di.indexOf('## 削除した所在');
+    const 表 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 行 = 表.split('\n').filter((l) => /^\| [^-|]/.test(l) && l.indexOf('`10.5281/zenodo.') >= 0);
+    const 数 = 行.filter((l) => /SSRN `|PhilArchive `|arXiv `/.test(l.split('|')[3] || '')).length;
+    const m = /^\| 論文以外の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(read('docs/self-assessment.md'));
+    ok('論文以外の枠の件数が、置き場の表から数え直したものと合う',
+       m !== null && 行.length > 0 && Number(m[1]) === 数,
+       '表から ' + 数 + ' 件 / 現状評価 ' + (m ? m[1] + ' 件' : '行が無い'));
+  }
+
+  /* **仮の肩書きは、注釈と一緒にしか出さない。**この仮の肩書きを使うと決めたのは
+   * 2026-09-26 で、実際には一学部生だという注釈と一体の一文としてだけである。
+   * 語だけが一人歩きする形は check_text.js が止める。ここでは、注釈つきの文が
+   * 置くと決めた面の全部にあることを見る。一つの面から落ちれば、そこだけ肩書きが消えて
+   * 見え方が揃わない。 */
+  {
+    const 注釈 = {
+      'index.html': '<b>「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。</b>',
+      'index.en.html': '<b>“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.</b>',
+      'index.de.html': '<b>„Unabhängiger Forscher“ ist ein vorläufiger Titel der Verständlichkeit halber; tatsächlich ist der Autor Bachelorstudent.</b>',
+      'index.fr.html': '<b>« Chercheur indépendant » est un titre provisoire, pour la clarté ; en réalité, l’auteur est étudiant de premier cycle.</b>',
+      'index.it.html': '<b>«Ricercatore indipendente» è un titolo provvisorio, per chiarezza; in realtà l’autore è uno studente universitario.</b>',
+      'README.md': '「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。',
+      'README.en.md': '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.',
+      'cv.html': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
+      'docs/self-assessment.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です（2026-09-26 に決めた。',
+    };
+    const 落ち = Object.keys(注釈).filter((f) => read(f).indexOf(注釈[f]) < 0);
+    ok('仮の肩書きが、実際には一学部生だという注釈つきで九つの面にある', 落ち.length === 0,
+       落ち.length ? 落ち.join(', ') : '五言語・README 二つ・CV・現状評価');
+  }
+
   ok('三篇の道具は特定できないと、同じ段に書いてある',
      ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
@@ -2079,6 +2376,32 @@ section('10.61 置き場が、紙面と記録で揃っている');
     });
     ok('論文の頁が出す置き場が、README 二つの論文表にも全部ある', 落ち.length === 0,
        落ち.length ? 落ち.join(' / ') : '二つとも');
+  }
+
+  /* **消した所在は、所在として残らない。**上の突き合わせは「頁にあるものが記録にもある」
+   * を見るだけで、消したものが残っていても気づかない。**削除の表から ID を拾い、
+   * その ID へのリンクがどこにも無いことを見る。**表にだけ残すのは、消した事実のほうである。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 削除した所在');
+    const j = di.indexOf('## 第三者の SSRN DOI');
+    const 節 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 消した = [...節.matchAll(/^\| `(hal-\d+)` \|/gm)].map((m) => m[1]);
+    const 面 = [...new Set(['README.md', 'README.en.md', 'docs/doi-index.md']
+      .concat(fs.readdirSync(path.join(ROOT, 'papers')).filter((x) => x.endsWith('.html'))
+        .map((x) => 'papers/' + x))
+      .concat(PAGES))];
+    const 残り = [];
+    消した.forEach((id) => {
+      面.forEach((f) => { if (read(f).indexOf('hal.science/' + id) >= 0) 残り.push(f + ' に ' + id); });
+    });
+    /* 別の所在の表に、消した ID が書き残っていないことも見る。リンクでなくても所在として読める。 */
+    const k = di.indexOf('## 別の所在にある同一本文');
+    const 別 = (k >= 0 && i > k) ? di.slice(k, i) : '';
+    消した.forEach((id) => { if (別.indexOf(id) >= 0) 残り.push('別の所在の表に ' + id); });
+    ok('削除した HAL の所在が、どこにも所在として残っていない',
+       消した.length > 0 && 残り.length === 0,
+       消した.length === 0 ? '削除の表が読めない' : (残り.length ? 残り.join(' / ') : 消した.length + ' 件'));
   }
 }
 

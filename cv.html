@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-0m5rxAhbY4LHbMYSJl44aO1W00NbCfapAKgr3F2AVfc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-RykyTdPOjqafw7mu0Im1YEY2FYFOySKYus6o87JI6f4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-hDRMFjuTi5rxt/vP9nDwtzRyDrK03/NpIHUEFK8C58o='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>CV | 根本卓哉</title>
 <meta name="description" content="修了証・オープンバッジ 7 件と、学習領域、外部プロフィール。各カードから発行機関の検証ページを開けます。">
 <meta name="robots" content="index, follow">
@@ -369,6 +369,27 @@ header::after {
   margin: 0 0 .7rem;
   font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
   color: var(--faint);
+}
+.profile-photo {
+  display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
+  border-radius: .4rem; border: 1px solid var(--line);
+}
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
+}
+/* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
+   対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
+.profile-photos { max-width: 100%; }
+@media (min-width: 40rem) {
+  .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos .profile-photo { float: none; height: 10.5rem; margin: 0; }
 }
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
@@ -847,6 +868,7 @@ footer::before {
     <nav class="nav">
       <a href="#credentials">修了証</a>
       <a href="#courses">修得した科目</a>
+      <a href="#affiliations">所属・登録</a>
       <a href="#areas">学習領域</a>
       <a href="#links">リンク</a>
       <a href="./index.html">トップ</a>
@@ -864,7 +886,7 @@ footer::before {
     <h1 class="serif reveal">根本卓哉</h1>
     <p class="romaji reveal">TAKUYA NEMOTO</p>
     <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
-    <p class="lead reveal">修了証・学習領域・外部プロフィールです。ここは経歴の置き場で、主張の置き場ではありません。主張と検証は トップ にあります。</p>
+    <p class="lead reveal">修了証・学習領域・外部プロフィールです。「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。ここは経歴の置き場で、主張の置き場ではありません。主張と検証は トップ にあります。</p>
   </section>
 
   <hr class="rule">
@@ -969,6 +991,19 @@ footer::before {
         <li data-category="選択必修" data-credits="2" data-grade="D"><span class="course-name">機械翻訳実践（法学）</span><span class="course-note">選択必修・2 単位・評価 D</span></li>
       </ul>
         <p class="courses-total">17 科目 34 単位 —— 必修 14・選択必修 16・選択 4</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="affiliations" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">所属・登録</h2>
+      <p>本人の申告です。修了証と違って検証ページが無いので、別に置いています。2026年9月時点のものです。</p>
+    </div>
+    <div class="notes-list reveal">
+      <p>CIVICUS<span>アソシエイトメンバー。CIVICUS（World Alliance for Citizen Participation）は、市民社会の組織と個人がつくる国際的な連合です</span></p>
+      <p>グリーンピース・ジャパン<span>ボランティアとして登録しています</span></p>
     </div>
   </section>
 
