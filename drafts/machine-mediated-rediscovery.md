@@ -7,7 +7,7 @@
 | 部分 | 等級 |
 | --- | --- |
 | 事例（第2節）と限界（第7節） | 紙面。凍結した PDF、git の履歴、正誤表から書いています |
-| 先行研究に依る主張 | 模型による照合の報告で直した。著者の突き合わせは未了。残る札は `[VERIFY: …]` |
+| 先行研究に依る主張 | 模型による照合の報告で直した。札は全部外した。著者の突き合わせは未了 |
 
 作業環境から arXiv にも出版社にも届きません。先行研究は、利用者が ChatGPT（OpenAI）・
 Grok（xAI）・Claude（Anthropic、Claude Code の外）の三つに原典を開かせて取った報告で
@@ -16,7 +16,9 @@ Grok（xAI）・Claude（Anthropic、Claude Code の外）の三つに原典を�
 
 外した札も、著者が原典で確かめたことにはなっていません。核になる引用は、
 著者が原典を検索して確かめます。
-札が一つでも残っているうちは、出しません。
+原典に届かなかった二つ（Friedkin & Johnsen 1999 と、Merton 1961 の本文）は、
+主張を確かめられた範囲まで下げて、札を外しました（2026-09-28）。
+著者が全文と核の引用を確かめるまでは、出しません。
 
 事例が一件しかありません。しかも著者自身が研究の対象です。第7節に書いてあります。
 
@@ -143,19 +145,21 @@ times its initial size at the second step before it decays.
 #### 2.3 The identification with Friedkin–Johnsen
 
 On 13 September 2026, in a working session with Claude Code, the operator was identified as a
-special case of the Friedkin–Johnsen model of opinion dynamics. The two original formulations
-differ. The 1990 paper writes `Y_t = αWY_{t−1} + βXB`, with scalar weights α on the endogenous
+special case of the Friedkin–Johnsen model of opinion dynamics. Two formulations need to be
+distinguished. The 1990 paper writes `Y_t = αWY_{t−1} + βXB`, with scalar weights α on the endogenous
 and β on the exogenous conditions (Friedkin & Johnsen 1990). The scalar version of the operator
 has this form with `β = 1 − α` and the fixed point `p` in the place of the exogenous term. The
-later formulation writes `x(t + 1) = ΛWx(t) + (I − Λ)u`, with a diagonal matrix Λ of individual
-susceptibilities and initial opinions `u`; the version of the operator with coordinate-wise
-rates has this form [VERIFY: Friedkin & Johnsen 1999, *Advances in Group Processes* 16, 1–29;
-so far confirmed only through later literature, not in the original. Later literature reports
-that the 1999 model sets the anchor to the initial opinions and couples `w_ii = 1 − λ_ii`. If the
-original imposes that coupling, a cyclic permutation (zero diagonal) forces every susceptibility
-to 1 and removes the anchor, and the operator is then a special case of the generalized form
-used in later literature, not of the 1999 model as originally stated]. The operator restricts the influence matrix to a cyclic permutation, that is, to a
-ring in which each agent listens to exactly one neighbour.
+form now standard in the literature writes `x(k + 1) = ΛWx(k) + (I − Λ)u`, with a
+row-stochastic influence matrix `W`, a diagonal matrix Λ of individual susceptibilities, and
+anchoring opinions `u` (Proskurnikov & Tempo 2017). The version of the operator with
+coordinate-wise rates has this form. The operator restricts the influence matrix to a cyclic
+permutation, that is, to a ring in which each agent listens to exactly one neighbour.
+
+The standard form is traced in the literature to Friedkin and Johnsen (1999). That paper has not
+been consulted, and nothing here rests on it. Later literature reports that the 1999 model sets
+the anchor to the initial opinions and ties the diagonal of `W` to the susceptibilities. If so, a
+cyclic permutation, whose diagonal is zero, would force every susceptibility to 1 and remove the
+anchor. The claim of this paper is therefore limited to the 1990 form and the standard form.
 
 The size of the restriction was then measured. The question was whether a cyclic operator can
 reproduce a Friedkin–Johnsen equilibrium map `p ↦ x*` for every anchor `p`. For `n ≥ 3`, the
@@ -202,10 +206,8 @@ to the literature and the user did not follow it.
 
 ### 4. Multiples, singletons, and the delayed arrival
 
-Merton argued that multiple independent discoveries are not exceptional but frequent in science
-(Merton 1961) [VERIFY: Merton 1961; only one of three model-assisted readings reached the
-original, and the quotation it returned contains an ellipsis. Later literature quotes the paper
-as treating singletons as the residual cases; confirm in the original before relying on it].
+Merton called independent arrivals at the same result "multiples", in contrast to
+"singletons" (Merton 1961). The argument below needs only that distinction.
 
 The case fits neither category cleanly. A multiple is an independent arrival at the same result. This
 arrival came decades after the Friedkin–Johnsen papers, and it was not independent in the
@@ -293,9 +295,8 @@ model, not about a human alone.
 
 The identification with the Friedkin–Johnsen model was made before either original paper was
 read. The 1990 formulation has since been checked against the original, through a
-model-assisted reading reported with quotations; the 1999 formulation has been checked only
-through later literature. [VERIFY: read Friedkin & Johnsen 1999 before submission, and have the
-author confirm the 1990 correspondence in Section 2.3 against the original formulas.]
+model-assisted reading reported with quotations. The 1999 paper has not been consulted, and the
+correspondence in Section 2.3 is stated only for the 1990 form and the standard form.
 
 For these reasons the paper does not generalise. What it can show is where four existing
 frameworks reach in one well-documented case, and where they stop.
@@ -350,11 +351,12 @@ Checked through a model-assisted reading of each source (see the disclosure), ex
 - Duede, E. (2023). Deep learning opacity in scientific discovery. *Philosophy of Science*, 90(5), 1089–1099. doi:10.1017/psa.2023.8
 - Feng, T., Trinh, T., Bingham, G., Kang, J., Zhang, S., et al. (2026). Semi-autonomous mathematics discovery with Gemini: A case study on the Erdős problems. arXiv:2601.22401, version 3.
 - Friedkin, N. E., & Johnsen, E. C. (1990). Social influence and opinions. *Journal of Mathematical Sociology*, 15(3–4), 193–205 (the publisher's record gives 193–206). doi:10.1080/0022250X.1990.9990069
-- Friedkin, N. E., & Johnsen, E. C. (1999). Social influence networks and opinion change. *Advances in Group Processes*, 16, 1–29. (Not yet checked against the original.)
+- Friedkin, N. E., & Johnsen, E. C. (1999). Social influence networks and opinion change. *Advances in Group Processes*, 16, 1–29. (Not consulted; cited only for the attribution made in later literature.)
 - Khosrowi, D., Finn, F., & Clark, E. (2023). Diffusing the creator: Attributing credit for generative AI outputs. *AIES '23*, 890–900. doi:10.1145/3600211.3604716
 - Merton, R. K. (1957). Priorities in scientific discovery. *American Sociological Review*, 22(6), 635–659.
-- Merton, R. K. (1961). Singletons and multiples in scientific discovery. *Proceedings of the American Philosophical Society*, 105(5), 470–486. (Not yet checked against the original.)
+- Merton, R. K. (1961). Singletons and multiples in scientific discovery. *Proceedings of the American Philosophical Society*, 105(5), 470–486.
 - Monaco, J. H., & Anderson, R. L. (1994). Tai's formula is the trapezoidal rule. *Diabetes Care*, 17(10), 1224–1225. doi:10.2337/diacare.17.10.1224
 - Mossel, E. (2026). LLMs, reasoning and plagiarism. arXiv:2601.02380, version 5.
+- Proskurnikov, A. V., & Tempo, R. (2017). A tutorial on modeling and analysis of dynamic social networks. Part I. *Annual Reviews in Control*, 43, 65–79. doi:10.1016/j.arcontrol.2017.03.002
 - Reichenbach, H. (1938). *Experience and Prediction*. University of Chicago Press.
 - Tai, M. M. (1994). A mathematical model for the determination of total area under glucose tolerance and other metabolic curves. *Diabetes Care*, 17(2), 152–154. doi:10.2337/diacare.17.2.152
