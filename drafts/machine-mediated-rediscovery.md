@@ -184,18 +184,11 @@ its claims internally (by fixed-point arguments) and never performed the externa
 generated text even named the relevant field, which is to say the model supplied the pointer
 to the literature and the user did not follow it.
 
-Machine rediscovery has a history. The BACON programs were reported to recover numeric laws
-such as Kepler's third law from data [VERIFY: Langley, Simon, Bradshaw & Zytkow 1987; the list
-of laws]. There the rediscovery was the stated aim and the known answer was the benchmark. Here
-the known answer was presented as new.
-
 ### 4. Multiples, singletons, and the delayed arrival
 
 Merton argued that multiple independent discoveries are the normal pattern in science and that
 singletons are what require explanation [VERIFY: Merton 1961, "Singletons and Multiples in
-Scientific Discovery", *Proc. Am. Philos. Soc.* 105(5), 470–486]. Simonton argued that the
-distribution of multiples can be modelled as a chance process [VERIFY: Simonton 1978, *Social
-Studies of Science*].
+Scientific Discovery", *Proc. Am. Philos. Soc.* 105(5), 470–486].
 
 The case fits neither category cleanly. A multiple is near-simultaneous and independent. This
 arrival came decades after the Friedkin–Johnsen papers, and it was not independent in the
@@ -210,16 +203,11 @@ because Merton's account of why priority disputes are fierce rests on the value 
 originality [VERIFY: Merton 1957, *American Sociological Review* 22(6), 635–659]. In the present
 case there is no originality to dispute, but there is a claim of originality to withdraw.
 
-The series proposed no new name for the model it had rediscovered. Stigler's law of eponymy,
-which Stigler himself attributed to Merton, is therefore not engaged [VERIFY: Stigler 1980].
-
 ### 5. Priority search as an epistemic duty
 
-Compare two well-known cases. Ramanujan independently reached a considerable amount of known
-analysis, and Hardy acknowledged the duplication without lowering his estimate of the work
-[VERIFY: Hardy 1937 and 1940, the relevant passages]. The trapezoidal-rule paper of 1994, by
-contrast, is remembered as a failure. The difference is not the duplication itself. It is
-whether the author said, or could have said, that the result was known.
+Return to the trapezoidal-rule paper of 1994. What made it a failure was not the duplication
+itself. It was that the paper presented a known method as new and did not say that it was
+known.
 
 If that is right, the relevant norm is a duty to search for priority before asserting
 novelty. A language model changes the cost of discharging that duty in two opposite ways. It
@@ -260,10 +248,6 @@ measurement in Section 2.3 shows why. Along any single trajectory the special ca
 indistinguishable from the general model, so no amount of computation on the author's own
 examples would have revealed the identification. The iteration corrected the starting point up
 to the limit of what the author's own materials could show. The literature supplied the rest.
-
-Chang also describes a "complementary science" that recovers questions specialist science has
-set aside [VERIFY: Chang, "complementary science", the source and definition]. Whether an
-amateur record of this kind can play that role is a question I leave open.
 
 ### 7. Limits of the case
 
@@ -337,12 +321,9 @@ To be completed after the sources are read. Every entry below has been located b
 - Friedkin, N. E., & Johnsen, E. C. (1990). Social influence and opinions. *Journal of Mathematical Sociology*, 15(3–4). doi:10.1080/0022250X.1990.9990069
 - Friedkin, N. E., & Johnsen, E. C. (1999). Social influence networks and opinion change. *Advances in Group Processes*, 16, 1–29.
 - Khosrowi, D., Finn, F., & Clark, E. (2023). Diffusing the creator: Attributing credit for generative AI outputs. *AIES '23*, 890–900. doi:10.1145/3600211.3604716
-- Langley, P., Simon, H. A., Bradshaw, G. L., & Zytkow, J. M. (1987). *Scientific Discovery: Computational Explorations of the Creative Processes*. MIT Press.
 - Merton, R. K. (1957). Priorities in scientific discovery. *American Sociological Review*, 22(6), 635–659.
 - Merton, R. K. (1961). Singletons and multiples in scientific discovery. *Proceedings of the American Philosophical Society*, 105(5), 470–486.
 - Mossel, E. (2026). LLMs, reasoning and plagiarism. arXiv:2601.02380.
 - Reichenbach, H. (1938). *Experience and Prediction*. University of Chicago Press.
-- Simonton, D. K. (1978). Independent discovery in science and technology: A closer look at the Poisson distribution. *Social Studies of Science*.
-- Stigler, S. M. (1980). Stigler's law of eponymy.
 - Tai, M. M. (1994). A mathematical model for the determination of total area under glucose tolerance and other metabolic curves. *Diabetes Care*, 17(2).
 - Semi-autonomous mathematics discovery with Gemini: A case study on the Erdős problems (2026). arXiv:2601.22401. [VERIFY: authors]
