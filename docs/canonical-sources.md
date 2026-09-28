@@ -306,6 +306,7 @@ Trinity-Infinity の Series I 改訂版と Series III です
 | **Figshare** | **Digital Science** —— **Springer Nature** の子会社 |
 | **Kudos**（growkudos） | **Kudos Innovations Ltd**（英国オックスフォード。2013年設立） |
 | **Google Scholar** | **Google** —— 2015年から **Alphabet Inc.** の完全子会社。2004年11月20日に公開 |
+| **CORE** | **The Open University**（英国）の Knowledge Media Institute が開発し、**Jisc** と共に運営する非営利のサービス |
 | **GitHub / GitHub Pages** | **GitHub, Inc.** —— **Microsoft** の子会社。2018年10月25日に買収が完了 |
 | **Vercel** | **Vercel Inc.**（米国サンフランシスコ）。2015年に `ZEIT` として設立され、2020年に改称 |
 | **Crossref** | **Publishers International Linking Association, Inc.**（PILA）—— 米国ニューヨーク州法の非営利法人。1999年末に設立 |
@@ -368,10 +369,32 @@ DEV Community は 2026年2月18日に Major League Hacking へ移りました。
 | 場所 | 役割 |
 |---|---|
 | Knowledge Commons | 一篇の置き場。**プロフィールの面は使っていない** |
+| CORE | オープンアクセスの索引。こちらは何も置いていない。向こうが集めてくる |
 | ランサーズ / ココナラ | 受注のプロフィール。**研究成果とは別種** |
 
 **受注のプロフィールを本丸に数えません**。人の面が立っている点では同じだが、
 そこに着いた者が探しているのは研究者ではありません。
+
+CORE は、SSRN に置いた The Nobility and Exemplarity of the Celibate Individual を拾っています。
+記録は `https://core.ac.uk/works/403307066` にあります。利用者から受け取った番号で、
+この頁は開いていません。作業環境から `core.ac.uk` へ出られません。
+
+頁の表示は、利用者の画面写しで見ました（証言）。
+
+| 表示 | 中身 |
+| --- | --- |
+| 出どころ | Crossref。SSRN の頁から直接ではない |
+| 識別子 | `info:doi/10.2139/ssrn.7358779`。SSRN の DOI そのもの |
+| 発行者 | Elsevier BV |
+| 全文 | 置かれていない。`Full text removed upon author's request` と表示される |
+| 最終更新 | 2026-08-30 |
+
+著者が CORE に全文の削除を依頼したという話は、受け取っていません。表示の理由は確かめていません。
+
+CORE は、Crossref に登録された DOI の書誌を集めてきます。SSRN の DOI が
+Crossref に登録されていれば、中身の審査を経ずに載ります。
+置いた場所が増えたのではありません。索引に拾われただけです。
+業績の枠は動きません。SSRN のほかの論文が拾われているかは、確かめていません。
 
 ---
 
