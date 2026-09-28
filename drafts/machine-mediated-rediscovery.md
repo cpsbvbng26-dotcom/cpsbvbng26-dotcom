@@ -18,20 +18,24 @@
 この下書きは Claude Code（Anthropic）を使って書いています。文章の大半は Claude が
 著者の記録から起こしたものです。論の筋と、どの主張を置くかは著者が決めます。
 出す前に、著者が全文を自分の言葉で確かめ直します。
+Claude がどこまで担ったかは、論文の末尾の開示に分けて書いてあります。
+
+肩書きは、決めごと 6 の例外の形で置いています。仮の肩書きは、
+実際には一学部生だという注釈と一体の一文でしか使いません。
 
 ---
 
 ## Machine-Mediated Rediscovery: A Case Study in Novelty, Priority, and Self-Correction
 
 **Takuya Nemoto**
-Undergraduate, Faculty of Social Informatics, ZEN University
+“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate (ZEN University, Faculty of Social Informatics).
 ORCID 0009-0000-1406-0547
 
 ### Abstract
 
 A language model supplied the mathematical content of a short series of preprints that were
-presented as a new "framework". Less than a year later, the same author established that the central
-operator was a special case of the Friedkin–Johnsen model of opinion dynamics, a standard model
+presented as a new "framework". Less than a year later, the same author, now working with a
+different language model, established that the central operator was a special case of the Friedkin–Johnsen model of opinion dynamics, a standard model
 that the first preprint had itself named as a neighbouring field without citing any of its
 literature. The route from the first publication to the identification was recorded in nine
 stages, three of them contemporaneously. This paper uses the case to ask what existing
@@ -40,9 +44,11 @@ when the generating step is performed by a machine. I argue that (i) the case is
 Mertonian multiple nor a rediscovery in the usual sense, because the arrival was neither
 independent nor human; (ii) when generation moves outside the human agent, the context of
 justification must absorb a task that was previously distributed across both contexts, namely
-the search for priority; and (iii) the self-correction that followed is best read as epistemic
+the search for priority; and (iii) the correction that followed is best read as epistemic
 iteration from a defective starting point, in which implementation, not reflection, exposed the
-error that mattered. The paper makes no claim of mathematical novelty.
+error that mattered. The correction was itself carried out with a language model, and the record
+does not separate the human share from the machine's share at each step. The paper makes no
+claim of mathematical novelty.
 
 ### 1. Introduction
 
@@ -65,8 +71,9 @@ the exact phrasing].
 
 Those studies examine expert settings in which the question is whether a model's output is
 already known. This paper examines a different configuration: a non-expert published a
-model-generated construction as a new framework, later established on their own that it was
-known, and kept a record of the route. The record is unusually complete. Frozen preprints fix
+model-generated construction as a new framework, later established, while working with a second
+language model, that it was known, and kept a record of the route. One model produced the claim
+of novelty; work with another model withdrew it. The record is unusually complete. Frozen preprints fix
 what was claimed and when. A version-controlled history fixes the later stages. An errata file
 fixes what was retracted and why.
 
@@ -92,7 +99,12 @@ field.
 #### 2.2 The route to identification
 
 The later history is recorded in nine stages (Table 1). Stages 1–6 are reconstructed from
-frozen preprints; stages 7–9 were recorded as they happened.
+frozen preprints; stages 7–9 were recorded as they happened. From stage 2 onward the work was done
+with Claude Code (Anthropic), a second language model. The 2026 revisions of the three preprints
+were drafted, formulated and computationally checked with its help, and 145 of the 151 commits in
+the two repositories that record stages 7–9 and the later identification carry a co-authorship
+line for it. When this paper says "the author" for stages 2–9, it means the author working with
+that model.
 
 **Table 1.** The route. "Contemporaneous" means recorded at the time in a version-controlled
 repository.
@@ -103,7 +115,7 @@ repository.
 | 2 | 2026-08 | Operator written as `x ← DQx + (I − D)p` | Rediscovery | Reconstructed |
 | 3 | 2026-08 | Convergence by the Banach fixed-point theorem, correctly cited | Use of known result | Reconstructed |
 | 4 | 2026-08 | Contraction constant `maxᵢ aᵢ` for coordinate-wise rates | Re-derivation | Reconstructed |
-| 5 | 2026-08 | The author shows that `n = 3` plays no role | Refutation of own claim | Reconstructed |
+| 5 | 2026-08 | The revision shows that `n = 3` plays no role | Refutation of own claim | Reconstructed |
 | 6 | 2026-08 | Unprovable and unsupported claims withdrawn | Retraction | Reconstructed |
 | 7 | 2026-09-06 | Implementation outside the paper's assumptions: convergence is governed by the spectral radius, not the operator norm | Collision with known result | Contemporaneous |
 | 8 | 2026-09-07 | A norm in which the operator contracts is constructed via a Lyapunov equation | Re-derivation | Contemporaneous |
@@ -111,8 +123,8 @@ repository.
 
 Two stages deserve comment.
 
-Stage 5 is the first point at which the author's own work removed content that the generated
-text had supplied. The notation's "three" was shown to have no mathematical role: the proof
+Stage 5 is the first point at which later work removed content that the first model's output
+had supplied. The notation's "three" was shown to have no mathematical role: the proof
 goes through for every `n ≥ 2`.
 
 Stage 7 exposed an error that could not be seen on paper. Under the paper's assumptions the
@@ -124,8 +136,8 @@ times its initial size at the second step before it decays.
 
 #### 2.3 The identification with Friedkin–Johnsen
 
-After stage 9 the author found that the operator is a special case of the Friedkin–Johnsen
-model of opinion dynamics [VERIFY: Friedkin & Johnsen 1990, *Journal of Mathematical
+On 13 September 2026, in a working session with Claude Code, the operator was identified as a
+special case of the Friedkin–Johnsen model of opinion dynamics [VERIFY: Friedkin & Johnsen 1990, *Journal of Mathematical
 Sociology* 15(3–4), doi:10.1080/0022250X.1990.9990069; Friedkin & Johnsen 1999, *Advances in
 Group Processes* 16]. The scalar version of the operator corresponds to the 1990 form; the
 version with coordinate-wise rates corresponds to the 1999 form with a diagonal susceptibility
@@ -135,8 +147,8 @@ ring in which each agent listens to exactly one neighbour.
 The size of the restriction was then measured. The question was whether a cyclic operator can
 reproduce a Friedkin–Johnsen equilibrium map `p ↦ x*` for every anchor `p`. For `n ≥ 3`, the
 set of equilibrium maps realisable with a cyclic permutation has dimension `n`, against
-`n(n − 1)` for a general influence matrix, so the special case occupies a set of measure zero. At the same time, a single
-equilibrium cannot tell the two apart: every one of 8,000 equilibria generated from general
+`n(n − 1)` for a general influence matrix, so the special case occupies a set of measure zero.
+At the same time, a single equilibrium cannot tell the two apart: every one of 8,000 equilibria generated from general
 influence matrices satisfied the necessary condition implied by the cyclic form. Looking at one
 trajectory, the special case and the general model are indistinguishable. Looking at the
 literature, they were distinguishable from the start.
@@ -220,6 +232,11 @@ AIES '23, 890–900]. The present case suggests a companion point about responsi
 the distribution of credit, the duty to search for priority cannot be distributed to the model.
 It falls on the person who asserts novelty, because only that person makes the assertion.
 
+The case adds a further twist. The claim of novelty came from work with one model, and its
+withdrawal came from work with another. The second model did not discharge the author's duty;
+it made the duty cheap enough that it was finally discharged. That is the first of the two
+effects just described, observed after the second had already done its damage.
+
 ### 6. Iteration from a defective starting point
 
 Chang describes epistemic iteration: inquiry that begins from a starting point it cannot
@@ -256,9 +273,16 @@ and the author has an interest in presenting the correction favourably.
 Two-thirds of the route is reconstructed. For stages 1–6 the archive fixes what was published
 and when, but not what the author understood at the time.
 
-The model's contribution is known only in outline. No transcript of the 2025 interaction
-survives, so it cannot be established which parts of the first preprint were generated, which
-were edited, and whether the model's output drew on the Friedkin–Johnsen literature.
+The first model's contribution is known only in outline. No transcript of the 2025
+interaction survives, so it cannot be established which parts of the first preprint were
+generated, which were edited, and whether the model's output drew on the Friedkin–Johnsen
+literature.
+
+The second model's contribution is recorded but not apportioned. The repositories show that
+Claude Code took part in nearly every commit from stage 7 onward and in the identification. They
+do not show, step by step, which suggestions came from the author and which from the model.
+Where this paper says "the author" for those stages, the claim is about a human working with a
+model, not about a human alone.
 
 The author did not read the Friedkin–Johnsen papers before identifying the operator as a special
 case of their model. [VERIFY: read Friedkin & Johnsen 1990 and 1999 before submission, and
@@ -270,7 +294,7 @@ frameworks reach in one well-documented case, and where they stop.
 ### 8. Conclusion
 
 A known model was produced by a machine, published as new by a person, and later identified by
-the same person, with a record of each step. The case is not a Mertonian multiple, and it is
+the same person working with another machine, with a record of each step. The case is not a Mertonian multiple, and it is
 not a rediscovery in the usual sense. The discovery–justification distinction survives, but the
 check for priority, which used to be shared between the two contexts, now falls entirely on
 justification. The correction that followed has the shape of epistemic iteration, with one
@@ -279,12 +303,30 @@ only the literature could.
 
 ### Disclosure of AI use
 
-The mathematical content of the 2025 preprint was generated by ChatGPT (OpenAI); no record of
-the version or the interaction survives. The 2026 revisions, the implementation, and the
-identification were carried out with Claude Code (Anthropic), and the version-controlled
-history records that use commit by commit. This paper was drafted with Claude Code from the
-author's records. The author chose the question, the case, and the claims, and is responsible
-for every sentence. No AI system is an author.
+**The case.** The mathematical content of the 2025 preprint (the map, fixed points,
+convergence claims and theorems) was generated by ChatGPT (OpenAI) from the author's notation.
+No record of the version or the interaction survives.
+
+**The later stages.** Claude (Anthropic), used through Claude Code, took part as follows.
+
+- The 2026 revisions of the three preprints were drafted, formulated mathematically and checked
+  computationally with Claude's help (stages 2–6).
+- The implementation outside the paper's assumptions, the counterexample of stage 7, the
+  Lyapunov construction of stage 8, and the measurement reported in Section 2.3 were written
+  and run with Claude Code.
+- The identification with the Friedkin–Johnsen model (13 September 2026) was made in a working
+  session with Claude Code, by literature search.
+- The errata file and the record of the route were written with Claude Code.
+
+Of the 151 commits in the two repositories concerned, 145 carry a co-authorship line for
+Claude. Those lines record that Claude took part. They do not record how the work was divided
+at each step.
+
+**This paper.** Claude Code drafted almost all of the text from the author's records, located
+the candidate literature by search, and translated between Japanese and English. The author
+chose the venue and the topic, approved the outline, and decided which claims to keep. The
+author will check every sentence against the sources before submission. The author is
+responsible for every sentence. No AI system is an author.
 
 ### References
 
