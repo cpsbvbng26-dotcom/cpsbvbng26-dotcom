@@ -253,7 +253,12 @@ async function walk(pg) {
         }
         window.scrollTo(0, h);
       });
-      await p3.waitForTimeout(600);
+      /* 塊は 0.7 秒かけて現れる。以前は 600ms 待って測っていたので、遅い実行機では
+       * 最後の塊（hint）が途中の不透明度で測られて落ちた（2026-09-29、PR #91）。
+       * 判定は変えない。全部が出るまで最大 3 秒待ち、それでも出なければ落とす。 */
+      await p3.waitForFunction(() => [...document.querySelectorAll('.reveal')]
+        .every((el) => parseFloat(getComputedStyle(el).opacity) >= 0.5), null, { timeout: 3000 })
+        .catch(() => {});
       const 出ない = await p3.evaluate(() => {
         const out = [];
         document.querySelectorAll('.reveal').forEach((el) => {
