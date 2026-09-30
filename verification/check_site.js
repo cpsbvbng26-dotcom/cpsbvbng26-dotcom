@@ -616,6 +616,33 @@ ok('本文の核に置かないと決めたものが出ていない', offenders.
     '— \\[独立での案件募集\\]\\(https://[^)]*' + host.replace('.', '\\.')).test(md));
   ok('README でも、四つの受注先が同じ説明文で揃っている',
      抜け.length === 0, 抜け.map((x) => x[0]).join(', '));
+
+  /* **仕事の窓口は、研究のリンクと分けて置く**（2026-09-30）。受注先と職務の頁は
+   * 「仕事の窓口 —— 研究とは別」の組にだけ出す。研究者プロフィールの組や
+   * ウェブの組に混ざったら落とす。README でも、別の折りたたみに置く。 */
+  {
+    const 仕事 = 受注.map(([, host]) => host).concat(['wantedly.com']);
+    const 見出し = '<div class="group-name">仕事の窓口 —— 研究とは別</div>';
+    const i = cv.indexOf(見出し);
+    const 前 = i >= 0 ? cv.slice(0, i) : cv;
+    const 後 = i >= 0 ? cv.slice(i) : '';
+    const 混ざり = 仕事.filter((h) => 前.indexOf(h) >= 0 || 後.indexOf(h) < 0);
+    ok('CV で、仕事の窓口が研究のリンクと別の組にある', i >= 0 && 混ざり.length === 0,
+       i < 0 ? '組の見出しが無い' : (混ざり.length ? 混ざり.join(', ') : 仕事.length + ' 件とも'));
+    const 分け = [['README.md', '<summary>仕事の窓口 —— 研究とは別</summary>'],
+                  ['README.en.md', '<summary>Work channels, separate from research</summary>']];
+    const 外れ = [];
+    分け.forEach(([f, sum]) => {
+      const t = read(f);
+      const j = t.indexOf(sum);
+      仕事.forEach((h) => {
+        const k = t.indexOf(h);
+        if (j < 0 || k < 0 || k < j) 外れ.push(f + ' の ' + h);
+      });
+    });
+    ok('README でも、仕事の窓口が別の折りたたみにある', 外れ.length === 0,
+       外れ.length ? 外れ.join(', ') : 'README 二つとも');
+  }
 }
 
 /* ------------------------------------------------- 10.5 修得した科目の合計
@@ -1333,14 +1360,15 @@ section('10.59 自己紹介が名乗っていること');
   });
   /* **片方の門だけを細かく書かない。** */
   /* **死後に残るものの三つ。**石・紙・デジタルである。
-   * **数えられる形で置く**（決めごと 5）。一つ落ちれば落ちる。 */
+   * **数えられる形で置く**（決めごと 5）。一つ落ちれば落ちる。
+   *
+   * 2026-09-30 に、自己紹介から別の頁（notes/afterlife）へ分けた。研究の成果ではない
+   * 個人の事柄だからである。**分けたことも固める。**自己紹介の七つの面に戻ってきたら
+   * 落ち、案内のリンクが消えても落ちる。訳は日本語と英語の二つだけにした。 */
   {
     const 残る先 = [
-      ['index.html', ['石は、墓石と諡名', '紙は、博士（学術）', 'デジタルは、ORCID と DOI']],
-      ['index.en.html', ['Stone is the gravestone', 'Paper is the doctorate', 'The network is ORCID and DOI']],
-      ['index.de.html', ['Stein heißt Grabstein', 'Papier heißt der Doktorgrad', 'Das Netz heißt ORCID und DOI']],
-      ['index.fr.html', ['La pierre, c\'est la stèle', 'Le papier, c\'est le doctorat', 'Le réseau, c\'est ORCID et DOI']],
-      ['index.it.html', ['La pietra è la stele', 'La carta è il dottorato', 'La rete è ORCID e DOI']]
+      ['notes/afterlife.html', ['石は、墓石と諡名', '紙は、博士（学術）', 'デジタルは、ORCID と DOI']],
+      ['notes/afterlife.en.html', ['Stone is the gravestone', 'Paper is the doctorate', 'The network is ORCID and DOI']]
     ];
     const 欠け = [];
     残る先.forEach(([f, xs]) => {
@@ -1348,19 +1376,33 @@ section('10.59 自己紹介が名乗っていること');
       const 出た = xs.filter((x) => h.indexOf(x) >= 0);
       if (出た.length !== 3) 欠け.push(f + ' は ' + 出た.length);
     });
-    ok('死後に残る先が、五言語とも三つある', 欠け.length === 0,
+    ok('死後に残る先が、分けた頁に二言語とも三つある', 欠け.length === 0,
        欠け.length ? 欠け.join(' / ') : (残る先.length + ' 言語 × 3'));
+
+    const 戻り = ['石は、墓石と諡名', 'Stone is the gravestone', 'Stein heißt Grabstein',
+                  'La pierre, c\'est la stèle', 'La pietra è la stele'];
+    const 七面 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
+                  'README.md', 'README.en.md'];
+    const 混ざり = 七面.filter((f) => 戻り.some((x) => read(f).indexOf(x) >= 0));
+    ok('自己紹介の七つの面に、死後に残るものの節が戻っていない', 混ざり.length === 0,
+       混ざり.length ? 混ざり.join(', ') : '7 面とも無し');
+
+    const 案内 = [['index.html', './notes/afterlife.html'], ['index.en.html', './notes/afterlife.en.html'],
+                  ['index.de.html', './notes/afterlife.en.html'], ['index.fr.html', './notes/afterlife.en.html'],
+                  ['index.it.html', './notes/afterlife.en.html'],
+                  ['README.md', 'notes/afterlife.html'], ['README.en.md', 'notes/afterlife.en.html']];
+    const 欠案内 = 案内.filter(([f, u]) => read(f).indexOf(u) < 0).map(([f]) => f);
+    ok('自己紹介の七つの面から、分けた頁へ案内している', 欠案内.length === 0,
+       欠案内.length ? 欠案内.join(', ') : '7 面とも');
   }
 
   /* **学位はまだ無い。**決めごと 6 に触る一行である。
    * 「取得する計画」から「取得した」へ黙って動くと、自称の肩書きになる。 */
   {
-    const 未取得 = [['index.html', 'まだ持っていない'], ['index.en.html', 'It is not held.'],
-                    ['index.de.html', 'Er ist nicht erworben.'],
-                    ['index.fr.html', 'Il n\'est pas détenu.'],
-                    ['index.it.html', 'Non è posseduto.']];
+    const 未取得 = [['notes/afterlife.html', 'まだ持っていない'],
+                    ['notes/afterlife.en.html', 'It is not held.']];
     const 欠け = 未取得.filter(([f, x]) => read(f).indexOf(x) < 0).map(([f]) => f);
-    ok('博士をまだ持っていないと、五言語とも書いてある', 欠け.length === 0,
+    ok('博士をまだ持っていないと、二言語とも書いてある', 欠け.length === 0,
        欠け.length ? 欠け.join(' / ') : (未取得.length + ' 言語とも'));
   }
 
@@ -1369,15 +1411,9 @@ section('10.59 自己紹介が名乗っていること');
    * **断りが消えると、受け取った説明が確かめた事実に見える。** */
   {
     const 断り = [
-      ['index.html', '神道の形式については、原典に当たっていない', 'この説明は原典に当たっていない', 'いまは誰にも委ねていない'],
-      ['index.en.html', 'The Shinto forms have not been checked against sources',
-       'That statement has not been checked against the source', 'Nothing is delegated to anyone at present'],
-      ['index.de.html', 'Die Shintō-Formen sind hier nicht an Quellen geprüft',
-       'Diese Auskunft ist nicht an der Quelle geprüft', 'Derzeit ist nichts übertragen'],
-      ['index.fr.html', 'Les formes shintō ne sont pas vérifiées aux sources',
-       'Cette indication n\'est pas vérifiée à la source', 'Rien n\'est délégué pour le moment'],
-      ['index.it.html', 'Le forme shintō qui non sono verificate sulle fonti',
-       'Questa spiegazione non è verificata sulla fonte', 'Al momento non è delegato nulla']
+      ['notes/afterlife.html', '神道の形式については、原典に当たっていない', 'この説明は原典に当たっていない', 'いまは誰にも委ねていない'],
+      ['notes/afterlife.en.html', 'The Shinto forms have not been checked against sources',
+       'That statement has not been checked against the source', 'Nothing is delegated to anyone at present']
     ];
     const 欠神 = [], 欠O = [], 欠委 = [];
     断り.forEach(([f, s, o, d]) => {
@@ -1386,11 +1422,11 @@ section('10.59 自己紹介が名乗っていること');
       if (h.indexOf(o) < 0) 欠O.push(f);
       if (h.indexOf(d) < 0) 欠委.push(f);
     });
-    ok('神道の形式を確かめていないと、五言語とも断ってある', 欠神.length === 0,
+    ok('神道の形式を確かめていないと、二言語とも断ってある', 欠神.length === 0,
        欠神.length ? 欠神.join(' / ') : (断り.length + ' 言語とも'));
-    ok('ORCID の説明を確かめていないと、五言語とも断ってある', 欠O.length === 0,
+    ok('ORCID の説明を確かめていないと、二言語とも断ってある', 欠O.length === 0,
        欠O.length ? 欠O.join(' / ') : (断り.length + ' 言語とも'));
-    ok('ORCID をいま誰にも委ねていないと、五言語とも書いてある', 欠委.length === 0,
+    ok('ORCID をいま誰にも委ねていないと、二言語とも書いてある', 欠委.length === 0,
        欠委.length ? 欠委.join(' / ') : (断り.length + ' 言語とも'));
   }
 
@@ -1406,12 +1442,13 @@ section('10.59 自己紹介が名乗っていること');
     const 越え = /(?<![祖曾伯叔義])(父|母)(が|の|は|を|も|に|と|へ)|父親|母親|my (father|mother)|mein Vater|meine Mutter|mon père|ma mère|mio padre|mia madre/;
     const 出た = [];
     ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
-     'README.md', 'README.en.md', 'cv.html'].forEach((f) => {
+     'README.md', 'README.en.md', 'cv.html',
+     'notes/afterlife.html', 'notes/afterlife.en.html'].forEach((f) => {
       const m = 越え.exec(read(f));
       if (m) 出た.push(f + ' に「' + m[0] + '」');
     });
     ok('存命の人物が、続柄の一語を超えて出ていない', 出た.length === 0,
-       出た.length ? 出た.join(' / ') : '8 面とも無し');
+       出た.length ? 出た.join(' / ') : '10 面とも無し');
   }
 
 
