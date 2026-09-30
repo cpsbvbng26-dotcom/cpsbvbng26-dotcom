@@ -1065,6 +1065,7 @@ SSRN や PhilArchive の欄と並べて読むときも、そこは分けて数�
 | The Nobility and Exemplarity of the Celibate Individual | 哲学研究網 Philosophy Research Network（**PRN**） | 大陸哲学 **Continental Philosophy** |
 | Manifesto of Imperial Selfhood | 同上 | 大陸哲学 **Continental Philosophy** |
 | Trinity-Infinity Series II | 数学研究網 Mathematics Research Network（**MathRN**） | 数値解析 **Numerical Analysis** |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | 歴史研究網 History Research Network（**HistoryRN**） | 東アジア史 **East Asian History** |
 
 大陸哲学（`Continental Philosophy`）は PRN の区分の一つです。並んでいるのは
 認識論（`Epistemology`）、倫理学（`Ethics`）、形而上学（`Metaphysics`）、
@@ -1076,6 +1077,12 @@ SSRN や PhilArchive の欄と並べて読むときも、そこは分けて数�
 論理（`Logic`）、最適化と制御（`Optimization & Control`）、位相（`Topology`）
 などです。**力学系（`Dynamical Systems`）は第二希望に当たる**
 （`trinity-infinity/ARXIV.md` の「分類」で `math.DS` を第二希望としているのと同じ理由）。
+
+東アジア史（`East Asian History`）は HistoryRN の区分の一つです。並んでいるのは
+アフリカ史、中央アジア史、南アジア史、東南アジア・オセアニア史などの地域の区分です。
+海軍公報の史料ノートを東アジア史の区分として出したことは、著者の証言です。
+この表の行は 2026-09-30 に足しました。受け付けられたことは上の表に載っていたが、
+どの区分かが抜けていました（利用者の指摘）。
 
 **落とされた一篇は、この表に無い**。受け付けられていないので、どの eJournal にも
 載っていません。出したときの区分は `Continental Philosophy` であると著者が述べている
