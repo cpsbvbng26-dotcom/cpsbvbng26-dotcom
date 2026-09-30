@@ -52,15 +52,7 @@ The direction has been changed. Decided on 2026-09-23. From here on the effort g
 
 The outlook, stated plainly. Nothing outside those two is in view — taking over the business, and teaching at an online university after a doctorate. Conferences and awards lie on the way to the second of those. The count of goals has not become three. And life will be lived with contact with others cut back as far as it will go. That way of living points the same way as the writing. What The Nobility and Exemplarity of the Celibate Individual defends is precisely that form — a happiness dependent neither on others nor on the cycle of desire (C2 in that paper). Whether that form can actually be taken up, however, is not established. C2 rests on two sources the author has not read (E6 in the errata, severity high), and the statistics on isolation press exactly on whether it can be taken up. A way of living is not evidence for a claim. The order runs the other way: the claim is the part not yet standing on its own feet.
 
-What will remain after death is being put in order while alive. There are three places it remains — stone, paper, and the network. What exists right now is the grave, the ORCID record, and the DOIs. The posthumous name is carved after death, and the degree is not held yet.
-
-Stone is the gravestone and the posthumous name (諡名, okurina). The family rite is the Shinto funeral (神葬祭); the author's grandmother came from a line of Shinto priests and is already enshrined as an ancestral deity of the house. The kanji of the author's given name were assigned at a shrine. One exception is placed on top of that tradition — the Shinto funeral is being arranged in advance, while living. The consultation with the local funeral company is done. Shinto has a posthumous name answering to the Buddhist kaimyō; the common form adds to the name borne in life something such as 大人之命 (ushi-no-mikoto). The form varies by shrine and by priest. The grave already exists, and the name with the posthumous name attached will be carved on its 奥津城 (okutsuki). The divine name after death is built on the name borne in life. That is where the author locates Shinto's view of life and death. The Shinto forms have not been checked against sources. What stands above is the explanation received from the author, not something verified here.
-
-Paper is the doctorate, 博士（学術）. It is one of the two aims listed on this page. It is not held. There is only a plan to obtain it. 博士（学術） is one of the names under which a doctorate is awarded, used for interdisciplinary and composite research. A degree is not extinguished by the holder's death, and the record of its award stays with the university. The timing is set as: while both parents are alive. That cannot be written as a deadline. The deadline is not the author's to set. Of the three, this is the only one not yet begun.
-
-The network is ORCID and DOI. ORCID is a persistent identifier used across a researcher's career, the base that ties a person to their output. The official FAQ states that a record created during life is maintained after death as the holder left it. There is also a mechanism for delegating management (Trusted Individual). That statement has not been checked against the source — orcid.org is not reachable from the working environment. Nothing is delegated to anyone at present. DOI is the persistent identification system specified in ISO 26324, designed so that the target of resolution can change. Numbers already issued remain, together with the papers, as a bibliographic trace.
-
-The real name with its posthumous name on stone, the degree on paper, ORCID and DOI on the network. One exception placed on top of the tradition, and what will remain afterwards put in order while alive. One of the three is not there yet.
+What is to remain after death (the gravestone and posthumous name, the degree, ORCID and DOI) is not research, and has been moved to [a separate page](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/afterlife.en.html).
 
 **Two aims**
 
@@ -238,14 +230,20 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 - Google Scholar — [publications](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - Kudos — [plain-language summaries of published work](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
-- LinkedIn — [available for independent work](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
-- Wantedly — [career profile](https://www.wantedly.com/id/takuya_nemoto_q)
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)
+- This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+
+</details>
+
+<details>
+<summary>Work channels, separate from research</summary>
+
+- LinkedIn — [available for independent work](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
+- Wantedly — [career profile](https://www.wantedly.com/id/takuya_nemoto_q)
 - Lancers — [available for independent work](https://www.lancers.jp/profile/Itizyou)
 - Coconala — [available for independent work](https://coconala.com/users/4974247)
 - CrowdWorks — [available for independent work](https://crowdworks.jp/public/employees/7030074)
-- This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 </details>
 
@@ -253,12 +251,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1202 checks.** There are no dependencies to install.
+**Every push runs 1262 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 413 checks
-node verification/check_site.js      # site structure, 699 checks
+node verification/check_contrast.js  # colour contrast, 447 checks
+node verification/check_site.js      # site structure, 725 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -268,7 +266,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 302 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 326 checks (needs Chromium)
 ```
 
 It tabs through 25 pages and looks for focus traps, elements that receive focus while

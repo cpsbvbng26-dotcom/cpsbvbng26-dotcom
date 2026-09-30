@@ -124,6 +124,16 @@
       "priority": "0.5"
     },
     {
+      "file": "notes/afterlife.html",
+      "loc": "notes/afterlife.html",
+      "priority": "0.3"
+    },
+    {
+      "file": "notes/afterlife.en.html",
+      "loc": "notes/afterlife.en.html",
+      "priority": "0.3"
+    },
+    {
       "file": "404.html",
       "loc": null,
       "priority": null,
