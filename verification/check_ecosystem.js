@@ -345,10 +345,15 @@ console.log('\n7. 研究者としての位置');
       && text.indexOf('査読を通った論文を一篇示せば') >= 0);
 
     /* 数を他から数え直す。 */
+    /* 公開した成果物は、papers.json の篇に doi-index.md の「Zenodo に無い本文」の行を足す。 */
     const papers = (() => {
       const raw = read('researcher-profile', 'papers.json');
+      const idx = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md')) || '';
       if (raw === null) return null;
-      try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length; }
+      const i = idx.indexOf('### Zenodo に無い本文');
+      const 無い = i < 0 ? 0
+        : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
+      try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length + 無い; }
       catch (e) { return null; }
     })();
     const zen = (() => {
@@ -817,10 +822,16 @@ console.log('\n7.14 SSRN の通過と却下');
     自分の節.length > 0 && idx.indexOf('## 第三者の SSRN DOI') > 0);
 
   const 通過 = (自分の節.match(/SSRN `10\.2139\/ssrn\.\d+`/g) || []).length;
+  /* **Zenodo に無い本文も、出した数に入れる。**papers.json に載るのは Zenodo に正本がある篇
+   * だけである。SSRN にだけ出したものを落とすと、通過が出した数を追い越して却下が減る。 */
+  const 無い = (() => {
+    const i = 自分の節.indexOf('### Zenodo に無い本文');
+    return i < 0 ? 0 : (自分の節.slice(i).match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
+  })();
   const 篇 = (() => {
     const raw = read('researcher-profile', 'papers.json');
     if (raw === null) return null;
-    try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length; }
+    try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length + 無い; }
     catch (e) { return null; }
   })();
   const 却下 = (篇 === null) ? null : 篇 - 通過;
@@ -832,6 +843,13 @@ console.log('\n7.14 SSRN の通過と却下');
     && parseInt(m[1], 10) === 通過 && parseInt(m[2], 10) === 却下,
     m ? ('名乗り ' + m[1] + ' 通過 / ' + m[2] + ' 却下  実際 ' + 通過 + ' / ' + 却下)
       : '欄が読めない');
+
+  /* 同じ数を、表の下の散文も名乗っている。**表だけ直して散文を据え置いた**（3 回通り、1 回落ち）。 */
+  const 散 = /SSRN の受け付けの門を (\d+) 回通り、(\d+) 回落ちています/.exec(自己);
+  check('自己分析の散文の SSRN の数が、数え直したものと合う',
+    散 !== null && 却下 !== null
+    && parseInt(散[1], 10) === 通過 && parseInt(散[2], 10) === 却下,
+    散 ? ('名乗り ' + 散[1] + ' / ' + 散[2] + '  実際 ' + 通過 + ' / ' + 却下) : '散文が無い');
 
   /* **落ちたことを、落ちたと書いてあること。**待っている顔のまま残さない。 */
   const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
