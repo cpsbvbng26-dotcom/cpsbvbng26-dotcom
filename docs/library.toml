@@ -1,0 +1,295 @@
+# 参考文献の一覧。Zotero などに読み込ませる docs/library.bib の生成元。
+#
+#     python3 verification/build_library.py で library.bib を作り直す
+#     python3 verification/build_library.py --check で、作り直したものと一致するかを見る
+#
+# library.bib は生成物です。手で直さない（決めごと 3）。直すのはこのファイルです。
+#
+# status は三つだけ使う。
+#
+#   照合済み      論文の草稿で、モデルを介した読みにより原典と照らした（草稿の開示のとおり）
+#   原典未確認    書誌は標準的なものを書いたが、著者はまだ原典に当たっていない
+#   未参照        文献の側の帰属として挙げるだけで、中身には何も拠らない
+#
+# DOI は、草稿で照合した番号だけを書く。ほかは空けておく（決めごと 1）。
+# 哲学三篇の参考文献（autonomy-and-self-cultivation の references.toml）は、
+# 紙面の文字列のまま @misc として足す。そちらは構造化しない。書誌を足せば、
+# 確かめていない書誌を作ることになるからです。
+
+[[entry]]
+key = "banach1922"
+type = "article"
+author = "Banach, Stefan"
+title = "Sur les opérations dans les ensembles abstraits et leur application aux équations intégrales"
+journal = "Fundamenta Mathematicae"
+volume = "3"
+pages = "133--181"
+year = "1922"
+status = "原典未確認"
+used_in = "trinity-operator 教材 第 1 回"
+
+[[entry]]
+key = "blondel2000"
+type = "article"
+author = "Blondel, Vincent D. and Tsitsiklis, John N."
+title = "The boundedness of all products of a pair of matrices is undecidable"
+journal = "Systems & Control Letters"
+volume = "41"
+number = "2"
+pages = "135--140"
+year = "2000"
+status = "原典未確認"
+used_in = "trinity-operator 教材 第 5 回、展望 段 2"
+
+[[entry]]
+key = "brown2017"
+type = "article"
+author = "Brown, Nicholas J. L. and Heathers, James A. J."
+title = "The GRIM Test: A Simple Technique Detects Numerous Anomalies in the Reporting of Results in Psychology"
+journal = "Social Psychological and Personality Science"
+volume = "8"
+number = "4"
+pages = "363--369"
+year = "2017"
+status = "原典未確認"
+used_in = "errata-check の GRIM"
+
+[[entry]]
+key = "chang2004"
+type = "book"
+author = "Chang, Hasok"
+title = "Inventing Temperature: Measurement and Scientific Progress"
+publisher = "Oxford University Press"
+year = "2004"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "degroot1974"
+type = "article"
+author = "DeGroot, Morris H."
+title = "Reaching a consensus"
+journal = "Journal of the American Statistical Association"
+volume = "69"
+number = "345"
+pages = "118--121"
+year = "1974"
+status = "原典未確認"
+used_in = "trinity-operator standard.py"
+
+[[entry]]
+key = "duede2023"
+type = "article"
+author = "Duede, Eamon"
+title = "Deep learning opacity in scientific discovery"
+journal = "Philosophy of Science"
+volume = "90"
+number = "5"
+pages = "1089--1099"
+year = "2023"
+doi = "10.1017/psa.2023.8"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "feng2026"
+type = "misc"
+author = "Feng, T. and Trinh, T. and Bingham, G. and Kang, J. and Zhang, S. and others"
+title = "Semi-autonomous mathematics discovery with Gemini: A case study on the Erdős problems"
+howpublished = "arXiv:2601.22401, version 3"
+year = "2026"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "friedkin1990"
+type = "article"
+author = "Friedkin, Noah E. and Johnsen, Eugene C."
+title = "Social influence and opinions"
+journal = "Journal of Mathematical Sociology"
+volume = "15"
+number = "3--4"
+pages = "193--206"
+year = "1990"
+doi = "10.1080/0022250X.1990.9990069"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery、trinity-operator 教材と standard.py"
+note = "草稿は 193--205 と書き、出版社の記録は 193--206 としている"
+
+[[entry]]
+key = "friedkin1999"
+type = "article"
+author = "Friedkin, Noah E. and Johnsen, Eugene C."
+title = "Social influence networks and opinion change"
+journal = "Advances in Group Processes"
+volume = "16"
+pages = "1--29"
+year = "1999"
+status = "未参照"
+used_in = "Machine-Mediated Rediscovery（後の文献がこの論文に帰している、という形でだけ挙げる）"
+
+[[entry]]
+key = "horn2013"
+type = "book"
+author = "Horn, Roger A. and Johnson, Charles R."
+title = "Matrix Analysis"
+edition = "2"
+publisher = "Cambridge University Press"
+year = "2013"
+status = "原典未確認"
+used_in = "trinity-infinity README、trinity-operator 教材"
+
+[[entry]]
+key = "householder1964"
+type = "book"
+author = "Householder, Alston S."
+title = "The Theory of Matrices in Numerical Analysis"
+publisher = "Blaisdell"
+year = "1964"
+status = "原典未確認"
+used_in = "trinity-infinity README、trinity-operator 教材 第 4 回"
+
+[[entry]]
+key = "jungers2009"
+type = "book"
+author = "Jungers, Rapha{\\\"e}l M."
+title = "The Joint Spectral Radius: Theory and Applications"
+publisher = "Springer"
+year = "2009"
+status = "原典未確認"
+used_in = "trinity-operator 教材 第 5 回、展望 段 2"
+
+[[entry]]
+key = "khosrowi2023"
+type = "inproceedings"
+author = "Khosrowi, Donal and Finn, Finola and Clark, Elinor"
+title = "Diffusing the creator: Attributing credit for generative AI outputs"
+booktitle = "Proceedings of the 2023 AAAI/ACM Conference on AI, Ethics, and Society (AIES '23)"
+pages = "890--900"
+year = "2023"
+doi = "10.1145/3600211.3604716"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "merton1957"
+type = "article"
+author = "Merton, Robert K."
+title = "Priorities in scientific discovery"
+journal = "American Sociological Review"
+volume = "22"
+number = "6"
+pages = "635--659"
+year = "1957"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "merton1961"
+type = "article"
+author = "Merton, Robert K."
+title = "Singletons and multiples in scientific discovery"
+journal = "Proceedings of the American Philosophical Society"
+volume = "105"
+number = "5"
+pages = "470--486"
+year = "1961"
+status = "原典未確認"
+used_in = "Machine-Mediated Rediscovery"
+note = "本文には届いていない。多重発見と単独発見の区別にだけ拠る（草稿の開示のとおり）"
+
+[[entry]]
+key = "monaco1994"
+type = "article"
+author = "Monaco, Jane H. and Anderson, Randy L."
+title = "Tai's formula is the trapezoidal rule"
+journal = "Diabetes Care"
+volume = "17"
+number = "10"
+pages = "1224--1225"
+year = "1994"
+doi = "10.2337/diacare.17.10.1224"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "mossel2026"
+type = "misc"
+author = "Mossel, Elchanan"
+title = "LLMs, reasoning and plagiarism"
+howpublished = "arXiv:2601.02380, version 5"
+year = "2026"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "nuijten2016"
+type = "article"
+author = "Nuijten, Mich{\\`e}le B. and Hartgerink, Chris H. J. and van Assen, Marcel A. L. M. and Epskamp, Sacha and Wicherts, Jelte M."
+title = "The prevalence of statistical reporting errors in psychology (1985--2013)"
+journal = "Behavior Research Methods"
+volume = "48"
+number = "4"
+pages = "1205--1226"
+year = "2016"
+status = "原典未確認"
+used_in = "errata-check の検定の再計算"
+
+[[entry]]
+key = "proskurnikov2017"
+type = "article"
+author = "Proskurnikov, Anton V. and Tempo, Roberto"
+title = "A tutorial on modeling and analysis of dynamic social networks. Part I"
+journal = "Annual Reviews in Control"
+volume = "43"
+pages = "65--79"
+year = "2017"
+doi = "10.1016/j.arcontrol.2017.03.002"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery、trinity-operator 教材と standard.py"
+note = "標準形の出典としてだけ拠る"
+
+[[entry]]
+key = "reichenbach1938"
+type = "book"
+author = "Reichenbach, Hans"
+title = "Experience and Prediction"
+publisher = "University of Chicago Press"
+year = "1938"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "tai1994"
+type = "article"
+author = "Tai, Mary M."
+title = "A mathematical model for the determination of total area under glucose tolerance and other metabolic curves"
+journal = "Diabetes Care"
+volume = "17"
+number = "2"
+pages = "152--154"
+year = "1994"
+doi = "10.2337/diacare.17.2.152"
+status = "照合済み"
+used_in = "Machine-Mediated Rediscovery"
+
+[[entry]]
+key = "trefethen2005"
+type = "book"
+author = "Trefethen, Lloyd N. and Embree, Mark"
+title = "Spectra and Pseudospectra: The Behavior of Nonnormal Matrices and Operators"
+publisher = "Princeton University Press"
+year = "2005"
+status = "原典未確認"
+used_in = "trinity-operator 教材 第 4 回"
+
+[[entry]]
+key = "varga2000"
+type = "book"
+author = "Varga, Richard S."
+title = "Matrix Iterative Analysis"
+edition = "2"
+publisher = "Springer"
+year = "2000"
+status = "原典未確認"
+used_in = "trinity-infinity README、trinity-operator 教材 第 2 回"

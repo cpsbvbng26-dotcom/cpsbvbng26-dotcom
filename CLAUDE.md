@@ -203,6 +203,7 @@ node verification/check_all.js         # 10 リポジトリの検査を全部回
 | `notes/*.html` | 同じく `researcher-profile` の `notes.json` / `notes.en.json` |
 | `README.md` / `README.en.md` の学歴と修得した科目（`<!-- 経歴:ここから -->` から `<!-- 経歴:ここまで -->` まで） | 科目の源は `researcher-profile` の `courses.json`。そこに一行足してページを作り直し、`node verification/update_readme_courses.js` |
 | `sitemap.xml` | `node verification/update_sitemap.js` |
+| `docs/library.bib` | `docs/library.toml`（と兄弟の `autonomy-and-self-cultivation` の書棚）を直して `python3 verification/build_library.py` |
 | CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
 
 外部へリクエストを出さない。`default-src 'none'`、`'unsafe-inline'` を使わない。
