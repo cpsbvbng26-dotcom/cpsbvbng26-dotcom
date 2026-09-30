@@ -1,6 +1,10 @@
 # Machine-Mediated Rediscovery —— 科学哲学の論文の下書き
 
-**下書き**。まだ公開していません。出す先の候補は PhilSci-Archive です。
+**下書き**。この版は公開したものではありません。
+
+公開した版は SSRN にあります —— [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)（2026-09-30 に載った）。題は SSRN の表記で *Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction* です。引用はそちらの番号にします。PhilSci-Archive は、投稿に推薦が要るため出せませんでした。
+
+下の本文は 2026-09-28 の下書きのままです。SSRN に出した版とどこが違うかは、突き合わせていません。
 
 この下書きには、確かめた部分と、確かめていない部分が混ざっています。
 
