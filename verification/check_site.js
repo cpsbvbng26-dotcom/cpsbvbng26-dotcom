@@ -1251,13 +1251,16 @@ section('10.59 自己紹介が名乗っていること');
      ja.indexOf('Continental Philosophy') >= 0
      && ja.indexOf('Numerical Analysis') >= 0
      && ja.indexOf('Philosophy Research Network') >= 0
-     && ja.indexOf('Mathematics Research Network') >= 0);
+     && ja.indexOf('Mathematics Research Network') >= 0
+     && ja.indexOf('East Asian History') >= 0
+     && ja.indexOf('History Research Network') >= 0);
   /* **日本語の頁には訳を添える。**場の言葉は残す —— <code> の中は原文のままで、
    * 翻訳除けが掛かっている。訳だけにすると場の言葉が消え、原文だけにすると
    * 日本語で読む者に区分が渡らない。**両方置く。** */
   ok('日本語の頁に区分の訳が添えてある',
      ja.indexOf('哲学研究網') >= 0 && ja.indexOf('大陸哲学') >= 0
-     && ja.indexOf('数学研究網') >= 0 && ja.indexOf('数値解析') >= 0);
+     && ja.indexOf('数学研究網') >= 0 && ja.indexOf('数値解析') >= 0
+     && ja.indexOf('歴史研究網') >= 0 && ja.indexOf('東アジア史') >= 0);
   /* **eJournal に載っているのは二篇である。**三篇目は同じ区分に出して弾かれた。
    * 「哲学三篇は大陸哲学」と書くと、載っていない一篇まで載っているように読める。
    * 一度そう書いて公開した（SC-036）。**「三篇」でこの区分を語らせない。** */
@@ -1282,13 +1285,17 @@ section('10.59 自己紹介が名乗っていること');
      en.indexOf('Continental Philosophy') >= 0
      && en.indexOf('Numerical Analysis') >= 0
      && en.indexOf('Philosophy Research Network') >= 0
-     && en.indexOf('Mathematics Research Network') >= 0);
+     && en.indexOf('Mathematics Research Network') >= 0
+     && en.indexOf('East Asian History') >= 0
+     && en.indexOf('History Research Network') >= 0);
   ['index.de.html', 'index.fr.html', 'index.it.html'].forEach((f) => {
     const h = read(f);
     ok(f + ' も分野の名前を書いている',
        h.indexOf('Continental Philosophy') >= 0 && h.indexOf('Numerical Analysis') >= 0
        && h.indexOf('Philosophy Research Network') >= 0
-       && h.indexOf('Mathematics Research Network') >= 0);
+       && h.indexOf('Mathematics Research Network') >= 0
+       && h.indexOf('East Asian History') >= 0
+       && h.indexOf('History Research Network') >= 0);
   });
 
   /* **数学の側でも同じ門を通した。**通したのは Series II だけである。
