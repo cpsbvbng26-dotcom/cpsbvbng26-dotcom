@@ -1664,9 +1664,12 @@ section('10.59 自己紹介が名乗っていること');
     /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
      * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
      * **一つ増えて散文が据え置きになる形を止める。** */
-    const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
-      .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length;
     const di = read('docs/doi-index.md');
+    /* 論文の頁を持つ篇に、Zenodo に無い本文の表の行を足す。頁はまだ無いが、プレプリントではある。 */
+    const 無い節 = di.slice(di.indexOf('### Zenodo に無い本文'), di.indexOf('## 削除した所在'));
+    const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
+      .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length
+      + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
     const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
     const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
     const jo = read('docs/joss.md');
@@ -1675,14 +1678,14 @@ section('10.59 自己紹介が名乗っていること');
     const 修了証 = new Set((read('cv.html')
       .match(/https:\/\/(?:courses\.edx\.org\/certificates|www\.openbadge-global\.com)\/[^"]+/g) || [])).size;
     const ずれ = [];
-    if (篇 !== 7) ずれ.push('篇 ' + 篇);
+    if (篇 !== 8) ずれ.push('篇 ' + 篇);
     if (DOI !== 15) ずれ.push('Zenodo の DOI ' + DOI);
     if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
     if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
-    const 散文 = ja.indexOf('七篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    const 散文 = ja.indexOf('八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
     ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
        ずれ.length === 0 && 散文,
-       ずれ.length ? ずれ.join(', ') : (散文 ? '7 / 15 / 10 / 7' : '散文の並びが無い'));
+       ずれ.length ? ずれ.join(', ') : (散文 ? '8 / 15 / 10 / 7' : '散文の並びが無い'));
   }
 
   /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
@@ -1779,7 +1782,13 @@ section('10.59 自己紹介が名乗っていること');
     const j = di.indexOf('## 削除した所在');
     const 表 = (i >= 0 && j > i) ? di.slice(i, j) : '';
     const 行 = 表.split('\n').filter((l) => /^\| [^-|]/.test(l) && l.indexOf('`10.5281/zenodo.') >= 0);
-    const 数 = 行.filter((l) => /SSRN `|PhilArchive `|arXiv `/.test(l.split('|')[3] || '')).length;
+    /* **Zenodo に無い本文も数える。**正の列が無いので、所在は二列目にある。
+     * Zenodo を持たないことは、下限（SSRN・PhilPapers・arXiv）の外に出る理由にならない。 */
+    const k = 表.indexOf('### Zenodo に無い本文');
+    const 無い = (k >= 0 ? 表.slice(k) : '').split('\n')
+      .filter((l) => /^\| [^-|]/.test(l) && l.indexOf('| 論文 |') !== 0);
+    const 数 = 行.filter((l) => /SSRN `|PhilArchive `|arXiv `/.test(l.split('|')[3] || '')).length
+      + 無い.filter((l) => /SSRN `|PhilArchive `|arXiv `/.test(l.split('|')[2] || '')).length;
     const m = /^\| 論文以外の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(read('docs/self-assessment.md'));
     ok('論文以外の枠の件数が、置き場の表から数え直したものと合う',
        m !== null && 行.length > 0 && Number(m[1]) === 数,

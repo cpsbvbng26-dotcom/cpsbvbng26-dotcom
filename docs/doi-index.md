@@ -89,6 +89,16 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961`、HAL `hal-05759064` |
 | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、HAL `hal-05759080` |
 
+### Zenodo に無い本文
+
+Zenodo に置いていないものです。いまの正本は下の所在です。Zenodo に置いたら、上の表へ移します。
+
+| 論文 | 所在 |
+| --- | --- |
+| Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983` |
+
+SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
+
 ## 削除した所在
 
 HAL に置いていた notice のうち、SSRN に同じ本文が無いものを 2026-09-26 に削除しました。
