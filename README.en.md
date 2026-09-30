@@ -156,7 +156,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | Proves that a triadic recursion operator converges geometrically to a unique fixed point, and separates throughout what is proven from what is borrowed from other fields and what is only an analogy | Revised — Aug 2026 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | Generalises the blend to vary by coordinate without losing uniqueness, and adds a characterisation of the sustainable payoff set and a fully worked spring-network example | Revised — Aug 2026 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961)<br>HAL [hal-05759064](https://hal.science/hal-05759064) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | Shows the convergence result never required three elements — it holds for every n ≥ 2 — and gives a retrospective on what the series established and what it withdrew | Aug 2026 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
-| [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Uses the route by which the central Trinity-Infinity operator was identified as a special case of the Friedkin–Johnsen model to ask what philosophy of science can say about novelty and priority claims when a machine performs the generating step. Makes no claim of mathematical novelty | Sep 2026 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983) (not deposited on Zenodo) |
+| [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Uses the route by which the central Trinity-Infinity operator was identified as a special case of the Friedkin–Johnsen model to ask what philosophy of science can say about novelty and priority claims when a machine performs the generating step. Makes no claim of mathematical novelty | Sep 2026 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)<br>PhilArchive [NEMMRA](https://philarchive.org/rec/NEMMRA) (not deposited on Zenodo) |
 
 > **Note on Series I.** Series II and Series III cite the revised Series I with `10.5281/zenodo.17173703`, which is the DOI of the **2025 original that this series corrects**. The revised edition is `10.5281/zenodo.22058624`. See [ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md). **Nothing withdrawn has been deleted.**
 
@@ -252,12 +252,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1263 checks.** There are no dependencies to install.
+**Every push runs 1264 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 447 checks
-node verification/check_site.js      # site structure, 726 checks
+node verification/check_site.js      # site structure, 727 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
