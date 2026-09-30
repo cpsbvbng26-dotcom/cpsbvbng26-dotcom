@@ -623,6 +623,13 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録しました。番号は `824240178`。**査読は自動では始まらない** |
 | Conatus – Journal of Philosophy（アテネ大学） | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | **落ちた**。`Decline Submission`。理由は示されていない |
 | SocArXiv（OSF Preprints） | The Nobility and Exemplarity of the Celibate Individual | —（付かなかった） | **受け付けられなかった**。理由は示されている —— 人文学の稿を受け付けない |
+| PhilSci-Archive | Machine-Mediated Rediscovery | —（付かなかった） | 出せなかった。2026-09-29。投稿には推薦が要る |
+| SSRN | Machine-Mediated Rediscovery | —（まだ受け取っていない） | 審査待ち。2026-09-29 |
+| CogPrints | どの稿かは記録していない | —（付かなかった） | 投稿し、同じ日に取り下げた。2026-09-29 |
+| HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
+
+2026-09-29 の四行の経緯は [submission-disclosure.md](submission-disclosure.md) の「2026-09-29 に分かったこと、出したこと」にあります。
+番号や ID は、受け取るまで書きません。
 
 ### SSRN が Trinity-Infinity の二篇を落とした —— 2026-09-18
 
