@@ -30,7 +30,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 通した基準は、明文で次のとおりである。SSRN —— 主題が分野網の学術的言説に属すること（part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見る。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付ける（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限る（cross-disciplinary and of clear interest to philosophers）。投稿されるすべての本と論文が専門職の水準を満たすこと（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられている。いかなる投稿も却下する権利を留保している（reserve the right to reject any submissions）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにする —— これは事前ではなく事後に効く。
 
-そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）である。海軍公報の史料ノートも SSRN の編集スタッフに受け付けられ、歴史研究網（History Research Network）の東アジア史（East Asian History）に置かれている（SSRN 10.2139/ssrn.7449338）。SSRN では区分がそのまま eJournal になっている。弾かれた一篇も同じ大陸哲学に出している。受け付けられていないので、どの eJournal にも載っていない。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I の改訂版と Series III は、出して落とされた。2026-09-18 に SSRN から二通が届いている。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていない。ここで確かなことが一つある —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはならない。落ちた二篇と通った一篇の違いは、まだ分かっていない。つまり、この門は同じ系列の中でも選り分ける。出した七篇のうち、受け付けられたのは四篇、落とされたのは三篇である。
+そこから導ける到達点は、はっきりしている。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた。二篇について、公開前に人が見て、落とさなかったということである。そして、三篇目は落とされた。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれている。この門は、実際に落とす。どの分野に置いたかも決まっている —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）である。海軍公報の史料ノートも SSRN の編集スタッフに受け付けられ、歴史研究網（History Research Network）の東アジア史（East Asian History）に置かれている（SSRN 10.2139/ssrn.7449338）。科学哲学の論文 Machine-mediated Rediscovery も、SSRN の編集スタッフに受け付けられている（SSRN 10.2139/ssrn.7537983）。SSRN では区分がそのまま eJournal になっている。弾かれた一篇も同じ大陸哲学に出している。受け付けられていないので、どの eJournal にも載っていない。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われた。却下権は留保されているが、その二篇には行使されなかった。数学の側でも同じことが起きている。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということである。Series I の改訂版と Series III は、出して落とされた。2026-09-18 に SSRN から二通が届いている。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていない。ここで確かなことが一つある —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはならない。落ちた二篇と通った一篇の違いは、まだ分かっていない。つまり、この門は同じ系列の中でも選り分ける。出した八篇のうち、受け付けられたのは五篇、落とされたのは三篇である。
 
 そこから導けないものも、はっきりしている。論証が正しいことは、どちらの門も見ていない。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていない。Series II も同じで、SSRN が見たのは主題と体裁である。落とされたことも、通ったことの裏返しでしかない。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではない。場の側がそう書いている —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べている。断片主義については理由が示されていない。数学の二篇には定型の文面が届いたが、要件と範囲のどちらなのかは示されていない。こちらも確かめていない。明文は上に、場の側の言葉のまま置いてある。
 
@@ -38,7 +38,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ここまでのプレプリントは、趣味として書いたものである。どれも査読を受けていない。これは謙遜ではない。上に並べたことからの帰結である —— 受け付けの門は通ったが、論証を見た者はいない。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロである。趣味の研究は、学部一年で卒業した。これからのものは、趣味と呼ばずに済む形で書く。
 
-edX と東北大学 MOOC の修了証も、学部一年の前半で終えている。七件ある。そして、ここに並べたものは全部、学部一年時の実績である。七篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件。日付そのものは突き合わせていない。修了証に印字されてはいるが、この作業環境から edX にも発行機関にも届かない。在籍の開始日も、ここには書かない。書けば、確かめていない日付を印字することになる。
+edX と東北大学 MOOC の修了証も、学部一年の前半で終えている。七件ある。そして、ここに並べたものは全部、学部一年時の実績である。八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件。日付そのものは突き合わせていない。修了証に印字されてはいるが、この作業環境から edX にも発行機関にも届かない。在籍の開始日も、ここには書かない。書けば、確かめていない日付を印字することになる。
 
 出す先も決めてある。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出さない —— 読む側からも書く側からも金を取らない場である。掲載料・投稿料を取る場には出さない。そして、無償を謳う勧誘にも応じない —— 費用が掛かる時点で、通ったのは選別ではなく支払いである。この規則は、すでに一度使っている。出版社から書籍化の勧誘が届き、返信していない（受けた勧誘）。相手を評価したのではない —— 実在も実績も査読の有無も確かめていない。決めたのは、自分の側の規則である。
 
@@ -168,6 +168,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示します。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961)<br>HAL [hal-05759064](https://hal.science/hal-05759064) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
+| [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Trinity-Infinity の中心の作用素が Friedkin–Johnsen 模型の特殊例だと分かるまでの経路を事例に、生成を機械が担ったとき新規性と先取権の主張を科学哲学の枠組みがどこまで扱えるかを論じる。数学の新規性は主張しない。 | 2026年9月 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)（Zenodo には置いていない） |
 
 > Series I についての注記。 Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。撤回した内容は消していない。
 
@@ -184,7 +185,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった**。残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均です。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である**。犯した誤りは、その講義が試験で問う取り違えです。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御です。三篇と、その検証 298 項目（定理 15・印字された数値 32・正誤表の監査 108・経路 143）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
 | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 190 項目 | MIT | — |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する**。DOI が付いた PDF は直せません。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する**。いま 96 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する**。いま 97 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
 | [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | — |
 
 ---
@@ -305,7 +306,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 326 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 439 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 440 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
@@ -317,7 +318,7 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 焦点の枠を消す、見出しの階層を飛ばす、外部プロフィールの並びを入れ替える、など。
 落ちなければ、その検査は何も見ていません。
 
-**`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 78」「登録簿 96 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
+**`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 78」「登録簿 97 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にあります。どちらも兄弟ディレクトリに 10 並んでいることを前提にする（CI は 10 を checkout してから回す）。
 
