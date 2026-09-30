@@ -1928,6 +1928,25 @@ section('10.59 自己紹介が名乗っていること');
        節.indexOf(漢 + 'つ全部を満たす場にだけ出します。') >= 0);
   }
 
+  /* **出した先の表から、通った置き場を落とさない。**PhilArchive の三篇が、入口の頁と
+   * 現状評価には載っているのに、この表からだけ抜けていた（2026-09-30、利用者の指摘）。
+   * 所在の表（doi-index.md）にある SSRN の DOI と PhilArchive の記号を、表の行と突き合わせる。 */
+  {
+    const i = ev.indexOf('## 出した先');
+    /* 節の最初の表だけを取る。| で始まる行が切れたところで終わる。 */
+    const 節 = i >= 0 ? ev.slice(i).split('\n') : [];
+    const 始 = 節.findIndex((l) => /^\|/.test(l));
+    const 行 = [];
+    for (let k = 始; 始 >= 0 && k < 節.length && /^\|/.test(節[k]); k++) 行.push(節[k]);
+    const 本体 = 行.join('\n');
+    const di = read('docs/doi-index.md');
+    const 番号 = [...new Set([...di.matchAll(/SSRN `(10\.2139\/ssrn\.\d+)`|PhilArchive `([A-Z]+)`/g)]
+      .map((m) => m[1] || m[2]))];
+    const 欠け = 番号.filter((x) => 本体.indexOf('`' + x + '`') < 0);
+    ok('所在の表の SSRN と PhilArchive の番号が、出した先の表にすべてある（' + 番号.length + ' 件）',
+       番号.length > 0 && 欠け.length === 0, 欠け.join(', '));
+  }
+
   /* MERLOT の番号は、表の欄と URL の二か所に出る。**片方だけ直すとずれる。** */
   const 番 = /viewMaterial\.htm\?id=(\d+)/.exec(ev);
   ok('MERLOT の番号が、表と URL で同じである',
