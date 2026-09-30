@@ -168,7 +168,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示します。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961)<br>HAL [hal-05759064](https://hal.science/hal-05759064) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
-| [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Trinity-Infinity の中心の作用素が Friedkin–Johnsen 模型の特殊例だと分かるまでの経路を事例に、生成を機械が担ったとき新規性と先取権の主張を科学哲学の枠組みがどこまで扱えるかを論じる。数学の新規性は主張しない。 | 2026年9月 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)（Zenodo には置いていない） |
+| [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Trinity-Infinity の中心の作用素が Friedkin–Johnsen 模型の特殊例だと分かるまでの経路を事例に、生成を機械が担ったとき新規性と先取権の主張を科学哲学の枠組みがどこまで扱えるかを論じる。数学の新規性は主張しない。 | 2026年9月 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)<br>PhilArchive [NEMMRA](https://philarchive.org/rec/NEMMRA)（Zenodo には置いていない） |
 
 > Series I についての注記。 Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。撤回した内容は消していない。
 
@@ -267,12 +267,12 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1263 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1264 項目の検査を通します。 依存パッケージはありません。
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 447 項目
-node verification/check_site.js      # サイトの構造 726 項目
+node verification/check_site.js      # サイトの構造 727 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 

@@ -1956,6 +1956,17 @@ section('10.59 自己紹介が名乗っていること');
        番号.length > 0 && 欠け.length === 0, 欠け.join(', '));
   }
 
+  /* **PhilArchive の収録の数も、所在の一覧から数え直す。**門を通ったかは証言だが、
+   * 載っている数は記号の数で決まる。四篇目を足したときに、欄が 3 のまま残りかけた。 */
+  {
+    const di = read('docs/doi-index.md');
+    const 節 = di.slice(di.indexOf('## 別の所在にある同一本文'), di.indexOf('## 削除した所在'));
+    const 記号 = new Set([...節.matchAll(/PhilArchive `([A-Z]+)`/g)].map((m) => m[1]));
+    const m = /^\| PhilArchive の収録 \|[^|]*\| \*\*(\d+) 収録 /m.exec(read('docs/self-assessment.md'));
+    ok('PhilArchive の収録の数が、所在の一覧の記号の数と合う（' + 記号.size + ' 件）',
+       m !== null && Number(m[1]) === 記号.size, m ? ('名乗り ' + m[1]) : '欄が無い');
+  }
+
   /* MERLOT の番号は、表の欄と URL の二か所に出る。**片方だけ直すとずれる。** */
   const 番 = /viewMaterial\.htm\?id=(\d+)/.exec(ev);
   ok('MERLOT の番号が、表と URL で同じである',

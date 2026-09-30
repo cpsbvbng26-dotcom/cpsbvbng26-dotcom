@@ -95,9 +95,10 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 
 | 論文 | 所在 |
 | --- | --- |
-| Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983` |
+| Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA` |
 
 SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
+PhilArchive にも同じ日に置きました。記号は利用者から受け取りました。
 
 ## 削除した所在
 
