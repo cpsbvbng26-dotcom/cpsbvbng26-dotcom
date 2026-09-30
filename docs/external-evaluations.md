@@ -623,11 +623,15 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | MERLOT（カリフォルニア州立大学） | 正義論とアルゴリズム | —（DOI は付かない） | 登録しました。番号は `824240178`。**査読は自動では始まらない** |
 | Conatus – Journal of Philosophy（アテネ大学） | The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | **落ちた**。`Decline Submission`。理由は示されていない |
 | SocArXiv（OSF Preprints） | The Nobility and Exemplarity of the Celibate Individual | —（付かなかった） | **受け付けられなかった**。理由は示されている —— 人文学の稿を受け付けない |
+| PhilArchive | The Nobility and Exemplarity of the Celibate Individual | `NEMTNA`（DOI ではない） | 門を通った。学術哲学の領域にあり、専門職の水準を満たすものとして扱われた（著者の証言） |
+| PhilArchive | Manifesto of Imperial Selfhood | `NEMMOI`（DOI ではない） | 門を通った。同上 |
+| PhilArchive | Fragmentarian Spiritual Individualism | `NEMFSI`（DOI ではない） | 載ったが、門は下りていない（SC-027）。2026-09-26 に削除を依頼した |
 | PhilSci-Archive | Machine-Mediated Rediscovery | —（付かなかった） | 出せなかった。2026-09-29。投稿には推薦が要る |
 | SSRN | Machine-Mediated Rediscovery | —（まだ受け取っていない） | 審査待ち。2026-09-29 |
 | CogPrints | どの稿かは記録していない | —（付かなかった） | 投稿し、同じ日に取り下げた。2026-09-29 |
 | HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
 
+PhilArchive の三行は 2026-09-30 に足しました。入口の頁と現状評価には載っていたが、この表から抜けていました（利用者の指摘）。
 2026-09-29 の四行の経緯は [submission-disclosure.md](submission-disclosure.md) の「2026-09-29 に分かったこと、出したこと」にあります。
 番号や ID は、受け取るまで書きません。
 
