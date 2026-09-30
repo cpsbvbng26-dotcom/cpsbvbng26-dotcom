@@ -627,7 +627,7 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | PhilArchive | Manifesto of Imperial Selfhood | `NEMMOI`（DOI ではない） | 門を通った。同上 |
 | PhilArchive | Fragmentarian Spiritual Individualism | `NEMFSI`（DOI ではない） | 載ったが、門は下りていない（SC-027）。2026-09-26 に削除を依頼した |
 | PhilSci-Archive | Machine-Mediated Rediscovery | —（付かなかった） | 出せなかった。2026-09-29。投稿には推薦が要る |
-| SSRN | Machine-Mediated Rediscovery | —（まだ受け取っていない） | 審査待ち。2026-09-29 |
+| SSRN | Machine-Mediated Rediscovery | `10.2139/ssrn.7537983` | **受け付けられた**。2026-09-29 に出し、2026-09-30 に載った。区分はまだ受け取っていない |
 | CogPrints | どの稿かは記録していない | —（付かなかった） | 投稿し、同じ日に取り下げた。2026-09-29 |
 | HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
 
