@@ -353,7 +353,11 @@ console.log('\n7. 研究者としての位置');
       const i = idx.indexOf('### Zenodo に無い本文');
       const 無い = i < 0 ? 0
         : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
-      try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length + 無い; }
+      /* 論文の頁をまだ作っていない Zenodo の本文も足す。SSRN の数え直しには入れない（出していない）。 */
+      const k = idx.indexOf('### 論文の頁をまだ作っていない本文');
+      const 頁なし = k < 0 ? 0
+        : (idx.slice(k, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
+      try { const j = JSON.parse(raw); return (Array.isArray(j) ? j : j.papers).length + 無い + 頁なし; }
       catch (e) { return null; }
     })();
     const zen = (() => {
