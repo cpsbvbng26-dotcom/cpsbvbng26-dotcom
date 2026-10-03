@@ -1667,9 +1667,12 @@ section('10.59 自己紹介が名乗っていること');
     const di = read('docs/doi-index.md');
     /* 論文の頁を持つ篇に、Zenodo に無い本文の表の行を足す。頁はまだ無いが、プレプリントではある。 */
     const 無い節 = di.slice(di.indexOf('### Zenodo に無い本文'), di.indexOf('## 削除した所在'));
+    /* 論文の頁をまだ作っていない Zenodo の本文も、プレプリントとして数える。 */
+    const 頁なし節 = di.slice(di.indexOf('### 論文の頁をまだ作っていない本文'), di.indexOf('## 削除した所在'));
     const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
       .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length
-      + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
+      + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length
+      + (頁なし節.match(/^\| (?!論文 \|)[^-|][^|]* \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
     const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
     const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
     const jo = read('docs/joss.md');
@@ -1678,14 +1681,14 @@ section('10.59 自己紹介が名乗っていること');
     const 修了証 = new Set((read('cv.html')
       .match(/https:\/\/(?:courses\.edx\.org\/certificates|www\.openbadge-global\.com)\/[^"]+/g) || [])).size;
     const ずれ = [];
-    if (篇 !== 8) ずれ.push('篇 ' + 篇);
-    if (DOI !== 15) ずれ.push('Zenodo の DOI ' + DOI);
+    if (篇 !== 9) ずれ.push('篇 ' + 篇);
+    if (DOI !== 16) ずれ.push('Zenodo の DOI ' + DOI);
     if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
     if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
-    const 散文 = ja.indexOf('八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    const 散文 = ja.indexOf('九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
     ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
        ずれ.length === 0 && 散文,
-       ずれ.length ? ずれ.join(', ') : (散文 ? '8 / 15 / 10 / 7' : '散文の並びが無い'));
+       ずれ.length ? ずれ.join(', ') : (散文 ? '9 / 16 / 10 / 7' : '散文の並びが無い'));
   }
 
   /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
