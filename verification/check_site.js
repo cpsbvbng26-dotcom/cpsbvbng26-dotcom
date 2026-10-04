@@ -1468,10 +1468,12 @@ section('10.59 自己紹介が名乗っていること');
     const 誓い = [
       ['notes/afterlife.html', ['合理的な神の前に「不犯の誓い」を立てた', '両親の理解を得ている',
                                  '三つの伝統そのものの教えではない', '他の誰かの生き方を否定するものではない',
-                                 '宣言であり、その始まりにすぎない']],
+                                 '宣言であり、その始まりにすぎない',
+                                 '心身統一合氣道での昇級は、これが最後になった']],
       ['notes/afterlife.en.html', ['a vow of lifelong celibacy was made before a rational God', 'Both parents understand this vow.',
                                     'This is not the teaching of the three traditions themselves.',
-                                    'does not reject anyone else’s way of life', 'What is written here is a declaration, and only its beginning.']]
+                                    'does not reject anyone else’s way of life', 'What is written here is a declaration, and only its beginning.',
+                                    'It turned out to be the last promotion in Shinshin Toitsu Aikido.']]
     ];
     const 欠け = [];
     誓い.forEach(([f, xs]) => {
