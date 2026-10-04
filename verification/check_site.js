@@ -1414,13 +1414,17 @@ section('10.59 自己紹介が名乗っていること');
       ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない',
                                     '窓の外の証明は、ゼロではなく、まだ数えていない',
                                     '枠組みが新しい理論になるわけではない',
-                                    '数学的な意義は、文献照合の条件つきである。', '科学哲学的な意義は、そのまま残る。']],
+                                    '数学的な意義は、文献照合の条件つきである。', '科学哲学的な意義は、そのまま残る。',
+                                    '理論ではない。証明は文献と照合しておらず、第三者の公認もない。',
+                                    '名乗ることと、分野が数えることは別である。']],
       ['notes/golden-window.en.html', ['It has not been proved.', 'It has not been checked against the literature.',
                                        'It is not a person’s name.',
                                        'The proofs outside the window are not zero: they are not yet counted.',
                                        'the framework does not become a new theory.',
                                        'The mathematical significance is conditional on the literature check.',
-                                       'The significance for the philosophy of science stays as it was.']]
+                                       'The significance for the philosophy of science stays as it was.',
+                                       'This is not a theory. The proofs have not been checked against the literature, and no third party has recognised them.',
+                                       'Claiming a contribution and having the field count it are different things.']]
     ];
     const 欠け = [];
     頁.forEach(([f, xs]) => {
@@ -1428,7 +1432,7 @@ section('10.59 自己紹介が名乗っていること');
       const 出た = xs.filter((x) => h.indexOf(x) >= 0);
       if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length);
     });
-    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別・解けても新理論でないこと・意義の条件と科学哲学の側を二言語とも書いている',
+    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別・解けても新理論でないこと・意義の条件と科学哲学の側・名乗る貢献の条件を二言語とも書いている',
        欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × ' + 頁[0][1].length));
 
     const 証明済み = 頁.filter(([f]) => /conjecture has been proved|予想を証明した|予想は証明された/.test(read(f)))
