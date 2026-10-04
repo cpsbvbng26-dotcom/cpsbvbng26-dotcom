@@ -36,7 +36,7 @@ What does not follow is equally definite. Neither gate looked at whether the arg
 
 One thing about the mathematics is now settled. The operator behind the three Trinity-Infinity papers, x ← DQx + (I−D)p, was already a known model — the Friedkin–Johnsen model (1990 / 1999) in sociology. The opinion-dynamics literature routinely names DeGroot and Friedkin–Johnsen together as the most influential models in that area; it became a Cambridge monograph in 2011, reached Science in 2016, and is now used in control theory and computer science. Not a footnote — one of the two pillars of the field. And Series I names consensus dynamics in its own first section while citing nothing from that field (ERRATA E8, severity high). The dimensions, stated exactly: this operator is the special case where the influence matrix W is a cyclic permutation — a ring in which each party listens to exactly one neighbour. The general W, who influences whom and by how much, which is what makes Friedkin–Johnsen sociology, is dropped entirely. What was rediscovered is the mathematical frame of a first-rank sociological model, with the sociology taken out, and its load-bearing term.
 
-One thing has been added beyond that. On 2026-10-04 a note was written showing that the same operator decides the equilibria of a repeated game (trinity-operator, games). The continuation values of a cyclic path of play are the fixed point of this operator. The formula itself is the textbook one. From it, thresholds were proved: a path on which three players take turns defecting is an equilibrium exactly when the discount factor is at least 1/φ. The note also shows that the Series II example (2,4,2) is not sustainable for any discount factor. The propositions have not been checked against the literature. They may be known exercises, and they are not counted as new results until they are checked. The note also states a conjecture: without randomization, the set of sustainable payoffs is full of holes. It is called the golden-window conjecture, the window being the discount factors from 1/φ to 2/3. The name describes the statement and is not a person’s name. There is no proof, and the evidence is numerical only. The known model, the proved propositions and the conjectures are written down separately.
+One thing has been added beyond that. On 2026-10-04 a note was written showing that the same operator decides the equilibria of a repeated game (trinity-operator, games). The continuation values of a cyclic path of play are the fixed point of this operator. The formula itself is the textbook one. From it, thresholds were proved: a path on which three players take turns defecting is an equilibrium exactly when the discount factor is at least 1/φ. The note also shows that the Series II example (2,4,2) is not sustainable for any discount factor. The propositions have not been checked against the literature. They may be known exercises, and they are not counted as new results until they are checked. The note also states a conjecture: without randomization, the set of sustainable payoffs is full of holes. It is called the golden-window conjecture, the window being the discount factors from 1/φ to 2/3. The name describes the statement and is not a person’s name. The conjecture and what is proved outside the window are set out on [a page of their own](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/golden-window.en.html). There is no proof, and the evidence is numerical only. The known model, the proved propositions and the conjectures are written down separately.
 
 The preprints up to this point were written as a hobby. None of them has been peer-reviewed. This is not modesty. It follows from what is set out above — the desk gate was passed, but no one has examined the arguments. The three mathematical papers are a special case of a known model, and the contribution to the field is zero. Hobby research ended in the first undergraduate year. What comes next will be written so that the word need not apply.
 
@@ -255,12 +255,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1264 checks.** There are no dependencies to install.
+**Every push runs 1325 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 447 checks
-node verification/check_site.js      # site structure, 727 checks
+node verification/check_contrast.js  # colour contrast, 481 checks
+node verification/check_site.js      # site structure, 754 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -270,7 +270,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 326 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 350 checks (needs Chromium)
 ```
 
 It tabs through 25 pages and looks for focus traps, elements that receive focus while

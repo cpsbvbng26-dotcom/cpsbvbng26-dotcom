@@ -1403,6 +1403,50 @@ section('10.59 自己紹介が名乗っていること');
        欠案内.length ? 欠案内.join(', ') : '7 面とも');
   }
 
+  /* **黄金比の窓の予想は、独立した頁に置く。**2026-10-04 に、自己紹介から分けた。
+   * 検索にかかるように sitemap に載せ、自己紹介の七つの面から案内する。
+   * **予想を「証明した」に書き換えない。**未証明と、文献と照合していないことと、
+   * 人名ではないことの三つを、二言語とも固める。どれか一つ消えれば落ちる。 */
+  {
+    const 頁 = [
+      ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない']],
+      ['notes/golden-window.en.html', ['It has not been proved.', 'It has not been checked against the literature.',
+                                       'It is not a person’s name.']]
+    ];
+    const 欠け = [];
+    頁.forEach(([f, xs]) => {
+      const h = read(f);
+      const 出た = xs.filter((x) => h.indexOf(x) >= 0);
+      if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length);
+    });
+    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないことを二言語とも書いている', 欠け.length === 0,
+       欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × 3'));
+
+    const 証明済み = 頁.filter(([f]) => /conjecture has been proved|予想を証明した|予想は証明された/.test(read(f)))
+      .map(([f]) => f);
+    ok('黄金比の窓の予想の頁が、予想を証明済みと書いていない', 証明済み.length === 0,
+       証明済み.length ? 証明済み.join(', ') : '2 言語とも');
+
+    const 案内 = [['index.html', './notes/golden-window.html'], ['index.en.html', './notes/golden-window.en.html'],
+                  ['index.de.html', './notes/golden-window.en.html'], ['index.fr.html', './notes/golden-window.en.html'],
+                  ['index.it.html', './notes/golden-window.en.html'],
+                  ['README.md', 'notes/golden-window.html'], ['README.en.md', 'notes/golden-window.en.html']];
+    const 欠案内 = 案内.filter(([f, u]) => read(f).indexOf(u) < 0).map(([f]) => f);
+    ok('自己紹介の七つの面から、黄金比の窓の予想の頁へ案内している', 欠案内.length === 0,
+       欠案内.length ? 欠案内.join(', ') : '7 面とも');
+
+    const 地図 = read('sitemap.xml');
+    const 載らず = ['notes/golden-window.html', 'notes/golden-window.en.html']
+      .filter((f) => 地図.indexOf('/cpsbvbng26-dotcom/' + f + '<') < 0);
+    ok('黄金比の窓の予想の頁が、二言語とも sitemap に載っている', 載らず.length === 0,
+       載らず.length ? 載らず.join(', ') : '2 言語とも');
+
+    const ノート = 'https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games';
+    const 元無し = 頁.filter(([f]) => read(f).indexOf(ノート) < 0).map(([f]) => f);
+    ok('黄金比の窓の予想の頁が、もとのノートを指している', 元無し.length === 0,
+       元無し.length ? 元無し.join(', ') : '2 言語とも');
+  }
+
   /* **学位はまだ無い。**決めごと 6 に触る一行である。
    * 「取得する計画」から「取得した」へ黙って動くと、自称の肩書きになる。 */
   {
