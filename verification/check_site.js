@@ -1412,10 +1412,12 @@ section('10.59 自己紹介が名乗っていること');
   {
     const 頁 = [
       ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない',
-                                    '窓の外の証明は、ゼロではなく、まだ数えていない']],
+                                    '窓の外の証明は、ゼロではなく、まだ数えていない',
+                                    '枠組みが新しい理論になるわけではない']],
       ['notes/golden-window.en.html', ['It has not been proved.', 'It has not been checked against the literature.',
                                        'It is not a person’s name.',
-                                       'The proofs outside the window are not zero: they are not yet counted.']]
+                                       'The proofs outside the window are not zero: they are not yet counted.',
+                                       'the framework does not become a new theory.']]
     ];
     const 欠け = [];
     頁.forEach(([f, xs]) => {
@@ -1423,7 +1425,7 @@ section('10.59 自己紹介が名乗っていること');
       const 出た = xs.filter((x) => h.indexOf(x) >= 0);
       if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length);
     });
-    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別を二言語とも書いている',
+    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別・解けても新理論でないことを二言語とも書いている',
        欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × ' + 頁[0][1].length));
 
     const 証明済み = 頁.filter(([f]) => /conjecture has been proved|予想を証明した|予想は証明された/.test(read(f)))
