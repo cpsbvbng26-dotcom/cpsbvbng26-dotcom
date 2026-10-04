@@ -1406,12 +1406,16 @@ section('10.59 自己紹介が名乗っていること');
   /* **黄金比の窓の予想は、独立した頁に置く。**2026-10-04 に、自己紹介から分けた。
    * 検索にかかるように sitemap に載せ、自己紹介の七つの面から案内する。
    * **予想を「証明した」に書き換えない。**未証明と、文献と照合していないことと、
-   * 人名ではないことの三つを、二言語とも固める。どれか一つ消えれば落ちる。 */
+   * 人名ではないことを、二言語とも固める。どれか一つ消えれば落ちる。
+   * **三篇のゼロと、窓の外の証明の「まだ数えていない」を混ぜない。**ゼロは照合して
+   * 何も無かった状態、数えていないは照合がまだの状態である。 */
   {
     const 頁 = [
-      ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない']],
+      ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない',
+                                    '窓の外の証明は、ゼロではなく、まだ数えていない']],
       ['notes/golden-window.en.html', ['It has not been proved.', 'It has not been checked against the literature.',
-                                       'It is not a person’s name.']]
+                                       'It is not a person’s name.',
+                                       'The proofs outside the window are not zero: they are not yet counted.']]
     ];
     const 欠け = [];
     頁.forEach(([f, xs]) => {
@@ -1419,8 +1423,8 @@ section('10.59 自己紹介が名乗っていること');
       const 出た = xs.filter((x) => h.indexOf(x) >= 0);
       if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length);
     });
-    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないことを二言語とも書いている', 欠け.length === 0,
-       欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × 3'));
+    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別を二言語とも書いている',
+       欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × ' + 頁[0][1].length));
 
     const 証明済み = 頁.filter(([f]) => /conjecture has been proved|予想を証明した|予想は証明された/.test(read(f)))
       .map(([f]) => f);
