@@ -1460,6 +1460,35 @@ section('10.59 自己紹介が名乗っていること');
        元無し.length ? 元無し.join(', ') : '2 言語とも');
   }
 
+  /* **不犯の誓い。**2026-10-04 に、本人の意思で「死後に残すもの」の頁に載せた。
+   * 研究の自己紹介には置かない。**誓いであって、達成の報告ではない。**
+   * 三つの伝統の教えそのものではないこと、他の誰かの生き方を否定しないこと、
+   * 両親については理解を得ていることの一文だけを書くこと（決めごと 10）を、二言語とも固める。 */
+  {
+    const 誓い = [
+      ['notes/afterlife.html', ['合理的な神の前に「不犯の誓い」を立てた', '両親の理解を得ている',
+                                 '三つの伝統そのものの教えではない', '他の誰かの生き方を否定するものではない',
+                                 '宣言であり、その始まりにすぎない']],
+      ['notes/afterlife.en.html', ['a vow of lifelong celibacy was made before a rational God', 'Both parents understand this vow.',
+                                    'This is not the teaching of the three traditions themselves.',
+                                    'does not reject anyone else’s way of life', 'What is written here is a declaration, and only its beginning.']]
+    ];
+    const 欠け = [];
+    誓い.forEach(([f, xs]) => {
+      const h = read(f);
+      const 出た = xs.filter((x) => h.indexOf(x) >= 0);
+      if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length + ' / ' + xs.length);
+    });
+    ok('不犯の誓いが、教えそのものでないこと・他者を否定しないこと・宣言にすぎないことと一緒に二言語とも書いてある',
+       欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (誓い.length + ' 言語 × ' + 誓い[0][1].length));
+
+    const 七面 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
+                  'README.md', 'README.en.md'];
+    const 混ざり = 七面.filter((f) => /不犯の誓い|vow of lifelong celibacy/.test(read(f)));
+    ok('不犯の誓いが、研究の自己紹介の七つの面に入っていない', 混ざり.length === 0,
+       混ざり.length ? 混ざり.join(', ') : '7 面とも無し');
+  }
+
   /* **学位はまだ無い。**決めごと 6 に触る一行である。
    * 「取得する計画」から「取得した」へ黙って動くと、自称の肩書きになる。 */
   {
