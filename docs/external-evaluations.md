@@ -1454,17 +1454,33 @@ ChatGPT が、PhilPapers での二篇の置かれ方を分析しました。著�
 
 | 主張 | 確かめた結果 | 等級 |
 | --- | --- | --- |
-| Manifesto of Imperial Selfhood が、PhilPapers の Immanuel Kant の文献一覧に入っている | 検索が、Kant の文献一覧の頁からこの篇を拾った | 検索で確認（原典未読） |
-| その篇に、Kant のほか社会・政治哲学、人種の政治、戦争と暴力などの分類が付いている | 分類の並びは確かめていない | ChatGPT の報告 |
-| Machine-mediated Rediscovery が、General Philosophy of Science の新着に 2026-09-30 付けで入り、Scientific Progress と Sociology of Science に分類されている | 検索では拾えなかった | ChatGPT の報告 |
-| General Philosophy of Science の編者は Howard Sankey（Melbourne）である | 検索で確かめた | 検索で確認（原典未読） |
-| Immanuel Kant の編者は Andrew Chignell（Princeton）である | 検索では確かめられなかった | ChatGPT の報告 |
+| Manifesto of Imperial Selfhood が、PhilPapers の Immanuel Kant の文献一覧に入っている | 検索が、Kant の文献一覧の頁からこの篇を拾った。Grok も一覧の頁を開き、載っていると報告した。頁の上部に「1 filter applied」とあり、どの絞り込みかは分からない | 検索で確認（原典未読）。Grok の報告 |
+| その篇に、Kant のほか社会・政治哲学、人種の政治、戦争と暴力などの分類が付いている | Grok が論文の頁（`NEMMOI`）を開いたところ、Categories の見出しの下に分類の名前は無かった。**この並びは確かめられなかった** | ChatGPT の報告。Grok の報告と食い違う |
+| Machine-mediated Rediscovery が、General Philosophy of Science の新着に 2026-09-30 付けで入り、Scientific Progress と Sociology of Science に分類されている | 検索では拾えなかった。Grok も論文の頁を開けなかった（403）。分類の一覧の一頁目にも出ていなかった | ChatGPT の報告。未確認 |
+| General Philosophy of Science の編者は Howard Sankey（Melbourne）である | 検索で確かめた。Grok も頁の表示を引用した | 検索で確認（原典未読） |
+| Immanuel Kant の編者は Andrew Chignell（Princeton）である | Grok が頁の表示「Edited by Andrew Chignell ( Princeton University )」を引用した | Grok の報告（頁の引用つき） |
+| Scientific Progress の編者は Yafeng Shan（香港科技大学）である | Grok が頁の表示を引用した | Grok の報告（頁の引用つき） |
+| Sociology of Science の編者は Markus Seidel（Münster）である | Grok が頁の表示を引用した | Grok の報告（頁の引用つき） |
+| Manifesto of Imperial Selfhood は引用されていない | Grok が論文の頁の「No citations found.」を引用した | Grok の報告（頁の引用つき） |
+
+Grok は PhilPapers の頁を開くとき、何度も 403 と Cloudflare の確認画面で止まりました。開けた頁と開けなかった頁を分けて報告しています。
+Grok の報告は、頁の文言を引用しています。ただし、こちらでその頁を開いて確かめたわけではありません。
 
 #### 分類は誰が付けるか
 
 PhilPapers の説明によると、分類は三つの手で付きます。機械による自動の分類、利用者の手による分類、
 そして任命された四百人ほどの研究者による編集です。どの論文も、最後は葉の分類の一つから三つに置かれます。
 利用者は論文の下の「categorize」から分類を選べます。著者が自分の論文を分類することもできます。
+
+公式の説明の文言は、Grok が引いています。ログインした利用者は誰でも、論文の下の「categorize」から
+三つまで分類を付けられます（`Using this tool you can classify an entry in up to three fine-grained categories.`）。
+分類の誤りと思うものは利用者が取り消せて、争いになったものは編者が裁きます。
+自動の分類は「AUTOCAT」という利用者名で動き、載った雑誌や題の語から分類します
+（`AUTOCAT classifies entries based on their source journals and/or certain keywords in them.`）。
+出典は `philpapers.org/help/categorization.html` と `philpapers.org/help/editors.html` です。
+
+Manifesto の頁に分類の名前が無いのに、Kant の一覧には載っている。この食い違いの理由は分かりません。
+一覧の頁にかかっていた絞り込みによるのか、自動の分類によるのか、抽出の漏れなのかを、ここでは決めません。
 
 ここが ChatGPT の分析から抜けています。分類が付いていることは、編者がその篇を選んで置いたことを
 意味しません。著者は投稿の書式で分類を選んでおり、Machine-mediated Rediscovery のときも
