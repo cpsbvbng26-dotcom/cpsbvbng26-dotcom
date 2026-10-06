@@ -1462,9 +1462,17 @@ ChatGPT が、PhilPapers での二篇の置かれ方を分析しました。著�
 | Scientific Progress の編者は Yafeng Shan（香港科技大学）である | Grok が頁の表示を引用した | Grok の報告（頁の引用つき） |
 | Sociology of Science の編者は Markus Seidel（Münster）である | Grok が頁の表示を引用した | Grok の報告（頁の引用つき） |
 | Manifesto of Imperial Selfhood は引用されていない | Grok が論文の頁の「No citations found.」を引用した | Grok の報告（頁の引用つき） |
+| Manifesto of Imperial Selfhood は、Kant の一覧の 37 番目に、題と著者名つきで載っている | ChatGPT が一覧の頁の表示を引用した。added の日付は表示されていなかった | ChatGPT の報告（頁の引用つき） |
+| Kant の分類には、編者のほかに assistant editor が二人いる。編者は Princeton の哲学科と人間価値センターの教授である | ChatGPT が分類の頁と PhilPeople のプロフィールの表示を引用した。assistant editor の名前は書かない | ChatGPT の報告（頁の引用つき） |
+| Celibacy の分類には編者がいない | ChatGPT が頁の表示「This category needs an editor.」を引用した | ChatGPT の報告（頁の引用つき） |
+| The Nobility and Exemplarity of the Celibate Individual が Celibacy の一覧に載っている | 一覧は「10+ found」で、表示された 1〜10 番には無かった。11 番目以降は見ていない | ChatGPT の報告。未確認 |
+| 二篇の論文の頁の分類・引用・保存の表示 | ChatGPT は四つの頁（PhilPapers と PhilArchive の両方）を開けなかった（403） | 未確認 |
 
 Grok は PhilPapers の頁を開くとき、何度も 403 と Cloudflare の確認画面で止まりました。開けた頁と開けなかった頁を分けて報告しています。
 Grok の報告は、頁の文言を引用しています。ただし、こちらでその頁を開いて確かめたわけではありません。
+ChatGPT の再調査も、開けた頁と開けなかった頁を分けて報告しています。
+Kant の頁の「1 filter applied」は、ChatGPT の調査では表示されていませんでした。表示の違いが、
+ログインの有無によるのか時期によるのかは分かりません。
 
 #### 分類は誰が付けるか
 
@@ -1478,6 +1486,17 @@ PhilPapers の説明によると、分類は三つの手で付きます。機械
 自動の分類は「AUTOCAT」という利用者名で動き、載った雑誌や題の語から分類します
 （`AUTOCAT classifies entries based on their source journals and/or certain keywords in them.`）。
 出典は `philpapers.org/help/categorization.html` と `philpapers.org/help/editors.html` です。
+
+#### 専門職の水準は、分類から分からない
+
+PhilArchive の規程は「All books and papers submitted should be of professional quality.」と書いています。
+ChatGPT がこの文を頁から引きました。同じ頁には、それを誰がいつ判断するかの記述がありません。
+規程に反したときの措置として、内容の削除やアカウントの停止は並んでいます。
+
+分類と水準は、別の仕組みです。分類は PhilPapers の側で、利用者・自動の分類・編者が付けます。
+水準は PhilArchive に預けるときの条件です。だから、Kant の一覧に載っていることから
+「専門職の水準と判定された」は出てきません。独身論と帝国的自己が PhilArchive の門を通ったことは、
+「出した先」の表のとおり、著者の証言です。
 
 Manifesto の頁に分類の名前が無いのに、Kant の一覧には載っている。この食い違いの理由は分かりません。
 一覧の頁にかかっていた絞り込みによるのか、自動の分類によるのか、抽出の漏れなのかを、ここでは決めません。
