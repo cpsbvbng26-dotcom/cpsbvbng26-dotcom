@@ -1080,6 +1080,33 @@ non-pro のままです。投稿できることと、門が下りることは別
 影響度の数（`IF: 6.012`）と Embase の収録の主張は、一通目と同じです。こちらは当たっていません（未確認）。
 決めたことは変わりません。 応じず、返信もしません。 担当者の名前と連絡先は記録しません。
 
+### 六つ目の勧誘 —— 一通目が見当たらない
+
+臨床試験と症例報告の誌からです。 どの論文を読んだかは書かれていません。
+文面は、前の便りへの追いかけだと書いています。 その一通目は、この記録にありません。
+届かなかったのか、見落としたのかは分かりません。
+
+文面から読めることを並べます。相手の性質についての判定ではありません。
+
+> `We are following up on our previous email`
+
+> `We were impressed by your research contributions`
+
+> `ISSN: 2578-4838; IF: *5.024`
+
+> `our journal has recently been indexed in Embase (Elsevier)`
+
+> `We kindly invite you to submit your article on or before October 20, 2026.`
+
+臨床試験も症例報告も、書いたものは一つもありません。
+影響度の数にも収録の主張にも、こちらは当たっていません（未確認）。 費用には触れていません。
+Embase に収録されたと言う一文は、五つ目の勧誘と同じ形をしています。 同じ出版元かどうかは確かめていません。
+
+#### 決めたこと —— 応じない
+
+決めごと 14 が、勧誘には応じないと定めています。 そこで終わります。 分野も合いません。 返信もしません。
+担当者の名前と連絡先は記録しません（決めごと 9）。
+
 ### 登録の審査 —— **中身の審査ではない**
 
 researchmap の登録は、誰かの推薦で入ったものではありません。
@@ -1235,7 +1262,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 **出版社からの勧誘が届いています**。評価ではないので、「受けた評価」には入れません。
 **だが、届いたことは記録します**。都合の悪い接触だけ落とせる状態にしません。
 
-表の行はいま七つあります。差出人は五つです。
+表の行はいま八つあります。差出人は六つです。
 
 | いつ | 誰から | 何について |
 | --- | --- | --- |
@@ -1246,6 +1273,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年9月17日 | **誌名が書かれていない**（`Editorial Office` の署名のみ。領域名は `celestialacademia.com`） | `A Naval Gazette Entry for Lieutenant Otani Tsune` について、完全版の原稿を Word で送るよう求めるもの |
 | 2026年9月18日 | **Journal of advance research in Social Science and Humanities**（`EISSN 2208-2387`。`Editorial Team` 名義。所在は `Adelaide, S.A.` と記されている） | 同じ史料ノートを見たとして、投稿を勧めるもの |
 | 2026年10月 | **Journal of Orthopedics & Bone Disorders**（`ISSN 2577-297X`。担当者の名義。**個人名と連絡先は記録しない**） | どの論文かを名指しせず、整形外科・骨疾患の号への投稿を勧めるもの。**分野がまったく違う** |
+| 2026年10月 | **Medical Journal of Clinical Trials & Case Studies**（`ISSN 2578-4838`。担当者の名義。**個人名は記録しない**） | どの論文かを名指しせず、投稿を勧めるもの。前の便りへの追いかけだと書いているが、一通目はこの記録に無い。**分野が違う** |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
