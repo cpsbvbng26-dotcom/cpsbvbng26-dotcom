@@ -42,7 +42,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install numpy pypdf
+      - run: pip install numpy pypdf==6.19.0
 
       - name: 各リポジトリの検査を全部
         working-directory: repos/cpsbvbng26-dotcom
