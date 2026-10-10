@@ -1086,6 +1086,10 @@ non-pro のままです。投稿できることと、門が下りることは別
 文面は、前の便りへの追いかけだと書いています。 その一通目は、この記録にありません。
 届かなかったのか、見落としたのかは分かりません。
 
+差出人の領域名は `clinicalcasestudiesjournal.com` です。 個人ではなく、問い合わせ窓口の名義から届いています。
+文面の末尾には配信停止の案内があります。 一人に宛てた手紙ではなく、一斉に配る便りの形をしています。
+冒頭の `We were impressed by your research contributions` も、その形の中の一文として読みます。
+
 文面から読めることを並べます。相手の性質についての判定ではありません。
 
 > `We are following up on our previous email`
@@ -1273,7 +1277,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年9月17日 | **誌名が書かれていない**（`Editorial Office` の署名のみ。領域名は `celestialacademia.com`） | `A Naval Gazette Entry for Lieutenant Otani Tsune` について、完全版の原稿を Word で送るよう求めるもの |
 | 2026年9月18日 | **Journal of advance research in Social Science and Humanities**（`EISSN 2208-2387`。`Editorial Team` 名義。所在は `Adelaide, S.A.` と記されている） | 同じ史料ノートを見たとして、投稿を勧めるもの |
 | 2026年10月 | **Journal of Orthopedics & Bone Disorders**（`ISSN 2577-297X`。担当者の名義。**個人名と連絡先は記録しない**） | どの論文かを名指しせず、整形外科・骨疾患の号への投稿を勧めるもの。**分野がまったく違う** |
-| 2026年10月 | **Medical Journal of Clinical Trials & Case Studies**（`ISSN 2578-4838`。担当者の名義。**個人名は記録しない**） | どの論文かを名指しせず、投稿を勧めるもの。前の便りへの追いかけだと書いているが、一通目はこの記録に無い。**分野が違う** |
+| 2026年10月 | **Medical Journal of Clinical Trials & Case Studies**（`ISSN 2578-4838`。担当者の名義。**個人名は記録しない**。領域名は `clinicalcasestudiesjournal.com`） | どの論文かを名指しせず、投稿を勧めるもの。前の便りへの追いかけだと書いているが、一通目はこの記録に無い。**分野が違う** |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
