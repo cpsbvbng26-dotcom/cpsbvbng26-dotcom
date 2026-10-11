@@ -66,8 +66,8 @@ What is to remain after death (the gravestone and posthumous name, the degree, O
 | | | Credits earned |
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
-| Upper Secondary School Equivalency Examination | passed | All subjects except Japanese history were exempted by credits earned at Seisa International High School; only Japanese history was sat |
 | Seisa International High School (attended at Musashi Gakuin) | left partway through |  |
+| Upper Secondary School Equivalency Examination | passed | All subjects except Japanese history were exempted by credits earned at Seisa International High School; only Japanese history was sat |
 | Sundai Preparatory School, Omiya, course for high-school graduates | attended |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 17 September 2026) |
 | ZEN University, Faculty of Social Informatics (1st cohort) | enrolled (autumn entry) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026) |
