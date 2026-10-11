@@ -66,7 +66,7 @@ What is to remain after death (the gravestone and posthumous name, the degree, O
 | | | Credits earned |
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
-| Upper Secondary School Equivalency Examination | passed |  |
+| Upper Secondary School Equivalency Examination | passed (all subjects except Japanese history exempted by credits earned at Seisa International High School; sat Japanese history only) |  |
 | Seisa International High School (attended at Musashi Gakuin) | left partway through |  |
 | Sundai Preparatory School, Omiya, course for high-school graduates | attended |  |
 | Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 17 September 2026) |
