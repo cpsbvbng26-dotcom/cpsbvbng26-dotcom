@@ -247,6 +247,46 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* figshare の DOI も同じ扱いにする。2026-10-13 に一つ受け取った。
+ * 番号は figshare が発行し、著者が読み取って渡す。**実在は確かめない。** */
+
+{
+  const DOI = /10\.6084\/m9\.figshare\.\d+/g;
+  const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
+                        '__pycache__', 'assets', 'data']);
+  const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
+
+  function scan(dir, out) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (SKIP.has(e.name)) continue;
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { scan(full, out); continue; }
+      if (!EXT.includes(path.extname(e.name))) continue;
+      for (const d of fs.readFileSync(full, 'utf8').match(DOI) || []) out.add(d);
+    }
+  }
+
+  const INDEX = path.join('docs', 'doi-index.md');
+  const index = read('cpsbvbng26-dotcom', INDEX);
+  const listed = new Set(index === null ? [] : index.match(DOI) || []);
+
+  const found = new Set();
+  for (const repo of C.repos) {
+    const dir = path.join(ROOT, repo);
+    if (fs.existsSync(dir)) scan(dir, found);
+  }
+
+  const missing = [...found].filter((d) => !listed.has(d)).sort();
+  const orphan = [...listed].filter((d) => !found.has(d)).sort();
+
+  check('出てくる figshare の番号が、すべて一覧に載っている',
+    index !== null && missing.length === 0,
+    missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
+  check('一覧の figshare の番号が、すべてどこかに出てくる',
+    index !== null && orphan.length === 0,
+    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
+}
+
 /* **落ちた理由の推定に数を書いた。だから数え直す。**
  * 参考文献の項目数と、版元の記載がある項目数を、紙面の書き起こしから数える。
  * 散文の表と一つでも違えば落ちる。**推定であることは変わらないが、
@@ -352,7 +392,7 @@ console.log('\n7. 研究者としての位置');
       if (raw === null) return null;
       const i = idx.indexOf('### Zenodo に無い本文');
       const 無い = i < 0 ? 0
-        : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length;
+        : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| (?:SSRN|figshare) `/gm) || []).length;
       /* 論文の頁をまだ作っていない Zenodo の本文も足す。SSRN の数え直しには入れない（出していない）。 */
       const k = idx.indexOf('### 論文の頁をまだ作っていない本文');
       const 頁なし = k < 0 ? 0
