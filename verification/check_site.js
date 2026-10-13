@@ -660,7 +660,9 @@ section('10.5 修得した科目の合計');
   ok('cv.html に修得した科目の節がある', sec.length > 0);
 
   const groups = sec.split('<div class="group">').slice(1);
-  ok('修得した科目の群が二つある', groups.length === 2, String(groups.length));
+  /* **2026年10月13日に一つにした。**学歴の欄を栃木高校・駿台・ZEN大学の三つにし、
+   * 短大の一科目は群ごと外した。外した学校の科目が残れば、学歴と食い違う。 */
+  ok('修得した科目の群が一つある', groups.length === 1, String(groups.length));
 
   const sums = groups.map((g) => {
     const rows = [...g.matchAll(/<li data-category="([^"]*)" data-credits="(\d+)"/g)];
@@ -686,10 +688,10 @@ section('10.5 修得した科目の合計');
   });
 
   /* トップの学歴にも同じ科目が並ぶ。cv.html と数が合うこと。 */
-  const z = sums[1] || { n: 0, credits: 0 };
+  const z = sums[0] || { n: 0, credits: 0 };
   ['index.html', 'index.en.html'].forEach((page) => {
     const lists = [...read(page).matchAll(/<ul class="path-courses">([\s\S]*?)<\/ul>/g)];
-    ok(page + ' の学歴に科目の一覧がある', lists.length === 2, String(lists.length));
+    ok(page + ' の学歴に科目の一覧がある', lists.length === 1, String(lists.length));
     const last = lists.length ? lists[lists.length - 1][1] : '';
     const cells = [...last.matchAll(/data-credits="(\d+)"/g)];
     const sum = cells.reduce((n, m) => n + Number(m[1]), 0);
@@ -1034,7 +1036,7 @@ section('10.5 修得した科目の合計');
         .map((m) => [...m[1].matchAll(/data-grade="([^"]*)"/g)].map((g) => g[1]));
 
     const 基準 = 並び(read('index.html'));
-    ok('index.html の学歴に評語の欄がある', 基準.length === 2, String(基準.length));
+    ok('index.html の学歴に評語の欄がある', 基準.length === 1, String(基準.length));
     const zen = 基準[基準.length - 1] || [];
 
     ok('ZEN大学の科目が全部、評語を持つ（' + zen.length + ' 科目）',
@@ -1043,9 +1045,15 @@ section('10.5 修得した科目の合計');
     ok('知らない評語が混ざっていない',
        zen.every((g) => GRADES.indexOf(g) >= 0), zen.join(' '));
 
-    /* 短大の分は受け取っていない。**空で出す。**推測で埋めない。 */
-    ok('短大の科目に評語を作っていない',
-       (基準[0] || []).every((g) => g === ''), (基準[0] || []).join('|'));
+    /* 科目の一覧は、在籍している学校の欄にだけ付く。中途退学した学校の欄に
+     * 付けば、修得していない単位を修得したと書いたことになる。 */
+    {
+      const 欄 = [...read('index.html').matchAll(/<li( class="path-now")?><span class="path-name">[\s\S]*?<\/li>(?=\s*(?:<li|<\/ol>))/g)];
+      const 付く = 欄.filter((m) => m[0].indexOf('<ul class="path-courses">') >= 0);
+      ok('科目の一覧が在籍中の学校の欄にだけある',
+         付く.length === 1 && 付く.every((m) => m[1]),
+         付く.map((m) => /<span class="path-name">([^<]*)/.exec(m[0])[1]).join('|'));
+    }
 
     ok('index.en.html の評語が index.html と同じ並びである',
        JSON.stringify(並び(read('index.en.html'))) === JSON.stringify(基準));
