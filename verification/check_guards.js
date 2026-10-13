@@ -450,11 +450,12 @@ const CASES = [
    swap('**それが締め出しの理由だとは書きません**。', '**それが締め出しの理由である**。'),
    'check_site.js', '締め出しの理由と結んでいない'],
 
-  /* 短大の分の評語は受け取っていない。**空でなければ、どこかで埋めている。** */
-  ['短大の科目に評語を作ると落ちる', 'index.html',
-   swap('data-grade="">仕事の上手な教え方',
-        'data-grade="B">仕事の上手な教え方'),
-   'check_site.js', '評語を作っていない']
+  /* 科目の一覧は在籍中の学校の欄にだけ付く。**欄の印を外せば、中途退学した
+   * 学校の欄に科目が付いたのと同じ形になる。** */
+  ['在籍中でない欄に科目の一覧が付くと落ちる', 'index.html',
+   swap('<li class="path-now"><span class="path-name">ZEN大学',
+        '<li><span class="path-name">ZEN大学'),
+   'check_site.js', '在籍中の学校の欄にだけある']
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {

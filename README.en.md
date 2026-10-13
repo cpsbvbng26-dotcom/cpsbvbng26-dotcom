@@ -66,23 +66,12 @@ What is to remain after death (the gravestone and posthumous name, the degree, O
 | | | Credits earned |
 | --- | --- | --- |
 | Tochigi Prefectural Tochigi High School (120th cohort) | left partway through |  |
-| Seisa International High School (attended at Musashi Gakuin) | left partway through |  |
-| Upper Secondary School Equivalency Examination | passed | All subjects except Japanese history were exempted by credits earned at Seisa International High School; only Japanese history was sat |
 | Sundai Preparatory School, Omiya, course for high-school graduates | attended |  |
-| Jiyugaoka Sanno College, Business Management course | two years, then withdrew | 1 course, 2 credits (as of 17 September 2026) |
 | ZEN University, Faculty of Social Informatics (1st cohort) | enrolled (autumn entry) | 17 courses, 34 credits — 14 required, 16 required elective, 4 elective (as of 17 September 2026) |
 
 ### Courses I have credit for
 
 > The English course titles below are unofficial translations, not the university's own. The official English titles have not been checked — the syllabus cannot be opened from the environment this site is built in. The faculty name is the form the university's English pages are reported to use; those pages present a single faculty with no department level, and they could not be opened from here either.
-
-**Jiyugaoka Sanno College, Business Management course**
-
-| Course | Category | Credits | Grade |
-| --- | --- | --- | --- |
-| Instructional Design (仕事の上手な教え方) | in-person session | 2 |  |
-
-**1 course, 2 credits (as of 17 September 2026)**
 
 **ZEN University, Faculty of Social Informatics (1st cohort)** — more to come.
 
@@ -258,12 +247,12 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 ✴︎Verification✴︎
 
-**Every push runs 1327 checks.** There are no dependencies to install.
+**Every push runs 1326 checks.** There are no dependencies to install.
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 481 checks
-node verification/check_site.js      # site structure, 756 checks
+node verification/check_site.js      # site structure, 755 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
