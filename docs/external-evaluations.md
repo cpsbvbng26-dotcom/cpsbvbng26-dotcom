@@ -1124,6 +1124,28 @@ Embase に収録されたと言う一文は、五つ目の勧誘と同じ形を�
 決めごと 14 が、勧誘には応じないと定めています。 そこで終わります。 分野も合いません。 返信もしません。
 担当者の名前と連絡先は記録しません（決めごと 9）。
 
+### 七つ目の勧誘 —— 分野が合う
+
+哲学と倫理学の誌を名乗る便りです。 2026年10月14日に、利用者から受け取りました。
+七つの差出人のうち、分野が合うのはこれが初めてです。 論文を一篇、名指ししています。
+
+> `We recently came across your preprint, The Nobility and Exemplarity of the Celibate Individual`
+
+> `We would welcome consideration of a revised, extended, or related study for editorial and peer review.`
+
+> `Manuscripts for the forthcoming issue may be submitted by October 25, 2026.`
+
+文面の末尾には配信停止の案内があります。 六つ目と同じく、一斉に配る便りの形をしています。
+文面には ISSN も出版元も書かれていません。 差出人の領域名も、受け取っていません。
+同じ名の誌を検索で探しましたが、見つかりませんでした（`未確認`）。 費用には触れていません。
+
+#### 決めたこと —— 応じない
+
+分野が合っても、決めは変わりません。 決めごと 14 が、勧誘には応じないと定めています。
+求められているのは改訂か拡張か関連の稿で、どれも決めごと 15 の「続きか修正」に当たりえます。
+それでも、出す先を勧誘で決めません。 返信もしません。
+担当者の名前と連絡先は記録しません（決めごと 9）。
+
 ### 登録の審査 —— **中身の審査ではない**
 
 researchmap の登録は、誰かの推薦で入ったものではありません。
@@ -1279,7 +1301,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 **出版社からの勧誘が届いています**。評価ではないので、「受けた評価」には入れません。
 **だが、届いたことは記録します**。都合の悪い接触だけ落とせる状態にしません。
 
-表の行はいま八つあります。差出人は六つです。
+表の行はいま九つあります。差出人は七つです。
 
 | いつ | 誰から | 何について |
 | --- | --- | --- |
@@ -1291,6 +1313,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年9月18日 | **Journal of advance research in Social Science and Humanities**（`EISSN 2208-2387`。`Editorial Team` 名義。所在は `Adelaide, S.A.` と記されている） | 同じ史料ノートを見たとして、投稿を勧めるもの |
 | 2026年10月 | **Journal of Orthopedics & Bone Disorders**（`ISSN 2577-297X`。担当者の名義。**個人名と連絡先は記録しない**） | どの論文かを名指しせず、整形外科・骨疾患の号への投稿を勧めるもの。**分野がまったく違う** |
 | 2026年10月 | **Medical Journal of Clinical Trials & Case Studies**（`ISSN 2578-4838`。担当者の名義。**個人名は記録しない**。領域名は `clinicalcasestudiesjournal.com`） | どの論文かを名指しせず、投稿を勧めるもの。前の便りへの追いかけだと書いているが、一通目はこの記録に無い。**分野が違う** |
+| 2026年10月14日 | **Journal of Philosophy and Ethics**（`Editorial Manager` の名義。**個人名は記録しない**。ISSN も領域名も文面に無い） | `The Nobility and Exemplarity of the Celibate Individual` を読んだとして、改訂・拡張した稿か関連する研究の投稿を勧めるもの。締め切りは 2026年10月25日 |
 
 **明文として届いた条件は三つである**（原文から、必要な範囲だけ引く）。
 
