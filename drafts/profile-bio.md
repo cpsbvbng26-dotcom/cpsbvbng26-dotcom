@@ -27,9 +27,9 @@ GitHub のプロフィール（Settings → Public profile → Bio）に入れ�
 
 ## 英語（200 字以内）
 
-### 案 1 — 核を出す（推奨・189 字）
+### 案 1 — 核を出す（推奨・191 字）
 
-> Studying computer science and AI. Everything I publish is a preprint, not peer reviewed. The core is the Trinity-Infinity convergence theorem and its verification. ORCID 0009-0000-1406-0547
+> Studying computer science and LLMs. Everything I publish is a preprint, not peer reviewed. The core is the Trinity-Infinity convergence theorem and its verification. ORCID 0009-0000-1406-0547
 
 ### 案 2 — 訂正の姿勢を出す（177 字）
 

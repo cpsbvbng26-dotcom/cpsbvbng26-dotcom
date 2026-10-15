@@ -32,7 +32,7 @@
 - **門 4**。作業は最初の数週間に集まっています。
 - **大きさ**。場の側は `"Minor utility" packages, including "thin" API clients, and single-function packages are not acceptable` と書いています。本体は一つのファイルです。
 
-**AI の使用は、それだけでは壁になりません**。場の側は使用を認めています
+**言語モデルの使用は、それだけでは壁になりません**。場の側は使用を認めています
 （`The Journal of Open Source Software permits the use of generative AI in submissions with mandatory disclosure and human oversight requirements.`）。
 ただし、人が主要な設計を決めたと書かせます
 （`Authors must affirm that human team members thoroughly reviewed, modified, and validated all AI-generated content while making primary architectural and design decisions.`）。
@@ -157,7 +157,7 @@ JOSS が受けるのは research software であって、論文そのもので�
 不完全なのは開示ではなく、開示できる材料のほうです。
 それを受け付けるかどうかは場の判断であって、こちらで先回りして落とすものではありません。
 
-**COPE に沿う場の定めは守る**。AI を著作者に並べません。使用は開示します。
+**COPE に沿う場の定めは守る**。言語モデルを著作者に並べません。使用は開示します。
 変えたのは投稿するかどうかであって、開示の中身ではありません。
 
 ### Trinity-Infinity の三篇は、位置づけのほうを先に出す
