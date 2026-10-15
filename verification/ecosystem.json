@@ -1016,7 +1016,7 @@
         "認める": "そしてこの体系には、内容の価値を判定できる検査が一つもありません"
       },
       {
-        "見出し": "AI の併記",
+        "見出し": "言語モデルの併記",
         "原文": "AI 使用併記は AI を著者にしないぞ",
         "認める": "併記は著者性を与えません。免責にもなりません"
       },
@@ -1226,7 +1226,7 @@
       "返される先": "desk rejection",
       "将来の言明は足りない": "Aspirational statements about future use are not sufficient",
       "一度の集中では足りない": "not a single burst of commits",
-      "AI の開示": "AI usage disclosure"
+      "言語モデルの開示": "AI usage disclosure"
     },
     "出す場所": [
       {
