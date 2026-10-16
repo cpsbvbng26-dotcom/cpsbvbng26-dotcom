@@ -4,7 +4,7 @@
 
 ### 根本卓哉（2001.01.18-）とは？
 
-博士号を取得し教職に就くまでの便宜上の「独立研究者」、及び OSS 開発者であり、Claude 愛好家です。
+博士号を取得し教職に就くまでの便宜上の「独立研究者」、SSRN 査読前論文著者、及び OSS 開発者であり、Claude 愛好家です。
 
 「ブランドは形式に先立つ」をモットーにしております。
 
@@ -156,7 +156,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Papers✴︎
 
-いずれも査読前のプレプリントです。哲学の三篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、Trinity-Infinity の三篇は [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) に置いています。史料ノートを含め、DOI のあるものは Zenodo が正です。
+いずれも査読前の論文です。哲学の三篇は全文と PDF を [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) に、Trinity-Infinity の三篇は [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) に置いています。史料ノートを含め、DOI のあるものは Zenodo が正です。
 
 | 論文 | 内容 | 版 | DOI |
 | --- | --- | --- | --- |
