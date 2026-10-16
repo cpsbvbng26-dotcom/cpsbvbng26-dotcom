@@ -931,7 +931,7 @@ console.log('\n7.14 SSRN の通過と却下');
   const top = read('cpsbvbng26-dotcom', 'index.html') || '';
   const topEn = read('cpsbvbng26-dotcom', 'index.en.html') || '';
   check('入口の自己紹介が、落とされたことを書いている',
-    top.indexOf('出して落とされた') >= 0
+    top.indexOf('出して落とされました') >= 0
     && top.indexOf('まだ出していません') < 0
     && topEn.indexOf('were submitted and turned away') >= 0
     && topEn.indexOf('have not been submitted') < 0);

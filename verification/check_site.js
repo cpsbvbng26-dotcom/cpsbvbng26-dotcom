@@ -1188,37 +1188,37 @@ section('10.59 自己紹介が名乗っていること');
 
   /* **根幹の一段は、自己紹介の中に置く。**通過基準・到達点・導けないものが揃っていること。 */
   ok('根幹の一段が自己紹介にある',
-     ja.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+     ja.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことです') >= 0
      && /What is here rests on self-study and on working with language models/.test(en));
   ok('大学の単位が独学ではないと書いてある',
-     ja.indexOf('ただし、大学の単位は独学ではない') >= 0
-     && ja.indexOf('授業を受け、課題を出し、評価を受けて得たものである') >= 0
-     && ja.indexOf('独学と言語モデルの話は、その外にある') >= 0);
+     ja.indexOf('ただし、大学の単位は独学ではありません') >= 0
+     && ja.indexOf('授業を受け、課題を出し、評価を受けて得たものです') >= 0
+     && ja.indexOf('独学と言語モデルの話は、その外にあります') >= 0);
   ok('英語版も大学の単位が独学ではないと書いてある',
      /The university credits, though, are not\s+self-study/.test(en));
   ok('GitHub のプロフィールにも単位の断りがある',
-     rj.indexOf('ただし、大学の単位は独学ではない') >= 0
+     rj.indexOf('ただし、大学の単位は独学ではありません') >= 0
      && /The university credits, though, are not\s+self-study/.test(re_));
   ok('自己紹介に通過基準が具体に書いてある',
-     ja.indexOf('通した基準は、明文で次のとおりである') >= 0
+     ja.indexOf('通した基準は、明文で次のとおりです') >= 0
      && ja.indexOf('part of the world-wide scholarly discourse') >= 0
      && ja.indexOf('professional quality') >= 0
      && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
   /* **到達点は、門ごとに書く。**SSRN だけ書いて PhilArchive を「上のとおり」で
    * 済ませていた。**片方が空欄なら、到達点を書いたことにならない。** */
   ok('自己紹介に SSRN の到達点が書いてある',
-     ja.indexOf('そこから導ける到達点は、はっきりしている') >= 0
-     && ja.indexOf('その分野の学術的言説の一部として扱われた') >= 0);
+     ja.indexOf('そこから導ける到達点は、はっきりしています') >= 0
+     && ja.indexOf('その分野の学術的言説の一部として扱われました') >= 0);
   ok('自己紹介に PhilArchive の到達点が書いてある',
      ja.indexOf('学術哲学の領域にあり、専門職の水準') >= 0
-     && ja.indexOf('却下権は留保されているが、その二篇には行使されなかった') >= 0);
+     && ja.indexOf('却下権は留保されていますが、その二篇には行使されませんでした') >= 0);
   ok('英語版も門ごとに到達点が書いてある',
      en.indexOf('belong to the scholarly discourse') >= 0
      && en.indexOf('taken to lie within academic philosophy and to be') >= 0
      && en.indexOf('it was not exercised') >= 0);
   ok('自己紹介に導けないものが書いてある',
-     ja.indexOf('そこから導けないものも、はっきりしている') >= 0
-     && ja.indexOf('論証が正しいことは、どちらの門も見ていない') >= 0
+     ja.indexOf('そこから導けないものも、はっきりしています') >= 0
+     && ja.indexOf('論証が正しいことは、どちらの門も見ていません') >= 0
      && ja.indexOf('通ったのは受け付けの門であって査読ではなく') >= 0);
   ok('英語版も三つが揃っている',
      en.indexOf("The bar that was cleared, in the venues' own wording") >= 0
@@ -1233,13 +1233,13 @@ section('10.59 自己紹介が名乗っていること');
    * 通った二篇だけを並べるのは、誤りではないが、厚く見せる方向にだけ欠ける。
    * 落とす門であることは、落とされた側にしか示せない（SC-035）。 */
   ok('落とされた一篇が書いてある',
-     ja.indexOf('そして、三篇目は落とされた') >= 0
-     && ja.indexOf('SSRN に出して弾かれている') >= 0
+     ja.indexOf('そして、三篇目は落とされました') >= 0
+     && ja.indexOf('SSRN に出して弾かれています') >= 0
      && ja.indexOf('10.5281/zenodo.22064241') >= 0);
   ok('落とされたことから導けないものも書いてある',
-     ja.indexOf('論証が誤っていると判定されたわけではない') >= 0
-     && ja.indexOf('断片主義については理由が示されていない') >= 0
-     && ja.indexOf('要件と範囲のどちらなのかは示されていない') >= 0);
+     ja.indexOf('論証が誤っていると判定されたわけではありません') >= 0
+     && ja.indexOf('断片主義については理由が示されていません') >= 0
+     && ja.indexOf('要件と範囲のどちらなのかは示されていません') >= 0);
   ok('英語版も落とされた一篇を書いている',
      en.indexOf('The third was turned away') >= 0
      && en.indexOf('was submitted to SSRN and rejected') >= 0
@@ -1274,8 +1274,8 @@ section('10.59 自己紹介が名乗っていること');
    * 一度そう書いて公開した（SC-036）。**「三篇」でこの区分を語らせない。** */
   ok('eJournal に載っているのが二篇だと書いてある',
      ja.indexOf('通った哲学二篇') >= 0
-     && ja.indexOf('弾かれた一篇も同じ大陸哲学に出している') >= 0
-     && ja.indexOf('どの eJournal にも載っていない') >= 0);
+     && ja.indexOf('弾かれた一篇も同じ大陸哲学に出しています') >= 0
+     && ja.indexOf('どの eJournal にも載っていません') >= 0);
   ok('哲学三篇がその区分に載っていると書いていない',
      /哲学三篇[^。]{0,40}大陸哲学/.test(ja) === false
      && /three philosophy papers[^.]{0,60}Continental Philosophy/.test(en) === false);
@@ -1322,21 +1322,21 @@ section('10.59 自己紹介が名乗っていること');
   /* **「同じ門」で済ませない。**何を通したのかを、哲学の側と同じ言葉で書く。
    * 指しで済ませると、読む側は上に戻らないかぎり中身に辿り着けない。 */
   ok('自己紹介に Trinity-Infinity の SSRN 通過が書いてある',
-     ja.indexOf('数学の側でも同じことが起きている') >= 0
-     && ja.indexOf('Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われた') >= 0
+     ja.indexOf('数学の側でも同じことが起きています') >= 0
+     && ja.indexOf('Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました') >= 0
      && ja.indexOf('一篇について、公開前に人が見て、落とさなかった') >= 0
      && ja.indexOf('10.2139/ssrn.7446961') >= 0);
   /* **2026-09-18 に結果が出た。**「まだ出していない」は偽になった。
    * 当てる先を、結果そのものへ移す。**通ったように書いていないことだけでは足りない。**
    * 落ちたことと、範囲外では説明が付かないことを、両方見る。 */
   ok('落とされた二篇を、落とされたと書いてある',
-     ja.indexOf('Series I の改訂版と Series III は、出して落とされた') >= 0
+     ja.indexOf('Series I の改訂版と Series III は、出して落とされました') >= 0
      && ja.indexOf('まだ出していません') < 0
      && en.indexOf('Series I (revised) and Series III were submitted and turned away') >= 0
      && en.indexOf('have not been submitted') < 0);
   ok('範囲外では説明が付かないと書いてある',
-     ja.indexOf('数学が範囲外だということにはならない') >= 0
-     && ja.indexOf('この門は同じ系列の中でも選り分ける') >= 0
+     ja.indexOf('数学が範囲外だということにはなりません') >= 0
+     && ja.indexOf('この門は同じ系列の中でも選り分けます') >= 0
      && en.indexOf('mathematics being out of scope cannot be the explanation') >= 0
      && en.indexOf('this gate sorts within a single series') >= 0);
   /* **落ちた投稿の受付番号を、どの頁にも出さない**（決めごと 1）。DOI ではない。 */
@@ -1354,10 +1354,10 @@ section('10.59 自己紹介が名乗っていること');
   /* **道具を特定できないのは哲学三篇だけである。**Trinity-Infinity の側は特定できる。
    * 特定できる側まで「分からない」に混ぜると、開示が薄まる。 */
   ok('Trinity-Infinity の道具は特定できると書いてある',
-     ja.indexOf('Trinity-Infinity の側は特定できる') >= 0
+     ja.indexOf('Trinity-Infinity の側は特定できます') >= 0
      && ja.indexOf('ChatGPT / OpenAI') >= 0
      && ja.indexOf('Claude Code（Anthropic）') >= 0
-     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけです') >= 0);
   /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
   [['index.de.html', 'Trinity-Infinity Serie II wurde von der Redaktion von SSRN dem wissenschaftlichen Diskurs ihres Fachs zugerechnet',
     'Serie I (überarbeitet) und Serie III wurden eingereicht und abgewiesen',
@@ -1560,21 +1560,21 @@ section('10.59 自己紹介が名乗っていること');
       'cross-disciplinary and of clear interest to philosophers',
       'All books and papers submitted should be of professional quality',
       'reject any submissions',
-      '事前ではなく事後に効く'].every((x) => ja.indexOf(x) >= 0));
+      '事前ではなく事後に効きます'].every((x) => ja.indexOf(x) >= 0));
   ok('GitHub のプロフィールに根幹の一段がある',
-     rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことである') >= 0
+     rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことです') >= 0
      && re_.indexOf('What is here rests on self-study and on working with language models') >= 0);
   ok('GitHub のプロフィールに通過基準と到達点がある',
      rj.indexOf('part of the world-wide scholarly discourse') >= 0
-     && rj.indexOf('そこから導ける到達点は、はっきりしている') >= 0
-     && rj.indexOf('そこから導けないものも、はっきりしている') >= 0);
+     && rj.indexOf('そこから導ける到達点は、はっきりしています') >= 0
+     && rj.indexOf('そこから導けないものも、はっきりしています') >= 0);
 
   /* **道具の名前を一つに絞れるのは、こちら側だけである。**
    * サイト・検査・記録は Claude（Anthropic）で作っており、git の履歴が証拠になる。
    * 哲学三篇に何を使ったかは特定できない（三篇の正誤表 E5）。
    * **名前だけが残って、その断りが消える形を止める。** */
   ok('この場所が Claude を使っていると書いてある',
-     ja.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
+     ja.indexOf('この場所そのものは、Anthropic の Claude を使って作っています') >= 0
      && ja.indexOf('Co-Authored-By: Claude Opus 5') >= 0);
   /* **ここまでのものを趣味と呼ぶ宣言。**自称を上げる語ではなく、下げる語である。
    * **下げる語こそ消えやすい。**都合が良くなる方向だからである。七つの面で固定する。
@@ -1583,8 +1583,8 @@ section('10.59 自己紹介が名乗っていること');
    * 残るのは謙遜の一語だけになる。**そこが宣言の中身である。 */
   {
     const 趣味 = {
-      'index.html': ['ここまでのプレプリントは、趣味として書いたものである',
-                     'どれも査読を受けていない', '分野への寄与はゼロである'],
+      'index.html': ['ここまでのプレプリントは、趣味として書いたものです',
+                     'どれも査読を受けていません', '分野への寄与はゼロです'],
       'index.en.html': ['written as a hobby', 'None of them has been peer-reviewed',
                         'the contribution to the field is zero'],
       'index.de.html': ['als Liebhaberei', 'Keines davon ist begutachtet worden',
@@ -1593,8 +1593,8 @@ section('10.59 自己紹介が名乗っていること');
                         'l’apport au domaine est nul'],
       'index.it.html': ['per diletto', 'Nessuno di essi è stato sottoposto a revisione paritaria',
                         'il contributo al campo è nullo'],
-      'README.md': ['ここまでのプレプリントは、趣味として書いたものである',
-                    'どれも査読を受けていない', '分野への寄与はゼロである'],
+      'README.md': ['ここまでのプレプリントは、趣味として書いたものです',
+                    'どれも査読を受けていません', '分野への寄与はゼロです'],
       'README.en.md': ['written as a hobby', 'None of them has been peer-reviewed',
                        'the contribution to the field is zero'],
     };
@@ -1612,12 +1612,12 @@ section('10.59 自己紹介が名乗っていること');
    * 段の同一も見る。**別の段に移れば、何を卒業したのか分からなくなる。** */
   {
     const 卒業 = {
-      'index.html': '趣味の研究は、学部一年で卒業した',
+      'index.html': '趣味の研究は、学部一年で卒業しました',
       'index.en.html': 'Hobby research ended in the first undergraduate year',
       'index.de.html': 'Die Forschung als Liebhaberei endete im ersten Studienjahr',
       'index.fr.html': 'La recherche en amateur s’est achevée en première année de licence',
       'index.it.html': 'La ricerca per diletto si è conclusa al primo anno del corso di laurea',
-      'README.md': '趣味の研究は、学部一年で卒業した',
+      'README.md': '趣味の研究は、学部一年で卒業しました',
       'README.en.md': 'Hobby research ended in the first undergraduate year',
     };
     const 落ち = Object.keys(卒業).filter((f) => read(f).indexOf(卒業[f]) < 0);
@@ -1626,7 +1626,7 @@ section('10.59 自己紹介が名乗っていること');
 
     /* **同じ段にあることを見る。**趣味と呼ぶ宣言の段から離れれば、
      * 卒業したのが何なのかが宙に浮く。 */
-    const 同段 = { 'index.html': 'ここまでのプレプリントは、趣味として書いたものである',
+    const 同段 = { 'index.html': 'ここまでのプレプリントは、趣味として書いたものです',
                    'index.en.html': 'written as a hobby' };
     const 離れ = Object.keys(同段).filter((f) => {
       const 段 = read(f).split('<p class="profile-core">');
@@ -1642,8 +1642,8 @@ section('10.59 自己紹介が名乗っていること');
    * こちらの散文も同じ扱いにする。七つの面で固める。 */
   {
     const 向き = {
-      'index.html': ['これからは、制度のなかで成果を出すことに注力する',
-                     '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'index.html': ['これからは、制度のなかで成果を出すことに注力します',
+                     '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もありません'],
       'index.en.html': ['the effort goes into producing results inside the institution',
                         'Presenting at conferences, and being awarded there',
                         'Neither has happened even once'],
@@ -1656,8 +1656,8 @@ section('10.59 自己紹介が名乗っていること');
       'index.it.html': ['l’impegno va verso risultati ottenuti all’interno dell’istituzione',
                         'Comunicazioni a convegni, e riconoscimenti ottenuti in quella sede',
                         'Né l’una né l’altra cosa è ancora avvenuta nemmeno una volta'],
-      'README.md': ['これからは、制度のなかで成果を出すことに注力する',
-                    '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もない'],
+      'README.md': ['これからは、制度のなかで成果を出すことに注力します',
+                    '学会で発表すること、そこで賞を受けること', 'どちらもまだ一件もありません'],
       'README.en.md': ['the effort goes into producing results inside the institution',
                        'Presenting at conferences, and being awarded there',
                        'Neither has happened even once'],
@@ -1676,7 +1676,7 @@ section('10.59 自己紹介が名乗っていること');
    * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
   {
     const 途上 = {
-      'index.html': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'index.html': ['学会と賞は、その二つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
       'index.en.html': ['Conferences and awards lie on the way to the second of those',
                         'The count of goals has not become three'],
       'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum zweiten dieser Ziele',
@@ -1685,7 +1685,7 @@ section('10.59 自己紹介が名乗っていること');
                         'Les buts ne sont pas passés à trois'],
       'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del secondo di quei due obiettivi',
                         'Gli obiettivi non sono diventati tre'],
-      'README.md': ['学会と賞は、その二つ目に向かう途上にある', '目標が三つに増えたのではない'],
+      'README.md': ['学会と賞は、その二つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
       'README.en.md': ['Conferences and awards lie on the way to the second of those',
                        'The count of goals has not become three'],
     };
@@ -1711,10 +1711,10 @@ section('10.59 自己紹介が名乗っていること');
     const 発表 = 軸('学会での発表');
     const 賞 = 軸('受賞');
     ok('現状評価の表の学会と受賞が、頁の「まだ一件もない」と合う',
-       発表 === 0 && 賞 === 0 && ja.indexOf('どちらもまだ一件もない') >= 0,
+       発表 === 0 && 賞 === 0 && ja.indexOf('どちらもまだ一件もありません') >= 0,
        '表 ' + (発表 === null ? '軸が無い' : 発表) + ' / '
        + (賞 === null ? '軸が無い' : 賞) + '　頁の断り '
-       + (ja.indexOf('どちらもまだ一件もない') >= 0 ? 'あり' : '無い'));
+       + (ja.indexOf('どちらもまだ一件もありません') >= 0 ? 'あり' : '無い'));
   }
 
   /* **「学部一年時の実績」は、時が経つほど大きく読める。**学年が上がっても
@@ -1722,9 +1722,9 @@ section('10.59 自己紹介が名乗っていること');
    * 修了証も同じ段に入れている。**七件という数は、cv.html から数え直す。** */
   {
     const 一年 = {
-      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
-                     'ここに並べたものは全部、学部一年時の実績である',
-                     '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
+                     'ここに並べたものは全部、学部一年時の実績です',
+                     '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
       'index.en.html': ['finished in the first half of the first undergraduate year',
                         'everything set out here is the work of that first undergraduate year',
                         'The dates themselves have been checked against nothing',
@@ -1741,9 +1741,9 @@ section('10.59 自己紹介が名乗っていること');
                         'è il lavoro di quel primo anno',
                         'Le date stesse non sono state confrontate con nulla',
                         'Anche la data di immatricolazione non è stampata qui'],
-      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えている',
-                    'ここに並べたものは全部、学部一年時の実績である',
-                    '日付そのものは突き合わせていない', '在籍の開始日も、ここには書かない'],
+      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
+                    'ここに並べたものは全部、学部一年時の実績です',
+                    '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
       'README.en.md': ['finished in the first half of the first undergraduate year',
                        'everything set out here is the work of that first undergraduate year',
                        'The dates themselves have been checked against nothing',
@@ -1794,7 +1794,7 @@ section('10.59 自己紹介が名乗っていること');
     const 行 = /^\| 実績の時期 \|[^|]*\| ([^|]*) \|/m.exec(A);
     ok('現状評価の表に、実績の時期の軸がある',
        行 !== null && 行[1].indexOf('学部一年') >= 0
-       && ja.indexOf('学部一年時の実績である') >= 0,
+       && ja.indexOf('学部一年時の実績です') >= 0,
        行 === null ? '軸が無い' : 行[1].trim());
   }
 
@@ -1803,11 +1803,11 @@ section('10.59 自己紹介が名乗っていること');
    * 入口の五言語、README 二つ、それに記録の三つで同じ決めを見る。 */
   {
     const 枠 = {
-      'index.html': ['載ったものをどの枠で数えるかも決めてある',
-                     'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
-                     'いま論文の枠に入るものは一つも無い',
-                     'その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることである',
-                     'Zenodo にしか無いものは、どちらの枠にも入れない'],
+      'index.html': ['載ったものをどの枠で数えるかも決めてあります',
+                     'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います',
+                     'いま論文の枠に入るものは一つもありません',
+                     'その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることです',
+                     'Zenodo にしか無いものは、どちらの枠にも入れません'],
       'index.en.html': ['How published work is counted is fixed as well',
                         'Everything else is treated as a working paper, a preprint, or MISC',
                         'Nothing qualifies at present',
@@ -1828,10 +1828,10 @@ section('10.59 自己紹介が名乗っていること');
                         'Al momento nulla vi rientra',
                         'La soglia per questo è la presenza su SSRN, PhilPapers o arXiv',
                         'Ciò che esiste solo su Zenodo non entra in nessuna delle due sezioni'],
-      'README.md': ['載ったものをどの枠で数えるかも決めてある',
-                    'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱う',
-                    'いま論文の枠に入るものは一つも無い',
-                    'Zenodo にしか無いものは、どちらの枠にも入れない'],
+      'README.md': ['載ったものをどの枠で数えるかも決めてあります',
+                    'ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います',
+                    'いま論文の枠に入るものは一つもありません',
+                    'Zenodo にしか無いものは、どちらの枠にも入れません'],
       'README.en.md': ['How published work is counted is fixed as well',
                        'Everything else is treated as a working paper, a preprint, or MISC',
                        'Nothing qualifies at present',
@@ -1862,7 +1862,7 @@ section('10.59 自己紹介が名乗っていること');
     const 査読 = /^\| 査読を通った論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(A);
     const 学位なし = /^\| 学位 \| 大学 \| \*\*なし\*\*/m.test(A);
     const 枠行 = /^\| 論文の枠 \|[^|]*\| \*\*(\d+) 件\*\*/m.exec(A);
-    const 頁は空 = ja.indexOf('いま論文の枠に入るものは一つも無い') >= 0;
+    const 頁は空 = ja.indexOf('いま論文の枠に入るものは一つもありません') >= 0;
     const 表は空 = 枠行 !== null && Number(枠行[1]) === 0;
     const 空のはず = 査読 !== null && Number(査読[1]) === 0 && 学位なし;
     ok('論文の枠が空だという断りが、現状評価の表と合う',
@@ -1901,12 +1901,12 @@ section('10.59 自己紹介が名乗っていること');
    * 見え方が揃わない。 */
   {
     const 注釈 = {
-      'index.html': '<b>「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。</b>',
+      'index.html': '<b>「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。</b>',
       'index.en.html': '<b>“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.</b>',
       'index.de.html': '<b>„Unabhängiger Forscher“ ist ein vorläufiger Titel der Verständlichkeit halber; tatsächlich ist der Autor Bachelorstudent.</b>',
       'index.fr.html': '<b>« Chercheur indépendant » est un titre provisoire, pour la clarté ; en réalité, l’auteur est étudiant de premier cycle.</b>',
       'index.it.html': '<b>«Ricercatore indipendente» è un titolo provvisorio, per chiarezza; in realtà l’autore è uno studente universitario.</b>',
-      'README.md': '「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である。',
+      'README.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
       'README.en.md': '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.',
       'cv.html': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
       'docs/self-assessment.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です（2026-09-26 に決めた。',
@@ -1917,16 +1917,16 @@ section('10.59 自己紹介が名乗っていること');
   }
 
   ok('三篇の道具は特定できないと、同じ段に書いてある',
-     ja.indexOf('哲学三篇に何を使ったかは特定できない') >= 0
-     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけである') >= 0);
+     ja.indexOf('哲学三篇に何を使ったかは特定できません') >= 0
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけです') >= 0);
   ok('英語版も同じ二つを書いてある',
      en.indexOf('This site itself is built with Claude, by Anthropic') >= 0
      && en.indexOf('cannot be identified') >= 0
      && en.indexOf('The three philosophy papers are the only ones where the tool cannot be pinned to a single name') >= 0
      && en.indexOf('On the Trinity-Infinity side it can be identified') >= 0);
   ok('GitHub のプロフィールにも同じ二つがある',
-     rj.indexOf('この場所そのものは、Anthropic の Claude を使って作っている') >= 0
-     && rj.indexOf('哲学三篇に何を使ったかは特定できない') >= 0);
+     rj.indexOf('この場所そのものは、Anthropic の Claude を使って作っています') >= 0
+     && rj.indexOf('哲学三篇に何を使ったかは特定できません') >= 0);
 
   /* 外部の点検の引用に、第三者の氏名が残っていないこと。 */
   const ev = read('docs/external-evaluations.md');
