@@ -2,6 +2,12 @@
 
 # Takuya Nemoto / 根本卓哉
 
+### Who is Takuya Nemoto (born 18 January 2001)?
+
+A provisional “Independent Researcher” for convenience until earning a doctorate and taking up a teaching post, an open-source developer, and a Claude enthusiast.
+
+Motto: “Brand precedes form.”
+
 **A record of studying computer science and artificial intelligence**
 
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
