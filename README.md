@@ -190,6 +190,21 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ---
 
+✴︎Figures✴︎
+
+論文とリポジトリの中身を、手で動かせる図にしました。claude.ai のアーティファクトとして置いています。どれも Claude（Anthropic）で作成しました。正本は論文とリポジトリのほうです。
+
+| 図解 | 内容 | もと |
+| --- | --- | --- |
+| [黄金比の窓](https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF) | 二つの縮小写像を繰り返し当てたとき、割引因子が 1/φ と 2/3 のどちら側にあるかで、生き残る区間の集合がどう変わるかを動かして確かめる | figshare [10.6084/m9.figshare.34419198](https://doi.org/10.6084/m9.figshare.34419198) |
+| [協力と巡回の閾値](https://claude.ai/artifact/GxV1WCJjBvecy24uDrGY1L) | 全員が毎回協力する均衡と、一人ずつ交代で裏切る巡回の閾値を、人数・便益・費用から比べる | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) |
+| [魔法使いの通過儀礼](https://claude.ai/artifact/TDamnB7aQ9FX2r8umHTbEi) | 「30歳魔法使い」の都市伝説を、統合の欠けた通過儀礼として一枚に並べる | 論文（上の表） |
+| [独身の系譜](https://claude.ai/artifact/U3Pjjzu8UtR2ZU6w6zikeg) | 規律としての独身を、宗教・哲学・統計の三つの面から並べた年表 | [celibate-individual.md](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/celibate-individual.md) |
+| [訂正の循環](https://claude.ai/artifact/PaNZRjvQCnzgoQRv9XSPW2) | 公開から凍結・発見・記録・照合を経て、検査を壊して確かめるまでを一周の図にする | [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) / [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) |
+| [投稿用の文字カード](https://claude.ai/artifact/JJ1Pcix2F86N4girX2d5Te) | 文を入れると、X に添える 1200×675 の画像を作る | — |
+
+---
+
 ✴︎Credentials✴︎
 
 <details>
