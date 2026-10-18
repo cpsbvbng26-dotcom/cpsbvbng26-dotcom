@@ -55,10 +55,15 @@ const ALLOWED_TITLE = [
   '「独立研究者」は、分かりやすさのための仮の肩書きで、実際には一学部生である',
   '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です',
   '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate',
-  /* 2026-10-16、著者が README の冒頭に置くと決めた形。「便宜上」と「博士号を取得し
-   * 教職に就くまで」が、仮の肩書きであることの注釈を担う。注釈を外せば止まる。 */
-  '博士号を取得し教職に就くまでの便宜上の「独立研究者」',
-  'A provisional “Independent Researcher” for convenience until earning a doctorate and taking up a teaching post'
+  /* 2026-10-16、著者が README の冒頭に置くと決めた形。「便宜上」と「博士号を取得
+   * するまで」が、仮の肩書きであることの注釈を担う。注釈を外せば止まる。
+   * 2026-10-18、目標から教職を外したので「教職に就くまで」を削った。 */
+  '博士号を取得するまでの便宜上の「独立研究者」',
+  'A provisional “Independent Researcher” for convenience until earning a doctorate',
+  /* 2026-10-18、著者が目標に置いた形。いまの肩書きではなく、博士号を取った後の
+   * 活動を言う。「博士号を取…のち」が注釈を担う。外せば止まる。 */
+  '博士号を取得したのち、独立研究者として活動すること',
+  '博士号を取ったのち独立研究者として活動すること'
 ];
 
 

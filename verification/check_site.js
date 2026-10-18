@@ -1676,17 +1676,17 @@ section('10.59 自己紹介が名乗っていること');
    * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
   {
     const 途上 = {
-      'index.html': ['学会と賞は、その二つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
-      'index.en.html': ['Conferences and awards lie on the way to the second of those',
+      'index.html': ['学会と賞は、その一つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
+      'index.en.html': ['Conferences and awards lie on the way to the first of those',
                         'The count of goals has not become three'],
-      'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum zweiten dieser Ziele',
+      'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum ersten dieser Ziele',
                         'Es sind nicht drei Ziele geworden'],
-      'index.fr.html': ['Les congrès et les distinctions se situent sur le chemin du second de ces buts',
+      'index.fr.html': ['Les congrès et les distinctions se situent sur le chemin du premier de ces buts',
                         'Les buts ne sont pas passés à trois'],
-      'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del secondo di quei due obiettivi',
+      'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del primo di quei due obiettivi',
                         'Gli obiettivi non sono diventati tre'],
-      'README.md': ['学会と賞は、その二つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
-      'README.en.md': ['Conferences and awards lie on the way to the second of those',
+      'README.md': ['学会と賞は、その一つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
+      'README.en.md': ['Conferences and awards lie on the way to the first of those',
                        'The count of goals has not become three'],
     };
     const 落ち = [];
