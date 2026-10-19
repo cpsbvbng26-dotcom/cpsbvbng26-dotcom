@@ -8,19 +8,20 @@
 
 「ブランドは形式に先立つ」をモットーにしております。
 
-**コンピュータサイエンス・人工知能の学習記録**
+<sub>コンピュータサイエンス・人工知能の学習記録</sub>
 
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547) [![Site](https://img.shields.io/badge/Site-cpsbvbng26--dotcom.github.io-24292F?style=for-the-badge)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
 
 [![検査](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
 
-[サイト](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
-
-[日本語](README.md) ｜ **English** は [README.en.md](README.en.md)
+**日本語** ｜ [English](README.en.md)
 
 </div>
 
 ---
+
+<details>
+<summary><b>自己紹介・経歴・修得した科目</b></summary>
 
 <!-- 自己紹介:ここから -->
 
@@ -102,6 +103,9 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 **17 科目 34 単位 —— 必修 14・選択必修 16・選択 4（2026年9月17日現在）**
 
 <!-- 自己紹介:ここまで -->
+
+</details>
+
 ---
 
 ## 30 秒で
@@ -115,6 +119,9 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 覆すには。(1) この検査を通ったのに、正誤表が一次資料とずれている例が一つ出れば覆ります。(2) あるいは、宣言どおりに壊しても落ちない検査が一つ示されれば覆ります。どちらも一件でよい。宣言の書き方と壊し方は [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check)（[10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899)）にあります。
 
 言っておくこと。検証の量は、検証される中身の価値について何も言いません。この体系には、それを判定できる検査が存在しません。数がいくら増えても、「これは価値が無い」とは出ません。主張の水準では反証可能であり、意義の水準では構造的に反証不可能です。[未解決のまま記録している](https://github.com/cpsbvbng26-dotcom/self-correction)（ST-002）。
+
+<details>
+<summary><b>Trinity-Infinity の監査</b> —— 証明できたこと・類推・撤回と、次に読むもの</summary>
 
 ### 監査の対象 —— Trinity-Infinity Series I–III
 
@@ -148,9 +155,9 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力です。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回すこと。
 
-以下は一覧です。急がないなら読むこと。
+</details>
 
----
+以下は一覧です。急がないなら読むこと。
 
 ---
 
@@ -194,6 +201,9 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 論文とリポジトリの中身を、手で動かせる図にしました。claude.ai のアーティファクトとして置いています。どれも Claude（Anthropic）で作成しました。正本は論文とリポジトリのほうです。
 
+<details>
+<summary>図解の一覧</summary>
+
 | 図解 | 内容 | もと |
 | --- | --- | --- |
 | [黄金比の窓](https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF) | 二つの縮小写像を繰り返し当てたとき、割引因子が 1/φ と 2/3 のどちら側にあるかで、生き残る区間の集合がどう変わるかを動かして確かめる | figshare [10.6084/m9.figshare.34419198](https://doi.org/10.6084/m9.figshare.34419198) |
@@ -202,6 +212,8 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [独身の系譜](https://claude.ai/artifact/U3Pjjzu8UtR2ZU6w6zikeg) | 規律としての独身を、宗教・哲学・統計の三つの面から並べた年表 | [celibate-individual.md](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/celibate-individual.md) |
 | [訂正の循環](https://claude.ai/artifact/PaNZRjvQCnzgoQRv9XSPW2) | 公開から凍結・発見・記録・照合を経て、検査を壊して確かめるまでを一周の図にする | [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) / [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) |
 | [投稿用の文字カード](https://claude.ai/artifact/JJ1Pcix2F86N4girX2d5Te) | 文を入れると、X に添える 1200×675 の画像を作る | — |
+
+</details>
 
 ---
 
@@ -284,6 +296,9 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 ✴︎Verification✴︎
 
 このリポジトリは、push のたびに 1326 項目の検査を通します。 依存パッケージはありません。
+
+<details>
+<summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
@@ -371,6 +386,8 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 **`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査します。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
 
 空振りでないことは確認済みです。 論文カードの DOI 書き換え、外部 script の混入、存在しないページへのリンク、`hasPart` の不整合、sitemap のずれ —— 五通り壊して五通りとも落ちました。
+
+</details>
 
 ---
 
@@ -538,6 +555,9 @@ DOI を持っていません。引用できる識別子の無い石垣です。
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)
 
+<details>
+<summary>制作過程の記録</summary>
+
 本リポジトリのサイト実装（`index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`）は、言語モデルによるコーディング支援ツール **Claude Code**（Anthropic）を使用して制作しています。公開する文章の言い回しについて、**Grok**（xAI）に候補を出させました。設計・内容の確認および最終的な判断は、著者・根本卓哉（Takuya Nemoto）が行っています。言語モデルは著作者ではありません。
 
 **制作過程の記録** — 表明だけではなく、リポジトリの履歴そのものから確認できます。
@@ -551,3 +571,5 @@ DOI を持っていません。引用できる識別子の無い石垣です。
 | 変更の意図と検証内容 | 各プルリクエストの本文（何を確認したかを記載） |
 
 コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
+
+</details>
