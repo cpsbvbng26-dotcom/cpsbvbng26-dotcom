@@ -43,6 +43,11 @@
         },
         {
           "repo": "errata-check",
+          "file": "README.en.md",
+          "regex": "check_tool\\.py\\s+# (\\d+) checks"
+        },
+        {
+          "repo": "errata-check",
           "file": ".github/workflows/verify.yml",
           "regex": "道具自身 (\\d+) 項目"
         },
