@@ -4,7 +4,9 @@
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, an open-source developer, and a Claude enthusiast.
+A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, and an open-source developer. A Claude enthusiast, and a Claude Code enthusiast.
+
+Each morning begins with a breakfast set and coffee at a café inside the station; each evening closes with a drink at home.
 
 Motto: “Brand precedes form.”
 
