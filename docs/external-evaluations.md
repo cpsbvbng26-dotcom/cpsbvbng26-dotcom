@@ -633,10 +633,25 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
 | Figshare | Repeated Games through a Cyclic Operator（黄金比の窓の予想の英語版） | `10.6084/m9.figshare.34419198` | 載った。2026-10-13。新しいアカウントから出した（下記）。門が下りたかは分からない |
 | Knowledge Commons（KCWorks） | 「30歳魔法使い」都市伝説の構造分析 | `vaa96-ss949`（レコードの番号。DOI は受け取っていない） | 置いた。2026-10-22。査読は無い。言語モデルの利用は、場の欄（AI Use）に開示した |
+| PsyArXiv（OSF） | 「30歳魔法使い」都市伝説の構造分析（英語版 v1.1） | —（付かなかった） | **受け付けられなかった**。2026-10-22 に出した。理由は示されている —— 著者に心理学の査読済み論文が無い。最終の判断で、出し直さないよう求められた |
 
 PhilArchive の三行は 2026-09-30 に足しました。入口の頁と現状評価には載っていたが、この表から抜けていました（利用者の指摘）。
 2026-09-29 の四行の経緯は [submission-disclosure.md](submission-disclosure.md) の「2026-09-29 に分かったこと、出したこと」にあります。
 番号や ID は、受け取るまで書きません。
+
+### PsyArXiv が魔法使いの英語版を落とした
+
+2026-10-22 に、魔法使いの稿の英語版（v1.1）を PsyArXiv に出しました。受け付けられませんでした。理由は示されています。
+
+> For submissions in this format, we need to look at the author’s expertise via past publications. This policy ensures that submissions are grounded in appropriate academic expertise to support productive scientific discourse in psychology. As we found no record of previous relevant peer-reviewed publications by the author(s) in a brief search, we cannot accept the work into the repository. This moderation decision is final. Please do not resubmit.
+
+理由は著者の経歴です。心理学に関わる査読済みの論文が、著者に一つも無いことです。中身の判断ではありません。出し直さないよう求められているので、出し直しません。異議申し立ての道は示されていますが、使っていません。
+
+言語モデルの条項で落ちたのではありません。出したあとで、OSF の共通方針に「大部分が生成物の稿は不可」とあることに気付きました。その条項で落ちると見込んでいましたが、示された理由は別でした。見込みのほうを理由として書きません。
+
+その条項は、[`submission-disclosure.md`](submission-disclosure.md) に前から記録してありました。出す前に読み返していません。
+
+英語版 v1.1 は、どこにも公開していません。日本語の v1.0 の不備（[`doi-index.md`](doi-index.md) に挙げたもの）は、Zenodo と Knowledge Commons の写しに残ったままです。
 
 ### SSRN が Trinity-Infinity の二篇を落とした —— 2026-09-18
 
