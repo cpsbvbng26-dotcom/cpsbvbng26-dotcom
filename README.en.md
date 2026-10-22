@@ -262,6 +262,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 - Google Scholar — [publications](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - Kudos — [plain-language summaries of published work](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
+- ORKG — [knowledge graph of structured research contributions](https://orkg.org/u/82a7b4bb-37c0-4aaf-a6fd-13165a894046)
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)
 - Niconico Pedia — [encyclopedia entry, first version written by the author](https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89)

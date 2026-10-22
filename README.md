@@ -275,6 +275,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 - Google Scholar — [論文データベース](https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja)
 - SSRN — [論文リポジトリ](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280)
 - Kudos — [公開した成果物の紹介](https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC)
+- ORKG — [論文の主張を構造化した知識グラフ](https://orkg.org/u/82a7b4bb-37c0-4aaf-a6fd-13165a894046)
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [記事一覧](https://dev.to/cpsbvbng26dotcom)
 - ニコニコ大百科 — [単語記事（初版は本人が作成）](https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89)
