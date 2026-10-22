@@ -66,10 +66,11 @@ Zenodo を引用してください。
 | Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818` |
 | A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
 | The Trinity-Infinity Framework, Series II | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
+| 「30歳魔法使い」都市伝説の構造分析 | `10.5281/zenodo.23114131` | Knowledge Commons [レコード](https://works.hcommons.org/records/vaa96-ss949) |
 
 SSRN 版は同一本文です。片方だけを直すと食い違うため、**Zenodo を正**とします。
 
-Knowledge Commons のレコードも同一論文の別の所在です。**このレコードが DOI を
+Knowledge Commons のレコードも同一論文の別の所在です。**二つのレコードが DOI を
 持つかどうかは未確認です**（外部への接続が遮断されているため、この環境から
 確かめられません）。持っているなら、URL ではなく DOI を書いてください。
 

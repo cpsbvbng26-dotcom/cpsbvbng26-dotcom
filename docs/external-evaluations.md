@@ -632,6 +632,7 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | CogPrints | どの稿かは記録していない | —（付かなかった） | 投稿し、同じ日に取り下げた。2026-09-29 |
 | HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
 | Figshare | Repeated Games through a Cyclic Operator（黄金比の窓の予想の英語版） | `10.6084/m9.figshare.34419198` | 載った。2026-10-13。新しいアカウントから出した（下記）。門が下りたかは分からない |
+| Knowledge Commons（KCWorks） | 「30歳魔法使い」都市伝説の構造分析 | `vaa96-ss949`（レコードの番号。DOI は受け取っていない） | 置いた。2026-10-22。査読は無い。言語モデルの利用は、場の欄（AI Use）に開示した |
 
 PhilArchive の三行は 2026-09-30 に足しました。入口の頁と現状評価には載っていたが、この表から抜けていました（利用者の指摘）。
 2026-09-29 の四行の経緯は [submission-disclosure.md](submission-disclosure.md) の「2026-09-29 に分かったこと、出したこと」にあります。
@@ -937,6 +938,7 @@ SocArXiv が人文学を受け付けないことは、出す前に分かって�
 
 **Knowledge Commons にはすでに一篇置いてあります**。大谷恒の稿です
 （[レコード](https://works.hcommons.org/records/q36z2-98e12)）。この稿は置いていません。
+2026-10-22 に、魔法使いの稿を二篇目として置きました（`vaa96-ss949`）。この稿とは別の稿です。
 
 **まだ出していません**。出すかどうかは決めていません。
 [`submission-disclosure.md`](submission-disclosure.md) の「出す先の条件」に
