@@ -46,6 +46,8 @@ function readProfile(html) {
   const grab = (re) => { const m = re.exec(block); return m ? proseOf(m[1]) : ''; };
   return {
     label: grab(/<h2 class="profile-label">([\s\S]*?)<\/h2>/),
+    /* 修了証の段。**頁の先頭に出ているなら、README でも先頭に出す。** */
+    cred: grab(/<p class="profile-now profile-cred">([\s\S]*?)<\/p>/),
     now: grab(/<p class="profile-now">([\s\S]*?)<\/p>/),
     study: grab(/<p class="profile-now profile-study">([\s\S]*?)<\/p>/),
     aimsLabel: grab(/<p class="aims-label">([\s\S]*?)<\/p>/),
@@ -135,6 +137,7 @@ function blockFor(page, lang) {
         (x) => `<img src="${x.src}" alt="${x.alt}" height="150">`).join(' '), '');
       p.photoNotes.forEach((x) => out.push('<sub>' + x + '</sub>', ''));
     }
+    if (p.cred) out.push(p.cred, '');
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');
     p.core.forEach((c) => out.push(c, ''));

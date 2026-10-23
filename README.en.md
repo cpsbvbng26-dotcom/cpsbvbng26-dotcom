@@ -29,6 +29,8 @@ Motto: “Brand precedes form.”
 
 ## About me
 
+The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate.
+
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
