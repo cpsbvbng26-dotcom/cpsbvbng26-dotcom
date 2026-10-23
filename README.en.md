@@ -8,6 +8,8 @@ A provisional “Independent Researcher” for convenience until earning a docto
 
 Each morning begins with a breakfast set and coffee at a café inside the station; each evening closes with a drink at home.
 
+Since coming of age I have lived on my own, going home only at New Year. I hold net financial assets, and have paid all my tuition and hobby expenses since adulthood myself.
+
 Motto: “Brand precedes form.”
 
 <sub>A record of studying computer science and artificial intelligence</sub>
