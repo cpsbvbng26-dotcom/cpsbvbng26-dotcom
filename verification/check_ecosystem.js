@@ -411,13 +411,13 @@ console.log('\n7. 研究者としての位置');
       return (raw.match(/^\[\[entry\]\]/gm) || []).length;
     })();
 
-    /* **場の審査を経たプレプリント。**言語モデルの審査で載ったものを、出した先の表から数え直す。
+    /* **aiXiv.science の公式査読を経た論文。**言語モデルの審査で載ったものを、出した先の表から数え直す。
      * 「査読を通った論文」の欄とは混ぜない。混ぜれば、軽い門を重い枠で数えることになる。 */
     {
       const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
       const 実 = (ev.match(/^\| aiXiv\.science \|[^\n]*\| 審査を経て掲載された。/gm) || []).length;
-      const m = /^\| 場の審査を経たプレプリント \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
-      check('場の審査を経たプレプリントの数が、出した先の表と合う',
+      const m = /^\| aiXiv\.science の公式査読を経た論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
+      check('aiXiv.science の公式査読を経た論文の数が、出した先の表と合う',
         m !== null && parseInt(m[1], 10) === 実
         && /^\| 査読を通った論文 \| 学術誌・学会 \| \*\*0 篇\*\*/m.test(text),
         m ? ('名乗り ' + m[1] + ' / 実際 ' + 実) : '欄が無い');
