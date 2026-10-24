@@ -97,12 +97,14 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 | 論文 | 所在 |
 | --- | --- |
 | Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA` |
-| Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | figshare `10.6084/m9.figshare.34419198` |
+| Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | figshare `10.6084/m9.figshare.34419198`、aiXiv `2610.02314` |
 
 SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
 PhilArchive にも同じ日に置きました。記号は利用者から受け取りました。
 
 figshare に載ったのは 2026-10-13 です。DOI は利用者から受け取りました。trinity-operator の games のノートを、英語の論文の形にしたものです。ノートのほうは GitHub にあり、DOI を持ちません。
+
+aiXiv（aixiv.online）に置いたのは 2026-10-24 です。番号は利用者の画面から受け取りました。figshare の版と同じ PDF です。DOI ではありません。
 
 ### 論文の頁をまだ作っていない本文
 
