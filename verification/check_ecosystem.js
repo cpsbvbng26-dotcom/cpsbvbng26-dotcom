@@ -417,10 +417,17 @@ console.log('\n7. 研究者としての位置');
       const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
       const 実 = (ev.match(/^\| aiXiv\.science \|[^\n]*\| 審査を経て掲載された。/gm) || []).length;
       const m = /^\| aiXiv\.science の公式査読を経た論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
+      /* README の導入も同じ数を名乗る。**査読の主体を書いた一文と一緒でなければ落とす。** */
+      const 和 = /言語モデル五体による公式査読を経た論文が (\d+) 篇あります。学術誌・学会の査読ではありません。/
+        .exec(read('cpsbvbng26-dotcom', 'README.md') || '');
+      const 英 = /On aiXiv\.science, (\d+) papers? ha(?:s|ve) passed the platform's official review by a panel of five language models\. This is not peer review by a journal or a society\./
+        .exec(read('cpsbvbng26-dotcom', 'README.en.md') || '');
       check('aiXiv.science の公式査読を経た論文の数が、出した先の表と合う',
         m !== null && parseInt(m[1], 10) === 実
+        && 和 !== null && parseInt(和[1], 10) === 実
+        && 英 !== null && parseInt(英[1], 10) === 実
         && /^\| 査読を通った論文 \| 学術誌・学会 \| \*\*0 篇\*\*/m.test(text),
-        m ? ('名乗り ' + m[1] + ' / 実際 ' + 実) : '欄が無い');
+        m ? ('名乗り ' + m[1] + '（README ' + (和 ? 和[1] : '無し') + ' / ' + (英 ? 英[1] : '無し') + '） / 実際 ' + 実) : '欄が無い');
     }
 
     const rows = [['公開した成果物', papers, '篇'],
