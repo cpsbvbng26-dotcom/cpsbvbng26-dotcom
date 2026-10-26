@@ -8,7 +8,7 @@ A provisional “Independent Researcher” for convenience until earning a docto
 
 My main platforms are GitHub, SSRN, PhilArchive and aiXiv.science. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
 
-I left Tochigi High School, passed the national high-school equivalency examination, and entered ZEN University in its first autumn cohort. The entrance badge stays with Tochigi High; the proof at the exit will be the degree.
+Using the system as it is built, I kept the brand of having been admitted to Tochigi High School and advanced from a heretic who had left secondary education to a student in higher education: one who carries the badge of the first cohort of a new university, and who is receiving the systematic training that leads to a degree.
 
 Each morning begins with a breakfast set and coffee at a café inside the station; each evening closes with a drink at home.
 
