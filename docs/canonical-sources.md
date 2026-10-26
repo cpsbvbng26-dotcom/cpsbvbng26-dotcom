@@ -544,6 +544,31 @@ About → Website を変える道具はこの環境に無い。
 古い写しが出ていた理由は、連携の有無ではなかったことになります。連携は生きていました。
 残っていたのは配信の側の写しだと見ていますが、**その機構は確かめていません**（`未確認`）。
 
+
+### 例外：黄金比の窓の予想の英語サイト
+
+2026-10-26 に、黄金比の窓の予想だけを英語で載せたサイトを Vercel に置きました。利用者の決めです。
+このサイトの正は、GitHub Pages ではなく Vercel の側です。
+
+| | |
+| --- | --- |
+| 配信先 | `https://golden-window-conjecture.vercel.app/` |
+| プロジェクト | `golden-window`（`prj_j0MgsOQCVCOzR2lUwBltCBMukSvU`） |
+| 中身 | `trinity-operator` の `site/`。`main` への push のたびに配り直されます |
+| 閲覧の壁 | `ssoProtection` は `preview`。production は誰でも見られます |
+| 費用 | Hobby プランで、無料です |
+
+`golden-window.vercel.app` は、Vercel 全体ですでに使われていました。
+自動で付いた `golden-window-psi.vercel.app` も残っていますが、canonical は上の URL を指します。
+
+本文は一つの設定から生成しています。researcher-profile の `golden-window.en.json` です。
+プロフィールサイトの `notes/golden-window.en.html` も同じ設定から出ており、canonical は github.io を指したままです。
+二つの頁は同じ本文を持ちます。
+写しが手で直されていないことは、`check_ecosystem.js` が生成し直して確かめています。
+
+途中で作った `golden-window-unlinked`（`prj_IzBVsE1eFZE1LpcRSOcD0nrUe8fS`）は、配備の無い空のプロジェクトです。
+消す操作はこの環境から通らないので、利用者の手で消します。
+
 ---
 
 ## この文書が扱わないこと

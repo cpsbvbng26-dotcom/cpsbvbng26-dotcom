@@ -2140,6 +2140,39 @@ console.log('\n12. ライセンスの分け方');
   }
 }
 
+/* ---------- 予想の英語サイトが、生成もとと同じか ----------
+ *
+ * trinity-operator/site/index.html は researcher-profile から生成して写したもの。
+ * 写したあとで手で直すと、次の生成で黙って戻る。生成し直して、一字一句を突き合わせる。 */
+
+console.log('\n12b. 予想の英語サイト（golden-window-conjecture.vercel.app）');
+
+{
+  const rp = path.join(ROOT, 'researcher-profile');
+  const 写し = read('trinity-operator', path.join('site', 'index.html'));
+  let 生成 = null;
+  if (写し !== null && fs.existsSync(path.join(rp, 'build.js'))) {
+    const out = fs.mkdtempSync(path.join(require('os').tmpdir(), 'golden-window-'));
+    try {
+      execFileSync('node', [path.join(rp, 'build.js')], {
+        env: Object.assign({}, process.env, {
+          PROFILE_CONFIG: path.join(rp, 'golden-window.en.json'),
+          PROFILE_OVERLAY: path.join(rp, 'golden-window.site.json'),
+          PROFILE_OUT: out,
+        }),
+        stdio: 'pipe',
+      });
+      生成 = fs.readFileSync(path.join(out, 'index.html'), 'utf8');
+    } catch (e) {
+      生成 = null;
+    }
+    fs.rmSync(out, { recursive: true, force: true });
+  }
+  check('trinity-operator/site/index.html が、researcher-profile から生成したものと一字一句同じ',
+    写し !== null && 生成 !== null && 写し === 生成,
+    写し === null ? 'site/index.html が無い' : (生成 === null ? '生成できない' : ''));
+}
+
 /* この検査自身が名乗る件数も、実際と合わせる。
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
