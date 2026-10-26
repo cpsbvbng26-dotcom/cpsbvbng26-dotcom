@@ -211,4 +211,9 @@ node verification/check_all.js         # 10 リポジトリの検査を全部回
 | `docs/library.bib` | `docs/library.toml`（と兄弟の `autonomy-and-self-cultivation` の書棚）を直して `python3 verification/build_library.py` |
 | CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
 
+`favicon.svg` と `og.png` は手で置いたもので、生成物ではない。ロゴは文字のフォントを使わず、
+長方形と多角形だけで組んである（どの端末でも同じ形に描かれ、書体の権利も絡まない）。
+`og.png` は共有したときのカードの画像で、ロゴを横長の画像の中央に描いたもの。
+ロゴを変えたら、こちらも描き直す。
+
 外部へリクエストを出さない。`default-src 'none'`、`'unsafe-inline'` を使わない。
