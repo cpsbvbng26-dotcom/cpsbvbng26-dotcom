@@ -8,6 +8,8 @@ A provisional “Independent Researcher” for convenience until earning a docto
 
 My main platforms are GitHub, SSRN, PhilArchive and aiXiv.science. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
 
+I left Tochigi High School, passed the national high-school equivalency examination, and entered ZEN University in its first autumn cohort. The entrance badge stays with Tochigi High; the proof at the exit will be the degree.
+
 Each morning begins with a breakfast set and coffee at a café inside the station; each evening closes with a drink at home.
 
 Since coming of age I have lived on my own, going home only at New Year. I hold net financial assets, and have paid all my tuition and hobby expenses since adulthood myself.
