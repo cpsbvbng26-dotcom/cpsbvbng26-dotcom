@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/sitemap.xml
+Sitemap: https://cpsbvbng26-dotcom.vercel.app/sitemap.xml
