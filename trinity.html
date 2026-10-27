@@ -3,31 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6NB7UPpZOoe1BIAT8/VZinJFBl4hRljOjjM9/6cwX7k=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-nRend436xXYrdJav0DpXWTggT6slqwXkSHkij5LJlls=' 'sha256-xkIgyIC8BbjfJ5Ltm/rdYyyOKB3MHT9yue2UZyxjv4k='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2GSyu8/ukBNt1fKuCmiSjMSo6tSG3LMHHJfVWA5uSmY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-nRend436xXYrdJav0DpXWTggT6slqwXkSHkij5LJlls=' 'sha256-xkIgyIC8BbjfJ5Ltm/rdYyyOKB3MHT9yue2UZyxjv4k='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="作用素を回す | 根本卓哉">
 <meta property="og:description" content="ρ(A) < 1 が収束の必要十分条件で、‖A‖₂ < 1 は十分条件にすぎない。その差を、行列を打ち込んで確かめられるページ。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html">
-<link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html">
-<meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
+<meta property="og:url" content="https://cpsbvbng26-dotcom.vercel.app/trinity.html">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.vercel.app/trinity.html">
+<meta property="og:image" content="https://cpsbvbng26-dotcom.vercel.app/og.png">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="600">
 <meta property="og:site_name" content="根本卓哉 | Takuya Nemoto">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
+<meta name="twitter:image" content="https://cpsbvbng26-dotcom.vercel.app/og.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html#app",
+      "@id": "https://cpsbvbng26-dotcom.vercel.app/trinity.html#app",
       "name": "作用素を回す",
-      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
+      "url": "https://cpsbvbng26-dotcom.vercel.app/trinity.html",
       "description": "Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、ブラウザの中だけで反復する道具。スペクトル半径と作用素ノルムを別々に出し、収束の可否と誤差が単調に減衰するかを分けて判定する。三篇の議論が成り立たない領域では、リアプノフ方程式を解いて縮小写像になる重み付きノルムを構成し、その縮小定数と誤差の上界を出す。固有値は Householder 変換とシフト付き QR 法、特異値は Jacobi 回転、連立一次方程式は部分ピボット付き Gauss 消去、コレスキー分解も含めて、いずれも外部ライブラリを使わずに解いている。外部へのリクエストは無い。",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
@@ -36,18 +36,18 @@
       "license": "https://opensource.org/licenses/MIT",
       "inLanguage": "ja",
       "author": {
-        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person"
+        "@id": "https://cpsbvbng26-dotcom.vercel.app/#person"
       },
       "isPartOf": {
-        "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/"
+        "@id": "https://cpsbvbng26-dotcom.vercel.app/"
       }
     },
     {
       "@type": "Person",
-      "@id": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/#person",
+      "@id": "https://cpsbvbng26-dotcom.vercel.app/#person",
       "name": "根本卓哉",
       "alternateName": "Takuya Nemoto",
-      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/"
+      "url": "https://cpsbvbng26-dotcom.vercel.app/"
     }
   ]
 }
