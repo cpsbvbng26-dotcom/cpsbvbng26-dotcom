@@ -12,7 +12,7 @@
 | **論文の PDF と書誌** | **Zenodo** | DOI が付き、版が固定されます。GitHub 上の PDF は同じものの控え |
 | **実装と版管理** | **GitHub** | 履歴・差分・CI がある。Zenodo のアーカイブは特定時点の写し |
 | **著者の識別子** | **ORCID** `0009-0000-1406-0547` | 同姓同名と区別できる唯一の識別子 |
-| **公開の入口** | **GitHub Pages** `https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/` | 核の主張・撤回・全成果への導線が一枚にある |
+| **公開の入口** | **Vercel** `https://cpsbvbng26-dotcom.vercel.app/` | 核の主張・撤回・全成果への導線が一枚にある。2026-10-27 に GitHub Pages から移した |
 | **撤回と正誤** | **`trinity-infinity/ERRATA.md`** | 何が撤回されたかは、ここだけが正 |
 
 ---
@@ -347,9 +347,9 @@ PlumX が数えています。独立した二つの目に見えて、一つで�
 子会社でした。**それが締め出しの理由だとは書きません**。運営母体と締め出しの理由を
 結ぶ材料を持っていません。並べたのは所属だけです。
 
-**Microsoft が二つに関わる**。GitHub と GitHub Pages です。
-**正本の一つと、配信先の正が同じ手にある** —— 実装の正本が GitHub で、
-公開の入口が GitHub Pages です。どちらも止まれば同時に止まる。
+**Microsoft が関わるのは GitHub です**。実装の正本が GitHub にあります。
+2026-10-27 から、公開の入口の正は Vercel です。GitHub Pages は同じ中身を出し続けますが、正ではありません。
+**正本と配信先の正は、別の手にある**。2026-10-27 までは、どちらも Microsoft の手にありました。
 
 **受注の二社は日本の上場企業です**。ランサーズとココナラ。
 **研究成果とは別種であることは、上の表に書いてあります**。運営母体をここに並べたのは、
@@ -401,11 +401,21 @@ Crossref に登録されていれば、中身の審査を経ずに載ります�
 
 ## 配信先
 
-GitHub Pages が唯一の正です。
+2026-10-27 から、Vercel（`https://cpsbvbng26-dotcom.vercel.app/`）が唯一の正です。
+利用者の決めです。
 
-`https://cpsbvbng26-dotcom.vercel.app` は使いません。サイトの内容と検証スクリプトは
-すべて `github.io` を指しており、`check_site.js` の「別の配信先を指す URL が無い」が
-これを強制しています。
+理由は検索結果のアイコンです。Google は、アイコンをホスト名の一番上の頁から取ります。
+GitHub Pages の頁は `cpsbvbng26-dotcom.github.io` の下の階層にあり、一番上の頁がありません。
+そのためロゴが出ませんでした。Vercel では、頁がホスト名の一番上にあります。
+
+サイトの内容と検証スクリプトは、すべて `vercel.app` を指します。
+`check_site.js` の「別の配信先を指す URL が無い」が、これを強制しています。
+GitHub Pages は同じ中身を出し続けますが、全頁の canonical は `vercel.app` を指します。
+
+Vercel の `cpsbvbng26-dotcom` プロジェクトは、`main` から組まれます。
+`ssoProtection` は `preview` にしました。production は誰でも見られます。
+
+この節より下は、GitHub Pages を正としていた頃に書いたものです。書き換えていません。
 
 > 2026年9月10日、利用者が「Website は Vercel のままでよい」と決めました。
 > リポジトリの About → Website は `vercel.app` を指したままにします。**正本が
@@ -562,7 +572,7 @@ About → Website を変える道具はこの環境に無い。
 自動で付いた `golden-window-psi.vercel.app` も残っていますが、canonical は上の URL を指します。
 
 本文は一つの設定から生成しています。researcher-profile の `golden-window.en.json` です。
-プロフィールサイトの `notes/golden-window.en.html` も同じ設定から出ており、canonical は github.io を指したままです。
+プロフィールサイトの `notes/golden-window.en.html` も同じ設定から出ており、canonical はプロフィールの正（`cpsbvbng26-dotcom.vercel.app`）を指します。
 二つの頁は同じ本文を持ちます。
 写しが手で直されていないことは、`check_ecosystem.js` が生成し直して確かめています。
 

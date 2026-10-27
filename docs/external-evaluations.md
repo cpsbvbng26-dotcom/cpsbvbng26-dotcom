@@ -272,7 +272,7 @@ Series I には現れません。
 **紙面の率は 5 桁ゆるい**。そして —— **これは
 [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) が
 実装している中心的事実そのものです**。`ρ(DQ)` は巡回ごとの幾何平均。
-[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)
+[作用素のページ](https://cpsbvbng26-dotcom.vercel.app/trinity.html)
 がその場で計算します。査読はそのリポジトリもこの文書も渡されていません。
 
 `ERRATA` の **N9** に立てました。この系列でいちばん重い見落としです。

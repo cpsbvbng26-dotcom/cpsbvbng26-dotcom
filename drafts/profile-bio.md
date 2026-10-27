@@ -58,7 +58,7 @@ GitHub のプロフィールと各リポジトリの About にある Website 欄
 
 | 順位 | URL | 理由 |
 |---|---|---|
-| 1 | `https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/` | **正本**。核の主張・撤回・全成果への導線が一枚にある |
+| 1 | `https://cpsbvbng26-dotcom.vercel.app/` | **正本**。核の主張・撤回・全成果への導線が一枚にある |
 | 2 | `https://orcid.org/0009-0000-1406-0547` | 識別子の正本。ただし論文一覧までで、核の主張は読めない |
 | 3 | 各成果の Zenodo DOI | 個別リポジトリの About 用 |
 
