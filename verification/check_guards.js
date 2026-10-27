@@ -89,7 +89,9 @@ section('1. 壊した箇所がちょうど落ちるか');
 
 const CASES = [
   ['sitemap の lastmod を古くすると落ちる', 'sitemap.xml',
-   (s) => s.replace(/<lastmod>2026-09-\d\d<\/lastmod>/, '<lastmod>2020-01-01</lastmod>'),
+   /* 壊す相手は月を問わない。9 月に固定していたら、全頁が 10 月に更新された日に
+    * 書き換える行が無くなり、壊す前に空振りした。 */
+   (s) => s.replace(/<lastmod>20\d\d-\d\d-\d\d<\/lastmod>/, '<lastmod>2020-01-01</lastmod>'),
    'check_site.js', 'lastmod が git の記録より古くない'],
 
   ['CSP のハッシュを一つ変えると落ちる', 'index.html',

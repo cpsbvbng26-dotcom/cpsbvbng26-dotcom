@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-5c7lyVIDEmyRkktt0ZMcVgZIztCG2d/oR2i8/GbMwh8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2vbBAZ4Rn3doMXuc/7OOOe/Y4Cu0FGPxfM3drmf2LgE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-6r/z4XYEDeIv/igfmQLhnYfD+B2kMYS6YmZE6lyt19Q='; style-src 'sha256-zNAqbeEXkLQn/6GwU8Hv90kXjeQhtbqMU4WGdge6iQc='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>ノート | 根本卓哉</title>
 <meta name="description" content="トップに置かなかったもの。哲学の三篇、海軍公報の史料ノート、核に直接関わらないリポジトリ。削除ではなく、ここに置いてあります。">
 <meta name="robots" content="index, follow">
@@ -13,7 +13,8 @@
 <meta property="og:url" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html">
 <link rel="canonical" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html">
 <meta property="og:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/og.png">
 <link rel="icon" href="./../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ja" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html">
 <link rel="alternate" hreflang="en" href="https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.en.html">
@@ -465,10 +466,32 @@ header::after {
   font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
   color: var(--faint);
 }
+.profile-photo {
+  display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
+  border-radius: .4rem; border: 1px solid var(--line);
+}
+.profile-photos { margin: 0 0 1.1rem; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note {
+  margin: .45rem 0 0; font-size: .7rem; line-height: 1.7; color: var(--faint);
+}
+/* **並べるときは同じ枠に収める。**縦横比の違うものが素のまま並ぶと、
+   対に見えない。切り出す位置は右寄せ —— 切り抜きの余白は左に出る。 */
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
+.profile-photos { max-width: 100%; }
+@media (min-width: 40rem) {
+  .profile-photo { float: right; width: 9.5rem; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos { float: right; margin: .2rem 0 1rem 1.4rem; }
+  .profile-photos .profile-photo { float: none; height: 10.5rem; margin: 0; }
+}
 .profile-now {
   margin: 0; font-size: .95rem; line-height: 1.95; color: var(--text);
 }
 .profile-study { margin-top: .7rem; color: var(--muted); }
+.profile-cred { margin-bottom: .7rem; color: var(--muted); }
 .profile-study b, .profile-study strong { color: var(--text); font-weight: 600; }
 
 /* 来た道。縦の線を左に一本引き、節ごとに丸を置く。 */
@@ -511,6 +534,13 @@ header::after {
   font-style: normal; font-size: .68rem; letter-spacing: .08em;
   padding: .08rem .4rem; border-radius: .2rem;
   color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: .68rem; letter-spacing: .08em;
+  padding: .08rem .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
 }
 .path-now .path-name { color: var(--accent); }
 .path-state {
