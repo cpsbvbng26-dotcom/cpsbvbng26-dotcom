@@ -18,7 +18,7 @@
 
 <sub>コンピュータサイエンス・人工知能の学習記録</sub>
 
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547) [![Site](https://img.shields.io/badge/Site-cpsbvbng26--dotcom.github.io-24292F?style=for-the-badge)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547) [![Site](https://img.shields.io/badge/Site-cpsbvbng26--dotcom.vercel.app-24292F?style=for-the-badge)](https://cpsbvbng26-dotcom.vercel.app/)
 
 [![検査](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
 
@@ -39,7 +39,7 @@ edX の修了証を、技術の目安として先に書きます。どれも入�
 
 ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。
 
-大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
+大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
 
 ここにあるものの根幹は、独学と、言語モデルを使って進めたことです。指導教員も共同研究者もいません。「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。ただし、大学の単位は独学ではありません。授業を受け、課題を出し、評価を受けて得たものです。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にあります —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことです。
 
@@ -53,7 +53,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 数学の側について、一つ確定したことがあります。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型でした —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われています。脚注ではなく、その分野の二本柱の一本でした。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていません（ERRATA の E8、重大度・高）。ただし寸法は正確に書きます。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪です。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としています。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項です。
 
-その先で、一つ足したものがあります。2026-10-04 に、同じ作用素が繰り返しゲームの均衡を決めることを、ノートに書きました（trinity-operator の games）。協力が巡回する道の継続価値は、この作用素の不動点になります。式そのものは教科書の公式です。そこから閾値を証明しました。三人で裏切り役を回す道は、割引因子が 1/φ 以上のときに限って均衡になります。Series II の例 (2,4,2) が、どの割引因子でも持続しないことも示しました。ただし、命題は文献と照合していません。既知の演習である可能性があり、照合するまで新しい結果とは数えません。乱数を使わないときに持続できる利得の集合が穴だらけになる、という予想も置きました。名前は黄金比の窓の予想（Golden-window conjecture）で、窓は割引因子の 1/φ から 2/3 までを指します。人名ではなく、中身を表す名です。予想と、窓の外で証明したことは、[独立した頁](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/golden-window.html)にまとめました。証明は無く、根拠は数値だけです。既知の模型と、証明した命題と、予想を、分けて書いています。
+その先で、一つ足したものがあります。2026-10-04 に、同じ作用素が繰り返しゲームの均衡を決めることを、ノートに書きました（trinity-operator の games）。協力が巡回する道の継続価値は、この作用素の不動点になります。式そのものは教科書の公式です。そこから閾値を証明しました。三人で裏切り役を回す道は、割引因子が 1/φ 以上のときに限って均衡になります。Series II の例 (2,4,2) が、どの割引因子でも持続しないことも示しました。ただし、命題は文献と照合していません。既知の演習である可能性があり、照合するまで新しい結果とは数えません。乱数を使わないときに持続できる利得の集合が穴だらけになる、という予想も置きました。名前は黄金比の窓の予想（Golden-window conjecture）で、窓は割引因子の 1/φ から 2/3 までを指します。人名ではなく、中身を表す名です。予想と、窓の外で証明したことは、[独立した頁](https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html)にまとめました。証明は無く、根拠は数値だけです。既知の模型と、証明した命題と、予想を、分けて書いています。
 
 ここまでのプレプリントは、趣味として書いたものです。どれも査読を受けていません。これは謙遜ではありません。上に並べたことからの帰結です —— 受け付けの門は通りましたが、論証を見た者はいません。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロです。趣味の研究は、学部一年で卒業しました。これからのものは、趣味と呼ばずに済む形で書きます。
 
@@ -71,7 +71,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 先の見通しも書いておきます。上の二つ以外は眼中にありません。博士号を取ったのち独立研究者として活動すること、個人事業主として質を重視した案件のみを受注して生計を立てること。学会と賞は、その一つ目に向かう途上にあります。目標が三つに増えたのではありません。博士号もまた、本質的に非再生産です。本人の業績にだけ与えられ、譲ることも継がせることもできません。そして、他者と接する機会を極限まで削った状態で生きることになるでしょう。この暮らし方は、書いたものと同じ向きを向いています。独身者の模範性と貴族性が擁護したのは、まさにその型です —— 他者にも欲望の周期にも依存しない幸福（同論文の C2）。ただし、その型が実際に取れるかどうかは、まだ確かめられていません。C2 は未読の典拠二つに乗っており（ERRATA の E6、重大度・高）、孤立の統計は、取れるかどうかを問う側に向かっています。暮らし方が主張の裏付けになるわけではありません。順序は逆で、主張のほうが、まだ足で立っていません。
 
-死後に残すもの（墓と諡名、学位、ORCID と DOI）の話は、研究とは別のことなので、[別の頁](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/afterlife.html)に分けました。
+死後に残すもの（墓と諡名、学位、ORCID と DOI）の話は、研究とは別のことなので、[別の頁](https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.html)に分けました。
 
 **独立独転及び非再生産の象徴**
 
@@ -135,7 +135,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ### 監査の対象 —— Trinity-Infinity Series I–III
 
-自分で書いた三篇です。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置いたが、これは十分条件であって必要条件ではありません。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分です。[作用素のページ](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html)で、行列を打ち込めばその場で判定が出ます。
+自分で書いた三篇です。反復 `x ← DQx + (I−D)p` が収束する条件として作用素ノルム `‖DQ‖₂ < 1` を置いたが、これは十分条件であって必要条件ではありません。決めているのはスペクトル半径のほうで、`ρ(DQ) < 1` が必要十分です。[作用素のページ](https://cpsbvbng26-dotcom.vercel.app/trinity.html)で、行列を打ち込めばその場で判定が出ます。
 
 **そしてこの `x ← DQx + (I−D)p` 自体が、既知の模型でした**。社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型として **DeGroot と Friedkin–Johnsen の二つを並べて挙げる**のが通例です。2011 年に Cambridge から単著の理論書になり、2016 年に *Science* に載り、いまは制御理論と計算機科学でも使われています。**脚注ではなく、その分野の二本柱の一本でした**。しかも Series I は、自分の第1節で `consensus dynamics` と名指ししたうえで、その分野を一件も引いていません（[`ERRATA.md` の `E8`](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md)、重大度・高）。
 
@@ -161,7 +161,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 > 公開しているものは、すべて査読を受けていない。 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
 
-このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.html) に移してあります。
+このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.vercel.app/notes/index.html) に移してあります。
 
 トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力です。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回すこと。
 
@@ -195,7 +195,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 | リポジトリ | 内容 | ライセンス | DOI |
 | --- | --- | --- | --- |
-| [作用素を回す](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) | Trinity-Infinity の三篇が扱う作用素を、ブラウザの中だけで反復する。**スペクトル半径と作用素ノルムを別々に出し、収束の可否と単調減衰を分けて判定する**。固有値・特異値・連立一次方程式を外部ライブラリなしで解いている。NumPy の値と 728 件突き合わせ済み。このサイト内のページ | MIT | — |
+| [作用素を回す](https://cpsbvbng26-dotcom.vercel.app/trinity.html) | Trinity-Infinity の三篇が扱う作用素を、ブラウザの中だけで反復する。**スペクトル半径と作用素ノルムを別々に出し、収束の可否と単調減衰を分けて判定する**。固有値・特異値・連立一次方程式を外部ライブラリなしで解いている。NumPy の値と 728 件突き合わせ済み。このサイト内のページ | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
@@ -287,7 +287,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 - Medium — [記事一覧](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [記事一覧](https://dev.to/cpsbvbng26dotcom)
 - ニコニコ大百科 — [単語記事（初版は本人が作成）](https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89)
-- このサイト — [cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+- このサイト — [cpsbvbng26-dotcom.vercel.app/](https://cpsbvbng26-dotcom.vercel.app/)
 
 </details>
 

@@ -18,7 +18,7 @@ Motto: “Brand precedes form.”
 
 <sub>A record of studying computer science and artificial intelligence</sub>
 
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547) [![Site](https://img.shields.io/badge/Site-cpsbvbng26--dotcom.github.io-24292F?style=for-the-badge)](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge)](https://orcid.org/0009-0000-1406-0547) [![Site](https://img.shields.io/badge/Site-cpsbvbng26--dotcom.vercel.app-24292F?style=for-the-badge)](https://cpsbvbng26-dotcom.vercel.app/index.en.html)
 
 [![Checks](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml/badge.svg)](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/actions/workflows/verify.yml)
 
@@ -39,7 +39,7 @@ The edX certificates come first, as a guide to technical level. All are introduc
 
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
-My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
+My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
 What is here rests on self-study and on working with language models. There was no supervisor and no collaborator. “Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate. The university credits, though, are not self-study. They came from taking courses, submitting work and being assessed. They are what the table below lists, and what self-study and language models refer to lies outside them — the three papers in philosophy, the three Trinity-Infinity papers, and the tools and records kept here.
 
@@ -53,7 +53,7 @@ What does not follow is equally definite. Neither gate looked at whether the arg
 
 One thing about the mathematics is now settled. The operator behind the three Trinity-Infinity papers, x ← DQx + (I−D)p, was already a known model — the Friedkin–Johnsen model (1990 / 1999) in sociology. The opinion-dynamics literature routinely names DeGroot and Friedkin–Johnsen together as the most influential models in that area; it became a Cambridge monograph in 2011, reached Science in 2016, and is now used in control theory and computer science. Not a footnote — one of the two pillars of the field. And Series I names consensus dynamics in its own first section while citing nothing from that field (ERRATA E8, severity high). The dimensions, stated exactly: this operator is the special case where the influence matrix W is a cyclic permutation — a ring in which each party listens to exactly one neighbour. The general W, who influences whom and by how much, which is what makes Friedkin–Johnsen sociology, is dropped entirely. What was rediscovered is the mathematical frame of a first-rank sociological model, with the sociology taken out, and its load-bearing term.
 
-One thing has been added beyond that. On 2026-10-04 a note was written showing that the same operator decides the equilibria of a repeated game (trinity-operator, games). The continuation values of a cyclic path of play are the fixed point of this operator. The formula itself is the textbook one. From it, thresholds were proved: a path on which three players take turns defecting is an equilibrium exactly when the discount factor is at least 1/φ. The note also shows that the Series II example (2,4,2) is not sustainable for any discount factor. The propositions have not been checked against the literature. They may be known exercises, and they are not counted as new results until they are checked. The note also states a conjecture: without randomization, the set of sustainable payoffs is full of holes. It is called the golden-window conjecture, the window being the discount factors from 1/φ to 2/3. The name describes the statement and is not a person’s name. The conjecture and what is proved outside the window are set out on [a page of their own](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/golden-window.en.html). There is no proof, and the evidence is numerical only. The known model, the proved propositions and the conjectures are written down separately.
+One thing has been added beyond that. On 2026-10-04 a note was written showing that the same operator decides the equilibria of a repeated game (trinity-operator, games). The continuation values of a cyclic path of play are the fixed point of this operator. The formula itself is the textbook one. From it, thresholds were proved: a path on which three players take turns defecting is an equilibrium exactly when the discount factor is at least 1/φ. The note also shows that the Series II example (2,4,2) is not sustainable for any discount factor. The propositions have not been checked against the literature. They may be known exercises, and they are not counted as new results until they are checked. The note also states a conjecture: without randomization, the set of sustainable payoffs is full of holes. It is called the golden-window conjecture, the window being the discount factors from 1/φ to 2/3. The name describes the statement and is not a person’s name. The conjecture and what is proved outside the window are set out on [a page of their own](https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.en.html). There is no proof, and the evidence is numerical only. The known model, the proved propositions and the conjectures are written down separately.
 
 The preprints up to this point were written as a hobby. None of them has been peer-reviewed. This is not modesty. It follows from what is set out above — the desk gate was passed, but no one has examined the arguments. The three mathematical papers are a special case of a known model, and the contribution to the field is zero. Hobby research ended in the first undergraduate year. What comes next will be written so that the word need not apply.
 
@@ -71,7 +71,7 @@ The direction has been changed. Decided on 2026-09-23. From here on the effort g
 
 The outlook, stated plainly. Nothing outside those two is in view — working as an independent researcher after a doctorate, and earning a living as a sole proprietor who takes on only work chosen for its quality. Conferences and awards lie on the way to the first of those. The count of goals has not become three. A doctorate, too, is in essence non-reproductive: it is conferred on one person’s work alone and can be neither handed over nor inherited. And life will be lived with contact with others cut back as far as it will go. That way of living points the same way as the writing. What The Nobility and Exemplarity of the Celibate Individual defends is precisely that form — a happiness dependent neither on others nor on the cycle of desire (C2 in that paper). Whether that form can actually be taken up, however, is not established. C2 rests on two sources the author has not read (E6 in the errata, severity high), and the statistics on isolation press exactly on whether it can be taken up. A way of living is not evidence for a claim. The order runs the other way: the claim is the part not yet standing on its own feet.
 
-What is to remain after death (the gravestone and posthumous name, the degree, ORCID and DOI) is not research, and has been moved to [a separate page](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/afterlife.en.html).
+What is to remain after death (the gravestone and posthumous name, the degree, ORCID and DOI) is not research, and has been moved to [a separate page](https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.en.html).
 
 **Emblems of standing and turning alone, and of non-reproduction**
 
@@ -126,7 +126,7 @@ Someone studying computer science and artificial intelligence, who writes and pu
 
 **The current claim.** Trinity-Infinity Series I–III — which I wrote — assume the operator norm `‖DQ‖₂ < 1` as the condition under which the iteration `x ← DQx + (I−D)p` converges. That condition is sufficient, not necessary. Convergence is governed by the spectral radius instead: `ρ(DQ) < 1` is necessary and sufficient. In the region where the two come apart (`ρ < 1 ≤ ‖DQ‖₂`) the iteration still converges, but the error grows before it decays. In the papers' own setting the operator is normal, so `ρ = ‖DQ‖₂` holds and the distinction never surfaced. This is not new mathematics — transient growth in non-normal operators, and `ρ < 1` as the convergence condition, are standard facts of numerical linear algebra. The claim is one thing only: **the assumption the three papers made is stronger than it needs to be.**
 
-**To refute it.** Produce either one of these. (1) An `A` and `b` with `ρ(A) < 1` for which some starting point does not converge. (2) An `A` and `b` with `ρ(A) ≥ 1` that converges to a unique point from every starting point. Type either into [the operator page](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) and it will tell you (the page is in Japanese; the matrix fields are not).
+**To refute it.** Produce either one of these. (1) An `A` and `b` with `ρ(A) < 1` for which some starting point does not converge. (2) An `A` and `b` with `ρ(A) ≥ 1` that converges to a unique point from every starting point. Type either into [the operator page](https://cpsbvbng26-dotcom.vercel.app/trinity.html) and it will tell you (the page is in Japanese; the matrix fields are not).
 
 <details>
 <summary><b>The audit of Trinity-Infinity</b> — proven, analogy, withdrawn, and what to read next</summary>
@@ -151,7 +151,7 @@ The three philosophical papers are not refutable in this shape, and they have no
 
 > **Nothing published here has been peer reviewed.** None of it has gone through a journal or a conference. Having a DOI does not mean a work was reviewed.
 
-The front page of the site shows this core and nothing else. The three philosophical papers, the source note, the certificates and the external profiles have been moved — not deleted — to [Notes](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/notes/index.en.html).
+The front page of the site shows this core and nothing else. The three philosophical papers, the source note, the certificates and the external profiles have been moved — not deleted — to [Notes](https://cpsbvbng26-dotcom.vercel.app/notes/index.en.html).
 
 The front pages (`index.html` / `index.en.html`) and `cv.html` are generated by [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile), my own tool. Do not edit them by hand — edit `site.json` / `site.en.json` / `cv.json` there and run `node build.js`.
 
@@ -185,7 +185,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 
 | Repository | Content | Licence | DOI |
 | --- | --- | --- | --- |
-| [Iterating the operator](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html) | Runs the operator from the three Trinity-Infinity papers in the browser. **Reports the spectral radius and the operator norm separately**, judging convergence and monotone decay as two different conditions. Eigenvalues, singular values and the linear solve are implemented without any external library, and checked against 728 recorded NumPy results. A page on this site (in Japanese) | MIT | — |
+| [Iterating the operator](https://cpsbvbng26-dotcom.vercel.app/trinity.html) | Runs the operator from the three Trinity-Infinity papers in the browser. **Reports the spectral radius and the operator norm separately**, judging convergence and monotone decay as two different conditions. Eigenvalues, singular values and the linear solve are implemented without any external library, and checked against 728 recorded NumPy results. A page on this site (in Japanese) | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | A tool that generates a static researcher profile site from a single configuration file | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | A resource mapping the debate on algorithmic decision-making onto theories of justice in political philosophy | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
 | [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | Full text, PDFs and citation metadata for the three philosophical papers, with a generator for the reading site | CC BY 4.0 | — |
@@ -274,7 +274,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 - Medium — [articles](https://medium.com/@heaven_livid_frog_333/lists)
 - DEV Community — [articles](https://dev.to/cpsbvbng26dotcom)
 - Niconico Pedia — [encyclopedia entry, first version written by the author](https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89)
-- This site — [English](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/)
+- This site — [English](https://cpsbvbng26-dotcom.vercel.app/index.en.html) ｜ [日本語](https://cpsbvbng26-dotcom.vercel.app/)
 
 </details>
 

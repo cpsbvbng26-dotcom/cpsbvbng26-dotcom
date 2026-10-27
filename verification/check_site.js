@@ -166,7 +166,7 @@ section('6. sitemap');
 
 const sm = read('sitemap.xml');
 const locs = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-const BASE = 'https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/';
+const BASE = 'https://cpsbvbng26-dotcom.vercel.app/';
 const badLocs = locs.filter((l) => {
   if (!l.startsWith(BASE)) return true;
   const rel = l.slice(BASE.length);
@@ -255,16 +255,17 @@ section('6c. hreflang');
 /* ------------------------------------------------- 6b. 正の URL がひとつ */
 section('6b. 正の URL');
 
-// このサイトの正は GitHub Pages。別の配信先（Vercel など）を指す URL が混ざると、
-// 検索エンジンにも読者にも二つの版があるように見える。canonical と og:url が
-// 食い違えば、どちらが正か機械にも分からなくなる。
-const CANON = 'https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/';
+// このサイトの正は Vercel（cpsbvbng26-dotcom.vercel.app）。2026-10-27 に GitHub Pages から移した。
+// github.io も同じ中身を出し続けるが、そちらを指す URL が混ざると、検索エンジンにも
+// 読者にも二つの版があるように見える。canonical と og:url が食い違えば、
+// どちらが正か機械にも分からなくなる。
+const CANON = 'https://cpsbvbng26-dotcom.vercel.app/';
 
 const strayHosts = [];
 ['README.md', 'README.en.md', 'sitemap.xml'].concat(PAGES).forEach((f) => {
   if (!fs.existsSync(path.join(ROOT, f))) return;
   [...read(f).matchAll(/https:\/\/([a-z0-9.-]*cpsbvbng26-dotcom[a-z0-9.-]*)\//g)].forEach((m) => {
-    if (m[1] !== 'cpsbvbng26-dotcom.github.io') strayHosts.push(f + ': ' + m[1]);
+    if (m[1] !== 'cpsbvbng26-dotcom.vercel.app') strayHosts.push(f + ': ' + m[1]);
   });
 });
 ok('別の配信先を指す URL が無い', strayHosts.length === 0,
@@ -1017,10 +1018,11 @@ section('10.5 修得した科目の合計');
     ok('運営母体の表が、書いた日のものだと断ってある',
        節.indexOf('運営母体の表は、書いた日のものです。') >= 0);
 
-    /* **正本の一つと、配信先の正が同じ手にある。**そこを書き落とせない。 */
-    ok('GitHub と GitHub Pages が同じ手にあることを書いてある',
-       節.indexOf('**Microsoft が二つに関わる**。') >= 0
-       && 節.indexOf('正本の一つと、配信先の正が同じ手にある') >= 0);
+    /* **正本と配信先の正が、どの手にあるか。**そこを書き落とせない。
+     * 2026-10-27 に配信先の正を Vercel に移し、同じ手ではなくなった。 */
+    ok('正本と配信先の正が別の手にあることを書いてある',
+       節.indexOf('**Microsoft が関わるのは GitHub です**。') >= 0
+       && 節.indexOf('正本と配信先の正は、別の手にある') >= 0);
   }
 
   /* **評語。**利用者から受け取った一文字をそのまま出す。
@@ -1458,7 +1460,7 @@ section('10.59 自己紹介が名乗っていること');
 
     const 地図 = read('sitemap.xml');
     const 載らず = ['notes/golden-window.html', 'notes/golden-window.en.html']
-      .filter((f) => 地図.indexOf('/cpsbvbng26-dotcom/' + f + '<') < 0);
+      .filter((f) => 地図.indexOf(BASE + f + '<') < 0);
     ok('黄金比の窓の予想の頁が、二言語とも sitemap に載っている', 載らず.length === 0,
        載らず.length ? 載らず.join(', ') : '2 言語とも');
 
@@ -2324,7 +2326,7 @@ const 外部プロフィール = (f) => {
   const block = (md.match(/✴︎Links✴︎[\s\S]*?<\/details>/) || [''])[0];
   return (block.match(/\]\((https?:\/\/[^)]+)\)/g) || [])
     .map((m) => m.slice(2, -1))
-    .filter((u) => u.indexOf('cpsbvbng26-dotcom.github.io') < 0);
+    .filter((u) => u.indexOf('cpsbvbng26-dotcom.vercel.app') < 0);
 };
 
 const 和 = 外部プロフィール('README.md');

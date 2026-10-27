@@ -31,12 +31,11 @@ static-site  content-security-policy  json-ld  orcid  preprint
 **Website**
 
 ```
-https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/
+https://cpsbvbng26-dotcom.vercel.app/
 ```
 
-> ⚠️ 前回確認した時点では `https://cpsbvbng26-dotcom.vercel.app` が入っていました。
-> サイトの全ページの `canonical` は GitHub Pages を正としています。ここだけが
-> 別の配信先を指している状態です。
+> 2026-10-27 から、サイトの正は Vercel です。About の Website は前からこの URL を指しており、
+> 全ページの `canonical` とも揃いました。
 
 ---
 
@@ -135,7 +134,7 @@ joint-spectral-radius  fixed-point-theorem  numerical-linear-algebra  numpy  pyt
 **Website**
 
 ```
-https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html
+https://cpsbvbng26-dotcom.vercel.app/trinity.html
 ```
 
 ---

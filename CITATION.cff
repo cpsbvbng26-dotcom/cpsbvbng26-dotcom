@@ -10,7 +10,7 @@ authors:
     given-names: Takuya
     orcid: https://orcid.org/0009-0000-1406-0547
 repository-code: https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom
-url: https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/
+url: https://cpsbvbng26-dotcom.vercel.app/
 abstract: >-
   公開プロフィールの静的サイトと、その中で動く道具、そしてサイト自身の検査。
   トップに置いているのは一つの主張だけで、Trinity-Infinity の三本が収束の条件として

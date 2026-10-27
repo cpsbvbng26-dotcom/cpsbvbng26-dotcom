@@ -32,7 +32,7 @@ function proseOf(html) {
     .replace(/<strong>([\s\S]*?)<\/strong>/g, '**$1**')
     .replace(/<code>([\s\S]*?)<\/code>/g, '`$1`')
     .replace(/<a [^>]*href="\.\/([^"]+)"[^>]*>([\s\S]*?)<\/a>/g,
-             '[$2](https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/$1)')
+             '[$2](https://cpsbvbng26-dotcom.vercel.app/$1)')
     .replace(/<[^>]*>/g, '')
     .replace(/\s+/g, ' ')
     .trim();

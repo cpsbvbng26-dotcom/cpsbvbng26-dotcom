@@ -19,7 +19,7 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
-const BASE = 'https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/';
+const BASE = 'https://cpsbvbng26-dotcom.vercel.app/';
 
 /* 索引に載せるページ。404.html は noindex なので入れない。
  * loc は正準 URL に合わせる（トップだけ index.html を付けない）。 */
