@@ -157,7 +157,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 2. **[trinity-operator / README.md](https://github.com/cpsbvbng26-dotcom/trinity-operator/blob/main/README.md)** —— 上の主張の実装と反例。検査 29 項目、乱数種は固定
 3. **[trinity-infinity / pdf/trinity-infinity-series-iii.pdf](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/pdf/trinity-infinity-series-iii.pdf)** —— 系列が自分で何を確立し、何を撤回したかを書いた回顧
 
-**向けられる反論のうち、当たっているものは [docs/objections.md](docs/objections.md) に先に書き出してあります**。三つとも実際に受けた形のまま置いてあります。認めるところを先に書き、答えごとに、それを崩す方法を添えてあります。
+**向けられる反論のうち、当たっているものは [docs/objections.md](docs/objections.md) に先に書き出してあります**。反論は六つあります。五つは実際に受けた形のまま置いてあり、反論 6 だけはこちらで立てた形です。認めるところを先に書き、答えごとに、それを崩す方法を添えてあります。
 
 > 公開しているものは、すべて査読を受けていない。 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
 
@@ -348,7 +348,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 350 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 445 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 448 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
