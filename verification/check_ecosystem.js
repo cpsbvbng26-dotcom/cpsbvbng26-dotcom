@@ -1153,6 +1153,29 @@ console.log('\n7.17 予告 —— 結果が出る前に書いたもの');
   check('反論の数が、散文の名乗りと合う',
     反論数 > 0 && om !== null && 漢.indexOf(om[1]) === 反論数,
     '見出し ' + 反論数 + ' / 名乗り ' + (om ? om[1] : '無し'));
+  /* README も反論の数を名乗っている。**三つと書いたまま五つに増えていた。** */
+  const RJ = read('cpsbvbng26-dotcom', 'README.md') || '';
+  const RE = read('cpsbvbng26-dotcom', 'README.en.md') || '';
+  const rj = /反論は(.)つあります。五つは実際に受けた形のまま/.exec(RJ);
+  const re = /There are (\w+)\. Five are kept in the words they were raised in/.exec(RE);
+  const 英 = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  check('README が名乗る反論の数が、見出しの数と合う（日英）',
+    rj !== null && re !== null && 漢.indexOf(rj[1]) === 反論数 && 英.indexOf(re[1]) === 反論数,
+    '見出し ' + 反論数 + ' / 日 ' + (rj ? rj[1] : '無し') + ' / 英 ' + (re ? re[1] : '無し'));
+
+  /* **反論 6 は射程を紙面に預けている。**引用が紙面とずれれば、答えが宙に浮く。
+   * 英文の引用を、凍結された紙面の翻刻と一字一句照合する。 */
+  const IS = read('autonomy-and-self-cultivation', path.join('papers', 'imperial-selfhood.md')) || '';
+  const 反論6 = (O.split('## 反論 6')[1] || '').split('## この文書の限界')[0];
+  const 引用6 = [...反論6.matchAll(/`([A-Za-z][^`]*\s[^`]*)`/g)].map((m) => m[1]);
+  const 無い6 = 引用6.filter((q) => IS.indexOf(q) < 0);
+  check('反論 6 の英文の引用が、すべて紙面の翻刻にある',
+    引用6.length >= 6 && 無い6.length === 0,
+    '引用 ' + 引用6.length + (無い6.length ? ' / 翻刻に無い: ' + 無い6.join(' | ') : ''));
+  check('反論 6 の崩し方が、紙面の残した但し書きを指している',
+    反論6.indexOf('`the single most important open problem`') >= 0
+    && 反論6.indexOf('この但し書きを記録から消せば、この答えは倒れます。') >= 0
+    && O.indexOf('反論 6 の核にも答えていません。') >= 0);
 
   /* **自分で作った枠組みにも等級を付けること。**
    * 借りた枠組みだけ「解釈」と札を立て、自分のものを運用規則として書くのは非対称である。 */
