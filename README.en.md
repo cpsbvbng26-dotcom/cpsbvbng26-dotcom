@@ -4,6 +4,8 @@
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
+Precisely because of the times we live in, I say it: I am a direct male-line great-great-grandson, on the Y-chromosome line, of a member of the Yokokawa Village Assembly, Kawachi District, Tochigi Prefecture, as recorded in *Tochigi Kensei Taikan* and *Meiji Taishō Kenka Seikai Hishi*.
+
 A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, and an open-source developer. A Claude enthusiast, and a Claude Code enthusiast.
 
 My main platforms are GitHub, SSRN and PhilArchive. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
