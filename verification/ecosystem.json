@@ -893,6 +893,21 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "docs/self-assessment.md",
           "regex": "検査 \\*\\*(\\d+) 項目\\*\\*"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.de.html",
+          "regex": "Bei jedem Push laufen <b>(\\d+) Prüfungen</b>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.fr.html",
+          "regex": "Chaque push déclenche <b>(\\d+) vérifications</b>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.it.html",
+          "regex": "A ogni push vengono eseguiti <b>(\\d+) controlli</b>"
         }
       ]
     }

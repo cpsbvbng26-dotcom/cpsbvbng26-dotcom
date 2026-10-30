@@ -2508,6 +2508,33 @@ section('13. 第三者の標章と引用情報');
   ok('どこからも参照されていない画像が残っていない', orphans.length === 0, orphans.join(', '));
 })();
 
+/* 検索結果のアイコンは、トップの頁の rel="icon" から取られる。SVG を読まない場合に備えて、
+ * 同じロゴを 48 px の倍数の画素にした版を並べる。言語ごとのトップの頁も同じにする。 */
+(() => {
+  const pngSize = (b) => b.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+    ? b.readUInt32BE(16) + 'x' + b.readUInt32BE(20) : '';
+  const raw = (f) => fs.existsSync(path.join(ROOT, f)) ? fs.readFileSync(path.join(ROOT, f)) : Buffer.alloc(0);
+  const ico = raw('favicon.ico');
+  const sizes = ico.length >= 6 && ico.readUInt16LE(2) === 1
+    ? Array.from({ length: ico.readUInt16LE(4) }, (_, i) => {
+      const e = 6 + 16 * i;
+      return pngSize(ico.subarray(ico.readUInt32LE(e + 12), ico.readUInt32LE(e + 12) + ico.readUInt32LE(e + 8)));
+    }) : [];
+  ok('ロゴの ICO が 16・32・48 px、PNG が 192 px と 180 px',
+     sizes.join(' ') === '16x16 32x32 48x48'
+       && pngSize(raw('favicon-192.png')) === '192x192'
+       && pngSize(raw('apple-touch-icon.png')) === '180x180',
+     sizes.join(' '));
+  const homes = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'];
+  const lacking = homes.filter((p) => {
+    const h = read(p);
+    return !h.includes('<link rel="icon" href="./favicon.ico" sizes="48x48">')
+      || !h.includes('<link rel="icon" href="./favicon-192.png" sizes="192x192" type="image/png">')
+      || !h.includes('<link rel="apple-touch-icon" href="./apple-touch-icon.png">');
+  });
+  ok('トップの頁がロゴの ICO と PNG を参照している', lacking.length === 0, lacking.join(', '));
+})();
+
 /* 第三者の名を冠したファイルは、そもそも置かない。 */
 (() => {
   /* 画像だけを見る。.github（設定）や Search Console の確認用 HTML は別物である。 */
