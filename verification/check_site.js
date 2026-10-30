@@ -1470,6 +1470,58 @@ section('10.59 自己紹介が名乗っていること');
        元無し.length ? 元無し.join(', ') : '2 言語とも');
   }
 
+  /* **哲学の三篇の要点の頁。**2026-10-30 に、黄金比の窓の頁と同じ形で足した。
+   * 紙面は凍結してあるので、頁は紙面の外から要点と穴を並べる。
+   * **射程の限定と、記録の側で認めた穴を、二言語とも固める。**
+   * 皇帝主義は「国家でも他者の支配でもない」と未解決の問題、断章論は比喩の限定と限界、
+   * 独身論は射程の狭さと、選べなかった者を称揚する読みを退けること。どれか一つ消えれば落ちる。 */
+  {
+    const 頁 = [
+      ['notes/imperial-selfhood.html', '10.5281/zenodo.22057583',
+        ['帝国は、国家でも、他者の支配でもない。', '未解決のまま残してある', '理論ではない。',
+         '免責にはならない', '引いた原典に、著者は当たっていない', 'Claude は著者ではない']],
+      ['notes/imperial-selfhood.en.html', '10.5281/zenodo.22057583',
+        ['“Empire” here is neither a state nor dominion over others.', 'is left unresolved.', 'This is not a theory.',
+         'it is not a discharge.', 'The author has not read the cited sources', 'Claude is not an author.']],
+      ['notes/fragmentarian-spiritual-individualism.html', '10.5281/zenodo.22064241',
+        ['断片化を、直すべき傷として扱わない。', '比喩として限定している。', '戦闘は暴力ではない。',
+         '限界は、未解決のまま残してある。', '理論ではない。', 'Claude は著者ではない']],
+      ['notes/fragmentarian-spiritual-individualism.en.html', '10.5281/zenodo.22064241',
+        ['Fragmentation is not treated as a wound.', 'are limited to metaphor.', 'Combat is not violence',
+         'The limits are left unresolved.', 'This is not a theory.', 'Claude is not an author.']],
+      ['notes/celibate-individual.html', '10.5281/zenodo.22058254',
+        ['主張の射程は狭い。', '他者の生き方を否定しない。', '選べなかったことを称揚する読み',
+         'この頁は、選ばれた独身についてだけ述べる。', '理論ではない。', 'Claude は著者ではない']],
+      ['notes/celibate-individual.en.html', '10.5281/zenodo.22058254',
+        ['The scope of the claim is narrow.', 'Other ways of living are not rejected.', 'a reading that praises what was not chosen',
+         'This page speaks only of chosen celibacy.', 'This is not a theory.', 'Claude is not an author.']]
+    ];
+    const 欠け = [];
+    頁.forEach(([f, , xs]) => {
+      const h = read(f);
+      const 出た = xs.filter((x) => h.indexOf(x) >= 0);
+      if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length + ' / ' + xs.length);
+    });
+    ok('哲学の三篇の要点の頁が、射程の限定・未解決の問題・理論でないこと・記録の側で認めた穴・開示を二言語とも書いている',
+       欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (頁.length + ' 頁 × ' + 頁[0][2].length));
+
+    const 紙面無し = 頁.filter(([f, doi]) => read(f).indexOf('https://doi.org/' + doi) < 0).map(([f]) => f);
+    ok('哲学の三篇の要点の頁が、凍結した紙面の DOI を指している', 紙面無し.length === 0,
+       紙面無し.length ? 紙面無し.join(', ') : 頁.length + ' 頁とも');
+
+    const 正誤 = 'https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/ERRATA.md';
+    const 正誤無し = 頁.filter(([f]) => read(f).indexOf(正誤) < 0).map(([f]) => f);
+    ok('哲学の三篇の要点の頁が、正誤表を指している', 正誤無し.length === 0,
+       正誤無し.length ? 正誤無し.join(', ') : 頁.length + ' 頁とも');
+
+    const 案内無し = 頁.filter(([f]) => {
+      const 索引 = f.endsWith('.en.html') ? 'notes/index.en.html' : 'notes/index.html';
+      return read(索引).indexOf('href="./' + f.slice('notes/'.length) + '"') < 0;
+    }).map(([f]) => f);
+    ok('ノートの索引から、哲学の三篇の要点の頁へ案内している', 案内無し.length === 0,
+       案内無し.length ? 案内無し.join(', ') : 頁.length + ' 頁とも');
+  }
+
   /* **不犯の誓い。**2026-10-04 に、本人の意思で「死後に残すもの」の頁に載せた。
    * 研究の自己紹介には置かない。**誓いであって、達成の報告ではない。**
    * 三つの伝統の教えそのものではないこと、他の誰かの生き方を否定しないこと、
