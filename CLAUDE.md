@@ -214,6 +214,10 @@ node verification/check_all.js         # 10 リポジトリの検査を全部回
 `favicon.svg` と `og.png` は手で置いたもので、生成物ではない。ロゴは文字のフォントを使わず、
 長方形と多角形だけで組んである（どの端末でも同じ形に描かれ、書体の権利も絡まない）。
 `og.png` は共有したときのカードの画像で、ロゴを角を丸めずに正方形の PNG にしたもの。
+`favicon.ico`（16・32・48 px）・`favicon-192.png`・`apple-touch-icon.png`（180 px、角を丸めない）も
+同じロゴを画素にしたもので、手で置いてある。検索結果のアイコンに SVG を読まない場合のため。
+ブラウザで 960 px に描き、半分ずつ縮めて作った。参照はトップの頁の設定（`researcher-profile` の
+`site*.json` の `headExtra`）から出る。
 ロゴを変えたら、こちらも描き直す。
 
 外部へリクエストを出さない。`default-src 'none'`、`'unsafe-inline'` を使わない。
