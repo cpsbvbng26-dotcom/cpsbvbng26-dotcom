@@ -8,7 +8,7 @@
 どのレコードを指すかです**。決まらないものは「未確認」と書きます。番号を当てにいきません。
 
 `check_ecosystem.js` が、この一覧と実際にリポジトリに出てくる番号を突き合わせます。
-片方にしか無い番号があれば落ちます。Zenodo・SSRN・figshare の三つの番号を見ます。
+片方にしか無い番号があれば落ちます。Zenodo・SSRN・Figshare の三つの番号を見ます。
 
 ---
 
@@ -97,7 +97,7 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 | 論文 | 所在 |
 | --- | --- |
 | Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA`、aiXiv.science `aixiv.261024.000001` |
-| Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | figshare `10.6084/m9.figshare.34419198` |
+| Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | Figshare `10.6084/m9.figshare.34419198` |
 
 SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
 PhilArchive にも同じ日に置きました。記号は利用者から受け取りました。
@@ -106,7 +106,7 @@ aiXiv.science に出したのは 2026-10-24 です。番号は利用者から受
 
 場の設計には DOI が含まれています。運営が場の仕組みを書いた論文（arXiv `2508.15126`）は、arXiv や論文誌と並べた機能の比較表に DOI の項目を置いています。DOI が場の計画に入っていることは、利用者から受け取りました。この稿には、2026-10-30 の時点でまだ DOI が振られていません。比較表のうち aiXiv.science 自身の欄の値は、こちらでは確かめていません。
 
-figshare に載ったのは 2026-10-13 です。DOI は利用者から受け取りました。trinity-operator の games のノートを、英語の論文の形にしたものです。ノートのほうは GitHub にあり、DOI を持ちません。
+Figshare に載ったのは 2026-10-13 です。DOI は利用者から受け取りました。trinity-operator の games のノートを、英語の論文の形にしたものです。ノートのほうは GitHub にあり、DOI を持ちません。
 
 ### 論文の頁をまだ作っていない本文
 
