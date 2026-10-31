@@ -210,7 +210,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 | Figure | Content | Source |
 | --- | --- | --- |
-| [The golden window](https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF) | Iterates two contractions and shows how the surviving set of intervals changes depending on which side of 1/φ and 2/3 the discount factor lies | figshare [10.6084/m9.figshare.34419198](https://doi.org/10.6084/m9.figshare.34419198) |
+| [The golden window](https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF) | Iterates two contractions and shows how the surviving set of intervals changes depending on which side of 1/φ and 2/3 the discount factor lies | Figshare [10.6084/m9.figshare.34419198](https://doi.org/10.6084/m9.figshare.34419198) |
 | [Thresholds for cooperation and rotation](https://claude.ai/artifact/GxV1WCJjBvecy24uDrGY1L) | Compares the threshold for everyone cooperating every round with that for taking turns to defect, from group size, benefit and cost | [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) |
 | [The wizard's rite of passage](https://claude.ai/artifact/TDamnB7aQ9FX2r8umHTbEi) | The "wizard at thirty" urban legend laid out as a rite of passage that lacks its incorporation phase | paper (table above) |
 | [A lineage of celibacy](https://claude.ai/artifact/U3Pjjzu8UtR2ZU6w6zikeg) | A timeline of celibacy as a discipline, across religion, philosophy and statistics | [celibate-individual.md](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/celibate-individual.md) |

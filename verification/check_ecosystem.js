@@ -247,8 +247,8 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
-/* figshare の DOI も同じ扱いにする。2026-10-13 に一つ受け取った。
- * 番号は figshare が発行し、著者が読み取って渡す。**実在は確かめない。** */
+/* Figshare の DOI も同じ扱いにする。2026-10-13 に一つ受け取った。
+ * 番号は Figshare が発行し、著者が読み取って渡す。**実在は確かめない。** */
 
 {
   const DOI = /10\.6084\/m9\.figshare\.\d+/g;
@@ -279,10 +279,10 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
   const missing = [...found].filter((d) => !listed.has(d)).sort();
   const orphan = [...listed].filter((d) => !found.has(d)).sort();
 
-  check('出てくる figshare の番号が、すべて一覧に載っている',
+  check('出てくる Figshare の番号が、すべて一覧に載っている',
     index !== null && missing.length === 0,
     missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
-  check('一覧の figshare の番号が、すべてどこかに出てくる',
+  check('一覧の Figshare の番号が、すべてどこかに出てくる',
     index !== null && orphan.length === 0,
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
@@ -392,7 +392,7 @@ console.log('\n7. 研究者としての位置');
       if (raw === null) return null;
       const i = idx.indexOf('### Zenodo に無い本文');
       const 無い = i < 0 ? 0
-        : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| (?:SSRN|figshare) `/gm) || []).length;
+        : (idx.slice(i, idx.indexOf('## 削除した所在')).match(/^\| (?!論文 \|)[^-|][^|]* \| (?:SSRN|Figshare) `/gm) || []).length;
       /* 論文の頁をまだ作っていない Zenodo の本文も足す。SSRN の数え直しには入れない（出していない）。 */
       const k = idx.indexOf('### 論文の頁をまだ作っていない本文');
       const 頁なし = k < 0 ? 0
