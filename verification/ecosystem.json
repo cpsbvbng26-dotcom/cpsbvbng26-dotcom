@@ -1239,6 +1239,13 @@
       "trinity-operator",
       "self-correction"
     ],
+    "十の外の一本": {
+      "_": "2026-11-01 に足した。十の外なので、横断の検査は git を引けない。最初のコミットは sophaxis 自身の検査が git と突き合わせる。こちらは、宣言した二つの日付の計算と、七つの面に同じ日付があることを見る。",
+      "名前": "Sophaxis",
+      "リポジトリ": "sophaxis",
+      "最初のコミット": "2026-10-30",
+      "最短": "2027-05-01"
+    },
     "どの面にも同じもの": {
       "場の名前": "Journal of Open Source Software",
       "ISSN": "2475-9066",
@@ -1262,7 +1269,7 @@
           "六か月の条件から逆算すると",
           "出すのはその先です",
           "リンクと強調の記法だけ外してあります",
-          "出すのは errata-check 一本です",
+          "出すのは errata-check と Sophaxis の二本です",
           "論文の側も出します",
           "プレプリントは動かしません",
           "取り下げるのではありません"
@@ -1281,7 +1288,7 @@
           "Counting back from the six-month requirement",
           "Submission comes after that",
           "with only link and emphasis markup removed",
-          "Only errata-check is to be submitted",
+          "Two are to be submitted: errata-check and Sophaxis",
           "are being submitted too",
           "The preprints do not move",
           "This is not a withdrawal"
@@ -1295,7 +1302,7 @@
           "ohne Publikations- und ohne Einreichungsgebühren",
           "Erreicht ist davon noch nichts",
           "Eingereicht wurde noch nichts",
-          "Eingereicht wird nur errata-check",
+          "Eingereicht werden errata-check und Sophaxis",
           "werden nicht eingereicht",
           "im Preprint-Regal",
           "Zurückgezogen wird nichts"
@@ -1309,7 +1316,7 @@
           "sans frais de publication ni de soumission",
           "Rien de tout cela n’est atteint",
           "Rien n’a encore été soumis",
-          "Seul errata-check sera soumis",
+          "Seront soumis errata-check et Sophaxis",
           "ne seront pas soumis",
           "l’étagère des préprints",
           "Rien n’est retiré"
@@ -1323,7 +1330,7 @@
           "senza spese di pubblicazione né di sottomissione",
           "Nulla di ciò è ancora raggiunto",
           "Nulla è stato ancora inviato",
-          "Verrà inviato solo errata-check",
+          "Verranno inviati errata-check e Sophaxis",
           "non verranno inviati",
           "scaffale dei preprint",
           "Nulla viene ritirato"
@@ -1336,7 +1343,7 @@
           "一度通れば終わりにはしません",
           "六か月の条件から逆算すると",
           "出すのはその先です",
-          "出すのは errata-check 一本です",
+          "出すのは errata-check と Sophaxis の二本です",
           "論文の側も出します",
           "プレプリントは動かしません"
         ]
@@ -1348,7 +1355,7 @@
           "One acceptance will not close it",
           "Counting back from the six-month requirement",
           "Submission comes after that",
-          "Only errata-check is to be submitted",
+          "Two are to be submitted: errata-check and Sophaxis",
           "are being submitted too",
           "The preprints do not move"
         ]
