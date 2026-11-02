@@ -310,7 +310,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1553 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1556 項目の検査を通します。 依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
@@ -318,7 +318,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 617 項目
-node verification/check_site.js      # サイトの構造 846 項目
+node verification/check_site.js      # サイトの構造 849 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
