@@ -261,7 +261,10 @@ async function walk(pg) {
     /* **送り方は二通り測る。**少しずつ送る読み方と、End キーで頁末へ飛ぶ読み方である。
      * 飛んだときに通り過ぎた塊は、一度も画面に入らない。2026-11-02、トップの頁で
      * End キーを押すと 34 塊のうち 20 塊が出なかった。CI では少しずつ送る測り方でも、
-     * 遅い実行機で塊を飛び越えて落ちた。一件の検査のまま、両方が出ることを求める。 */
+     * 遅い実行機で塊を飛び越えて落ちた。一件の検査のまま、両方が出ることを求める。
+     * 飛ぶほうは、一こまで頁末へ移す。End キーは滑らかに送るので、速い機械では途中のこまで
+     * 塊が拾われ、直す前の頁でも通ってしまう。trinity.html は main の CI でだけ落ちた。
+     * 一こまで飛べば、直す前の trinity.html は毎回 4 塊を残して落ちる。 */
     {
       const 測る = async (送る) => {
         const c3 = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -294,9 +297,9 @@ async function walk(pg) {
         }
         window.scrollTo(0, h);
       }));
-      const 飛ぶ = await 測る((p) => p.keyboard.press('End'));
-      ok('最後まで送っても End キーで飛んでも、現れる塊が全部出る', 少しずつ.length === 0 && 飛ぶ.length === 0,
-         [少しずつ.length ? '送る: ' + 少しずつ.slice(0, 3).join(' / ') : '', 飛ぶ.length ? 'End: ' + 飛ぶ.length + ' 塊（' + 飛ぶ.slice(0, 3).join(' / ') + '）' : ''].filter(Boolean).join('、'));
+      const 飛ぶ = await 測る((p) => p.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })));
+      ok('最後まで送っても、一度に頁末へ飛んでも、現れる塊が全部出る', 少しずつ.length === 0 && 飛ぶ.length === 0,
+         [少しずつ.length ? '送る: ' + 少しずつ.slice(0, 3).join(' / ') : '', 飛ぶ.length ? '飛ぶ: ' + 飛ぶ.length + ' 塊（' + 飛ぶ.slice(0, 3).join(' / ') + '）' : ''].filter(Boolean).join('、'));
     }
   }
 
