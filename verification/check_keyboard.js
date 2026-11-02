@@ -258,36 +258,45 @@ async function walk(pg) {
      * **画面より高い塊は、その割合に永久に届かない。**自己紹介が 8819px まで
      * 伸びたとき、844px の画面では最大 9.6% しか見えず、頁の上半分が丸ごと
      * 消えていた。落ちるまで誰も気づかなかったので、ここで測る。 */
+    /* **送り方は二通り測る。**少しずつ送る読み方と、End キーで頁末へ飛ぶ読み方である。
+     * 飛んだときに通り過ぎた塊は、一度も画面に入らない。2026-11-02、トップの頁で
+     * End キーを押すと 34 塊のうち 20 塊が出なかった。CI では少しずつ送る測り方でも、
+     * 遅い実行機で塊を飛び越えて落ちた。一件の検査のまま、両方が出ることを求める。 */
     {
-      const c3 = await browser.newContext({ viewport: { width: 390, height: 844 } });
-      const p3 = await c3.newPage();
-      await p3.goto('http://127.0.0.1:' + port + BASE + '/' + page, { waitUntil: 'networkidle' });
-      await p3.evaluate(async () => {
+      const 測る = async (送る) => {
+        const c3 = await browser.newContext({ viewport: { width: 390, height: 844 } });
+        const p3 = await c3.newPage();
+        await p3.goto('http://127.0.0.1:' + port + BASE + '/' + page, { waitUntil: 'networkidle' });
+        await 送る(p3);
+        /* 塊は 0.7 秒かけて現れる。以前は 600ms 待って測っていたので、遅い実行機では
+         * 最後の塊（hint）が途中の不透明度で測られて落ちた（2026-09-29、PR #91）。
+         * 判定は変えない。全部が出るまで最大 3 秒待ち、それでも出なければ落とす。 */
+        await p3.waitForFunction(() => [...document.querySelectorAll('.reveal')]
+          .every((el) => parseFloat(getComputedStyle(el).opacity) >= 0.5), null, { timeout: 3000 })
+          .catch(() => {});
+        const out = await p3.evaluate(() => {
+          const o = [];
+          document.querySelectorAll('.reveal').forEach((el) => {
+            if (parseFloat(getComputedStyle(el).opacity) < 0.5) {
+              o.push((el.className || '').trim().slice(0, 30));
+            }
+          });
+          return o;
+        });
+        await c3.close();
+        return out;
+      };
+      const 少しずつ = await 測る((p) => p.evaluate(async () => {
         const h = document.body.scrollHeight;
         for (let y = 0; y < h; y += 400) {
           window.scrollTo(0, y);
           await new Promise((r) => setTimeout(r, 16));
         }
         window.scrollTo(0, h);
-      });
-      /* 塊は 0.7 秒かけて現れる。以前は 600ms 待って測っていたので、遅い実行機では
-       * 最後の塊（hint）が途中の不透明度で測られて落ちた（2026-09-29、PR #91）。
-       * 判定は変えない。全部が出るまで最大 3 秒待ち、それでも出なければ落とす。 */
-      await p3.waitForFunction(() => [...document.querySelectorAll('.reveal')]
-        .every((el) => parseFloat(getComputedStyle(el).opacity) >= 0.5), null, { timeout: 3000 })
-        .catch(() => {});
-      const 出ない = await p3.evaluate(() => {
-        const out = [];
-        document.querySelectorAll('.reveal').forEach((el) => {
-          if (parseFloat(getComputedStyle(el).opacity) < 0.5) {
-            out.push((el.className || '').trim().slice(0, 30));
-          }
-        });
-        return out;
-      });
-      ok('最後まで送ると、現れる塊が全部出る', 出ない.length === 0,
-         出ない.slice(0, 3).join(' / '));
-      await c3.close();
+      }));
+      const 飛ぶ = await 測る((p) => p.keyboard.press('End'));
+      ok('最後まで送っても End キーで飛んでも、現れる塊が全部出る', 少しずつ.length === 0 && 飛ぶ.length === 0,
+         [少しずつ.length ? '送る: ' + 少しずつ.slice(0, 3).join(' / ') : '', 飛ぶ.length ? 'End: ' + 飛ぶ.length + ' 塊（' + 飛ぶ.slice(0, 3).join(' / ') + '）' : ''].filter(Boolean).join('、'));
     }
   }
 
