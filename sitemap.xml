@@ -157,6 +157,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.en.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://cpsbvbng26-dotcom.vercel.app/notes/imperial-selfhood.html</loc>
     <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
