@@ -25,8 +25,10 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const PAGES = require('./pages.json').pages.map((p) => p.file);
 const BASE = '/cpsbvbng26-dotcom';
-/* 横へ流れないことを測る幅。広い側を入れてあるのは、**ここで壊れていたから**である。 */
-const WIDTHS = [1440, 1200, 900, 390];
+/* 横へ流れないことを測る幅。広い側を入れてあるのは、**ここで壊れていたから**である。
+ * 360px も入れる。390px では通り、360px でだけ流れていた頁が四つあった（2026-11-02、
+ * 節の左右の余白が 0 に上書きされていたことと、折り返せない DOI と URL）。 */
+const WIDTHS = [1440, 1200, 900, 390, 360];
 
 let pass = 0;
 const failures = [];
@@ -233,6 +235,21 @@ async function walk(pg) {
       });
       ok(w + 'px で横へ流れない', over.doc <= 1 && over.nav <= 1,
          '頁 ' + over.doc + ' / ナビ ' + over.nav);
+      /* **本文は画面の端に張り付かない。**節の padding を一括で指定して左右を 0 にし、
+       * .wrap の余白を消していた。横へは流れないので、上の検査は通ってしまう。
+       * 狭い幅で、本文の塊と画面の端のあいだを測る（2026-11-02、四つの生成の頁と作用素の頁）。 */
+      if (w <= 390) {
+        const g = await p2.evaluate(() => {
+          const W = document.documentElement.clientWidth; let L = Infinity, R = Infinity, at = '';
+          for (const el of document.querySelectorAll('main p, main li, main h1, main h2, main h3, main dt, main dd')) {
+            const b = el.getBoundingClientRect(); if (b.width === 0 || b.height === 0) continue;
+            if (b.left < L) { L = b.left; at = el.tagName.toLowerCase() + (el.className ? '.' + el.className.split(' ')[0] : ''); }
+            R = Math.min(R, W - b.right);
+          }
+          return { L: Math.round(L), R: Math.round(R), at };
+        });
+        ok(w + 'px で本文の左右に 12px 以上の余白がある', g.L >= 12 && g.R >= 12, '左 ' + g.L + ' / 右 ' + g.R + '（' + g.at + '）');
+      }
       await c2.close();
     }
 
