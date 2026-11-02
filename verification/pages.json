@@ -134,6 +134,16 @@
       "priority": "0.5"
     },
     {
+      "file": "notes/sophaxis.html",
+      "loc": "notes/sophaxis.html",
+      "priority": "0.5"
+    },
+    {
+      "file": "notes/sophaxis.en.html",
+      "loc": "notes/sophaxis.en.html",
+      "priority": "0.5"
+    },
+    {
       "file": "notes/imperial-selfhood.html",
       "loc": "notes/imperial-selfhood.html",
       "priority": "0.5"
