@@ -2794,9 +2794,12 @@ section('10.60 CI の仕事の名前が名乗っている数');
   {
     const kb = read('verification/check_keyboard.js');
     const m = /const WIDTHS = \[([^\]]*)\]/.exec(kb);
-    const widths = m ? m[1].split(',').filter((x) => x.trim()).length : 0;
-    ok('check_keyboard.js から測る幅の数を読める', widths > 0, String(widths));
-    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths) + 2;
+    const ws = m ? m[1].split(',').map((x) => parseInt(x, 10)).filter((x) => x > 0) : [];
+    const widths = ws.length;
+    /* 390px 以下の幅では、本文の左右の余白も測る。一頁・一幅に一項目が増える。 */
+    const narrow = /if \(w <= 390\)/.test(kb) ? ws.filter((x) => x <= 390).length : 0;
+    ok('check_keyboard.js から測る幅の数を読める', widths > 0, widths + '（うち余白も測る幅 ' + narrow + '）');
+    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths + narrow) + 2;
   }
 
   ok('配色の名乗りが実際と合う',
