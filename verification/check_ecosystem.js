@@ -1665,32 +1665,33 @@ console.log('\n7.10 定期的な目標（JOSS）');
       '印字 ' + (ja || '取れない') + ' / ' + (ja短 || '取れない') + '（en ' + (en || '取れない')
       + ' / ' + (en短 || '取れない') + '）　git ' + (初 || '取れない') + ' / ' + 短);
   }
-  /* **十の外の一本は、git を引けない。**sophaxis は横断の検査が取り寄せる十に入っていない。
-   * 最初のコミットは sophaxis 自身の検査が git と突き合わせる。ここでは、六か月と一日の計算と、
-   * 同じ二つの日付が七つの面と joss.md にあることを見る。 */
-  {
-    const 外 = J['十の外の一本'];
+  /* **十の外は、git を引けない。**sophaxis と deposit-check は、横断の検査が取り寄せる十に入っていない。
+   * 最初のコミットはそれぞれの側で見る。ここでは一本ずつ、六か月と一日の計算と、同じ日付が七つの面と
+   * joss.md にあること、その節に届いていない門と、範囲を決めるのは場の側だと書いてあることを見る。 */
+  for (const 外 of J['十の外']['一覧']) {
     const d = new Date(外['最初のコミット'] + 'T00:00:00Z');
     d.setUTCMonth(d.getUTCMonth() + 6);
     d.setUTCDate(d.getUTCDate() + 1);
     const 短 = d.toISOString().slice(0, 10);
     const 欠け = 面.map((x) => x.file).filter((f) => {
       const t = read('cpsbvbng26-dotcom', f) || '';
-      return t.indexOf(外['名前']) < 0 || t.indexOf(外['最初のコミット']) < 0
-        || (/^README|^index\.(?:en\.)?html$/.test(f) && t.indexOf(外['最短']) < 0);
+      /* 頁では日付を太字で書く。足した日など、同じ日付が地の文に別の意味で出ても、取り違えない。 */
+      const 日 = (x) => (/\.html$/.test(f) ? '<b>' + x + '</b>' : x);
+      return t.indexOf(外['名前']) < 0 || t.indexOf(日(外['最初のコミット'])) < 0
+        || (/^README|^index\.(?:en\.)?html$/.test(f) && t.indexOf(日(外['最短'])) < 0);
     });
     const md = read('cpsbvbng26-dotcom', path.join('docs', 'joss.md')) || '';
-    const 節 = md.slice(md.indexOf('## 十の外から一本足した —— 2026-11-01'), md.indexOf('## 門は四つある'));
-    check('十の外の一本の最短が、最初のコミットから六か月と一日で、面と joss.md に同じ日付がある',
+    const i = md.indexOf(外['節']);
+    const j = i >= 0 ? md.indexOf('\n## ', i + 1) : -1;
+    const 節 = i >= 0 ? md.slice(i, j > i ? j : md.length) : '';
+    check(外['名前'] + ' の最短が、最初のコミットから六か月と一日で、面と joss.md に同じ日付がある',
       短 === 外['最短'] && 欠け.length === 0
       && 節.indexOf('- 門 1。最初のコミットは ' + 外['最初のコミット'] + ' です。最短は ' + 外['最短'] + ' です。') >= 0
       && md.indexOf('`' + 外['リポジトリ'] + '` は ' + 外['最短'] + ' です。') >= 0,
-      '計算 ' + 短 + ' / 宣言 ' + 外['最短'] + (欠け.length ? ' / 欠け ' + 欠け.join(', ') : ''));
-    check('十の外の一本にも、届いていない門と、範囲を決めるのは場の側だと書いてある',
-      節.indexOf('著者以外に使われた記録はありません。') >= 0
-      && 節.indexOf('`CONTRIBUTING` と変更履歴（`CHANGELOG.md`）は 2026-11-02 に置きました。公開したタグはありません。') >= 0
-      && 節.indexOf('作業は最初の数日に集まっています。') >= 0
-      && 節.indexOf('JOSS が決めます。こちらでは決まりません。') >= 0);
+      '計算 ' + 短 + ' / 宣言 ' + 外['最短'] + (欠け.length ? ' / 欠け ' + 欠け.join(', ') : '') + (節 ? '' : ' / 節が無い'));
+    const 無い文 = 外['必ずある文'].filter((x) => 節.indexOf(x) < 0);
+    check(外['名前'] + ' の節に、届いていない門と、範囲を決めるのは場の側だと書いてある', 節 !== '' && 無い文.length === 0,
+      無い文.join(' / '));
   }
   check('宣言した二つの日付も、git と合う',
     全部.length === C.repos.length && 全部[0] === J['十で最も早い']
@@ -1791,8 +1792,9 @@ console.log('\n7.11 JOSS —— 十の状態');
 
   /* **出すのは一本である。**2026-09-26 までは「十全部」と書いていた。規定の範囲に
    * 照らして絞ったので、宣言の語が変わった。**届いていない門を書く条件はそのまま残す。** */
-  check('出すのは二本だと書いてあり、前の二つの決めと、届いていない門も同じ文書にある',
-    md.indexOf('**出すのは `errata-check` と `sophaxis` の二本です**。2026-11-01 に `sophaxis` を足しました。') >= 0
+  check('出すのは三本だと書いてあり、前の三つの決めと、届いていない門も同じ文書にある',
+    md.indexOf('**出すのは `errata-check`・`sophaxis`・`deposit-check` の三本です**。2026-11-02 に `deposit-check` を足しました。') >= 0
+    && md.indexOf('それまでは「出すのは `errata-check` と `sophaxis` の二本です」と書いていました。') >= 0
     && md.indexOf('それまでは「出すのは `errata-check` 一本です」と書いていました。') >= 0
     && md.indexOf('それまでは「出すのは十全部です」と書いていました。') >= 0
     && md.indexOf('いちばん早いものでも、六か月を超えていません。') >= 0
@@ -1813,10 +1815,10 @@ console.log('\n7.11 JOSS —— 十の状態');
     const 出す = 行.filter((c) => c[2] === '**出す**').map((c) => c[1]);
     const 欠け = C.repos.filter((r) => 名.indexOf(r) < 0);
     const 重複 = 名.filter((r, k) => 名.indexOf(r) !== k);
-    check('絞った表が十を一度ずつ挙げ、十から出すのは一つだけで、散文の二本の一本目と同じ',
+    check('絞った表が十を一度ずつ挙げ、十から出すのは一つだけで、散文の三本の一本目と同じ',
       行.length === C.repos.length && 欠け.length === 0 && 重複.length === 0
       && 出す.length === 1 && 出す[0] === 'errata-check'
-      && md.indexOf('**出すのは `' + 出す[0] + '` と `' + DECL['定期的な目標']['十の外の一本']['リポジトリ'] + '` の二本です**。') >= 0,
+      && md.indexOf('**出すのは `' + [出す[0]].concat(DECL['定期的な目標']['十の外']['一覧'].map((x) => x['リポジトリ'])).join('`・`') + '` の三本です**。') >= 0,
       欠け.length ? '欠け ' + 欠け.join(', ') : (重複.length ? '重複 ' + 重複.join(', ')
         : '出す ' + (出す.join(', ') || '無し') + ' / ' + 行.length + ' 行'));
   }
