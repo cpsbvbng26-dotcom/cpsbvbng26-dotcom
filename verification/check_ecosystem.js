@@ -2224,6 +2224,32 @@ console.log('\n12b. 予想の英語サイト（golden-window-conjecture.vercel.a
     写し === null ? 'site/index.html が無い' : (生成 === null ? '生成できない' : ''));
 }
 
+/* Sophaxis の頁（researcher-profile の sophaxis*.json と、写した notes/sophaxis*.html）は、
+ * 載っている記録の数を地の文で名乗る。決めごと 5 により、名乗りを一覧の項目と突き合わせる。
+ * 一覧の id は 2026.0001 から欠けずに並ぶ。sophaxis は十に入らないので、その記録とは比べない。 */
+
+console.log('\n12c. Sophaxis の頁が名乗る記録の数');
+
+{
+  const EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
+    'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+  const listed = (html) => [...String(html).matchAll(/Sophaxis:(2026\.\d{4})<\/a>/g)].map((m) => m[1]);
+  const consecutive = (ids) => ids.length > 0 && ids.every((id, i) => id === '2026.' + String(i + 1).padStart(4, '0'));
+  const ja = [read('researcher-profile', 'sophaxis.json'), read('cpsbvbng26-dotcom', 'notes/sophaxis.html')];
+  const en = [read('researcher-profile', 'sophaxis.en.json'), read('cpsbvbng26-dotcom', 'notes/sophaxis.en.html')];
+  const jaClaims = ja.map((t) => { const m = /いま載っている記録は (\d+) 件で/.exec(t || ''); return m ? Number(m[1]) : null; });
+  const jaIds = ja.map((t) => listed(t || ''));
+  check('Sophaxis の頁（日本語）が名乗る記録の数が、一覧の項目の数と合い、id が欠けずに並ぶ',
+    jaClaims.every((n, i) => n !== null && n === jaIds[i].length && consecutive(jaIds[i])),
+    '名乗り ' + jaClaims.join('・') + ' / 一覧 ' + jaIds.map((x) => x.length).join('・'));
+  const enClaims = en.map((t) => { const m = /The (\w+) records listed so far/.exec(t || ''); return m ? EN.indexOf(m[1]) : null; });
+  const enIds = en.map((t) => listed(t || ''));
+  check('Sophaxis の頁（英語）が名乗る記録の数が、一覧の項目の数と合い、日本語版と同じ id を挙げる',
+    enClaims.every((n, i) => n !== null && n > 0 && n === enIds[i].length && consecutive(enIds[i]))
+      && enIds.every((x) => x.join() === jaIds[0].join()),
+    '名乗り ' + enClaims.join('・') + ' / 一覧 ' + enIds.map((x) => x.length).join('・'));
+}
+
 /* この検査自身が名乗る件数も、実際と合わせる。
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
