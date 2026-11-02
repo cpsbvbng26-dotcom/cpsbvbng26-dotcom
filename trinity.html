@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2GSyu8/ukBNt1fKuCmiSjMSo6tSG3LMHHJfVWA5uSmY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-O3wSOfQu/K25it+U1QUaaFoR/+lrOyxg5XrwqTpdUAg='; style-src 'sha256-FlNcWJ845L+5GW9jHX8IzAx8OFYE8RcQrOAaswpEsrY=' 'sha256-xkIgyIC8BbjfJ5Ltm/rdYyyOKB3MHT9yue2UZyxjv4k='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-2GSyu8/ukBNt1fKuCmiSjMSo6tSG3LMHHJfVWA5uSmY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEs4OpHnoNqD1HR648s8IlDG4ggMIHpo4Cl8wCoiyR8='; style-src 'sha256-FlNcWJ845L+5GW9jHX8IzAx8OFYE8RcQrOAaswpEsrY=' 'sha256-xkIgyIC8BbjfJ5Ltm/rdYyyOKB3MHT9yue2UZyxjv4k='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>作用素を回す | 根本卓哉</title>
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
@@ -728,14 +728,31 @@ table.steps td.ecol { color: var(--accent); }
     Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
     return;
   }
+  var show = function (el) { el.classList.add('is-visible'); io.unobserve(el); };
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      io.unobserve(entry.target);
+      if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) show(entry.target);
     });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+  /* 閾値は 0 にする。割合で判定すると、画面より高い塊が永久に出ない。 */
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+  /* 上へ通り過ぎた塊も出す。交差の通知は、画面に入ったときと出たときにしか来ない。
+   * End キーで一度に飛び越えた塊は通知が来ず、消えたまま残っていた（2026-11-02、CI で落ちた）。
+   * 頁末まで来たら残りを全部出す。下 1 割に頭がある最後の塊は、それ以上送れないので出る機会が無い。
+   * 生成される頁（researcher-profile の templates/page.html）と同じ仕掛けである。 */
+  var queued = false;
+  window.addEventListener('scroll', function () {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(function () {
+      queued = false;
+      var edge = window.innerHeight * 0.9;
+      var end = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      Array.prototype.forEach.call(targets, function (el) {
+        if (!el.classList.contains('is-visible') && (end || el.getBoundingClientRect().top < edge)) show(el);
+      });
+    });
+  }, { passive: true });
 })();
 </script>
 <script src="./trinity.js"></script>
