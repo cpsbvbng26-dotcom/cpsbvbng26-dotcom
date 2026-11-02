@@ -1841,6 +1841,29 @@ section('10.59 自己紹介が名乗っていること');
        ずれ.length ? ずれ.join(', ') : (散文 ? '9 / 16 / 10 / 7' : '散文の並びが無い'));
   }
 
+  /* **暫定の IQ は、数と一緒に条件と断りを置く。**数だけが残ると、監督付きの検査の結果に読める。
+   * 五言語と README 二つで、同じ数・同じ日付・同じ断りを持つ。どこかで数だけ書き換えれば落ちる。
+   * 数そのものは外から確かめられない。確かめられないことも、断りの側に書いてある。 */
+  {
+    const 面 = {
+      'index.html': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています'],
+      'README.md': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています'],
+      'index.en.html': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked'],
+      'README.en.md': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked'],
+      'index.de.html': ['Der vorläufige IQ ist 110.', '2025-12-30', '123test', 'Culture-Fair', 'keine klinische Intelligenzdiagnostik', 'steht nicht auf dem Zertifikat', 'Namensfeld geschwärzt'],
+      'index.fr.html': ['Le QI provisoire est de 110.', '2025-12-30', '123test', 'Culture Fair', 'pas une évaluation clinique', 'n’indique pas l’échelle', 'nom masqué'],
+      'index.it.html': ['Il QI provvisorio è 110.', '2025-12-30', '123test', 'Culture Fair', 'non è una valutazione clinica', 'non indica la scala', 'nome oscurato'],
+    };
+    const 欠け = [];
+    for (const [f, xs] of Object.entries(面)) {
+      const t = read(f);
+      xs.filter((x) => t.indexOf(x) < 0).forEach((x) => 欠け.push(f + ': ' + x));
+      const n = (t.match(/IQ (?:は |is |ist |est de |è )?\d+/g) || []).map((m) => m.replace(/\D/g, ''));
+      if (n.some((x) => x !== '110')) 欠け.push(f + ': 別の数 ' + n.join(','));
+    }
+    ok('暫定の IQ が、同じ数・日付・断りで七つの面にある', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : '7 面');
+  }
+
   /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
    * どちらが古いのか分からなくなる。**同じ語で両方に置く。** */
   {

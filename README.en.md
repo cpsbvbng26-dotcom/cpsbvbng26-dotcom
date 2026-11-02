@@ -39,7 +39,7 @@ Motto: “Brand precedes form.”
 
 ## About me
 
-The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate. The course rules are stated here too. The two CS50 courses treat as academically dishonest any use of outside generative tools (ChatGPT, Claude, Copilot, Gemini and the like) that suggest or complete answers or code; only CS50’s own tool, the CS50 Duck, is allowed. The edX Honor Code requires completing all tests and assignments on one’s own unless collaboration is explicitly permitted. There is no way to prove that these rules were kept. Under the rules, however, the certificates above were issued on the basis that they were kept.
+My provisional IQ is 110. It comes from one sitting of the online IQ test at 123test (Culture Fair format) on 2025-12-30, taken at 9 a.m. after a sleepless night. The test is online and unproctored; it is not a clinical intelligence assessment. 110 is the figure 123test reports, and the certificate does not say which scale it uses. The certificate is kept on file, with the name field masked. The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate. The course rules are stated here too. The two CS50 courses treat as academically dishonest any use of outside generative tools (ChatGPT, Claude, Copilot, Gemini and the like) that suggest or complete answers or code; only CS50’s own tool, the CS50 Duck, is allowed. The edX Honor Code requires completing all tests and assignments on one’s own unless collaboration is explicitly permitted. There is no way to prove that these rules were kept. Under the rules, however, the certificates above were issued on the basis that they were kept.
 
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences.
 
@@ -297,7 +297,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1556 checks.** There are no dependencies to install.
+**Every push runs 1557 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
@@ -305,7 +305,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 617 checks
-node verification/check_site.js      # site structure, 849 checks
+node verification/check_site.js      # site structure, 850 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
