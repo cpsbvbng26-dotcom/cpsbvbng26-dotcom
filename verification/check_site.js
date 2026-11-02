@@ -1842,26 +1842,26 @@ section('10.59 自己紹介が名乗っていること');
   }
 
   /* **暫定の IQ は、数と一緒に条件と断りを置く。**数だけが残ると、監督付きの検査の結果に読める。
-   * 五言語と README 二つで、同じ数・同じ日付・同じ断りを持つ。どこかで数だけ書き換えれば落ちる。
-   * 数そのものは外から確かめられない。確かめられないことも、断りの側に書いてある。 */
+   * 置き場は README 二つの冒頭、肩書きを並べた段のすぐ後ろである。サイトの自己紹介には置かない
+   * （一度そちらに置き、場所が違うと言われて移した）。数そのものは外から確かめられない。
+   * 確かめられないことも、断りの側に書いてある。 */
   {
     const 面 = {
-      'index.html': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています'],
       'README.md': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています'],
-      'index.en.html': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked'],
       'README.en.md': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked'],
-      'index.de.html': ['Der vorläufige IQ ist 110.', '2025-12-30', '123test', 'Culture-Fair', 'keine klinische Intelligenzdiagnostik', 'steht nicht auf dem Zertifikat', 'Namensfeld geschwärzt'],
-      'index.fr.html': ['Le QI provisoire est de 110.', '2025-12-30', '123test', 'Culture Fair', 'pas une évaluation clinique', 'n’indique pas l’échelle', 'nom masqué'],
-      'index.it.html': ['Il QI provvisorio è 110.', '2025-12-30', '123test', 'Culture Fair', 'non è una valutazione clinica', 'non indica la scala', 'nome oscurato'],
     };
+    const 直後 = { 'README.md': 'Claude Code 愛好家です。\n\n暫定の IQ は 110 です。', 'README.en.md': 'a Claude Code enthusiast.\n\nMy provisional IQ is 110.' };
     const 欠け = [];
     for (const [f, xs] of Object.entries(面)) {
       const t = read(f);
       xs.filter((x) => t.indexOf(x) < 0).forEach((x) => 欠け.push(f + ': ' + x));
-      const n = (t.match(/IQ (?:は |is |ist |est de |è )?\d+/g) || []).map((m) => m.replace(/\D/g, ''));
-      if (n.some((x) => x !== '110')) 欠け.push(f + ': 別の数 ' + n.join(','));
+      if (t.indexOf(直後[f]) < 0) 欠け.push(f + ': 肩書きの段の直後に無い');
+      const n = (t.match(/IQ (?:は |is )\d+/g) || []).map((m) => m.replace(/\D/g, ''));
+      if (n.length !== 1 || n[0] !== '110') 欠け.push(f + ': 数 ' + (n.join(',') || '無し'));
     }
-    ok('暫定の IQ が、同じ数・日付・断りで七つの面にある', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : '7 面');
+    const 頁 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].filter((f) => /\b(?:IQ|QI)\b/.test(read(f)));
+    if (頁.length) 欠け.push('サイトの頁に残っている: ' + 頁.join(', '));
+    ok('暫定の IQ が、同じ数・日付・断りで README 二つの冒頭にあり、サイトの自己紹介には無い', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : 'README 二つ');
   }
 
   /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
