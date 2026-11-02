@@ -343,7 +343,7 @@ python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要:
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 446 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 557 項目（要: Chromium）
 ```
 
 25 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
