@@ -76,6 +76,10 @@ JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）�
 - 範囲。業績の登録情報を点検する道具が research software に当たるかどうかは、JOSS が決めます。こちらでは決まりません。
 - 大きさ。場の側は `"Minor utility" packages, including "thin" API clients, and single-function packages are not acceptable` と書いています。読み取り・規則・報告に分けてありますが、小さな道具と見られるおそれはあります。
 
+JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）は、2026-11-03 に `deposit-check` に置きました。
+節は JOSS の求める形に合わせてあります。研究への影響の節には、ほかの著者の利用がまだ無いことをそのまま書いています。
+参考文献に DOI は入れていません。語数と節と引用の対応、本文の規則の数は、`deposit-check` の検査が見ています。まだ出していません。
+
 言語モデルの事情は、ほかの二本と同じです。
 コミットはすべて、Claude との共作です。
 
