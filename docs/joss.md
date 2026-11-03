@@ -71,7 +71,7 @@ JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）�
 
 - 門 1。最初のコミットは 2026-11-02 です。最短は 2027-05-03 です。最初のコミットの日から公開されていた場合の日付です。
 - 門 2。使っているのは、著者自身の業績の点検と、Sophaxis の投稿の確かめだけです。著者以外に使われた記録はありません。
-- 門 3。試験と CI と文書と変更履歴（`CHANGELOG.md`）はあります。`CONTRIBUTING` はまだありません。公開したタグはありません。
+- 門 3。試験と CI と文書と変更履歴（`CHANGELOG.md`）はあります。`CONTRIBUTING` は 2026-11-03 に置きました。公開したタグはありません。
 - 門 4。作業は最初の数日に集まっています。
 - 範囲。業績の登録情報を点検する道具が research software に当たるかどうかは、JOSS が決めます。こちらでは決まりません。
 - 大きさ。場の側は `"Minor utility" packages, including "thin" API clients, and single-function packages are not acceptable` と書いています。読み取り・規則・報告に分けてありますが、小さな道具と見られるおそれはあります。
