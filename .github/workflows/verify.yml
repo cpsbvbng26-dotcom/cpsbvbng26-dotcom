@@ -36,7 +36,8 @@ jobs:
   # 壊れたのかを見分けられなくなる**ので、上の並びには混ぜない。
   keyboard:
     name: キーボードで辿れるか 557 項目
-    runs-on: ubuntu-latest
+    # ubuntu-latest が 26.04 になり、playwright 1.56.1 が Chromium を入れられなくなった（2026-11-06）。
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -84,11 +84,11 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 
 | 論文 | 正 | 別の所在 |
 | --- | --- | --- |
-| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、HAL `hal-05758942` |
-| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、HAL `hal-05758968` |
+| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA` |
+| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI` |
 | Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI` |
-| Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961`、HAL `hal-05759064` |
-| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、HAL `hal-05759080` |
+| Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12` |
 
 ### Zenodo に無い本文
 
@@ -132,6 +132,9 @@ HAL に置いていた notice のうち、SSRN に同じ本文が無いものを
 notice は PDF を持たない書誌の登録で、モデレーションを通らずに公開されます。
 **人の門を一つも通っていない置き場を、業績の側から外すためです**。
 
+残っていた 4 件も、2026-11-06 に著者が削除しました。HAL の公開の検索でも、その日のうちに 0 件になったことを確かめています。
+これからは、HAL の ID はモデレーションを通って公開されたものだけを書きます。審査待ちの投稿の番号は書きません。
+
 | HAL の ID | 本文 | 削除した日 | 本文が残る場所 |
 | --- | --- | --- | --- |
 | `hal-05759279` | Fragmentarian Spiritual Individualism | 2026-09-26 | Zenodo、PhilArchive |
@@ -139,6 +142,10 @@ notice は PDF を持たない書誌の登録で、モデレーションを通�
 | `hal-05759296` | Trinity-Infinity Series III | 2026-09-26 | Zenodo |
 | `hal-05759717` | 正義論とアルゴリズム | 2026-09-26 | Zenodo |
 | `hal-05759721` | 自己実験としての名乗り | 2026-09-26 | Zenodo |
+| `hal-05758942` | The Nobility and Exemplarity of the Celibate Individual | 2026-11-06 | Zenodo、SSRN、PhilArchive |
+| `hal-05758968` | Manifesto of Imperial Selfhood | 2026-11-06 | Zenodo、SSRN、PhilArchive |
+| `hal-05759064` | Trinity-Infinity Series II 改訂版 | 2026-11-06 | Zenodo、SSRN |
+| `hal-05759080` | A Naval Gazette Entry for Lieutenant Otani Tsune | 2026-11-06 | Zenodo、SSRN、Knowledge Commons |
 
 **削除した ID は、この表にだけ残します**。ほかの記録からは所在として外してあります。
 `check_site.js` が、この表の ID へのリンクがどこにも残っていないことを確かめます。
