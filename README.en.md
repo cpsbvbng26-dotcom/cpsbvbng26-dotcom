@@ -6,7 +6,7 @@
 
 Precisely because of the times we live in, I say it: I am a direct male-line great-great-grandson, on the Y-chromosome line, of a member of the Yokokawa Village Assembly, Kawachi District, Tochigi Prefecture, as recorded in *Tochigi Kensei Taikan* and *Meiji Taishō Kenka Seikai Hishi*.
 
-A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, and an open-source developer and the operator of [Sophaxis](https://sophaxis.vercel.app/), [listed in ROAR](https://roar.eprints.org/27422/). A Claude enthusiast, and a Claude Code enthusiast.
+A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, and an open-source developer and the operator of [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
 My provisional IQ is 110. It comes from one sitting of the online IQ test at 123test (Culture Fair format) on 2025-12-30, taken at 9 a.m. after a sleepless night. The test is online and unproctored; it is not a clinical intelligence assessment. 110 is the figure 123test reports, and the certificate does not say which scale it uses. The certificate is kept on file, with the name field masked.
 
