@@ -432,6 +432,12 @@ console.log('\n7. 研究者としての位置');
       if (raw === null) return null;
       return (raw.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+`/gm) || []).length;
     })();
+    /* リポジトリの保存版の DOI（R の行）。成果物の 16 件とは別に数える。混ぜれば、論文の数が増えて見える。 */
+    const repoZen = (() => {
+      const raw = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md'));
+      if (raw === null) return null;
+      return (raw.match(/^\| R\d+ \| `10\.5281\/zenodo\.\d+`/gm) || []).length;
+    })();
     const reg = (() => {
       const raw = read('self-correction', 'register.toml');
       if (raw === null) return null;
@@ -459,6 +465,7 @@ console.log('\n7. 研究者としての位置');
 
     const rows = [['公開した成果物', papers, '篇'],
                   ['Zenodo の DOI', zen, '件'],
+                  ['リポジトリの保存版の DOI', repoZen, '件'],
                   ['登録簿', reg, '件']];
     const wrong = [];
     for (const [label, actual, unit] of rows) {
