@@ -232,6 +232,41 @@ console.log('\n5b. Zenodo の記録の中身');
     ずれ.length === 0, ずれ.length ? ずれ.join(' / ') : C.repos.length + ' 件');
 }
 
+/* doi-index が「十のリポジトリのすべてが Zenodo の DOI を持った」と書いている。
+ * 四つは「著者自身の Zenodo DOI」の表に、残りは R の表に、名前で載っていることを確かめる。
+ * どれかの行が消えれば、文のほうが嘘になるので落ちる。 */
+{
+  const idx = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md')) || '';
+  const own = idx.slice(idx.indexOf('## 著者自身の Zenodo DOI'), idx.indexOf('## 一括置換してはいけない二つ'));
+  const rTab = idx.slice(idx.indexOf('## リポジトリの保存版の DOI'), idx.indexOf('## 別の所在にある同一本文'));
+  const ownRows = own.split('\n').filter((l) => /^\| \d+ \| `10\.5281\/zenodo\.\d+`/.test(l));
+  const rRows = rTab.split('\n').filter((l) => /^\| R\d+ \| `10\.5281\/zenodo\.\d+`/.test(l));
+  const 四 = ['errata-check', 'justice-and-algorithms', 'researcher-profile', 'solitary-school'];
+  const inOwn = 四.filter((r) => ownRows.some((l) => l.includes(r) || (r === 'justice-and-algorithms' && l.includes('正義論とアルゴリズム'))));
+  const 残り = C.repos.filter((r) => !四.includes(r));
+  const inR = 残り.filter((r) => rRows.some((l) => l.includes('| ' + r + ' ')));
+  const W = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+  check('十のリポジトリのすべてに Zenodo の DOI がある、と書いた文が表と合う',
+    inOwn.length === 四.length && inR.length === 残り.length
+    && idx.includes(W[C.repos.length] + 'のリポジトリのすべてが Zenodo の DOI を持ちました。')
+    && idx.includes('残りの' + W[残り.length] + 'つの番号は、「リポジトリの保存版の DOI」の表にあります。'),
+    '著者の表 ' + inOwn.length + '/' + 四.length + ' / R の表 ' + inR.length + '/' + 残り.length);
+}
+
+/* Zenodo のコミュニティ。所在が、Sophaxis・プロフィールの頁（二言語）・doi-index で同じであり、
+ * どこでも「提携ではない」と添えてあること。提携と読める書き方はしない。 */
+{
+  const URL = 'https://zenodo.org/communities/sophaxis';
+  const 所 = [
+    ['sophaxis', 'README.md', 'it is not an affiliation with Zenodo'],
+    ['cpsbvbng26-dotcom', path.join('notes', 'sophaxis.html'), 'Zenodo との提携ではありません。'],
+    ['cpsbvbng26-dotcom', path.join('notes', 'sophaxis.en.html'), 'It is not an affiliation with Zenodo.'],
+    ['cpsbvbng26-dotcom', path.join('docs', 'doi-index.md'), 'Zenodo との提携ではありません。'],
+  ];
+  const 欠け = 所.filter(([r, f, deny]) => { const t = read(r, f); return t === null || !t.includes(URL) || !t.includes(deny); }).map(([r, f]) => r + '/' + f);
+  check('Zenodo のコミュニティの所在が四箇所で同じで、どこでも提携ではないと書いてある', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : 所.length + ' 箇所');
+}
+
 /* SSRN の DOI も同じ扱いにする。Zenodo と違い、番号は SSRN が発行し、
  * 著者が読み取って渡す。**実在は確かめない**（この環境から届かない）。
  * 確かめるのは、写した番号がリポジトリ間でずれていないことだけである。
