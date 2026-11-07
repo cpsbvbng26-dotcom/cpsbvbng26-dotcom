@@ -1,5 +1,16 @@
 # Vercel に出している中身
 
+## いまの構成（2026-11-07）
+
+この下の二枚は、いまは配備していません。
+Vercel の `cpsbvbng26-dotcom` プロジェクトは、GitHub 連携で `main` をそのまま配っています。
+そのことは 2026-09-21 に読み取りで分かり、[canonical-sources.md](../../docs/canonical-sources.md) の「読み取りが通った日」に書いてあります。
+サイトマップの正の URL も、`cpsbvbng26-dotcom.vercel.app` を指しています。
+2026-11-07 に、リポジトリの根に安全のヘッダーだけの `vercel.json` を置きました。
+この下は、転送だけを配っていたころの記録として残します。
+
+## 以前の構成
+
 ここにあるのは、`cpsbvbng26-dotcom.vercel.app` に配備したファイルそのものです。
 サイトの中身ではありません。正本は GitHub Pages で、そこへ送り返すだけの二枚です。
 
