@@ -199,18 +199,19 @@ PhilPapers は削除を依頼として受け付けるので、まだ消えてい
 
 ## DOI を持たないもの
 
-| リポジトリ | 状態 |
-| --- | --- |
-| `self-correction` | **無い**。訂正の記録の正本として全リポジトリから指されているのに、引用できる識別子を持っていない |
-| `trinity-infinity` | 無い。三本の論文の DOI を参照する容れ物である |
-| `autonomy-and-self-cultivation` | 同上 |
-| `naval-gazette-notes` | 同上 |
-| `trinity-operator` | 無い |
-| `cpsbvbng26-dotcom` | 無い |
+2026-11-07 に、十のリポジトリのすべてが Zenodo の DOI を持ちました。
+errata-check・justice-and-algorithms・researcher-profile・solitary-school の番号は、上の「著者自身の Zenodo DOI」の表にあります。
+残りの六つの番号は、「リポジトリの保存版の DOI」の表にあります。
+それまでこの節には、DOI を持たないリポジトリを六つ並べていました。
 
-DOI を付けるには Zenodo での操作が要ります。それは利用者が行います。
-DOI が付くまでの間、恒久的な識別子が要るなら Software Heritage の SWHID がある
-（アカウント不要、費用なし）。
+## Zenodo のコミュニティ
+
+2026-11-07 に、Zenodo に Sophaxis のコミュニティを開きました。
+所在は <https://zenodo.org/communities/sophaxis> です。
+これは DOI ではなく、記録の集まりです。
+入れるのは、Sophaxis に載っている稿のうち、Zenodo にあるものだけです。
+公開であること、誰でも投稿できること、追加がどれも審査を経ることは、Zenodo の API で確かめました。
+Zenodo との提携ではありません。
 
 ---
 
