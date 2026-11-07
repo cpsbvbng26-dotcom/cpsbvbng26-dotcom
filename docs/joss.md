@@ -49,7 +49,7 @@
 
 - 門 1。最初のコミットは 2026-10-30 です。最短は 2027-05-01 です。最初のコミットの日から公開されていた場合の日付です。
 - 門 2。載っている記録は、どれも運営者自身の投稿です。著者以外に使われた記録はありません。
-- 門 3。試験と CI と文書はあります。`CONTRIBUTING` と変更履歴（`CHANGELOG.md`）は 2026-11-02 に置きました。公開したタグはありません。変更履歴は、マージした PR を漏れなく挙げているかを Sophaxis の検査が見ています。
+- 門 3。試験と CI と文書はあります。`CONTRIBUTING` と変更履歴（`CHANGELOG.md`）は 2026-11-02 に置きました。2026-11-07 に版 1.0.0 のタグを公開し、Zenodo が保存しました（`10.5281/zenodo.24033372`）。変更履歴は、マージした PR を漏れなく挙げているかを Sophaxis の検査が見ています。
 - 門 4。作業は最初の数日に集まっています。
 - 範囲。プレプリントサーバーが research software に当たるかどうかは、JOSS が決めます。こちらでは決まりません。
 
@@ -71,7 +71,7 @@ JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）�
 
 - 門 1。最初のコミットは 2026-11-02 です。最短は 2027-05-03 です。最初のコミットの日から公開されていた場合の日付です。
 - 門 2。使っているのは、著者自身の業績の点検と、Sophaxis の投稿の確かめだけです。著者以外に使われた記録はありません。
-- 門 3。試験と CI と文書と変更履歴（`CHANGELOG.md`）はあります。`CONTRIBUTING` は 2026-11-03 に置きました。公開したタグはありません。
+- 門 3。試験と CI と文書と変更履歴（`CHANGELOG.md`）はあります。`CONTRIBUTING` は 2026-11-03 に置きました。2026-11-07 に版 0.1.0 のタグを公開し、Zenodo が保存しました（`10.5281/zenodo.24033082`）。
 - 門 4。作業は最初の数日に集まっています。
 - 範囲。業績の登録情報を点検する道具が research software に当たるかどうかは、JOSS が決めます。こちらでは決まりません。
 - 大きさ。場の側は `"Minor utility" packages, including "thin" API clients, and single-function packages are not acceptable` と書いています。読み取り・規則・報告に分けてありますが、小さな道具と見られるおそれはあります。
@@ -100,15 +100,15 @@ JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）�
 
 | リポジトリ | 種別 | OSI のライセンス | 公開したタグ | CONTRIBUTING | 最初のコミット | 門 1 に届く最短 |
 | --- | --- | --- | --- | --- | --- | --- |
-| cpsbvbng26-dotcom | 場所と横断の検査 | `LICENSE-CODE` が MIT | **無い** | ある | 2026-06-12 | 2026-12-13 |
+| cpsbvbng26-dotcom | 場所と横断の検査 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-06-12 | 2026-12-13 |
 | researcher-profile | 道具 | `LICENSE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
-| trinity-infinity | 論文 | `LICENSE-CODE` が MIT | **無い** | ある | 2026-09-05 | 2027-03-06 |
-| autonomy-and-self-cultivation | 論文 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
+| trinity-infinity | 論文 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
+| autonomy-and-self-cultivation | 論文 | `LICENSE-CODE` が MIT | **2 件** | ある | 2026-09-05 | 2027-03-06 |
 | justice-and-algorithms | 論文 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
-| naval-gazette-notes | 史料ノート | `LICENSE-CODE` が MIT | **無い** | ある | 2026-09-05 | 2027-03-06 |
-| trinity-operator | 道具 | `LICENSE` が MIT | **無い** | ある | 2026-09-06 | 2027-03-07 |
+| naval-gazette-notes | 史料ノート | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-05 | 2027-03-06 |
+| trinity-operator | 道具 | `LICENSE` が MIT | **1 件** | ある | 2026-09-06 | 2027-03-07 |
 | errata-check | 道具 | `LICENSE` が MIT | **3 件** | ある | 2026-09-07 | 2027-03-08 |
-| self-correction | 記録と道具 | `LICENSE` が MIT | **無い** | ある | 2026-09-07 | 2027-03-08 |
+| self-correction | 記録と道具 | `LICENSE` が MIT | **1 件** | ある | 2026-09-07 | 2027-03-08 |
 | solitary-school | 覚書 | `LICENSE-CODE` が MIT | **1 件** | ある | 2026-09-15 | 2027-03-16 |
 
 「門 1 に届く最短」は、最初のコミットの日から公開されていた場合の日付です。
@@ -139,7 +139,7 @@ Trinity-Infinity の三篇も同じ道具で監査しています。
 それが証拠として足りるかは、編集側の判断です。こちらでは決まりません。
 そして、場の側は釘を刺している —— `Aspirational statements about future use are not sufficient`。
 
-## 門 3 —— 残っているのはタグである
+## 門 3 —— タグは十とも揃った
 
 単独の著者の場合、複数の指標が同時に要る ——
 公開された履歴、タグ付きの版または変更履歴、試験と CI、文書、`CONTRIBUTING`、支援の方針です。
@@ -149,12 +149,10 @@ Trinity-Infinity の三篇も同じ道具で監査しています。
 `solitary-school` は作ったときから置いてあります。
 支援の範囲とこれからの見込みも、そのそれぞれに書いてあります。
 
-**タグを公開しているのは五つです**。`errata-check`（**3 件**）、`researcher-profile`（**1 件**）、
-`justice-and-algorithms`（**1 件**）、`autonomy-and-self-cultivation`（**1 件**）、
-`solitary-school`（**1 件**）です。
-残る五つは一つも公開していません。
-**理由は環境にある** —— この作業環境からタグを push すると 403 で返ります。
-利用者の手作業にしか置き換えられません。
+**タグは十とも公開しています**。`errata-check` が **3 件**、`autonomy-and-self-cultivation` が **2 件**、残る八つが **1 件**ずつです。
+2026-11-07 に、それまでタグの無かった五つに、利用者が GitHub の Release でタグを付けました。
+同じ日に、Zenodo がそれぞれの版を保存して DOI を出しています（`docs/doi-index.md`）。
+この作業環境からタグを push すると 403 で返ります。タグは利用者の手作業で付きます。
 
 **ローカルのタグと、公開されたタグは別です**。数え直すまで、こちらは一つだけだと書いていました。
 手元に残っているタグを数えていたためです。検査は `git ls-remote` のほうを見ます。

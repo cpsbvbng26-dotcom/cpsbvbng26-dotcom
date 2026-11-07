@@ -78,6 +78,30 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 同じ日に `10.5281/zenodo.22765621` も作られ、利用者が消しました。消えたことも確かめていません。
 この一覧には載せません。載せれば、実在する番号として引かれる余地が残ります。
 
+## リポジトリの保存版の DOI
+
+2026-11-07 に、リポジトリの版を Zenodo に保存したときの番号です。上の表とは別に置きます。
+上の表は成果物の番号で、こちらはそれを収めたリポジトリの記録です。論文と史料ノートは、上の表の番号で引きます。
+版の番号は利用者から受け取り、DataCite の記録で確かめました。DataCite には GitHub Actions から読みに行きました。
+確かめたのは、版の番号、種類、著者の ORCID iD、ライセンスと、すべての版に共通する DOI との関係（IsVersionOf）です。
+
+| # | DOI | 何か | 状態 |
+| --- | --- | --- | --- |
+| R1 | `10.5281/zenodo.24033459` | trinity-operator v1.0.0 | 現行 |
+| R2 | `10.5281/zenodo.24033458` | trinity-operator のすべての版 | 概念 DOI。いちばん新しい版を指す |
+| R3 | `10.5281/zenodo.24033597` | self-correction v1.0.0 | 現行 |
+| R4 | `10.5281/zenodo.24033596` | self-correction のすべての版 | 概念 DOI |
+| R5 | `10.5281/zenodo.24033809` | autonomy-and-self-cultivation v1.0.1（リポジトリの保存版。論文ではない） | 現行 |
+| R6 | `10.5281/zenodo.22765620` | autonomy-and-self-cultivation のすべての版 | 概念 DOI |
+| R7 | `10.5281/zenodo.24033961` | trinity-infinity v1.0.0（リポジトリの保存版。論文ではない） | 現行 |
+| R8 | `10.5281/zenodo.24033960` | trinity-infinity のすべての版 | 概念 DOI |
+| R9 | `10.5281/zenodo.24034131` | naval-gazette-notes v1.0.0（リポジトリの保存版。史料ノートではない） | 現行 |
+| R10 | `10.5281/zenodo.24034130` | naval-gazette-notes のすべての版 | 概念 DOI |
+| R11 | `10.5281/zenodo.24034360` | cpsbvbng26-dotcom v1.0.0（サイトと検査の保存版） | 現行 |
+| R12 | `10.5281/zenodo.24034359` | cpsbvbng26-dotcom のすべての版 | 概念 DOI |
+| R13 | `10.5281/zenodo.24033372` | sophaxis v1.0.0（十の外） | 現行 |
+| R14 | `10.5281/zenodo.24033082` | deposit-check v0.1.0（十の外） | 現行 |
+
 ## 別の所在にある同一本文
 
 正本は Zenodo です。片方だけを直すと食い違います。

@@ -204,12 +204,12 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [作用素を回す](https://cpsbvbng26-dotcom.vercel.app/trinity.html) | Trinity-Infinity の三篇が扱う作用素を、ブラウザの中だけで反復する。**スペクトル半径と作用素ノルムを別々に出し、収束の可否と単調減衰を分けて判定する**。固有値・特異値・連立一次方程式を外部ライブラリなしで解いている。NumPy の値と 728 件突き合わせ済み。このサイト内のページ | MIT | — |
 | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) | 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール | MIT | [10.5281/zenodo.22335692](https://doi.org/10.5281/zenodo.22335692) |
 | [justice-and-algorithms](https://github.com/cpsbvbng26-dotcom/justice-and-algorithms) | アルゴリズムをめぐる論点を政治哲学の正義論に接続して整理する資料 | CC BY 4.0 | [10.5281/zenodo.22335676](https://doi.org/10.5281/zenodo.22335676) |
-| [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | — |
-| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった**。残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均です。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である**。犯した誤りは、その講義が試験で問う取り違えです。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御です。三篇と、その検証 298 項目（定理 15・印字された数値 32・正誤表の監査 108・経路 143）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | — |
-| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 190 項目 | MIT | — |
+| [autonomy-and-self-cultivation](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation) | 哲学の三篇の全文・PDF・引用情報と、読むためのサイトの生成 | CC BY 4.0 | [10.5281/zenodo.24033809](https://doi.org/10.5281/zenodo.24033809) |
+| [trinity-infinity](https://github.com/cpsbvbng26-dotcom/trinity-infinity) | **枠組みは残らなかった**。残ったのは一つの作用素についての一つの事実 —— `Q` が n 巡回置換で `D` が対角のとき `(DQ)ⁿ = (∏ᵢ aᵢ)·I` がちょうど成り立ち、収束を決めているのは係数の相乗平均です。**この事実は正しく、機械で確かめられ、そして学部 2〜3 年の演習問題の水準である**。犯した誤りは、その講義が試験で問う取り違えです。直しに使った道具だけが**大学院の線形システム論と行列解析**に属する。いちばん近い学科は線形システム論・現代制御です。三篇と、その検証 299 項目（定理 15・印字された数値 32・正誤表の監査 109・経路 143）。何が確立され何が撤回されたかの記録と正誤 | CC BY 4.0 | [10.5281/zenodo.24033961](https://doi.org/10.5281/zenodo.24033961) |
+| [trinity-operator](https://github.com/cpsbvbng26-dotcom/trinity-operator) | 上の三篇の作用素を、置換にも一様な係数にも限らずに実装。収束を決めるのはスペクトル半径であり、三篇の作用素ノルム条件は必要以上に強い。**壊れた Banach の議論を組み直す構成**と、仮定を外していったときに何が残るかの展望。検査 191 項目 | MIT | [10.5281/zenodo.24033459](https://doi.org/10.5281/zenodo.24033459) |
 | [errata-check](https://github.com/cpsbvbng26-dotcom/errata-check) | **凍結された公開物に対して、正誤表のほうを機械で監査する**。DOI が付いた PDF は直せません。直せるのは正誤表のほうで、だからずれていく。引用が一字一句あるか、数え落としが無いか、未解決の項目が「解決済み」に書き換わっていないか、一次資料が差し替わっていないか。**判定に推論を使わない** | MIT | [10.5281/zenodo.22649899](https://doi.org/10.5281/zenodo.22649899) |
-| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する**。いま 97 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | — |
-| [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | — |
+| [self-correction](https://github.com/cpsbvbng26-dotcom/self-correction) | **自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録する**。いま 97 件。いま立っている主張には覆し方を、直せない項目には理由を書くことを検査で強制する。**識別子は永久に消せない** —— git の履歴を遡り、過去に一度でも載った項目が消えていれば落ちる | MIT | [10.5281/zenodo.24033597](https://doi.org/10.5281/zenodo.24033597) |
+| [naval-gazette-notes](https://github.com/cpsbvbng26-dotcom/naval-gazette-notes) | 史料ノートの翻刻を機械可読にしたデータ。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している | CC BY 4.0 | [10.5281/zenodo.24034131](https://doi.org/10.5281/zenodo.24034131) |
 
 ---
 
@@ -423,6 +423,10 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 リンク先の各リポジトリと各プレプリントは、それぞれのライセンスに従います。
 一覧の ✴︎Works✴︎ 欄と、各リポジトリの `LICENSE` を参照すること。
+
+このリポジトリ自体も、版を出すたびに Zenodo に保存しています。
+版 1.0.0 の DOI は [10.5281/zenodo.24034360](https://doi.org/10.5281/zenodo.24034360) です。
+すべての版に共通する DOI は [10.5281/zenodo.24034359](https://doi.org/10.5281/zenodo.24034359) で、いちばん新しい版を指します。
 
 ---
 
