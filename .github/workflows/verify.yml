@@ -11,11 +11,11 @@ jobs:
     name: 誤変換 / 配色 617 項目 / サイトの構造 854 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # sitemap の lastmod を git の記録と突き合わせるため、履歴が要る。
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       # 依存パッケージなし。npm install も要らない。
@@ -39,8 +39,8 @@ jobs:
     # ubuntu-latest が 26.04 になり、playwright 1.56.1 が Chromium を入れられなくなった（2026-11-06）。
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - name: playwright と Chromium を入れる

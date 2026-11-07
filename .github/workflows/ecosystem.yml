@@ -18,31 +18,31 @@ jobs:
     steps:
       # sitemap の lastmod を git の記録と突き合わせる検査がある。
       # 浅い複製では日付が取れず、取れたものも HEAD の日付に化ける。
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms, fetch-depth: 0 }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }
       # 十の外だが、Zenodo のコミュニティの所在を突き合わせるために読む。
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis }
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - run: pip install numpy pypdf==6.19.0
