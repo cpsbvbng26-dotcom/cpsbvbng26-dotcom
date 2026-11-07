@@ -205,6 +205,33 @@ console.log('\n5. DOI の一覧と、実際に出てくる番号');
     orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
 }
 
+/* **Zenodo の記録の中身も、十で揃える。**版を出すたびに、Zenodo は .zenodo.json を読んで記録を作る。
+ * そこに言語モデル利用の開示が無ければ、決めごと 8 が記録の側で落ちる。2026-11-07 に、七つで欠けていた。
+ * 著者は一人で ORCID iD つき、ライセンスは LICENSE と同じ、題は CITATION.cff と同じ名で始まる。 */
+
+console.log('\n5b. Zenodo の記録の中身');
+
+{
+  const ずれ = [];
+  for (const repo of C.repos) {
+    const raw = read(repo, '.zenodo.json');
+    if (raw === null) { ずれ.push(repo + ' に .zenodo.json が無い'); continue; }
+    let z;
+    try { z = JSON.parse(raw); } catch (e) { ずれ.push(repo + ' の .zenodo.json が読めない'); continue; }
+    const cff = read(repo, 'CITATION.cff') || '';
+    const t = /^title:\s*(?:"([^"]*)"|(.*))$/m.exec(cff) || [];
+    const 名 = (x) => String(x || '').trim().split(/\s+/)[0];
+    const lic = (read(repo, 'LICENSE') || '').slice(0, 40);
+    const 期待 = lic.startsWith('MIT') ? 'mit' : lic.startsWith('Creative Commons Attribution 4.0') ? 'cc-by-4.0' : '?';
+    if (!/Claude is not an author\./.test(z.notes || '')) ずれ.push(repo + ' の notes に開示が無い');
+    if (!Array.isArray(z.creators) || z.creators.length !== 1 || z.creators[0].orcid !== '0009-0000-1406-0547') ずれ.push(repo + ' の著者');
+    if (z.license !== 期待) ずれ.push(repo + ' のライセンス ' + z.license + ' / LICENSE ' + 期待);
+    if (!名(z.title) || 名(z.title) !== 名(t[1] || t[2])) ずれ.push(repo + ' の題');
+  }
+  check('十とも、Zenodo の記録に開示があり、著者・ライセンス・題が引用情報と揃っている',
+    ずれ.length === 0, ずれ.length ? ずれ.join(' / ') : C.repos.length + ' 件');
+}
+
 /* SSRN の DOI も同じ扱いにする。Zenodo と違い、番号は SSRN が発行し、
  * 著者が読み取って渡す。**実在は確かめない**（この環境から届かない）。
  * 確かめるのは、写した番号がリポジトリ間でずれていないことだけである。
