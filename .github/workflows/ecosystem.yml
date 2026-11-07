@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v4
         with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis }
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - run: pip install numpy pypdf==6.19.0
