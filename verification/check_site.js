@@ -2756,11 +2756,16 @@ section('10.59 読み取りが通った日の記録');
   ok('古い写しが出ていた機構を、確かめていないと書いてある',
      節.indexOf('**その機構は確かめていません**（`未確認`）。') >= 0);
 
-  /* **リポジトリの根に vercel.json が無いこと。**散文がそう書いたので、実際に見る。
-   * 置いた日に散文のほうが古くなる。 */
-  ok('散文の通り、リポジトリの根に vercel.json が無い',
-     !fs.existsSync(path.join(ROOT, 'vercel.json'))
-     && 節.indexOf('リポジトリの根に `vercel.json` がありません') >= 0);
+  /* **リポジトリの根の vercel.json。**2026-09-21 には無かった。2026-11-07 に安全のヘッダーだけを置いた。
+   * 散文は両方を書いている。置いたものに転送や書き換えが混じれば、散文のほうが嘘になるので落とす。 */
+  {
+    let keys = null;
+    try { keys = Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'))); } catch (e) { keys = null; }
+    ok('散文の通り、リポジトリの根の vercel.json は安全のヘッダーだけを持つ（2026-09-21 には無かった）',
+       keys !== null && keys.join() === 'headers'
+       && 節.indexOf('リポジトリの根に `vercel.json` がありません') >= 0
+       && 節.indexOf('中身は安全のヘッダーだけで、転送も書き換えも含みません。') >= 0);
+  }
 }
 
 /* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
@@ -2770,6 +2775,26 @@ section('10.59 読み取りが通った日の記録');
  * 検査は 527 項目になっていた。**倍以上ずれていて、誰も気づかない。**
  * 決めごと 5 —— 散文に数を書いたら、その数を機械で確かめられるようにする。
  */
+section('10.595 <meta> では出せない安全のヘッダー');
+/* frame-ancestors は <meta> の CSP では効かない。よその頁の枠に埋め込まれないように、Vercel にヘッダーで出させる。
+ * ヘッダーの CSP は frame-ancestors だけを名乗る。二つ目の CSP は一つ目を狭めることしかできないので、
+ * 読み込みを絞るのは、これまでどおり各頁の <meta> である。 */
+{
+  let cfg = null;
+  try { cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8')); } catch (e) { cfg = null; }
+  const all = cfg && (cfg.headers || []).find((h) => h.source === '/(.*)');
+  const get = (k) => ((all && all.headers) || []).filter((h) => h.key === k).map((h) => h.value);
+  ok('vercel.json が読めて、すべての経路にヘッダーを付ける', all !== undefined && all !== null);
+  ok('枠への埋め込みを二通りで断る（frame-ancestors none と X-Frame-Options DENY）',
+     get('Content-Security-Policy').join() === "frame-ancestors 'none'" && get('X-Frame-Options').join() === 'DENY');
+  ok('ヘッダーの CSP は frame-ancestors だけを名乗る',
+     get('Content-Security-Policy').length === 1 && get('Content-Security-Policy')[0].split(';').map((x) => x.trim()).filter(Boolean).every((d) => d.startsWith('frame-ancestors')));
+  ok('型の推測をさせず、参照元を送らず、ブラウザの機能を求めず、窓を切り離し、HTTPS を覚えさせる',
+     get('X-Content-Type-Options').join() === 'nosniff' && get('Referrer-Policy').join() === 'no-referrer'
+     && /camera=\(\)/.test(get('Permissions-Policy').join()) && /microphone=\(\)/.test(get('Permissions-Policy').join()) && /geolocation=\(\)/.test(get('Permissions-Policy').join())
+     && get('Cross-Origin-Opener-Policy').join() === 'same-origin' && /^max-age=\d{8,}/.test(get('Strict-Transport-Security').join()));
+}
+
 section('10.60 CI の仕事の名前が名乗っている数');
 
 {
