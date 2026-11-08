@@ -12,5 +12,8 @@
         { "key": "Strict-Transport-Security", "value": "max-age=63072000" }
       ]
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": { "**": false, "main": true }
+  }
 }
