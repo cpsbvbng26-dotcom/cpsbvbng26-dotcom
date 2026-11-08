@@ -2325,6 +2325,58 @@ console.log('\n12c. Sophaxis の頁が名乗る記録の数');
  * 実際に一度ずれている —— 中身を足したのに 62 のまま残っていた。
  * 自分を走らせるわけにはいかないので、ここまでの件数に自分の一件を足して数える。 */
 
+console.log('\n12d. 免責と、法的なずれ');
+
+/* **免責は、効く形でだけ置く。**全部を免じる文は消費者契約法で無効になり、免責そのものを失う。
+ * 読むことを同意とみなす文は、定型約款の要件を満たさない。どちらも見つけたら止める。
+ * 個人の連絡先は、許した二つのほかに置かない（決めごと 9）。 */
+{
+  const L = DECL['免責'];
+  const ja = read('cpsbvbng26-dotcom', L.file) || '';
+  const en = read('cpsbvbng26-dotcom', L.fileEn) || '';
+  const lack = L['必須の文'].filter((x) => ja.indexOf(x) < 0).concat(L['必須の文 英'].filter((x) => en.indexOf(x) < 0));
+  check('免責事項（日本語と英語）が、効く形の免責と、同意とみなさないことを書いている', lack.length === 0,
+    lack.length ? lack.map((x) => x.slice(0, 24)).join(' / ') : (L['必須の文'].length + L['必須の文 英'].length) + ' 文');
+  check('免責事項が 10 リポジトリを名指している', C.repos.every((r) => ja.indexOf(r) >= 0 && en.indexOf(r) >= 0));
+  const unlinked = [];
+  for (const repo of C.repos) {
+    const rd = read(repo, 'README.md');
+    if (rd === null || rd.indexOf(L.readmeLine) < 0) unlinked.push(repo + '/README.md');
+    const rdEn = read(repo, 'README.en.md');
+    if (rdEn !== null && rdEn.indexOf(L.readmeLineEn) < 0) unlinked.push(repo + '/README.en.md');
+  }
+  check('10 リポジトリの README が、免責事項へつないでいる', unlinked.length === 0, unlinked.join(', '));
+
+  const SKIPDIR = new Set(['.git', 'node_modules', 'site', 'dist', '__pycache__', 'venv']);
+  const EXT = new Set(['.md', '.html', '.json', '.yml', '.cff', '.txt']);
+  const void_ = L['無効になりうる言い回し'].map((x) => new RegExp(x, 'i'));
+  const mail = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g;
+  const 無効 = [], 宛先 = [];
+  let 数 = 0;
+  function walk(dir, repo) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (SKIPDIR.has(e.name)) continue;
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(full, repo); continue; }
+      if (!EXT.has(path.extname(e.name)) || /^LICENSE/.test(e.name)) continue;
+      const rel = path.relative(path.join(ROOT, repo), full);
+      /* この検査の表そのものと、指示書は除く。 */
+      if (repo === 'cpsbvbng26-dotcom' && (rel === path.join('verification', 'ecosystem.json') || rel === 'CLAUDE.md')) continue;
+      数++;
+      const lines = fs.readFileSync(full, 'utf8').split('\n').filter((l) => !/^\s*>/.test(l));
+      for (const l of lines) {
+        if (void_.some((re) => re.test(l))) 無効.push(repo + '/' + rel);
+        for (const m of l.match(mail) || []) if (!L['許すメールアドレス'].includes(m)) 宛先.push(repo + '/' + rel + ' ' + m);
+      }
+    }
+  }
+  for (const repo of C.repos) { const dir = path.join(ROOT, repo); if (fs.existsSync(dir)) walk(dir, repo); }
+  check('10 リポジトリのどこにも、無効になりうる免責や、読むことを同意とみなす文が無い（' + 数 + ' ファイル）', 無効.length === 0, [...new Set(無効)].join(', '));
+  check('10 リポジトリに、許した二つのほかのメールアドレスが無い', 宛先.length === 0, [...new Set(宛先)].slice(0, 10).join(', '));
+}
+
+/* ---------- 名乗る件数 ---------- */
+
 console.log('\n13. この検査が名乗る件数');
 
 {
