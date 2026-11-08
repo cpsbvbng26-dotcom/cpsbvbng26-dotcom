@@ -356,7 +356,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 557 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 460 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 465 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
@@ -596,3 +596,5 @@ DOI を持っていません。引用できる識別子の無い石垣です。
 コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
 
 </details>
+
+責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。

@@ -463,3 +463,5 @@ The site implementation in this repository (`index.html` / `index.en.html` / `tr
 Commit authorship, trailers and pull request bodies are all fixed in the history. They cannot be tidied up after the fact to look different from what happened.
 
 </details>
+
+The extent of liability is set out in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md).
