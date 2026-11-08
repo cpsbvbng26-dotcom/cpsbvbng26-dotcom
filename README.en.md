@@ -4,21 +4,15 @@
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-Precisely because of the times we live in, I say it: I am a direct male-line great-great-grandson, on the Y-chromosome line, of a member of the Yokokawa Village Assembly, Kawachi District, Tochigi Prefecture, as recorded in *Tochigi Kensei Taikan* and *Meiji Taishō Kenka Seikai Hishi*.
-
-A provisional “Independent Researcher” for convenience until earning a doctorate, an author of preprints on SSRN and on PhilArchive, and an open-source developer and the operator of [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
+A student at ZEN University, Faculty of Social Informatics. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
 My provisional IQ is 110. It comes from one sitting of the online IQ test at 123test (Culture Fair format) on 2025-12-30, taken at 9 a.m. after a sleepless night. The test is online and unproctored; it is not a clinical intelligence assessment. 110 is the figure 123test reports, and the certificate does not say which scale it uses. The certificate is kept on file, with the name field masked.
 
 My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
 
-Without studying in junior high, I was admitted to both the Eishin course of Sakushin Gakuin High School and Tochigi High School, a boys' school designated as a Super Science High School (SSH), with a deviation score of 67 at the time. It was the school's 120th anniversary year, and the final applicant ratio was 1.25 to 1. Tochigi, a boys' school designated as a Super Science High School (SSH), with a deviation score of 67 at the time, is, for me, a school that does no more than pass muster, and I entered it as a member of the 120th class. My grades there broke that arrogance, and with my pride wounded, I withdrew of my own accord after half a year, cleanly. It was not that I could not do it; it was the system that was wrong. After that I joined the graduates' class at Sundai Preparatory School, Omiya. Among students aiming for the most selective universities, I felt this was not where I belonged, and it was driven home to me that deviation scores mean nothing after all. Had I finished an ordinary high school and gone on to university, that person would no longer be me. Of every other route I can imagine, this is the best one for me. From there, using the system as it is built, I kept the brand of having gone to Tochigi High School, a boys' school designated as a Super Science High School (SSH), with a deviation score of 67 at the time, and the pride of a former member of its 120th class, along with the sense of being among the elite that I had at the time, and advanced from a heretic who had left secondary education to a student in higher education: one who carries the badge of the first cohort of a new university, and who is receiving the systematic training that leads to a degree. And when I reached my ideal place, ZEN University, I understood: I had been fighting for an ideal all along.
+Errors in what I have published are kept, not deleted, in the errata and the [record of corrections](https://github.com/cpsbvbng26-dotcom/self-correction).
 
-Each morning begins with a breakfast set and coffee at a café inside the station; each evening closes with a drink at home.
-
-Since coming of age I have lived on my own, going home only at New Year. I hold net financial assets, and have paid all my tuition and hobby expenses since adulthood myself.
-
-Motto: “Brand precedes form.”
+My family line, the course of my schooling, my daily routine, how I live and my motto are now on the page [Background and daily life](docs/personal.en.md).
 
 <sub>A record of studying computer science and artificial intelligence</sub>
 
@@ -79,7 +73,7 @@ The outlook, stated plainly. Nothing outside those two is in view — working as
 
 What is to remain after death (the gravestone and posthumous name, the degree, ORCID and DOI) is not research, and has been moved to [a separate page](https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.en.html).
 
-**Emblems of standing and turning alone, and of non-reproduction**
+**Aims**
 
 - To work as an independent researcher after a doctorate
 - To earn a living as a sole proprietor, taking on only work chosen for its quality
