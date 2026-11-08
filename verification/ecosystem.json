@@ -1388,5 +1388,45 @@
         ]
       }
     ]
+  },
+  "免責": {
+    "_": "10 リポジトリに共通の免責事項。日本語が正で、英語は訳。免責は、消費者契約法第8条・第8条の3・第10条で無効にならない形に限る。読むことを同意とみなさない（民法第548条の2）。",
+    "file": "DISCLAIMER.md",
+    "fileEn": "DISCLAIMER.en.md",
+    "url": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md",
+    "urlEn": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md",
+    "readmeLine": "責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。",
+    "readmeLineEn": "The extent of liability is set out in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md).",
+    "必須の文": [
+      "読むことや使うことを、何かへの同意とはみなしません。",
+      "運営者は、故意または重大な過失による場合を除き、公開物の利用から生じた損害について責任を負いません。",
+      "日本の消費者契約法が適用される場合は、前の文を適用しません。",
+      "そのときは、軽過失による損害を含め、同法と民法の定めるとおり責任を負います。",
+      "法令が免除や制限を認めない責任を、免除したり制限したりするものではありません。",
+      "論文はどれも査読を受けていない稿です。",
+      "学術上・法律上・医学上・財務上その他の専門的な助言ではありません。",
+      "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。"
+    ],
+    "必須の文 英": [
+      "Reading or using these works is not taken as agreement to anything.",
+      "Except for intent or gross negligence, the operator is not liable for loss that arises from using these works.",
+      "Where Japan's Consumer Contract Act applies, the previous sentence does not apply.",
+      "Nothing here excludes or limits a liability that the law does not allow to be excluded or limited."
+    ],
+    "無効になりうる言い回し": [
+      "一切(の)?責任を負(い|わ)",
+      "責任を一切負(い|わ)",
+      "いかなる(損害|責任)[^。]{0,20}責任を負(い|わ)",
+      "責任を負いかねます",
+      "使うことは、この規約を受け入れる",
+      "any liability whatsoever",
+      "shall not be liable for any",
+      "not be liable for any (damages|loss)",
+      "means accepting (these terms|them)"
+    ],
+    "許すメールアドレス": [
+      "noreply@anthropic.com",
+      "you@example.com"
+    ]
   }
 }
