@@ -2761,10 +2761,16 @@ section('10.59 読み取りが通った日の記録');
   {
     let keys = null;
     try { keys = Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'))); } catch (e) { keys = null; }
-    ok('散文の通り、リポジトリの根の vercel.json は安全のヘッダーだけを持つ（2026-09-21 には無かった）',
-       keys !== null && keys.join() === 'headers'
+    /* 2026-11-08 に、main 以外の枝を配信しない決まりを足した。転送と書き換えが混じれば落とすのは同じ。 */
+    let git = null;
+    try { git = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8')).git; } catch (e) { git = null; }
+    ok('散文の通り、リポジトリの根の vercel.json は安全のヘッダーと main だけを配信する決まりを持つ（2026-09-21 には無かった）',
+       keys !== null && keys.join() === 'headers,git'
+       && JSON.stringify(git) === JSON.stringify({ deploymentEnabled: { '**': false, main: true } })
        && 節.indexOf('リポジトリの根に `vercel.json` がありません') >= 0
-       && 節.indexOf('中身は安全のヘッダーだけで、転送も書き換えも含みません。') >= 0);
+       && 節.indexOf('置いたときの中身は安全のヘッダーだけで、転送も書き換えも含みませんでした。') >= 0
+       && 節.indexOf('2026-11-08 に、`main` 以外の枝を配信しない決まりを足しました。') >= 0
+       && 節.indexOf('今も転送と書き換えは含みません。') >= 0);
   }
 }
 
