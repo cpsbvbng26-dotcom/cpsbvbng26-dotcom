@@ -1573,6 +1573,14 @@ console.log('\n7.7 受けた勧誘');
     check('SSRN 版の篇数が、表から数え直したものと合う',
       n > 0 && n < 漢.length && m !== null && m[1] === 漢[n],
       (m ? '名乗り ' + m[1] : '名乗りが無い') + ' 篇 / 表 ' + n + ' 篇');
+    /* CORE に拾われた SSRN の篇も、散文に数を書いた。表の行から数え直し、どの DOI も DOI の索引にあることを確かめる。 */
+    const rows = [...C.matchAll(/\| `(10\.2139\/ssrn\.\d+)` \| `https:\/\/core\.ac\.uk\/works\/\d+` \|/g)].map((x) => x[1]);
+    const core = new Set(rows).size;
+    const D = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md')) || '';
+    const all = /SSRN に置いた(.)篇がすべて CORE に拾われています/.exec(C), more = /SSRN のほかの(.)篇も CORE で見つけました/.exec(C);
+    check('CORE に拾われた篇数が表から数え直したものと合い、どの DOI も DOI の索引にある',
+      core > 1 && core === rows.length && all !== null && all[1] === 漢[core] && more !== null && more[1] === 漢[core - 1] && rows.every((d) => D.indexOf(d) >= 0),
+      '表 ' + core + ' 篇 / 名乗り ' + (all ? all[1] : '無い') + '・' + (more ? more[1] : '無い'));
   }
 
   /* **相手を調べたなら、調べた順序と等級を書く。**規則が先で調査が後である。
