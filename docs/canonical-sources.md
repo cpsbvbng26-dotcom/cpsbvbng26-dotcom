@@ -395,7 +395,20 @@ CORE は、SSRN に置いた The Nobility and Exemplarity of the Celibate Indivi
 CORE は、Crossref に登録された DOI の書誌を集めてきます。SSRN の DOI が
 Crossref に登録されていれば、中身の審査を経ずに載ります。
 置いた場所が増えたのではありません。索引に拾われただけです。
-業績の枠は動きません。SSRN のほかの論文が拾われているかは、確かめていません。
+業績の枠は動きません。
+
+2026-11-09 に、利用者が SSRN のほかの四篇も CORE で見つけました。CORE の検索で、SSRN の DOI を引いた結果です。
+これで、SSRN に置いた五篇がすべて CORE に拾われています。番号は利用者から受け取りました。頁は開いていません。
+
+| 論文 | SSRN の DOI | CORE の記録 |
+| --- | --- | --- |
+| The Nobility and Exemplarity of the Celibate Individual | `10.2139/ssrn.7358779` | `https://core.ac.uk/works/403307066` |
+| Manifesto of Imperial Selfhood | `10.2139/ssrn.7358818` | `https://core.ac.uk/works/403307068` |
+| The Trinity-Infinity Framework, Series II（改訂版） | `10.2139/ssrn.7446961` | `https://core.ac.uk/works/419090748` |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.2139/ssrn.7449338` | `https://core.ac.uk/works/419778611` |
+| Machine-mediated Rediscovery | `10.2139/ssrn.7537983` | `https://core.ac.uk/works/427072165` |
+
+四篇の頁の表示（出どころ・全文の有無）は、まだ見ていません。
 
 ---
 
