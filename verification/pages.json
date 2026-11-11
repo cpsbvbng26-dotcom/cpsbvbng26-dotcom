@@ -49,6 +49,11 @@
       "priority": "0.4"
     },
     {
+      "file": "card.html",
+      "loc": "card.html",
+      "priority": "0.3"
+    },
+    {
       "file": "catalog.html",
       "loc": "catalog.html",
       "priority": "0.8"

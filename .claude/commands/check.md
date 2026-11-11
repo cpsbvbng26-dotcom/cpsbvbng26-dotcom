@@ -5,8 +5,8 @@ description: 10 リポジトリの検査を全部回し、横断のずれも見�
 次の二つを、この順で走らせてください。
 
 ```
-node verification/check_all.js        # 各リポジトリの検査を全部（34 本）
-node verification/check_ecosystem.js  # 10 リポジトリ横断のずれ（502 項目）
+node verification/check_all.js        # 各リポジトリの検査を全部（41 本）
+node verification/check_ecosystem.js  # 10 リポジトリ横断のずれ（517 項目）
 ```
 
 どちらも兄弟ディレクトリに 10 のリポジトリが並んでいることを前提にします。

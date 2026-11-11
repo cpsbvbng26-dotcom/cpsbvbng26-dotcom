@@ -253,6 +253,23 @@ async function walk(pg) {
       await c2.close();
     }
 
+    /* **文字を 200% にしても、横へ流れない。**ブラウザの文字だけの拡大を、根の文字の大きさを
+     * 200% にして写す（頁は rem で組んであるので、本文がそのまま倍になる）。幅は 1280px と 1024px
+     * の二つで測る（2026-11-11）。頁ごとの拡大は、幅を狭めたのと同じなので上の幅の並びが測っている。
+     * 640px に文字 200% を重ねると、文字だけの拡大で 400% にあたる。そこは基準の外である。 */
+    for (const w of [1280, 1024]) {
+      const c4 = await browser.newContext({ viewport: { width: w, height: 900 } });
+      const p4 = await c4.newPage();
+      await p4.goto('http://127.0.0.1:' + port + BASE + '/' + page, { waitUntil: 'networkidle' });
+      const z = await p4.evaluate(() => {
+        document.documentElement.style.fontSize = '200%';
+        const de = document.documentElement;
+        return de.scrollWidth - de.clientWidth;
+      });
+      ok('文字 200%・' + w + 'px で横へ流れない', z <= 1, '頁 ' + z);
+      await c4.close();
+    }
+
     /* **画面に出ているかは、辿れるかとは別に測る。**
      * 現れる仕掛けは「要素の何割が見えたら出すか」で判定していた。
      * **画面より高い塊は、その割合に永久に届かない。**自己紹介が 8819px まで
@@ -312,7 +329,7 @@ async function walk(pg) {
    * expected は、この二件を足したあとの総数である。 */
   section('名乗っている数');
   {
-    const expected = pass + 4;   /* 1 頁あたり 8 + WIDTHS.length 件、最後にこの四件 */
+    const expected = pass + 4;   /* 1 頁あたり 8 + WIDTHS.length + 2（文字 200%）件、最後にこの四件 */
     [['README.md', /check_keyboard\.js\s+# Tab で辿って測る (\d+) 項目/],
      ['README.en.md', /check_keyboard\.js\s+# Tab traversal, (\d+) checks/]].forEach(([f, re]) => {
       const m = re.exec(fs.readFileSync(path.join(ROOT, f), 'utf8'));

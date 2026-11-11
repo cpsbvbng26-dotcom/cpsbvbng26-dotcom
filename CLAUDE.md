@@ -198,6 +198,9 @@ node verification/check_trinity.js     # 作用素のページの数値
 python3 verification/check_pdf_shape.py  # 三篇の PDF の形（要: pypdf・兄弟ディレクトリ）
 node verification/check_ecosystem.js   # 10 リポジトリ横断（要: 兄弟ディレクトリ）
 node verification/check_all.js         # 10 リポジトリの検査を全部回す
+node verification/check_secrets.js     # 秘密情報と個人の連絡先（--break で壊して確かめる）
+node verification/uptime.js            # 配っているサイトが応答しているか（要: 外への接続。CI が一日に一度）
+node verification/indexnow.js --dry-run  # IndexNow に送る頁（送るのは CI。鍵は根の <鍵>.txt）
 node verification/check_datacite.js    # 目録の DOI の資源の種類を DataCite と突き合わせる（要: api.datacite.org。CI では別の仕事）
 node verification/linkcheck.js         # 外部リンクの切れを数える（要: 外への接続。月に一度 CI が回し、issue を一つ立てるか直す）
 ```
@@ -210,6 +213,7 @@ node verification/linkcheck.js         # 外部リンクの切れを数える（
 | `notes/*.html` | 同じく `researcher-profile` の `notes.json` / `notes.en.json`。哲学の三篇の要点の頁は `theory-<slug>.json` / `theory-<slug>.en.json`。Sophaxis の頁は `sophaxis.json` / `sophaxis.en.json` |
 | `README.md` / `README.en.md` の学歴と修得した科目（`<!-- 経歴:ここから -->` から `<!-- 経歴:ここまで -->` まで） | 科目の源は `researcher-profile` の `courses.json`。そこに一行足してページを作り直し、`node verification/update_readme_courses.js` |
 | `catalog.html` / `catalog.en.html` / `tools.html` / `tools.en.html` / `catalog.json` / `catalog.bib` | `researcher-profile` の `catalog.json` を直して `CATALOG_OUT=<ここ> node build_catalog.js`。そのあと `update_csp.js` と `update_sitemap.js` |
+| `card.html`（印刷向けの一頁） | `researcher-profile` の `card.json` を直して生成し、写す。頁の下の欄（連絡・免責・最終更新）は `footer.json` が持つ |
 | `sitemap.xml` | `node verification/update_sitemap.js` |
 | `docs/library.bib` | `docs/library.toml`（と兄弟の `autonomy-and-self-cultivation` の書棚）を直して `python3 verification/build_library.py` |
 | CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
@@ -227,3 +231,7 @@ node verification/linkcheck.js         # 外部リンクの切れを数える（
 
 HAL の ID は、モデレーションを通って公開されたものだけを書く。審査待ちの投稿の番号は書かない。
 2026-11-06 に、それまでの 4 件を著者が削除した。削除した ID は `docs/doi-index.md` の「削除した所在」の表にだけ残す。
+
+運営の決まり（時間の上限は週 20 時間。上限を超えた週は新しい作業を始めず、保守と修正は続ける）は `docs/governance.md` にある。
+サイトをまたぐ決まりの一覧は `verification/sites.json`、キーワードの語彙は `docs/keywords.json`、
+10 リポジトリに一字一句同じに置く `SECURITY.md` と `.github/ISSUE_TEMPLATE/error-report.yml` の正本はここにある。

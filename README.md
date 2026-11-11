@@ -4,17 +4,21 @@
 
 種類：プロジェクト　状態：運営中
 
+#### 三行の要約
+
+1. 哲学とゲーム理論を、言語モデルの助けを借りて独学している一学部生の入口です。
+2. 公開したものは査読前のプレプリントと道具で、誤りは消さずに正誤表と訂正の記録に残しています。
+3. 各リポジトリの検査と、それらをまたぐ横断の検査が、公開物の数と文を機械で突き合わせています。
+
 ### 根本卓哉（2001.01.18-）とは？
 
 独学で、言語モデル（LLM）の助けを借りながら、哲学とゲーム理論を研究しています。博士号を取得したあとは、実存哲学を専門にする計画です。ZEN大学 知能情報社会学部 知能情報社会学科の学生です。2024 年 10 月頃から、個人事業主として働いています。開業届は出していません。時間が空き次第、出す予定です。SSRN と PhilArchive に査読前の論文を置き、OSS を公開し、[ROAR](https://roar.eprints.org/27422/)（サウサンプトン大学のオープンアクセス・リポジトリ登録簿）掲載の [Sophaxis](https://sophaxis.vercel.app/) を運営しています。Claude 愛好家であり、Claude Code 愛好家です。
-
-暫定の IQ は 110 です。123test のオンラインの IQ テスト（Culture Fair 形式）を、2025-12-30 に一度だけ受けた結果です。徹夜明けの朝 9 時に受けました。監督のいないオンラインのテストで、臨床の知能検査ではありません。110 は 123test の表示のままで、どの尺度の数かは証明書に書いてありません。証明書は手元に保存してあり、名前の欄は伏せています。
 
 主な活動の場は、GitHub・SSRN・PhilArchive・Figshare・OSF です。aiXiv.science では、言語モデル五体による公式査読を経た論文が 1 篇あります。学術誌・学会の査読ではありません。
 
 公開したものの誤りは、消さずに正誤表と[訂正の記録](https://github.com/cpsbvbng26-dotcom/self-correction)に残しています。
 
-家系、学歴の経緯、日課、暮らし向き、モットーは、[来歴と暮らし](docs/personal.md)の頁に移しました。
+家系、学歴の経緯、日課、暮らし向き、モットー、暫定の IQ は、[来歴と暮らし](docs/personal.md)の頁に移しました。
 
 <sub>コンピュータサイエンス・人工知能の学習記録</sub>
 
@@ -43,7 +47,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
 
-ここにあるものの根幹は、独学と、言語モデルを使って進めたことです。指導教員も共同研究者もいません。「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。ただし、大学の単位は独学ではありません。授業を受け、課題を出し、評価を受けて得たものです。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にあります —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことです。
+ここにあるものの根幹は、独学と、言語モデルを使って進めたことです。指導教員も共同研究者もいません。肩書きは名乗っていません。一学部生です。ただし、大学の単位は独学ではありません。授業を受け、課題を出し、評価を受けて得たものです。下の表に並んでいるものがそれで、独学と言語モデルの話は、その外にあります —— 哲学の三篇と、Trinity-Infinity の三篇と、ここに置いた道具と記録のことです。
 
 この場所そのものは、Anthropic の Claude を使って作っています。頁の生成、検査の道具、記録 —— git の履歴に Co-Authored-By: Claude Opus 5 が並んでいます。ただし、哲学三篇の英訳に何を使ったかは特定できません —— 記録が残っておらず、著者の記憶でも定まりません（三篇の正誤表 E5）。Trinity-Infinity の側は特定できます —— 2025年の初稿は言語モデル（ChatGPT / OpenAI）が生成し、2026年の改訂は Claude Code（Anthropic）で書いています。哲学三篇の改訂と起草に Claude（Anthropic）を使ったことは、三篇それぞれの開示文にあります。道具の名前を一つに絞れないのは、哲学三篇の英訳だけです。
 
@@ -51,21 +55,21 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 そこから導ける到達点は、はっきりしています。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました。二篇について、公開前に人が見て、落とさなかったということです。そして、三篇目は落とされました。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれています。この門は、実際に落とします。どの分野に置いたかも決まっています —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）です。海軍公報の史料ノートも SSRN の編集スタッフに受け付けられ、歴史研究網（History Research Network）の東アジア史（East Asian History）に置かれています（SSRN 10.2139/ssrn.7449338）。科学哲学の論文 Machine-mediated Rediscovery も、SSRN の編集スタッフに受け付けられています（SSRN 10.2139/ssrn.7537983）。SSRN では区分がそのまま eJournal になっています。弾かれた一篇も同じ大陸哲学に出しています。受け付けられていないので、どの eJournal にも載っていません。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われました。却下権は留保されていますが、その二篇には行使されませんでした。数学の側でも同じことが起きています。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということです。Series I の改訂版と Series III は、出して落とされました。2026-09-18 に SSRN から二通が届いています。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていません。ここで確かなことが一つあります —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはなりません。落ちた二篇と通った一篇の違いは、まだ分かっていません。つまり、この門は同じ系列の中でも選り分けます。出した八篇のうち、受け付けられたのは五篇、落とされたのは三篇です。
 
-そこから導けないものも、はっきりしています。論証が正しいことは、どちらの門も見ていません。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていません。Series II も同じで、SSRN が見たのは主題と体裁です。落とされたことも、通ったことの裏返しでしかありません。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではありません。場の側がそう書いています —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べています。断片主義については理由が示されていません。数学の二篇には定型の文面が届きましたが、要件と範囲のどちらなのかは示されていません。こちらも確かめていません。明文は上に、場の側の言葉のまま置いてあります。
+そこから導けないものも、はっきりしています。論証が正しいことは、どちらの門も見ていません。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていません。Series II も同じで、SSRN が見たのは主題と体裁です。落とされたことも、通ったことの裏返しでしかありません。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではありません。場の側がそう書いています —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べています。断章論については理由が示されていません。数学の二篇には定型の文面が届きましたが、要件と範囲のどちらなのかは示されていません。こちらも確かめていません。明文は上に、場の側の言葉のまま置いてあります。
 
 数学の側について、一つ確定したことがあります。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型でした —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型としてDeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例で、2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われています。脚注ではなく、その分野の二本柱の一本でした。そして Series I は、自分の第1節で consensus dynamics と名指ししたうえで、その分野を一件も引いていません（ERRATA の E8、重大度・高）。ただし寸法は正確に書きます。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪です。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としています。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項です。
 
-その先で、一つ足したものがあります。2026-10-04 に、同じ作用素が繰り返しゲームの均衡を決めることを、ノートに書きました（trinity-operator の games）。協力が巡回する道の継続価値は、この作用素の不動点になります。式そのものは教科書の公式です。そこから閾値を証明しました。三人で裏切り役を回す道は、割引因子が 1/φ 以上のときに限って均衡になります。Series II の例 (2,4,2) が、どの割引因子でも持続しないことも示しました。ただし、命題は文献と照合していません。既知の演習である可能性があり、照合するまで新しい結果とは数えません。乱数を使わないときに持続できる利得の集合が穴だらけになる、という予想も置きました。名前は黄金比の窓の予想（Golden-window conjecture）で、窓は割引因子の 1/φ から 2/3 までを指します。人名ではなく、中身を表す名です。予想と、窓の外で証明したことは、[独立した頁](https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html)にまとめました。証明は無く、根拠は数値だけです。既知の模型と、証明した命題と、予想を、分けて書いています。
+その先で、一つ足したものがあります。これは学部一年次の成果（Trinity-Infinity）の続きです。2026-10-04 に、同じ作用素が繰り返しゲームの均衡を決めることを、ノートに書きました（trinity-operator の games）。協力が巡回する道の継続価値は、この作用素の不動点になります。式そのものは教科書の公式です。そこから閾値を証明しました。三人で裏切り役を回す道は、割引因子が 1/φ 以上のときに限って均衡になります。Series II の例 (2,4,2) が、どの割引因子でも持続しないことも示しました。ただし、命題は文献と照合していません。既知の演習である可能性があり、照合するまで新しい結果とは数えません。乱数を使わないときに持続できる利得の集合が穴だらけになる、という予想も置きました。名前は黄金比の窓の予想（Golden-window conjecture）で、窓は割引因子の 1/φ から 2/3 までを指します。人名ではなく、中身を表す名です。予想と、窓の外で証明したことは、[独立した頁](https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html)にまとめました。証明は無く、根拠は数値だけです。既知の模型と、証明した命題と、予想を、分けて書いています。
 
 ここまでのプレプリントは、趣味として書いたものです。どれも査読を受けていません。これは謙遜ではありません。上に並べたことからの帰結です —— 受け付けの門は通りましたが、論証を見た者はいません。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロです。趣味の研究は、学部一年で卒業しました。これからのものは、趣味と呼ばずに済む形で書きます。
 
-edX と東北大学 MOOC の修了証も、学部一年の前半で終えています。七件あります。そして、次の四つは学部一年時の実績です。九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件。Sophaxis と deposit-check は、学部二年次に始めたものです。最初のコミットは 2026-10-30 と 2026-11-02 です。新しい主題は JOSS などの経路で進めると決めてあり、二つとも道具として JOSS に出します。日付そのものは突き合わせていません。修了証に印字されてはいますが、この作業環境から edX にも発行機関にも届きません。在籍の開始日も、ここには書きません。書けば、確かめていない日付を印字することになります。
+edX と東北大学 MOOC の修了証も、学部一年の前半で終えています。七件あります。そして、次の四つは学部一年時の実績です。八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件。「30歳魔法使い」都市伝説の構造分析（2026-10-03 公開）は、学部二年次のものです。独身論の続き（貞潔の話の延長）にあたり、この四つには数えていません。Sophaxis と deposit-check は、学部二年次に始めたものです。最初のコミットは 2026-10-30 と 2026-11-02 です。新しい主題は JOSS などの経路で進めると決めてあり、二つとも道具として JOSS に出します。日付そのものは突き合わせていません。修了証に印字されてはいますが、この作業環境から edX にも発行機関にも届きません。在籍の開始日も、ここには書きません。書けば、確かめていない日付を印字することになります。
 
 出す先も決めてあります。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出しません —— 読む側からも書く側からも金を取らない場です。掲載料・投稿料を取る場には出しません。そして、無償を謳う勧誘にも応じません —— 費用が掛かる時点で、通ったのは選別ではなく支払いです。この規則は、すでに一度使っています。出版社から書籍化の勧誘が届き、返信していません（受けた勧誘）。相手を評価したのではありません —— 実在も実績も査読の有無も確かめていません。決めたのは、自分の側の規則です。
 
 載ったものをどの枠で数えるかも決めてあります。researchmap と HAL の論文の枠に入れるのは、学位論文と、分野の区分で Q1 の誌、分野のダイヤモンド・オープンアクセスの査読誌に載ったものだけです。ほかは全部、ワーキングペーパー・プレプリント・MISC として扱います。その枠に入れる下限は、SSRN・PhilPapers・arXiv のどれかに載っていることです。Zenodo にしか無いものは、どちらの枠にも入れません。Zenodo は、それらのスクリーニングを通らなかったものを、研究の透明性のために置いておく場として扱います。引用に使う正の DOI が Zenodo であることは変わりません。SSRN に載ったものも、論文の枠の外にあります。いま論文の枠に入るものは一つもありません。出す先の決めは上の段のまま変えません。この段が決めるのは、載ったものの数え方だけです。
 
-「目標」の二つとは別に、定期的な目標があります。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことです。一度通れば終わりにはしません。しばらくは、これを繰り返す目標として置きます。掲載料も投稿料も取らない場です —— 決めごと 14 が許す側に当たります。通れば Crossref の DOI が付きます。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になります。明文の条件は、場の言葉のまま次のとおりです。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門があります。一つでも欠ければ、査読に入らずに返されます（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りません。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっています。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものです。道具の側は、いちばん早いもので 2026-09-05 です。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になります。出すうちの errata-check は、最初のコミットが 2026-09-07、最短が 2027-03-08 です。作業が数週間に集中している点は、待つだけでは埋まりません。使いながら手を入れ続けた跡が要ります。出すのはその先です。この場は言語モデルの使用の開示も求めています（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせます。決めごと 8 が、同じことを先に決めています。出すのは errata-check・Sophaxis・deposit-check の三本です。2026-11-01 に Sophaxis を、2026-11-02 に deposit-check を足しました。Sophaxis は、哲学と数学のためのオーバーレイ型のプレプリントサーバーで、ここの十の外にあります。最初のコミットは 2026-10-30、最短は 2027-05-01 です。プレプリントサーバーが JOSS の範囲に入るかどうかは、JOSS が決めます。deposit-check は、研究者の業績の DOI の登録情報を ORCID の記録と突き合わせて点検する道具で、これも十の外にあります。最初のコミットは 2026-11-02、最短は 2027-05-03 です。ほかは、論文・史料ノート・覚書か、JOSS の範囲に届かないと見ている道具です。どれがどの門に届いていないかは、十の状態に一つずつ並べてあります。明文は openjournals/joss の docs/ から写しました。リンクと強調の記法だけ外してあります。
+「目標」の二つとは別に、定期的な目標があります。Journal of Open Source Software（JOSS。ISSN 2475-9066）に通すことです。一度通れば終わりにはしません。しばらくは、これを繰り返す目標として置きます。掲載料も投稿料も取らない場です —— 決めごと 14 が許す側に当たります。通れば Crossref の DOI が付きます。接頭辞は 10.21105 で、10.21105/joss.03021 のような形になります。明文の条件は、場の言葉のまま次のとおりです。The software must be open source as per the OSI definition。there should be an actual license file present in the repository not just a reference to the license。The software must be hosted at a location where users can browse the source code files, open issues, and propose code changes without manual approval of (or payment for) accounts。The software must have an obvious research application。You must be a major contributor to the software you are submitting。feature-complete (i.e., no half-baked solutions)。査読の前に四つの門があります。一つでも欠ければ、査読に入らずに返されます（will receive a desk rejection）。一つ目、公開の期間。The repository must have been public for more than six months prior to submission, with active development spanning that period。二つ目、研究に使われている証拠。There must be evidence that the software is being used for research。そして Aspirational statements about future use are not sufficient —— これから使われるという言明では足りません。三つ目、開かれた開発の実践。単独の著者なら、公開された履歴・タグ付きの版または変更履歴・試験と CI・文書・CONTRIBUTING・支援の方針が、複数そろっていること。四つ目、反復した開発。The development history must show ongoing iteration, not a single burst of commits。届く日付は決まっています。ここの十で最も早い最初のコミットは 2026-06-12 で、これはこの場所そのものです。道具の側は、いちばん早いもので 2026-09-05 です。六か月の条件から逆算すると、最短で 2026-12-13、道具の側は 2027-03-06 になります。出すうちの errata-check は、最初のコミットが 2026-09-07、最短が 2027-03-08 です。作業が数週間に集中している点は、待つだけでは埋まりません。使いながら手を入れ続けた跡が要ります。出すのはその先です。この場は言語モデルの使用の開示も求めています（AI usage disclosure）—— 道具と版、使った場所、そして人が検証したことを書かせます。決めごと 8 が、同じことを先に決めています。出すのは errata-check・Sophaxis・deposit-check の三本です。errata-check は、Sophaxis のコードと一緒に出します。出すのは 2027 年 5 月以降です。2026-11-01 に Sophaxis を、2026-11-02 に deposit-check を足しました。Sophaxis は、哲学と数学のためのオーバーレイ型のプレプリントサーバーで、ここの十の外にあります。最初のコミットは 2026-10-30、最短は 2027-05-01 です。プレプリントサーバーが JOSS の範囲に入るかどうかは、JOSS が決めます。deposit-check は、研究者の業績の DOI の登録情報を ORCID の記録と突き合わせて点検する道具で、これも十の外にあります。最初のコミットは 2026-11-02、最短は 2027-05-03 です。ほかは、論文・史料ノート・覚書か、JOSS の範囲に届かないと見ている道具です。どれがどの門に届いていないかは、十の状態に一つずつ並べてあります。明文は openjournals/joss の docs/ から写しました。リンクと強調の記法だけ外してあります。
 
 そして、論文の側も出します。哲学三篇も Trinity-Infinity の三篇も、ダイヤモンド・オープンアクセスの査読誌に出します。2026-09-15 に決めを変えました。それまでは出さないと決めていました。理由は費用ではなく、言語モデルの使用を完全には開示できないことでした。哲学三篇は、翻訳に用いた道具を特定できません —— 記録が残っておらず、著者の記憶でも定まりません（ERRATA の E5）。変えた理由は一点です。「何を使ったか再構成できない」と書くことは、分かっていることの全部を書くことです。不完全なのは開示ではなく、開示できる材料のほうです。受け付けるかどうかは場の判断であって、こちらで先回りして落とすものではありません。COPE に沿う場の定めは守ります —— 言語モデルを著作者に並べません。使用は開示します。プレプリントは動かしません。Zenodo と PhilArchive と SSRN に置いたままにします。取り下げるのではありません。査読誌に出すこととは別です。道具の側は、git の履歴が commit ごとに開示を裏づけます。丸を付けない欄が一つあります —— 「文章は実質的に著者自身のものである」という申告には、丸を付けません。開示を求める場と、著者自身の筆であることを申告させる場は、別です（十の状態）。
 
@@ -77,8 +81,10 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 **目標**
 
-- 博士号を取得したのち、独立研究者として活動すること
-- 個人事業主として、質を重視した案件のみを受注して生計を立てること
+| 目標 | 達成とする時 | 状態 |
+| --- | --- | --- |
+| 博士号を取得したのち、独立研究者として活動すること | 博士号が授与された時 | 未達成 |
+| 個人事業主として、質を重視した案件のみを受注して生計を立てること | その仕事だけで生計が立った時 | 未達成 |
 
 ### 経歴
 
@@ -310,15 +316,15 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1693 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1739 項目の検査を通します。 依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 685 項目
-node verification/check_site.js      # サイトの構造 918 項目
+node verification/check_contrast.js  # 配色の読みやすさ 702 項目
+node verification/check_site.js      # サイトの構造 947 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -339,21 +345,21 @@ python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要:
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 619 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 718 項目（要: Chromium）
 ```
 
-41 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+42 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見ます。道具が無ければ 1 を返して止まる。
 走らなかった検査は、通った検査ではありません。
 
 **リポジトリをまたぐずれは、これだけでは捕まりません**。各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、が起きる（実際に起きた）。そこで 10 を並べて隙間だけを見る検査を別に置いています。
 
 ```
-node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
+node verification/check_all.js        # 10 リポジトリの検査を全部（41 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 502 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 517 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 78 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査します。**検査の道具は、通ることでは信用できない** ——
@@ -362,6 +368,8 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
 焦点の枠を消す、見出しの階層を飛ばす、外部プロフィールの並びを入れ替える、など。
+このほかに、`check_text.js` の表（誤変換・使わないと決めた語・活用の壊れ）を一行ずつ読み、その行が止めるはずの形を書き足して、落ちるかを自動で確かめます。
+表に行を足せば、壊す先も自動で増えます。
 落ちなければ、その検査は何も見ていません。
 
 **`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 82」「登録簿 97 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 271 = 109 + 103 + 59）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
@@ -588,9 +596,36 @@ DOI を持っていません。引用できる識別子の無い石垣です。
 
 </details>
 
+<details>
+<summary>運営の記録 —— 決まり・続けられなくなったとき・障害・読み方</summary>
+
+| 頁 | 中身 |
+| --- | --- |
+| [運営の決まり](docs/governance.md) | 時間の上限（週 20 時間）、増やさないもの、消すか凍結するかの点検、新しい案の基準、査読を受けた成果の置き場 |
+| [続けられなくなったとき](docs/continuity.md) | 凍結・告知・保存の順、写しの場所、配信先の切り替え、URL の方針、頼っている外のサービス |
+| [障害の記録](docs/incidents.md) | 運営の側で起きたことと、どう直したか |
+| [この記録の読み方](docs/reading-guide.md) | 何が正で、どこに何があるか |
+| [サイトの決まり](docs/site-rules.md) | 文字の大きさ・色・暗い側・代替テキスト・頁の重さ・切り替え・下の欄 |
+| [スクリーンリーダーの記録](docs/screen-reader.md) | 読み上げて確かめた結果の様式 |
+| [正誤表の書式](docs/errata-format.md) | 番号・日付・重さ・見つけた人 |
+| [経路ごとの、出さない理由](docs/routes.md) | 断られた先と、出さないと決めた先 |
+| [ダイヤモンド・オープンアクセスの場](docs/diamond-oa.md) | 取り寄せて確かめた場だけの一覧 |
+| [一緒に進める相手を探すときの一頁](docs/collaboration.md) | できることと、求めていること |
+| [キーワードの語彙](docs/keywords.json) | 全作品のキーワードに使う語 |
+| [安全の問題の知らせ方](SECURITY.md) | 非公開の報告の入口 |
+
+</details>
+
 ✴︎Tools & Disclosure✴︎
 
 このリポジトリは [Claude Code](https://claude.com/claude-code) を使って書いています。監査には [Grok](https://grok.com) を使いました。
+
+言語モデルの使い方を、全リポジトリで同じ形の表にしています。
+
+| 道具 | 使ったところ | 確かめた人 |
+| --- | --- | --- |
+| Claude Code（Anthropic） | サイトの実装、検査のスクリプト、記録と README の文 | 著者 |
+| Grok（xAI） | 監査、公開する文の言い回しの候補 | 著者 |
 
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge)](https://claude.com/claude-code)
 [![Assisted by Grok](https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge)](https://grok.com)

@@ -20,7 +20,7 @@ abstract: >-
   外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出さない。
   これは方針ではなく、ハッシュで許可した Content-Security-Policy がブラウザに強制させている。
 keywords:
-  - research profile
+  - researcher profile
   - preprint
   - spectral radius
   - reproducibility

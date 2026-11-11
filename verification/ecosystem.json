@@ -518,6 +518,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "and (\\d+) that recompute every number printed"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "CITATION.cff",
+          "regex": "紙面の数値を計算し直す (\\d+) 項目"
         }
       ]
     },
@@ -716,6 +721,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) checks that reimplement the theorems"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "CITATION.cff",
+          "regex": "定理を独立に実装し直す (\\d+) 項目"
         }
       ]
     },
@@ -1566,7 +1576,15 @@
         "researcher-profile"
       ],
       "文の一節": "errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。",
-      "文の一節 英": "errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License."
+      "文の一節 英": "errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License.",
+      "中の LICENSE で CC BY 4.0": {
+        "trinity-operator": [
+          "lessons",
+          "games"
+        ]
+      },
+      "中の一節": "trinity-operator の lessons/ と games/ は、その中の LICENSE により CC BY 4.0 です。",
+      "中の一節 英": "In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each."
     },
     "許すメールアドレス": [
       "noreply@anthropic.com",

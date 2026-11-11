@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ocKgWZMjPUurFoj0GeuH/Kd2l4E5ieKZGq37rqm9J7o=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-ocKgWZMjPUurFoj0GeuH/Kd2l4E5ieKZGq37rqm9J7o=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-GJHuzKMidugs2+JV1rGM7vjHCisiSMcVwctSVRW7+dk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Sophaxis | 根本卓哉</title>
 <meta name="description" content="根本卓哉が運営する、哲学と数学のオーバーレイ型プレプリントサーバー Sophaxis の頁。OSF のプロジェクトと DOI、載っている記録、これからの予定。">
 <meta name="robots" content="index, follow">
@@ -792,6 +792,8 @@ footer::before {
 .cert-group .where a { color: var(--faint); }
 .cert-group .where a { text-decoration: underline; text-underline-offset: .15em; }
 .cert-group .where a:hover { color: var(--accent); }
+.foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
+.foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
 </style>
 </head>
 <body>
@@ -881,6 +883,7 @@ footer::before {
 <footer>
   <div class="wrap foot">
     <span>© 2026 根本卓哉</span>
+    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">連絡（GitHub の issue）</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a> · <span class="updated">最終更新 <time datetime="2026-11-11">2026-11-11</time></span></span>
     <span>Built with <a href="https://github.com/cpsbvbng26-dotcom/researcher-profile">researcher-profile</a></span>
   </div>
 </footer>

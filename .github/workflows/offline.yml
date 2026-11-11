@@ -1,0 +1,38 @@
+name: オフラインで読める一つのファイル
+
+# 手で起こすときだけ動く。配っている頁（verification/pages.json）と、頁が読む図とスクリプトを
+# 一つの ZIP にまとめ、Actions の成果物として残す。Release に添えるのは利用者の手である。
+# 頁は外へ要求を出さないので、展開して index.html を開けばそのまま読める。
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zip:
+    name: サイトを一つの ZIP にする
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: まとめる
+        run: |
+          mkdir -p out/site
+          python3 - <<'PY'
+          import json, os, shutil
+          pages = [p['file'] for p in json.load(open('verification/pages.json'))['pages']]
+          extra = ['favicon.svg', 'favicon.ico', 'favicon-192.png', 'apple-touch-icon.png', 'og.png',
+                   'portrait.jpg', 'theme.js', 'trinity.js', 'robots.txt', 'sitemap.xml', 'catalog.json', 'catalog.bib',
+                   'LICENSE', 'LICENSE-CODE', 'DISCLAIMER.md', 'DISCLAIMER.en.md']
+          for f in pages + extra:
+              if os.path.exists(f):
+                  os.makedirs(os.path.join('out/site', os.path.dirname(f)), exist_ok=True)
+                  shutil.copy2(f, os.path.join('out/site', f))
+          print(len(pages), 'pages')
+          PY
+          cd out && zip -qr ../cpsbvbng26-dotcom-site.zip site
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: cpsbvbng26-dotcom-site
+          path: cpsbvbng26-dotcom-site.zip

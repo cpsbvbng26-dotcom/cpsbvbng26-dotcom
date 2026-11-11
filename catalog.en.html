@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-i+BlxmJUCm6iV+YOTmc7YJdzMTTDgDmuOlHvNusKU6g=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-lgkPkLkFrF7fHCWvdz1AP/xZ6hAg9+dybSD2kEJh1BU=' 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6Fuw+aJFxApfisgVztBOtLe82skZpY0h0dw+vsWoSFg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-lgkPkLkFrF7fHCWvdz1AP/xZ6hAg9+dybSD2kEJh1BU=' 'sha256-GJHuzKMidugs2+JV1rGM7vjHCisiSMcVwctSVRW7+dk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Catalogue of works | Takuya Nemoto</title>
 <meta name="description" content="The works of Takuya Nemoto by type, in one table: title, type, status, DOI, canonical location, licence, Zenodo resource type and the period in which it was begun.">
 <meta name="robots" content="index, follow">
@@ -40,6 +40,10 @@
     {
       "@type": "Person",
       "@id": "https://cpsbvbng26-dotcom.vercel.app/#person",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "ZEN University"
+      },
       "name": "Takuya Nemoto",
       "alternateName": "根本卓哉",
       "identifier": "https://orcid.org/0009-0000-1406-0547",
@@ -985,6 +989,8 @@ footer::before {
 .cert-group .where a { color: var(--faint); }
 .cert-group .where a { text-decoration: underline; text-underline-offset: .15em; }
 .cert-group .where a:hover { color: var(--accent); }
+.foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
+.foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
 </style>
 </head>
 <body>
@@ -1050,7 +1056,7 @@ footer::before {
         <tr id="trinity-infinity-series-i"><td><b>The Trinity-Infinity Framework, Series I: A Conceptual Model with Illustrative Applications in Game Theory, Mathematical Logic, and Mechanical Engineering</b><br><span>A conceptual model: a triadic recursion operator and its convergence, with illustrative links to game theory. The operator turned out to be a special case of the Friedkin–Johnsen model</span></td><td>Thought experiment and conjecture</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058624</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
         <tr id="trinity-infinity-series-ii"><td><b>The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications</b><br><span>Shows that the fixed point stays unique when the blend varies by coordinate. The example (2,4,2) in §4 was later shown never to be sustainable</span></td><td>Thought experiment and conjecture</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22058777" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058777</code></a><br>also <a href="https://doi.org/10.2139/ssrn.7446961" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7446961</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058777" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
         <tr id="trinity-infinity-series-iii"><td><b>The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospective</b><br><span>Shows the convergence result never needed three elements, and looks back on what the series established and withdrew</span></td><td>Thought experiment and conjecture</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22058964" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058964</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058964" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
-        <tr id="repeated-games-cyclic-operator"><td><b>Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture</b><br><span>Reads a repeated game through the same operator, proves a golden-ratio threshold and states the golden-window conjecture. The maintained version is the games note in trinity-operator</span></td><td>Thought experiment and conjecture</td><td>Frozen</td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a></td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener">Figshare</a></td><td>— (not in a repository)</td><td>Preprint (Figshare)</td><td>First undergraduate year</td></tr>
+        <tr id="repeated-games-cyclic-operator"><td><b>Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture</b><br><span>Reads a repeated game through the same operator, proves a golden-ratio threshold and states the golden-window conjecture. The maintained version is the games note in trinity-operator</span></td><td>Thought experiment and conjecture</td><td>Frozen</td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a></td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener">Figshare</a></td><td>— (not in a repository)</td><td>Preprint (Figshare)</td><td>Continuation of first-year work (Trinity-Infinity)</td></tr>
         </tbody>
       </table>
     </div>
@@ -1071,7 +1077,7 @@ footer::before {
         <tr id="imperial-selfhood"><td><b>Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence</b><br><span>Sketches the attempt to integrate a fragmented self under the concept of personal imperialism</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22057583</code></a><br>also <a href="https://doi.org/10.2139/ssrn.7358818" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7358818</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
         <tr id="fragmentarian-spiritual-individualism"><td><b>Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy</b><br><span>Takes fragmentation not as a wound to repair but as how life is, and builds a discipline for living in it</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22064241</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
         <tr id="solitary-school"><td><b>自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか</b><br><span>What is missing when someone with no school names their practice as one, checked as a record of practice</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22765695" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22765695</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22765695" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Preprint</td><td>First undergraduate year</td></tr>
-        <tr id="wizard-at-thirty"><td><b>The “Wizard at Thirty” Urban Legend: A Structural Analysis (in Japanese)</b><br><span>An essay. Reads the urban legend as an inverted rite of passage. Not a research paper</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.23114131</code></a></td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener">Zenodo</a></td><td>— (not in a repository)</td><td>Preprint</td><td>— (not checked)</td></tr>
+        <tr id="wizard-at-thirty"><td><b>The “Wizard at Thirty” Urban Legend: A Structural Analysis (in Japanese)</b><br><span>An essay. Reads the urban legend as an inverted rite of passage. Not a research paper</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.23114131</code></a></td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener">Zenodo</a></td><td>— (not in a repository)</td><td>Preprint</td><td>Second undergraduate year</td></tr>
         <tr id="justice-and-algorithms"><td><b>正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理</b><br><span>Connects the issues around algorithmic decisions to theories of justice in political philosophy. A map of issues, not a research result</span></td><td>Essay</td><td>Frozen</td><td><a href="https://doi.org/10.5281/zenodo.22335676" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22335676</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22335676" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0 (texts and papers)</td><td>Text</td><td>First undergraduate year</td></tr>
         </tbody>
       </table>
@@ -1155,6 +1161,7 @@ footer::before {
 <footer>
   <div class="wrap foot">
     <span>© 2026 根本卓哉</span>
+    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">Contact (GitHub issues)</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md" target="_blank" rel="noopener">Disclaimer</a> · <span class="updated">Last changed <time datetime="2026-11-11">2026-11-11</time></span></span>
     <span>Built with <a href="https://github.com/cpsbvbng26-dotcom/researcher-profile">researcher-profile</a></span>
   </div>
 </footer>

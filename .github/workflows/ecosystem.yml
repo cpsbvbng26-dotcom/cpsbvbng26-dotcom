@@ -11,41 +11,45 @@ on:
     - cron: '17 21 * * *'
   workflow_dispatch:
 
+# 複製して読むだけ。書き込む仕事は無い。
+permissions:
+  contents: read
+
 jobs:
   ecosystem:
-    name: 10 リポジトリ横断 502 項目
+    name: 10 リポジトリ横断 517 項目
     runs-on: ubuntu-latest
     steps:
       # sitemap の lastmod を git の記録と突き合わせる検査がある。
       # 浅い複製では日付が取れず、取れたものも HEAD の日付に化ける。
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }
       # 十の外だが、Zenodo のコミュニティの所在を突き合わせるために読む。
       # 目録の「始めた時期」は最初のコミットの日付から出すので、十の外の二つも履歴ごと読む。
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis, fetch-depth: 0 }
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0 }
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: '3.12'
       - run: pip install numpy pypdf==6.19.0
@@ -54,6 +58,8 @@ jobs:
         working-directory: repos/cpsbvbng26-dotcom
         run: node verification/check_all.js
 
+      # 各リポジトリの検査が落ちても、横断のずれは見る。結果の表は Actions の要約に一枚で出る。
       - name: 横断のずれ
+        if: always()
         working-directory: repos/cpsbvbng26-dotcom
         run: node verification/check_ecosystem.js

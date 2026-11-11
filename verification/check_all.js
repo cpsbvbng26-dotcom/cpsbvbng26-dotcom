@@ -24,6 +24,7 @@ const CHECKS = [
   ['cpsbvbng26-dotcom', '配色', 'node', 'verification/check_contrast.js'],
   ['cpsbvbng26-dotcom', 'サイトの構造', 'node', 'verification/check_site.js'],
   ['cpsbvbng26-dotcom', '作用素のページの数値', 'node', 'verification/check_trinity.js'],
+  ['cpsbvbng26-dotcom', '秘密情報と連絡先', 'node', 'verification/check_secrets.js'],
 
   ['errata-check', '道具自身', 'python3', 'tests/check_tool.py'],
   ['errata-check', '見本（最小）', 'python3', 'errata_check.py', 'examples/minimal/audit.toml'],
@@ -31,18 +32,22 @@ const CHECKS = [
   ['errata-check', '見本（参考文献）', 'python3', 'errata_check.py', 'examples/references/audit.toml'],
 
   ['self-correction', '登録簿', 'python3', 'verification/check_register.py'],
+  ['self-correction', 'データセット', 'python3', 'verification/check_dataset.py'],
 
   ['trinity-infinity', '誤変換', 'python3', 'verification/check_text.py'],
   ['trinity-infinity', '定理', 'python3', 'verification/independent_check.py'],
   ['trinity-infinity', '印字された数値', 'python3', 'verification/claims_audit.py'],
   ['trinity-infinity', '正誤表の監査', 'python3', 'verification/check_errata.py'],
   ['trinity-infinity', '経路', 'python3', 'verification/check_route.py'],
+  ['trinity-infinity', '秘密情報', 'python3', 'verification/check_secrets.py'],
+  ['trinity-infinity', '書誌の情報', 'python3', 'verification/check_meta.py'],
 
   ['trinity-operator', '誤変換', 'python3', 'verification/check_text.py'],
   ['trinity-operator', '作用素', 'python3', 'check.py'],
   ['trinity-operator', '証書', 'python3', 'verification/check_certificate.py'],
   ['trinity-operator', '展望', 'python3', 'verification/check_roadmap.py'],
   ['trinity-operator', '引用情報', 'python3', 'verification/check_citation.py'],
+  ['trinity-operator', '秘密情報', 'python3', 'verification/check_secrets.py'],
 
   /* site/ と dist/ は生成物である。まっさらな checkout には無いので、
    * 生成そのものも一本の検査として先に回す。手元で通って CI で落ちたのがここ。 */
@@ -55,10 +60,12 @@ const CHECKS = [
 
   ['naval-gazette-notes', '誤変換', 'python3', 'verification/check_text.py'],
   ['naval-gazette-notes', '正誤表の監査', 'python3', 'verification/check_errata.py'],
+  ['naval-gazette-notes', '検査の結果の表', 'python3', 'data/check.py'],
 
   ['researcher-profile', '誤変換ほか', 'node', 'verification/check_text.js'],
   ['researcher-profile', '生成', 'node', 'build.js'],
   ['researcher-profile', '生成物の中身', 'node', 'verification/check_build.js'],
+  ['researcher-profile', '秘密情報と連絡先', 'node', 'verification/check_secrets.js'],
 
   ['justice-and-algorithms', '誤変換ほか', 'node', 'verification/check_text.js'],
   ['justice-and-algorithms', '生成', 'node', 'build.js'],
@@ -100,6 +107,8 @@ function summary(text, limit) {
 let passed = 0, failed = 0, missing = 0;
 const broke = [];
 const seen = new Set();
+/* 一枚の頁にする表（Actions の要約）。毎日の横断の仕事が書く（2026-11-11）。 */
+const rows = [];
 
 console.log('');
 console.log('  ' + pad('リポジトリ', 30) + pad('検査', 24) + '結果');
@@ -112,6 +121,7 @@ for (const [repo, label, cmd, ...args] of CHECKS) {
 
   if (!fs.existsSync(dir)) {
     console.log('  ' + pad(shown, 30) + pad(label, 24) + '－  ディレクトリが無い');
+    rows.push([repo, label, '－', 'ディレクトリが無い']);
     missing++;
     continue;
   }
@@ -125,11 +135,20 @@ for (const [repo, label, cmd, ...args] of CHECKS) {
   }
   console.log('  ' + pad(shown, 30) + pad(label, 24) +
     (ok ? '通' : '落') + '  ' + summary(out, 34));
+  rows.push([repo, label, ok ? '通' : '落', summary(out, 60).replace(/\|/g, '／')]);
   if (ok) passed++; else { failed++; broke.push(repo + ' / ' + label); }
 }
 
 console.log('  ' + '-'.repeat(76));
 console.log('  通 ' + passed + ' / 落 ' + failed + ' / 無い ' + missing);
+
+if (process.env.GITHUB_STEP_SUMMARY) {
+  const md = ['## 各リポジトリの検査（' + new Date().toISOString().slice(0, 10) + '）', '',
+    '通 ' + passed + ' / 落 ' + failed + ' / 無い ' + missing, '',
+    '| リポジトリ | 検査 | 結果 | 最後の行 |', '| --- | --- | --- | --- |']
+    .concat(rows.map((r) => '| ' + r.join(' | ') + ' |'));
+  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md.join('\n') + '\n\n');
+}
 console.log('');
 
 if (failed) {

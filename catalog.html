@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Bxe0rkOkOgz+bsnvc+D1YVWpyrD55rvnn5i8DP9tXAs=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-lgkPkLkFrF7fHCWvdz1AP/xZ6hAg9+dybSD2kEJh1BU=' 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Z7EqkShZjU7/0mGGAE2kLgOKTjb8Ofi7F4Wtgykh8Lo=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-lgkPkLkFrF7fHCWvdz1AP/xZ6hAg9+dybSD2kEJh1BU=' 'sha256-GJHuzKMidugs2+JV1rGM7vjHCisiSMcVwctSVRW7+dk='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>全作品の目録 | 根本卓哉</title>
 <meta name="description" content="根本卓哉の作品を種類ごとに並べた目録です。題・種類・状態・DOI・正の所在・ライセンス・Zenodo の資源の種類・始めた時期を一表にしています。">
 <meta name="robots" content="index, follow">
@@ -40,6 +40,10 @@
     {
       "@type": "Person",
       "@id": "https://cpsbvbng26-dotcom.vercel.app/#person",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "ZEN University"
+      },
       "name": "Takuya Nemoto",
       "alternateName": "根本卓哉",
       "identifier": "https://orcid.org/0009-0000-1406-0547",
@@ -985,6 +989,8 @@ footer::before {
 .cert-group .where a { color: var(--faint); }
 .cert-group .where a { text-decoration: underline; text-underline-offset: .15em; }
 .cert-group .where a:hover { color: var(--accent); }
+.foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
+.foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
 </style>
 </head>
 <body>
@@ -1050,7 +1056,7 @@ footer::before {
         <tr id="trinity-infinity-series-i"><td><b>The Trinity-Infinity Framework, Series I: A Conceptual Model with Illustrative Applications in Game Theory, Mathematical Logic, and Mechanical Engineering</b><br><span>三要素の再帰作用素の収束を示し、ゲーム理論などへの接続を述べる概念モデル。作用素は Friedkin–Johnsen 模型の特殊例だった</span></td><td>思考実験・予想</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058624</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
         <tr id="trinity-infinity-series-ii"><td><b>The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications</b><br><span>混合率を座標ごとに変えても不動点の一意性が保たれることを示す。§4 の例 (2,4,2) は持続しないと、のちに示された</span></td><td>思考実験・予想</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22058777" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058777</code></a><br>別の所在 <a href="https://doi.org/10.2139/ssrn.7446961" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7446961</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058777" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
         <tr id="trinity-infinity-series-iii"><td><b>The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospective</b><br><span>収束定理が三要素を必要としないことを示し、系列が何を確立し何を撤回したかを回顧する</span></td><td>思考実験・予想</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22058964" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058964</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22058964" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
-        <tr id="repeated-games-cyclic-operator"><td><b>Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture</b><br><span>同じ作用素で繰り返しゲームを読み、黄金比の閾値を証明し、黄金比の窓の予想を置く。保守している版は trinity-operator の games のノート</span></td><td>思考実験・予想</td><td>凍結</td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a></td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener">Figshare</a></td><td>—（リポジトリに置いていない）</td><td>Preprint（Figshare）</td><td>学部一年次</td></tr>
+        <tr id="repeated-games-cyclic-operator"><td><b>Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture</b><br><span>同じ作用素で繰り返しゲームを読み、黄金比の閾値を証明し、黄金比の窓の予想を置く。保守している版は trinity-operator の games のノート</span></td><td>思考実験・予想</td><td>凍結</td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a></td><td><a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener">Figshare</a></td><td>—（リポジトリに置いていない）</td><td>Preprint（Figshare）</td><td>学部一年次の成果（Trinity-Infinity）の続き</td></tr>
         </tbody>
       </table>
     </div>
@@ -1071,7 +1077,7 @@ footer::before {
         <tr id="imperial-selfhood"><td><b>Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence</b><br><span>断片化した自己を統合する試みを、人格的帝国主義という概念のもとで素描する</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22057583</code></a><br>別の所在 <a href="https://doi.org/10.2139/ssrn.7358818" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7358818</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
         <tr id="fragmentarian-spiritual-individualism"><td><b>Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy</b><br><span>断片化を修復すべき傷ではなく生の実際の姿として受け取り、そこに住まうための規律を組み立てる</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22064241</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
         <tr id="solitary-school"><td><b>自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか</b><br><span>流派を持たない者が「独我流」を名乗るとき、何が欠けるかを、稽古の記録として確かめる</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22765695" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22765695</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22765695" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Preprint</td><td>学部一年次</td></tr>
-        <tr id="wizard-at-thirty"><td><b>「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム</b><br><span>エッセイです。都市伝説を反転した通過儀礼として読む。論文ではありません</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.23114131</code></a></td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener">Zenodo</a></td><td>—（リポジトリに置いていない）</td><td>Preprint</td><td>—（確かめていない）</td></tr>
+        <tr id="wizard-at-thirty"><td><b>「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム</b><br><span>エッセイです。都市伝説を反転した通過儀礼として読む。論文ではありません</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.23114131</code></a></td><td><a href="https://doi.org/10.5281/zenodo.23114131" target="_blank" rel="noopener">Zenodo</a></td><td>—（リポジトリに置いていない）</td><td>Preprint</td><td>学部二年次</td></tr>
         <tr id="justice-and-algorithms"><td><b>正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理</b><br><span>アルゴリズムによる判断をめぐる論点を、政治哲学の正義論に接続して整理した資料。研究成果ではない</span></td><td>エッセイ</td><td>凍結</td><td><a href="https://doi.org/10.5281/zenodo.22335676" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22335676</code></a></td><td><a href="https://doi.org/10.5281/zenodo.22335676" target="_blank" rel="noopener">Zenodo</a></td><td>CC BY 4.0（文書と論文）</td><td>Text</td><td>学部一年次</td></tr>
         </tbody>
       </table>
@@ -1155,6 +1161,7 @@ footer::before {
 <footer>
   <div class="wrap foot">
     <span>© 2026 根本卓哉</span>
+    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">連絡（GitHub の issue）</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a> · <span class="updated">最終更新 <time datetime="2026-11-11">2026-11-11</time></span></span>
     <span>Built with <a href="https://github.com/cpsbvbng26-dotcom/researcher-profile">researcher-profile</a></span>
   </div>
 </footer>
