@@ -266,7 +266,7 @@ const CASES = [
 
   /* **計測の出所。**同じ画面に並んでいても数え手が違う。混ぜると落ちる。 */
   ['Kudos の数の出所をまとめると落ちる', 'docs/canonical-sources.md',
-   swap('**Kudos の欄には、他所の数も混ざる**。', ''),
+   swap('**Kudos の欄には、他所の数も混ざります**。', ''),
    'check_site.js', '他所から引いた数が混ざる'],
 
   ['営利と計測の重なりを規則に格上げすると落ちる', 'docs/canonical-sources.md',
