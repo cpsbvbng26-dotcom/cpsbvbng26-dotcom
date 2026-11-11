@@ -1523,7 +1523,7 @@
     ]
   },
   "免責": {
-    "_": "10 リポジトリに共通の免責事項。日本語が正で、英語は訳。免責は、消費者契約法第8条・第8条の3・第10条で無効にならない形に限る。読むことを同意とみなさない（民法第548条の2）。",
+    "_": "10 リポジトリに共通の免責事項。日本語が正で、英語は訳。免責は、消費者契約法第8条（軽過失に限ることを明らかにしない一部の免除を無効とする第3項を含む）と第10条で無効にならない形に限る。読むことを同意とみなさない（民法第548条の2）。",
     "file": "DISCLAIMER.md",
     "fileEn": "DISCLAIMER.en.md",
     "url": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md",
@@ -1557,6 +1557,12 @@
       "not be liable for any (damages|loss)",
       "means accepting (these terms|them)"
     ],
+    "ライセンス": {
+      "_": "LICENSE 一つで全体が MIT のリポジトリ。ほかは LICENSE が CC BY 4.0、LICENSE-CODE が MIT。免責事項の「再利用」が、この区別のとおりに書く。",
+      "全体が MIT": ["errata-check", "self-correction", "trinity-operator", "researcher-profile"],
+      "文の一節": "errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。",
+      "文の一節 英": "errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License."
+    },
     "許すメールアドレス": [
       "noreply@anthropic.com",
       "you@example.com"
