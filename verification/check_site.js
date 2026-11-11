@@ -1359,7 +1359,7 @@ section('10.59 自己紹介が名乗っていること');
      ja.indexOf('Trinity-Infinity の側は特定できます') >= 0
      && ja.indexOf('ChatGPT / OpenAI') >= 0
      && ja.indexOf('Claude Code（Anthropic）') >= 0
-     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけです') >= 0);
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇の英訳だけです') >= 0);
   /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
   [['index.de.html', 'Trinity-Infinity Serie II wurde von der Redaktion von SSRN dem wissenschaftlichen Diskurs ihres Fachs zugerechnet',
     'Serie I (überarbeitet) und Serie III wurden eingereicht und abgewiesen',
@@ -1625,7 +1625,7 @@ section('10.59 自己紹介が名乗っていること');
 
   /* **道具の名前を一つに絞れるのは、こちら側だけである。**
    * サイト・検査・記録は Claude（Anthropic）で作っており、git の履歴が証拠になる。
-   * 哲学三篇に何を使ったかは特定できない（三篇の正誤表 E5）。
+   * 哲学三篇の英訳に何を使ったかは特定できない（三篇の正誤表 E5）。改訂と起草が Claude であることは、三篇の開示文にある。
    * **名前だけが残って、その断りが消える形を止める。** */
   ok('この場所が Claude を使っていると書いてある',
      ja.indexOf('この場所そのものは、Anthropic の Claude を使って作っています') >= 0
@@ -1994,16 +1994,16 @@ section('10.59 自己紹介が名乗っていること');
   }
 
   ok('三篇の道具は特定できないと、同じ段に書いてある',
-     ja.indexOf('哲学三篇に何を使ったかは特定できません') >= 0
-     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇だけです') >= 0);
+     ja.indexOf('哲学三篇の英訳に何を使ったかは特定できません') >= 0
+     && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇の英訳だけです') >= 0);
   ok('英語版も同じ二つを書いてある',
      en.indexOf('This site itself is built with Claude, by Anthropic') >= 0
      && en.indexOf('cannot be identified') >= 0
-     && en.indexOf('The three philosophy papers are the only ones where the tool cannot be pinned to a single name') >= 0
+     && en.indexOf('The English translation of the three philosophy papers is the only place where the tool cannot be pinned to a single name') >= 0
      && en.indexOf('On the Trinity-Infinity side it can be identified') >= 0);
   ok('GitHub のプロフィールにも同じ二つがある',
      rj.indexOf('この場所そのものは、Anthropic の Claude を使って作っています') >= 0
-     && rj.indexOf('哲学三篇に何を使ったかは特定できません') >= 0);
+     && rj.indexOf('哲学三篇の英訳に何を使ったかは特定できません') >= 0);
 
   /* 外部の点検の引用に、第三者の氏名が残っていないこと。 */
   const ev = read('docs/external-evaluations.md');
