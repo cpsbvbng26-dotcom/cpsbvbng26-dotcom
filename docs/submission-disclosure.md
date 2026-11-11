@@ -523,7 +523,7 @@ Conatus に出しているあいだ、その一篇を Episciences へ出すこ�
 | Journal of Humanistic Mathematics | Claremont Colleges Library | 数学の美的・文化的・歴史的・哲学的な側面。掲載料も投稿料も無い。DOAJ 収録 |
 | The Mathematics Enthusiast | University of Montana | 学部上級で読める数学の内容、歴史・哲学・異文化。所属を問いません。投稿から掲載まで 8〜12 か月 |
 
-Journal of Humanistic Mathematics が本命です。 分野の既知を増やしていないことが、
+Journal of Humanistic Mathematics が本命です。分野の既知を増やしていないことが、
 ここでは欠格になりません。`ROUTE.md` の九段階は、この誌の射程の中にあります。
 
 2026-09-29 に、この誌の方針が分かりました。主に言語モデルが書いた原稿は載せません。
@@ -551,12 +551,12 @@ Journal of Humanistic Mathematics が本命です。 分野の既知を増やし
 | 数学の研究誌 | 新規性の門。紙面自身が貢献 0 と書いている |
 | 勧誘してきた出版社 | 決めごと 14 |
 
-史料ノートの受け皿が見つかっていません。 日本史の査読誌は会員制が多い。
+史料ノートの受け皿が見つかっていません。日本史の査読誌は会員制が多い。
 ここだけ空いています。
 
 ### 出す前にやることが三つある
 
-1. `E8` の帰属を先に直します。 重大度・高で立っているあいだ、Series I〜III の
+1. `E8` の帰属を先に直します。重大度・高で立っているあいだ、Series I〜III の
    `This paper's contribution is Theorem 1` は帰属の側で立ちません。
    既知の模型の特殊例を自分の貢献として述べたまま査読に出すことになります。
 2. **言語モデル利用の開示を消さない**（決めごと 8）。道具の名・版・使い方を書けば認める形が
@@ -565,7 +565,7 @@ Journal of Humanistic Mathematics が本命です。 分野の既知を増やし
 
 ### 確かめた度合
 
-全部が検索で確認であり、原典を読んでいません。 作業環境から届くのは GitHub だけです。
+全部が検索で確認であり、原典を読んでいません。作業環境から届くのは GitHub だけです。
 `openjournals.bsu.edu` は egress proxy が塞ぎました。上の条件は、投稿前に原文で確かめる。
 
 ---
