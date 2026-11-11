@@ -487,7 +487,7 @@
         {
           "repo": "self-correction",
           "file": "register.toml",
-          "regex": "別の種でもう一度だけ引(?:く|きます)\\*\\*（(\\d+) 項目）"
+          "regex": "別の種でもう一度だけ引きます\\*\\*（(\\d+) 項目）"
         },
         {
           "repo": "cpsbvbng26-dotcom",
@@ -540,7 +540,7 @@
         {
           "repo": "trinity-infinity",
           "file": "ROUTE.md",
-          "regex": "検査して(?:いる|います)（(\\d+) 項目）"
+          "regex": "検査しています（(\\d+) 項目）"
         },
         {
           "repo": "trinity-infinity",
@@ -598,7 +598,7 @@
         {
           "repo": "self-correction",
           "file": "register.toml",
-          "regex": "check_errata\\.py が落ち(?:る|ます)（(\\d+) 項目）"
+          "regex": "check_errata\\.py が落ちます（(\\d+) 項目）"
         },
         {
           "repo": "cpsbvbng26-dotcom",
