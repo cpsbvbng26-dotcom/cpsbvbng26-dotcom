@@ -81,6 +81,12 @@ function readProfile(html) {
       .filter((m) => m[1].indexOf('path-') < 0)
       .map((m) => proseOf(m[1]))
       .filter(Boolean),
+    /* 目標の表（達成とする時と状態の欄つき）。**頁が表で出すなら、README も表で出す。** */
+    aimsHead: [...((/<table class="aims-table">[\s\S]*?<thead>([\s\S]*?)<\/thead>/.exec(block) || [])[1] || '')
+      .matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((m) => proseOf(m[1])),
+    aimsRows: [...((/<table class="aims-table">[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/.exec(block) || [])[1] || '')
+      .matchAll(/<tr>([\s\S]*?)<\/tr>/g)]
+      .map((r) => [...r[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) => proseOf(m[1]))),
   };
 }
 
@@ -141,7 +147,12 @@ function blockFor(page, lang) {
     if (p.now) out.push(p.now, '');
     if (p.study) out.push(p.study, '');
     p.core.forEach((c) => out.push(c, ''));
-    if (p.aims.length) {
+    if (p.aimsRows.length) {
+      out.push('**' + p.aimsLabel + '**', '',
+        '| ' + p.aimsHead.join(' | ') + ' |', '|' + p.aimsHead.map(() => ' --- |').join(''));
+      p.aimsRows.forEach((r) => out.push('| ' + r.join(' | ') + ' |'));
+      out.push('');
+    } else if (p.aims.length) {
       out.push('**' + p.aimsLabel + '**', '');
       p.aims.forEach((a) => out.push('- ' + a));
       out.push('');

@@ -1,0 +1,18 @@
+{
+  "_": "見張る頁と、横断の検査が見るサイトの一覧。url は配っている正の場所。dir は各リポジトリの中で頁が置かれている所。研究の系列だけを並べる（創作の系列はつながない）。",
+  "sites": [
+    { "repo": "cpsbvbng26-dotcom", "dir": ".", "url": "https://cpsbvbng26-dotcom.vercel.app/", "canonical": true },
+    { "repo": "trinity-operator", "dir": "site", "url": "https://golden-window-conjecture.vercel.app/", "canonical": true },
+    { "repo": "sophaxis", "dir": "site", "url": "https://sophaxis.vercel.app/", "canonical": true },
+    { "repo": "autonomy-and-self-cultivation", "dir": "site", "url": null, "canonical": false },
+    { "repo": "justice-and-algorithms", "dir": "site", "url": null, "canonical": false }
+  ],
+  "watch": [
+    "https://cpsbvbng26-dotcom.vercel.app/",
+    "https://cpsbvbng26-dotcom.vercel.app/index.en.html",
+    "https://cpsbvbng26-dotcom.vercel.app/catalog.html",
+    "https://cpsbvbng26-dotcom.vercel.app/sitemap.xml",
+    "https://golden-window-conjecture.vercel.app/",
+    "https://sophaxis.vercel.app/"
+  ]
+}
