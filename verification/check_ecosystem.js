@@ -2396,6 +2396,20 @@ console.log('\n12d. 免責と、法的なずれ');
   for (const repo of C.repos) { const dir = path.join(ROOT, repo); if (fs.existsSync(dir)) walk(dir, repo); }
   check('10 リポジトリのどこにも、無効になりうる免責や、読むことを同意とみなす文が無い（' + 数 + ' ファイル）', 無効.length === 0, [...new Set(無効)].join(', '));
   check('10 リポジトリに、許した二つのほかのメールアドレスが無い', 宛先.length === 0, [...new Set(宛先)].slice(0, 10).join(', '));
+
+  /* 免責事項の「再利用」は、各リポジトリの LICENSE の置き方のとおりに書く。
+   * LICENSE 一つなら全体が MIT、二つなら LICENSE が CC BY 4.0、LICENSE-CODE が MIT。 */
+  const LC = L['ライセンス'];
+  const wrong = [];
+  for (const repo of C.repos) {
+    const lic = read(repo, 'LICENSE'), code = read(repo, 'LICENSE-CODE');
+    const mitOnly = LC['全体が MIT'].includes(repo);
+    if (lic === null) { wrong.push(repo + '：LICENSE が無い'); continue; }
+    if (mitOnly && (!/^MIT License/.test(lic) || code !== null)) wrong.push(repo + '：全体が MIT のはず');
+    if (!mitOnly && (!/^Creative Commons Attribution 4\.0 International/.test(lic) || code === null || !/^MIT License/.test(code))) wrong.push(repo + '：CC BY 4.0 と MIT の二つのはず');
+  }
+  check('免責事項の「再利用」が、10 リポジトリの LICENSE の置き方（全体が MIT ' + LC['全体が MIT'].length + '、二つ ' + (C.repos.length - LC['全体が MIT'].length) + '）のとおりに書く',
+    wrong.length === 0 && ja.indexOf(LC['文の一節']) >= 0 && en.indexOf(LC['文の一節 英']) >= 0, wrong.join(' / '));
 }
 
 /* ---------- 名乗る件数 ---------- */
