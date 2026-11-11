@@ -4,7 +4,7 @@
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
+I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office; I plan to file it as soon as I have the time. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
 My provisional IQ is 110. It comes from one sitting of the online IQ test at 123test (Culture Fair format) on 2025-12-30, taken at 9 a.m. after a sleepless night. The test is online and unproctored; it is not a clinical intelligence assessment. 110 is the figure 123test reports, and the certificate does not say which scale it uses. The certificate is kept on file, with the name field masked.
 
