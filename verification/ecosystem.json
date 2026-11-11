@@ -1559,7 +1559,12 @@
     ],
     "ライセンス": {
       "_": "LICENSE 一つで全体が MIT のリポジトリ。ほかは LICENSE が CC BY 4.0、LICENSE-CODE が MIT。免責事項の「再利用」が、この区別のとおりに書く。",
-      "全体が MIT": ["errata-check", "self-correction", "trinity-operator", "researcher-profile"],
+      "全体が MIT": [
+        "errata-check",
+        "self-correction",
+        "trinity-operator",
+        "researcher-profile"
+      ],
       "文の一節": "errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。",
       "文の一節 英": "errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License."
     },
@@ -1567,5 +1572,82 @@
       "noreply@anthropic.com",
       "you@example.com"
     ]
+  },
+  "種類と状態": {
+    "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",
+    "札": "種類：{種類}　状態：{状態}",
+    "札 英": "Type: {type} · Status: {status}",
+    "repos": {
+      "cpsbvbng26-dotcom": {
+        "種類": "プロジェクト",
+        "type": "Project",
+        "状態": "運営中",
+        "status": "Running",
+        "cff": "software"
+      },
+      "researcher-profile": {
+        "種類": "ソフトウェア",
+        "type": "Software",
+        "状態": "改訂中",
+        "status": "In revision",
+        "cff": "software"
+      },
+      "errata-check": {
+        "種類": "ソフトウェア",
+        "type": "Software",
+        "状態": "改訂中",
+        "status": "In revision",
+        "cff": "software"
+      },
+      "trinity-operator": {
+        "種類": "ソフトウェア",
+        "type": "Software",
+        "状態": "改訂中",
+        "status": "In revision",
+        "cff": "software"
+      },
+      "trinity-infinity": {
+        "種類": "思考実験・予想",
+        "type": "Thought experiment and conjecture",
+        "状態": "凍結",
+        "status": "Frozen",
+        "cff": "dataset"
+      },
+      "autonomy-and-self-cultivation": {
+        "種類": "エッセイ",
+        "type": "Essay",
+        "状態": "凍結",
+        "status": "Frozen",
+        "cff": "dataset"
+      },
+      "solitary-school": {
+        "種類": "エッセイ",
+        "type": "Essay",
+        "状態": "凍結",
+        "status": "Frozen",
+        "cff": "dataset"
+      },
+      "justice-and-algorithms": {
+        "種類": "エッセイ",
+        "type": "Essay",
+        "状態": "凍結",
+        "status": "Frozen",
+        "cff": "dataset"
+      },
+      "naval-gazette-notes": {
+        "種類": "史料研究・事例研究",
+        "type": "Historical and case study",
+        "状態": "凍結",
+        "status": "Frozen",
+        "cff": "dataset"
+      },
+      "self-correction": {
+        "種類": "データセット",
+        "type": "Dataset",
+        "状態": "運営中",
+        "status": "Running",
+        "cff": "dataset"
+      }
+    }
   }
 }

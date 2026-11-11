@@ -1,0 +1,28 @@
+name: DataCite
+
+# 目録（catalog.json）に載せた DOI の資源の種類を、DataCite の記録と突き合わせる。
+# 外へ出る検査なので、ほかの検査とは別の仕事にしてある。
+# 落ちたら、Zenodo で選んだ種類か、目録の種類のどちらかが食い違っている。
+# DataCite に届かなければ、通ったことにせずに止まる（終了コード 2）。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  datacite:
+    name: 目録の DOI と DataCite の資源の種類
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node verification/check_datacite.js

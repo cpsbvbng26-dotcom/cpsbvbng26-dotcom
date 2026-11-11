@@ -1,0 +1,376 @@
+{
+  "_": [
+    "docs/external-evaluations.md の三つの表（受けた評価・出した先・受けた勧誘）を、一行ずつ構造化したもの。",
+    "文書の言葉は変えない。こちらは、その行を機械が読める形に写しただけである。",
+    "venue は場か評価者の種類であり、個人名は入れない。date は行に書いてある日付（年月日か年月）で、行に日付が無ければ null。",
+    "check_site.js が、文書の三つの表のすべての行と、日付を持つ見出しが、ここにあることを確かめる。"
+  ],
+  "source": "docs/external-evaluations.md",
+  "sections": {
+    "evaluations": "受けた評価",
+    "submissions": "出した先",
+    "invitations": "受けた勧誘"
+  },
+  "entries": [
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "Trinity-Infinity Series III",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "Trinity-Infinity Series I",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "Trinity-Infinity Series II",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "Manifesto of Imperial Selfhood",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "Fragmentarian Spiritual Individualism",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Stanford Agentic Reviewer",
+      "venueType": "machine reviewer",
+      "work": "海軍公報の史料ノート —— 大谷恒",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Grok",
+      "venueType": "machine reviewer",
+      "work": "この記録群全体",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "evaluations",
+      "date": null,
+      "venue": "Grok",
+      "venueType": "machine reviewer",
+      "work": "先祖の公的記録の頁と、海軍公報の史料ノート",
+      "outcome": "reviewed; every point checked",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "外部の公開レビューの場",
+      "venueType": "public review platform",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "pending",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "外部の公開レビューの場",
+      "venueType": "public review platform",
+      "work": "Manifesto of Imperial Selfhood",
+      "outcome": "pending",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "外部の公開レビューの場",
+      "venueType": "public review platform",
+      "work": "The Trinity-Infinity Framework, Series II",
+      "outcome": "pending",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "SSRN",
+      "venueType": "preprint server",
+      "work": "Fragmentarian Spiritual Individualism",
+      "outcome": "rejected",
+      "reasonCategory": "none given"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-18",
+      "venue": "SSRN",
+      "venueType": "preprint server",
+      "work": "The Trinity-Infinity Framework, Series I 改訂版",
+      "outcome": "rejected",
+      "reasonCategory": "requirements or scope (not stated which)"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-18",
+      "venue": "SSRN",
+      "venueType": "preprint server",
+      "work": "The Trinity-Infinity Framework, Series III",
+      "outcome": "rejected",
+      "reasonCategory": "requirements or scope (not stated which)"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "SSRN",
+      "venueType": "preprint server",
+      "work": "A Naval Gazette Entry for Lieutenant Otani Tsune",
+      "outcome": "accepted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "MERLOT",
+      "venueType": "learning-object repository",
+      "work": "正義論とアルゴリズム",
+      "outcome": "registered; review not started",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "Conatus – Journal of Philosophy",
+      "venueType": "journal (diamond open access)",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "rejected",
+      "reasonCategory": "none given"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "SocArXiv",
+      "venueType": "preprint server",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "rejected",
+      "reasonCategory": "scope (humanities not accepted)"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "PhilArchive",
+      "venueType": "archive",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "accepted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": null,
+      "venue": "PhilArchive",
+      "venueType": "archive",
+      "work": "Manifesto of Imperial Selfhood",
+      "outcome": "accepted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-26",
+      "venue": "PhilArchive",
+      "venueType": "archive",
+      "work": "Fragmentarian Spiritual Individualism",
+      "outcome": "posted without the gate; deletion requested",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-29",
+      "venue": "PhilSci-Archive",
+      "venueType": "archive",
+      "work": "Machine-Mediated Rediscovery",
+      "outcome": "not submitted",
+      "reasonCategory": "endorsement required"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-30",
+      "venue": "PhilArchive",
+      "venueType": "archive",
+      "work": "Machine-Mediated Rediscovery",
+      "outcome": "posted without the gate",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-29",
+      "venue": "SSRN",
+      "venueType": "preprint server",
+      "work": "Machine-Mediated Rediscovery",
+      "outcome": "accepted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-10-24",
+      "venue": "aiXiv.science",
+      "venueType": "preprint server with machine review",
+      "work": "Machine-Mediated Rediscovery",
+      "outcome": "accepted after machine review",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-29",
+      "venue": "CogPrints",
+      "venueType": "archive",
+      "work": "どの稿かは記録していない",
+      "outcome": "withdrawn by the author",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-09-29",
+      "venue": "HAL",
+      "venueType": "archive",
+      "work": "errata-check v0.3.0",
+      "outcome": "pending",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-10-13",
+      "venue": "Figshare",
+      "venueType": "repository",
+      "work": "Repeated Games through a Cyclic Operator",
+      "outcome": "posted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-10-22",
+      "venue": "Knowledge Commons",
+      "venueType": "repository",
+      "work": "「30歳魔法使い」都市伝説の構造分析",
+      "outcome": "posted",
+      "reasonCategory": "not applicable"
+    },
+    {
+      "section": "submissions",
+      "date": "2026-10-22",
+      "venue": "PsyArXiv",
+      "venueType": "preprint server",
+      "work": "「30歳魔法使い」都市伝説の構造分析",
+      "outcome": "rejected",
+      "reasonCategory": "author's publication record"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09",
+      "venue": "Eliva Press",
+      "venueType": "publisher",
+      "work": "Manifesto of Imperial Selfhood",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09",
+      "venue": "Eliva Press",
+      "venueType": "publisher",
+      "work": "Manifesto of Imperial Selfhood",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09",
+      "venue": "Journal of Engineering and Artificial Intelligence",
+      "venueType": "journal",
+      "work": "The Trinity-Infinity Framework, Series II",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09",
+      "venue": "Journal of Engineering and Artificial Intelligence",
+      "venueType": "journal",
+      "work": "The Trinity-Infinity Framework, Series II",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09-17",
+      "venue": "誌名が書かれていない",
+      "venueType": "unnamed sender",
+      "work": "A Naval Gazette Entry for Lieutenant Otani Tsune",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-09-18",
+      "venue": "Journal of advance research in Social Science and Humanities",
+      "venueType": "journal",
+      "work": "A Naval Gazette Entry for Lieutenant Otani Tsune",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-10",
+      "venue": "Journal of Orthopedics & Bone Disorders",
+      "venueType": "journal",
+      "work": "none named",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-10",
+      "venue": "Medical Journal of Clinical Trials & Case Studies",
+      "venueType": "journal",
+      "work": "none named",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    },
+    {
+      "section": "invitations",
+      "date": "2026-10-14",
+      "venue": "Journal of Philosophy and Ethics",
+      "venueType": "journal",
+      "work": "The Nobility and Exemplarity of the Celibate Individual",
+      "outcome": "invitation; not taken up",
+      "reasonCategory": "rule 14 (diamond open access only; no offers)"
+    }
+  ]
+}

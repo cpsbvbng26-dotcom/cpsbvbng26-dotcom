@@ -1,0 +1,1014 @@
+{
+  "_": "Generated from catalog.json in researcher-profile by build_catalog.js. Do not edit by hand.",
+  "asOf": "2026-11-11",
+  "author": {
+    "name": "Takuya Nemoto",
+    "alternateName": "根本卓哉",
+    "orcid": "https://orcid.org/0009-0000-1406-0547"
+  },
+  "statusNote": "Frozen applies to the published papers and versions. Errata and checks may still be added.",
+  "types": [
+    {
+      "id": "dataset",
+      "ja": "データセット",
+      "en": "Dataset"
+    },
+    {
+      "id": "thought-experiment",
+      "ja": "思考実験・予想",
+      "en": "Thought experiment and conjecture"
+    },
+    {
+      "id": "essay",
+      "ja": "エッセイ",
+      "en": "Essay"
+    },
+    {
+      "id": "historical",
+      "ja": "史料研究・事例研究",
+      "en": "Historical and case study"
+    },
+    {
+      "id": "software",
+      "ja": "ソフトウェア",
+      "en": "Software"
+    },
+    {
+      "id": "project",
+      "ja": "プロジェクト",
+      "en": "Project"
+    }
+  ],
+  "works": [
+    {
+      "id": "self-correction",
+      "type": "dataset",
+      "typeJa": "データセット",
+      "typeEn": "Dataset",
+      "status": "running",
+      "statusJa": "運営中",
+      "statusEn": "Running",
+      "title": "self-correction: 一人の研究者による、自分の公開した主張の訂正の全記録",
+      "titleEn": null,
+      "summaryJa": "自分が公開した主張のうち、誤っていたもの・撤回したもの・直せないものを、一件ずつ消さずに記録した登録簿",
+      "summaryEn": "A register of every published claim that turned out wrong, was withdrawn or cannot be fixed, kept one by one and never deleted",
+      "doi": "10.5281/zenodo.24033597",
+      "conceptDoi": "10.5281/zenodo.24033596",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033597",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/self-correction",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/self-correction"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Dataset",
+      "begun": {
+        "date": "2026-09-07",
+        "basis": "first commit of self-correction",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "naval-gazette-notes",
+      "type": "dataset",
+      "typeJa": "データセット",
+      "typeEn": "Dataset",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Naval Gazette Notes — 海軍公報からの史料ノートとデータ",
+      "titleEn": null,
+      "summaryJa": "史料ノートの翻刻を機械で読める形にしたデータ（CSV・JSON）。「同」で繰り返された階級を、書かれていたものと引き継いだもので区別している",
+      "summaryEn": "The transcription behind the source note, as machine-readable data (CSV and JSON). Ranks repeated with a ditto mark are kept apart from ranks written out",
+      "doi": "10.5281/zenodo.24034131",
+      "conceptDoi": "10.5281/zenodo.24034130",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24034131",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/naval-gazette-notes",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/naval-gazette-notes"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0",
+          "MIT"
+        ],
+        "ja": "CC BY 4.0（文書）・MIT（コード）",
+        "en": "CC BY 4.0 (texts) and MIT (code)"
+      },
+      "resourceType": "Dataset",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of naval-gazette-notes",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "trinity-infinity-archive",
+      "type": "dataset",
+      "typeJa": "データセット",
+      "typeEn": "Dataset",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Trinity-Infinity — 三本の系列と、その検証の記録",
+      "titleEn": null,
+      "summaryJa": "Trinity-Infinity の三本の系列と、正誤表・検証スクリプト・再発見の経路を収めたリポジトリの保存版。論文ではない",
+      "summaryEn": "The archived repository of the Trinity-Infinity series: the three papers, the errata, the verification scripts and the route of the rediscovery. Not a paper",
+      "doi": "10.5281/zenodo.24033961",
+      "conceptDoi": "10.5281/zenodo.24033960",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033961",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/trinity-infinity",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/trinity-infinity"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0",
+          "MIT"
+        ],
+        "ja": "CC BY 4.0（文書）・MIT（コード）",
+        "en": "CC BY 4.0 (texts) and MIT (code)"
+      },
+      "resourceType": "Dataset",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of trinity-infinity",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "autonomy-and-self-cultivation-archive",
+      "type": "dataset",
+      "typeJa": "データセット",
+      "typeEn": "Dataset",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "自律と自己陶冶 — 三篇のプレプリント",
+      "titleEn": null,
+      "summaryJa": "哲学の三篇のプレプリントと、その全文・正誤表・照合の記録を収めたリポジトリの保存版。論文ではない",
+      "summaryEn": "The archived repository of the three philosophical preprints: their full text, errata and the record of the checks against the PDFs. Not a paper",
+      "doi": "10.5281/zenodo.24033809",
+      "conceptDoi": "10.5281/zenodo.22765620",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033809",
+      "version": "1.0.1",
+      "repository": "https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0",
+          "MIT"
+        ],
+        "ja": "CC BY 4.0（文書）・MIT（コード）",
+        "en": "CC BY 4.0 (texts) and MIT (code)"
+      },
+      "resourceType": "Dataset",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of autonomy-and-self-cultivation",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "trinity-infinity-series-i",
+      "type": "thought-experiment",
+      "typeJa": "思考実験・予想",
+      "typeEn": "Thought experiment and conjecture",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "The Trinity-Infinity Framework, Series I: A Conceptual Model with Illustrative Applications in Game Theory, Mathematical Logic, and Mechanical Engineering",
+      "titleEn": null,
+      "summaryJa": "三要素の再帰作用素の収束を示し、ゲーム理論などへの接続を述べる概念モデル。作用素は Friedkin–Johnsen 模型の特殊例だった",
+      "summaryEn": "A conceptual model: a triadic recursion operator and its convergence, with illustrative links to game theory. The operator turned out to be a special case of the Friedkin–Johnsen model",
+      "doi": "10.5281/zenodo.22058624",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22058624",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/trinity-infinity",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22058624"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of trinity-infinity",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "trinity-infinity-series-ii",
+      "type": "thought-experiment",
+      "typeJa": "思考実験・予想",
+      "typeEn": "Thought experiment and conjecture",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications",
+      "titleEn": null,
+      "summaryJa": "混合率を座標ごとに変えても不動点の一意性が保たれることを示す。§4 の例 (2,4,2) は持続しないと、のちに示された",
+      "summaryEn": "Shows that the fixed point stays unique when the blend varies by coordinate. The example (2,4,2) in §4 was later shown never to be sustainable",
+      "doi": "10.5281/zenodo.22058777",
+      "conceptDoi": null,
+      "otherDois": [
+        "10.2139/ssrn.7446961"
+      ],
+      "url": "https://doi.org/10.5281/zenodo.22058777",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/trinity-infinity",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22058777"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of trinity-infinity",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "trinity-infinity-series-iii",
+      "type": "thought-experiment",
+      "typeJa": "思考実験・予想",
+      "typeEn": "Thought experiment and conjecture",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospective",
+      "titleEn": null,
+      "summaryJa": "収束定理が三要素を必要としないことを示し、系列が何を確立し何を撤回したかを回顧する",
+      "summaryEn": "Shows the convergence result never needed three elements, and looks back on what the series established and withdrew",
+      "doi": "10.5281/zenodo.22058964",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22058964",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/trinity-infinity",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22058964"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of trinity-infinity",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "repeated-games-cyclic-operator",
+      "type": "thought-experiment",
+      "typeJa": "思考実験・予想",
+      "typeEn": "Thought experiment and conjecture",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture",
+      "titleEn": null,
+      "summaryJa": "同じ作用素で繰り返しゲームを読み、黄金比の閾値を証明し、黄金比の窓の予想を置く。保守している版は trinity-operator の games のノート",
+      "summaryEn": "Reads a repeated game through the same operator, proves a golden-ratio threshold and states the golden-window conjecture. The maintained version is the games note in trinity-operator",
+      "doi": "10.6084/m9.figshare.34419198",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.6084/m9.figshare.34419198",
+      "version": null,
+      "repository": null,
+      "canonical": {
+        "ja": "Figshare",
+        "en": "Figshare",
+        "url": "https://doi.org/10.6084/m9.figshare.34419198"
+      },
+      "licence": {
+        "spdx": [],
+        "ja": "—（リポジトリに置いていない）",
+        "en": "— (not in a repository)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-06",
+        "basis": "first commit of trinity-operator",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": "保守している版は trinity-operator の games のノート。学部一年次の成果の続きにあたる",
+        "noteEn": "The maintained version is the games note in trinity-operator; a continuation of first-year work"
+      },
+      "registry": "Figshare"
+    },
+    {
+      "id": "celibate-individual",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "The Nobility and Exemplarity of the Celibate Individual: An Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life",
+      "titleEn": null,
+      "summaryJa": "独身を、性的活動の欠落ではなく擁護しうる自己陶冶の型として読み直す",
+      "summaryEn": "Reads celibacy not as a lack but as a defensible form of self-cultivation",
+      "doi": "10.5281/zenodo.22058254",
+      "conceptDoi": null,
+      "otherDois": [
+        "10.2139/ssrn.7358779"
+      ],
+      "url": "https://doi.org/10.5281/zenodo.22058254",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22058254"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of autonomy-and-self-cultivation",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "imperial-selfhood",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence",
+      "titleEn": null,
+      "summaryJa": "断片化した自己を統合する試みを、人格的帝国主義という概念のもとで素描する",
+      "summaryEn": "Sketches the attempt to integrate a fragmented self under the concept of personal imperialism",
+      "doi": "10.5281/zenodo.22057583",
+      "conceptDoi": null,
+      "otherDois": [
+        "10.2139/ssrn.7358818"
+      ],
+      "url": "https://doi.org/10.5281/zenodo.22057583",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22057583"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of autonomy-and-self-cultivation",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "fragmentarian-spiritual-individualism",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy",
+      "titleEn": null,
+      "summaryJa": "断片化を修復すべき傷ではなく生の実際の姿として受け取り、そこに住まうための規律を組み立てる",
+      "summaryEn": "Takes fragmentation not as a wound to repair but as how life is, and builds a discipline for living in it",
+      "doi": "10.5281/zenodo.22064241",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22064241",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22064241"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of autonomy-and-self-cultivation",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "solitary-school",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか",
+      "titleEn": null,
+      "summaryJa": "流派を持たない者が「独我流」を名乗るとき、何が欠けるかを、稽古の記録として確かめる",
+      "summaryEn": "What is missing when someone with no school names their practice as one, checked as a record of practice",
+      "doi": "10.5281/zenodo.22765695",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22765695",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/solitary-school",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22765695"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-15",
+        "basis": "first commit of solitary-school",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "wizard-at-thirty",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム",
+      "titleEn": "The “Wizard at Thirty” Urban Legend: A Structural Analysis (in Japanese)",
+      "summaryJa": "エッセイです。都市伝説を反転した通過儀礼として読む。論文ではありません",
+      "summaryEn": "An essay. Reads the urban legend as an inverted rite of passage. Not a research paper",
+      "doi": "10.5281/zenodo.23114131",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.23114131",
+      "version": null,
+      "repository": null,
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.23114131"
+      },
+      "licence": {
+        "spdx": [],
+        "ja": "—（リポジトリに置いていない）",
+        "en": "— (not in a repository)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": null,
+        "basis": null,
+        "period": null,
+        "ja": "—（確かめていない）",
+        "en": "— (not checked)",
+        "noteJa": "リポジトリを持たず、書き始めた日を確かめていない。公開は 2026-10-03",
+        "noteEn": "No repository; the date the writing began has not been checked. Published 2026-10-03"
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "justice-and-algorithms",
+      "type": "essay",
+      "typeJa": "エッセイ",
+      "typeEn": "Essay",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理",
+      "titleEn": null,
+      "summaryJa": "アルゴリズムによる判断をめぐる論点を、政治哲学の正義論に接続して整理した資料。研究成果ではない",
+      "summaryEn": "Connects the issues around algorithmic decisions to theories of justice in political philosophy. A map of issues, not a research result",
+      "doi": "10.5281/zenodo.22335676",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22335676",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/justice-and-algorithms",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22335676"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Text",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of justice-and-algorithms",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "naval-gazette-otani-tsune",
+      "type": "historical",
+      "typeJa": "史料研究・事例研究",
+      "typeEn": "Historical and case study",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒): A Note on the Investiture List of 11 September 1943 in the Naval Gazette (Internal Circulation Only)",
+      "titleEn": null,
+      "summaryJa": "海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける史料ノート",
+      "summaryEn": "A source note: transcribes one investiture entry from the naval gazette and separates what the document establishes from what it does not",
+      "doi": "10.5281/zenodo.22055709",
+      "conceptDoi": null,
+      "otherDois": [
+        "10.2139/ssrn.7449338"
+      ],
+      "url": "https://doi.org/10.5281/zenodo.22055709",
+      "version": null,
+      "repository": "https://github.com/cpsbvbng26-dotcom/naval-gazette-notes",
+      "canonical": {
+        "ja": "Zenodo",
+        "en": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.22055709"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0"
+        ],
+        "ja": "CC BY 4.0（文書と論文）",
+        "en": "CC BY 4.0 (texts and papers)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of naval-gazette-notes",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "machine-mediated-rediscovery",
+      "type": "historical",
+      "typeJa": "史料研究・事例研究",
+      "typeEn": "Historical and case study",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction",
+      "titleEn": null,
+      "summaryJa": "作用素が既知の模型の特殊例だと分かるまでの経路を事例に、新規性と先行を問う事例研究",
+      "summaryEn": "A case study in novelty and priority, built on the route by which the operator was found to be a special case of a known model",
+      "doi": "10.2139/ssrn.7537983",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.2139/ssrn.7537983",
+      "version": null,
+      "repository": null,
+      "canonical": {
+        "ja": "SSRN",
+        "en": "SSRN",
+        "url": "https://doi.org/10.2139/ssrn.7537983"
+      },
+      "licence": {
+        "spdx": [],
+        "ja": "—（リポジトリに置いていない）",
+        "en": "— (not in a repository)"
+      },
+      "resourceType": null,
+      "begun": {
+        "date": "2026-09-29",
+        "basis": "record",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": "SSRN に出した日（外部からの評価の記録）",
+        "noteEn": "The date it was submitted to SSRN (record of external evaluations)"
+      },
+      "registry": "Crossref"
+    },
+    {
+      "id": "errata-check",
+      "type": "software",
+      "typeJa": "ソフトウェア",
+      "typeEn": "Software",
+      "status": "revising",
+      "statusJa": "改訂中",
+      "statusEn": "In revision",
+      "title": "errata-check: Deterministic auditing of errata against frozen published artifacts",
+      "titleEn": null,
+      "summaryJa": "正誤表を、凍結した成果物と機械で突き合わせる道具",
+      "summaryEn": "Audits errata against the frozen artifacts they correct, by machine",
+      "doi": "10.5281/zenodo.22685687",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22685687",
+      "version": "0.3.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/errata-check",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/errata-check"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-09-07",
+        "basis": "first commit of errata-check",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "deposit-check",
+      "type": "software",
+      "typeJa": "ソフトウェア",
+      "typeEn": "Software",
+      "status": "revising",
+      "statusJa": "改訂中",
+      "statusEn": "In revision",
+      "title": "deposit-check: checking the DOI metadata of a researcher's deposits against their ORCID record",
+      "titleEn": null,
+      "summaryJa": "業績の DOI の登録情報を、ORCID の記録と突き合わせて点検する道具",
+      "summaryEn": "Checks the DOI metadata of a researcher's works against their ORCID record",
+      "doi": "10.5281/zenodo.24033082",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033082",
+      "version": "0.1.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/deposit-check",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/deposit-check"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-11-02",
+        "basis": "first commit of deposit-check",
+        "period": "second",
+        "ja": "学部二年次",
+        "en": "Second undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "researcher-profile",
+      "type": "software",
+      "typeJa": "ソフトウェア",
+      "typeEn": "Software",
+      "status": "revising",
+      "statusJa": "改訂中",
+      "statusEn": "In revision",
+      "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール",
+      "titleEn": null,
+      "summaryJa": "設定ファイル一つから、外部へリクエストを出さない研究者のサイトを作る道具",
+      "summaryEn": "Builds a researcher's site, which makes no external requests, from one configuration file",
+      "doi": "10.5281/zenodo.22335692",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.22335692",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/researcher-profile",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/researcher-profile"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-09-05",
+        "basis": "first commit of researcher-profile",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "trinity-operator",
+      "type": "software",
+      "typeJa": "ソフトウェア",
+      "typeEn": "Software",
+      "status": "revising",
+      "statusJa": "改訂中",
+      "statusEn": "In revision",
+      "title": "trinity-operator — 論文が置いた仮定の外まで実装した作用素",
+      "titleEn": null,
+      "summaryJa": "三篇の作用素を、論文が置いた仮定の外まで実装し、収束を決めるのがスペクトル半径であることを示す",
+      "summaryEn": "Implements the papers' operator beyond their assumptions and shows that the spectral radius decides convergence",
+      "doi": "10.5281/zenodo.24033459",
+      "conceptDoi": "10.5281/zenodo.24033458",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033459",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/trinity-operator",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/trinity-operator"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-09-06",
+        "basis": "first commit of trinity-operator",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "sophaxis",
+      "type": "project",
+      "typeJa": "プロジェクト",
+      "typeEn": "Project",
+      "status": "running",
+      "statusJa": "運営中",
+      "statusEn": "Running",
+      "title": "Sophaxis: an overlay preprint server for philosophy and mathematics",
+      "titleEn": null,
+      "summaryJa": "哲学と数学のプレプリントのオーバーレイ。受け付けはモデレーションであって査読ではない",
+      "summaryEn": "An overlay preprint server for philosophy and mathematics. Acceptance is moderation, not peer review",
+      "doi": "10.5281/zenodo.24033372",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24033372",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/sophaxis",
+      "canonical": {
+        "ja": "GitHub",
+        "en": "GitHub",
+        "url": "https://github.com/cpsbvbng26-dotcom/sophaxis"
+      },
+      "licence": {
+        "spdx": [
+          "MIT"
+        ],
+        "ja": "MIT（全体）",
+        "en": "MIT (whole repository)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-10-30",
+        "basis": "first commit of sophaxis",
+        "period": "second",
+        "ja": "学部二年次",
+        "en": "Second undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "cpsbvbng26-dotcom",
+      "type": "project",
+      "typeJa": "プロジェクト",
+      "typeEn": "Project",
+      "status": "running",
+      "statusJa": "運営中",
+      "statusEn": "Running",
+      "title": "根本卓哉 — 公開プロフィールと、その検証",
+      "titleEn": null,
+      "summaryJa": "公開プロフィールのサイトと、10 リポジトリ横断の検査",
+      "summaryEn": "The public profile site, and the checks across the ten repositories",
+      "doi": "10.5281/zenodo.24034360",
+      "conceptDoi": "10.5281/zenodo.24034359",
+      "otherDois": [],
+      "url": "https://doi.org/10.5281/zenodo.24034360",
+      "version": "1.0.0",
+      "repository": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom",
+      "canonical": {
+        "ja": "公開の入口（Vercel）",
+        "en": "Public entrance (Vercel)",
+        "url": "https://cpsbvbng26-dotcom.vercel.app/"
+      },
+      "licence": {
+        "spdx": [
+          "CC-BY-4.0",
+          "MIT"
+        ],
+        "ja": "CC BY 4.0（文書）・MIT（コード）",
+        "en": "CC BY 4.0 (texts) and MIT (code)"
+      },
+      "resourceType": "Software",
+      "begun": {
+        "date": "2026-06-12",
+        "basis": "first commit of cpsbvbng26-dotcom",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": "DataCite (Zenodo)"
+    },
+    {
+      "id": "corrections",
+      "type": "project",
+      "typeJa": "プロジェクト",
+      "typeEn": "Project",
+      "status": "running",
+      "statusJa": "運営中",
+      "statusEn": "Running",
+      "title": "訂正の運用",
+      "titleEn": null,
+      "summaryJa": "正誤表・登録簿・横断の検査で、誤りを消さずに残し続ける仕組み。DOI は持たない",
+      "summaryEn": "Errata, the register and the cross-repository checks, which keep errors on record instead of deleting them. It has no DOI",
+      "doi": null,
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": null,
+      "version": null,
+      "repository": null,
+      "canonical": {
+        "ja": "各リポジトリの ERRATA.md",
+        "en": "Each repository's ERRATA.md",
+        "url": null
+      },
+      "licence": {
+        "spdx": [],
+        "ja": "—（リポジトリに置いていない）",
+        "en": "— (not in a repository)"
+      },
+      "resourceType": null,
+      "begun": {
+        "date": "2026-09-07",
+        "basis": "first commit of self-correction",
+        "period": "first",
+        "ja": "学部一年次",
+        "en": "First undergraduate year",
+        "noteJa": null,
+        "noteEn": null
+      },
+      "registry": null
+    }
+  ]
+}

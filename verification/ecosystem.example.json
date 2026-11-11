@@ -1,0 +1,30 @@
+{
+  "_": [
+    "check_ecosystem.js の宣言の最小の見本。ほかの人のリポジトリ群でも、この形で書けば使える。",
+    "  ECOSYSTEM_ROOT=<リポジトリを並べた親ディレクトリ> ECOSYSTEM_CONFIG=<この形のファイル> node verification/check_ecosystem.js",
+    "共通の決めごと: 二つ以上のリポジトリで、ファイルの印から印までが一字一句同じか。",
+    "数: 実際の数（コマンドの出力か、ファイルの中身から取る）と、散文が名乗る数が合うか。",
+    "和: 数の足し算で名乗る数。足すものは「数」の名前で指す。",
+    "この見本は、このリポジトリ群の二つを使って、実際に通る形にしてある。"
+  ],
+  "共通の決めごと": {
+    "file": "CLAUDE.md",
+    "begin": "<!-- 共通ここから -->",
+    "end": "<!-- 共通ここまで -->",
+    "repos": ["cpsbvbng26-dotcom", "researcher-profile"]
+  },
+  "数": [
+    {
+      "名前": "researcher-profile の生成物の検査",
+      "実際": {
+        "repo": "researcher-profile",
+        "file": ".github/workflows/verify.yml",
+        "regex": "設定と生成物 (\\d+) 項目"
+      },
+      "名乗り": [
+        { "repo": "researcher-profile", "file": "README.md", "regex": "push のたびに (\\d+) 項目を通します" }
+      ]
+    }
+  ],
+  "和": []
+}

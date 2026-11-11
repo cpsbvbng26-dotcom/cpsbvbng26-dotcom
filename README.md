@@ -2,6 +2,8 @@
 
 # 根本卓哉 / Takuya Nemoto
 
+種類：プロジェクト　状態：運営中
+
 ### 根本卓哉（2001.01.18-）とは？
 
 独学で、言語モデル（LLM）の助けを借りながら、哲学とゲーム理論を研究しています。博士号を取得したあとは、実存哲学を専門にする計画です。ZEN大学 知能情報社会学部 知能情報社会学科の学生です。2024 年 10 月頃から、個人事業主として働いています。開業届は出していません。時間が空き次第、出す予定です。SSRN と PhilArchive に査読前の論文を置き、OSS を公開し、[ROAR](https://roar.eprints.org/27422/)（サウサンプトン大学のオープンアクセス・リポジトリ登録簿）掲載の [Sophaxis](https://sophaxis.vercel.app/) を運営しています。Claude 愛好家であり、Claude Code 愛好家です。
@@ -57,7 +59,7 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 ここまでのプレプリントは、趣味として書いたものです。どれも査読を受けていません。これは謙遜ではありません。上に並べたことからの帰結です —— 受け付けの門は通りましたが、論証を見た者はいません。数学の三篇は既知の模型の特殊例で、分野への寄与はゼロです。趣味の研究は、学部一年で卒業しました。これからのものは、趣味と呼ばずに済む形で書きます。
 
-edX と東北大学 MOOC の修了証も、学部一年の前半で終えています。七件あります。そして、ここに並べたものは全部、学部一年時の実績です。九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件。日付そのものは突き合わせていません。修了証に印字されてはいますが、この作業環境から edX にも発行機関にも届きません。在籍の開始日も、ここには書きません。書けば、確かめていない日付を印字することになります。
+edX と東北大学 MOOC の修了証も、学部一年の前半で終えています。七件あります。そして、次の四つは学部一年時の実績です。九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件。Sophaxis と deposit-check は、学部二年次に始めたものです。最初のコミットは 2026-10-30 と 2026-11-02 です。新しい主題は JOSS などの経路で進めると決めてあり、二つとも道具として JOSS に出します。日付そのものは突き合わせていません。修了証に印字されてはいますが、この作業環境から edX にも発行機関にも届きません。在籍の開始日も、ここには書きません。書けば、確かめていない日付を印字することになります。
 
 出す先も決めてあります。独学で進めたものは、ダイヤモンド・オープンアクセスの場にしか出しません —— 読む側からも書く側からも金を取らない場です。掲載料・投稿料を取る場には出しません。そして、無償を謳う勧誘にも応じません —— 費用が掛かる時点で、通ったのは選別ではなく支払いです。この規則は、すでに一度使っています。出版社から書籍化の勧誘が届き、返信していません（受けた勧誘）。相手を評価したのではありません —— 実在も実績も査読の有無も確かめていません。決めたのは、自分の側の規則です。
 
@@ -185,7 +187,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 | [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Trinity-Infinity の中心の作用素が Friedkin–Johnsen 模型の特殊例だと分かるまでの経路を事例に、生成を機械が担ったとき新規性と先取権の主張を科学哲学の枠組みがどこまで扱えるかを論じる。数学の新規性は主張しない。 | 2026年9月 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)<br>PhilArchive [NEMMRA](https://philarchive.org/rec/NEMMRA)（Zenodo には置いていない） |
-| [「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム](https://doi.org/10.5281/zenodo.23114131) | 「30歳まで性経験がなければ魔法使いになる」という都市伝説を、反転した通過儀礼として読む。超自然の能力の主張は退け、地位・名乗り・社会的な因果としての「魔法使い」を分析する。日本語。 | 2026年10月 | [10.5281/zenodo.23114131](https://doi.org/10.5281/zenodo.23114131)（論文の頁と正誤表はまだ無い）<br>Knowledge Commons [vaa96-ss949](https://works.hcommons.org/records/vaa96-ss949) |
+| [「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム](https://doi.org/10.5281/zenodo.23114131) | エッセイです。論文ではありません。「30歳まで性経験がなければ魔法使いになる」という都市伝説を、反転した通過儀礼として読む。超自然の能力の主張は退け、地位・名乗り・社会的な因果としての「魔法使い」を分析する。日本語。 | 2026年10月 | [10.5281/zenodo.23114131](https://doi.org/10.5281/zenodo.23114131)（論文の頁と正誤表はまだ無い）<br>Knowledge Commons [vaa96-ss949](https://works.hcommons.org/records/vaa96-ss949) |
 
 > Series I についての注記。 Series II と III は、改訂版の Series I を指すつもりで `10.5281/zenodo.17173703` を引いている。これは**この系列が訂正した 2025 年の初版**の DOI である。改訂版は `10.5281/zenodo.22058624` である。[ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md) を見ること。撤回した内容は消していない。
 
@@ -308,15 +310,15 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1561 項目の検査を通します。 依存パッケージはありません。
+このリポジトリは、push のたびに 1693 項目の検査を通します。 依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 617 項目
-node verification/check_site.js      # サイトの構造 854 項目
+node verification/check_contrast.js  # 配色の読みやすさ 685 項目
+node verification/check_site.js      # サイトの構造 918 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -337,10 +339,10 @@ python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要:
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 557 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 619 項目（要: Chromium）
 ```
 
-25 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+41 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見ます。道具が無ければ 1 を返して止まる。
 走らなかった検査は、通った検査ではありません。
 
@@ -350,7 +352,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 557 項目（要: 
 node verification/check_all.js        # 10 リポジトリの検査を全部（34 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
-node verification/check_ecosystem.js  # 10 リポジトリ横断 493 項目
+node verification/check_ecosystem.js  # 10 リポジトリ横断 502 項目
 node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
 ```
 
@@ -367,6 +369,25 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にあります。どちらも兄弟ディレクトリに 10 並んでいることを前提にする（CI は 10 を checkout してから回す）。
 
 各リポジトリの `CLAUDE.md` の共通部分が**一字一句同じか**も、ここで見ています。一つだけ直すと落ちます。
+
+**ほかのリポジトリ群でも使えます**。依存パッケージはありません。リポジトリを並べた親ディレクトリを `ECOSYSTEM_ROOT` で、宣言のファイルを `ECOSYSTEM_CONFIG` で渡します。
+
+```
+ECOSYSTEM_ROOT=~/src ECOSYSTEM_CONFIG=./my-ecosystem.json node verification/check_ecosystem.js
+```
+
+宣言のファイルを渡すと、宣言で書ける部分だけが走ります。共通の区間が一字一句同じか（`共通の決めごと`）、散文が名乗る数が実際と合うか（`数`）、足し算で名乗る数が合うか（`和`）です。
+そこから先は、このリポジトリ群に固有の検査なので走りません。
+最小の見本は [`verification/ecosystem.example.json`](verification/ecosystem.example.json) です。このリポジトリ群の二つを使って、実際に通る形にしてあります。
+`数` の実際の数は、コマンドを走らせて出力から取るか（`cmd` と `regex`）、ファイルの中身から取ります（`file` と `regex`、または行を数える `数える`）。
+
+**目録の DOI の資源の種類は、DataCite の記録と突き合わせます**。外へ出る検査なので、上の並びとは別にしてあります。
+
+```
+node verification/check_datacite.js   # 目録の DOI と DataCite の資源の種類（要: api.datacite.org への接続）
+```
+
+届かなければ、通ったことにせず「走りきっていない」と言って止まります。CI では別の仕事として回します。
 
 **`check_site.js`** が拾うのは、直したつもりで直っていない類の食い違いです。内部リンクの切れ、読み込み時に外部を取りに行く要素の混入、JSON-LD の `hasPart` が存在しない資料を指すこと、sitemap と実ファイルのずれ、日本語版と英語版のカード数や README の食い違い、外部プロフィールの一覧が四か所で割れること、消したページへのリンクが残っていること。
 

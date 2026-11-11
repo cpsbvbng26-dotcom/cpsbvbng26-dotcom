@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-VN3HVG1rrw0cFmxPqoLMP7UjiebL2KNyR7w5/W51Zl0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-VN3HVG1rrw0cFmxPqoLMP7UjiebL2KNyR7w5/W51Zl0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-fitexvlvwGplo3dOwzKpBL+v2aGru44Ts+TGCxWBytk='; style-src 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The golden-window conjecture | Takuya Nemoto</title>
 <meta name="description" content="A conjecture on a three-player repeated game: for discount factors in the window from 1/φ to 2/3, the payoffs that can be kept without randomization form a set of length zero. Not proved; the evidence is numerical.">
 <meta name="robots" content="index, follow">
@@ -797,7 +797,9 @@ footer::before {
   <div class="wrap head-row">
     <a class="mark serif" href="#main">TN</a>
     <nav class="nav">
-      <a href="#conjecture">The conjecture, and what is proved</a>
+      <a href="#state">State</a>
+      <a href="#figure">Figure</a>
+      <a href="#conditions">Conditions</a>
       <a href="./../index.en.html">Profile</a>
       <a href="./../trinity.html">Operator</a>
       <a href="./index.en.html">Notes</a>
@@ -814,32 +816,61 @@ footer::before {
     <h1 class="serif reveal">The golden-window conjecture</h1>
     <p class="romaji reveal">黄金比の窓の予想</p>
 
-    <p class="lead reveal">This is an unproved conjecture. Outside the window everything is proved. Inside it there is only numerical evidence.</p>
+    <p class="lead reveal">An unproved conjecture about one segment of payoffs in one three-player game. Proved: what happens below the window, at its lower end and from <code translate="no" class="notranslate">2/3</code> up, and that the set inside the window has positive dimension. Open: whether that set has length zero, and how its dimension behaves. For those, the evidence is numerical only.</p>
   </section>
 
   <hr class="rule">
 
-  <section id="conjecture" class="wrap block">
+  <section id="state" class="wrap block">
     <div class="sec-head reveal">
-      <h2 class="serif">The conjecture, and what is proved</h2>
-      <p>Conjecture, unproved</p>
+      <h2 class="serif">Where it stands</h2>
+      
     </div>
     <div class="notes-list reveal">
-      <p class="profile-core"><b>The golden-window conjecture is a conjecture. It has not been proved.</b> It was stated in a note that applies the operator of the three Trinity-Infinity papers to a repeated game (<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator, games</a>).</p>
-      <p class="profile-core"><b>An English paper version is on figshare.</b> It contains Propositions 1–7 and the conjecture (<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>, 13 October 2026). It is a preprint and has not been peer-reviewed. The posted version is frozen. Corrections go into the note.</p>
-      <p class="profile-core"><b>The setting is a three-player game.</b> Each player chooses to cooperate (C) or defect (D). With <code translate="no" class="notranslate">k</code> co-players cooperating, a cooperator gets <code translate="no" class="notranslate">k + 1</code> and a defector gets <code translate="no" class="notranslate">k + 2</code>. This is the payoff table of Series I. The game is repeated without end, and future payoffs are discounted by a factor <code translate="no" class="notranslate">δ</code>.</p>
-      <p class="profile-core"><b>The question is whether the payoff <code translate="no" class="notranslate">(2+t, 4−t, 2+t)</code> can be kept as an equilibrium without randomization.</b> Here <code translate="no" class="notranslate">t</code> is greater than 0 and at most 1. The point <code translate="no" class="notranslate">(2,4,2)</code>, which Series II called sustainable, is the end of this segment. That end itself cannot be kept for any <code translate="no" class="notranslate">δ</code>.</p>
-      <p class="profile-core"><b>Outside the window, everything is proved.</b> When <code translate="no" class="notranslate">δ</code> is at least 1/2 and below <code translate="no" class="notranslate">1/φ</code>, only two values of <code translate="no" class="notranslate">t</code> can be kept: <code translate="no" class="notranslate">δ</code> and 1. When <code translate="no" class="notranslate">δ</code> is at least <code translate="no" class="notranslate">2/3</code>, every <code translate="no" class="notranslate">t</code> from <code translate="no" class="notranslate">1 − δ</code> upward can be kept. With public randomization, the condition becomes <code translate="no" class="notranslate">δ ≥ max(1/2, 1 − t)</code>.</p>
-      <p class="profile-core"><b>The conjecture is about the window in between, <code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code>.</b> (a) The set of <code translate="no" class="notranslate">t</code> that can be kept has length zero. (b) Its dimension lies between 0 and 1, grows with <code translate="no" class="notranslate">δ</code>, and tends to 0 at the lower end of the window and to 1 at the upper end.</p>
-      <p class="profile-core"><b>The evidence is numerical only.</b> Refining the interval period by period, the total length of the surviving intervals kept shrinking. The dimension estimate grew with <code translate="no" class="notranslate">δ</code>. Both are computations to a finite depth, not proofs.</p>
-      <p class="profile-core"><b>This is not a theory. The proofs have not been checked against the literature, and no third party has recognised them.</b> Under those conditions, three contributions are claimed. The first is a mathematical contribution as mathematical proof: the propositions outside the window, such as the threshold <code translate="no" class="notranslate">1/φ</code> for the three-player rotation. It moves to zero if an earlier statement is found. The second is a mathematical contribution as a mathematical conjecture: the golden-window conjecture. It is the contribution of posing the question, not of answering it. The third is a contribution as a case study in the philosophy of science: the route of rediscovery. It passed SSRN’s screening and has not been peer-reviewed. <b>Claiming a contribution and having the field count it are different things.</b></p>
-      <p class="profile-core"><b>The mathematical significance is conditional on the literature check.</b> If the same statements exist earlier, the significance belongs to that work. With that said, the example has four features. One simple game shows three regimes as <code translate="no" class="notranslate">δ</code> grows, two isolated points, a set conjectured to be full of holes, and the whole segment, with exact boundaries. Run backwards, the discounting recursion is a pair of affine maps with a hole between them, which links repeated games to interval maps with holes. It measures, with exact thresholds for this game, what public randomization adds. The rotation threshold and the lower end of the window are decided by the same polynomial, which, if it is not a coincidence, is a clue to structure. <b>None of this makes the operator new, and none of it is a new theory.</b></p>
-      <p class="profile-core"><b>The significance for the philosophy of science stays as it was.</b> A triadic intuition was formalized, the number three dissolved, and a known model remained. That route is the case studied in Machine-mediated Rediscovery (SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>). One step is added here. A rediscovery that contributes nothing as a result can, when the model is pushed further, still lead to a question that has not been answered. Keeping known, proved but not yet counted, and conjectured apart, and having a machine check them, is itself part of the case.</p>
-      <p class="profile-core"><b>If proved, only this one statement moves up.</b> If general results apply directly, it is a worked instance of a known theory. If (a) and (b) are proved with a new argument, it is one small paper. If the dimension is found in closed form as a function of <code translate="no" class="notranslate">δ</code> and the double appearance of <code translate="no" class="notranslate">1/φ</code> is explained, it is a full paper. <b>The operator remains a special case of a known model, and the framework does not become a new theory.</b> The rotation threshold and the lower end of the window both come from the polynomial <code translate="no" class="notranslate">δ² + δ − 1</code>. Whether that is a coincidence is not known. It is kept as a question, not as a conjecture.</p>
-      <p class="profile-core"><b>The name describes the statement. It is not a person’s name.</b> The window is the interval of discount factors from <code translate="no" class="notranslate">1/φ</code> to <code translate="no" class="notranslate">2/3</code>. Its lower end, <code translate="no" class="notranslate">1/φ</code>, is also the threshold at which three players taking turns to defect becomes an equilibrium.</p>
-      <p class="profile-core"><b>The contribution of the three papers to mathematics is zero. The proofs outside the window are not zero: they are not yet counted.</b> Zero means the check was made and nothing new was found. Not yet counted means the check has not been made. If no earlier statement is found, they become small new results. If one is found, they move to zero and the earlier source is cited.</p>
+      <p class="profile-core"><b>The golden-window conjecture is a conjecture. It has not been proved.</b> It was stated in a note that applies the operator of the three Trinity-Infinity papers to a repeated game (<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator, games</a>). An English paper version, with Propositions 1–7 and the conjecture, is on Figshare (<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>, 13 October 2026). It is a preprint and has not been peer-reviewed. The posted version is frozen. Corrections go into the note.</p>
+      <p class="profile-core"><b>The question.</b> Three players each choose to cooperate or defect. With <code translate="no" class="notranslate">k</code> co-players cooperating, a cooperator gets <code translate="no" class="notranslate">k + 1</code> and a defector <code translate="no" class="notranslate">k + 2</code>, the payoff table of Series I. The game is repeated without end, with discount factor <code translate="no" class="notranslate">δ</code>. Which payoffs <code translate="no" class="notranslate">(2+t, 4−t, 2+t)</code>, with <code translate="no" class="notranslate">0 &lt; t ≤ 1</code>, can be kept as an equilibrium without randomization? Call that set of <code translate="no" class="notranslate">t</code> the set <code translate="no" class="notranslate">T_δ</code>. The end <code translate="no" class="notranslate">(2,4,2)</code>, which Series II called sustainable, cannot be kept for any <code translate="no" class="notranslate">δ</code> (Proposition 3).</p>
+      <p><b><code translate="no" class="notranslate">δ &lt; 1/2</code></b><span>No <code translate="no" class="notranslate">t</code> can be kept. Proved (Proposition 4).</span></p>
+      <p><b><code translate="no" class="notranslate">1/2 ≤ δ &lt; 1/φ</code></b><span>Only <code translate="no" class="notranslate">t = δ</code> and <code translate="no" class="notranslate">t = 1</code>. Proved (Proposition 5).</span></p>
+      <p><b><code translate="no" class="notranslate">δ = 1/φ</code></b><span>A countably infinite set. Proved (Proposition 5).</span></p>
+      <p><b><code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code>, the window</b><span>Positive Hausdorff dimension: proved (Proposition 6). (a) Length zero: conjecture. (b) Dimension below 1, continuous and non-decreasing in <code translate="no" class="notranslate">δ</code>, tending to 0 at the lower end and to 1 at the upper end: conjecture. The evidence for (a) and (b) is numerical only: refined period by period, the total length of the surviving intervals kept shrinking, and the dimension estimate grew with <code translate="no" class="notranslate">δ</code>. Both are computations to a finite depth, not proofs.</span></p>
+      <p><b><code translate="no" class="notranslate">δ ≥ 2/3</code></b><span>Every <code translate="no" class="notranslate">t</code> from <code translate="no" class="notranslate">1 − δ</code> to 1. Proved (Proposition 5).</span></p>
+      <p><b>With public randomization</b><span><code translate="no" class="notranslate">t</code> can be kept exactly when <code translate="no" class="notranslate">δ ≥ max(1/2, 1 − t)</code>. Proved (Proposition 4).</span></p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="figure" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">Move δ</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <p>The figure is drawn in the browser from the recursion of Propositions 5 and 6. It fetches nothing. The upper band is the discount factor, with the window marked. The lower band shows the values of <code translate="no" class="notranslate">t</code> that survive a finite number of periods. That is numerical evidence, not a proof.</p>
+      <div id="gw-live" hidden>
+        <p><label for="gw-delta">δ = <output id="gw-value" for="gw-delta">0.640</output></label><input type="range" id="gw-delta" min="0.45" max="0.75" step="0.001" value="0.64"></p>
+        <svg id="gw-svg" viewBox="0 0 600 140" role="img" aria-label="The set of t that can be kept, for the chosen δ"></svg>
+        <p id="gw-state" aria-live="polite"></p>
+        <p id="gw-depth"></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="conditions" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">What is claimed, and on what conditions</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <p class="profile-core"><b>This is not a theory. The proofs have not been checked against the literature, and no third party has recognised them.</b> Under those conditions, three contributions are claimed. The propositions are a contribution as mathematical proof, which moves to zero if an earlier statement is found. The conjecture is the contribution of posing a question, not of answering it. The route of rediscovery is a case study in the philosophy of science (Machine-mediated Rediscovery, SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>), which passed SSRN’s screening and has not been peer-reviewed. <b>Claiming a contribution and having the field count it are different things.</b></p>
+      <p class="profile-core"><b>The contribution of the three papers to mathematics is zero. The proofs outside the window are not zero: they are not yet counted.</b> The same holds for Proposition 6 inside it. Zero means the check was made and nothing new was found. Not yet counted means the check has not been made.</p>
+      <p class="profile-core"><b>The mathematical significance is conditional on the literature check.</b> If the same statements exist earlier, the significance belongs to that work. <b>The significance for the philosophy of science stays as it was.</b> A rediscovery that contributes nothing as a result can, when the model is pushed further, still lead to a question that has not been answered.</p>
+      <p class="profile-core"><b>If proved, only this one statement moves up.</b> The operator remains a special case of a known model, and the framework does not become a new theory.</p>
       <p class="profile-core"><b>It has not been checked against the literature.</b> Berg and Kitti (2014) showed that pure-strategy equilibrium payoff sets can be fractals. Their methods may settle the question. The papers’ operator is a special case of the Friedkin–Johnsen model.</p>
-      <p class="profile-core">The conjecture and the proofs outside the window were written with Claude Code (Anthropic). The author is responsible for the claims. Claude is not an author.</p>
+      <p class="profile-core"><b>The name describes the statement. It is not a person’s name.</b> The window is the interval of discount factors from <code translate="no" class="notranslate">1/φ</code> to <code translate="no" class="notranslate">2/3</code>. Its lower end is also the threshold at which three players taking turns to defect becomes an equilibrium (Proposition 1). Both come from the polynomial <code translate="no" class="notranslate">δ² + δ − 1</code>. Whether that is a coincidence is not known. It is kept as a question, not as a conjecture.</p>
+      <p class="profile-core">The conjecture, the proofs and the figure were written with Claude Code (Anthropic). The author is responsible for the claims. Claude is not an author.</p>
     </div>
   </section>
 </main>
@@ -928,6 +959,189 @@ footer::before {
         });
       });
     }, { passive: true });
+  });
+})();
+</script>
+<script>
+/* 黄金比の窓の図。δ を動かすと、保てる t の集合 T_δ を描き直す。
+ *
+ * 頁の設定（golden-window*.json）の scripts から、build.js が頁に埋め込む。
+ * 外へは何も取りに行かない。CSP はこの中身のハッシュで許す。
+ *
+ * 計算は trinity-operator の games のノートの命題 5 と 6 の変数変換による。
+ *   x = (3 − w)/(1 − δ),   X = (2δ − 1)/(δ(1 − δ)),
+ *   生き残る x の集合 S は S = δS ∪ ((1 + δS) ∩ [0, X]) を満たす。
+ *   [0, X] から始めて、この写像を n 回当てた区間の和が、n 期を生き残る x である。
+ *   t は二つの枝から出る：t = δ − δ(1 − δ)x（u = 2）、t = 1 − δ(1 − δ)x（u = 3）。
+ * 有限の深さの計算であって、証明ではない。頁にもそう出す。
+ */
+(function () {
+  'use strict';
+
+  var PHI_INV = (Math.sqrt(5) - 1) / 2;
+  var LO = 0.45, HI = 0.75;
+  var MAX_INTERVALS = 3000, MAX_DEPTH = 24;
+
+  var en = (document.documentElement.getAttribute('lang') || '').slice(0, 2) === 'en';
+  var TXT = en ? {
+    below: 'δ < 1/2: no t can be kept. Proved (Proposition 4).',
+    two: '1/2 ≤ δ < 1/φ: only t = δ and t = 1 can be kept. Proved (Proposition 5).',
+    at: 'δ = 1/φ: a countably infinite set. Proved (Proposition 5).',
+    window: 'Inside the window 1/φ < δ < 2/3: the set has positive dimension, which is proved (Proposition 6). That its length is zero is conjecture (a), and is not proved.',
+    full: 'δ ≥ 2/3: every t from 1 − δ to 1 can be kept. Proved (Proposition 5).',
+    depth: function (k, n, len) {
+      return 'Drawn: the values of t that survive ' + n + ' periods, ' + k + ' interval' + (k === 1 ? '' : 's')
+        + ', total length ' + len + '. A finite-depth computation, not a proof.';
+    },
+    deltaAxis: 'discount factor δ', tAxis: 't (the payoff is (2+t, 4−t, 2+t))', window_: 'window',
+  } : {
+    below: 'δ < 1/2：保てる t は無い。証明してある（命題 4）。',
+    two: '1/2 ≤ δ < 1/φ：保てる t は δ と 1 の二点だけ。証明してある（命題 5）。',
+    at: 'δ = 1/φ：可算無限の集合。証明してある（命題 5）。',
+    window: '窓の中 1/φ < δ < 2/3：集合の次元が正であることは証明してある（命題 6）。長さが 0 になることは予想 (a) で、証明していない。',
+    full: 'δ ≥ 2/3：1 − δ から 1 までのすべての t を保てる。証明してある（命題 5）。',
+    depth: function (k, n, len) {
+      return '描いているのは、' + n + ' 期を生き残る t の区間 ' + k + ' 個、総長 ' + len + '。有限の深さの計算であって、証明ではない。';
+    },
+    deltaAxis: '割引因子 δ', tAxis: 't（利得は (2+t, 4−t, 2+t)）', window_: '窓',
+  };
+
+  /* ---------- 計算 ---------- */
+
+  function merge(list) {
+    list.sort(function (a, b) { return a[0] - b[0]; });
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      var iv = list[i];
+      var last = out[out.length - 1];
+      if (last && iv[0] <= last[1] + 1e-12) { if (iv[1] > last[1]) last[1] = iv[1]; }
+      else out.push([iv[0], iv[1]]);
+    }
+    return out;
+  }
+
+  /* n 期を生き残る x の区間。区間が増えすぎる手前で止め、何期まで回したかを返す。 */
+  function survivors(d) {
+    if (d < 0.5) return { list: [], depth: 0 };
+    var X = (2 * d - 1) / (d * (1 - d));
+    var cur = [[0, X]];
+    var n = 0;
+    for (; n < MAX_DEPTH; n++) {
+      var next = [];
+      for (var i = 0; i < cur.length; i++) {
+        for (var a = 0; a <= 1; a++) {
+          var lo = a + d * cur[i][0], hi = a + d * cur[i][1];
+          if (hi > X) hi = X;
+          if (lo <= hi) next.push([lo, hi]);
+        }
+      }
+      next = merge(next);
+      if (next.length > MAX_INTERVALS) break;
+      cur = next;
+    }
+    return { list: cur, depth: n };
+  }
+
+  /* x の区間を t の区間に移し、(0, 1] に収める。 */
+  function tSet(d) {
+    var s = survivors(d);
+    var k = d * (1 - d);
+    var out = [];
+    s.list.forEach(function (iv) {
+      [d, 1].forEach(function (top) {
+        var lo = top - k * iv[1], hi = top - k * iv[0];
+        if (lo < 0) lo = 0;
+        if (hi > 1) hi = 1;
+        if (hi > 0 && lo <= hi) out.push([lo, hi]);
+      });
+    });
+    return { list: merge(out), depth: s.depth };
+  }
+
+  /* ---------- 描画 ---------- */
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 600, PAD = 24;
+
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, String(attrs[k])); });
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function paint(e, prop, value) { e.style.setProperty(prop, value); return e; }
+  function text(parent, x, y, s, anchor) {
+    var t = el('text', { x: x, y: y, 'text-anchor': anchor || 'middle' }, parent);
+    paint(t, 'fill', 'var(--muted)');
+    paint(t, 'font-size', '11px');
+    t.textContent = s;
+    return t;
+  }
+  var dx = function (d) { return PAD + (W - 2 * PAD) * (d - LO) / (HI - LO); };
+  var tx = function (t) { return PAD + (W - 2 * PAD) * t; };
+
+  function draw(svg, d) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    /* 上の帯：δ の軸と、窓 */
+    paint(el('rect', { x: dx(LO), y: 18, width: dx(HI) - dx(LO), height: 10 }, svg), 'fill', 'var(--line-soft)');
+    paint(el('rect', { x: dx(PHI_INV), y: 18, width: dx(2 / 3) - dx(PHI_INV), height: 10 }, svg), 'fill', 'var(--accent-soft)');
+    text(svg, (dx(PHI_INV) + dx(2 / 3)) / 2, 12, TXT.window_);
+    [[0.5, '1/2'], [PHI_INV, '1/φ'], [2 / 3, '2/3']].forEach(function (m) {
+      paint(el('line', { x1: dx(m[0]), x2: dx(m[0]), y1: 16, y2: 30 }, svg), 'stroke', 'var(--faint)');
+      text(svg, dx(m[0]), 42, m[1]);
+    });
+    paint(el('line', { x1: dx(d), x2: dx(d), y1: 14, y2: 32 }, svg), 'stroke', 'var(--accent)');
+    paint(el('circle', { cx: dx(d), cy: 23, r: 4 }, svg), 'fill', 'var(--accent)');
+    text(svg, W - PAD, 56, TXT.deltaAxis, 'end');
+
+    /* 下の帯：t の軸と、T_δ */
+    paint(el('rect', { x: tx(0), y: 82, width: tx(1) - tx(0), height: 18 }, svg), 'fill', 'var(--line-soft)');
+    var res = tSet(d);
+    var total = 0;
+    res.list.forEach(function (iv) {
+      total += iv[1] - iv[0];
+      var w = Math.max(tx(iv[1]) - tx(iv[0]), 1);
+      paint(el('rect', { x: tx(iv[0]), y: 82, width: w, height: 18 }, svg), 'fill', 'var(--accent)');
+    });
+    [0, 0.5, 1].forEach(function (v) { text(svg, tx(v), 116, String(v)); });
+    text(svg, W - PAD, 134, TXT.tAxis, 'end');
+    return { count: res.list.length, depth: res.depth, total: total };
+  }
+
+  function stateText(d) {
+    if (d < 0.5) return TXT.below;
+    if (Math.abs(d - PHI_INV) < 1e-9) return TXT.at;
+    if (d < PHI_INV) return TXT.two;
+    if (d < 2 / 3) return TXT.window;
+    return TXT.full;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var live = document.getElementById('gw-live');
+    var input = document.getElementById('gw-delta');
+    var out = document.getElementById('gw-value');
+    var svg = document.getElementById('gw-svg');
+    var state = document.getElementById('gw-state');
+    var depth = document.getElementById('gw-depth');
+    if (!live || !input || !out || !svg || !state || !depth) return;
+    live.hidden = false;
+    paint(input, 'accent-color', 'var(--accent)');
+    paint(input, 'width', '100%');
+    paint(svg, 'width', '100%');
+    paint(svg, 'height', 'auto');
+    paint(svg, 'max-width', '40rem');
+    function update() {
+      var d = Number(input.value);
+      out.textContent = d.toFixed(3);
+      var r = draw(svg, d);
+      var s = stateText(d);
+      state.textContent = s;
+      depth.textContent = r.count ? TXT.depth(r.count, r.depth, r.total.toPrecision(3)) : '';
+      svg.setAttribute('aria-label', 'δ = ' + d.toFixed(3) + '. ' + s);
+    }
+    input.addEventListener('input', update);
+    update();
   });
 })();
 </script>
