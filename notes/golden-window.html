@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-fitexvlvwGplo3dOwzKpBL+v2aGru44Ts+TGCxWBytk='; style-src 'sha256-1EG2q8YqTj27D2nZfvhJtlYFV8NSFeA583pdpizu07U='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>黄金比の窓の予想 | 根本卓哉</title>
 <meta name="description" content="三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になるという予想。証明はなく、根拠は数値だけ。">
 <meta name="robots" content="index, follow">
@@ -797,7 +797,9 @@ footer::before {
   <div class="wrap head-row">
     <a class="mark serif" href="#main">TN</a>
     <nav class="nav">
-      <a href="#conjecture">予想と、証明してあること</a>
+      <a href="#state">状態</a>
+      <a href="#figure">図</a>
+      <a href="#conditions">条件</a>
       <a href="./../index.html">自己紹介</a>
       <a href="./../trinity.html">作用素</a>
       <a href="./index.html">ノート</a>
@@ -814,32 +816,61 @@ footer::before {
     <h1 class="serif reveal">黄金比の窓の予想</h1>
     <p class="romaji reveal">Golden-window conjecture</p>
 
-    <p class="lead reveal">証明されていない予想です。窓の外は証明してあり、窓の中は数値の根拠だけがあります。</p>
+    <p class="lead reveal">三人のゲームの、一本の利得の線分についての、証明されていない予想です。窓より下と、窓の下端と、<code translate="no" class="notranslate">2/3</code> から上で何が起きるかは証明してあります。窓の中の集合の次元が正であることも証明してあります。その集合の長さが 0 になるか、次元がどう振る舞うかは開いており、根拠は数値だけです。</p>
   </section>
 
   <hr class="rule">
 
-  <section id="conjecture" class="wrap block">
+  <section id="state" class="wrap block">
     <div class="sec-head reveal">
-      <h2 class="serif">予想と、証明してあること</h2>
-      <p>予想・未証明</p>
+      <h2 class="serif">いまの状態</h2>
+      
     </div>
     <div class="notes-list reveal">
-      <p class="profile-core"><b>黄金比の窓の予想（Golden-window conjecture）は、証明されていない予想である。</b>Trinity-Infinity の三篇が扱う作用素を、繰り返しゲームに当てたノートで立てた（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator の games</a>）。</p>
-      <p class="profile-core"><b>英語の論文の形にしたものを Figshare に置いた。</b>命題 1〜7 と予想を収めている（<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>、2026年10月13日）。プレプリントであり、査読は受けていない。置いた版は動かさない。直すのはノートのほうである。</p>
-      <p class="profile-core"><b>舞台は三人のゲームである。</b>各人が協力（C）か裏切り（D）を選ぶ。協力した相手が k 人いるとき、協力すれば <code translate="no" class="notranslate">k + 1</code>、裏切れば <code translate="no" class="notranslate">k + 2</code> を得る。Series I の利得表そのものである。これを限りなく繰り返し、先の利得を割引因子 <code translate="no" class="notranslate">δ</code> で割り引く。</p>
-      <p class="profile-core"><b>問いは、乱数を使わずに、利得 <code translate="no" class="notranslate">(2+t, 4−t, 2+t)</code> を均衡として保てるかどうかである。</b><code translate="no" class="notranslate">t</code> は 0 より大きく 1 以下とする。Series II が持続すると書いた <code translate="no" class="notranslate">(2,4,2)</code> は、この線分の端にあたる。その端そのものは、どの <code translate="no" class="notranslate">δ</code> でも保てない。</p>
-      <p class="profile-core"><b>窓の外は証明してある。</b><code translate="no" class="notranslate">δ</code> が 1/2 以上で <code translate="no" class="notranslate">1/φ</code> より小さいとき、保てる <code translate="no" class="notranslate">t</code> は <code translate="no" class="notranslate">δ</code> と 1 の二点だけである。<code translate="no" class="notranslate">δ</code> が <code translate="no" class="notranslate">2/3</code> 以上なら、<code translate="no" class="notranslate">1 − δ</code> 以上のすべての <code translate="no" class="notranslate">t</code> を保てる。公開の乱数を使えるなら、条件は <code translate="no" class="notranslate">δ ≥ max(1/2, 1 − t)</code> になる。</p>
-      <p class="profile-core"><b>予想は、その間の窓 <code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code> についてのものである。</b>(a) 保てる <code translate="no" class="notranslate">t</code> の集合は、長さが 0 になる。(b) その集合の次元は 0 と 1 の間にあり、<code translate="no" class="notranslate">δ</code> とともに増え、窓の下端で 0、上端で 1 に近づく。</p>
-      <p class="profile-core"><b>根拠は数値だけである。</b>区間を期ごとに細かく分けて数えると、生き残る区間の総長は縮み続けた。次元の推定は、<code translate="no" class="notranslate">δ</code> が大きいほど大きくなった。どちらも有限の深さでの計算であり、証明ではない。</p>
-      <p class="profile-core"><b>理論ではない。証明は文献と照合しておらず、第三者の公認もない。</b>その条件のうえで、名乗る貢献は三つある。一つは、数学的証明としての数学的貢献である。窓の外の命題（三人の巡回の閾値 <code translate="no" class="notranslate">1/φ</code> など）がそれにあたり、先行が見つかればゼロに移る。二つ目は、数学的予想としての数学的貢献である。黄金比の窓の予想がそれにあたり、問いを立てたことの貢献であって、解いたことの貢献ではない。三つ目は、科学哲学におけるケーススタディとしての貢献である。再発見の経路がそれにあたり、SSRN の受け付けを通ったが、査読は受けていない。<b>名乗ることと、分野が数えることは別である。</b></p>
-      <p class="profile-core"><b>数学的な意義は、文献照合の条件つきである。</b>同じ命題が先にあれば、意義はそちらに属する。そのうえで言えることは四つの性質である。一つの単純なゲームで、<code translate="no" class="notranslate">δ</code> が増えるにつれて、孤立した二点、穴だらけと予想される集合、線分全体、の三つの相が現れ、境目が正確に分かっている。割引の再帰を逆に回すと、穴をはさむ二本の一次写像になり、繰り返しゲームが「穴のある区間写像」の研究とつながる。公開の乱数が何を足すかを、このゲームについて正確な閾値で測っている。巡回の閾値と窓の下端が同じ多項式で決まることは、偶然でなければ構造の手がかりになる。<b>作用素が新しくなるわけでも、新しい理論になるわけでもない。</b></p>
-      <p class="profile-core"><b>科学哲学的な意義は、そのまま残る。</b>三者の直観を形式化したら三は消え、既知の模型が残った。その経路が Machine-mediated Rediscovery（SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>）の事例である。ここに一歩が加わる。結果としての寄与がゼロの再発見でも、その模型をさらに押し進めると、まだ答えのない問いに行き着くことがある。既知・証明済みだがまだ数えていない・予想、の三つを分けて機械で検査していること自体も、事例の一部である。</p>
-      <p class="profile-core"><b>証明されても、上がるのはこの一命題だけである。</b>一般論をそのまま当てはめて済むなら、既知の理論の具体例の計算になる。(a) と (b) を新しい議論で示せば、小さな論文一本になる。次元を <code translate="no" class="notranslate">δ</code> の式として閉じた形で出し、<code translate="no" class="notranslate">1/φ</code> が二度出る理由まで説明できれば、ちゃんとした論文になる。<b>作用素は既知の模型の特殊例のままで、枠組みが新しい理論になるわけではない。</b>巡回の閾値と窓の下端は、同じ多項式 <code translate="no" class="notranslate">δ² + δ − 1</code> から出ている。それが偶然かどうかは分かっておらず、予想ではなく問いとして置いている。</p>
-      <p class="profile-core"><b>名前は中身を表すもので、人名ではない。</b>窓は割引因子の <code translate="no" class="notranslate">1/φ</code> から <code translate="no" class="notranslate">2/3</code> までの区間を指す。下端の <code translate="no" class="notranslate">1/φ</code> は、三人で裏切り役を回す道が均衡になる閾値と同じ数である。</p>
-      <p class="profile-core"><b>三篇の数学への寄与はゼロである。窓の外の証明は、ゼロではなく、まだ数えていない。</b>ゼロは、照合した結果、新しいものが無かった状態である。数えていないは、照合がまだの状態である。照合して先行が無ければ、小さいが新しい結果になる。先行が見つかればゼロに移し、その文献を引く。</p>
+      <p class="profile-core"><b>黄金比の窓の予想（Golden-window conjecture）は、証明されていない予想である。</b>Trinity-Infinity の三篇が扱う作用素を、繰り返しゲームに当てたノートで立てた（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator の games</a>）。英語の論文の形にしたものを Figshare に置いた。命題 1〜7 と予想を収めている（<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>、2026年10月13日）。プレプリントであり、査読は受けていない。置いた版は動かさない。直すのはノートのほうである。</p>
+      <p class="profile-core"><b>問い。</b>三人が、それぞれ協力か裏切りを選ぶ。協力した相手が <code translate="no" class="notranslate">k</code> 人いるとき、協力すれば <code translate="no" class="notranslate">k + 1</code>、裏切れば <code translate="no" class="notranslate">k + 2</code> を得る。Series I の利得表である。これを限りなく繰り返し、先の利得を割引因子 <code translate="no" class="notranslate">δ</code> で割り引く。乱数を使わずに、利得 <code translate="no" class="notranslate">(2+t, 4−t, 2+t)</code>（<code translate="no" class="notranslate">0 &lt; t ≤ 1</code>）を均衡として保てるのは、どの <code translate="no" class="notranslate">t</code> か。その集合を <code translate="no" class="notranslate">T_δ</code> と書く。Series II が持続すると書いた端 <code translate="no" class="notranslate">(2,4,2)</code> は、どの <code translate="no" class="notranslate">δ</code> でも保てない（命題 3）。</p>
+      <p><b><code translate="no" class="notranslate">δ &lt; 1/2</code></b><span>保てる <code translate="no" class="notranslate">t</code> は無い。証明してある（命題 4）。</span></p>
+      <p><b><code translate="no" class="notranslate">1/2 ≤ δ &lt; 1/φ</code></b><span>保てるのは <code translate="no" class="notranslate">t = δ</code> と <code translate="no" class="notranslate">t = 1</code> だけ。証明してある（命題 5）。</span></p>
+      <p><b><code translate="no" class="notranslate">δ = 1/φ</code></b><span>可算無限の集合。証明してある（命題 5）。</span></p>
+      <p><b>窓 <code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code></b><span>ハウスドルフ次元が正であること：証明してある（命題 6）。(a) 長さが 0 になること：予想。(b) 次元は 1 より小さく、<code translate="no" class="notranslate">δ</code> について連続で減らず、窓の下端で 0、上端で 1 に近づくこと：予想。(a) と (b) の根拠は数値だけである。区間を期ごとに細かく分けて数えると、生き残る区間の総長は縮み続け、次元の推定は <code translate="no" class="notranslate">δ</code> とともに大きくなった。どちらも有限の深さでの計算であり、証明ではない。</span></p>
+      <p><b><code translate="no" class="notranslate">δ ≥ 2/3</code></b><span><code translate="no" class="notranslate">1 − δ</code> から 1 までのすべての <code translate="no" class="notranslate">t</code>。証明してある（命題 5）。</span></p>
+      <p><b>公開の乱数を使えるとき</b><span><code translate="no" class="notranslate">δ ≥ max(1/2, 1 − t)</code> のときに限って保てる。証明してある（命題 4）。</span></p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="figure" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">δ を動かす</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <p>図は、命題 5 と 6 の再帰から、ブラウザの中で描く。外へは何も取りに行かない。上の帯が割引因子で、窓に印を付けてある。下の帯は、有限の期数を生き残る <code translate="no" class="notranslate">t</code> を示す。数値の根拠であって、証明ではない。</p>
+      <div id="gw-live" hidden>
+        <p><label for="gw-delta">δ = <output id="gw-value" for="gw-delta">0.640</output></label><input type="range" id="gw-delta" min="0.45" max="0.75" step="0.001" value="0.64"></p>
+        <svg id="gw-svg" viewBox="0 0 600 140" role="img" aria-label="選んだ δ で保てる t の集合"></svg>
+        <p id="gw-state" aria-live="polite"></p>
+        <p id="gw-depth"></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="conditions" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">名乗ることと、その条件</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <p class="profile-core"><b>理論ではない。証明は文献と照合しておらず、第三者の公認もない。</b>その条件のうえで、名乗る貢献は三つある。命題は、数学的証明としての貢献であり、先行が見つかればゼロに移る。予想は、問いを立てたことの貢献であって、解いたことの貢献ではない。再発見の経路は、科学哲学におけるケーススタディとしての貢献である（Machine-mediated Rediscovery、SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>）。SSRN の受け付けを通ったが、査読は受けていない。<b>名乗ることと、分野が数えることは別である。</b></p>
+      <p class="profile-core"><b>三篇の数学への寄与はゼロである。窓の外の証明は、ゼロではなく、まだ数えていない。</b>窓の中の命題 6 も同じである。ゼロは、照合した結果、新しいものが無かった状態である。数えていないは、照合がまだの状態である。</p>
+      <p class="profile-core"><b>数学的な意義は、文献照合の条件つきである。</b>同じ命題が先にあれば、意義はそちらに属する。<b>科学哲学的な意義は、そのまま残る。</b>結果としての寄与がゼロの再発見でも、その模型をさらに押し進めると、まだ答えのない問いに行き着くことがある。</p>
+      <p class="profile-core"><b>証明されても、上がるのはこの一命題だけである。</b>作用素は既知の模型の特殊例のままで、枠組みが新しい理論になるわけではない。</p>
       <p class="profile-core"><b>文献とは照合していない。</b>Berg と Kitti（2014）が、純粋戦略の均衡の利得集合がフラクタルになりうることを示している。その方法で決着がつく可能性がある。三篇の作用素は、Friedkin–Johnsen モデルの特殊例である。</p>
-      <p class="profile-core">この予想と、窓の外の証明は、Claude Code（Anthropic）を用いて書いた。主張の責任は著者にある。Claude は著者ではない。</p>
+      <p class="profile-core"><b>名前は中身を表すもので、人名ではない。</b>窓は割引因子の <code translate="no" class="notranslate">1/φ</code> から <code translate="no" class="notranslate">2/3</code> までの区間を指す。下端の <code translate="no" class="notranslate">1/φ</code> は、三人で裏切り役を回す道が均衡になる閾値と同じ数である（命題 1）。どちらも多項式 <code translate="no" class="notranslate">δ² + δ − 1</code> から出ている。それが偶然かどうかは分かっておらず、予想ではなく問いとして置いている。</p>
+      <p class="profile-core">この予想と、証明と、図は、Claude Code（Anthropic）を用いて書いた。主張の責任は著者にある。Claude は著者ではない。</p>
     </div>
   </section>
 </main>
@@ -928,6 +959,189 @@ footer::before {
         });
       });
     }, { passive: true });
+  });
+})();
+</script>
+<script>
+/* 黄金比の窓の図。δ を動かすと、保てる t の集合 T_δ を描き直す。
+ *
+ * 頁の設定（golden-window*.json）の scripts から、build.js が頁に埋め込む。
+ * 外へは何も取りに行かない。CSP はこの中身のハッシュで許す。
+ *
+ * 計算は trinity-operator の games のノートの命題 5 と 6 の変数変換による。
+ *   x = (3 − w)/(1 − δ),   X = (2δ − 1)/(δ(1 − δ)),
+ *   生き残る x の集合 S は S = δS ∪ ((1 + δS) ∩ [0, X]) を満たす。
+ *   [0, X] から始めて、この写像を n 回当てた区間の和が、n 期を生き残る x である。
+ *   t は二つの枝から出る：t = δ − δ(1 − δ)x（u = 2）、t = 1 − δ(1 − δ)x（u = 3）。
+ * 有限の深さの計算であって、証明ではない。頁にもそう出す。
+ */
+(function () {
+  'use strict';
+
+  var PHI_INV = (Math.sqrt(5) - 1) / 2;
+  var LO = 0.45, HI = 0.75;
+  var MAX_INTERVALS = 3000, MAX_DEPTH = 24;
+
+  var en = (document.documentElement.getAttribute('lang') || '').slice(0, 2) === 'en';
+  var TXT = en ? {
+    below: 'δ < 1/2: no t can be kept. Proved (Proposition 4).',
+    two: '1/2 ≤ δ < 1/φ: only t = δ and t = 1 can be kept. Proved (Proposition 5).',
+    at: 'δ = 1/φ: a countably infinite set. Proved (Proposition 5).',
+    window: 'Inside the window 1/φ < δ < 2/3: the set has positive dimension, which is proved (Proposition 6). That its length is zero is conjecture (a), and is not proved.',
+    full: 'δ ≥ 2/3: every t from 1 − δ to 1 can be kept. Proved (Proposition 5).',
+    depth: function (k, n, len) {
+      return 'Drawn: the values of t that survive ' + n + ' periods, ' + k + ' interval' + (k === 1 ? '' : 's')
+        + ', total length ' + len + '. A finite-depth computation, not a proof.';
+    },
+    deltaAxis: 'discount factor δ', tAxis: 't (the payoff is (2+t, 4−t, 2+t))', window_: 'window',
+  } : {
+    below: 'δ < 1/2：保てる t は無い。証明してある（命題 4）。',
+    two: '1/2 ≤ δ < 1/φ：保てる t は δ と 1 の二点だけ。証明してある（命題 5）。',
+    at: 'δ = 1/φ：可算無限の集合。証明してある（命題 5）。',
+    window: '窓の中 1/φ < δ < 2/3：集合の次元が正であることは証明してある（命題 6）。長さが 0 になることは予想 (a) で、証明していない。',
+    full: 'δ ≥ 2/3：1 − δ から 1 までのすべての t を保てる。証明してある（命題 5）。',
+    depth: function (k, n, len) {
+      return '描いているのは、' + n + ' 期を生き残る t の区間 ' + k + ' 個、総長 ' + len + '。有限の深さの計算であって、証明ではない。';
+    },
+    deltaAxis: '割引因子 δ', tAxis: 't（利得は (2+t, 4−t, 2+t)）', window_: '窓',
+  };
+
+  /* ---------- 計算 ---------- */
+
+  function merge(list) {
+    list.sort(function (a, b) { return a[0] - b[0]; });
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      var iv = list[i];
+      var last = out[out.length - 1];
+      if (last && iv[0] <= last[1] + 1e-12) { if (iv[1] > last[1]) last[1] = iv[1]; }
+      else out.push([iv[0], iv[1]]);
+    }
+    return out;
+  }
+
+  /* n 期を生き残る x の区間。区間が増えすぎる手前で止め、何期まで回したかを返す。 */
+  function survivors(d) {
+    if (d < 0.5) return { list: [], depth: 0 };
+    var X = (2 * d - 1) / (d * (1 - d));
+    var cur = [[0, X]];
+    var n = 0;
+    for (; n < MAX_DEPTH; n++) {
+      var next = [];
+      for (var i = 0; i < cur.length; i++) {
+        for (var a = 0; a <= 1; a++) {
+          var lo = a + d * cur[i][0], hi = a + d * cur[i][1];
+          if (hi > X) hi = X;
+          if (lo <= hi) next.push([lo, hi]);
+        }
+      }
+      next = merge(next);
+      if (next.length > MAX_INTERVALS) break;
+      cur = next;
+    }
+    return { list: cur, depth: n };
+  }
+
+  /* x の区間を t の区間に移し、(0, 1] に収める。 */
+  function tSet(d) {
+    var s = survivors(d);
+    var k = d * (1 - d);
+    var out = [];
+    s.list.forEach(function (iv) {
+      [d, 1].forEach(function (top) {
+        var lo = top - k * iv[1], hi = top - k * iv[0];
+        if (lo < 0) lo = 0;
+        if (hi > 1) hi = 1;
+        if (hi > 0 && lo <= hi) out.push([lo, hi]);
+      });
+    });
+    return { list: merge(out), depth: s.depth };
+  }
+
+  /* ---------- 描画 ---------- */
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 600, PAD = 24;
+
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, String(attrs[k])); });
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function paint(e, prop, value) { e.style.setProperty(prop, value); return e; }
+  function text(parent, x, y, s, anchor) {
+    var t = el('text', { x: x, y: y, 'text-anchor': anchor || 'middle' }, parent);
+    paint(t, 'fill', 'var(--muted)');
+    paint(t, 'font-size', '11px');
+    t.textContent = s;
+    return t;
+  }
+  var dx = function (d) { return PAD + (W - 2 * PAD) * (d - LO) / (HI - LO); };
+  var tx = function (t) { return PAD + (W - 2 * PAD) * t; };
+
+  function draw(svg, d) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    /* 上の帯：δ の軸と、窓 */
+    paint(el('rect', { x: dx(LO), y: 18, width: dx(HI) - dx(LO), height: 10 }, svg), 'fill', 'var(--line-soft)');
+    paint(el('rect', { x: dx(PHI_INV), y: 18, width: dx(2 / 3) - dx(PHI_INV), height: 10 }, svg), 'fill', 'var(--accent-soft)');
+    text(svg, (dx(PHI_INV) + dx(2 / 3)) / 2, 12, TXT.window_);
+    [[0.5, '1/2'], [PHI_INV, '1/φ'], [2 / 3, '2/3']].forEach(function (m) {
+      paint(el('line', { x1: dx(m[0]), x2: dx(m[0]), y1: 16, y2: 30 }, svg), 'stroke', 'var(--faint)');
+      text(svg, dx(m[0]), 42, m[1]);
+    });
+    paint(el('line', { x1: dx(d), x2: dx(d), y1: 14, y2: 32 }, svg), 'stroke', 'var(--accent)');
+    paint(el('circle', { cx: dx(d), cy: 23, r: 4 }, svg), 'fill', 'var(--accent)');
+    text(svg, W - PAD, 56, TXT.deltaAxis, 'end');
+
+    /* 下の帯：t の軸と、T_δ */
+    paint(el('rect', { x: tx(0), y: 82, width: tx(1) - tx(0), height: 18 }, svg), 'fill', 'var(--line-soft)');
+    var res = tSet(d);
+    var total = 0;
+    res.list.forEach(function (iv) {
+      total += iv[1] - iv[0];
+      var w = Math.max(tx(iv[1]) - tx(iv[0]), 1);
+      paint(el('rect', { x: tx(iv[0]), y: 82, width: w, height: 18 }, svg), 'fill', 'var(--accent)');
+    });
+    [0, 0.5, 1].forEach(function (v) { text(svg, tx(v), 116, String(v)); });
+    text(svg, W - PAD, 134, TXT.tAxis, 'end');
+    return { count: res.list.length, depth: res.depth, total: total };
+  }
+
+  function stateText(d) {
+    if (d < 0.5) return TXT.below;
+    if (Math.abs(d - PHI_INV) < 1e-9) return TXT.at;
+    if (d < PHI_INV) return TXT.two;
+    if (d < 2 / 3) return TXT.window;
+    return TXT.full;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var live = document.getElementById('gw-live');
+    var input = document.getElementById('gw-delta');
+    var out = document.getElementById('gw-value');
+    var svg = document.getElementById('gw-svg');
+    var state = document.getElementById('gw-state');
+    var depth = document.getElementById('gw-depth');
+    if (!live || !input || !out || !svg || !state || !depth) return;
+    live.hidden = false;
+    paint(input, 'accent-color', 'var(--accent)');
+    paint(input, 'width', '100%');
+    paint(svg, 'width', '100%');
+    paint(svg, 'height', 'auto');
+    paint(svg, 'max-width', '40rem');
+    function update() {
+      var d = Number(input.value);
+      out.textContent = d.toFixed(3);
+      var r = draw(svg, d);
+      var s = stateText(d);
+      state.textContent = s;
+      depth.textContent = r.count ? TXT.depth(r.count, r.depth, r.total.toPrecision(3)) : '';
+      svg.setAttribute('aria-label', 'δ = ' + d.toFixed(3) + '. ' + s);
+    }
+    input.addEventListener('input', update);
+    update();
   });
 })();
 </script>

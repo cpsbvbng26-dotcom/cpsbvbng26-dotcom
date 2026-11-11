@@ -55,6 +55,30 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/catalog.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/catalog.en.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/tools.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cpsbvbng26-dotcom.vercel.app/tools.en.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cpsbvbng26-dotcom.vercel.app/papers/trinity-infinity-series-i.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -146,13 +170,13 @@
   </url>
   <url>
     <loc>https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.en.html</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

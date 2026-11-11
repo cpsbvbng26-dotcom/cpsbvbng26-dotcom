@@ -49,6 +49,26 @@
       "priority": "0.4"
     },
     {
+      "file": "catalog.html",
+      "loc": "catalog.html",
+      "priority": "0.8"
+    },
+    {
+      "file": "catalog.en.html",
+      "loc": "catalog.en.html",
+      "priority": "0.8"
+    },
+    {
+      "file": "tools.html",
+      "loc": "tools.html",
+      "priority": "0.6"
+    },
+    {
+      "file": "tools.en.html",
+      "loc": "tools.en.html",
+      "priority": "0.6"
+    },
+    {
       "file": "papers/trinity-infinity-series-i.html",
       "loc": "papers/trinity-infinity-series-i.html",
       "priority": "0.6"
