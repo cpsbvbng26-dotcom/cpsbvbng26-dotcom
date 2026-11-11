@@ -6,7 +6,7 @@ Type: Project · Status: Running
 
 #### In three lines
 
-1. The entry point of an undergraduate who studies philosophy and game theory on his own, with the help of language models.
+1. This repository is the profile of an undergraduate who studies philosophy and game theory independently, with the help of language models.
 2. What is published here is preprints and tools, none peer reviewed; errors are kept, not deleted, in errata and a record of corrections.
 3. Each repository's checks, and a check across the repositories, compare by machine the numbers and sentences of what is published.
 
