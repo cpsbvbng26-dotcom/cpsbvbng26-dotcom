@@ -198,6 +198,8 @@ node verification/check_trinity.js     # 作用素のページの数値
 python3 verification/check_pdf_shape.py  # 三篇の PDF の形（要: pypdf・兄弟ディレクトリ）
 node verification/check_ecosystem.js   # 10 リポジトリ横断（要: 兄弟ディレクトリ）
 node verification/check_all.js         # 10 リポジトリの検査を全部回す
+node verification/check_datacite.js    # 目録の DOI の資源の種類を DataCite と突き合わせる（要: api.datacite.org。CI では別の仕事）
+node verification/linkcheck.js         # 外部リンクの切れを数える（要: 外への接続。月に一度 CI が回し、issue を一つ立てるか直す）
 ```
 
 **生成物 —— 手で編集しない。**
@@ -207,6 +209,7 @@ node verification/check_all.js         # 10 リポジトリの検査を全部回
 | `index.html` / `index.en.html` / `cv.html` | `researcher-profile` の `site.json` / `site.en.json` / `cv.json` を直して `PROFILE_CONFIG=./site.json PROFILE_OUT=<出力先> node build.js`、出力をここへ写す |
 | `notes/*.html` | 同じく `researcher-profile` の `notes.json` / `notes.en.json`。哲学の三篇の要点の頁は `theory-<slug>.json` / `theory-<slug>.en.json`。Sophaxis の頁は `sophaxis.json` / `sophaxis.en.json` |
 | `README.md` / `README.en.md` の学歴と修得した科目（`<!-- 経歴:ここから -->` から `<!-- 経歴:ここまで -->` まで） | 科目の源は `researcher-profile` の `courses.json`。そこに一行足してページを作り直し、`node verification/update_readme_courses.js` |
+| `catalog.html` / `catalog.en.html` / `tools.html` / `tools.en.html` / `catalog.json` / `catalog.bib` | `researcher-profile` の `catalog.json` を直して `CATALOG_OUT=<ここ> node build_catalog.js`。そのあと `update_csp.js` と `update_sitemap.js` |
 | `sitemap.xml` | `node verification/update_sitemap.js` |
 | `docs/library.bib` | `docs/library.toml`（と兄弟の `autonomy-and-self-cultivation` の書棚）を直して `python3 verification/build_library.py` |
 | CSP の `<meta>` | `node verification/update_csp.js`（中身を書き換えたら必ず） |
