@@ -1,6 +1,6 @@
 # 免責事項
 
-最終更新：2026-11-08。
+最終更新：2026-11-11。
 
 English: [Disclaimer](DISCLAIMER.en.md)。訳と食い違うときは、この日本語の文が正です。
 
@@ -32,8 +32,11 @@ cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-
 
 ## 再利用
 
-文書と論文は CC BY 4.0、コードは MIT のライセンスで公開しています。
-再利用の条件と、その条件のもとでの保証と責任は、各リポジトリの LICENSE と LICENSE-CODE の定めによります。
+ライセンスは、各リポジトリの LICENSE と、あれば LICENSE-CODE に定めています。
+二つを置くリポジトリでは、文書と論文が CC BY 4.0、コードが MIT です。
+errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。
+trinity-operator の lessons/ だけは、その中の LICENSE により CC BY 4.0 です。
+再利用の条件と、その条件のもとでの保証と責任は、それぞれのライセンスの定めによります。
 
 ## ほかのサイト
 
