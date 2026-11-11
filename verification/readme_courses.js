@@ -19,7 +19,7 @@ const MARK = ['<!-- 自己紹介:ここから -->', '<!-- 自己紹介:ここま
 const WORDS = {
   ja: { history: '経歴', earned: '修得', courses: '修得した科目',
         course: '科目', category: '区分', credits: '単位', grade: '評価',
-        more: ' —— これから増える。' },
+        more: ' —— これから増えます。' },
   en: { history: 'Education', earned: 'Credits earned', courses: 'Courses I have credit for',
         course: 'Course', category: 'Category', credits: 'Credits', grade: 'Grade',
         more: ' — more to come.' },

@@ -111,8 +111,8 @@ const CASES = [
    'check_site.js', '暗い側の二つの指定が一字一句同じ'],
 
   ['トップから三篇の結論を消すと落ちる', 'index.html',
-   swap('枠組みは残らなかった', '（削除）'),
-   'check_site.js', '枠組みは残らなかった'],
+   swap('枠組みは残りませんでした', '（削除）'),
+   'check_site.js', '枠組みは残りませんでした'],
 
   ['配っている頁へのリンクを壊すと落ちる', 'index.html',
    swap('href="./cv.html"', 'href="./cv-none.html"'),
