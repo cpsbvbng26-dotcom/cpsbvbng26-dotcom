@@ -129,6 +129,21 @@ for (const item of DECL['和']) {
       bad.length ? ('名乗り ' + bad.map((m) => m[1]).join(', ') + ' / 実際 ' + parts.join(' + ') + ' = ' + n)
                  : (parts.join(' + ') + ' = ' + n));
   }
+  /* **足すものの数も、散文が名乗る。**「凍結された三つの成果物」。並べているのは三つなのに
+   * 「四つ」と書いたまま残っていた。足すものの数と、語で書いた数を突き合わせる。 */
+  const 語 = { '二': 2, '三': 3, '四': 4, '五': 5, '六': 6,
+              'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6 };
+  for (const c of item['数の名乗り'] || []) {
+    const text = read(c.repo, c.file);
+    const where = c.repo + '/' + c.file + ' の足すものの数';
+    if (text === null) { check(where, false, 'ファイルが無い'); continue; }
+    const ms = [...text.matchAll(new RegExp(c.regex, 'g'))];
+    if (!ms.length) { check(where, false, '名乗っている箇所が見つからない  /' + c.regex + '/'); continue; }
+    const bad = ms.filter((m) => 語[m[1]] !== parts.length);
+    check(where, bad.length === 0,
+      bad.length ? ('名乗り ' + bad.map((m) => m[1]).join(', ') + ' / 実際 ' + parts.length)
+                 : (ms[0][1] + ' = ' + parts.length));
+  }
 }
 
 /* ---------- 写した道具の版と、書いてある DOI ---------- */

@@ -208,6 +208,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "the counterexample\\. (\\d+) checks"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "収束する例を含む (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "(\\d+) checks, including an example whose error swells"
         }
       ]
     },
@@ -281,6 +291,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "never deleted\\.\\*\\* (\\d+) entries"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "登録簿（(\\d+) 件）"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "register \\((\\d+) entries\\)"
         }
       ]
     },
@@ -434,6 +454,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "(\\d+) on the errata,"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "正誤表の監査 \\d+ = (\\d+) \\+"
         }
       ]
     },
@@ -473,6 +498,26 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "(\\d+) on the printed numerics"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "<dt>紙面の数値 (\\d+)</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "紙面の数値を計算し直す (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "<dt>(\\d+) printed numbers</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "and (\\d+) that recompute every number printed"
         }
       ]
     },
@@ -544,6 +589,11 @@
           "repo": "self-correction",
           "file": "register.toml",
           "regex": "check_errata\\.py が落ちる（(\\d+) 項目）"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "正誤表の監査 \\d+ = \\d+ \\+ (\\d+) \\+"
         }
       ]
     },
@@ -613,6 +663,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) on the naval gazette source note"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "正誤表の監査 \\d+ = \\d+ \\+ \\d+ \\+ (\\d+)）"
         }
       ]
     },
@@ -641,6 +696,26 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "\\((\\d+) on the theorems"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "<dt>定理の再実装 (\\d+)</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "定理を独立に実装し直す (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "<dt>(\\d+) theorems reimplemented</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "(\\d+) checks that reimplement the theorems"
         }
       ]
     },
@@ -659,6 +734,26 @@
           "repo": "trinity-operator",
           "file": ".github/workflows/verify.yml",
           "regex": "証書 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "<dt>証書 (\\d+)</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "破れた議論を組み直す構成の (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "<dt>(\\d+) checks on the certificate</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "(\\d+) more on the construction"
         }
       ]
     },
@@ -677,6 +772,26 @@
           "repo": "trinity-operator",
           "file": ".github/workflows/verify.yml",
           "regex": "展望 (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "<dt>展望 (\\d+)</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "展望の (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "<dt>(\\d+) checks on the outlook</dt>"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "and (\\d+) on a staged outlook"
         }
       ]
     },
@@ -826,6 +941,23 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) checks on the errata(?! itself)"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "regex": "正誤表の監査 (\\d+) = "
+        }
+      ],
+      "数の名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "regex": "凍結された(.)つの成果物すべてに"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "regex": "all (\\w+) frozen bodies of work"
         }
       ]
     },
@@ -1318,7 +1450,8 @@
           "Three are to be submitted: errata-check, Sophaxis and deposit-check",
           "are being submitted too",
           "The preprints do not move",
-          "This is not a withdrawal"
+          "This is not a withdrawal",
+          "For errata-check, one of the three to be submitted"
         ]
       },
       {
@@ -1330,8 +1463,8 @@
           "Erreicht ist davon noch nichts",
           "Eingereicht wurde noch nichts",
           "Eingereicht werden errata-check, Sophaxis und deposit-check",
-          "werden nicht eingereicht",
-          "im Preprint-Regal",
+          "Auch die Aufsätze werden eingereicht",
+          "Die Preprints bleiben, wo sie sind",
           "Zurückgezogen wird nichts"
         ]
       },
@@ -1344,8 +1477,8 @@
           "Rien de tout cela n’est atteint",
           "Rien n’a encore été soumis",
           "Seront soumis errata-check, Sophaxis et deposit-check",
-          "ne seront pas soumis",
-          "l’étagère des préprints",
+          "Les articles, eux aussi, seront soumis",
+          "Les préprints ne bougent pas",
           "Rien n’est retiré"
         ]
       },
@@ -1358,8 +1491,8 @@
           "Nulla di ciò è ancora raggiunto",
           "Nulla è stato ancora inviato",
           "Verranno inviati errata-check, Sophaxis e deposit-check",
-          "non verranno inviati",
-          "scaffale dei preprint",
+          "Anche i saggi verranno inviati",
+          "I preprint restano dove sono",
           "Nulla viene ritirato"
         ]
       },
