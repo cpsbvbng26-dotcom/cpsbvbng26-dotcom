@@ -1777,29 +1777,36 @@ section('10.59 自己紹介が名乗っていること');
   {
     const 一年 = {
       'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
-                     'ここに並べたものは全部、学部一年時の実績です',
+                     'そして、次の四つは学部一年時の実績です',
+                     'Sophaxis と deposit-check は、学部二年次に始めたものです',
                      '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
       'index.en.html': ['finished in the first half of the first undergraduate year',
-                        'everything set out here is the work of that first undergraduate year',
+                        'these four are the work of that first undergraduate year',
+                        'Sophaxis and deposit-check were begun in the second undergraduate year',
                         'The dates themselves have been checked against nothing',
                         'The enrolment date is not printed here either'],
       'index.de.html': ['in der ersten Hälfte des ersten Studienjahres abgeschlossen',
-                        'ist die Arbeit dieses ersten Studienjahres',
+                        'Und diese vier sind die Arbeit dieses ersten Studienjahres',
+                        'Sophaxis und deposit-check wurden im zweiten Studienjahr begonnen',
                         'Die Daten selbst sind mit nichts abgeglichen',
                         'Das Datum der Einschreibung steht hier ebenfalls nicht'],
       'index.fr.html': ['achevées dans la première moitié de la première année de licence',
-                        'est le travail de cette première année',
+                        'ces quatre-là sont le travail de cette première année',
+                        'Sophaxis et deposit-check ont été commencés en deuxième année de licence',
                         'Les dates elles-mêmes n’ont été confrontées à rien',
                         'La date d’inscription n’est pas imprimée ici non plus'],
       'index.it.html': ['conclusi nella prima metà del primo anno del corso di laurea',
-                        'è il lavoro di quel primo anno',
+                        'questi quattro sono il lavoro di quel primo anno',
+                        'Sophaxis e deposit-check sono stati avviati nel secondo anno',
                         'Le date stesse non sono state confrontate con nulla',
                         'Anche la data di immatricolazione non è stampata qui'],
       'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
-                    'ここに並べたものは全部、学部一年時の実績です',
+                    'そして、次の四つは学部一年時の実績です',
+                    'Sophaxis と deposit-check は、学部二年次に始めたものです',
                     '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
       'README.en.md': ['finished in the first half of the first undergraduate year',
-                       'everything set out here is the work of that first undergraduate year',
+                       'these four are the work of that first undergraduate year',
+                       'Sophaxis and deposit-check were begun in the second undergraduate year',
                        'The dates themselves have been checked against nothing',
                        'The enrolment date is not printed here either'],
     };
@@ -1810,6 +1817,14 @@ section('10.59 自己紹介が名乗っていること');
     });
     ok('学部一年時の実績だという宣言が、確かめていない分ごと七つの面にある',
        落ち.length === 0, 落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
+
+    /* **「全部が学部一年時」とは書かない。**Sophaxis（最初のコミット 2026-10-30）と deposit-check
+     * （2026-11-02）は学部二年次に始めた。同じ面がその二つも紹介しているので、「全部」は偽になる。
+     * 2026-11-11 に、一年時の実績を並べた四つに限り、二つを学部二年次と名指す形に直した。 */
+    const 全部 = /ここに並べたものは全部、学部一年時|everything set out here is the work|alles, was hier aufgeführt ist, ist die Arbeit|tout ce qui est présenté ici est le travail|tutto ciò che è esposto qui è il lavoro/;
+    const 残る = Object.keys(一年).filter((f) => 全部.test(read(f)));
+    ok('学部二年次に始めたものを紹介する面で、「全部が学部一年時」と書いていない', 残る.length === 0,
+       残る.length ? 残る.join(', ') : '七つの面とも');
 
     /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
      * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
@@ -1836,6 +1851,18 @@ section('10.59 自己紹介が名乗っていること');
     if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
     if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
     const 散文 = ja.indexOf('九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    /* 「次の四つ」は、すぐ後ろに並べた項目の数である。**語で書いた数も数える。**（決めごと 5） */
+    const 並び = {
+      'index.html': ['次の四つ', '九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件。', '、'],
+      'index.en.html': ['these four', 'Nine preprints, 16 Zenodo DOIs, ten repositories, seven certificates and open badges.', ', '],
+    };
+    const 四ずれ = Object.keys(並び).filter((f) => {
+      const [語, 列, 区切り] = 並び[f];
+      const h = read(f);
+      const n = 列.replace(/\.$|。$/, '').split(区切り).length;
+      return h.indexOf(語) < 0 || h.indexOf(列) < 0 || n !== 4;
+    });
+    ok('「次の四つ」が、すぐ後ろに並べた項目の数と合う', 四ずれ.length === 0, 四ずれ.join(', ') || '日英とも 4');
     ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
        ずれ.length === 0 && 散文,
        ずれ.length ? ずれ.join(', ') : (散文 ? '9 / 16 / 10 / 7' : '散文の並びが無い'));
@@ -2774,6 +2801,222 @@ section('10.59 読み取りが通った日の記録');
   }
 }
 
+/* ------------------------------------------------- 10.63 全作品の目録と、道具の一覧
+ *
+ * 目録の頁（日英）・道具の一覧の頁（日英）・catalog.json・catalog.bib は、どれも
+ * researcher-profile の catalog.json から生成したもの。**四つが同じ作品を挙げているか**を見る。
+ * 頁だけ作り直して JSON を写し忘れる、BibTeX だけ古い、が起きうる。
+ * トップの頁の種類別の入口が、目録の種類の節を一つ残らず指しているかも見る。 */
+section('10.63 全作品の目録と、道具の一覧');
+{
+  let cat = null;
+  try { cat = JSON.parse(read('catalog.json')); } catch (e) { cat = null; }
+  ok('catalog.json が読める', cat !== null && Array.isArray(cat.works) && cat.works.length > 0);
+  const works = cat ? cat.works : [];
+  const types = cat ? cat.types.map((t) => t.id) : [];
+  const ids = (h) => new Set([...h.matchAll(/<tr id="([^"]+)"/g)].map((m) => m[1]));
+  const sec = (h) => new Set([...h.matchAll(/<section id="([^"]+)"/g)].map((m) => m[1]));
+  const 欠け = [];
+  ['catalog.html', 'catalog.en.html'].forEach((f) => {
+    const h = read(f);
+    const rows = ids(h);
+    works.forEach((w) => { if (!rows.has(w.id)) 欠け.push(f + ' に ' + w.id + ' の行が無い'); });
+    [...rows].forEach((r) => { if (!works.some((w) => w.id === r)) 欠け.push(f + ' に catalog.json に無い行 ' + r); });
+    types.forEach((t) => { if (!sec(h).has(t)) 欠け.push(f + ' に種類 ' + t + ' の節が無い'); });
+    works.forEach((w) => {
+      if (w.doi && h.indexOf('<code translate="no" class="notranslate">' + w.doi + '</code>') < 0) 欠け.push(f + ' に ' + w.doi + ' が無い');
+    });
+  });
+  ok('目録の頁（日英）が、catalog.json の作品と種類をちょうど挙げ、DOI を載せている', 欠け.length === 0,
+     欠け.length ? 欠け.slice(0, 6).join(' / ') : works.length + ' 作品 × 2 言語');
+
+  const bib = read('catalog.bib');
+  const bibDois = [...bib.matchAll(/^\s*doi\s*=\s*\{([^}]+)\}/gm)].map((m) => m[1]);
+  const withDoi = works.filter((w) => w.doi).map((w) => w.doi);
+  ok('catalog.bib が、DOI を持つ作品をちょうど挙げる', bibDois.length === withDoi.length
+     && withDoi.every((d) => bibDois.includes(d)), 'BibTeX ' + bibDois.length + ' / DOI を持つ作品 ' + withDoi.length);
+  const keys = [...bib.matchAll(/^@\w+\{([^,]+),/gm)].map((m) => m[1]);
+  ok('catalog.bib の引用キーが重ならない', keys.length === new Set(keys).size && keys.length === bibDois.length);
+
+  /* 載せない、と決めたもの。研究の系列とはつながない。 */
+  const 載せない = /nusquama|ヌスクァマ/i;
+  const 載った = ['catalog.html', 'catalog.en.html', 'tools.html', 'tools.en.html', 'catalog.json', 'catalog.bib']
+    .filter((f) => 載せない.test(read(f)));
+  ok('目録と道具の一覧に、娯楽の創作を載せていない', 載った.length === 0, 載った.join(', '));
+
+  /* 種類ごとの入口。トップの頁から、目録の種類の節をすべて指す。 */
+  const 入口欠け = [];
+  [['index.html', 'catalog.html'], ['index.en.html', 'catalog.en.html']].forEach(([f, c]) => {
+    const h = read(f);
+    types.forEach((t) => { if (h.indexOf('href="./' + c + '#' + t + '"') < 0) 入口欠け.push(f + ' → ' + t); });
+    const 先 = [...h.matchAll(new RegExp('href="\\./' + c.replace('.', '\\.') + '#([^"]+)"', 'g'))].map((m) => m[1]);
+    先.filter((t) => !sec(read(c)).has(t)).forEach((t) => 入口欠け.push(f + ' → 無い節 ' + t));
+    if (!/<nav class="nav">[\s\S]*?href="\.\/catalog(\.en)?\.html"[\s\S]*?<\/nav>/.test(h)) 入口欠け.push(f + ' のナビに目録が無い');
+  });
+  ok('トップの頁（日英）の種類別の入口が、目録の種類の節をすべて指し、ナビから目録へ行ける', 入口欠け.length === 0,
+     入口欠け.join(', ') || (types.length + ' 種類 × 2 言語'));
+
+  /* ライセンスの列は、免責事項の「再利用」と同じ区別で書く。 */
+  const 区別 = works.filter((w) => w.repository).every((w) => {
+    const s = w.licence.spdx.join('+');
+    return s === 'MIT' || s === 'CC-BY-4.0+MIT' || s === 'CC-BY-4.0';
+  });
+  ok('目録のライセンスの列が、全体が MIT か、CC BY 4.0 と MIT の二つかで書かれている', 区別);
+
+  /* 道具の一覧。四つを一行ずつ、リポジトリ・DOI・ライセンスを添えて。 */
+  const tools = works.filter((w) => w.type === 'software');
+  const 道具欠け = [];
+  ['tools.html', 'tools.en.html'].forEach((f) => {
+    const h = read(f);
+    const rows = [...h.matchAll(/<p id="([^"]+)">([\s\S]*?)<\/p>/g)];
+    if (rows.length !== tools.length) 道具欠け.push(f + ' の行 ' + rows.length + ' / ソフトウェア ' + tools.length);
+    tools.forEach((w) => {
+      const r = rows.find((m) => m[1] === w.id);
+      if (!r) { 道具欠け.push(f + ' に ' + w.id + ' が無い'); return; }
+      if (r[2].indexOf('href="' + w.repository + '"') < 0) 道具欠け.push(f + ' の ' + w.id + ' にリポジトリが無い');
+      if (r[2].indexOf(w.doi) < 0) 道具欠け.push(f + ' の ' + w.id + ' に DOI が無い');
+      if (r[2].indexOf(f.indexOf('.en.') > 0 ? w.licence.en : w.licence.ja) < 0) 道具欠け.push(f + ' の ' + w.id + ' にライセンスが無い');
+    });
+  });
+  ok('道具の一覧（日英）が、ソフトウェアを一行ずつ、リポジトリ・DOI・ライセンスを添えて挙げる', 道具欠け.length === 0,
+     道具欠け.join(' / ') || (tools.length + ' 本 × 2 言語'));
+
+  /* データセットの印（schema.org の Dataset）。Google Dataset Search が読む形。
+   * name と description（50 字以上）、DOI、ライセンス、作り手が要る。 */
+  const 印欠け = [];
+  ['catalog.html', 'catalog.en.html'].forEach((f) => {
+    const m = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(read(f));
+    let g = null;
+    try { g = JSON.parse(m[1]); } catch (e) { 印欠け.push(f + ' の JSON-LD が読めない'); return; }
+    const ds = (g['@graph'] || []).filter((n) => n['@type'] === 'Dataset');
+    const want = works.filter((w) => w.type === 'dataset');
+    if (ds.length !== want.length) 印欠け.push(f + ' の Dataset ' + ds.length + ' / データセット ' + want.length);
+    want.forEach((w) => {
+      const n = ds.find((x) => x['@id'] === 'https://doi.org/' + w.doi);
+      if (!n) { 印欠け.push(f + ' に ' + w.doi + ' の Dataset が無い'); return; }
+      if (!n.name || !n.description || n.description.length < 50) 印欠け.push(f + ' の ' + w.id + ' の name か description');
+      if (!(n.identifier || []).some((i) => i.propertyID === 'DOI' && i.value === w.doi)) 印欠け.push(f + ' の ' + w.id + ' の DOI');
+      if (!Array.isArray(n.license) || n.license.length !== w.licence.spdx.length) 印欠け.push(f + ' の ' + w.id + ' のライセンス');
+      if (!n.creator) 印欠け.push(f + ' の ' + w.id + ' の作り手');
+    });
+  });
+  ok('目録の頁（日英）に、データセットごとの schema.org の Dataset の印がある', 印欠け.length === 0,
+     印欠け.join(' / ') || (works.filter((w) => w.type === 'dataset').length + ' 件 × 2 言語'));
+
+  /* 始めた時期。**学部二年次に始めたものを、学部一年次と書かない。**
+   * Sophaxis（最初のコミット 2026-10-30）と deposit-check（2026-11-02）は学部二年次。
+   * 日付は catalog.json が持ち、check_ecosystem.js が git の履歴と突き合わせる。ここは頁の表示を見る。 */
+  const 時期欠け = [];
+  const 二年 = ['sophaxis', 'deposit-check'];
+  [['catalog.html', '学部一年次', '学部二年次'], ['catalog.en.html', 'First undergraduate year', 'Second undergraduate year']].forEach(([f, y1, y2]) => {
+    const h = read(f);
+    works.forEach((w) => {
+      const m = new RegExp('<tr id="' + w.id + '">(.*?)</tr>').exec(h);
+      const last = m ? (m[1].match(/<td>([^<]*)<\/td>$/) || [])[1] : null;
+      const want = w.begun.period === 'first' ? y1 : w.begun.period === 'second' ? y2 : null;
+      if (want && last !== want) 時期欠け.push(f + ' の ' + w.id + ' が ' + last);
+      if (二年.includes(w.id) && (w.begun.period !== 'second' || (last || '').indexOf(y1) >= 0)) 時期欠け.push(f + ' の ' + w.id + ' を二年次としていない');
+    });
+  });
+  ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次とする', 時期欠け.length === 0,
+     時期欠け.join(' / ') || works.length + ' 作品 × 2 言語');
+
+  /* 「30歳魔法使い」はエッセイとして挙げる。論文と読み違えられないように。 */
+  const 魔法 = works.find((w) => w.doi === '10.5281/zenodo.23114131');
+  const rmJa = read('README.md'), rmEn = read('README.en.md');
+  const 行Ja = rmJa.split('\n').find((l) => l.indexOf('[「30歳魔法使い」') === 2) || '';
+  const 行En = rmEn.split('\n').find((l) => l.indexOf('[The “Wizard at Thirty”') === 2) || '';
+  ok('「30歳魔法使い」を、目録と README（日英）でエッセイとして挙げている',
+     魔法 && 魔法.type === 'essay' && /\| エッセイです。/.test(行Ja) && /\| An essay\. /.test(行En));
+}
+
+/* ------------------------------------------------- 10.64 外部からの評価の構造化
+ *
+ * docs/external-evaluations.md の三つの表（受けた評価・出した先・受けた勧誘）を、
+ * docs/external-evaluations.json に一行ずつ写してある。**文書の言葉は変えない。**
+ * 文書に行を足して JSON を忘れる、が起きる。行と、日付を持つ見出しを、すべて突き合わせる。 */
+section('10.64 外部からの評価の構造化');
+{
+  const md = read('docs/external-evaluations.md').split('\n');
+  let js = null;
+  try { js = JSON.parse(read('docs/external-evaluations.json')); } catch (e) { js = null; }
+  ok('docs/external-evaluations.json が読める', js !== null && Array.isArray(js.entries));
+  const entries = js ? js.entries : [];
+  const clean = (s) => s.replace(/\*\*/g, '').replace(/`/g, '').trim();
+  const head = (s) => clean(s).split('（')[0].trim();
+  const iso = (s) => {
+    const a = /(20\d\d)-(\d\d)-(\d\d)/.exec(s);
+    if (a) return a[0];
+    const b = /(20\d\d)年(\d{1,2})月(?:(\d{1,2})日)?/.exec(s);
+    if (b) return b[1] + '-' + b[2].padStart(2, '0') + (b[3] ? '-' + b[3].padStart(2, '0') : '');
+    return null;
+  };
+  function rows(h) {
+    let i = md.findIndex((l) => l.startsWith(h));
+    if (i < 0) return [];
+    while (i < md.length && !md[i].startsWith('| ')) i++;
+    const out = [];
+    for (i += 2; i < md.length && md[i].startsWith('|'); i++) out.push(md[i].split('|').slice(1, -1));
+    return out;
+  }
+  const want = [];
+  const take = (section, list, venueCol, workCol, dateOf) => {
+    let prev = null;
+    list.forEach((c) => {
+      let v = head(c[venueCol]);
+      if (v.startsWith('同上')) v = prev;
+      prev = v;
+      want.push([section, v, dateOf(c), workCol === null ? '' : head(c[workCol])].join(' | '));
+    });
+  };
+  take('evaluations', rows('## 受けた評価'), 0, 2, (c) => iso(c.join('|')));
+  take('submissions', rows('## 出した先'), 0, 1, (c) => iso(c.join('|')));
+  take('invitations', rows('## 受けた勧誘'), 1, null, (c) => iso(c[0]));
+  const have = entries.map((e) => [e.section, e.venue, e.date, e.section === 'invitations' ? '' : e.work].join(' | '));
+  const 残り = have.slice();
+  const 無い = [];
+  want.forEach((k) => { const i = 残り.indexOf(k); if (i < 0) 無い.push(k); else 残り.splice(i, 1); });
+  const 日付あり = want.filter((k) => !/\| null \|/.test(k)).length;
+  ok('外部からの評価の文書の、表のすべての行が JSON にある（日付を持つ行は日付ごと）', 無い.length === 0 && 残り.length === 0,
+     無い.length || 残り.length ? ('JSON に無い: ' + 無い.slice(0, 3).join(' / ') + '　文書に無い: ' + 残り.slice(0, 3).join(' / '))
+       : (want.length + ' 行、うち日付を持つもの ' + 日付あり));
+  const 見出し = md.filter((l) => /^#{2,4} /.test(l) && iso(l));
+  const 見出し無い = 見出し.filter((l) => !entries.some((e) => e.date === iso(l) && l.indexOf(e.venue) >= 0));
+  ok('日付を持つ見出しが、同じ日付と場で JSON にある', 見出し無い.length === 0, 見出し無い.join(' / ') || 見出し.length + ' 件');
+  const 欄 = ['section', 'date', 'venue', 'venueType', 'work', 'outcome', 'reasonCategory'];
+  const 欄欠け = entries.filter((e) => 欄.some((k) => !(k in e)) || !e.venue || !e.outcome || !e.reasonCategory);
+  ok('JSON のどの行も、日付・場・場の種類・作品・結果・理由の種類の欄を持つ', 欄欠け.length === 0, 欄欠け.length + ' 行');
+}
+
+/* ------------------------------------------------- 10.65 黄金比の窓の図
+ *
+ * δ を動かして窓を見る図。**外へは何も取りに行かない。**スクリプトは頁に入れ、CSP はハッシュで許す。
+ * 「窓の外は全部証明してある」は言い過ぎだった。窓の外で証明したのは、この一本の線分についての
+ * 命題 4 と 5 であり、窓の中では次元が正であること（命題 6）も証明してある。その言い回しを戻さない。 */
+section('10.65 黄金比の窓の図');
+{
+  const 頁 = ['notes/golden-window.html', 'notes/golden-window.en.html'];
+  const 欠け = [];
+  頁.forEach((f) => {
+    const h = read(f);
+    ['id="gw-delta"', 'id="gw-svg"', 'id="gw-state"', 'id="gw-live" hidden', 'type="range"'].forEach((x) => {
+      if (h.indexOf(x) < 0) 欠け.push(f + ' に ' + x + ' が無い');
+    });
+    const scripts = [...h.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+    const 図 = scripts.find((s) => s.indexOf("getElementById('gw-delta')") >= 0);
+    if (!図) 欠け.push(f + ' に図のスクリプトが無い');
+    else if (/fetch\(|XMLHttpRequest|import\(|https?:\/\/(?!www\.w3\.org\/2000\/svg)/.test(図)) 欠け.push(f + ' の図のスクリプトが外を見ている');
+  });
+  ok('黄金比の窓の頁（日英）に、δ を動かす図があり、そのスクリプトは外へ何も取りに行かない', 欠け.length === 0,
+     欠け.join(' / ') || '2 言語とも');
+  const 言い過ぎ = 頁.filter((f) => /Outside the window(,)? everything is proved|窓の外は証明してある/.test(read(f)));
+  ok('黄金比の窓の頁が、窓の外は全部証明してあるとは書かない', 言い過ぎ.length === 0, 言い過ぎ.join(', '));
+  const 範囲 = [['notes/golden-window.en.html', ['>δ &lt; 1/2</code>', '>1/2 ≤ δ &lt; 1/φ</code>', '>δ = 1/φ</code>', '>δ ≥ 2/3</code>', 'proved (Proposition 6)']],
+                ['notes/golden-window.html', ['>δ &lt; 1/2</code>', '>1/2 ≤ δ &lt; 1/φ</code>', '>δ = 1/φ</code>', '>δ ≥ 2/3</code>', '証明してある（命題 6）']]];
+  const 範囲欠け = 範囲.filter(([f, xs]) => xs.some((x) => read(f).indexOf(x) < 0)).map(([f]) => f);
+  ok('黄金比の窓の頁（日英）が、証明した範囲を δ の区間ごとに書き分けている', 範囲欠け.length === 0, 範囲欠け.join(', '));
+}
+
 /* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
  *
  * **仕事の名前は、いちばん見られていない散文である。**GitHub の画面に毎回出るのに、
@@ -2830,7 +3073,7 @@ section('10.60 CI の仕事の名前が名乗っている数');
     /* 390px 以下の幅では、本文の左右の余白も測る。一頁・一幅に一項目が増える。 */
     const narrow = /if \(w <= 390\)/.test(kb) ? ws.filter((x) => x <= 390).length : 0;
     ok('check_keyboard.js から測る幅の数を読める', widths > 0, widths + '（うち余白も測る幅 ' + narrow + '）');
-    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths + narrow) + 2;
+    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths + narrow) + 4;
   }
 
   ok('配色の名乗りが実際と合う',

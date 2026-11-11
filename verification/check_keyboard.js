@@ -312,12 +312,18 @@ async function walk(pg) {
    * expected は、この二件を足したあとの総数である。 */
   section('名乗っている数');
   {
-    const expected = pass + 2;   /* 1 頁あたり 8 + WIDTHS.length 件、最後にこの二件 */
+    const expected = pass + 4;   /* 1 頁あたり 8 + WIDTHS.length 件、最後にこの四件 */
     [['README.md', /check_keyboard\.js\s+# Tab で辿って測る (\d+) 項目/],
      ['README.en.md', /check_keyboard\.js\s+# Tab traversal, (\d+) checks/]].forEach(([f, re]) => {
       const m = re.exec(fs.readFileSync(path.join(ROOT, f), 'utf8'));
       ok(f + ' が名乗る数が実際と合う', m !== null && Number(m[1]) === expected,
          (m ? '名乗り ' + m[1] : '名乗りが無い') + ' / 実際 ' + expected);
+    });
+    /* 辿る頁の数も、散文が名乗る。頁を足した日に、ここだけ古くなる。 */
+    [['README.md', /(\d+) ページを Tab で辿り/], ['README.en.md', /It tabs through (\d+) pages/]].forEach(([f, re]) => {
+      const m = re.exec(fs.readFileSync(path.join(ROOT, f), 'utf8'));
+      ok(f + ' が名乗る頁の数が実際と合う', m !== null && Number(m[1]) === PAGES.length,
+         (m ? '名乗り ' + m[1] : '名乗りが無い') + ' / 実際 ' + PAGES.length);
     });
   }
 
