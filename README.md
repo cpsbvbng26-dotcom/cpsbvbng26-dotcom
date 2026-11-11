@@ -359,7 +359,7 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（4
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断 502 項目
-node verification/check_guards.js     # 検査そのものを壊して確かめる 77 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 78 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査します。**検査の道具は、通ることでは信用できない** ——
@@ -368,6 +368,8 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
 焦点の枠を消す、見出しの階層を飛ばす、外部プロフィールの並びを入れ替える、など。
+このほかに、`check_text.js` の表（誤変換・使わないと決めた語・活用の壊れ）を一行ずつ読み、その行が止めるはずの形を書き足して、落ちるかを自動で確かめます。
+表に行を足せば、壊す先も自動で増えます。
 落ちなければ、その検査は何も見ていません。
 
 **`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 82」「登録簿 97 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 271 = 109 + 103 + 59）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
