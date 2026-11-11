@@ -4,6 +4,8 @@ On 2026-11-08 the background and daily life that opened the README were moved to
 
 Japanese: [来歴と暮らし](personal.md)
 
+This page stays public. It was reviewed on 2026-11-11, and the judgment made when it was written still holds.
+
 ## Family line
 
 Precisely because of the times we live in, I say it: I am a direct male-line great-great-grandson, on the Y-chromosome line, of a member of the Yokokawa Village Assembly, Kawachi District, Tochigi Prefecture, as recorded in *Tochigi Kensei Taikan* and *Meiji Taishō Kenka Seikai Hishi*.
@@ -17,3 +19,9 @@ Each morning begins with a breakfast set and coffee at a café inside the statio
 Since coming of age I have lived on my own, going home only at New Year. I hold net financial assets, and have paid all my tuition and hobby expenses since adulthood myself.
 
 Motto: “Brand precedes form.”
+
+## Provisional IQ
+
+On 2026-11-11 the paragraph on the provisional IQ that opened the README was moved to this page, so that the opening keeps to research and operations. The text is as it was before the move.
+
+My provisional IQ is 110. It comes from one sitting of the online IQ test at 123test (Culture Fair format) on 2025-12-30, taken at 9 a.m. after a sleepless night. The test is online and unproctored; it is not a clinical intelligence assessment. 110 is the figure 123test reports, and the certificate does not say which scale it uses. The certificate is kept on file, with the name field masked.
