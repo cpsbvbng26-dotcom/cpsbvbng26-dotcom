@@ -1,0 +1,31 @@
+name: 外部リンク
+
+# 月に一度、公開のリポジトリをすべて複製し、その中の外部リンクを開く。
+# 切れ（404・410・名前が引けないもの）を issue 一つにまとめ、立てるか直す。
+# 切れが無くなれば、その issue を閉じる。
+# 403 と 429 は「止められた」であって「切れた」ではない。どちらも CI を落とさない。
+
+on:
+  schedule:
+    - cron: '37 5 3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    name: 外部リンクの切れ（月に一度）
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: 複製して開く
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINKCHECK_ISSUE: '1'
+        run: node verification/linkcheck.js

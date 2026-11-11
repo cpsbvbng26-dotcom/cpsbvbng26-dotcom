@@ -8,7 +8,7 @@ on:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 617 項目 / サイトの構造 854 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 685 項目 / サイトの構造 917 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -35,7 +35,7 @@ jobs:
   # ブラウザが要る検査は別の仕事にする。**環境の都合で落ちたのか、中身が
   # 壊れたのかを見分けられなくなる**ので、上の並びには混ぜない。
   keyboard:
-    name: キーボードで辿れるか 557 項目
+    name: キーボードで辿れるか 619 項目
     # ubuntu-latest が 26.04 になり、playwright 1.56.1 が Chromium を入れられなくなった（2026-11-06）。
     runs-on: ubuntu-24.04
     steps:

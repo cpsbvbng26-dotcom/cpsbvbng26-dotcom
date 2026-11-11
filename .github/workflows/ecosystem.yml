@@ -39,8 +39,11 @@ jobs:
       - uses: actions/checkout@v7
         with: { repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }
       # 十の外だが、Zenodo のコミュニティの所在を突き合わせるために読む。
+      # 目録の「始めた時期」は最初のコミットの日付から出すので、十の外の二つも履歴ごと読む。
       - uses: actions/checkout@v7
-        with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis }
+        with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis, fetch-depth: 0 }
+      - uses: actions/checkout@v7
+        with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0 }
 
       - uses: actions/setup-python@v7
         with:
