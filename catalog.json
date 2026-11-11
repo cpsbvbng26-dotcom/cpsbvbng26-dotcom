@@ -372,10 +372,10 @@
         "date": "2026-09-06",
         "basis": "first commit of trinity-operator",
         "period": "first",
-        "ja": "学部一年次",
-        "en": "First undergraduate year",
-        "noteJa": "保守している版は trinity-operator の games のノート。学部一年次の成果の続きにあたる",
-        "noteEn": "The maintained version is the games note in trinity-operator; a continuation of first-year work"
+        "ja": "学部一年次の成果（Trinity-Infinity）の続き",
+        "en": "Continuation of first-year work (Trinity-Infinity)",
+        "noteJa": "保守している版は trinity-operator の games のノート。Trinity-Infinity Framework の一部で、学部一年次の成果の続きにあたる（決めごと 15 が許す続き。利用者の決め、2026-11-11）",
+        "noteEn": "The maintained version is the games note in trinity-operator. It is part of the Trinity-Infinity Framework and a continuation of first-year work (a continuation rule 15 allows; the author's decision, 2026-11-11)"
       },
       "registry": "Figshare"
     },
@@ -581,13 +581,13 @@
       },
       "resourceType": "Preprint",
       "begun": {
-        "date": null,
-        "basis": null,
-        "period": null,
-        "ja": "—（確かめていない）",
-        "en": "— (not checked)",
-        "noteJa": "リポジトリを持たず、書き始めた日を確かめていない。公開は 2026-10-03",
-        "noteEn": "No repository; the date the writing began has not been checked. Published 2026-10-03"
+        "date": "2026-10-03",
+        "basis": "record",
+        "period": "second",
+        "ja": "学部二年次",
+        "en": "Second undergraduate year",
+        "noteJa": "リポジトリを持たない。書き始めた日は確かめていない。利用者の決め（2026-11-11）により、公開の日（2026-10-03）で学部二年次のものとして扱う。独身論の続き（貞潔の話の延長）にあたる",
+        "noteEn": "No repository; the date the writing began has not been checked. By the author's decision (2026-11-11) it is dated by publication (2026-10-03) and counted as second-year work. It continues the celibacy essay"
       },
       "registry": "DataCite (Zenodo)"
     },
