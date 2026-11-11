@@ -34,7 +34,7 @@ Nothing here excludes or limits a liability that the law does not allow to be ex
 The licences are set out in each repository's LICENSE file and, where there is one, its LICENSE-CODE file.
 Where a repository has both, the texts and papers are under CC BY 4.0 and the code under the MIT License.
 errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License.
-Only lessons/ in trinity-operator is under CC BY 4.0, by the LICENSE inside it.
+In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each.
 The terms of reuse, and the warranties and liability under them, are those of the licence that applies.
 
 ## Other sites
