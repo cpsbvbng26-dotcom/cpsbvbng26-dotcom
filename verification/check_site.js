@@ -1776,7 +1776,7 @@ section('10.59 自己紹介が名乗っていること');
    * 修了証も同じ段に入れている。**七件という数は、cv.html から数え直す。** */
   {
     const 一年 = {
-      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
+      'index.html': ['edX と東北大学 MOOC の修了証も、学部一年の前半で得ています',
                      'そして、次の四つは学部一年時の実績です',
                      'Sophaxis と deposit-check は、学部二年次に始めたものです',
                      '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
@@ -1800,7 +1800,7 @@ section('10.59 自己紹介が名乗っていること');
                         'Sophaxis e deposit-check sono stati avviati nel secondo anno',
                         'Le date stesse non sono state confrontate con nulla',
                         'Anche la data di immatricolazione non è stampata qui'],
-      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で終えています',
+      'README.md': ['edX と東北大学 MOOC の修了証も、学部一年の前半で得ています',
                     'そして、次の四つは学部一年時の実績です',
                     'Sophaxis と deposit-check は、学部二年次に始めたものです',
                     '日付そのものは突き合わせていません', '在籍の開始日も、ここには書きません'],
