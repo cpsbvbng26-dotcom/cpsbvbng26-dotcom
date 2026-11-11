@@ -561,6 +561,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "docs/self-assessment.md",
           "regex": "check_route\\.py` の \\*\\*(\\d+) 項目\\*\\*"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/frames.md",
+          "regex": "九段階、うち同時記録三行、\\s*検査 (\\d+) 項目"
         }
       ]
     },
