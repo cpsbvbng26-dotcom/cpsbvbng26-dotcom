@@ -1591,7 +1591,7 @@ console.log('\n7.7 受けた勧誘');
     /* 正本の一覧の側にも同じ断りがあること。片方だけだと写しが古くなる。 */
     const C = read('cpsbvbng26-dotcom', path.join('docs', 'canonical-sources.md')) || '';
     check('正本の一覧も、推薦でないことを書いている',
-      C.indexOf('**推薦ではなく、HAL に登録したプレプリントを業績として出して審査を通っている**') >= 0
+      C.indexOf('**推薦ではなく、HAL に登録したプレプリントを業績として出して審査を通っています**') >= 0
       && C.indexOf('（証言。[external-evaluations.md](external-evaluations.md)）') >= 0);
     /* **散文に書いた篇数は、放っておくと古くなる。**実際、SSRN 版が三篇に
      * なったあとも「二篇だけ」と書いたまま残っていて、そのせいで
