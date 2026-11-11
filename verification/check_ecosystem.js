@@ -17,7 +17,11 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = process.env.ECOSYSTEM_ROOT || path.resolve(__dirname, '..', '..');
-const DECL = JSON.parse(fs.readFileSync(path.join(__dirname, 'ecosystem.json'), 'utf8'));
+/* 宣言のファイル。既定はこのリポジトリ群のもの。ECOSYSTEM_CONFIG で、ほかの人のリポジトリ群の
+ * 宣言を渡せる。そのときは宣言で書ける三つ（共通の区間・名乗る数・足し算の数）だけを走らせる。
+ * 4 から先は、このリポジトリ群に固有の検査である。 */
+const CUSTOM = process.env.ECOSYSTEM_CONFIG || null;
+const DECL = JSON.parse(fs.readFileSync(CUSTOM ? path.resolve(CUSTOM) : path.join(__dirname, 'ecosystem.json'), 'utf8'));
 
 let passed = 0;
 const failures = [];
@@ -87,7 +91,7 @@ function actual(spec, label) {
 
 const truth = {};
 
-for (const item of DECL['数']) {
+for (const item of DECL['数'] || []) {
   let n;
   try { n = actual(item['実際'], item['名前']); }
   catch (e) { check(item['名前'] + '  実際の数が取れる', false, e.message); continue; }
@@ -111,7 +115,7 @@ for (const item of DECL['数']) {
 
 console.log('\n3. 足し算で名乗っている数');
 
-for (const item of DECL['和']) {
+for (const item of DECL['和'] || []) {
   const parts = item['足すもの'].map((k) => truth[k]);
   if (parts.some((v) => v === undefined)) {
     check(item['名前'], false, '足す元の数が取れていない');
@@ -144,6 +148,17 @@ for (const item of DECL['和']) {
       bad.length ? ('名乗り ' + bad.map((m) => m[1]).join(', ') + ' / 実際 ' + parts.length)
                  : (ms[0][1] + ' = ' + parts.length));
   }
+}
+
+if (CUSTOM) {
+  console.log('\n' + '-'.repeat(58));
+  if (failures.length) {
+    console.log(passed + ' 件が通り、' + failures.length + ' 件が通りませんでした。');
+    failures.forEach((f) => console.log('  - ' + f.trim()));
+    process.exit(1);
+  }
+  console.log(passed + ' 件すべて通りました。');
+  process.exit(0);
 }
 
 /* ---------- 写した道具の版と、書いてある DOI ---------- */
@@ -2410,6 +2425,102 @@ console.log('\n12d. 免責と、法的なずれ');
   }
   check('免責事項の「再利用」が、10 リポジトリの LICENSE の置き方（全体が MIT ' + LC['全体が MIT'].length + '、二つ ' + (C.repos.length - LC['全体が MIT'].length) + '）のとおりに書く',
     wrong.length === 0 && ja.indexOf(LC['文の一節']) >= 0 && en.indexOf(LC['文の一節 英']) >= 0, wrong.join(' / '));
+}
+
+/* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
+ *
+ * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
+ * 札は目録（researcher-profile の catalog.json）と同じ区別で書く。食い違えば落とす。
+ * CITATION.cff の type は、道具が software、それ以外が dataset。 */
+
+console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
+
+{
+  const K = DECL['種類と状態'];
+  const fill = (t, o) => t.replace(/\{([^}]+)\}/g, (_, k) => o[k]);
+  const 札 = (text) => {
+    if (text === null) return null;
+    const lines = text.split('\n');
+    const i = lines.findIndex((l) => /^# /.test(l));
+    if (i < 0) return null;
+    const j = lines.findIndex((l, k) => k > i && l.trim() !== '');
+    return j < 0 ? null : lines[j];
+  };
+  const 札ずれ = [], 英ずれ = [], 型ずれ = [];
+  for (const repo of C.repos) {
+    const e = K.repos[repo];
+    if (!e) { 札ずれ.push(repo + '：表に無い'); continue; }
+    const ja = 札(read(repo, 'README.md'));
+    if (ja !== fill(K['札'], e)) 札ずれ.push(repo + '：' + (ja === null ? '無い' : ja.slice(0, 30)));
+    const enText = read(repo, 'README.en.md');
+    if (enText !== null) {
+      const en = 札(enText);
+      if (en !== fill(K['札 英'], e)) 英ずれ.push(repo + '：' + (en === null ? '無い' : en.slice(0, 30)));
+    }
+    const cff = read(repo, 'CITATION.cff');
+    const m = cff === null ? null : /^type:\s*"?([a-z-]+)"?\s*$/m.exec(cff);
+    if (!m || m[1] !== e.cff) 型ずれ.push(repo + '：' + (m ? m[1] : '無い') + ' / ' + e.cff);
+  }
+  check('10 リポジトリの README.md の H1 のすぐ下に、種類と状態の札が表のとおりにある', 札ずれ.length === 0,
+    札ずれ.join(', ') || C.repos.length + ' 本');
+  check('README.en.md のあるリポジトリは、英語の札も表のとおりに置いている', 英ずれ.length === 0,
+    英ずれ.join(', ') || C.repos.filter((r) => read(r, 'README.en.md') !== null).length + ' 本');
+  check('10 リポジトリの CITATION.cff の type が、道具は software、ほかは dataset である', 型ずれ.length === 0,
+    型ずれ.join(', ') || C.repos.length + ' 本');
+
+  /* 目録。リポジトリそのものを表す行の状態が、札と同じであること。 */
+  let cat = null;
+  try { cat = JSON.parse(read('researcher-profile', 'catalog.json')); } catch (e) { cat = null; }
+  check('researcher-profile に目録の設定（catalog.json）がある', cat !== null && Array.isArray(cat.works));
+  if (cat !== null) {
+    const 状態 = { '凍結': 'frozen', '改訂中': 'revising', '保守のみ': 'maintenance', '運営中': 'running' };
+    const 行ずれ = cat.works.filter((w) => w.kind === 'repository' && K.repos[w.repo]
+      && 状態[K.repos[w.repo]['状態']] !== w.status).map((w) => w.id + ' ' + w.status);
+    check('目録のリポジトリの行の状態が、README の札の状態と同じ', 行ずれ.length === 0, 行ずれ.join(', '));
+
+    /* ライセンスの列の出所。LICENSE の置き方が、表と実物で同じこと。 */
+    const lay = cat.licenceLayout;
+    const 置きずれ = [];
+    for (const repo of lay.mit.concat(lay.split)) {
+      const lic = read(repo, 'LICENSE');
+      if (lic === null) continue;   /* 十の外で、複製していないもの */
+      const code = read(repo, 'LICENSE-CODE');
+      const mit = /^MIT License/.test(lic) && code === null;
+      const split = /^Creative Commons Attribution 4\.0 International/.test(lic) && code !== null && /^MIT License/.test(code);
+      if (lay.mit.includes(repo) ? !mit : !split) 置きずれ.push(repo);
+    }
+    check('目録のライセンスの列の出所（licenceLayout）が、各リポジトリの LICENSE の置き方と同じ', 置きずれ.length === 0
+      && C.repos.every((r) => lay.mit.includes(r) || lay.split.includes(r)), 置きずれ.join(', '));
+
+    /* 始めた時期の列の出所。最初のコミットの日付が、git の履歴と同じこと。
+     * 浅い複製では最初のコミットが取れないので、落とす（取れないことを通ったことにしない）。 */
+    const 日ずれ = [];
+    let 見た = 0;
+    for (const [repo, date] of Object.entries(cat.years.firstCommit)) {
+      const dir = path.join(ROOT, repo);
+      if (!fs.existsSync(path.join(dir, '.git'))) { if (C.repos.includes(repo)) 日ずれ.push(repo + '：無い'); continue; }
+      let first = null;
+      try {
+        if (execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: dir, encoding: 'utf8' }).trim() === 'true') {
+          日ずれ.push(repo + '：浅い複製'); continue;
+        }
+        first = execFileSync('git', ['log', '--reverse', '--format=%ad', '--date=short'], { cwd: dir, encoding: 'utf8' }).split('\n')[0];
+      } catch (e) { first = null; }
+      見た++;
+      if (first !== date) 日ずれ.push(repo + '：' + first + ' / ' + date);
+    }
+    check('目録の始めた時期の出所（最初のコミットの日付）が、各リポジトリの git の履歴と同じ', 日ずれ.length === 0,
+      日ずれ.join(', ') || 見た + ' 本');
+    const 二年 = ['sophaxis', 'deposit-check'].filter((r) => !(cat.years.firstCommit[r] >= cat.years.secondYearFrom));
+    check('Sophaxis と deposit-check を、目録で学部二年次に始めたものとしている', 二年.length === 0, 二年.join(', '));
+
+    /* DOI は doi-index に載っている番号だけを書く。 */
+    const idx = read('cpsbvbng26-dotcom', 'docs/doi-index.md') || '';
+    const 無い = [];
+    cat.works.forEach((w) => [w.doi, w.conceptDoi].concat(w.otherDois || []).filter(Boolean)
+      .forEach((d) => { if (idx.indexOf(d) < 0) 無い.push(d); }));
+    check('目録の DOI が、すべて docs/doi-index.md に載っている', 無い.length === 0, 無い.join(', '));
+  }
 }
 
 /* ---------- 名乗る件数 ---------- */
