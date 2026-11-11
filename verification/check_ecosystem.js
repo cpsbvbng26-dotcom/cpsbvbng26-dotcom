@@ -539,6 +539,12 @@ console.log('\n7. 研究者としての位置');
         wrong.push(label + ' 実際 ' + actual + unit + ' が書かれていない');
       }
     }
+    /* **地の文の篇の数も、同じ数え直しと突き合わせる。**表だけ直して地の文が 9 篇のまま
+     * 残っていた（2026-10-13 に表を 10 篇にしたとき、地の文を置いていった）。 */
+    const 地の文 = /DOI の付いた成果物が (\d+) 篇あり/.exec(text);
+    if (papers !== null && (地の文 === null || parseInt(地の文[1], 10) !== papers)) {
+      wrong.push('地の文の「DOI の付いた成果物が ' + (地の文 ? 地の文[1] : '無し') + ' 篇」が実際 ' + papers + ' 篇と合わない');
+    }
     check('置いた数が、他のファイルから数え直したものと合う', wrong.length === 0,
       wrong.length ? wrong.join(' / ') : rows.map((r) => r[1]).join(' / '));
 
