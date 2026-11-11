@@ -1240,7 +1240,7 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('10.5281/zenodo.22064241') >= 0);
   ok('落とされたことから導けないものも書いてある',
      ja.indexOf('論証が誤っていると判定されたわけではありません') >= 0
-     && ja.indexOf('断片主義については理由が示されていません') >= 0
+     && ja.indexOf('断章論については理由が示されていません') >= 0
      && ja.indexOf('要件と範囲のどちらなのかは示されていません') >= 0);
   ok('英語版も落とされた一篇を書いている',
      en.indexOf('The third was turned away') >= 0
@@ -1826,6 +1826,12 @@ section('10.59 自己紹介が名乗っていること');
     ok('学部二年次に始めたものを紹介する面で、「全部が学部一年時」と書いていない', 残る.length === 0,
        残る.length ? 残る.join(', ') : '七つの面とも');
 
+    /* **学部二年次の公開は、一年時の数に入れない。**「30歳魔法使い」（2026-10-03 公開）は
+     * 独身論の続きとして学部二年次に置いた（利用者の決め、2026-11-11）。目録の始めた時期が
+     * 学部二年次の作品は、篇からも Zenodo の件数からも引く。目録が唯一の出どころである。 */
+    const 目録 = JSON.parse(read('catalog.json'));
+    const 二年DOI = 目録.works.filter((w) => w.begun && w.begun.period === 'second')
+      .map((w) => w.doi).filter(Boolean);
     /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
      * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
      * **一つ増えて散文が据え置きになる形を止める。** */
@@ -1837,24 +1843,38 @@ section('10.59 自己紹介が名乗っていること');
     const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
       .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length
       + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length
-      + (頁なし節.match(/^\| (?!論文 \|)[^-|][^|]* \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
+      + (頁なし節.match(/^\| (?!論文 \|)[^-|][^|]* \| `10\.5281\/zenodo\.\d+` \|/gm) || [])
+        .filter((l) => !二年DOI.some((d) => l.indexOf(d) >= 0)).length;
     const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
-    const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || []).length;
+    const DOI = (自身.match(/^\| \d+ \| `10\.5281\/zenodo\.\d+` \|/gm) || [])
+      .filter((l) => !二年DOI.some((d) => l.indexOf(d) >= 0)).length;
     const jo = read('docs/joss.md');
     const 十 = jo.slice(jo.indexOf('## 十の状態'), jo.indexOf('## 門 1'));
     const リポジトリ = (十.match(/^\| [a-z][a-z0-9-]* \| /gm) || []).length;
     const 修了証 = new Set((read('cv.html')
       .match(/https:\/\/(?:courses\.edx\.org\/certificates|www\.openbadge-global\.com)\/[^"]+/g) || [])).size;
     const ずれ = [];
-    if (篇 !== 9) ずれ.push('篇 ' + 篇);
-    if (DOI !== 16) ずれ.push('Zenodo の DOI ' + DOI);
+    if (篇 !== 8) ずれ.push('篇 ' + 篇);
+    if (DOI !== 15) ずれ.push('Zenodo の DOI ' + DOI);
+    if (!二年DOI.includes('10.5281/zenodo.23114131')) ずれ.push('「30歳魔法使い」を目録が学部二年次としていない');
     if (リポジトリ !== 10) ずれ.push('リポジトリ ' + リポジトリ);
     if (修了証 !== 7) ずれ.push('修了証 ' + 修了証);
-    const 散文 = ja.indexOf('九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    const 散文 = ja.indexOf('八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件') >= 0;
+    /* 五言語とも、同じ数と、二年次に置いた一篇の断りを書く。 */
+    const 五言語 = {
+      'index.html': ['八篇のプレプリント、Zenodo の 15 件', '「30歳魔法使い」都市伝説の構造分析（2026-10-03 公開）は、学部二年次のものです'],
+      'index.en.html': ['Eight preprints, 15 Zenodo DOIs', 'belongs to the second undergraduate year'],
+      'index.de.html': ['Acht Preprints, 15 Zenodo-DOIs', 'gehört zum zweiten Studienjahr'],
+      'index.fr.html': ['Huit préprints, 15 DOI Zenodo', 'relève de la deuxième année de licence'],
+      'index.it.html': ['Otto preprint, 15 DOI Zenodo', 'appartiene al secondo anno del corso di laurea'],
+      'README.md': ['八篇のプレプリント、Zenodo の 15 件', '学部二年次のものです。独身論の続き'],
+      'README.en.md': ['Eight preprints, 15 Zenodo DOIs', 'It continues the celibacy essay'],
+    };
+    Object.entries(五言語).forEach(([f, xs]) => xs.forEach((x) => { if (read(f).indexOf(x) < 0) ずれ.push(f + ' に「' + x.slice(0, 20) + '」が無い'); }));
     /* 「次の四つ」は、すぐ後ろに並べた項目の数である。**語で書いた数も数える。**（決めごと 5） */
     const 並び = {
-      'index.html': ['次の四つ', '九篇のプレプリント、Zenodo の 16 件、十のリポジトリ、修了証とオープンバッジの七件。', '、'],
-      'index.en.html': ['these four', 'Nine preprints, 16 Zenodo DOIs, ten repositories, seven certificates and open badges.', ', '],
+      'index.html': ['次の四つ', '八篇のプレプリント、Zenodo の 15 件、十のリポジトリ、修了証とオープンバッジの七件。', '、'],
+      'index.en.html': ['these four', 'Eight preprints, 15 Zenodo DOIs, ten repositories, seven certificates and open badges.', ', '],
     };
     const 四ずれ = Object.keys(並び).filter((f) => {
       const [語, 列, 区切り] = 並び[f];
@@ -1865,30 +1885,45 @@ section('10.59 自己紹介が名乗っていること');
     ok('「次の四つ」が、すぐ後ろに並べた項目の数と合う', 四ずれ.length === 0, 四ずれ.join(', ') || '日英とも 4');
     ok('学部一年時の実績として並べた四つの数が、数え直したものと合う',
        ずれ.length === 0 && 散文,
-       ずれ.length ? ずれ.join(', ') : (散文 ? '9 / 16 / 10 / 7' : '散文の並びが無い'));
+       ずれ.length ? ずれ.join(', ') : (散文 ? '8 / 15 / 10 / 7（二年次の一篇を除く）' : '散文の並びが無い'));
   }
 
   /* **暫定の IQ は、数と一緒に条件と断りを置く。**数だけが残ると、監督付きの検査の結果に読める。
-   * 置き場は README 二つの冒頭、肩書きを並べた段のすぐ後ろである。サイトの自己紹介には置かない
-   * （一度そちらに置き、場所が違うと言われて移した）。数そのものは外から確かめられない。
-   * 確かめられないことも、断りの側に書いてある。 */
+   * 置き場は来歴と暮らしの頁（日英）である。2026-11-11 に README の冒頭から移した（利用者の決め）。
+   * README の冒頭には研究と運営だけを置く。サイトの自己紹介にも置かない。
+   * 数そのものは外から確かめられない。確かめられないことも、断りの側に書いてある。 */
   {
     const 面 = {
-      'README.md': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています'],
-      'README.en.md': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked'],
+      'docs/personal.md': ['暫定の IQ は 110 です。', '2025-12-30', '123test', 'Culture Fair', '臨床の知能検査ではありません', 'どの尺度の数かは証明書に書いてありません', '名前の欄は伏せています', '2026-11-11 にこの頁へ移しました'],
+      'docs/personal.en.md': ['My provisional IQ is 110.', '2025-12-30', '123test', 'Culture Fair', 'not a clinical intelligence assessment', 'does not say which scale it uses', 'name field masked', 'On 2026-11-11 the paragraph on the provisional IQ'],
     };
-    const 直後 = { 'README.md': 'Claude Code 愛好家です。\n\n暫定の IQ は 110 です。', 'README.en.md': 'a Claude Code enthusiast.\n\nMy provisional IQ is 110.' };
     const 欠け = [];
     for (const [f, xs] of Object.entries(面)) {
       const t = read(f);
       xs.filter((x) => t.indexOf(x) < 0).forEach((x) => 欠け.push(f + ': ' + x));
-      if (t.indexOf(直後[f]) < 0) 欠け.push(f + ': 肩書きの段の直後に無い');
       const n = (t.match(/IQ (?:は |is )\d+/g) || []).map((m) => m.replace(/\D/g, ''));
       if (n.length !== 1 || n[0] !== '110') 欠け.push(f + ': 数 ' + (n.join(',') || '無し'));
     }
-    const 頁 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].filter((f) => /\b(?:IQ|QI)\b/.test(read(f)));
-    if (頁.length) 欠け.push('サイトの頁に残っている: ' + 頁.join(', '));
-    ok('暫定の IQ が、同じ数・日付・断りで README 二つの冒頭にあり、サイトの自己紹介には無い', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : 'README 二つ');
+    const 残り = ['README.md', 'README.en.md', 'index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html']
+      .filter((f) => /\b(?:IQ|QI)\b(?! は、\[来歴| are now on the page)/.test(read(f).replace(/暫定の IQ は、\[来歴と暮らし\]/, '').replace(/my provisional IQ are now on the page/, '')));
+    if (残り.length) 欠け.push('README かサイトの頁に残っている: ' + 残り.join(', '));
+    if (read('README.md').indexOf('暫定の IQ は、[来歴と暮らし](docs/personal.md)の頁に移しました') < 0) 欠け.push('README.md に移した先が無い');
+    if (read('README.en.md').indexOf('my provisional IQ are now on the page [Background and daily life](docs/personal.en.md)') < 0) 欠け.push('README.en.md に移した先が無い');
+    ok('暫定の IQ が、同じ数・日付・断りで来歴と暮らしの頁（日英）にあり、README とサイトの自己紹介には無い', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : '来歴の頁二つ');
+  }
+
+  /* **README の冒頭に三行の要約を置く。**長い README の入口を短くする（2026-11-11）。
+   * 札のすぐ下に、見出しと三行だけ。四行にも二行にもしない。 */
+  {
+    const 要約 = (f, h) => {
+      const t = read(f);
+      const i = t.indexOf(h);
+      if (i < 0) return -1;
+      const rest = t.slice(i + h.length).replace(/^\n+/, '');
+      return (rest.split('\n\n')[0].match(/^\d\. .+$/gm) || []).length;
+    };
+    const n1 = 要約('README.md', '#### 三行の要約'), n2 = 要約('README.en.md', '#### In three lines');
+    ok('README（日英）の冒頭に、三行の要約がある', n1 === 3 && n2 === 3, '日 ' + n1 + ' / 英 ' + n2);
   }
 
   /* **頁の宣言と、現状評価の表を離さない。**実績の時期を片方にだけ書くと、
@@ -1998,25 +2033,24 @@ section('10.59 自己紹介が名乗っていること');
        '表から ' + 数 + ' 件 / 現状評価 ' + (m ? m[1] + ' 件' : '行が無い'));
   }
 
-  /* **仮の肩書きは、注釈と一緒にしか出さない。**この仮の肩書きを使うと決めたのは
-   * 2026-09-26 で、実際には一学部生だという注釈と一体の一文としてだけである。
-   * 語だけが一人歩きする形は check_text.js が止める。ここでは、注釈つきの文が
-   * 置くと決めた面の全部にあることを見る。一つの面から落ちれば、そこだけ肩書きが消えて
-   * 見え方が揃わない。 */
+  /* **肩書きを名乗らない。一学部生とだけ書く。**2026-09-26 に仮の肩書きを使うと決めたが、
+   * 2026-11-11 に外した（決めごと 6）。仮の肩書きの文が一つの面にでも残れば落とす。
+   * 目標（博士号を取ったのちの活動）は、いまの肩書きではないので残る。 */
   {
-    const 注釈 = {
-      'index.html': '<b>「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。</b>',
-      'index.en.html': '<b>“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.</b>',
-      'index.de.html': '<b>„Unabhängiger Forscher“ ist ein vorläufiger Titel der Verständlichkeit halber; tatsächlich ist der Autor Bachelorstudent.</b>',
-      'index.fr.html': '<b>« Chercheur indépendant » est un titre provisoire, pour la clarté ; en réalité, l’auteur est étudiant de premier cycle.</b>',
-      'index.it.html': '<b>«Ricercatore indipendente» è un titolo provvisorio, per chiarezza; in realtà l’autore è uno studente universitario.</b>',
-      'README.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
-      'README.en.md': '“Independent Researcher” is a provisional title used for clarity; in fact the author is an undergraduate.',
-      'cv.html': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です。',
-      'docs/self-assessment.md': '「独立研究者」は分かりやすさのための仮の肩書きで、実際には一学部生です（2026-09-26 に決めた。',
+    const 一学部生 = {
+      'index.html': '<b>肩書きは名乗っていません。</b>一学部生です。',
+      'index.en.html': '<b>No title is claimed.</b> The author is an undergraduate.',
+      'index.de.html': '<b>Ein Titel wird nicht beansprucht.</b> Der Autor ist Bachelorstudent.',
+      'index.fr.html': '<b>Aucun titre n’est revendiqué.</b> L’auteur est étudiant de premier cycle.',
+      'index.it.html': '<b>Non si rivendica alcun titolo.</b> L’autore è uno studente universitario.',
+      'README.md': '肩書きは名乗っていません。一学部生です。',
+      'README.en.md': 'No title is claimed. The author is an undergraduate.',
+      'cv.html': '本人は一学部生です。肩書きは名乗っていません。',
+      'docs/self-assessment.md': '肩書きは名乗っていません。一学部生です（2026-11-11 に仮の肩書きを外した',
     };
-    const 落ち = Object.keys(注釈).filter((f) => read(f).indexOf(注釈[f]) < 0);
-    ok('仮の肩書きが、実際には一学部生だという注釈つきで九つの面にある', 落ち.length === 0,
+    const 仮 = /仮の肩書き[^。]*実際には一学部生|provisional title used for clarity|vorläufiger Titel|titre provisoire|titolo provvisorio/;
+    const 落ち = Object.keys(一学部生).filter((f) => read(f).indexOf(一学部生[f]) < 0 || 仮.test(read(f)));
+    ok('肩書きを名乗らず、一学部生とだけ九つの面に書き、仮の肩書きの文がどこにも無い', 落ち.length === 0,
        落ち.length ? 落ち.join(', ') : '五言語・README 二つ・CV・現状評価');
   }
 
@@ -2913,12 +2947,16 @@ section('10.63 全作品の目録と、道具の一覧');
     works.forEach((w) => {
       const m = new RegExp('<tr id="' + w.id + '">(.*?)</tr>').exec(h);
       const last = m ? (m[1].match(/<td>([^<]*)<\/td>$/) || [])[1] : null;
-      const want = w.begun.period === 'first' ? y1 : w.begun.period === 'second' ? y2 : null;
+      /* 一年次の成果の続き（黄金比の窓の予想は Trinity-Infinity の続き）は、その旨を名指した文になる。 */
+      const 続き = f === 'catalog.html' ? '学部一年次の成果（Trinity-Infinity）の続き' : 'Continuation of first-year work (Trinity-Infinity)';
+      const want = w.id === 'repeated-games-cyclic-operator' ? 続き
+        : w.begun.period === 'first' ? y1 : w.begun.period === 'second' ? y2 : null;
       if (want && last !== want) 時期欠け.push(f + ' の ' + w.id + ' が ' + last);
+      if ((w.id === 'repeated-games-cyclic-operator') !== (last === 続き)) 時期欠け.push(f + ' の ' + w.id + ' の続きの書き方');
       if (二年.includes(w.id) && (w.begun.period !== 'second' || (last || '').indexOf(y1) >= 0)) 時期欠け.push(f + ' の ' + w.id + ' を二年次としていない');
     });
   });
-  ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次とする', 時期欠け.length === 0,
+  ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次、黄金比の窓の予想を一年次の成果の続きとする', 時期欠け.length === 0,
      時期欠け.join(' / ') || works.length + ' 作品 × 2 言語');
 
   /* 「30歳魔法使い」はエッセイとして挙げる。論文と読み違えられないように。 */
@@ -3017,6 +3055,120 @@ section('10.65 黄金比の窓の図');
   ok('黄金比の窓の頁（日英）が、証明した範囲を δ の区間ごとに書き分けている', 範囲欠け.length === 0, 範囲欠け.join(', '));
 }
 
+/* ------------------------------------------------- 10.66 百本ノック四
+ *
+ * 2026-11-11。サイトの決まり（docs/site-rules.md）を数えて止める。頁の重さ・代替テキスト・暗い側・
+ * 言語の切り替え・頁の下の欄。運営の決まり（docs/governance.md）の時間の上限と、表の数。
+ * 運営の記録の頁があること。黄金比の窓の予想を一年次の成果の続きと書くこと。所属を ZEN大学 と書くこと。 */
+section('10.66 サイトの決まりと運営の記録');
+{
+  const BASE = 'https://cpsbvbng26-dotcom.vercel.app/';
+  /* 326. 頁の重さ。HTML 一枚 200,000 バイト、画像一枚 100,000 バイトまで。 */
+  const 重い = PAGES.filter((f) => fs.statSync(path.join(ROOT, f)).size > 200000);
+  const 画像 = fs.readdirSync(ROOT).filter((f) => /\.(png|jpe?g|svg|ico|webp)$/i.test(f))
+    .filter((f) => fs.statSync(path.join(ROOT, f)).size > 100000);
+  ok('頁（' + PAGES.length + ' 枚）が 200,000 バイト以下、根の画像が 100,000 バイト以下', 重い.length === 0 && 画像.length === 0, 重い.concat(画像).join(', '));
+
+  /* 325. 代替テキスト。img には alt を必ず置く。「画像」「写真」の語だけの alt を置かない。 */
+  const alt = [];
+  PAGES.forEach((f) => {
+    for (const m of read(f).matchAll(/<img\b[^>]*>/g)) {
+      const a = /\balt="([^"]*)"/.exec(m[0]);
+      if (!a) alt.push(f + ' alt が無い');
+      else if (/^(画像|写真|image|photo|picture)$/i.test(a[1].trim())) alt.push(f + ' alt「' + a[1] + '」');
+    }
+  });
+  ok('頁の画像が代替テキストを持ち、「画像」「写真」だけの代替テキストが無い', alt.length === 0, alt.join(', '));
+
+  /* 323. 暗い側。全頁が端末の設定（prefers-color-scheme: dark）に従う。 */
+  const 暗 = PAGES.filter((f) => f !== '404.html' && !/prefers-color-scheme:\s*dark/.test(read(f)) && !/data-theme="dark"|\[data-theme="dark"\]/.test(read(f)));
+  ok('頁が暗い側の色を持つ', 暗.length === 0, 暗.join(', '));
+
+  /* 327. 言語の切り替え。別の言語の版を hreflang で名指す頁は、頁の上の欄（ナビ）の末尾に、
+   * その版へのリンクを、切り替え先の言語の名で置く。 */
+  const 名 = { ja: '日本語', en: 'English', de: 'Deutsch', fr: 'Français', it: 'Italiano' };
+  const 切替 = [];
+  PAGES.forEach((f) => {
+    const h = read(f);
+    const nav = (/<nav[^>]*>([\s\S]*?)<\/nav>/.exec(h) || [])[1] || '';
+    const links = [...nav.matchAll(/<a href="([^"]+)">([^<]*)<\/a>/g)].map((m) => [path.posix.normalize(path.posix.join(path.posix.dirname(f), m[1].replace(/^https:\/\/cpsbvbng26-dotcom\.vercel\.app\//, '/'))).replace(/^\//, ''), m[2]]);
+    const alts = [...h.matchAll(/<link rel="alternate" hreflang="([a-z]{2})" href="([^"]+)">/g)]
+      .map((m) => [m[1], m[2].slice(BASE.length) || 'index.html']).filter(([, u]) => u !== f);
+    alts.forEach(([l, u]) => {
+      const i = links.findIndex(([href, label]) => href === u && label === 名[l]);
+      if (i < 0) 切替.push(f + ' → ' + u);
+      /* 末尾の塊は、言語の名だけが並ぶ連なりである。切り替えはその中に無ければならない。 */
+      let k = links.length;
+      while (k > 0 && Object.values(名).includes(links[k - 1][1])) k--;
+      if (i < k) 切替.push(f + ' の ' + 名[l] + ' がナビの末尾に無い');
+    });
+  });
+  ok('言語の切り替えが、ナビの末尾に、切り替え先の言語の名で置いてある', 切替.length === 0, 切替.slice(0, 5).join(', '));
+
+  /* 328. 頁の下の欄。運営者の名・連絡（GitHub の issue）・免責事項。 */
+  const 下 = PAGES.filter((f) => f !== '404.html').filter((f) => {
+    const ft = (/<footer[\s\S]*?<\/footer>/.exec(read(f)) || [''])[0];
+    return ft.indexOf('根本卓哉') < 0 && ft.indexOf('Takuya Nemoto') < 0
+      || ft.indexOf('/issues/new/choose') < 0 || !/DISCLAIMER(\.en)?\.md/.test(ft);
+  });
+  ok('頁の下の欄に、運営者の名・連絡（GitHub の issue）・免責事項がある', 下.length === 0, 下.join(', '));
+  /* 379. 中身が変わった日。生成した頁は、下の欄に日付を持つ。 */
+  const 日 = PAGES.filter((f) => !/^(404|trinity)\.html$/.test(f) && f !== 'notes/solitary-school.html')
+    .filter((f) => !/<span class="updated">[^<]*<time datetime="\d{4}-\d{2}-\d{2}">/.test(read(f)));
+  ok('生成した頁が、中身が変わった日を下の欄に出す', 日.length === 0, 日.join(', '));
+
+  /* 393・391. 運営の決まり。時間の上限は、利用者の決めた文のまま。表の数は実物から数える。 */
+  const G = read('docs/governance.md');
+  const 上限 = ['運営に使う時間は、週に 20 時間までです。', '上限を超えた週は、その週のうちに新しい作業を始めません。', '保守と修正は、上限を超えた週も続けます。'];
+  ok('運営の決まりが、週 20 時間の上限を、新しい作業を始めないことと保守を続けることの三文で書く', 上限.every((x) => G.indexOf(x) >= 0));
+  const 言語 = fs.readdirSync(ROOT).filter((f) => /^index(\.[a-z]{2})?\.html$/.test(f)).length;
+  const 篇 = fs.readdirSync(path.join(ROOT, 'papers')).filter((f) => /\.html$/.test(f));
+  const 表ずれ = [];
+  if (G.indexOf('| トップの頁の言語 | ' + 言語 + ' |') < 0) 表ずれ.push('言語 ' + 言語);
+  if (G.indexOf('| 論文の頁 | ' + 篇.filter((f) => !/\.en\.html$/.test(f)).length + ' 篇 ' + 篇.length + ' 頁 |') < 0) 表ずれ.push('論文の頁 ' + 篇.length);
+  if (G.indexOf('| 研究の系列のリポジトリ | ' + JSON.parse(read('verification/ecosystem.json'))['共通の決めごと'].repos.length + ' |') < 0) 表ずれ.push('リポジトリ');
+  ok('運営の決まりの「増やさないもの」の数が、実物と合う', 表ずれ.length === 0, 表ずれ.join(', '));
+  ok('案のままの節に、利用者が確かめる印がある（三つ）', (G.match(/^案（利用者が確かめる）。$/gm) || []).length === 3);
+
+  /* 318. 障害の記録。番号は I1 から欠けずに続き、直したコミットは履歴にある。 */
+  const I = read('docs/incidents.md');
+  const ids = [...I.matchAll(/^\| I(\d+) \|[^\n]*\| `([0-9a-f]{7})` \|$/gm)];
+  const 無い = ids.filter((m) => { try { require('child_process').execFileSync('git', ['cat-file', '-e', m[2] + '^{commit}'], { cwd: ROOT, stdio: 'ignore' }); return false; } catch (e) { return true; } });
+  ok('障害の記録の番号が I1 から続き、直したコミットが履歴にある', ids.length > 0 && ids.every((m, i) => Number(m[1]) === i + 1) && 無い.length === 0,
+     ids.length + ' 件' + (無い.length ? ' / 無いコミット ' + 無い.map((m) => m[2]).join(',') : ''));
+
+  /* 353. ダイヤモンド・オープンアクセスの場は、取り寄せた所在と日付を持つ行だけ。 */
+  const D = read('docs/diamond-oa.md');
+  const 行 = D.split('\n').filter((l) => /^\| (?!分野|---)/.test(l));
+  ok('ダイヤモンド・オープンアクセスの一覧の行が、場の文・取り寄せた所在とコミット・日付を持つ', 行.length > 0
+     && 行.every((l) => /`[^`]+`/.test(l.split('|')[3] || '') && /コミット `[0-9a-f]{7}`/.test(l) && /\| \d{4}-\d{2}-\d{2} \|$/.test(l)), 行.length + ' 行');
+
+  /* 運営の記録の頁が揃っている。 */
+  const 頁 = ['governance', 'continuity', 'incidents', 'reading-guide', 'site-rules', 'screen-reader', 'errata-format', 'routes', 'diamond-oa', 'collaboration']
+    .filter((x) => !fs.existsSync(path.join(ROOT, 'docs', x + '.md')) || read('README.md').indexOf('(docs/' + x + '.md)') < 0);
+  ok('運営の記録の頁があり、README から辿れる', 頁.length === 0, 頁.join(', '));
+
+  /* 黄金比の窓の予想は Trinity-Infinity の続き（学部一年次の成果の続き）。五言語と README で同じ言い方。 */
+  const 続き = { 'index.html': 'これは学部一年次の成果（Trinity-Infinity）の続きです。', 'index.en.html': 'It is a continuation of first-year work (Trinity-Infinity).',
+    'index.de.html': 'Es ist die Fortsetzung der Arbeit des ersten Studienjahres (Trinity-Infinity).', 'index.fr.html': 'C’est la suite du travail de première année (Trinity-Infinity).',
+    'index.it.html': 'È la continuazione del lavoro del primo anno (Trinity-Infinity).', 'README.md': 'これは学部一年次の成果（Trinity-Infinity）の続きです。',
+    'README.en.md': 'It is a continuation of first-year work (Trinity-Infinity).' };
+  const 続き欠け = Object.keys(続き).filter((f) => read(f).indexOf(続き[f]) < 0);
+  ok('黄金比の窓の予想を、学部一年次の成果（Trinity-Infinity）の続きと五言語と README で書く', 続き欠け.length === 0, 続き欠け.join(', '));
+
+  /* 所属は ZEN大学。構造化データに書き、Independent の所属や肩書きを書かない。 */
+  const 所属 = ['index.html', 'index.en.html', 'cv.html'].filter((f) => !/"affiliation": \{\s*"@type": "CollegeOrUniversity",\s*"name": "ZEN(大学| University)"/.test(read(f)));
+  const 独立 = PAGES.filter((f) => /"(affiliation|jobTitle)"[^}]*[Ii]ndependent/.test(read(f)));
+  ok('構造化データの所属が ZEN大学 で、Independent の所属も肩書きも無い', 所属.length === 0 && 独立.length === 0, 所属.concat(独立).join(', '));
+
+  /* 351. errata-check は Sophaxis のコードと一緒に、2027 年 5 月以降に JOSS へ。 */
+  const J = { 'index.html': 'errata-check は、Sophaxis のコードと一緒に出します。出すのは 2027 年 5 月以降です。', 'index.en.html': 'errata-check goes in together with the code of Sophaxis, in May 2027 or later.',
+    'index.de.html': 'errata-check wird zusammen mit dem Code von Sophaxis eingereicht, im Mai 2027 oder später.', 'index.fr.html': 'errata-check sera soumis avec le code de Sophaxis, en mai 2027 ou plus tard.',
+    'index.it.html': 'errata-check verrà inviato insieme al codice di Sophaxis, a maggio 2027 o più tardi.', 'docs/joss.md': 'errata-check は、Sophaxis のコードと一緒に出します。' };
+  const J欠け = Object.keys(J).filter((f) => read(f).indexOf(J[f]) < 0);
+  ok('errata-check を Sophaxis のコードと一緒に 2027 年 5 月以降に出すと、五言語と JOSS の記録に書く', J欠け.length === 0, J欠け.join(', '));
+}
+
 /* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
  *
  * **仕事の名前は、いちばん見られていない散文である。**GitHub の画面に毎回出るのに、
@@ -3073,7 +3225,11 @@ section('10.60 CI の仕事の名前が名乗っている数');
     /* 390px 以下の幅では、本文の左右の余白も測る。一頁・一幅に一項目が増える。 */
     const narrow = /if \(w <= 390\)/.test(kb) ? ws.filter((x) => x <= 390).length : 0;
     ok('check_keyboard.js から測る幅の数を読める', widths > 0, widths + '（うち余白も測る幅 ' + narrow + '）');
-    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths + narrow) + 4;
+    /* 文字 200% の幅（一頁・一幅に一項目）。 */
+    const zm = /for \(const w of \[([^\]]*)\]\) \{\s*const c4/.exec(kb);
+    const zoom = zm ? zm[1].split(',').filter((x) => parseInt(x, 10) > 0).length : 0;
+    ok('check_keyboard.js から文字 200% で測る幅の数を読める', zoom > 0, String(zoom));
+    counts['キーボードで辿れるか'] = PAGES.length * (8 + widths + narrow + zoom) + 4;
   }
 
   ok('配色の名乗りが実際と合う',

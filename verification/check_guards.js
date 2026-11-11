@@ -468,6 +468,40 @@ CASES.forEach(([label, file, mutate, script, expect]) => {
 });
 
 /* ---------- 数を名乗る ---------- */
+/* ---------- 表から自動で壊す ----------
+ *
+ * 2026-11-11（百本ノック四の 341）。**手で選んだ壊す先は、選ばなかった行を見ない。**
+ * check_text.js の表（誤変換・使わないと決めた語・活用の壊れ）を一行ずつ読み、その行が止めるはずの
+ * 形を、複製した記録の頁に一つずつ書き足して走らせる。**表に行を足せば、壊す先も自動で増える。**
+ * 落ちなかった行は、表にあるのに何も止めていない。 */
+section('1b. 表から自動で壊す（check_text.js の表の全行）');
+{
+  const src = fs.readFileSync(path.join(COPY, 'verification', 'check_text.js'), 'utf8');
+  const table = (name) => {
+    const i = src.indexOf('const ' + name + ' = [');
+    const j = src.indexOf('\n];', i);
+    return i < 0 || j < 0 ? [] : new Function('return [' + src.slice(src.indexOf('[', i) + 1, j) + '\n];')();
+  };
+  /* 正規表現から、それに当たる文字列を一つ作る。先読みの否定だけを外す。作れなければ落とす。 */
+  const sample = (re) => {
+    const s = re.source.replace(/\(\?![^)]*\)/g, '');
+    return /[\\[\](){}.*+?|^$]/.test(s) ? null : s + '。';
+  };
+  const rows = []
+    .concat(table('CORRUPTIONS').map((c) => ['誤変換', c.wrong]))
+    .concat(table('FORBIDDEN').map((c) => ['使わないと決めた語', c.term]))
+    .concat(table('CONJUGATION').map((c) => ['活用の壊れ', sample(c.re), c.re]));
+  const target = 'docs/reading-guide.md';
+  let 落ちない = [];
+  rows.forEach(([kind, s, re]) => {
+    if (s === null || (re && !re.test(s))) { 落ちない.push(kind + ' ' + (re || '') + '（見本を作れない）'); return; }
+    const r = broken(target, (x) => x + '\n記録の行 ' + s + '\n', 'check_text.js');
+    if (!(r.code !== 0 && r.bad.some((b) => b.indexOf(target) >= 0))) 落ちない.push(kind + '「' + s + '」');
+  });
+  ok('check_text.js の表の全行（' + rows.length + ' 行）が、書き足した形をそれぞれ止める', rows.length > 0 && 落ちない.length === 0,
+     落ちない.slice(0, 5).join(' / '));
+}
+
 section('2. 壊す先の数');
 
 {

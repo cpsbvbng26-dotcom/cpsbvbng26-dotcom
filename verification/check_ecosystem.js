@@ -389,9 +389,9 @@ console.log('\n5b. Zenodo の記録の中身');
   const text = read('cpsbvbng26-dotcom', F);
   const PUB = /(University Press|Univ\. Press|Press|Verlag|Routledge|Penguin|de Gruyter|Simon & Schuster|Brothers|Books|Publishers?|Publishing|Oxford|Cambridge|Harvard|Chicago|Princeton)/;
   const PAPERS = [
-    ['独身者論（通った）', 'celibate-individual'],
-    ['人格的帝国主義（通った）', 'imperial-selfhood'],
-    ['断片主義（落ちた）', 'fragmentarian-spiritual-individualism'],
+    ['独身論（通った）', 'celibate-individual'],
+    ['皇帝主義（通った）', 'imperial-selfhood'],
+    ['断章論（落ちた）', 'fragmentarian-spiritual-individualism'],
   ];
   const wrong = [];
   for (const [label, slug] of PAPERS) {
@@ -2425,6 +2425,18 @@ console.log('\n12d. 免責と、法的なずれ');
   }
   check('免責事項の「再利用」が、10 リポジトリの LICENSE の置き方（全体が MIT ' + LC['全体が MIT'].length + '、二つ ' + (C.repos.length - LC['全体が MIT'].length) + '）のとおりに書く',
     wrong.length === 0 && ja.indexOf(LC['文の一節']) >= 0 && en.indexOf(LC['文の一節 英']) >= 0, wrong.join(' / '));
+
+  /* 全体が MIT のリポジトリでも、中の LICENSE で CC BY 4.0 にしたディレクトリがある（trinity-operator の
+   * lessons/ と games/。games/ は 2026-11-11）。免責事項はその全部を名指す。LICENSE が無ければ落とす。 */
+  const 中 = [];
+  for (const [repo, dirs] of Object.entries(LC['中の LICENSE で CC BY 4.0'])) {
+    for (const d of dirs) {
+      const l = read(repo, path.join(d, 'LICENSE'));
+      if (l === null || !/^Creative Commons Attribution 4\.0 International/.test(l)) 中.push(repo + '/' + d + '/LICENSE');
+    }
+  }
+  check('免責事項が、中の LICENSE で CC BY 4.0 にしたディレクトリを全部名指し、その LICENSE がある',
+    中.length === 0 && ja.indexOf(LC['中の一節']) >= 0 && en.indexOf(LC['中の一節 英']) >= 0, 中.join(', '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
@@ -2523,9 +2535,178 @@ console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
   }
 }
 
+/* ---------- 百本ノック四：リポジトリをまたぐ決まり ----------
+ *
+ * 2026-11-11。安全の窓口・誤りの知らせの様式・キーワード・CI の権限と固定・依存・秘密情報・
+ * サイトの CSP と正の URL・言語モデルの使い方の表・正誤表の番号・検査の本数。
+ * どれも「一つのリポジトリの中では見えない」ずれである。 */
+
+console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語彙・CI・依存・秘密・サイト・開示）');
+
+{
+  const C = DECL['共通の決めごと'];
+  const HOME = 'cpsbvbng26-dotcom';
+  const present = (r) => fs.existsSync(path.join(ROOT, r));
+
+  /* 317・345。**同じ文を、一字一句同じに置く。**一つだけ直すと落ちる。直すときは全部直す。 */
+  for (const [f, label] of [['SECURITY.md', '安全の問題の知らせ方（SECURITY.md）'],
+                            [path.join('.github', 'ISSUE_TEMPLATE', 'error-report.yml'), '誤りの知らせの様式（error-report.yml）']]) {
+    const want = read(HOME, f);
+    const ずれ = C.repos.filter((r) => read(r, f) !== want);
+    check(label + 'が、10 リポジトリで一字一句同じ', want !== null && ずれ.length === 0, ずれ.join(', '));
+  }
+
+  /* 340。**同じ主題には同じ語を。**語彙は docs/keywords.json 一つ。言い換えの組は avoid が止める。 */
+  {
+    const V = JSON.parse(read(HOME, path.join('docs', 'keywords.json')));
+    const ok = new Set(V.terms.flatMap((x) => [x.en].concat(x.ja ? [x.ja] : [])));
+    const bad = [];
+    const repos = C.repos.concat(['sophaxis', 'deposit-check'].filter(present));
+    for (const r of repos) {
+      let z = [];
+      try { z = JSON.parse(read(r, '.zenodo.json') || '{}').keywords || []; } catch (e) { bad.push(r + ' の .zenodo.json が読めない'); }
+      const cff = read(r, 'CITATION.cff') || '';
+      const m = /^keywords:\n((?:[ \t]+- .*\n?)+)/m.exec(cff);
+      const c = m ? m[1].split('\n').filter(Boolean).map((l) => l.trim().slice(2).trim().replace(/^["']|["']$/g, '')) : [];
+      z.concat(c).forEach((k) => {
+        if (V.avoid[k]) bad.push(r + '「' + k + '」→「' + V.avoid[k] + '」');
+        else if (!ok.has(k)) bad.push(r + '「' + k + '」が語彙に無い');
+      });
+      c.filter((k) => !z.includes(k)).forEach((k) => bad.push(r + ' の CITATION.cff だけにある「' + k + '」'));
+    }
+    check('キーワードが語彙（docs/keywords.json、' + V.terms.length + ' 語）の内にあり、言い換えを使わない（' + repos.length + ' 本）',
+      bad.length === 0, [...new Set(bad)].slice(0, 8).join(' / '));
+  }
+
+  /* 314・315・313。**CI は読むだけを既定にし、外のアクションはコミットの値で固定する。**
+   * 依存は足さない。入れてよいのは、検査が実際に使う五つだけ。 */
+  {
+    const 権限 = [], 固定 = [], 依存 = [];
+    const ALLOWED = new Set(['pypdf', 'numpy', 'playwright', 'build', 'twine']);
+    for (const r of C.repos) {
+      const dir = path.join(ROOT, r, '.github', 'workflows');
+      if (!fs.existsSync(dir)) continue;
+      for (const f of fs.readdirSync(dir).filter((x) => /\.ya?ml$/.test(x))) {
+        const y = fs.readFileSync(path.join(dir, f), 'utf8');
+        if (!/^permissions:/m.test(y)) 権限.push(r + '/' + f);
+        for (const m of y.matchAll(/^\s*-?\s*uses:\s*(\S+)(.*)$/gm)) {
+          if (m[1].startsWith('./')) continue;
+          if (!/@[0-9a-f]{40}$/.test(m[1]) || !/^\s+#\s*\S+/.test(m[2])) 固定.push(r + '/' + f + ' ' + m[1]);
+        }
+        const code = y.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+        for (const m of code.matchAll(/(?:pip|npm) (?:install|i)\s+([^\n]+)/g)) {
+          m[1].split(/\s+/).filter((w) => w && !w.startsWith('-') && w !== 'requirements.txt' && !/^\$/.test(w))
+            .map((w) => w.replace(/[@=<>].*$/, '')).filter((w) => !ALLOWED.has(w)).forEach((w) => 依存.push(r + '/' + f + ' ' + w));
+        }
+      }
+      const req = read(r, 'requirements.txt');
+      if (req !== null) req.split('\n').map((l) => l.replace(/#.*/, '').trim()).filter(Boolean)
+        .map((l) => l.replace(/[<>=!~\s].*$/, '')).filter((n) => !['numpy', 'pypdf'].includes(n)).forEach((n) => 依存.push(r + '/requirements.txt ' + n));
+      const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+        if (['.git', 'node_modules', 'site', 'dist'].includes(e.name)) return;
+        const p2 = path.join(d, e.name);
+        if (e.isDirectory()) return walk(p2);
+        if (e.name === 'package.json') {
+          const j = JSON.parse(fs.readFileSync(p2, 'utf8'));
+          if (Object.keys(j.dependencies || {}).length || Object.keys(j.devDependencies || {}).length) 依存.push(path.relative(ROOT, p2));
+        }
+        if (e.name === 'pyproject.toml' && !/^dependencies = \[\]$/m.test(fs.readFileSync(p2, 'utf8'))) 依存.push(path.relative(ROOT, p2));
+      });
+      walk(path.join(ROOT, r));
+    }
+    check('10 リポジトリのすべての CI に、上の段の permissions がある', 権限.length === 0, 権限.join(', '));
+    check('10 リポジトリの CI の外部のアクションが、コミットの値（40 桁）と版の注釈で固定されている', 固定.length === 0, 固定.slice(0, 6).join(', '));
+    check('10 リポジトリが依存を足していない（CI が入れるのは pypdf・numpy・playwright・build・twine だけ）', 依存.length === 0, 依存.join(', '));
+  }
+
+  /* 316。**秘密の鍵の形が、どこにも無い。**メールアドレスは上の免責の段が見ている。
+   * 鍵の形はここで組み立てる（この検査のファイルそのものに鍵の形を置かない）。 */
+  {
+    const P = [new RegExp('-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE ' + 'KEY-----'),
+               new RegExp('\\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{36}\\b'), new RegExp('\\bgithub_pat_[A-Za-z0-9_]{60,}'),
+               new RegExp('\\bAKIA[0-9A-Z]{16}\\b'), new RegExp('\\bxox[abprs]-[A-Za-z0-9-]{10,}'), new RegExp('\\bAIza[0-9A-Za-z_-]{35}\\b')];
+    const hits = [];
+    let n = 0;
+    for (const r of C.repos) {
+      let files = [];
+      try { files = execFileSync('git', ['ls-files'], { cwd: path.join(ROOT, r), encoding: 'utf8' }).split('\n').filter(Boolean); } catch (e) { files = []; }
+      for (const f of files.filter((x) => /\.(md|html|json|js|py|yml|yaml|toml|cff|txt|csv|bib|sh)$/i.test(x))) {
+        let s; try { s = fs.readFileSync(path.join(ROOT, r, f), 'utf8'); } catch (e) { continue; }
+        n++;
+        if (P.some((re) => re.test(s))) hits.push(r + '/' + f);
+      }
+    }
+    check('10 リポジトリの追跡中のファイル（' + n + ' 本）に、秘密の鍵の形が無い', n > 0 && hits.length === 0, hits.join(', '));
+  }
+
+  /* 320・331・332。**サイトの CSP は同じ厳しさで、正の URL を持つ。**一覧は verification/sites.json。 */
+  {
+    const S = JSON.parse(read(HOME, path.join('verification', 'sites.json'))).sites;
+    const csp = [], 正 = [], 地図 = [];
+    let pages = 0;
+    for (const s of S) {
+      const base = path.join(ROOT, s.repo, s.dir);
+      if (!fs.existsSync(base)) { if (C.repos.includes(s.repo)) csp.push(s.repo + '/' + s.dir + ' が無い'); continue; }
+      const htmls = [];
+      const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+        if (['.git', 'node_modules', 'drafts', 'deploy', 'doi-index-check', 'examples', 'verification', 'dist', 'templates'].includes(e.name)) return;
+        if (s.dir === '.' && ['site'].includes(e.name)) return;
+        const p2 = path.join(d, e.name);
+        if (e.isDirectory()) return walk(p2);
+        if (/\.html$/.test(e.name)) htmls.push(p2);
+      });
+      walk(base);
+      for (const h of htmls) {
+        const x = fs.readFileSync(h, 'utf8');
+        if (!/<head[\s>]/i.test(x)) continue;   /* 検索の所有確認のための一行のファイルなど */
+        pages++;
+        const rel = path.relative(ROOT, h);
+        const m = /<meta http-equiv="Content-Security-Policy" content="([^"]*)"/.exec(x);
+        if (!m || m[1].indexOf("default-src 'none'") !== 0 || /unsafe-inline|unsafe-eval/.test(m[1])) csp.push(rel);
+        if (s.canonical && !/404\.html$/.test(h)) {
+          const c = /<link rel="canonical" href="([^"]+)"/.exec(x);
+          if (!c || c[1].indexOf(s.url) !== 0) 正.push(rel);
+        }
+      }
+      if (s.canonical) {
+        const robots = read(s.repo, path.join(s.dir, 'robots.txt')) || '';
+        const sm = read(s.repo, path.join(s.dir, 'sitemap.xml')) || '';
+        const locs = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((x) => x[1]);
+        if (robots.indexOf('Sitemap: ' + s.url) < 0 || !locs.length || locs.some((l) => l.indexOf(s.url) !== 0)) 地図.push(s.repo);
+      }
+    }
+    check('研究の系列のサイトの頁（' + pages + ' 頁）の CSP が、default-src \'none\' から始まり unsafe-inline を使わない', pages > 0 && csp.length === 0, csp.slice(0, 6).join(', '));
+    check('正の URL を持つサイトの頁が canonical を置き、その URL がサイトの正の場所を指す', 正.length === 0, 正.slice(0, 6).join(', '));
+    check('正の URL を持つサイトに sitemap.xml と robots.txt があり、robots が sitemap を名指す', 地図.length === 0, 地図.join(', '));
+  }
+
+  /* 348。**言語モデルの使い方を、同じ形の表で。**道具・使ったところ・確かめた人。 */
+  {
+    const 欠け = [];
+    for (const r of C.repos) {
+      if (!/^\| 道具 \| 使ったところ \| 確かめた人 \|$/m.test(read(r, 'README.md') || '')) 欠け.push(r + '/README.md');
+      const en = read(r, 'README.en.md');
+      if (en !== null && !/^\| Tool \| Used for \| Checked by \|$/m.test(en)) 欠け.push(r + '/README.en.md');
+    }
+    check('10 リポジトリの README が、言語モデルの使い方を同じ形の表（道具・使ったところ・確かめた人）で置く', 欠け.length === 0, 欠け.join(', '));
+  }
+
+  /* 343。**正誤表の番号は E1 から欠けずに続く。**欠けたら、消した項目がある。 */
+  {
+    const 欠け = [];
+    for (const r of C.repos) {
+      const e = read(r, 'ERRATA.md');
+      if (e === null) continue;
+      const n = [...e.matchAll(/^## E(\d+) — /gm)].map((m) => Number(m[1]));
+      if (!n.length || n.some((x, i) => x !== i + 1)) 欠け.push(r + '（' + n.join(',') + '）');
+    }
+    check('正誤表の項目の番号が、E1 から欠けずに続く', 欠け.length === 0, 欠け.join(', '));
+  }
+}
+
 /* ---------- 名乗る件数 ---------- */
 
-console.log('\n13. この検査が名乗る件数');
+console.log('\n14. この検査が名乗る件数');
 
 {
   const total = passed + failures.length + 1;
