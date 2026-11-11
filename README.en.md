@@ -2,6 +2,8 @@
 
 # Takuya Nemoto / 根本卓哉
 
+Type: Project · Status: Running
+
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
 I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office; I plan to file it as soon as I have the time. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
@@ -57,7 +59,7 @@ One thing has been added beyond that. On 2026-10-04 a note was written showing t
 
 The preprints up to this point were written as a hobby. None of them has been peer-reviewed. This is not modesty. It follows from what is set out above — the desk gate was passed, but no one has examined the arguments. The three mathematical papers are a special case of a known model, and the contribution to the field is zero. Hobby research ended in the first undergraduate year. What comes next will be written so that the word need not apply.
 
-The edX and Tohoku University MOOC certificates were also finished in the first half of the first undergraduate year. There are seven of them. And everything set out here is the work of that first undergraduate year. Nine preprints, 16 Zenodo DOIs, ten repositories, seven certificates and open badges. The dates themselves have been checked against nothing. They are printed on the certificates, but neither edX nor the issuers can be reached from this working environment. The enrolment date is not printed here either. Printing it would mean printing a date that has not been verified.
+The edX and Tohoku University MOOC certificates were also finished in the first half of the first undergraduate year. There are seven of them. And these four are the work of that first undergraduate year. Nine preprints, 16 Zenodo DOIs, ten repositories, seven certificates and open badges. Sophaxis and deposit-check were begun in the second undergraduate year. Their first commits are dated 2026-10-30 and 2026-11-02. New subjects go by routes such as JOSS, and both are being prepared as software for JOSS. The dates themselves have been checked against nothing. They are printed on the certificates, but neither edX nor the issuers can be reached from this working environment. The enrolment date is not printed here either. Printing it would mean printing a date that has not been verified.
 
 Where it goes is decided too. Anything taken this far by self-study goes only to diamond open-access venues — venues that charge neither the reader nor the writer. No publication fees, no submission fees. Solicitations that advertise being free are declined as well — the moment money changes hands, what passed was payment, not selection. The rule has already been used once: a publisher wrote offering to turn the work into a book, and no reply was sent (solicitations received). That was not a judgment about them — their existence, record and review practice are all unverified here. What was decided was a rule on this side.
 
@@ -183,7 +185,7 @@ All are preprints and have not been peer-reviewed. Full text and PDFs for the th
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | Generalises the blend to vary by coordinate without losing uniqueness, and adds a characterisation of the sustainable payoff set and a fully worked spring-network example | Revised — Aug 2026 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | Shows the convergence result never required three elements — it holds for every n ≥ 2 — and gives a retrospective on what the series established and what it withdrew | Aug 2026 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 | [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Uses the route by which the central Trinity-Infinity operator was identified as a special case of the Friedkin–Johnsen model to ask what philosophy of science can say about novelty and priority claims when a machine performs the generating step. Makes no claim of mathematical novelty | Sep 2026 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)<br>PhilArchive [NEMMRA](https://philarchive.org/rec/NEMMRA) (not deposited on Zenodo) |
-| [The “Wizard at Thirty” Urban Legend: A Structural Analysis (in Japanese)](https://doi.org/10.5281/zenodo.23114131) | Reads the Japanese urban legend that a person without sexual experience by thirty becomes a wizard as an inverted rite of passage. Rejects the supernatural claim and analyses the “wizard” as a status, a self-designation and a social effect | Oct 2026 | [10.5281/zenodo.23114131](https://doi.org/10.5281/zenodo.23114131) (no paper page or errata yet)<br>Knowledge Commons [vaa96-ss949](https://works.hcommons.org/records/vaa96-ss949) |
+| [The “Wizard at Thirty” Urban Legend: A Structural Analysis (in Japanese)](https://doi.org/10.5281/zenodo.23114131) | An essay. Not a research paper. Reads the Japanese urban legend that a person without sexual experience by thirty becomes a wizard as an inverted rite of passage. Rejects the supernatural claim and analyses the “wizard” as a status, a self-designation and a social effect | Oct 2026 | [10.5281/zenodo.23114131](https://doi.org/10.5281/zenodo.23114131) (no paper page or errata yet)<br>Knowledge Commons [vaa96-ss949](https://works.hcommons.org/records/vaa96-ss949) |
 
 > **Note on Series I.** Series II and Series III cite the revised Series I with `10.5281/zenodo.17173703`, which is the DOI of the **2025 original that this series corrects**. The revised edition is `10.5281/zenodo.22058624`. See [ERRATA.md](https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md). **Nothing withdrawn has been deleted.**
 
@@ -310,8 +312,8 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 617 checks
-node verification/check_site.js      # site structure, 854 checks
+node verification/check_contrast.js  # colour contrast, 685 checks
+node verification/check_site.js      # site structure, 917 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -321,13 +323,29 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 557 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 619 checks (needs Chromium)
 ```
 
-It tabs through 25 pages and looks for focus traps, elements that receive focus while
+It tabs through 41 pages and looks for focus traps, elements that receive focus while
 still transparent, elements with no focus ring, elements with no size, and a tab order
 that diverges from reading order. **If the tools are absent it exits 1.** A check that
 did not run is not a check that passed.
+
+**The cross-repository check can be used on another set of repositories.** It has no dependencies. Pass the parent directory of the repositories in `ECOSYSTEM_ROOT`, and the declaration file in `ECOSYSTEM_CONFIG`.
+
+```
+ECOSYSTEM_ROOT=~/src ECOSYSTEM_CONFIG=./my-ecosystem.json node verification/check_ecosystem.js
+```
+
+With a declaration file, only the declarative part runs: whether a marked section is identical across repositories (`共通の決めごと`), whether the counts that prose claims match what is actually run (`数`), and whether sums claimed in prose add up (`和`). The checks after that are specific to this set of repositories and do not run. A minimal example is [`verification/ecosystem.example.json`](verification/ecosystem.example.json); it uses two of these repositories and passes as it stands. In `数`, the actual count comes from a command's output (`cmd` and `regex`) or from a file (`file` and `regex`, or `数える` to count matching lines).
+
+**The resource type of each DOI in the catalogue is compared with its DataCite record.** That check goes out to the network, so it is kept apart from the list above.
+
+```
+node verification/check_datacite.js   # catalogue DOIs against DataCite resource types (needs api.datacite.org)
+```
+
+If DataCite cannot be reached, it stops and says the check did not complete, instead of passing. In CI it runs as a separate job.
 
 **`check_site.js`** catches the kind of drift that looks fixed but isn't: broken internal links, a subresource that would fetch from a third party on load, a JSON-LD `hasPart` pointing at a work that is not in the graph, a sitemap entry with no file behind it, a card count that differs between the Japanese and English pages, and a link left behind to a page that has been removed.
 
