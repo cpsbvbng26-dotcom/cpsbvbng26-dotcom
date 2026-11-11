@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   verify:
-    name: 誤変換 / 配色 702 項目 / サイトの構造 946 項目 / 作用素 90 項目
+    name: 誤変換 / 配色 702 項目 / サイトの構造 947 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
