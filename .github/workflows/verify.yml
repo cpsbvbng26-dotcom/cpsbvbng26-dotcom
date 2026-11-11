@@ -6,16 +6,20 @@ on:
   pull_request:
   workflow_dispatch:
 
+# 読むだけでよい。書き込む仕事は無い。
+permissions:
+  contents: read
+
 jobs:
   verify:
     name: 誤変換 / 配色 685 項目 / サイトの構造 918 項目 / 作用素 90 項目
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           # sitemap の lastmod を git の記録と突き合わせるため、履歴が要る。
           fetch-depth: 0
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 22
       # 依存パッケージなし。npm install も要らない。
@@ -27,6 +31,10 @@ jobs:
         run: node verification/check_site.js
       - name: 作用素の数値（NumPy の記録との突き合わせ）
         run: node verification/check_trinity.js
+      - name: 秘密情報と個人の連絡先
+        run: node verification/check_secrets.js
+      - name: 秘密情報の検査を壊して確かめる
+        run: node verification/check_secrets.js --break
       # 検査そのものを壊して、壊した箇所がちょうど落ちることを確かめる。
       # 通ることでは信用できないので、ここを最後に置く。
       - name: 検査そのものを壊して確かめる
@@ -39,8 +47,8 @@ jobs:
     # ubuntu-latest が 26.04 になり、playwright 1.56.1 が Chromium を入れられなくなった（2026-11-06）。
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 22
       - name: playwright と Chromium を入れる

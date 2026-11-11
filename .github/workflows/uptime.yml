@@ -1,0 +1,29 @@
+name: サイトの見張り
+
+# 一日に一度、配っているサイトが応答しているかを見る（verification/sites.json の watch）。
+# 応答しないものがあれば issue を一つ立てるか直し、全部戻れば閉じる。CI そのものは落とさない。
+
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  uptime:
+    name: サイトが応答しているか
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22
+      - name: 見張る
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPTIME_ISSUE: '1'
+        run: node verification/uptime.js
