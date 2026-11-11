@@ -1,295 +1,807 @@
 {
- "at": "2026-11-11T10:32:45.181Z",
+ "at": "2026-11-11T21:14:48.079Z",
  "works": {
   "10.2139/ssrn.7358779": {
    "openalex": {
     "id": "https://openalex.org/W7204528566",
     "cited": 0,
     "type": "preprint",
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "The Nobility and Exemplarity of the Celibate Individual"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "crossref"
   },
   "10.2139/ssrn.7358818": {
    "openalex": {
     "id": "https://openalex.org/W7203972664",
     "cited": 0,
     "type": "preprint",
-    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritua"
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existenc"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "crossref"
   },
   "10.2139/ssrn.7446961": {
    "openalex": {
     "id": "https://openalex.org/W7212271512",
     "cited": 0,
     "type": "preprint",
-    "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Il"
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "crossref"
   },
   "10.2139/ssrn.7449338": {
    "openalex": {
     "id": "https://openalex.org/W7213318443",
     "cited": 0,
     "type": "preprint",
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (⼤⾕恒)"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "crossref"
   },
   "10.2139/ssrn.7537983": {
    "openalex": {
     "id": "https://openalex.org/W7214902835",
     "cited": 0,
     "type": "preprint",
-    "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correc"
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "crossref"
+  },
+  "10.5281/zenodo.17173703": {
+   "openalex": {
+    "id": "https://openalex.org/W7082644795",
+    "cited": 0,
+    "type": "preprint",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22055709": {
    "openalex": {
     "id": "https://openalex.org/W7128304807",
     "cited": 0,
     "type": "preprint",
-    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Li"
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5125355290"
+    ],
+    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22057583": {
    "openalex": {
     "id": "https://openalex.org/W7203972664",
     "cited": 0,
     "type": "preprint",
-    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritua"
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existenc"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22058254": {
    "openalex": {
     "id": "https://openalex.org/W7093092681",
     "cited": 0,
     "type": "preprint",
+    "abstract": true,
+    "authors": [
+     null
+    ],
     "title": "The Nobility and Exemplarity of the Celibate Individual"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22058624": {
    "openalex": {
     "id": "https://openalex.org/W7082644795",
     "cited": 0,
     "type": "preprint",
-    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Application"
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22058777": {
    "openalex": {
     "id": "https://openalex.org/W7153175910",
     "cited": 0,
     "type": "preprint",
+    "abstract": false,
+    "authors": [
+     null
+    ],
     "title": "The Trinity-Infinity Framework Ⅱ"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22058964": {
    "openalex": {
     "id": "https://openalex.org/W7153479597",
     "cited": 0,
     "type": "preprint",
-    "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and "
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133413198"
+    ],
+    "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospect"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22064241": {
    "openalex": {
     "id": "https://openalex.org/W7124264941",
     "cited": 0,
     "type": "preprint",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5123095328"
+    ],
     "title": "Fragmentarian Spiritual Individualism"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22335676": {
    "openalex": {
     "id": "https://openalex.org/W7208835517",
     "cited": 0,
     "type": "preprint",
+    "abstract": true,
+    "authors": [
+     null
+    ],
     "title": "正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22335692": {
    "openalex": {
     "id": "https://openalex.org/W7208805937",
     "cited": 0,
     "type": "software",
+    "abstract": true,
+    "authors": [
+     null
+    ],
     "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.22649054": {
+   "openalex": {
+    "id": "https://openalex.org/W7211920247",
+    "cited": 0,
+    "type": "software",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.22649899": {
+   "openalex": {
+    "id": "https://openalex.org/W7211920247",
+    "cited": 0,
+    "type": "software",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22685687": {
    "openalex": {
     "id": "https://openalex.org/W7211920247",
     "cited": 0,
     "type": "software",
-    "title": "errata-check: Deterministic auditing of errata against frozen published artifact"
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.22765695": {
    "openalex": {
     "id": "https://openalex.org/W7213343790",
     "cited": 0,
     "type": "preprint",
+    "abstract": true,
+    "authors": [
+     null
+    ],
     "title": "自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.23114131": {
    "openalex": {
     "id": "https://openalex.org/W7218650594",
     "cited": 0,
     "type": "preprint",
+    "abstract": false,
+    "authors": [
+     null
+    ],
     "title": "「30歳魔法使い」都市伝説の構造分析"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033082": {
    "openalex": {
     "id": "https://openalex.org/W7225467639",
     "cited": 0,
     "type": "software",
-    "title": "deposit-check: checking the DOI metadata of a researcher's deposits against thei"
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "deposit-check: checking the DOI metadata of a researcher's deposits against their ORCID re"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033372": {
    "openalex": {
     "id": "https://openalex.org/W7225449359",
     "cited": 0,
     "type": "software",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "Sophaxis: an overlay preprint server for philosophy and mathematics"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033459": {
    "openalex": {
     "id": "https://openalex.org/W7225463179",
     "cited": 0,
     "type": "software",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "trinity-operator — 論文が置いた仮定の外まで実装した作用素"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033597": {
    "openalex": {
     "id": "https://openalex.org/W7225467184",
     "cited": 0,
-    "type": "software",
+    "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "self-correction: 一人の研究者による、自分の公開した主張の訂正の全記録"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 2
+   "openaire": 2,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033809": {
    "openalex": {
     "id": "https://openalex.org/W7213322661",
     "cited": 0,
     "type": "dataset",
+    "abstract": true,
+    "authors": [
+     null
+    ],
     "title": "自律と自己陶冶 — 三篇のプレプリント"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24033961": {
    "openalex": {
     "id": "https://openalex.org/W7225461958",
     "cited": 0,
     "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "Trinity-Infinity — 三本の系列と、その検証の記録"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24034131": {
    "openalex": {
     "id": "https://openalex.org/W7225459234",
     "cited": 0,
     "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "Naval Gazette Notes — 海軍公報からの史料ノートとデータ"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.5281/zenodo.24034360": {
    "openalex": {
     "id": "https://openalex.org/W7225453105",
     "cited": 0,
     "type": "software",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
     "title": "根本卓哉 — 公開プロフィールと、その検証"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
   },
   "10.6084/m9.figshare.34419198": {
    "openalex": {
     "id": "https://openalex.org/W7221634362",
     "cited": 0,
     "type": "preprint",
-    "title": "Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payo"
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, a"
    },
    "s2": 404,
    "opencitations": "0",
-   "openaire": 1
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.17605/osf.io/mq7za": {
+   "openalex": {
+    "id": "https://openalex.org/W7225058822",
+    "cited": 0,
+    "type": "article",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Sophaxis: An Independent Overlay Preprint Server"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.18525532": {
+   "openalex": {
+    "id": "https://openalex.org/W7128304807",
+    "cited": 0,
+    "type": "preprint",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5125355290"
+    ],
+    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.22055553": {
+   "openalex": {
+    "id": "https://openalex.org/W7128304807",
+    "cited": 0,
+    "type": "preprint",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5125355290"
+    ],
+    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  }
+ },
+ "concepts": {
+  "10.5281/zenodo.18525531": {
+   "openalex": {
+    "id": "https://openalex.org/W7128304807",
+    "cited": 0,
+    "type": "preprint",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5125355290"
+    ],
+    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.17173702": {
+   "openalex": {
+    "id": "https://openalex.org/W7082644795",
+    "cited": 0,
+    "type": "preprint",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.22335691": {
+   "openalex": {
+    "id": "https://openalex.org/W7208805937",
+    "cited": 0,
+    "type": "software",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": 1,
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24033458": {
+   "openalex": {
+    "id": "https://openalex.org/W7225463179",
+    "cited": 0,
+    "type": "software",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "trinity-operator — 論文が置いた仮定の外まで実装した作用素"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24033596": {
+   "openalex": {
+    "id": "https://openalex.org/W7225467184",
+    "cited": 0,
+    "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "self-correction: 一人の研究者による、自分の公開した主張の訂正の全記録"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.22765620": {
+   "openalex": {
+    "id": "https://openalex.org/W7213322661",
+    "cited": 0,
+    "type": "dataset",
+    "abstract": true,
+    "authors": [
+     null
+    ],
+    "title": "自律と自己陶冶 — 三篇のプレプリント"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24033960": {
+   "openalex": {
+    "id": "https://openalex.org/W7225461958",
+    "cited": 0,
+    "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Trinity-Infinity — 三本の系列と、その検証の記録"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24034130": {
+   "openalex": {
+    "id": "https://openalex.org/W7225459234",
+    "cited": 0,
+    "type": "dataset",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "Naval Gazette Notes — 海軍公報からの史料ノートとデータ"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24034359": {
+   "openalex": {
+    "id": "https://openalex.org/W7225453105",
+    "cited": 0,
+    "type": "software",
+    "abstract": true,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "根本卓哉 — 公開プロフィールと、その検証"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  },
+  "10.5281/zenodo.24033081": {
+   "openalex": {
+    "id": "https://openalex.org/W7225467639",
+    "cited": 0,
+    "type": "software",
+    "abstract": false,
+    "authors": [
+     "https://openalex.org/A5133339711"
+    ],
+    "title": "deposit-check: checking the DOI metadata of a researcher's deposits against their ORCID re"
+   },
+   "s2": 404,
+   "opencitations": "0",
+   "openaire": "0",
+   "fatcat": 0,
+   "agency": "datacite"
+  }
+ },
+ "zenodo": {
+  "22055709": {
+   "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒): A Note on the Investiture List of 11 September 1943 in the Naval Gazette (Internal Circulation Only)",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-08-22",
+   "updated": "2026-09-16T08:02:56.926994+00:00"
+  },
+  "22057583": {
+   "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-08-22",
+   "updated": "2026-11-02T11:20:56.583790+00:00"
+  },
+  "22058254": {
+   "title": "The Nobility and Exemplarity of the Celibate Individual: An Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": [
+    {
+     "type": "other"
+    }
+   ],
+   "pubdate": "2026-08-22",
+   "updated": "2026-11-02T11:19:05.703767+00:00"
+  },
+  "22058624": {
+   "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game Theory, Mathematical Logic, and Mechanical Engineering",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": [
+    {
+     "type": "issued"
+    }
+   ],
+   "pubdate": "2026-08-22",
+   "updated": "2026-11-07T13:08:27.043811+00:00"
+  },
+  "22058777": {
+   "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-08-22",
+   "updated": "2026-11-07T13:09:03.654174+00:00"
+  },
+  "22058964": {
+   "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospective",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-08-22",
+   "updated": "2026-11-07T13:03:42.252777+00:00"
+  },
+  "22064241": {
+   "title": "Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-08-23",
+   "updated": "2026-11-02T11:22:19.741727+00:00"
+  },
+  "23114131": {
+   "title": "「30歳魔法使い」都市伝説の構造分析",
+   "description_len": 0,
+   "keywords": 0,
+   "license": "cc-by-4.0",
+   "dates": null,
+   "pubdate": "2026-10-03",
+   "updated": "2026-10-22T09:32:51.076961+00:00"
   }
  },
  "other": {
-  "openalex_author": [
+  "openalex_author_orcid": [
    {
     "id": "https://openalex.org/A5133339711",
     "name": "Takuya Nemoto",
@@ -315,842 +827,206 @@
     "cited": 0
    }
   ],
-  "s2_author": {
-   "total": 7,
-   "offset": 0,
-   "data": [
-    {
-     "authorId": "2058642038",
-     "externalIds": {},
-     "name": "T. Nemoto",
-     "paperCount": 14,
-     "citationCount": 123
-    },
-    {
-     "authorId": "2099083487",
-     "externalIds": {},
-     "name": "T. Nemoto",
-     "paperCount": 2,
-     "citationCount": 49
-    },
-    {
-     "authorId": "2058642118",
-     "externalIds": {},
-     "name": "T. Nemoto",
-     "paperCount": 2,
-     "citationCount": 29
-    },
-    {
-     "authorId": "2058642163",
-     "externalIds": {},
-     "name": "T. Nemoto",
-     "paperCount": 3,
-     "citationCount": 0
-    },
-    {
-     "authorId": "2282597854",
-     "externalIds": {},
-     "name": "Takuya Nemoto",
-     "paperCount": 2,
-     "citationCount": 2
-    },
-    {
-     "authorId": "3468359",
-     "externalIds": {
-      "DBLP": [
-       "Takuya Nemoto"
-      ]
-     },
-     "name": "T. Nemoto",
-     "paperCount": 26,
-     "citationCount": 231
-    },
-    {
-     "authorId": "72943308",
-     "externalIds": {},
-     "name": "Nemoto Takuya",
-     "paperCount": 5,
-     "citationCount": 0
-    }
-   ]
-  },
-  "wikidata_Sophaxis": [],
-  "wikidata_Nusquama": [],
-  "wikidata_Takuya Nemoto": [
+  "openalex_author_name": [
+   {
+    "id": "https://openalex.org/A5101423474",
+    "name": "Takuya Nemoto",
+    "works": 18,
+    "orcid": "https://orcid.org/0000-0002-1695-7486"
+   },
+   {
+    "id": "https://openalex.org/A5048557062",
+    "name": "Takuya Nemoto",
+    "works": 18,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5085189600",
+    "name": "Takuya Nemoto",
+    "works": 3,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5103540102",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5077633005",
+    "name": "Takuya NEMOTO",
+    "works": 9,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5101230812",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5133413198",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": "https://orcid.org/0009-0000-1406-0547"
+   },
+   {
+    "id": "https://openalex.org/A5123095328",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": "https://orcid.org/0009-0000-1406-0547"
+   },
+   {
+    "id": "https://openalex.org/A5125355290",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": "https://orcid.org/0009-0000-1406-0547"
+   },
+   {
+    "id": "https://openalex.org/A5133339711",
+    "name": "Takuya Nemoto",
+    "works": 14,
+    "orcid": "https://orcid.org/0009-0000-1406-0547"
+   },
+   {
+    "id": "https://openalex.org/A5112963437",
+    "name": "Takuya NEMOTO",
+    "works": 1,
+    "orcid": null
+   },
+   {
+    "id": "https://openalex.org/A5009463924",
+    "name": "Takuya Nemoto",
+    "works": 1,
+    "orcid": null
+   }
+  ],
+  "s2_author": [
+   {
+    "authorId": "2058642118",
+    "name": "T. Nemoto",
+    "paperCount": 2,
+    "citationCount": 29
+   },
+   {
+    "authorId": "2058642038",
+    "name": "T. Nemoto",
+    "paperCount": 14,
+    "citationCount": 123
+   },
+   {
+    "authorId": "2099083487",
+    "name": "T. Nemoto",
+    "paperCount": 2,
+    "citationCount": 49
+   },
+   {
+    "authorId": "2058642163",
+    "name": "T. Nemoto",
+    "paperCount": 3,
+    "citationCount": 0
+   },
+   {
+    "authorId": "2282597854",
+    "name": "Takuya Nemoto",
+    "paperCount": 2,
+    "citationCount": 2
+   },
+   {
+    "authorId": "3468359",
+    "name": "T. Nemoto",
+    "paperCount": 26,
+    "citationCount": 231
+   },
+   {
+    "authorId": "72943308",
+    "name": "Nemoto Takuya",
+    "paperCount": 5,
+    "citationCount": 0
+   }
+  ],
+  "wikidata_search_Sophaxis": [],
+  "wikidata_search_Nusquama": [],
+  "wikidata_search_Takuya Nemoto": [
    {
     "id": "Q118697200",
-    "title": "Q118697200",
-    "pageid": 113202307,
-    "concepturi": "http://www.wikidata.org/entity/Q118697200",
-    "repository": "wikidata",
-    "url": "//www.wikidata.org/wiki/Q118697200",
-    "display": {
-     "label": {
-      "value": "Takuya Nemoto",
-      "language": "en"
-     }
-    },
-    "label": "Takuya Nemoto",
-    "match": {
-     "type": "label",
-     "language": "en",
-     "text": "Takuya Nemoto"
-    }
+    "label": "根本拓也"
    },
    {
     "id": "Q124479973",
-    "title": "Q124479973",
-    "pageid": 118657292,
-    "concepturi": "http://www.wikidata.org/entity/Q124479973",
-    "repository": "wikidata",
-    "url": "//www.wikidata.org/wiki/Q124479973",
-    "display": {
-     "label": {
-      "value": "Enjin Kotaro",
-      "language": "en"
-     },
-     "description": {
-      "value": "Japanese comedian",
-      "language": "en"
-     }
-    },
-    "label": "Enjin Kotaro",
-    "description": "Japanese comedian",
-    "match": {
-     "type": "alias",
-     "language": "en",
-     "text": "Takuya Nemoto"
-    },
-    "aliases": [
-     "Takuya Nemoto"
-    ]
+    "label": "エンジンコータロー",
+    "description": "日本のお笑い芸人"
    }
   ],
-  "wikidata_根本卓哉": [
+  "wikidata_search_根本卓哉": [
    {
     "id": "Q139590485",
-    "title": "Q139590485",
-    "pageid": 133046248,
-    "concepturi": "http://www.wikidata.org/entity/Q139590485",
-    "repository": "wikidata",
-    "url": "//www.wikidata.org/wiki/Q139590485",
-    "display": {
-     "label": {
-      "value": "日本語「根本卓哉」／英語「Takuya Nemoto」",
-      "language": "en"
-     },
-     "description": {
-      "value": "日本語「日本の独立研究者」／英語「Japanese independent researcher」",
-      "language": "en"
-     }
-    },
-    "label": "日本語「根本卓哉」／英語「Takuya Nemoto」",
-    "description": "日本語「日本の独立研究者」／英語「Japanese independent researcher」",
-    "match": {
-     "type": "label",
-     "language": "ja",
-     "text": "根本卓哉"
-    },
-    "aliases": [
-     "根本卓哉"
-    ]
+    "label": "根本卓哉",
+    "description": "日本の独立研究者・ライブ配信者"
    }
   ],
-  "core_sophaxis": {
-   "s": 200,
-   "b": {
-    "totalHits": 0,
-    "limit": 5,
-    "offset": 0,
-    "results": [],
-    "searchId": "f2e99e79166d0f9142b06ef94ea89330"
+  "wikidata_search_Trinity-Infinity": [],
+  "wikidata_search_errata-check": [
+   {
+    "id": "Q93727857",
+    "label": "Errata checklist",
+    "description": "1984年の論文"
+   },
+   {
+    "id": "Q93728008",
+    "label": "Errata checklist",
+    "description": "1975年の論文"
+   },
+   {
+    "id": "Q93720207",
+    "label": "Errata Checklist"
    }
+  ],
+  "wikidata_Q139590485": {
+   "labels": {
+    "ja": "根本卓哉",
+    "en": "日本語「根本卓哉」／英語「Takuya Nemoto」"
+   },
+   "descriptions": {
+    "ja": "日本の独立研究者・ライブ配信者",
+    "en": "日本語「日本の独立研究者」／英語「Japanese independent researcher」"
+   },
+   "claims": [
+    "P31",
+    "P496",
+    "P4450"
+   ]
   },
-  "core_author": {
-   "s": 200,
-   "b": {
-    "totalHits": 92893,
-    "limit": 10,
-    "offset": 0,
-    "results": [
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Takuya Nemoto"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/753560896"
-      ],
-      "createdDate": "2026-08-30T01:15:42+01:00",
-      "dataProviders": [
-       {
-        "id": 4786,
-        "name": "Crossref",
-        "url": "https://api.core.ac.uk/v3/data-providers/4786",
-        "logo": "https://api.core.ac.uk/data-providers/4786/logo"
-       }
-      ],
-      "depositedDate": "2026-08-28T14:17:48+01:00",
-      "abstract": "This paper reconsiders celibacy not as a mere absence of sexual activity but as a substantive ethical and existential stance with a long history in Buddhist, Christian, and classical philosophical traditions. Drawing on antinatalist ethics, Epicurean hedonology, and Schopenhauerian pessimism, I argue that the conventional justification of sexual activity as a societal necessity-grounded in concerns about reproduction and demographic continuity-conflates descriptive biological function with normative ethical value. Once this conflation is set aside, I argue, the ethical evaluation of one's mode of living can be grounded instead in individual autonomy and self-sustaining quality of life (QOL) rather than reproductive obligation. Engaging with David Benatar's asymmetry argument, I suggest that the moral status of humanity's demographic continuity need not be treated as self-evidently overriding individual self-determination. I then draw on Epicurus's distinction between stable and transient pleasure, and on Schopenhauer's account of sexual desire as an expression of a species-oriented will-to-live, to argue that celibacy can constitute a coherent discipline of autonomous, self-sustained flourishing. Finally, I consider four objections-from relational psychology, from the alleged self-undermining character of universalized antinatalism, from the charge of theological parochialism, and from the subjectivity of QOL judgments-and offer replies. I conclude that celibacy, properly understood, merits recognition as one exemplary and defensible path of ethical self-cultivation, rather than as a deficiency to be explained away.</jats:p",
-      "documentType": null,
-      "doi": "10.2139/ssrn.7358779",
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 403307066,
-      "identifiers": [
-       {
-        "identifier": "753560896",
-        "type": "core_id"
-       },
-       {
-        "identifier": "10.2139/ssrn.7358779",
-        "type": "doi"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7358779",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7358779",
-        "type": "unknown"
-       }
-      ],
-      "title": "The Nobility and Exemplarity of the Celibate Individual",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "info:doi/10.2139%2fssrn.7358779"
-      ],
-      "publishedDate": "2026-01-01T00:00:00+00:00",
-      "publisher": "Elsevier BV",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-08-30T01:15:42+01:00",
-      "yearPublished": 2026,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/403307066"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Takuya Nemoto"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/757913554"
-      ],
-      "createdDate": "2026-09-18T01:11:09+01:00",
-      "dataProviders": [
-       {
-        "id": 4786,
-        "name": "Crossref",
-        "url": "https://api.core.ac.uk/v3/data-providers/4786",
-        "logo": "https://api.core.ac.uk/data-providers/4786/logo"
-       }
-      ],
-      "depositedDate": "2026-09-16T08:34:08+01:00",
-      "abstract": "",
-      "documentType": null,
-      "doi": "10.2139/ssrn.7449338",
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 419778611,
-      "identifiers": [
-       {
-        "identifier": "757913554",
-        "type": "core_id"
-       },
-       {
-        "identifier": "10.2139/ssrn.7449338",
-        "type": "doi"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7449338",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7449338",
-        "type": "unknown"
-       }
-      ],
-      "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (⼤⾕恒)",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "info:doi/10.2139%2fssrn.7449338"
-      ],
-      "publishedDate": "2026-01-01T00:00:00+00:00",
-      "publisher": "Elsevier BV",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-09-18T01:11:09+01:00",
-      "yearPublished": 2026,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/419778611"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Nemoto, Takuya"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/761871511"
-      ],
-      "createdDate": "2026-10-04T14:42:27+01:00",
-      "dataProviders": [
-       {
-        "id": 25234,
-        "name": "PhilArchive",
-        "url": "https://api.core.ac.uk/v3/data-providers/25234",
-        "logo": "https://api.core.ac.uk/data-providers/25234/logo"
-       }
-      ],
-      "depositedDate": "2026-10-04T13:20:38+01:00",
-      "abstract": "",
-      "documentType": "research article",
-      "doi": null,
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 427505839,
-      "identifiers": [
-       {
-        "identifier": "761871511",
-        "type": "core_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemmra",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemmra",
-        "type": "oai"
-       }
-      ],
-      "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:philarchive.org/rec/nemmra"
-      ],
-      "publishedDate": "",
-      "publisher": "",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-04T14:42:27+01:00",
-      "yearPublished": null,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/427505839"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Nemoto, Takuya"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/761868847"
-      ],
-      "createdDate": "2026-10-04T14:09:27+01:00",
-      "dataProviders": [
-       {
-        "id": 25234,
-        "name": "PhilArchive",
-        "url": "https://api.core.ac.uk/v3/data-providers/25234",
-        "logo": "https://api.core.ac.uk/data-providers/25234/logo"
-       }
-      ],
-      "depositedDate": "2026-10-04T13:19:54+01:00",
-      "abstract": "",
-      "documentType": "research article",
-      "doi": null,
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 427498686,
-      "identifiers": [
-       {
-        "identifier": "761868847",
-        "type": "core_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemtna",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemtna",
-        "type": "oai"
-       }
-      ],
-      "title": "The Nobility and Exemplarity of the Celibate Individual",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:philarchive.org/rec/nemtna"
-      ],
-      "publishedDate": "",
-      "publisher": "",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-04T14:09:27+01:00",
-      "yearPublished": null,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/427498686"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Nemoto, Takuya"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/762447870"
-      ],
-      "createdDate": "2026-10-13T03:01:28+01:00",
-      "dataProviders": [
-       {
-        "id": 160,
-        "name": "PhilPapers",
-        "url": "https://api.core.ac.uk/v3/data-providers/160",
-        "logo": "https://api.core.ac.uk/data-providers/160/logo"
-       }
-      ],
-      "depositedDate": "2026-10-12T12:18:56+01:00",
-      "abstract": "",
-      "documentType": "research article",
-      "doi": null,
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 428518722,
-      "identifiers": [
-       {
-        "identifier": "762447870",
-        "type": "core_id"
-       },
-       {
-        "identifier": "oai:philpapers.org/rec/nemmra",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:philpapers.org/rec/nemmra",
-        "type": "oai"
-       }
-      ],
-      "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:philpapers.org/rec/nemmra"
-      ],
-      "publishedDate": "",
-      "publisher": "",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-13T03:01:28+01:00",
-      "yearPublished": null,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/428518722"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Takuya Nemoto"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/1007339900"
-      ],
-      "createdDate": "2025-03-01T16:17:26+00:00",
-      "dataProviders": [
-       {
-        "id": 4786,
-        "name": "Crossref",
-        "url": "https://api.core.ac.uk/v3/data-providers/4786",
-        "logo": "https://api.core.ac.uk/data-providers/4786/logo"
-       }
-      ],
-      "depositedDate": "2022-06-18T00:28:30+01:00",
-      "abstract": "",
-      "documentType": "journal article",
-      "doi": "10.1080/00927872.2022.2081698",
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 230936156,
-      "identifiers": [
-       {
-        "identifier": "1007339900",
-        "type": "core_id"
-       },
-       {
-        "identifier": "10.1080/00927872.2022.2081698",
-        "type": "doi"
-       },
-       {
-        "identifier": "info:doi/10.1080%2f00927872.2022.2081698",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "info:doi/10.1080%2f00927872.2022.2081698",
-        "type": "unknown"
-       }
-      ],
-      "title": "Rank two ACM bundles on the double embedding of a quadric surface",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "info:doi/10.1080%2f00927872.2022.2081698"
-      ],
-      "publishedDate": "2022-06-17T01:00:00+01:00",
-      "publisher": "Informa UK Limited",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2025-03-01T16:17:26+00:00",
-      "yearPublished": 2022,
-      "journals": [
-       {
-        "title": null,
-        "identifiers": []
-       }
-      ],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/230936156"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Nemoto, Takuya"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/755967759"
-      ],
-      "createdDate": "2026-09-08T08:01:09+01:00",
-      "dataProviders": [
-       {
-        "id": 160,
-        "name": "PhilPapers",
-        "url": "https://api.core.ac.uk/v3/data-providers/160",
-        "logo": "https://api.core.ac.uk/data-providers/160/logo"
-       }
-      ],
-      "depositedDate": "2026-09-07T12:56:09+01:00",
-      "abstract": "",
-      "documentType": "research article",
-      "doi": null,
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 418113419,
-      "identifiers": [
-       {
-        "identifier": "755967759",
-        "type": "core_id"
-       },
-       {
-        "identifier": "oai:philpapers.org/rec/nemfsi",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:philpapers.org/rec/nemfsi",
-        "type": "oai"
-       }
-      ],
-      "title": "Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:philpapers.org/rec/nemfsi"
-      ],
-      "publishedDate": "",
-      "publisher": "",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-13T02:43:04+01:00",
-      "yearPublished": null,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/418113419"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Takuya Nemoto"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/761421765"
-      ],
-      "createdDate": "2026-10-02T01:20:17+01:00",
-      "dataProviders": [
-       {
-        "id": 4786,
-        "name": "Crossref",
-        "url": "https://api.core.ac.uk/v3/data-providers/4786",
-        "logo": "https://api.core.ac.uk/data-providers/4786/logo"
-       }
-      ],
-      "depositedDate": "2026-09-30T12:15:11+01:00",
-      "abstract": "",
-      "documentType": null,
-      "doi": "10.2139/ssrn.7537983",
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 427072165,
-      "identifiers": [
-       {
-        "identifier": "761421765",
-        "type": "core_id"
-       },
-       {
-        "identifier": "10.2139/ssrn.7537983",
-        "type": "doi"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7537983",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "info:doi/10.2139%2fssrn.7537983",
-        "type": "unknown"
-       }
-      ],
-      "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "info:doi/10.2139%2fssrn.7537983"
-      ],
-      "publishedDate": "2026-01-01T00:00:00+00:00",
-      "publisher": "Elsevier BV",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-02T01:20:17+01:00",
-      "yearPublished": 2026,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/427072165"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "NEMOTO, TAKUYA"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/758415755"
-      ],
-      "createdDate": "2026-09-20T03:33:17+01:00",
-      "dataProviders": [],
-      "depositedDate": "2024-01-31T14:18:05+00:00",
-      "abstract": "",
-      "documentType": "text",
-      "doi": "10.55730/1300-0098.3493",
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 420360327,
-      "identifiers": [
-       {
-        "identifier": "758415755",
-        "type": "core_id"
-       },
-       {
-        "identifier": "10.55730/1300-0098.3493",
-        "type": "doi"
-       },
-       {
-        "identifier": "oai:journals.tubitak.gov.tr:math-3491",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:journals.tubitak.gov.tr:math-3491",
-        "type": "oai"
-       }
-      ],
-      "title": "Globally generated vector bundles on the del Pezzo threefold of degree 6 with\nPicard number 2",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:journals.tubitak.gov.tr:math-3491"
-      ],
-      "publishedDate": "",
-      "publisher": "TÜBİTAK Academic Journals",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-09-20T03:33:17+01:00",
-      "yearPublished": 2024,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/420360327"
-       }
-      ]
-     },
-     {
-      "acceptedDate": "",
-      "arxivId": null,
-      "authors": [
-       {
-        "name": "Nemoto, Takuya"
-       }
-      ],
-      "citationCount": 0,
-      "contributors": [],
-      "outputs": [
-       "https://api.core.ac.uk/v3/outputs/761871241"
-      ],
-      "createdDate": "2026-10-04T14:39:27+01:00",
-      "dataProviders": [
-       {
-        "id": 25234,
-        "name": "PhilArchive",
-        "url": "https://api.core.ac.uk/v3/data-providers/25234",
-        "logo": "https://api.core.ac.uk/data-providers/25234/logo"
-       }
-      ],
-      "depositedDate": "2026-10-04T13:19:54+01:00",
-      "abstract": "",
-      "documentType": "research article",
-      "doi": null,
-      "downloadUrl": "",
-      "fieldOfStudy": null,
-      "fullText": "Not available for public API users.",
-      "id": 427505594,
-      "identifiers": [
-       {
-        "identifier": "761871241",
-        "type": "core_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemmoi",
-        "type": "oai_id"
-       },
-       {
-        "identifier": "oai:philarchive.org/rec/nemmoi",
-        "type": "oai"
-       }
-      ],
-      "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence",
-      "language": null,
-      "magId": null,
-      "oaiIds": [
-       "oai:philarchive.org/rec/nemmoi"
-      ],
-      "publishedDate": "",
-      "publisher": "",
-      "pubmedId": null,
-      "references": [],
-      "sourceFulltextUrls": [],
-      "updatedDate": "2026-10-04T14:39:27+01:00",
-      "yearPublished": null,
-      "journals": [],
-      "links": [
-       {
-        "type": "display",
-        "url": "https://core.ac.uk/works/427505594"
-       }
-      ]
-     }
-    ],
-    "searchId": null
-   }
-  },
+  "wikidata_by_orcid": [
+   [
+    "http://www.wikidata.org/entity/Q139590485",
+    "根本卓哉"
+   ]
+  ],
+  "wikidata_works": [],
+  "core_sophaxis": 429,
+  "core_author": 429,
   "philarchive_NEMFSI": 403,
   "philarchive_NEMMOI": 403,
   "philarchive_NEMMRA": 403,
   "philarchive_NEMTNA": 403,
-  "doapr_has_sophaxis": false,
-  "base_sophaxis": "7383 bytes, no count",
-  "base_%22Takuya+Nemoto%22": "7383 bytes, no count"
+  "doapr_has_sophaxis": true,
+  "base_sophaxis": "7412 bytes, no count",
+  "base_%22Takuya+Nemoto%22": "7412 bytes, no count",
+  "base_%22Nemoto%2C+Takuya%22": "7412 bytes, no count",
+  "knowledge_commons": {
+   "total": 2,
+   "titles": [
+    "A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒): A Note on the Investiture List of ",
+    "「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム"
+   ]
+  },
+  "orcid_works": [
+   "A Naval Gazette Entry for Lieutenant Otani Tsune (⼤⾕恒)",
+   "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and S",
+   "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and It",
+   "The Nobility and Exemplarity of the Celibate Individual"
+  ],
+  "google_scholar": 403
  }
 }
