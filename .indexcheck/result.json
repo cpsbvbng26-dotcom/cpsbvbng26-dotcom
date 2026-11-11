@@ -1,1032 +1,296 @@
 {
- "at": "2026-11-11T21:14:48.079Z",
- "works": {
-  "10.2139/ssrn.7358779": {
-   "openalex": {
-    "id": "https://openalex.org/W7204528566",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "The Nobility and Exemplarity of the Celibate Individual"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "crossref"
-  },
-  "10.2139/ssrn.7358818": {
-   "openalex": {
-    "id": "https://openalex.org/W7203972664",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existenc"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "crossref"
-  },
-  "10.2139/ssrn.7446961": {
-   "openalex": {
-    "id": "https://openalex.org/W7212271512",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "crossref"
-  },
-  "10.2139/ssrn.7449338": {
-   "openalex": {
-    "id": "https://openalex.org/W7213318443",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (⼤⾕恒)"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "crossref"
-  },
-  "10.2139/ssrn.7537983": {
-   "openalex": {
-    "id": "https://openalex.org/W7214902835",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "crossref"
-  },
-  "10.5281/zenodo.17173703": {
-   "openalex": {
-    "id": "https://openalex.org/W7082644795",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22055709": {
-   "openalex": {
-    "id": "https://openalex.org/W7128304807",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5125355290"
-    ],
-    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22057583": {
-   "openalex": {
-    "id": "https://openalex.org/W7203972664",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existenc"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22058254": {
-   "openalex": {
-    "id": "https://openalex.org/W7093092681",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "The Nobility and Exemplarity of the Celibate Individual"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22058624": {
-   "openalex": {
-    "id": "https://openalex.org/W7082644795",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22058777": {
-   "openalex": {
-    "id": "https://openalex.org/W7153175910",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     null
-    ],
-    "title": "The Trinity-Infinity Framework Ⅱ"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22058964": {
-   "openalex": {
-    "id": "https://openalex.org/W7153479597",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133413198"
-    ],
-    "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospect"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22064241": {
-   "openalex": {
-    "id": "https://openalex.org/W7124264941",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5123095328"
-    ],
-    "title": "Fragmentarian Spiritual Individualism"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22335676": {
-   "openalex": {
-    "id": "https://openalex.org/W7208835517",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "正義論とアルゴリズム — アルゴリズムによる判断をめぐる論点の整理"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22335692": {
-   "openalex": {
-    "id": "https://openalex.org/W7208805937",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22649054": {
-   "openalex": {
-    "id": "https://openalex.org/W7211920247",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22649899": {
-   "openalex": {
-    "id": "https://openalex.org/W7211920247",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22685687": {
-   "openalex": {
-    "id": "https://openalex.org/W7211920247",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "errata-check: Deterministic auditing of errata against frozen published artifacts / 凍結された公"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22765695": {
-   "openalex": {
-    "id": "https://openalex.org/W7213343790",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.23114131": {
-   "openalex": {
-    "id": "https://openalex.org/W7218650594",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": false,
-    "authors": [
-     null
-    ],
-    "title": "「30歳魔法使い」都市伝説の構造分析"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033082": {
-   "openalex": {
-    "id": "https://openalex.org/W7225467639",
-    "cited": 0,
-    "type": "software",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "deposit-check: checking the DOI metadata of a researcher's deposits against their ORCID re"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033372": {
-   "openalex": {
-    "id": "https://openalex.org/W7225449359",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Sophaxis: an overlay preprint server for philosophy and mathematics"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033459": {
-   "openalex": {
-    "id": "https://openalex.org/W7225463179",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "trinity-operator — 論文が置いた仮定の外まで実装した作用素"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033597": {
-   "openalex": {
-    "id": "https://openalex.org/W7225467184",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "self-correction: 一人の研究者による、自分の公開した主張の訂正の全記録"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 2,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033809": {
-   "openalex": {
-    "id": "https://openalex.org/W7213322661",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "自律と自己陶冶 — 三篇のプレプリント"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033961": {
-   "openalex": {
-    "id": "https://openalex.org/W7225461958",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Trinity-Infinity — 三本の系列と、その検証の記録"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24034131": {
-   "openalex": {
-    "id": "https://openalex.org/W7225459234",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Naval Gazette Notes — 海軍公報からの史料ノートとデータ"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24034360": {
-   "openalex": {
-    "id": "https://openalex.org/W7225453105",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "根本卓哉 — 公開プロフィールと、その検証"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.6084/m9.figshare.34419198": {
-   "openalex": {
-    "id": "https://openalex.org/W7221634362",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, a"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.17605/osf.io/mq7za": {
-   "openalex": {
-    "id": "https://openalex.org/W7225058822",
-    "cited": 0,
-    "type": "article",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Sophaxis: An Independent Overlay Preprint Server"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.18525532": {
-   "openalex": {
-    "id": "https://openalex.org/W7128304807",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5125355290"
-    ],
-    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22055553": {
-   "openalex": {
-    "id": "https://openalex.org/W7128304807",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5125355290"
-    ],
-    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  }
+ "https://doapr.coar-repositories.org/repositories/?q=sophaxis": {
+  "status": 403,
+  "final": "https://doapr.coar-repositories.org/repositories/?q=sophaxis",
+  "length": 5621,
+  "hits": [
+   "_chl_opt = {cFPWv: 'b',cH: 'Z.05Z0slFlQFBT.OOQui1GhZ8fygPRbxZYi16GO29Qs-1794433642-1.2.1.1-JUXeH.g6Ky6LNAqB8CPRDoi7edezGOZ7H_HQATJ4yQts0S88TeKANwpK3T3J8zlz',cITimeS: '1794433642',cN: 'lOiGdckZooUClSIlBa9QlG',cRay: 'a5907ebbbf79bd60',cTplC:0,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:\"/repositories/?q=sophaxis\\u0026__cf_chl_tk=GcBwP2YMl5LUMHkvHEf2.PzNrGIW7X_h4OLfguyLDyc-1794433642-1.0.1.1-JTVkIGCH9jxGB3tj1NUgqAU19c.Ozg07PWUuU5pEaF0\",cvId: '3',cZone: 'doapr.coar-repositories.org',fa:\"/repositories/?",
+   "9QlG',cRay: 'a5907ebbbf79bd60',cTplC:0,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:\"/repositories/?q=sophaxis\\u0026__cf_chl_tk=GcBwP2YMl5LUMHkvHEf2.PzNrGIW7X_h4OLfguyLDyc-1794433642-1.0.1.1-JTVkIGCH9jxGB3tj1NUgqAU19c.Ozg07PWUuU5pEaF0\",cvId: '3',cZone: 'doapr.coar-repositories.org',fa:\"/repositories/?q=sophaxis\\u0026__cf_chl_f_tk=GcBwP2YMl5LUMHkvHEf2.PzNrGIW7X_h4OLfguyLDyc-1794433642-1.0.1.1-JTVkIGCH9jxGB3tj1NUgqAU19c.Ozg07PWUuU5pEaF0\",md: '9sI7JsEaQfyJDgGR2QjalFtcZW5h8Mq9w2oHmEq3S18-1794433642-1.2.",
+   "ce(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,\"/repositories/?q=sophaxis\\u0026__cf_chl_rt_tk=GcBwP2YMl5LUMHkvHEf2.PzNrGIW7X_h4OLfguyLDyc-1794433642-1.0.1.1-JTVkIGCH9jxGB3tj1NUgqAU19c.Ozg07PWUuU5pEaF0\"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.re"
+  ],
+  "links": []
  },
- "concepts": {
-  "10.5281/zenodo.18525531": {
-   "openalex": {
-    "id": "https://openalex.org/W7128304807",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5125355290"
-    ],
-    "title": "A Minor Officer in the Imperial Japanese Navy: A Military-Historical Study of Lieutenant O"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.17173702": {
-   "openalex": {
-    "id": "https://openalex.org/W7082644795",
-    "cited": 0,
-    "type": "preprint",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game "
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22335691": {
-   "openalex": {
-    "id": "https://openalex.org/W7208805937",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": 1,
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033458": {
-   "openalex": {
-    "id": "https://openalex.org/W7225463179",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "trinity-operator — 論文が置いた仮定の外まで実装した作用素"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033596": {
-   "openalex": {
-    "id": "https://openalex.org/W7225467184",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "self-correction: 一人の研究者による、自分の公開した主張の訂正の全記録"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.22765620": {
-   "openalex": {
-    "id": "https://openalex.org/W7213322661",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     null
-    ],
-    "title": "自律と自己陶冶 — 三篇のプレプリント"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033960": {
-   "openalex": {
-    "id": "https://openalex.org/W7225461958",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Trinity-Infinity — 三本の系列と、その検証の記録"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24034130": {
-   "openalex": {
-    "id": "https://openalex.org/W7225459234",
-    "cited": 0,
-    "type": "dataset",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "Naval Gazette Notes — 海軍公報からの史料ノートとデータ"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24034359": {
-   "openalex": {
-    "id": "https://openalex.org/W7225453105",
-    "cited": 0,
-    "type": "software",
-    "abstract": true,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "根本卓哉 — 公開プロフィールと、その検証"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  },
-  "10.5281/zenodo.24033081": {
-   "openalex": {
-    "id": "https://openalex.org/W7225467639",
-    "cited": 0,
-    "type": "software",
-    "abstract": false,
-    "authors": [
-     "https://openalex.org/A5133339711"
-    ],
-    "title": "deposit-check: checking the DOI metadata of a researcher's deposits against their ORCID re"
-   },
-   "s2": 404,
-   "opencitations": "0",
-   "openaire": "0",
-   "fatcat": 0,
-   "agency": "datacite"
-  }
+ "https://doapr.coar-repositories.org/repositories/?search=sophaxis": {
+  "status": 200,
+  "final": "https://doapr.coar-repositories.org/repositories/?search=sophaxis",
+  "length": 53475,
+  "hits": [],
+  "links": [
+   "href=\"https://fonts.googleapis.com\"",
+   "href=\"https://fonts.gstatic.com\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto:300,400\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"",
+   "href=\"https://doapr.coar-repositories.org/css/bundle.min.8f91554fc385a53f09f51a22225e719ca218366c06ce559593c58f6107d32c4d.css\"",
+   "href=\"/\"",
+   "href=\"/repositories/\"",
+   "href=\"/repositories-by-function/\"",
+   "href=\"/repositories-by-open-science/\"",
+   "href=\"/functions/\"",
+   "href=\"/disciplines/\"",
+   "href=\"/services/\"",
+   "href=\"/feedback/\"",
+   "href=\"/faq/\"",
+   "href=\"https://github.com/antleaf/doapr/issues/new?assignees=&amp;labels=&amp;template=a-add-a-preprint-repository-to-the-doapr.md&amp;title=%5BNew&#43;Entry%5D\"",
+   "href=\"/repositories\"",
+   "href=\"/repositories-by-function\"",
+   "href=\"/repositories-by-open-science\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/aas-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/statuses/open/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/advance-sage-preprint/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/africarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/agecon-search/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/agrirxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/amrc-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/apsa-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arabixiv/\"",
+   "href=\"https://doapr.coar-repositories.org/statuses/closed-to-submission-only/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arpha-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/art-dok/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/authorea/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/beilstein-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/bepress-legal-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/biohackrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/biorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/bodoarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cell-press-sneak-peek/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cern-document-server/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/chemrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/chinaxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cogprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/crimrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/crossasia-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cryptology-eprint-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/digital-access-to-scholarship-harvard/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/dspace-mit/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/e-lis/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/earth-prints-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/eartharxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/easychair-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ecoevorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/econstor/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ecsarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/edarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/engrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/eric/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/essoar/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/f1000-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/figshare/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/focus-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/frenxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/gates-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/hal/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/hrb-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ina-rxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/indiarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/jmir-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/jxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lawarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lingbuzz/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lis-scholarship-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lse-research-online/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/marxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mathematical-physics-preprint-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mediarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/medrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/metaarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mindrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mitofit-preprints-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mni-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/munich-personal-repec-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/nature-precedings/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/nutrixiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/open-anthropology-research-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/open-research-europe/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/organic-eprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/osf-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/paleorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/peerj-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/philsci-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-with-the-lancet/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-org/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-ru/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/propylaeumdok/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/psyarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/research-square/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/rinarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/rutgers-optimality-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/scielo-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/scienceopen/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/sciencepaper-online/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/socarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/sportrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ssoar/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ssrn/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/techrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/therapoid/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/vixra/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/wellcome-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/wikijournal-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/zenodo/\"",
+   "href=\"http://www.antleaf.com\"",
+   "href=\"https://www.coar-repositories.org\"",
+   "href=\"https://www.ouvrirlascience.fr/the-committee-for-open-science/\"",
+   "href=\"https://creativecommons.org/licenses/by/4.0/\""
+  ]
  },
- "zenodo": {
-  "22055709": {
-   "title": "A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒): A Note on the Investiture List of 11 September 1943 in the Naval Gazette (Internal Circulation Only)",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-08-22",
-   "updated": "2026-09-16T08:02:56.926994+00:00"
-  },
-  "22057583": {
-   "title": "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and Its Spiritual Existence",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-08-22",
-   "updated": "2026-11-02T11:20:56.583790+00:00"
-  },
-  "22058254": {
-   "title": "The Nobility and Exemplarity of the Celibate Individual: An Antinatalist and Ascetic Reconsideration of Autonomy and Quality of Life",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": [
-    {
-     "type": "other"
-    }
-   ],
-   "pubdate": "2026-08-22",
-   "updated": "2026-11-02T11:19:05.703767+00:00"
-  },
-  "22058624": {
-   "title": "The Trinity-Infinity Framework: A Conceptual Model with Illustrative Applications in Game Theory, Mathematical Logic, and Mechanical Engineering",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": [
-    {
-     "type": "issued"
-    }
-   ],
-   "pubdate": "2026-08-22",
-   "updated": "2026-11-07T13:08:27.043811+00:00"
-  },
-  "22058777": {
-   "title": "The Trinity-Infinity Framework, Series II: Extended Formalization and Further Illustrative Applications",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-08-22",
-   "updated": "2026-11-07T13:09:03.654174+00:00"
-  },
-  "22058964": {
-   "title": "The Trinity-Infinity Framework, Series III: Beyond Three — A Generalization and Retrospective",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-08-22",
-   "updated": "2026-11-07T13:03:42.252777+00:00"
-  },
-  "22064241": {
-   "title": "Fragmentarian Spiritual Individualism: A Philosophy of Fragments for Solitary Spiritual Autonomy",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-08-23",
-   "updated": "2026-11-02T11:22:19.741727+00:00"
-  },
-  "23114131": {
-   "title": "「30歳魔法使い」都市伝説の構造分析",
-   "description_len": 0,
-   "keywords": 0,
-   "license": "cc-by-4.0",
-   "dates": null,
-   "pubdate": "2026-10-03",
-   "updated": "2026-10-22T09:32:51.076961+00:00"
-  }
+ "https://doapr.coar-repositories.org/repositories/": {
+  "status": 200,
+  "final": "https://doapr.coar-repositories.org/repositories/",
+  "length": 53475,
+  "hits": [],
+  "links": [
+   "href=\"https://fonts.googleapis.com\"",
+   "href=\"https://fonts.gstatic.com\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto:300,400\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"",
+   "href=\"https://doapr.coar-repositories.org/css/bundle.min.8f91554fc385a53f09f51a22225e719ca218366c06ce559593c58f6107d32c4d.css\"",
+   "href=\"/\"",
+   "href=\"/repositories/\"",
+   "href=\"/repositories-by-function/\"",
+   "href=\"/repositories-by-open-science/\"",
+   "href=\"/functions/\"",
+   "href=\"/disciplines/\"",
+   "href=\"/services/\"",
+   "href=\"/feedback/\"",
+   "href=\"/faq/\"",
+   "href=\"https://github.com/antleaf/doapr/issues/new?assignees=&amp;labels=&amp;template=a-add-a-preprint-repository-to-the-doapr.md&amp;title=%5BNew&#43;Entry%5D\"",
+   "href=\"/repositories\"",
+   "href=\"/repositories-by-function\"",
+   "href=\"/repositories-by-open-science\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/aas-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/statuses/open/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/advance-sage-preprint/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/africarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/agecon-search/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/agrirxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/amrc-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/apsa-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arabixiv/\"",
+   "href=\"https://doapr.coar-repositories.org/statuses/closed-to-submission-only/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arpha-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/art-dok/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/arxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/authorea/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/beilstein-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/bepress-legal-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/biohackrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/biorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/bodoarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cell-press-sneak-peek/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cern-document-server/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/chemrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/chinaxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cogprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/crimrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/crossasia-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/cryptology-eprint-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/digital-access-to-scholarship-harvard/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/dspace-mit/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/e-lis/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/earth-prints-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/eartharxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/easychair-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ecoevorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/econstor/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ecsarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/edarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/engrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/eric/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/essoar/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/f1000-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/figshare/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/focus-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/frenxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/gates-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/hal/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/hrb-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ina-rxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/indiarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/jmir-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/jxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lawarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lingbuzz/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lis-scholarship-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/lse-research-online/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/marxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mathematical-physics-preprint-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mediarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/medrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/metaarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mindrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mitofit-preprints-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/mni-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/munich-personal-repec-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/nature-precedings/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/nutrixiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/open-anthropology-research-repository/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/open-research-europe/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/organic-eprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/osf-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/paleorxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/peerj-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/philsci-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-with-the-lancet/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-org/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/preprints-ru/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/propylaeumdok/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/psyarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/research-square/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/rinarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/rutgers-optimality-archive/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/scielo-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/scienceopen/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/sciencepaper-online/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/socarxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/sportrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ssoar/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/ssrn/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/techrxiv/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/therapoid/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/vixra/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/wellcome-open-research/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/wikijournal-preprints/\"",
+   "href=\"https://doapr.coar-repositories.org/repositories/zenodo/\"",
+   "href=\"http://www.antleaf.com\"",
+   "href=\"https://www.coar-repositories.org\"",
+   "href=\"https://www.ouvrirlascience.fr/the-committee-for-open-science/\"",
+   "href=\"https://creativecommons.org/licenses/by/4.0/\""
+  ]
  },
- "other": {
-  "openalex_author_orcid": [
-   {
-    "id": "https://openalex.org/A5133339711",
-    "name": "Takuya Nemoto",
-    "works": 14,
-    "cited": 0
-   },
-   {
-    "id": "https://openalex.org/A5123095328",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "cited": 0
-   },
-   {
-    "id": "https://openalex.org/A5125355290",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "cited": 0
-   },
-   {
-    "id": "https://openalex.org/A5133413198",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "cited": 0
-   }
-  ],
-  "openalex_author_name": [
-   {
-    "id": "https://openalex.org/A5101423474",
-    "name": "Takuya Nemoto",
-    "works": 18,
-    "orcid": "https://orcid.org/0000-0002-1695-7486"
-   },
-   {
-    "id": "https://openalex.org/A5048557062",
-    "name": "Takuya Nemoto",
-    "works": 18,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5085189600",
-    "name": "Takuya Nemoto",
-    "works": 3,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5103540102",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5077633005",
-    "name": "Takuya NEMOTO",
-    "works": 9,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5101230812",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5133413198",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": "https://orcid.org/0009-0000-1406-0547"
-   },
-   {
-    "id": "https://openalex.org/A5123095328",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": "https://orcid.org/0009-0000-1406-0547"
-   },
-   {
-    "id": "https://openalex.org/A5125355290",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": "https://orcid.org/0009-0000-1406-0547"
-   },
-   {
-    "id": "https://openalex.org/A5133339711",
-    "name": "Takuya Nemoto",
-    "works": 14,
-    "orcid": "https://orcid.org/0009-0000-1406-0547"
-   },
-   {
-    "id": "https://openalex.org/A5112963437",
-    "name": "Takuya NEMOTO",
-    "works": 1,
-    "orcid": null
-   },
-   {
-    "id": "https://openalex.org/A5009463924",
-    "name": "Takuya Nemoto",
-    "works": 1,
-    "orcid": null
-   }
-  ],
-  "s2_author": [
-   {
-    "authorId": "2058642118",
-    "name": "T. Nemoto",
-    "paperCount": 2,
-    "citationCount": 29
-   },
-   {
-    "authorId": "2058642038",
-    "name": "T. Nemoto",
-    "paperCount": 14,
-    "citationCount": 123
-   },
-   {
-    "authorId": "2099083487",
-    "name": "T. Nemoto",
-    "paperCount": 2,
-    "citationCount": 49
-   },
-   {
-    "authorId": "2058642163",
-    "name": "T. Nemoto",
-    "paperCount": 3,
-    "citationCount": 0
-   },
-   {
-    "authorId": "2282597854",
-    "name": "Takuya Nemoto",
-    "paperCount": 2,
-    "citationCount": 2
-   },
-   {
-    "authorId": "3468359",
-    "name": "T. Nemoto",
-    "paperCount": 26,
-    "citationCount": 231
-   },
-   {
-    "authorId": "72943308",
-    "name": "Nemoto Takuya",
-    "paperCount": 5,
-    "citationCount": 0
-   }
-  ],
-  "wikidata_search_Sophaxis": [],
-  "wikidata_search_Nusquama": [],
-  "wikidata_search_Takuya Nemoto": [
-   {
-    "id": "Q118697200",
-    "label": "根本拓也"
-   },
-   {
-    "id": "Q124479973",
-    "label": "エンジンコータロー",
-    "description": "日本のお笑い芸人"
-   }
-  ],
-  "wikidata_search_根本卓哉": [
-   {
-    "id": "Q139590485",
-    "label": "根本卓哉",
-    "description": "日本の独立研究者・ライブ配信者"
-   }
-  ],
-  "wikidata_search_Trinity-Infinity": [],
-  "wikidata_search_errata-check": [
-   {
-    "id": "Q93727857",
-    "label": "Errata checklist",
-    "description": "1984年の論文"
-   },
-   {
-    "id": "Q93728008",
-    "label": "Errata checklist",
-    "description": "1975年の論文"
-   },
-   {
-    "id": "Q93720207",
-    "label": "Errata Checklist"
-   }
-  ],
-  "wikidata_Q139590485": {
-   "labels": {
-    "ja": "根本卓哉",
-    "en": "日本語「根本卓哉」／英語「Takuya Nemoto」"
-   },
-   "descriptions": {
-    "ja": "日本の独立研究者・ライブ配信者",
-    "en": "日本語「日本の独立研究者」／英語「Japanese independent researcher」"
-   },
-   "claims": [
-    "P31",
-    "P496",
-    "P4450"
-   ]
-  },
-  "wikidata_by_orcid": [
-   [
-    "http://www.wikidata.org/entity/Q139590485",
-    "根本卓哉"
-   ]
-  ],
-  "wikidata_works": [],
-  "core_sophaxis": 429,
-  "core_author": 429,
-  "philarchive_NEMFSI": 403,
-  "philarchive_NEMMOI": 403,
-  "philarchive_NEMMRA": 403,
-  "philarchive_NEMTNA": 403,
-  "doapr_has_sophaxis": true,
-  "base_sophaxis": "7412 bytes, no count",
-  "base_%22Takuya+Nemoto%22": "7412 bytes, no count",
-  "base_%22Nemoto%2C+Takuya%22": "7412 bytes, no count",
-  "knowledge_commons": {
-   "total": 2,
-   "titles": [
-    "A Naval Gazette Entry for Lieutenant Otani Tsune (大谷恒): A Note on the Investiture List of ",
-    "「30歳魔法使い」都市伝説の構造分析 —— クラスチェンジと強化解除の物語的メカニズム"
-   ]
-  },
-  "orcid_works": [
-   "A Naval Gazette Entry for Lieutenant Otani Tsune (⼤⾕恒)",
-   "Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and S",
-   "Manifesto of Imperial Selfhood: The Age of Personal Imperialism and It",
-   "The Nobility and Exemplarity of the Celibate Individual"
-  ],
-  "google_scholar": 403
+ "https://doapr.coar-repositories.org/api/repositories/?search=sophaxis": {
+  "status": 404,
+  "final": "https://doapr.coar-repositories.org/api/repositories/?search=sophaxis",
+  "length": 1350,
+  "hits": [],
+  "links": []
+ },
+ "https://doapr.coar-repositories.org/": {
+  "status": 200,
+  "final": "https://doapr.coar-repositories.org/",
+  "length": 7729,
+  "hits": [],
+  "links": [
+   "href=\"https://fonts.googleapis.com\"",
+   "href=\"https://fonts.gstatic.com\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto:300,400\"",
+   "href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"",
+   "href=\"https://doapr.coar-repositories.org/css/bundle.min.8f91554fc385a53f09f51a22225e719ca218366c06ce559593c58f6107d32c4d.css\"",
+   "href=\"/\"",
+   "href=\"/repositories/\"",
+   "href=\"/repositories-by-function/\"",
+   "href=\"/repositories-by-open-science/\"",
+   "href=\"/functions/\"",
+   "href=\"/disciplines/\"",
+   "href=\"/services/\"",
+   "href=\"/feedback/\"",
+   "href=\"/faq/\"",
+   "href=\"https://www.ccsd.cnrs.fr/en/\"",
+   "href=\"https://www.coar-repositories.org\"",
+   "href=\"https://www.ouvrirlascience.fr/the-committee-for-open-science/\"",
+   "href=\"/feedback\"",
+   "href=\"http://www.antleaf.com\"",
+   "href=\"https://creativecommons.org/licenses/by/4.0/\""
+  ]
  }
 }
