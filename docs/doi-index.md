@@ -102,6 +102,18 @@ Zenodo にも Software Heritage にもこの作業環境から出られないの
 | R13 | `10.5281/zenodo.24033372` | sophaxis v1.0.0（十の外） | 現行 |
 | R14 | `10.5281/zenodo.24033082` | deposit-check v0.1.0（十の外） | 現行 |
 
+## 同じ記録の前の版
+
+史料ノートの Zenodo の記録には、前の版があります。前の版の題は A Minor Officer in the Imperial Japanese Navy でした。
+別の作品ではありません。上の表には載せず、ここに分けて置きます。引くのは上の表の `22055709` です。
+2026-11-11 に、DataCite の記録で版の関係（IsVersionOf）と発行日を確かめました。
+
+| # | DOI | 何か | 状態 |
+| --- | --- | --- | --- |
+| V1 | `10.5281/zenodo.18525532` | A Minor Officer in the Imperial Japanese Navy（2026-02-08） | 旧版。引かない |
+| V2 | `10.5281/zenodo.22055553` | A Minor Officer in the Imperial Japanese Navy（2026-08-22） | 旧版。引かない |
+| V3 | `10.5281/zenodo.18525531` | 史料ノートのすべての版 | 概念 DOI。いちばん新しい版を指す |
+
 ## 別の所在にある同一本文
 
 正本は Zenodo です。片方だけを直すと食い違います。
