@@ -174,7 +174,7 @@ notice は PDF を持たない書誌の登録で、モデレーションを通�
 **削除した ID は、この表にだけ残します**。ほかの記録からは所在として外してあります。
 `check_site.js` が、この表の ID へのリンクがどこにも残っていないことを確かめます。
 
-PhilArchive の `NEMFSI`（Fragmentarian Spiritual Individualism）も、同じ日に削除を依頼しました。
+PhilArchive の `NEMFSI`（Fragmentarian Spiritual Individualism）も、2026-09-26 に削除を依頼しました。
 PhilPapers は削除を依頼として受け付けるので、まだ消えていません。消えたら、この節に足します。
 
 ## 第三者の SSRN DOI

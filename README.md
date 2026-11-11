@@ -161,7 +161,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 
 > 公開しているものは、すべて査読を受けていない。 学術誌にも会議にも通していない。DOI があることは、査読を受けたことを意味しない。
 
-このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノート・修了証・外部プロフィールは、消さずに [ノート](https://cpsbvbng26-dotcom.vercel.app/notes/index.html) に移してあります。
+このサイトのトップも、この核だけが見えるようにしてあります。哲学の三篇・史料ノートは消さずに [ノート](https://cpsbvbng26-dotcom.vercel.app/notes/index.html) に、修了証・外部プロフィールは [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) に移してあります。
 
 トップ（`index.html` / `index.en.html`）と `cv.html` は、自作の生成器 [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) の出力です。手で編集せず、あちらの `site.json` / `site.en.json` / `cv.json` を直して `node build.js` を回すこと。
 
@@ -181,7 +181,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で終えてい�
 | [Manifesto of Imperial Selfhood](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/imperial-selfhood.md) | 断片化した自己の統合を、カントの立法・ニーチェの価値転換・ユンガーの動員という三層で捉える | 改訂版 — 2026年8月 | [10.5281/zenodo.22057583](https://doi.org/10.5281/zenodo.22057583)<br>SSRN [10.2139/ssrn.7358818](https://doi.org/10.2139/ssrn.7358818)<br>PhilArchive [NEMMOI](https://philarchive.org/rec/NEMMOI) |
 | [Fragmentarian Spiritual Individualism](https://github.com/cpsbvbng26-dotcom/autonomy-and-self-cultivation/blob/main/papers/fragmentarian-spiritual-individualism.md) | 断片化を修復すべき傷とみなさず、そこに住まうための規律を組み立てる | 2026年8月 | [10.5281/zenodo.22064241](https://doi.org/10.5281/zenodo.22064241)<br>PhilArchive [NEMFSI](https://philarchive.org/rec/NEMFSI) |
 | [A Naval Gazette Entry for Lieutenant Otani Tsune（大谷恒）](https://doi.org/10.5281/zenodo.22055709) | アジア歴史資料センターが公開する海軍公報から叙勲記録一件を翻刻し、史料で確定できることとできないことを切り分ける | — | [10.5281/zenodo.22055709](https://doi.org/10.5281/zenodo.22055709)<br>SSRN [10.2139/ssrn.7449338](https://doi.org/10.2139/ssrn.7449338)<br>Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12) |
-| [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示します。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
+| [Trinity-Infinity Framework, Series I](https://doi.org/10.5281/zenodo.22058624) | 三要素の再帰作用素が一意の不動点へ幾何収束することを証明し、ゲーム理論・論理学・工学への接続を、証明済みの結果・既知の結果・類推に区別して示す。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058624](https://doi.org/10.5281/zenodo.22058624) |
 | [Trinity-Infinity Framework, Series II](https://doi.org/10.5281/zenodo.22058777) | 混合率を座標ごとに変えても不動点の一意性が保たれることを示し、均衡利得集合の特徴づけとばね系の完全な計算例を加える。 | 改訂版 — 2026年8月 | [10.5281/zenodo.22058777](https://doi.org/10.5281/zenodo.22058777)<br>SSRN [10.2139/ssrn.7446961](https://doi.org/10.2139/ssrn.7446961) |
 | [Trinity-Infinity Framework, Series III](https://doi.org/10.5281/zenodo.22058964) | 収束定理が三要素を必要としないこと（任意の n ≥ 2 で成立）を示し、この系列が何を確立し、何を撤回したかを回顧する。 | 2026年8月 | [10.5281/zenodo.22058964](https://doi.org/10.5281/zenodo.22058964) |
 | [Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction](https://doi.org/10.2139/ssrn.7537983) | Trinity-Infinity の中心の作用素が Friedkin–Johnsen 模型の特殊例だと分かるまでの経路を事例に、生成を機械が担ったとき新規性と先取権の主張を科学哲学の枠組みがどこまで扱えるかを論じる。数学の新規性は主張しない。 | 2026年9月 | SSRN [10.2139/ssrn.7537983](https://doi.org/10.2139/ssrn.7537983)<br>PhilArchive [NEMMRA](https://philarchive.org/rec/NEMMRA)（Zenodo には置いていない） |
@@ -362,7 +362,7 @@ node verification/check_guards.js     # 検査そのものを壊して確かめ�
 焦点の枠を消す、見出しの階層を飛ばす、外部プロフィールの並びを入れ替える、など。
 落ちなければ、その検査は何も見ていません。
 
-**`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 82」「登録簿 97 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 132 = 51 + 50 + 31）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
+**`check_ecosystem.js`** が見るのは三つです。散文が名乗る数（「道具自身 82」「登録簿 97 件」「壊す先 30 通り」など）が**実際に走らせた数と一致するか**。足し算で名乗っている数（正誤表の監査 271 = 109 + 103 + 59）が**足した結果と一致するか**。そして写した `errata_check.py` の版と、そのリポジトリが書いている DOI が**対応しているか**（`trinity-infinity` だけ v0.1.0 を写しているので、DOI も別の番号になる）。
 
 宣言は [`verification/ecosystem.json`](verification/ecosystem.json) にあります。どちらも兄弟ディレクトリに 10 並んでいることを前提にする（CI は 10 を checkout してから回す）。
 
@@ -394,7 +394,7 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 注入したインライン `style` | 止まる |
 | 許可したホスト（`api.crossref.org`） | 通る |
 
-**正の URL がひとつであること**も見ています。このサイトの正は GitHub Pages です。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見える。`canonical` と `og:url` の食い違いも落とす。
+**正の URL がひとつであること**も見ています。このサイトの正は Vercel（`cpsbvbng26-dotcom.vercel.app`）です。2026-10-27 に GitHub Pages から移しました。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見える。`canonical` と `og:url` の食い違いも落とす。
 
 **`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査します。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
 
@@ -435,6 +435,8 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 **当てはめたものは三つあります**。城内の十、城の設備、城外です。
 城内の各曲輪には、墨付（自分の DOI）と凍結された版と免状を入れてあります。
 いずれも各リポジトリの `CITATION.cff` と remote から機械で読んだものです。
+
+この図の墨付と凍結は、2026-09-18 に読んだときのものです。その後、墨付なしとした六つ（天守閣・詰丸・石垣・出丸・二の丸、三の丸の `naval-gazette-notes`）にも、2026-11-07 までにリポジトリ自身の DOI が付きました。番号は [docs/doi-index.md](docs/doi-index.md) の R1〜R12 にあります。下の表と数と弱点の記述は、その日のまま残しています。
 
 **本丸は六つあり、どれも城の外にあります**。人を探しに来た者が着いて、そこで止まる
 場所です。運営母体まで下の表に並べてあります。本丸は正本ではありません。
