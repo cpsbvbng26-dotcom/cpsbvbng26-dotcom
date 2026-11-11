@@ -3164,7 +3164,7 @@ section('10.66 サイトの決まりと運営の記録');
   /* 346. 法令の条。免責事項が挙げる条は、取り寄せた条文（verification/statutes.json）にあるものだけ。
    * 条文を確かめずに条の番号を書く形（作り出した条）を止める。いまは一つも挙げていない。 */
   const 条文 = JSON.parse(read('verification/statutes.json'))['条文'];
-  const 挙げた = ['DISCLAIMER.md', 'DISCLAIMER.en.md'].flatMap((f) => [...read(f).matchAll(/([^\s、。（）()]{2,12}法)\s*第\s*(\d+)\s*条(?:の\s*(\d+))?|Article\s+(\d+)\s+of\s+the\s+([A-Z][A-Za-z ]+Act)/g)]
+  const 挙げた = ['DISCLAIMER.md', 'DISCLAIMER.en.md'].flatMap((f) => [...read(f).matchAll(/([^\s、。（）()の]{2,12}法)\s*第\s*(\d+)\s*条(?:の\s*(\d+))?|Article\s+(\d+)\s+of\s+the\s+([A-Z][A-Za-z ]+Act)/g)]
     .map((m) => m[1] ? m[1] + ' 第' + m[2] + '条' + (m[3] ? 'の' + m[3] : '') : m[5] + ' Article ' + m[4]));
   const 無い条 = 挙げた.filter((x) => !Object.prototype.hasOwnProperty.call(条文, x));
   ok('免責事項が挙げる法令の条が、取り寄せた条文の表にある（' + 挙げた.length + ' 条）', 無い条.length === 0, 無い条.join(', '));
