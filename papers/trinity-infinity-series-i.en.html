@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-tWriW/roahO+xPcxnW2O4VQZW5rdZs1Z3Wsxoc2a3A8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-MWmI4+vBCDr6PXoA8KDDB6edXERhQzuT5vmNhtlzggg='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-tWriW/roahO+xPcxnW2O4VQZW5rdZs1Z3Wsxoc2a3A8=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-r/Q5i2Sd5QikgAA6/nyuQri8Ama1Vtf9O7bac1yrHdQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The Trinity-Infinity Framework, Series I | Takuya Nemoto</title>
 <meta name="description" content="Proves that the three-element recursive operator converges geometrically to a unique fixed point, and sets out the connections to game theory, logic and engineering with proved results, known results and analogies marked apart.">
 <meta name="robots" content="index, follow">
@@ -674,7 +674,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 
 /* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
 @media (max-width: 30rem) {
-  .head-row { align-items: flex-start; padding-top: .6rem; padding-bottom: .6rem; }
+  .head-row { flex-wrap: wrap; align-items: flex-start; padding-top: .6rem; padding-bottom: .6rem; }
   .nav { width: 100%; justify-content: flex-start; gap: .3rem .9rem; }
   .wrap { padding: 0 1rem; }
   .hero { padding-top: 2.5rem; padding-bottom: 2.5rem; }
