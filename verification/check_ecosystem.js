@@ -3261,6 +3261,108 @@ console.log('\n12m. 六度目の見落とし（2026-11-12 の続き）');
       || (T ? '止める文 ' + T['止める文'].length + '・通す文 ' + T['通す文'].length : ''));
 }
 
+/* ---------- 七度目の見落とし：頁の最終更新の日付（2026-11-12 の続き） ----------
+ *
+ * 頁の最終更新は、その頁の文を変えた最後のコミットの、日本時間の日付より前にならない。最終更新の行だけを変えた
+ * コミットは数えない。作業の時計（協定世界時）の日付を書くと、日本時間で公開した日より一日早くなる。
+ * 免責事項（日英）が 2026-11-13 の変更のあとも 2026-11-12 を書いていて、見落とした。nusquama の検査 70 と
+ * sophaxis の検査 121 と同じ形を、10 のリポジトリの日付のある頁に当てる。履歴を読むので、浅い複製では通さない。 */
+
+console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 の続き）');
+{
+  const K = DECL['七度目の見落とし'] || null;
+  const G = K ? K['日付の頁'] : null;
+  const 今日 = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  const 式 = G ? G['式'].map((x) => new RegExp(x, 'm')) : [];
+  const 消す = G ? G['式'].map((x) => new RegExp(x, 'gm')) : [];
+  const 本文 = (t) => 消す.reduce((a, re) => a.replace(re, ''), String(t === null || t === undefined ? '' : t));
+  const 日付 = (t) => {
+    for (const re of 式) {
+      const m = re.exec(t || '');
+      if (m) return m[1] + '-' + String(m[2]).padStart(2, '0') + '-' + String(m[3]).padStart(2, '0');
+    }
+    return null;
+  };
+  const git = (repo, args) => execFileSync('git', args, { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'ignore'], env: Object.assign({}, process.env, { TZ: 'Asia/Tokyo' }) });
+  const 試す = (f, d) => { try { return f(); } catch (e) { return d; } };
+  const 浅い = {}, 頁 = [], 今 = {}, 最後 = {};
+  for (const repo of (G ? G.repos : [])) {
+    浅い[repo] = 試す(() => git(repo, ['rev-parse', '--is-shallow-repository']).trim() !== 'false', true);
+    const fs_ = 試す(() => git(repo, ['ls-files', '*.md']).split('\n').filter(Boolean), []);
+    for (const f of fs_) {
+      if (G['見ない'].some((x) => f.startsWith(x))) continue;
+      const t = read(repo, f);
+      if (t === null || !式.some((re) => re.test(t))) continue;
+      const k = repo + '/' + f;
+      頁.push(k); 今[k] = t;
+      /* 文を変えた最後の日。いまの文が HEAD と違えば今日。そうでなければ、前の版と本文が違う最も新しいコミットの日。 */
+      const log = 試す(() => git(repo, ['log', '--format=%H %cd', '--date=format-local:%Y-%m-%d', '--', f]).split('\n').filter(Boolean).map((l) => l.split(' ')), []);
+      const 版 = (h) => 試す(() => git(repo, ['show', h + ':' + f]), null);
+      if (!log.length || 本文(t) !== 本文(版(log[0][0]))) { 最後[k] = 今日; continue; }
+      let d = log[log.length - 1][1];
+      let 前 = 本文(版(log[0][0]));
+      for (let i = 0; i < log.length; i++) {
+        const 次 = i + 1 < log.length ? 本文(版(log[i + 1][0])) : null;
+        if (次 === null || 次 !== 前) { d = log[i][1]; break; }
+        前 = 次;
+      }
+      最後[k] = d;
+    }
+  }
+  const WF = G ? read('cpsbvbng26-dotcom', G['workflow']) : null;
+  const 記録 = Object.fromEntries((K ? K['記録'] : []).map((r) => [r, read(r, path.join('docs', 'legal-audit-2026-11-12.md'))]));
+  function 判定(x) {
+    const bad = [];
+    if (K === null || G === null) return ['宣言が無い'];
+    for (const r of G.repos) if (x.浅い[r]) bad.push(r + ' の履歴が浅い');
+    for (const k of G['在るべき頁']) if (!x.頁.includes(k) || !日付(x.今[k])) bad.push(k + ' に最終更新の行が無い');
+    for (const k of x.頁) {
+      const d = 日付(x.今[k]);
+      if (!d || d < x.最後[k]) bad.push(k + '：最終更新 ' + d + ' が、文を変えた日 ' + x.最後[k] + ' より前');
+    }
+    for (const [k, suf] of Object.entries(G['日本時間と書く頁'])) {
+      if (k === '_') continue;
+      const l = (x.今[k] || '').split('\n').find((y) => 式.some((re) => re.test(y))) || '';
+      if (!l.endsWith(suf)) bad.push(k + ' の最終更新が日本時間だと書いていない');
+    }
+    for (const r of G.repos) {
+      const want = r === 'cpsbvbng26-dotcom' ? 'path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }' : 'repository: cpsbvbng26-dotcom/' + r + ', path: repos/' + r + ', fetch-depth: 0 }';
+      if ((x.WF || '').indexOf(want) < 0) bad.push(G['workflow'] + ' が ' + r + ' の履歴をすべて取らない');
+    }
+    for (const r of K['記録']) {
+      const t = x.記録[r] || '';
+      const i = t.indexOf('\n' + K['節'] + '\n');
+      const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+      const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+      const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|---)/.test(l));
+      if (i < 0 || !rows.length || !rows.every((l) => l.split(' | ').length === 6) || sec.indexOf(K['決めた']) < 0) bad.push(r + ' の点検の記録に、七度目の節・表・決めた一文が無い');
+    }
+    return bad;
+  }
+  const 実 = { 浅い, 頁, 今, 最後, WF, 記録 };
+  const bad = 判定(実);
+  check('10 のリポジトリの日付のある頁（' + 頁.length + ' 頁）の最終更新が、文を変えた最後のコミットの日本時間の日付より前でなく、免責事項は日本時間と書き、横断の CI は 10 のリポジトリの履歴をすべて取り、点検の記録（'
+    + (K ? K['記録'].length : 0) + ' 本）に七度目の節がある', bad.length === 0, bad.slice(0, 6).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 実, { 今: Object.assign({}, 今, { [k]: (今[k] || '').replace(a, b) }) });
+  const 壊す = [
+    ['免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-13（日本時間）。', '最終更新：2026-11-12（日本時間）。')],
+    ['英語の免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-13 (Japan time).', 'Last updated: 2026-11-12 (Japan time).')],
+    ['免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-13（日本時間）。', '最終更新：2026-11-13。')],
+    ['英語の免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-13 (Japan time).', 'Last updated: 2026-11-13.')],
+    ['trinity-infinity の正誤表を前の日に戻す', 替('trinity-infinity/ERRATA.md', '最終更新: 2026年11月13日', '最終更新: 2026年11月12日')],
+    ['正誤表の文を今日変えて、最終更新を変えない', Object.assign({}, 実, { 最後: Object.assign({}, 最後, { 'naval-gazette-notes/ERRATA.md': '2099-01-01' }) })],
+    ['最終更新の行の形を崩す', 替('autonomy-and-self-cultivation/ERRATA.md', /^最終更新: /m, '最終更新 ')],
+    ['頁を数えから外す', Object.assign({}, 実, { 頁: 頁.filter((k) => k !== 'cpsbvbng26-dotcom/DISCLAIMER.en.md') })],
+    ['履歴が浅い', Object.assign({}, 実, { 浅い: Object.assign({}, 浅い, { 'self-correction': true }) })],
+    ['横断の CI から fetch-depth を外す', Object.assign({}, 実, { WF: (WF || '').replace('repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }', 'repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school }') })],
+    ['点検の記録から七度目の節を外す', Object.assign({}, 実, { 記録: Object.assign({}, 記録, { 'trinity-infinity': (記録['trinity-infinity'] || '').replace(K ? K['節'] : 'x^', '## 七度目') }) })],
+    ['点検の記録から決めた一文を外す', Object.assign({}, 実, { 記録: Object.assign({}, 記録, { 'cpsbvbng26-dotcom': (記録['cpsbvbng26-dotcom'] || '').split(K ? K['決めた'] : 'x^').join('決めた') }) })],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：免責事項の日付（日英）・日本時間の書き（日英）・trinity-infinity の正誤表・今日変えた正誤表・行の形・数えから外す・浅い履歴・CI の fetch-depth・記録の節・決めた一文のどれでも落ちる（'
+    + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
