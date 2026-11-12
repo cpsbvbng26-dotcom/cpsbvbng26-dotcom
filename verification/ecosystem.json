@@ -3163,5 +3163,38 @@
       "外しました",
       "removed"
     ]
+  },
+  "九度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、九度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。削除した HAL の ID は、cpsbvbng26-dotcom の doi-index.md の削除の表の行にだけ置く（13 のリポジトリのどのファイルにも、リンクでなくても無い）。Sophaxis の OAI-PMH の口のアドレス（sophaxis の site.json の oai.adminEmails）は、sophaxis の二つのファイルの外に無い。最初のコミットの日付は git の履歴が記す UTC の日付で、七つの面がそう書く。九度目の節は、直したリポジトリの記録にある。",
+    "節": "## 2026-11-12 の続き：九度目の見落とし",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "justice-and-algorithms",
+      "researcher-profile",
+      "solitary-school",
+      "sophaxis"
+    ],
+    "決めた": "2026-11-13 に Claude が決めました",
+    "弁護士": [
+      "弁護士は、この節を見ていません。",
+      "この節も、弁護士の確認は受けていません。"
+    ],
+    "アドレスの置き場": [
+      "site.json",
+      "site/api/oai.js"
+    ],
+    "最初のコミット": {
+      "sophaxis": "2026-10-30",
+      "deposit-check": "2026-11-02"
+    },
+    "面": [
+      "index.html",
+      "index.en.html",
+      "index.de.html",
+      "index.fr.html",
+      "index.it.html",
+      "README.md",
+      "README.en.md"
+    ]
   }
 }
