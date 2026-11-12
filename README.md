@@ -299,17 +299,6 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 </details>
 
-<details>
-<summary>仕事の窓口 —— 研究とは別</summary>
-
-- LinkedIn — [独立での案件募集](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
-- Wantedly — [職務プロフィール](https://www.wantedly.com/id/takuya_nemoto_q)
-- ランサーズ — [独立での案件募集](https://www.lancers.jp/profile/Itizyou)
-- ココナラ — [独立での案件募集](https://coconala.com/users/4974247)
-- クラウドワークス — [独立での案件募集](https://crowdworks.jp/public/employees/7030074)
-
-</details>
-
 ---
 
 ✴︎Verification✴︎

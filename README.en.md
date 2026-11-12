@@ -294,17 +294,6 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 </details>
 
-<details>
-<summary>Work channels, separate from research</summary>
-
-- LinkedIn — [available for independent work](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
-- Wantedly — [career profile](https://www.wantedly.com/id/takuya_nemoto_q)
-- Lancers — [available for independent work](https://www.lancers.jp/profile/Itizyou)
-- Coconala — [available for independent work](https://coconala.com/users/4974247)
-- CrowdWorks — [available for independent work](https://crowdworks.jp/public/employees/7030074)
-
-</details>
-
 ---
 
 ✴︎Verification✴︎
