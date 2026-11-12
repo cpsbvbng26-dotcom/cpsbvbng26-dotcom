@@ -6,7 +6,7 @@ description: 10 リポジトリの検査を全部回し、横断のずれも見�
 
 ```
 node verification/check_all.js        # 各リポジトリの検査を全部（41 本）
-node verification/check_ecosystem.js  # 10 リポジトリ横断のずれ（518 項目）
+node verification/check_ecosystem.js  # 10 リポジトリ横断のずれ（項目の数は docs/checks.md）
 ```
 
 どちらも兄弟ディレクトリに 10 のリポジトリが並んでいることを前提にします。
