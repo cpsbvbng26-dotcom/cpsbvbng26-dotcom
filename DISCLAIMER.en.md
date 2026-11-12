@@ -1,6 +1,6 @@
 # Disclaimer
 
-Last updated: 2026-11-11.
+Last updated: 2026-11-12.
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
@@ -28,6 +28,8 @@ Except for intent or gross negligence, the operator is not liable for loss that 
 Where Japan's Consumer Contract Act applies, the previous sentence does not apply.
 The operator is then liable as that Act and the Civil Code provide, including for loss caused by slight negligence.
 Nothing here excludes or limits a liability that the law does not allow to be excluded or limited.
+The first sentence of this section does not, by itself, exclude a liability that the law imposes.
+This page is not a contract.
 
 ## Reuse
 
@@ -35,6 +37,7 @@ The licences are set out in each repository's LICENSE file and, where there is o
 Where a repository has both, the texts and papers are under CC BY 4.0 and the code under the MIT License.
 errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License.
 In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each.
+In trinity-operator, the page in site/ is under CC BY 4.0, by the notice at its foot.
 The terms of reuse, and the warranties and liability under them, are those of the licence that applies.
 
 ## Other sites
@@ -48,6 +51,15 @@ An error in a statement about a person, or an infringement of their rights, is r
 A request that contains personal information is received by email, not in a public issue.
 The operator checks each request promptly and corrects or removes the statement where needed.
 Of living people, nothing is written beyond the word "parents".
+
+## Information
+
+The pages set no cookie and carry no analytics.
+When a reader picks the light or dark display, the choice is kept only in that browser's local storage (localStorage).
+Everything a page needs is loaded from the host that serves it.
+Vercel and GitHub, which serve the pages, may keep records of the requests they receive, under their own policies.
+Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections.
+Issues are public on GitHub.
 
 ## Language models
 
