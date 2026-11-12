@@ -1,0 +1,20 @@
+name: link check (one-off)
+on:
+  push:
+    branches: ['claude/linkcheck-run-1111']
+    paths: ['.linkcheck/urls.txt']
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node .linkcheck/check.js
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .linkcheck/result.json && git commit -m "link check result" && git push

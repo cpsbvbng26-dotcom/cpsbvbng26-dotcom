@@ -1,0 +1,1557 @@
+[
+ {
+  "u": "https://",
+  "status": 0,
+  "error": "ERR_INVALID_URL"
+ },
+ {
+  "u": "https://advance.sagepub.com",
+  "status": 403,
+  "final": "https://advance.sagepub.com/"
+ },
+ {
+  "u": "https://api.altmetric.com/v1/doi/{doi}",
+  "status": 403,
+  "final": "https://api.altmetric.com/v1/doi/%7Bdoi%7D"
+ },
+ {
+  "u": "https://api.crossref.org/works/{doi}",
+  "status": 404,
+  "final": "https://api.crossref.org/works/%7Bdoi%7D"
+ },
+ {
+  "u": "https://api.datacite.org/dois/{doi}",
+  "status": 404,
+  "final": "https://api.datacite.org/dois/%7Bdoi%7D"
+ },
+ {
+  "u": "https://api.fatcat.wiki/v0/release/lookup?doi={doi}",
+  "status": 0,
+  "error": "UND_ERR_CONNECT_TIMEOUT"
+ },
+ {
+  "u": "https://api.openaire.eu/search/publications?doi={doi}&format=json",
+  "status": 200,
+  "final": "https://api.openaire.eu/search/publications?doi={doi}&format=json"
+ },
+ {
+  "u": "https://api.openalex.org/works/doi:{doi}",
+  "status": 404,
+  "final": "https://api.openalex.org/works/doi:%7Bdoi%7D"
+ },
+ {
+  "u": "https://api.semanticscholar.org/graph/v1/paper/DOI:{doi}?fields=title,externalIds",
+  "status": 429,
+  "final": "https://api.semanticscholar.org/graph/v1/paper/DOI:%7Bdoi%7D?fields=title,externalIds"
+ },
+ {
+  "u": "https://api.unpaywall.org/v2/{doi}?email={mail}",
+  "status": 422,
+  "final": "https://api.unpaywall.org/v2/%7Bdoi%7D?email={mail}"
+ },
+ {
+  "u": "https://archive.org/about/terms",
+  "status": 200,
+  "final": "https://archive.org/about/terms"
+ },
+ {
+  "u": "https://archive.org/wayback/available?timestamp=%s&url=%s",
+  "status": 200,
+  "final": "https://archive.org/wayback/available?timestamp=%s&url=%s"
+ },
+ {
+  "u": "https://archive.softwareheritage.org/api/1",
+  "status": 200,
+  "final": "https://archive.softwareheritage.org/api/1"
+ },
+ {
+  "u": "https://archive.softwareheritage.org/api/1/origin/search/{doi_url}/?limit=1",
+  "status": 200,
+  "final": "https://archive.softwareheritage.org/api/1/origin/search/%7Bdoi_url%7D/?limit=1"
+ },
+ {
+  "u": "https://archive.softwareheritage.org/browse/snapshot/83f09cc80821f5cd02bbc89b069753c0c53c110a/releases/?origin_url=https://doi.org/10.5281/zenodo.22335691&snapshot=83f09cc80821f5cd02bbc89b069753c0c53c110a",
+  "status": 200,
+  "final": "https://archive.softwareheritage.org/browse/snapshot/83f09cc80821f5cd02bbc89b069753c0c53c110a/releases/?origin_url=https://doi.org/10.5281/zenodo.22335691&snapshot=83f09cc80821f5cd02bbc89b069753c0c53c110a"
+ },
+ {
+  "u": "https://arxiv-org.atlassian.net/wiki/spaces/AUS/pages/56033281",
+  "status": 200,
+  "final": "https://arxiv-org.atlassian.net/wiki/spaces/AUS/pages/56033281"
+ },
+ {
+  "u": "https://arxiv.org",
+  "status": 200,
+  "final": "https://arxiv.org/"
+ },
+ {
+  "u": "https://arxiv.org/a/0009-0000-1406-0547.html",
+  "status": 200,
+  "final": "https://arxiv.org/a/0009-0000-1406-0547.html"
+ },
+ {
+  "u": "https://arxiv.org/abs/1609.05807",
+  "status": 200,
+  "final": "https://arxiv.org/abs/1609.05807"
+ },
+ {
+  "u": "https://arxiv.org/abs/1711.00399",
+  "status": 200,
+  "final": "https://arxiv.org/abs/1711.00399"
+ },
+ {
+  "u": "https://arxiv.org/abs/1808.00023",
+  "status": 200,
+  "final": "https://arxiv.org/abs/1808.00023"
+ },
+ {
+  "u": "https://arxiv.org/html/2603.17339",
+  "status": 200,
+  "final": "https://arxiv.org/html/2603.17339"
+ },
+ {
+  "u": "https://arxiv.org/html/2609.04123",
+  "status": 200,
+  "final": "https://arxiv.org/html/2609.04123"
+ },
+ {
+  "u": "https://avalon.law.yale.edu/20th_century/intam03.asp",
+  "status": 200,
+  "final": "https://avalon.law.yale.edu/20th_century/intam03.asp"
+ },
+ {
+  "u": "https://blog.arxiv.org/2025/12/10/updated-endorsement-policy-for-arxiv-mathematics/",
+  "status": 200,
+  "final": "https://blog.arxiv.org/2025/12/10/updated-endorsement-policy-for-arxiv-mathematics/"
+ },
+ {
+  "u": "https://blog.arxiv.org/2026/01/21/attention-authors-updated-endorsement-policy/",
+  "status": 200,
+  "final": "https://blog.arxiv.org/2026/01/21/attention-authors-updated-endorsement-policy/"
+ },
+ {
+  "u": "https://cir.nii.ac.jp/opensearch/all?q={doi}&format=json",
+  "status": 400,
+  "final": "https://cir.nii.ac.jp/opensearch/all?q={doi}&format=json"
+ },
+ {
+  "u": "https://claude.ai/artifact/GxV1WCJjBvecy24uDrGY1L",
+  "status": 200,
+  "final": "https://claude.ai/artifact/GxV1WCJjBvecy24uDrGY1L"
+ },
+ {
+  "u": "https://claude.ai/artifact/JJ1Pcix2F86N4girX2d5Te",
+  "status": 200,
+  "final": "https://claude.ai/artifact/JJ1Pcix2F86N4girX2d5Te"
+ },
+ {
+  "u": "https://claude.ai/artifact/PaNZRjvQCnzgoQRv9XSPW2",
+  "status": 200,
+  "final": "https://claude.ai/artifact/PaNZRjvQCnzgoQRv9XSPW2"
+ },
+ {
+  "u": "https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF",
+  "status": 200,
+  "final": "https://claude.ai/artifact/RnsVHWeGqn7wCnHre8ydCF"
+ },
+ {
+  "u": "https://claude.ai/artifact/TDamnB7aQ9FX2r8umHTbEi",
+  "status": 200,
+  "final": "https://claude.ai/artifact/TDamnB7aQ9FX2r8umHTbEi"
+ },
+ {
+  "u": "https://claude.ai/artifact/U3Pjjzu8UtR2ZU6w6zikeg",
+  "status": 200,
+  "final": "https://claude.ai/artifact/U3Pjjzu8UtR2ZU6w6zikeg"
+ },
+ {
+  "u": "https://claude.com/claude-code",
+  "status": 200,
+  "final": "https://claude.com/product/claude-code"
+ },
+ {
+  "u": "https://coconala.com/users/4974247",
+  "status": 200,
+  "final": "https://coconala.com/users/4974247"
+ },
+ {
+  "u": "https://core.ac.uk/works/403307066",
+  "status": 403,
+  "final": "https://core.ac.uk/works/403307066"
+ },
+ {
+  "u": "https://core.ac.uk/works/403307068",
+  "status": 403,
+  "final": "https://core.ac.uk/works/403307068"
+ },
+ {
+  "u": "https://core.ac.uk/works/419090748",
+  "status": 403,
+  "final": "https://core.ac.uk/works/419090748"
+ },
+ {
+  "u": "https://core.ac.uk/works/419778611",
+  "status": 403,
+  "final": "https://core.ac.uk/works/419778611"
+ },
+ {
+  "u": "https://core.ac.uk/works/427072165",
+  "status": 403,
+  "final": "https://core.ac.uk/works/427072165"
+ },
+ {
+  "u": "https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316",
+  "status": 200,
+  "final": "https://courses.edx.org/certificates/09bd51313ed94fdd8b694164f6745316"
+ },
+ {
+  "u": "https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3",
+  "status": 200,
+  "final": "https://courses.edx.org/certificates/7584800e9d0048fd94d5d6b1720256b3"
+ },
+ {
+  "u": "https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807",
+  "status": 200,
+  "final": "https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807"
+ },
+ {
+  "u": "https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc",
+  "status": 200,
+  "final": "https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/lineage.html",
+  "status": 404,
+  "final": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/lineage.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/trinity.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/venues.html",
+  "status": 404,
+  "final": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/venues.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.github.io/researcher-profile/",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.github.io/researcher-profile/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/#person",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/#website",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/cv.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/cv.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/index.de.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/index.de.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/index.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/index.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/index.fr.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/index.fr.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/index.it.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/index.it.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/afterlife.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/celibate-individual.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/celibate-individual.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/celibate-individual.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/celibate-individual.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/fragmentarian-spiritual-individualism.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/fragmentarian-spiritual-individualism.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/fragmentarian-spiritual-individualism.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/fragmentarian-spiritual-individualism.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/imperial-selfhood.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/imperial-selfhood.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/imperial-selfhood.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/imperial-selfhood.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/index.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/index.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/index.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/index.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.en.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.en.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/notes/sophaxis.html"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/og.png",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/og.png"
+ },
+ {
+  "u": "https://cpsbvbng26-dotcom.vercel.app/trinity.html",
+  "status": 200,
+  "final": "https://cpsbvbng26-dotcom.vercel.app/trinity.html"
+ },
+ {
+  "u": "https://creativecommons.org/licenses/by/4.0/",
+  "status": 200,
+  "final": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ {
+  "u": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "status": 200,
+  "final": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ {
+  "u": "https://crowdworks.jp/public/employees/7030074",
+  "status": 200,
+  "final": "https://crowdworks.jp/public/employees/7030074"
+ },
+ {
+  "u": "https://cv.hal.science/nemoto-takuya",
+  "status": 200,
+  "final": "https://cv.hal.science/nemoto-takuya"
+ },
+ {
+  "u": "https://dev.to/cpsbvbng26dotcom",
+  "status": 200,
+  "final": "https://dev.to/cpsbvbng26dotcom"
+ },
+ {
+  "u": "https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89",
+  "status": 403,
+  "final": "https://dic.nicovideo.jp/t/a/%E6%A0%B9%E6%9C%AC%E5%8D%93%E5%93%89"
+ },
+ {
+  "u": "https://doaj.org/api/search/articles/doi:{doi}",
+  "status": 400,
+  "final": "https://doaj.org/api/search/articles/doi:%7Bdoi%7D"
+ },
+ {
+  "u": "https://doaj.org/apply/transparency/",
+  "status": 200,
+  "final": "https://doaj.org/apply/transparency/"
+ },
+ {
+  "u": "https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies",
+  "status": 200,
+  "final": "https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies"
+ },
+ {
+  "u": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
+  "status": 200,
+  "final": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service"
+ },
+ {
+  "u": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+  "status": 200,
+  "final": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+ },
+ {
+  "u": "https://doi.org/10.1007/BF02639315",
+  "status": 200,
+  "final": "https://link.springer.com/10.1007/BF02639315"
+ },
+ {
+  "u": "https://doi.org/10.1038/s42256-019-0048-x",
+  "status": 200,
+  "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs42256-019-0048-x&code=0829ee9c-e4f1-4875-98b4-85695561e395"
+ },
+ {
+  "u": "https://doi.org/10.1080/0022250X.1990.9990069",
+  "status": 403,
+  "final": "https://www.tandfonline.com/doi/full/10.1080/0022250X.1990.9990069"
+ },
+ {
+  "u": "https://doi.org/10.1089/big.2016.0047",
+  "status": 403,
+  "final": "https://journals.sagepub.com/doi/full/10.1089/big.2016.0047"
+ },
+ {
+  "u": "https://doi.org/10.1145/3287560.3287598",
+  "status": 403,
+  "final": "https://dl.acm.org/doi/10.1145/3287560.3287598"
+ },
+ {
+  "u": "https://doi.org/10.1162/99608f92.8cd550d1",
+  "status": 403,
+  "final": "https://hdsr.mitpress.mit.edu/pub/l0jsh9d1"
+ },
+ {
+  "u": "https://doi.org/10.1177/1948550616673876",
+  "status": 403,
+  "final": "https://journals.sagepub.com/doi/10.1177/1948550616673876"
+ },
+ {
+  "u": "https://doi.org/10.1177/2053951716679679",
+  "status": 403,
+  "final": "https://journals.sagepub.com/doi/10.1177/2053951716679679"
+ },
+ {
+  "u": "https://doi.org/10.14763/2019.2.1410",
+  "status": 200,
+  "final": "https://policyreview.info/articles/analysis/technology-autonomy-and-manipulation"
+ },
+ {
+  "u": "https://doi.org/10.17351/ests2019.260",
+  "status": 200,
+  "final": "https://estsjournal.org/index.php/ests/article/view/260"
+ },
+ {
+  "u": "https://doi.org/10.17605/OSF.IO/MQ7ZA",
+  "status": 200,
+  "final": "https://osf.io/mq7za/"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.2477899",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2477899"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.3063289",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3063289"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.7358779",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7358779"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.7358818",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7358818"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.7446961",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7446961"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.7449338",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7449338"
+ },
+ {
+  "u": "https://doi.org/10.2139/ssrn.7537983",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7537983"
+ },
+ {
+  "u": "https://doi.org/10.3758/s13428-015-0664-2",
+  "status": 200,
+  "final": "https://link.springer.com/10.3758/s13428-015-0664-2"
+ },
+ {
+  "u": "https://doi.org/10.4230/LIPIcs.ITCS.2017.43",
+  "status": 200,
+  "final": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2017.43"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.17173703",
+  "status": 200,
+  "final": "https://zenodo.org/records/17173703"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22055709",
+  "status": 200,
+  "final": "https://zenodo.org/records/22055709"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22057583",
+  "status": 200,
+  "final": "https://zenodo.org/records/22057583"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22058254",
+  "status": 200,
+  "final": "https://zenodo.org/records/22058254"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22058624",
+  "status": 200,
+  "final": "https://zenodo.org/records/22058624"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22058777",
+  "status": 200,
+  "final": "https://zenodo.org/records/22058777"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22058964",
+  "status": 200,
+  "final": "https://zenodo.org/records/22058964"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22064241",
+  "status": 200,
+  "final": "https://zenodo.org/records/22064241"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22335676",
+  "status": 200,
+  "final": "https://zenodo.org/records/22335676"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22335676}",
+  "status": 404,
+  "final": "https://doi.org/10.5281/zenodo.22335676%7D"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22335692",
+  "status": 200,
+  "final": "https://zenodo.org/records/22335692"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22335692}",
+  "status": 404,
+  "final": "https://doi.org/10.5281/zenodo.22335692%7D"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22649054",
+  "status": 200,
+  "final": "https://zenodo.org/records/22649054"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22649899",
+  "status": 200,
+  "final": "https://zenodo.org/records/22649899"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22685687",
+  "status": 200,
+  "final": "https://zenodo.org/records/22685687"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22685687}",
+  "status": 404,
+  "final": "https://doi.org/10.5281/zenodo.22685687%7D"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22765620",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033809"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.22765695",
+  "status": 200,
+  "final": "https://zenodo.org/records/22765695"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.23114131",
+  "status": 200,
+  "final": "https://zenodo.org/records/23114131"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033081",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033082"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033082",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033082"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033371",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033372"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033372",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033372"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033458",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033459"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033459",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033459"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033596",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033597"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033597",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033597"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033809",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033809"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033960",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033961"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24033961",
+  "status": 200,
+  "final": "https://zenodo.org/records/24033961"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24034130",
+  "status": 200,
+  "final": "https://zenodo.org/records/24034131"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24034131",
+  "status": 200,
+  "final": "https://zenodo.org/records/24034131"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24034359",
+  "status": 200,
+  "final": "https://zenodo.org/records/24034360"
+ },
+ {
+  "u": "https://doi.org/10.5281/zenodo.24034360",
+  "status": 200,
+  "final": "https://zenodo.org/records/24034360"
+ },
+ {
+  "u": "https://doi.org/10.6084/m9.figshare.34419198",
+  "status": 200,
+  "final": "https://figshare.com/articles/preprint/Repeated_Games_through_a_Cyclic_Operator_A_Golden-Ratio_Threshold_Fractal_Payoff_Sets_and_the_Golden-Window_Conjecture/34419198"
+ },
+ {
+  "u": "https://doi.org/10.6084/m9.figshare.34419198.v2",
+  "status": 200,
+  "final": "https://figshare.com/articles/preprint/Repeated_Games_through_a_Cyclic_Operator_A_Golden-Ratio_Threshold_Fractal_Payoff_Sets_and_the_Golden-Window_Conjecture/34419198/2"
+ },
+ {
+  "u": "https://doi.org/ra/{doi}",
+  "status": 200,
+  "final": "https://doi.org/ra/%7Bdoi%7D"
+ },
+ {
+  "u": "https://doi.org/{doi}",
+  "status": 400,
+  "final": "https://doi.org/%7Bdoi%7D"
+ },
+ {
+  "u": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679",
+  "status": 202,
+  "final": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679"
+ },
+ {
+  "u": "https://figshare.com",
+  "status": 200,
+  "final": "https://figshare.com/"
+ },
+ {
+  "u": "https://figshare.com/authors/Takuya_Nemoto/25693617",
+  "status": 200,
+  "final": "https://figshare.com/authors/Takuya_Nemoto/25693617"
+ },
+ {
+  "u": "https://github",
+  "status": 0,
+  "error": "EAI_AGAIN"
+ },
+ {
+  "u": "https://github.com",
+  "status": 200,
+  "final": "https://github.com/"
+ },
+ {
+  "u": "https://github.com/",
+  "status": 200,
+  "final": "https://github.com/"
+ },
+ {
+  "u": "https://github.com/arXiv/arxiv-docs/blob/develop/source/help/endorsement.md",
+  "status": 200,
+  "final": "https://github.com/arXiv/arxiv-docs/blob/develop/source/help/endorsement.md"
+ },
+ {
+  "u": "https://github.com/showyourwork/showyourwork",
+  "status": 200,
+  "final": "https://github.com/showyourwork/showyourwork"
+ },
+ {
+  "u": "https://github.com/signup",
+  "status": 403,
+  "final": "https://github.com/signup"
+ },
+ {
+  "u": "https://github.com/user-attachments/files/34197789/ssrn-7537983.pdf",
+  "status": 200,
+  "final": "https://objects.githubusercontent.com/github-production-repository-file-5c1aeb/1439797183/34197789?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261111%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261111T082125Z&X-Amz-Expires=300&X-Amz-Signature=8643d4943ac5cb8524665113ebd91a41e43165c7d24e679c9b3295546af6e33a&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3Dssrn-7537983.pdf&response-content-type=application%2Fpdf"
+ },
+ {
+  "u": "https://github.com/user-attachments/…",
+  "status": 404,
+  "final": "https://github.com/user-attachments/%E2%80%A6"
+ },
+ {
+  "u": "https://golden-window-conjecture.vercel.app/",
+  "status": 200,
+  "final": "https://golden-window-conjecture.vercel.app/"
+ },
+ {
+  "u": "https://golden-window-conjecture.vercel.app/#website",
+  "status": 200,
+  "final": "https://golden-window-conjecture.vercel.app/"
+ },
+ {
+  "u": "https://golden-window-conjecture.vercel.app/og.png",
+  "status": 200,
+  "final": "https://golden-window-conjecture.vercel.app/og.png"
+ },
+ {
+  "u": "https://grok.com",
+  "status": 200,
+  "final": "https://grok.com/"
+ },
+ {
+  "u": "https://hcommons.org/",
+  "status": 200,
+  "final": "https://hcommons.org/"
+ },
+ {
+  "u": "https://img.shields.io/badge/Assisted%20by-Grok-111111?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Assisted%20by-Grok-111111?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Assisted%20by-Grok-4B5563?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/ORCID-0009--0000--1406--0547-A6CE39?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Site-cpsbvbng26--dotcom.vercel.app-24292F?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Site-cpsbvbng26--dotcom.vercel.app-24292F?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Disaster%20Science-8B0000?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Mystery%20of%20Aurora-8B0000?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/Tohoku%20University%20MOOC-Radiation%20Safety-8B0000?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/edX-CC0201EN%20Containers%2C%20Kubernetes%20%26%20OpenShift-02262B?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/edX-CS50AI%20Artificial%20Intelligence%20with%20Python-02262B?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/edX-CS50x%20Introduction%20to%20Computer%20Science-02262B?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/edX-ER22.1x%20Justice-02262B?style=for-the-badge"
+ },
+ {
+  "u": "https://img.shields.io/badge/発行元-講座名-色?style=for-the-badge",
+  "status": 200,
+  "final": "https://img.shields.io/badge/%E7%99%BA%E8%A1%8C%E5%85%83-%E8%AC%9B%E5%BA%A7%E5%90%8D-%E8%89%B2?style=for-the-badge"
+ },
+ {
+  "u": "https://independent.academia.edu/NemotoTakuya",
+  "status": 403,
+  "final": "https://independent.academia.edu/NemotoTakuya"
+ },
+ {
+  "u": "https://info.arxiv.org/help/ancillary_files.html",
+  "status": 200,
+  "final": "https://info.arxiv.org/help/ancillary_files.html"
+ },
+ {
+  "u": "https://info.arxiv.org/help/license/index.html",
+  "status": 200,
+  "final": "https://info.arxiv.org/help/license/index.html"
+ },
+ {
+  "u": "https://info.orcid.org/privacy-policy/",
+  "status": 200,
+  "final": "https://info.orcid.org/privacy-policy/"
+ },
+ {
+  "u": "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335",
+  "status": 503,
+  "final": "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601016349119335"
+ },
+ {
+  "u": "https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0",
+  "status": 999,
+  "final": "https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0"
+ },
+ {
+  "u": "https://jp.micronations.wiki/wiki/Nusquama",
+  "status": 200,
+  "final": "https://jp.micronations.wiki/wiki/Nusquama"
+ },
+ {
+  "u": "https://jxiv.jst.go.jp",
+  "status": 200,
+  "final": "https://jxiv.jst.go.jp/index.php/jxiv"
+ },
+ {
+  "u": "https://keepachangelog.com/",
+  "status": 200,
+  "final": "https://keepachangelog.com/"
+ },
+ {
+  "u": "https://laws.e-gov.go.jp/",
+  "status": 200,
+  "final": "https://laws.e-gov.go.jp/"
+ },
+ {
+  "u": "https://medium.com/@heaven_livid_frog_333/lists",
+  "status": 403,
+  "final": "https://medium.com/@heaven_livid_frog_333/lists"
+ },
+ {
+  "u": "https://ndlsearch.ndl.go.jp/api/opensearch?any={doi}",
+  "status": 429,
+  "final": "https://ndlsearch.ndl.go.jp/api/opensearch?any={doi}"
+ },
+ {
+  "u": "https://ndownloader.figshare.com/files/70001934",
+  "status": 200,
+  "final": "https://44c1cec316ec56bca76dfd65d2882b20.r2.cloudflarestorage.com/figshare-com-storage/70001934/goldenwindowfigshare.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ff06dacca0bd4b78c42274ace031d878/20261111/auto/s3/aws4_request&X-Amz-Date=20261111T082129Z&X-Amz-Expires=10&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22golden-window-figshare.pdf%22&response-content-type=application%2Fpdf&X-Amz-Signature=d064684ae19a33110a285089d649270bf8df3be0a7cc5cd70cef63c6cf37b0a4"
+ },
+ {
+  "u": "https://ndownloader.figshare.com/files/70212858",
+  "status": 200,
+  "final": "https://44c1cec316ec56bca76dfd65d2882b20.r2.cloudflarestorage.com/figshare-com-storage/70212858/goldenwindowfigsharev2.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ff06dacca0bd4b78c42274ace031d878/20261111/auto/s3/aws4_request&X-Amz-Date=20261111T082129Z&X-Amz-Expires=10&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22golden-window-figshare-v2.pdf%22&response-content-type=application%2Fpdf&X-Amz-Signature=aa807fdc2969eb16059cf49cf79f04d6405db3a8c5151515dc9ee628de4942a8"
+ },
+ {
+  "u": "https://nusquama.vercel.app/",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/"
+ },
+ {
+  "u": "https://nusquama.vercel.app/errata.xml",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/errata.xml"
+ },
+ {
+  "u": "https://nusquama.vercel.app/gazette.xml",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/gazette.xml"
+ },
+ {
+  "u": "https://nusquama.vercel.app/knights.xml",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/knights.xml"
+ },
+ {
+  "u": "https://nusquama.vercel.app/llms-full.txt",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/llms-full.txt"
+ },
+ {
+  "u": "https://nusquama.vercel.app/llms.txt",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/llms.txt"
+ },
+ {
+  "u": "https://nusquama.vercel.app/policies/privacy.html",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/policies/privacy.html"
+ },
+ {
+  "u": "https://nusquama.vercel.app/policies/terms.html",
+  "status": 200,
+  "final": "https://nusquama.vercel.app/policies/terms.html"
+ },
+ {
+  "u": "https://oad.simmons.edu/oadwiki/Disciplinary_repositories",
+  "status": 403,
+  "final": "https://oad.simmons.edu/oadwiki/Disciplinary_repositories"
+ },
+ {
+  "u": "https://oag.ca.gov/privacy/ccpa",
+  "status": 200,
+  "final": "https://oag.ca.gov/privacy/ccpa"
+ },
+ {
+  "u": "https://openalex.org/A5133339711",
+  "status": 200,
+  "final": "https://openalex.org/authors/A5133339711"
+ },
+ {
+  "u": "https://opencitations.net/index/api/v1/citations/{doi}",
+  "status": 400,
+  "final": "https://api.opencitations.net/index/v1/citations/%7Bdoi%7D"
+ },
+ {
+  "u": "https://opensource.org/licenses/MIT",
+  "status": 200,
+  "final": "https://opensource.org/license/MIT"
+ },
+ {
+  "u": "https://orcid.org",
+  "status": 200,
+  "final": "https://orcid.org/"
+ },
+ {
+  "u": "https://orcid.org/",
+  "status": 200,
+  "final": "https://orcid.org/"
+ },
+ {
+  "u": "https://orcid.org/0000-0000-0000-0000",
+  "status": 200,
+  "final": "https://orcid.org/0000-0000-0000-0000"
+ },
+ {
+  "u": "https://orcid.org/0009-0000-1406-0547",
+  "status": 200,
+  "final": "https://orcid.org/0009-0000-1406-0547"
+ },
+ {
+  "u": "https://orkg.org/u/82a7b4bb-37c0-4aaf-a6fd-13165a894046",
+  "status": 200,
+  "final": "https://orkg.org/u/82a7b4bb-37c0-4aaf-a6fd-13165a894046"
+ },
+ {
+  "u": "https://osf.io/mq7za/",
+  "status": 200,
+  "final": "https://osf.io/mq7za/"
+ },
+ {
+  "u": "https://osf.io/phtr4/",
+  "status": 200,
+  "final": "https://osf.io/phtr4/"
+ },
+ {
+  "u": "https://osf.io/preprints/metaarxiv",
+  "status": 200,
+  "final": "https://osf.io/preprints/metaarxiv"
+ },
+ {
+  "u": "https://osf.io/preprints/osf",
+  "status": 200,
+  "final": "https://osf.io/preprints/osf"
+ },
+ {
+  "u": "https://osf.io/preprints/socarxiv",
+  "status": 200,
+  "final": "https://osf.io/preprints/socarxiv"
+ },
+ {
+  "u": "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280",
+  "status": 403,
+  "final": "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8730280"
+ },
+ {
+  "u": "https://philarchive.org/rec/NEMFSI",
+  "status": 403,
+  "final": "https://philarchive.org/rec/NEMFSI"
+ },
+ {
+  "u": "https://philarchive.org/rec/NEMMOI",
+  "status": 403,
+  "final": "https://philarchive.org/rec/NEMMOI"
+ },
+ {
+  "u": "https://philarchive.org/rec/NEMMRA",
+  "status": 403,
+  "final": "https://philarchive.org/rec/NEMMRA"
+ },
+ {
+  "u": "https://philarchive.org/rec/NEMTNA",
+  "status": 403,
+  "final": "https://philarchive.org/rec/NEMTNA"
+ },
+ {
+  "u": "https://philpeople.org/profiles/takuyanemoto",
+  "status": 403,
+  "final": "https://philpeople.org/profiles/takuyanemoto"
+ },
+ {
+  "u": "https://plu.mx/plum/a/?ssrn_id=7358779",
+  "status": 200,
+  "final": "https://plu.mx/plum/a/?ssrn_id=7358779"
+ },
+ {
+  "u": "https://plu.mx/plum/a/?ssrn_id=7358818",
+  "status": 200,
+  "final": "https://plu.mx/plum/a/?ssrn_id=7358818"
+ },
+ {
+  "u": "https://plu.mx/plum/a/?ssrn_id=7446961",
+  "status": 200,
+  "final": "https://plu.mx/plum/a/?ssrn_id=7446961"
+ },
+ {
+  "u": "https://preprints.scielo.org",
+  "status": 200,
+  "final": "https://preprints.scielo.org/index.php/scielo"
+ },
+ {
+  "u": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+  "status": 200,
+  "final": "https://proceedings.mlr.press/v81/buolamwini18a.html"
+ },
+ {
+  "u": "https://profile.hcommons.org/members/nemoto200101/",
+  "status": 200,
+  "final": "https://profile.hcommons.org/members/nemoto200101/"
+ },
+ {
+  "u": "https://raw.githubusercontent.com/",
+  "status": 200,
+  "final": "https://github.com/"
+ },
+ {
+  "u": "https://researchmap.jp/takuyanemoto",
+  "status": 403,
+  "final": "https://researchmap.jp/takuyanemoto"
+ },
+ {
+  "u": "https://roar.eprints.org/27422/",
+  "status": 200,
+  "final": "https://roar.eprints.org/27422/"
+ },
+ {
+  "u": "https://schema.org",
+  "status": 200,
+  "final": "https://schema.org/"
+ },
+ {
+  "u": "https://scholar.google.com/citations?user=_HEl3dYAAAAJ",
+  "status": 403,
+  "final": "https://scholar.google.com/citations?user=_HEl3dYAAAAJ"
+ },
+ {
+  "u": "https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja",
+  "status": 403,
+  "final": "https://scholar.google.com/citations?user=_HEl3dYAAAAJ&hl=ja"
+ },
+ {
+  "u": "https://semver.org/",
+  "status": 200,
+  "final": "https://semver.org/"
+ },
+ {
+  "u": "https://sites.google.com/view/nemototakuya/",
+  "status": 200,
+  "final": "https://sites.google.com/view/nemototakuya/"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/abs/2026.0001.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/abs/2026.0001.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/abs/2026.0002.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/abs/2026.0002.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/abs/2026.0003.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/abs/2026.0003.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/abs/2026.0004.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/abs/2026.0004.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/abs/2026.0005.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/abs/2026.0005.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/automation.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/automation.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/automation.ja.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/automation.ja.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/contact.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/contact.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/disclaimer.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/disclaimer.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/disclaimer.ja.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/disclaimer.ja.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/faq.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/faq.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/llms.txt",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/llms.txt"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/oai",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/oai"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/oai?verb=Identify",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/oai?verb=Identify"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0001v1.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0001v1.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0001v2.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0001v2.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0002v1.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0002v1.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0003v1.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0003v1.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0004v1.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0004v1.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/pdf/2026.0005v1.pdf",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/pdf/2026.0005v1.pdf"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/moderation.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/moderation.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/privacy.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/privacy.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/privacy.ja.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/privacy.ja.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/submission.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/submission.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/submission.ja.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/submission.ja.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/takedown.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/takedown.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/terms.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/terms.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/terms.ja.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/terms.ja.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policies/withdrawal.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policies/withdrawal.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/policy.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/policy.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/process.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/process.html"
+ },
+ {
+  "u": "https://sophaxis.vercel.app/repositories.html",
+  "status": 200,
+  "final": "https://sophaxis.vercel.app/repositories.html"
+ },
+ {
+  "u": "https://takuyanemoto.jimdofree.com/",
+  "status": 200,
+  "final": "https://takuyanemoto.jimdofree.com/"
+ },
+ {
+  "u": "https://vercel.com/docs/limits/fair-use-guidelines",
+  "status": 200,
+  "final": "https://vercel.com/docs/limits/fair-use-guidelines"
+ },
+ {
+  "u": "https://vercel.com/legal/acceptable-use-policy",
+  "status": 200,
+  "final": "https://vercel.com/legal/acceptable-use-policy"
+ },
+ {
+  "u": "https://vercel.com/legal/dpa",
+  "status": 200,
+  "final": "https://vercel.com/legal/dpa"
+ },
+ {
+  "u": "https://vercel.com/legal/privacy-notice",
+  "status": 200,
+  "final": "https://vercel.com/legal/privacy-notice"
+ },
+ {
+  "u": "https://vercel.com/legal/terms",
+  "status": 200,
+  "final": "https://vercel.com/legal/terms"
+ },
+ {
+  "u": "https://web.archive.org/save/",
+  "status": 200,
+  "final": "https://web.archive.org/save/"
+ },
+ {
+  "u": "https://works.hcommons.org",
+  "status": 202,
+  "final": "https://works.hcommons.org/"
+ },
+ {
+  "u": "https://works.hcommons.org/records/q36z2-98e12",
+  "status": 202,
+  "final": "https://works.hcommons.org/records/q36z2-98e12"
+ },
+ {
+  "u": "https://works.hcommons.org/records/vaa96-ss949",
+  "status": 202,
+  "final": "https://works.hcommons.org/records/vaa96-ss949"
+ },
+ {
+  "u": "https://www.apple.com/legal/privacy/",
+  "status": 200,
+  "final": "https://www.apple.com/legal/privacy/"
+ },
+ {
+  "u": "https://www.apple.com/legal/privacy/en-ww/",
+  "status": 200,
+  "final": "https://www.apple.com/legal/privacy/en-ww/"
+ },
+ {
+  "u": "https://www.cambridge.org/core/journals/historical-journal/article/new-source-for-mores-utopia/47DF9A7A407D4BB379DF6265220CB5B0",
+  "status": 200,
+  "final": "https://www.cambridge.org/core/journals/historical-journal/article/abs/new-source-for-mores-utopia/47DF9A7A407D4BB379DF6265220CB5B0"
+ },
+ {
+  "u": "https://www.crossref.org/operations-and-sustainability/privacy/",
+  "status": 200,
+  "final": "https://www.crossref.org/operations-and-sustainability/privacy/"
+ },
+ {
+  "u": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{doi}%22&format=json",
+  "status": 200,
+  "final": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{doi}%22&format=json"
+ },
+ {
+  "u": "https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC",
+  "status": 200,
+  "final": "https://www.growkudos.com/profile/%E5%8D%93%E5%93%89_%E6%A0%B9%E6%9C%AC"
+ },
+ {
+  "u": "https://www.jacar.archives.go.jp/das/meta/C12070491000",
+  "status": 200,
+  "final": "https://www.jacar.archives.go.jp/das/meta/C12070491000"
+ },
+ {
+  "u": "https://www.lancers.jp/profile/Itizyou",
+  "status": 405,
+  "final": "https://www.lancers.jp/profile/Itizyou"
+ },
+ {
+  "u": "https://www.merlot.org/merlot/viewMaterial.htm?id=824240178",
+  "status": 200,
+  "final": "https://www.merlot.org/merlot/viewMaterial.htm?id=824240178"
+ },
+ {
+  "u": "https://www.nature.com/articles/d41586-026-01595-5",
+  "status": 200,
+  "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fd41586-026-01595-5&code=997f3516-849e-4f0a-aa19-aae2cd44a044"
+ },
+ {
+  "u": "https://www.nature.com/articles/nbt.3780",
+  "status": 200,
+  "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fnbt.3780&code=e4bfa42f-6f31-4150-ada1-1a7c71c9fcc5"
+ },
+ {
+  "u": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1951-03-03;178~art8",
+  "status": 200,
+  "final": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1951-03-03;178~art8"
+ },
+ {
+  "u": "https://www.oas.org/juridico/english/sigs/a-40.html",
+  "status": 200,
+  "final": "https://www.oas.org/juridico/english/sigs/a-40.html"
+ },
+ {
+  "u": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09",
+  "status": 200,
+  "final": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/N3dGdVhFTUFNaDd5Z1ZhT2VxYWVaZz09"
+ },
+ {
+  "u": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09",
+  "status": 200,
+  "final": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/NElCQ3c1Nng0L0JZYlNNSFZ2aVNPUT09"
+ },
+ {
+  "u": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09",
+  "status": 200,
+  "final": "https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/detail/cDB4elE1ejd1UDBLZGx6d1NWV2Y5Zz09"
+ },
+ {
+  "u": "https://www.ppc.go.jp/",
+  "status": 200,
+  "final": "https://www.ppc.go.jp/"
+ },
+ {
+  "u": "https://www.ppc.go.jp/personalinfo/faq/APPI_QA/",
+  "status": 200,
+  "final": "https://www.ppc.go.jp/personalinfo/faq/APPI_QA/"
+ },
+ {
+  "u": "https://www.preprints.org",
+  "status": 403,
+  "final": "https://www.preprints.org/"
+ },
+ {
+  "u": "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing",
+  "status": 200,
+  "final": "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"
+ },
+ {
+  "u": "https://www.qeios.com",
+  "status": 200,
+  "final": "https://www.qeios.com/"
+ },
+ {
+  "u": "https://www.researchgate.net/scientific-contributions/Takuya-Nemoto-2367530856",
+  "status": 403,
+  "final": "https://www.researchgate.net/scientific-contributions/Takuya-Nemoto-2367530856"
+ },
+ {
+  "u": "https://www.researchgate.net/scientific-contributions/Takuya-Nemoto-2367530944",
+  "status": 403,
+  "final": "https://www.researchgate.net/scientific-contributions/Takuya-Nemoto-2367530944"
+ },
+ {
+  "u": "https://www.researchsquare.com",
+  "status": 200,
+  "final": "https://www.researchsquare.com/"
+ },
+ {
+  "u": "https://www.scienceopen.com",
+  "status": 403,
+  "final": "https://www.scienceopen.com/"
+ },
+ {
+  "u": "https://www.ssrn.com",
+  "status": 403,
+  "final": "https://www.ssrn.com/"
+ },
+ {
+  "u": "https://www.wantedly.com/id/takuya_nemoto_q",
+  "status": 200,
+  "final": "https://www.wantedly.com/id/takuya_nemoto_q"
+ },
+ {
+  "u": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement:P356={doi_upper}&format=json",
+  "status": 200,
+  "final": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement:P356={doi_upper}&format=json"
+ },
+ {
+  "u": "https://x.com/SophaxisX",
+  "status": 200,
+  "final": "https://x.com/SophaxisX"
+ },
+ {
+  "u": "https://zenodo.org",
+  "status": 200,
+  "final": "https://zenodo.org/"
+ },
+ {
+  "u": "https://zenodo.org/api/records/22057583/files/manifesto_of_imperial_selfhood_revised.pdf/content",
+  "status": 200,
+  "final": "https://zenodo.org/api/records/22057583/files/manifesto_of_imperial_selfhood_revised.pdf/content"
+ },
+ {
+  "u": "https://zenodo.org/api/records/22058254/files/The%20Nobility%20and%20Exemplarity%20of%20the%20Celibate%20Individual%20v2.pdf/content",
+  "status": 200,
+  "final": "https://zenodo.org/api/records/22058254/files/The%20Nobility%20and%20Exemplarity%20of%20the%20Celibate%20Individual%20v2.pdf/content"
+ },
+ {
+  "u": "https://zenodo.org/api/records/22064241/files/Fragmentarian%20Spiritual%20Individualism%20Preprint.pdf/content",
+  "status": 200,
+  "final": "https://zenodo.org/api/records/22064241/files/Fragmentarian%20Spiritual%20Individualism%20Preprint.pdf/content"
+ },
+ {
+  "u": "https://zenodo.org/api/records?q=doi:%22{doi}%22",
+  "status": 400,
+  "final": "https://zenodo.org/api/records?q=doi:%22{doi}%22"
+ },
+ {
+  "u": "https://zenodo.org/badge/DOI/10.5281/zenodo.22335692.svg",
+  "status": 200,
+  "final": "https://zenodo.org/badge/DOI/10.5281/zenodo.22335692.svg"
+ },
+ {
+  "u": "https://zenodo.org/badge/DOI/10.5281/zenodo.22685687.svg",
+  "status": 200,
+  "final": "https://zenodo.org/badge/DOI/10.5281/zenodo.22685687.svg"
+ },
+ {
+  "u": "https://zenodo.org/badge/DOI/10.5281/zenodo.22765695.svg",
+  "status": 200,
+  "final": "https://zenodo.org/badge/DOI/10.5281/zenodo.22765695.svg"
+ },
+ {
+  "u": "https://zenodo.org/communities/sophaxis",
+  "status": 200,
+  "final": "https://zenodo.org/communities/sophaxis/records"
+ }
+]
