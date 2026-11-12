@@ -48,6 +48,9 @@ jobs:
         with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis, fetch-depth: 0 }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0 }
+      # 共通の決めごと 16 の検査は、Nusquama の散文も走る（利用者に作業を割り当てる形が無いか）。読むだけで、つなぎはしない。
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with: { repository: cpsbvbng26-dotcom/nusquama, path: repos/nusquama }
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
