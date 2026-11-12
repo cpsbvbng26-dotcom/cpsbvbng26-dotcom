@@ -1,21 +1,5 @@
 {
- "at": "2026-11-12T08:12:10.996Z",
- "https://oad.simmons.edu/oadwiki/Disciplinary_repositories": {
-  "status": 403,
-  "final": "https://oad.simmons.edu/oadwiki/Disciplinary_repositories",
-  "length": 5750,
-  "cloudflare": true,
-  "hits": [],
-  "heads": [],
-  "rawHeads": []
- },
- "https://oad.simmons.edu/oadwiki/index.php?title=Disciplinary_repositories&action=raw": {
-  "status": 403,
-  "final": "https://oad.simmons.edu/oadwiki/index.php?title=Disciplinary_repositories&action=raw",
-  "length": 5861,
-  "cloudflare": true,
-  "hits": [],
-  "heads": [],
-  "rawHeads": []
- }
+ "at": "2026-11-12T08:12:40.126Z",
+ "snaps": [],
+ "cdxStatus": 200
 }
