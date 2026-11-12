@@ -64,6 +64,7 @@ Personal information received is not passed to a third party without the consent
 A request from the person concerned to disclose, correct, stop using or erase personal information received is accepted at the email address in the section "Statements about people".
 No fee is charged.
 The operator's address is given without delay to a person whose personal information the operator has received, on request.
+The measures taken to keep that personal information secure are also described to that person without delay, on request.
 A complaint about how personal information is handled is accepted at the same email address.
 
 ## Language models
