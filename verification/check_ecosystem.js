@@ -2841,11 +2841,27 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
       }
     };
     repos.forEach((r) => walk(r, ''));
+    /* 決めたことと理由は Claude が書く。2026-11-12 からの決めの行は、決めた者を名乗る。利用者の決めと見分けるためである。
+     * 決めの行：日付に決めの語が続く行（「2026-11-12 に Claude が決めました」「決めました（2026-11-12）」「Decided by Claude on 2026-11-12」の形）。
+     *   日付が 2026-11-12 より前の行と、先の日付を挙げるだけの行は見ない。
+     * 名乗りは Claude か、利用者・著者・運営者・王（owner・operator・author・King）。
+     * 決めごと 16 より前に置かれ、決めた者を書いていなかった三行だけは除く（誰の決めかを、こちらで書き足して作り出さない）。 */
+    /* 決めの語と日付の組を拾い、その組の中か直前に、決めた者の名乗りがあるかを見る（行のどこかに名があるだけでは足りない）。 */
+    const 決めの形 = [/(\d{4}-\d{2}-\d{2}) に、?[^。]{0,40}?(?:決めました|決めて|決めた|採りました|採った|凍結と決め)/g, /(?:決めました|採った|決め)（(\d{4}-\d{2}-\d{2})）/g,
+      /(?:Decided|decided|decisions|Adopted|adopted)[^.]{0,40}? on (\d{4}-\d{2}-\d{2})/g];
+    const 名乗り = /Claude|(利用者|著者|運営者|王)が|by the (owner|operator|author|King)|(owner|operator|author|King) (decided|adopted)/;
+    const 名の無い決め = (l) => 決めの形.some((re) => [...l.matchAll(re)].some((m) => m[1] >= '2026-11-12' && !名乗り.test(l.slice(Math.max(0, m.index - 20), m.index + m[0].length))));
+    const 前から = [['cpsbvbng26-dotcom', 'docs/site-rules.md', '顔写真は置きません'], ['cpsbvbng26-dotcom', 'docs/osf.md', 'OSF のプロジェクトの組み方を決めました'],
+      ['researcher-profile', 'README.md', 'テンプレート']];
     const 出た = [];
     for (const [repo, rel] of files) {
-      for (const [n, l] of 散文の行(read(repo, rel) || '')) for (const w of 形) if (l.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ':' + n + ' 「' + w + '」');
+      for (const [n, l] of 散文の行(read(repo, rel) || '')) {
+        for (const w of 形) if (l.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ':' + n + ' 「' + w + '」');
+        if (名の無い決め(l)
+          && !前から.some(([r, f, t]) => r === repo && f === rel && l.indexOf(t) >= 0)) 出た.push(repo + '/' + rel + ':' + n + ' 決めた者の無い決め');
+      }
     }
-    check('利用者に作業を割り当てる形が、' + repos.length + ' リポジトリの散文（' + files.length + ' ファイル）に無い（共通の決めごと 16）',
+    check('利用者に作業を割り当てる形が、' + repos.length + ' リポジトリの散文（' + files.length + ' ファイル）に無く、2026-11-12 からの決めの行が決めた者を名乗る（共通の決めごと 16）',
       repos.length >= 13 && files.length > 0 && 出た.length === 0, 出た.slice(0, 4).join(' / '));
   }
 
