@@ -8,7 +8,7 @@
 <meta name="description" content="Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p を、その場で回すページ。収束を決めているのはスペクトル半径であって、論文が置いた作用素ノルムの条件ではないことを、数値で見せます。外部リクエストは一切ありません。">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="作用素を回す | 根本卓哉">
-<meta property="og:description" content="ρ(A) < 1 が収束の必要十分条件で、‖A‖₂ < 1 は十分条件にすぎない。その差を、行列を打ち込んで確かめられるページ。">
+<meta property="og:description" content="ρ(A) < 1 が一意の不動点への収束の必要十分条件で、‖A‖₂ < 1 は十分条件にすぎない。その差を、行列を打ち込んで確かめられるページ。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cpsbvbng26-dotcom.vercel.app/trinity.html">
 <link rel="canonical" href="https://cpsbvbng26-dotcom.vercel.app/trinity.html">
@@ -696,7 +696,7 @@ table.steps td.ecol { color: var(--accent); }
   <section class="wrap block">
     <div class="prose reveal">
       <h2 class="serif">何を計算しているか</h2>
-      <p>A = D Q（D は a を並べた対角行列）、b = (I − D) p と置くと、反復は <code>x ← Ax + b</code> です。これが任意の初期値から収束するのは、ρ(A) &lt; 1 のとき、かつそのときに限ります。ρ はスペクトル半径、つまり固有値の絶対値の最大です。</p>
+      <p>A = D Q（D は a を並べた対角行列）、b = (I − D) p と置くと、反復は <code>x ← Ax + b</code> です。これが任意の初期値から同じ一つの不動点へ収束するのは、ρ(A) &lt; 1 のとき、かつそのときに限ります。ρ はスペクトル半径、つまり固有値の絶対値の最大です。</p>
       <p>不動点は <code>(I − A)x = b</code> を解いて求めています。反復を回して近づけたのではなく、直接解いた値です。</p>
       <p>固有値は、Householder 変換で上 Hessenberg 形にしてから、複素数のままシフト付き QR 法を回して取っています。実数のシフトだけだと複素固有値の対で止まるためです。特異値は AᵀA の固有値の平方根で、対称なので Jacobi 回転で取っています。連立一次方程式は部分ピボット付きの Gauss 消去です。外部のライブラリは使っていません。</p>
       <p>縮小になる距離のほうは、B = A/γ と置いて P − BᵀPB = I を解いています。行優先の vec では vec(BᵀPB) = (Bᵀ ⊗ Bᵀ) vec(P) になるので、クロネッカー積で n²×n² の連立一次方程式に落として、上と同じ Gauss 消去で解いています。P が正定値であることはコレスキー分解が通ることで確かめ、λmax・λmin は Jacobi 回転で取っています。‖A‖_P は、y = Lᵀx と置き直したときの作用素 Lᵀ A L⁻ᵀ の 2-ノルムです。</p>
