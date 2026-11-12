@@ -105,6 +105,23 @@ GitHub の利用規約と OSF の利用規約は、GitHub の公開リポジト�
 | ORCID と edX へのリンク | ORCID の利用規約、ORCID の公開 API の利用規約、edX の利用規約 | ORCID の公開 API は非営利の利用に限って許される（再利用の料金を取らず、収益を生む製品や役務に結び付けない）。edX の規約は、他人の権利を侵す内容を載せないことを求める | 頁は ORCID の記録と edX の修了証へリンクするだけ。外の値の見張りは ORCID の公開の記録を週に一度読むが、料金も収益も無い | 問題なし | なし |
 | 配信の Vercel の計画 | Vercel の Fair use Guidelines、Vercel の利用規約 第4節 | Hobby は個人の非営利の利用に限る。Hobby の頁は、Hobby を個人の計画として無料とする | Vercel の API はチームを一つ、プロジェクトを四つ返した。計画の名は返さない。2026-06-01 から 2026-11-12 までの請求を引くと `costs_not_found` が返った | 根拠不足 | 上の「仕事の窓口」の行のとおり、Hobby に当たるとして扱う形を保つ |
 
+## 2026-11-12 の続き：見落としていたもの
+
+同じ日に、読むだけの点検をもう一度、別の手で行いました。
+上の三つの節が見落としていたものが見つかりました。
+前の行は、そのとき何を確かめたかの記録なので、消していません。
+誤っていた前の行は、新しい行の中でそう書き、理由を添えます。
+規約は著作物なので、頼った句だけを引き、取り寄せた所在と日付と SHA-256 を添えます。
+
+| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |
+| --- | --- | --- | --- | --- | --- |
+| 月に一度のリンクの確認（`verification/linkcheck.js`）と edX | edX の利用規約 11.6 | 取り寄せた規約（https://www.edx.org/edx-terms-service、2026-11-12、SHA-256 `2aaa9de04e72d3012164be6f6dc42cf1849caec7d9adf57759fc9cdf0645c5ef`）は、サービスを `any engine, software, tool, agent, device, or mechanism (including spiders, robots, crawlers, and data mining tools) other than the software or search agents provided by edX` で利用することを禁じる | リンクの確認は、SSRN だけを外し、edX の修了証の頁を月に一度、機械で開いていた | 漏れ | edx.org を開かないようにした。転送の先が edx.org に入るときも、そこで止める。`check_ecosystem.js` の 12i が関数を呼んで確かめる。上の取り寄せた周辺の文の節の「ORCID と edX へのリンク」の行は問題なしとしていたが、リンクの確認については誤りだった。頁が修了証へリンクすることだけを見て、同じリンクを機械で開く仕事を見ていなかったからです。2026-11-12 に Claude が決めました。規約の文は、edX の用意したもの以外の道具での利用をどの読みでも止めているからです |
+| 月に一度のリンクの確認と DataCite の頁 | DataCite の利用規約 | 取り寄せた規約（https://datacite.org/terms-and-conditions/、2026-11-12、SHA-256 `25ecf43469fd21aa1937136d6e89b8dc5675c68c9e7e35bdeab3c6aa1256d05c`）は、`any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction and data harvesting) on or in relation to this website` を、DataCite の書面の同意なしに行わないことを求める | リンクの確認は、datacite.org と support.datacite.org の頁を月に一度開いていた。API（api.datacite.org）は、もとから外していた | 漏れ | datacite.org の頁を開かないようにした。API は、これまでどおり別の行で外れる。`check_ecosystem.js` の 12i が確かめる。2026-11-12 に Claude が決めました。月に一度の確認は、この規約が止める系統立った自動の取得に当たりうるからです |
+| 月に一度のリンクの確認と Google Scholar・Academia.edu・ResearchGate | なし | 使う場の規約に触れないこと | 三つの場の規約の文は取り寄せていない。リンクの確認は、三つの場の頁と ResearchGate の DOI（10.13140/RG）を月に一度開いていた | 根拠不足 | 三つの場の頁と ResearchGate の DOI を開かないようにした。`check_ecosystem.js` の 12i が確かめる。2026-11-12 に Claude が決めました。開いてよいと確かめられないので、外す側に倒しました |
+| `verification/check_site.js` の決めごと 10 の見張りの注釈 | 個人情報保護法第2条、決めごと 10 | 個人情報は生存する個人に関する情報で、特定の個人を識別できるもの。決めごと 10 は、存命の人物を「両親」という語までにし、一人を指す語と、その人の計画を書かない | 見張りの注釈が、かつて英語版が書いていた中身を、一人を指す語と事業の計画のまま書き写していた。注釈は公開のリポジトリにあり、誰でも読める | 誤り | 注釈を「存命の第三者の事業計画」に書き換え、中身を写さないようにした。git の履歴には、もとの注釈が残っている。履歴は書き換えない。2026-11-12 に Claude が決めました。注釈は記録ではないが、公開している点は頁と変わらないからです |
+| `verification/check_site.js` の決めごと 10 の見張りの範囲 | 個人情報保護法第2条、決めごと 10 | 同上 | 見張りの式は一人を指す語しか見ていなかった。notes/afterlife.html と notes/afterlife.en.html が、誓いについて両親の考えを書いていたのを通していた。上の点検の表の「先祖の記載」の行は、この式を根拠に問題なしとしていた | 誤り | 頁の一文は researcher-profile の設定から消し、二頁を作り直した。式を `verification/kinship.js` に移し、両親に考え・同意・計画・気持ちを帰す文を止める式を足した。`check_site.js` が十の面に、`check_ecosystem.js` の 12i が self-correction の登録簿と researcher-profile の設定に、同じ式を当てる。2026-11-12 に Claude が決めました。続柄の一語までという決めを、語の数ではなく中身で見るためです |
+| トップの五頁と README の自己紹介の、開業届を出す予定の文 | 所得税法第229条 | 取り寄せた文は、届出書を「その事実があつた日の属する年分の所得税に係る確定申告期限までに、税務署長に提出しなければならない」と定める | 頁と README は researcher-profile の site.json の写しで、出す予定の文を五つの言語で載せていた | 表現 | researcher-profile の設定から予定の文を消し、頁と README を作り直した。事実の文は残した。上の点検の表の「README の開業届は出していません」の行は、予定の文を見落としていた。2026-11-12 に Claude が決めました。理由は researcher-profile の記録の同じ行にあります |
+
 ## 調べた法令
 
 - 著作権法（第2条、第10条、第13条、第21条、第23条、第32条、第48条、第51条から第54条、第57条）
@@ -122,7 +139,7 @@ GitHub の利用規約と OSF の利用規約は、GitHub の公開リポジト�
 - GitHub の利用規約、Vercel の利用規約と Fair use Guidelines、Zenodo の利用規約と方針、OSF の利用規約、CC BY 4.0 の法的条項
 - 著作権法附則（第2条、第7条）、著作権法平成28年改正附則（第7条）
 - 個人情報保護法施行令（第4条、第10条）、電気通信事業法施行規則（第59条）
-- SSRN・PhilPapers・ORCID（公開 API を含む）・edX の利用規約、PhilArchive の FAQ と案内
+- SSRN・PhilPapers・ORCID（公開 API を含む）・edX・DataCite の利用規約、PhilArchive の FAQ と案内
 - 文化庁「著作権テキスト（令和8年度版）」
 
 ## 取り寄せられなかった文
@@ -132,6 +149,7 @@ GitHub の利用規約と OSF の利用規約は、GitHub の公開リポジト�
 - 引用についての判例は取り寄せていません。裁判所の判例の検索は、結果をスクリプトで描く頁で、取り寄せの仕事からは読めませんでした。代わりに文化庁の著作権テキストを取り寄せました。判例ではありません。
 - SSRN の投稿の要件の頁と、PhilArchive の投稿の手引きの頁は取り寄せていません。README が引く句のうち、取り寄せた頁に無いものの元です。
 - Vercel のどの計画で配っているかは、確かめていません。Vercel の API が計画の名を返さないからです。
+- Google Scholar・Academia.edu・ResearchGate の利用規約は取り寄せていません。月に一度のリンクの確認は、この三つの場を開かないので、規約の読みには頼っていません。
 
 ## 弁護士について
 
