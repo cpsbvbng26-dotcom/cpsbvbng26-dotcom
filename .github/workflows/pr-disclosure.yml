@@ -1,0 +1,28 @@
+name: 開示
+
+# PR の段階で、言語モデル利用の開示を確かめる（決めごと 8）。
+# 枝のコミットに Claude の Co-Authored-By があれば、PR の本文にも開示の行が要る。
+# マージのコミットの本文はマージの時に決まるので、ここでは確かめられない。
+# マージに渡す二行を要約に出す。マージのあとの件数の検査（check_ecosystem.js）はそのまま残す。
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  disclosure:
+    name: PR の本文の開示
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22
+      - run: node verification/check_pr_disclosure.js --self-test
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node verification/check_pr_disclosure.js
