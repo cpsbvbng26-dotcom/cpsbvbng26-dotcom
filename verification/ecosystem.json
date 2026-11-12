@@ -2565,6 +2565,16 @@
           "repo": "deposit-check",
           "file": "README.md",
           "式": "apis\\[\"([^\"(]*?) \\(GET only\\)\"\\]"
+        },
+        {
+          "repo": "deposit-check",
+          "file": ".zenodo.json",
+          "式": "deposit-check reads the public APIs of ([^,]*(?:, [^,]*)*?), and says"
+        },
+        {
+          "repo": "deposit-check",
+          "file": "package.json",
+          "式": "\"description\": \"[^\"]*?reading the public APIs of ([^\"]*?)\\.\""
         }
       ]
     },
@@ -2749,7 +2759,7 @@
         "cpsbvbng26-dotcom": {
           "英": [
             "The texts, the structured data and the images are CC BY 4.0 (LICENSE); the site implementation and the check scripts are MIT (LICENSE-CODE).",
-            "The licence field of this record names both; each covers only its own part."
+            "The licence field of this record covers the texts, the structured data and the images only."
           ],
           "和": [
             "文章・構造化データ・画像は CC BY 4.0（LICENSE）、サイトの実装と検査のスクリプトは MIT（LICENSE-CODE）です。",
@@ -3196,5 +3206,122 @@
       "README.md",
       "README.en.md"
     ]
+  },
+  "十度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、十度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。一、引用情報（CITATION.cff・.zenodo.json・codemeta.json・package.json）が、消えた頁の振る舞いを書かない。cpsbvbng26-dotcom の二つは、どの頁も外へ要求を出さず connect-src が 'none' だと書き、それが pages.json のどの頁でも本当であること。二、license の欄を語る文と欄の値の突き合わせは 12l。三、PhilArchive の三篇は、五言語の設定と頁と README が、載ったこと・一篇の削除を 2026-09-26 に依頼したこと・いまの状態はここから確かめていないことを書き、現在形で三篇とも載っているとは書かない。四、OSF のプロジェクトの説明の欄（DataCite が返す文）の、各リポジトリを部品とする文を、どのリポジトリにも置かない。記録はその文を引いて、残る危険として書く。",
+    "節": "## 2026-11-12 の続き：十度目の見落とし",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "deposit-check",
+      "researcher-profile"
+    ],
+    "決めた": "2026-11-13 に Claude が決めました",
+    "弁護士": [
+      "弁護士は、この節を見ていません。",
+      "No lawyer has reviewed this section."
+    ],
+    "見ないファイル": "^(?:docs/legal-audit-2026-11-12\\.md|verification/ecosystem\\.json|verification/check_ecosystem\\.js)$",
+    "要求": {
+      "古い例外": "照会を押した|問い合わせを除いて|except (?:for )?the DOI (?:lookup|query)|query button",
+      "引用情報": "(?:^|/)(?:CITATION\\.cff|\\.zenodo\\.json|codemeta\\.json|package\\.json)$",
+      "文": {
+        "CITATION.cff": [
+          "サイトのどの頁も、外部へリクエストを出さない。",
+          "どの頁の Content-Security-Policy も、connect-src を 'none' にしている。"
+        ],
+        ".zenodo.json": [
+          "サイトのどの頁も、外部へリクエストを出しません。",
+          "どの頁の Content-Security-Policy も、connect-src を 'none' にしています。"
+        ]
+      }
+    },
+    "PhilArchive": {
+      "面": {
+        "researcher-profile/site.json": "ja",
+        "cpsbvbng26-dotcom/index.html": "ja",
+        "cpsbvbng26-dotcom/README.md": "ja",
+        "researcher-profile/site.en.json": "en",
+        "cpsbvbng26-dotcom/index.en.html": "en",
+        "cpsbvbng26-dotcom/README.en.md": "en",
+        "researcher-profile/site.de.json": "de",
+        "cpsbvbng26-dotcom/index.de.html": "de",
+        "researcher-profile/site.fr.json": "fr",
+        "cpsbvbng26-dotcom/index.fr.html": "fr",
+        "researcher-profile/site.it.json": "it",
+        "cpsbvbng26-dotcom/index.it.html": "it"
+      },
+      "書く": {
+        "ja": [
+          "PhilArchive には三篇とも載りました。",
+          "門が下りていない一篇は、2026-09-26 に削除を依頼しました。",
+          "いま PhilArchive に残っているかは、ここからは確かめていません。",
+          "査読誌に出すために、Zenodo・SSRN・PhilArchive から下ろすことはしません。"
+        ],
+        "en": [
+          "On PhilArchive all three were posted",
+          "Deletion of the third was requested on 2026-09-26.",
+          "Whether it is still on PhilArchive has not been checked from here.",
+          "None is taken down from Zenodo, SSRN or PhilArchive in order to submit to a journal."
+        ],
+        "de": [
+          "Auf PhilArchive erschienen alle drei",
+          "Für den dritten wurde am 2026-09-26 die Löschung beantragt.",
+          "Ob er noch auf PhilArchive steht, wurde von hier aus nicht geprüft.",
+          "Für eine Einreichung bei einer Zeitschrift wird keiner von Zenodo, SSRN oder PhilArchive genommen."
+        ],
+        "fr": [
+          "Sur PhilArchive, les trois ont été mis en ligne",
+          "La suppression du troisième a été demandée le 2026-09-26.",
+          "Sa présence actuelle sur PhilArchive n’a pas été vérifiée d’ici.",
+          "aucun n’est enlevé de Zenodo, de SSRN ou de PhilArchive pour être soumis à une revue."
+        ],
+        "it": [
+          "Su PhilArchive sono stati pubblicati tutti e tre",
+          "Per il terzo è stata chiesta la cancellazione il 2026-09-26.",
+          "Se sia ancora su PhilArchive non è stato verificato da qui.",
+          "nessuno viene tolto da Zenodo, SSRN o PhilArchive per inviarlo a una rivista."
+        ]
+      },
+      "所在の欄": {
+        "ja": "NEMFSI</a>（2026-09-26 に削除を依頼）",
+        "en": "NEMFSI</a> (deletion requested on 2026-09-26)",
+        "de": "NEMFSI</code></a> (Löschung am 2026-09-26 beantragt)",
+        "fr": "NEMFSI</code></a> (suppression demandée le 2026-09-26)",
+        "it": "NEMFSI</code></a> (cancellazione richiesta il 2026-09-26)"
+      },
+      "書かない": [
+        "三篇とも載っています",
+        "all three are posted",
+        "Auf PhilArchive stehen alle drei",
+        "les trois figurent",
+        "figurano tutti e tre",
+        "Zenodo と PhilArchive と SSRN に置いたまま",
+        "remain on Zenodo, PhilArchive and SSRN",
+        "auf Zenodo, PhilArchive und SSRN",
+        "restent sur Zenodo, PhilArchive et SSRN",
+        "su Zenodo, PhilArchive e SSRN"
+      ],
+      "記録の面": {
+        "cpsbvbng26-dotcom": [
+          "docs/joss.md",
+          "docs/external-evaluations.md"
+        ]
+      }
+    },
+    "OSF": {
+      "書かない": [
+        "Each repository is a component",
+        "各リポジトリは部品として置き"
+      ],
+      "記録に書くこと": [
+        "https://api.datacite.org/dois/10.17605/osf.io/7kr5n",
+        "Each repository is a component and links to its GitHub repository",
+        "各リポジトリは部品として置き、GitHub につないでいます。",
+        "df234f07e9e8090fc56d9ac4c6c1ed96af2376da36dee5611e7ed20a6d010662",
+        "https://api.datacite.org/dois/10.5281/zenodo.24034360",
+        "外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出しません。",
+        "c392091eb699e7ddd3cf1b13b29a7cfcb405669c344db71d3f1594459fffdeea"
+      ]
+    }
   }
 }

@@ -287,6 +287,43 @@ GitHub Pages が枝から頁を配るときに GitHub が動かす仕事と、De
 
 弁護士は、この節を見ていません。
 
+## 2026-11-12 の続き：十度目の見落とし
+
+読むだけの点検を、十度目に別の手で行いました。
+上の節が見落としていたものが見つかりました。
+直した日は、日本時間で 2026-11-13 です。
+前の行は、そのとき何を確かめたかの記録なので、消していません。
+誤っていた前の行は、新しい行の中でそう書き、理由を添えます。
+見つかったものは四つです。
+一つ目は、CITATION.cff と .zenodo.json が、消した頁の振る舞いを書いていたことです。二つは、利用者が照会を押したときの DOI 問い合わせを除いて、外部へリクエストを出さないと書いていました。DOI の照会の頁は、日本時間の 2026-09-08 3 時 30 分のコミット `1541d29` で消してあります。いまは、どの頁の `connect-src` も `'none'` です。
+二つ目は、.zenodo.json の notes が、ライセンスの欄は二つを挙げると書いていたことです。欄は `cc-by-4.0` 一つです。
+三つ目は、トップの頁の PhilArchive の段です。五言語とも「三篇とも載っています」と現在形で書き、同じ頁の所在の欄は、一篇の削除を 2026-09-26 に依頼したと書いていました。
+四つ目は、OSF のプロジェクトの説明の欄です。DataCite が返す文は、各リポジトリを部品として置くと書いています。[osf.md](osf.md) は、部品を作らないと決めています。
+
+DataCite の記録は、日本時間の 2026-11-13 7 時 51 分に api.datacite.org から読みました。
+一つは https://api.datacite.org/dois/10.5281/zenodo.24034360 で、このリポジトリの版 1.0.0 の記録です。応答の全文の SHA-256 は `c392091eb699e7ddd3cf1b13b29a7cfcb405669c344db71d3f1594459fffdeea` です。
+その要旨の欄は「外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出しません。」を含みます。
+ライセンスの欄は `cc-by-4.0` 一つです。説明の欄（Other）は「The texts are CC BY 4.0 (LICENSE); the code is MIT (LICENSE-CODE).」で、欄が二つを挙げるとは書いていません。
+もう一つは https://api.datacite.org/dois/10.17605/osf.io/7kr5n で、OSF のプロジェクトの記録です。応答の全文の SHA-256 は `df234f07e9e8090fc56d9ac4c6c1ed96af2376da36dee5611e7ed20a6d010662` です。
+その要旨の欄は「Each repository is a component and links to its GitHub repository; the citable versions are deposited at Zenodo, and papers are cited by their Zenodo DOIs.」と「各リポジトリは部品として置き、GitHub につないでいます。」を含みます。
+PhilArchive の三篇の事実は、[doi-index.md](doi-index.md) の「削除した所在」の節と、[submission-disclosure.md](submission-disclosure.md) の「置き場を絞った」の節から取りました。
+二つとも、`NEMFSI` の削除を 2026-09-26 に依頼したことと、PhilPapers が削除を依頼として受け付けることを書き、消えたことは書いていません。
+PhilArchive の頁は、作業環境から開いていません。いまの状態は確かめていません。
+13 のリポジトリをまたぐ検査は、このリポジトリの `verification/check_ecosystem.js` の 12l と 12q に足しました。
+
+| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |
+| --- | --- | --- | --- | --- | --- |
+| CITATION.cff の abstract と .zenodo.json の description の、外部へのリクエストの一文 | なし（表示の正確さ） | 頁の振る舞いを、いまの頁のとおりに書くこと | 二つは、消した DOI の照会の頁を例外に挙げていました。いまはどの頁の `connect-src` も `'none'` で、`check_site.js` が全部の頁で見ています。上の点検の表の「README の CSP の記述」の行は、README を直しましたが、この二つのファイルを見ていませんでした。Zenodo の版 1.0.0 の要旨も、同じ一文を含んでいます | 誤り | 二つを、サイトのどの頁も外部へリクエストを出さず、どの頁の Content-Security-Policy も `connect-src` を `'none'` にしていると書き直しました。Zenodo の版 1.0.0 の要旨は凍結されており、この一文を含んだまま残ります。Zenodo の版は作業環境から作れません。次の版が作られれば、その要旨は直した文になります。2026-11-13 に Claude が決めました。頁を消したときに直すべきだった文が、引用情報にだけ残っていたためです |
+| .zenodo.json の notes の、ライセンスの欄を語る一文 | 著作権法第21条 | 上の四度目の見落としの節の同じ行と同じです。欄が掛かる範囲を、欄の値のとおりに書くこと | notes は「The licence field of this record names both; each covers only its own part.」と書いていました。欄（`license`）は `cc-by-4.0` 一つで、DataCite の版 1.0.0 の記録も `cc-by-4.0` 一つです。この一文は、上の四度目の見落としの節の「CITATION.cff の message と .zenodo.json の notes」の行で書いたものです。その行は CITATION.cff の欄（二つを挙げる）に合わせて、.zenodo.json にも同じ形の文を置いており、誤りでした | 誤り | 「The licence field of this record covers the texts, the structured data and the images only.」に直しました。MIT の部分（サイトの実装と検査のスクリプト、LICENSE-CODE）は、その前の文が書いています。CITATION.cff の欄は二つを挙げているので、message の文はそのままです。2026-11-13 に Claude が決めました。欄が一つしか持てない記録で、二つを挙げると書くことはできないためです |
+| トップの五言語の頁（index.html・index.en.html・index.de.html・index.fr.html・index.it.html）と README（日英）の、PhilArchive の三篇の段 | なし（頁が書く事実） | 記録にある事実だけを、どの言語でも同じに書くこと。確かめていないことは、確かめていないと書くこと | 段は、三篇とも PhilArchive に載っていると現在形で書いていました。同じ頁の所在の欄は、`NEMFSI` の削除を 2026-09-26 に依頼したと書いていました。記録は、依頼したことだけを書き、消えたことは書いていません。「プレプリントは動かしません」の段も、Zenodo と PhilArchive と SSRN に置いたままにすると書いていました。その段は 2026-09-15 の決めで、削除の依頼より前のものです | 誤り | 生成もとの researcher-profile の五つの設定を、三篇が載ったこと、門が下りていない一篇の削除を 2026-09-26 に依頼したこと、いまも残っているかはここから確かめていないことに直しました。「プレプリントは動かしません」の段は、査読誌に出すために Zenodo・SSRN・PhilArchive から下ろさないことに絞りました。頁を作り直し、CSP と README の写しを入れ直しました。2026-11-13 に Claude が決めました。同じ頁の二か所が食い違わず、記録より先の事実を書かないためです |
+| `docs/joss.md` と `docs/external-evaluations.md` の同じ二つの文 | なし（記録が書く事実） | 同じ | joss.md は「Zenodo と PhilArchive と SSRN に置いたままにします」と、external-evaluations.md は断片主義的精神的個人主義が PhilArchive に「載っています」と書いていました | 表現 | 頁と同じ形に直しました。2026-11-13 に Claude が決めました。頁と記録で、同じ事実を同じ時制で書くためです |
+| OSF のプロジェクト（`10.17605/osf.io/7kr5n`）の説明の欄 | なし（表示の正確さ） | 運営者の名で出ている文が、決めたことと合うこと | DataCite が返す要旨は、各リポジトリを部品として置くと書いています（上に引いた文）。[osf.md](osf.md) は部品を作らないと決め、説明の欄にその文が残っていることを書いています。欄は運営者のアカウントにあり、作業環境から触れません。このリポジトリと 12 のリポジトリのどの頁にも、この文はありませんでした | 表現 | 欄は書き換えていません。作業環境から触れないためです。残る危険として、DataCite の文を所在と SHA-256 とともにここに引きました。13 のリポジトリのどのファイルにも、この文を置かないことを 12q が見ます。2026-11-13 に Claude が決めました。触れられないものを、触れられないまま記録に残すためです |
+| 検査（`verification/check_ecosystem.js`） | なし | 四つを、13 のリポジトリで機械で固めること | README と頁の検査は、引用情報を読んでいませんでした。12l は、ライセンスの文があることだけを見て、欄の値を読んでいませんでした。PhilArchive の段を時制で見る検査はありませんでした | 漏れ | 12l に、.zenodo.json を持つ 12 のリポジトリで、notes と CITATION.cff の message が欄について書くことを欄の値と突き合わせる検査を足しました。deposit-check の .zenodo.json と package.json も、12l の読む API の名乗りの面に足しました。12q を足し、消えた照会の頁を例外に挙げる文がどのファイルにも無いこと、pages.json のどの頁の `connect-src` も `'none'` であること、PhilArchive の段を五言語の設定と頁と README が記録のとおりに書くこと、OSF の部品の文がどこにも無いこと、十度目の節がそろうことを見ます。どれも壊して落ちることを確かめました。2026-11-13 に Claude が決めました。一つのファイルを直しても、同じ文が別の面に残ることを止めるためです |
+
+この表の判定は、誤り 3、漏れ 1、表現 2 です。
+
+弁護士は、この節を見ていません。
+
 ## 調べた法令
 
 - GitHub の利用規約（I 節）と GitHub の追加製品の規約（Actions の節。2026-11-13 に `github/site-policy` から直に取り寄せた）
