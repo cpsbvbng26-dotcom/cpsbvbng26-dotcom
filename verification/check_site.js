@@ -608,12 +608,16 @@ ok('本文の核に置かないと決めたものが出ていない', offenders.
 {
   const 受注 = [['ランサーズ', 'lancers.jp'], ['ココナラ', 'coconala.com'],
                 ['クラウドワークス', 'crowdworks.jp'], ['LinkedIn', 'linkedin.com']];
-  const cv = read('cv.html');
-  const ずれ = 受注.filter(([name, host]) => !new RegExp(
-    '<a class="link" href="https://[^"]*' + host.replace('.', '\\.')
-    + '[^"]*"[^>]*>' + name + ' <span>独立での案件募集</span></a>').test(cv));
-  ok('配っている頁で、四つの受注先が同じ説明文で揃っている',
-     ずれ.length === 0, ずれ.map((x) => x[0]).join(', '));
+  /* **配っている頁には置かない**（2026-11-12 の続き）。Vercel の無料の枠（Hobby）は個人の非営利の
+   * 利用に限られ、役務の販売の広告を商用の例に挙げる。受注の場への道と「案件募集」は、
+   * GitHub の上の README にだけ置く。頁のどれかに戻ったら落とす。 */
+  const 配る = PAGES.filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+  ok('配っている頁（' + PAGES.length + ' 頁）に、受注の場への道と案件募集の語が無い',
+     配る.length === 0, 配る.join(', '));
+  const データ = ['catalog.json', 'catalog.bib', 'sitemap.xml', 'robots.txt']
+    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+  ok('配っているデータ（catalog.json・catalog.bib・sitemap.xml・robots.txt）にも、受注の場への道が無い',
+     データ.length === 0, データ.join(', '));
 
   const md = read('README.md');
   const 抜け = 受注.filter(([, host]) => !new RegExp(
@@ -626,13 +630,6 @@ ok('本文の核に置かないと決めたものが出ていない', offenders.
    * ウェブの組に混ざったら落とす。README でも、別の折りたたみに置く。 */
   {
     const 仕事 = 受注.map(([, host]) => host).concat(['wantedly.com']);
-    const 見出し = '<div class="group-name">仕事の窓口 —— 研究とは別</div>';
-    const i = cv.indexOf(見出し);
-    const 前 = i >= 0 ? cv.slice(0, i) : cv;
-    const 後 = i >= 0 ? cv.slice(i) : '';
-    const 混ざり = 仕事.filter((h) => 前.indexOf(h) >= 0 || 後.indexOf(h) < 0);
-    ok('CV で、仕事の窓口が研究のリンクと別の組にある', i >= 0 && 混ざり.length === 0,
-       i < 0 ? '組の見出しが無い' : (混ざり.length ? 混ざり.join(', ') : 仕事.length + ' 件とも'));
     const 分け = [['README.md', '<summary>仕事の窓口 —— 研究とは別</summary>'],
                   ['README.en.md', '<summary>Work channels, separate from research</summary>']];
     const 外れ = [];

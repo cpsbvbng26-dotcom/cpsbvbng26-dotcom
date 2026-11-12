@@ -1538,34 +1538,47 @@
     ]
   },
   "免責": {
-    "_": "10 リポジトリに共通の免責事項。日本語が正で、英語は訳。免責は、消費者契約法第8条（軽過失に限ることを明らかにしない一部の免除を無効とする第3項を含む）と第10条で無効にならない形に限る。読むことを同意とみなさない（民法第548条の2）。",
+    "_": "10 リポジトリに共通の免責事項。日本語が正で、英語は訳。2026-11-12 の続きで、責任を免除する文をやめ、法令の定めるとおり責任を負うと書く形にした（消費者契約法の事業者に当たるとして扱う）。免除の文を戻すと、12g の検査が落とす。読むことを同意とみなさない（民法第548条の2）。",
     "file": "DISCLAIMER.md",
     "fileEn": "DISCLAIMER.en.md",
     "url": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md",
     "urlEn": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md",
-    "readmeLine": "責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。",
-    "readmeLineEn": "The extent of liability is set out in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md).",
+    "readmeLine": "責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。",
+    "readmeLineEn": "Liability is as the law provides; the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md) explains it.",
     "必須の文": [
       "読むことや使うことを、何かへの同意とはみなしません。",
-      "運営者は、故意または重大な過失による場合を除き、公開物の利用から生じた損害について責任を負いません。",
-      "日本の消費者契約法が適用される場合は、前の文を適用しません。",
-      "そのときは、軽過失による損害を含め、同法と民法の定めるとおり責任を負います。",
-      "法令が免除や制限を認めない責任を、免除したり制限したりするものではありません。",
+      "運営者は、公開物の利用から生じた損害について、民法と消費者契約法その他の法令の定めるとおり責任を負います。",
+      "この頁は、その責任を免除するものでも、制限するものでもありません。",
+      "運営者は、消費者契約法の事業者に当たるかどうかを問わず、同法が事業者に求める扱いに沿います。",
+      "「提供のしかた」の節は、運営者が約束しないことを示すもので、責任を免除する条項ではありません。",
       "論文はどれも査読を受けていない稿です。",
       "学術上・法律上・医学上・財務上その他の専門的な助言ではありません。",
       "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。",
-      "この節の最初の文は、それだけで法令の定める責任を免除するものではありません。",
+      "存命の家族について書くのは、「両親」という語までです。",
       "頁は cookie を置かず、アクセス解析の仕組みも置いていません。",
-      "メールと issue で届いた個人の情報は、その求めに答えることと、訂正の記録を残すことにだけ使います。"
+      "メールと issue で届いた個人の情報は、その求めに答えることと、訂正の記録を残すことにだけ使います。",
+      "運営者は、個人情報取扱事業者に当たるかどうかを問わず、個人情報保護法がその事業者に求める扱いに沿います。",
+      "訂正の記録には、求めた人の名と連絡先を載せません。",
+      "届いた個人の情報を、本人の同意なく第三者に渡しません。法令が認める場合を除きます。",
+      "届いた個人の情報について、本人からの開示・訂正・利用の停止・消去の求めは、「人についての記載」の節のメールアドレスで受け付けます。",
+      "手数料は取りません。",
+      "運営者の住所は、届いた個人の情報の本人から求めがあれば、遅滞なく答えます。",
+      "個人の情報の扱いについての苦情も、同じメールアドレスで受け付けます。"
     ],
     "必須の文 英": [
       "Reading or using these works is not taken as agreement to anything.",
-      "Except for intent or gross negligence, the operator is not liable for loss that arises from using these works.",
-      "Where Japan's Consumer Contract Act applies, the previous sentence does not apply.",
-      "Nothing here excludes or limits a liability that the law does not allow to be excluded or limited.",
-      "The first sentence of this section does not, by itself, exclude a liability that the law imposes.",
+      "The operator is liable for loss that arises from using these works as the Civil Code, the Consumer Contract Act and other laws provide.",
+      "This page neither excludes nor limits that liability.",
+      "Whether or not the operator is a business under the Consumer Contract Act, the operator follows what that Act requires of a business.",
+      "Of living family members, nothing is written beyond the word \"parents\".",
       "The pages set no cookie and carry no analytics.",
-      "Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections."
+      "Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections.",
+      "Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.",
+      "The record of corrections does not carry the name or contact details of the person who asked.",
+      "Personal information received is not passed to a third party without the consent of the person concerned, except where the law allows it.",
+      "No fee is charged.",
+      "The operator's address is given without delay to a person whose personal information the operator has received, on request.",
+      "A complaint about how personal information is handled is accepted at the same email address."
     ],
     "無効になりうる言い回し": [
       "一切(の)?責任を負(い|わ)",
@@ -1608,6 +1621,71 @@
       "noreply@anthropic.com",
       "you@example.com"
     ]
+  },
+  "締めた": {
+    "_": "2026-11-12 の続き。利用者が「法的リスクをさらにシメて」と求めた。根拠不足や不確かな読みに頼っていたところを、厳しいほうの読みでも成り立つ形に直した。直した文をリポジトリごとに固定し、外した言い回しが戻れば落とす。11 の点検の記録（10 のリポジトリと deposit-check）に、同じ見出しの節と、Claude が決めたことの一文があること。免責事項の文は「免責」の必須の文が、README の一文は readmeLine が固定している。",
+    "節": "## 2026-11-12 の続き：リスクを締めた",
+    "決めた": "2026-11-12 に Claude が決めました",
+    "ある文": {
+      "cpsbvbng26-dotcom": {
+        "docs/external-evaluations.md": [
+          "第三者による評価は載せません。",
+          "この記録が残すのは、届いた便りと、相手が自ら公表していることと、こちらの規則だけです。"
+        ]
+      },
+      "naval-gazette-notes": {
+        "README.md": [
+          "大谷恒の妻の出自についての家伝を、2026-11-12 に外しました。",
+          "受章者本人や家族からの求めは、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)の「人についての記載」の窓口で受け付けます。",
+          "凍結した史料ノートの PDF は変えません。"
+        ]
+      }
+    },
+    "無い言い回し": {
+      "cpsbvbng26-dotcom": {
+        "DISCLAIMER.md": [
+          "重大な過失による場合を除き",
+          "責任を負いません",
+          "責任を負わない",
+          "存命の人について書く"
+        ],
+        "DISCLAIMER.en.md": [
+          "gross negligence",
+          "is not liable",
+          "not be liable",
+          "Of living people"
+        ],
+        "docs/external-evaluations.md": [
+          "Beall",
+          "vanity",
+          "否定的な体験談",
+          "送る仕組みもある"
+        ],
+        "cv.html": [
+          "lancers\\.jp",
+          "coconala\\.com",
+          "crowdworks\\.jp",
+          "wantedly\\.com",
+          "案件募集",
+          "independent work"
+        ]
+      },
+      "researcher-profile": {
+        "cv.json": [
+          "lancers\\.jp",
+          "coconala\\.com",
+          "crowdworks\\.jp",
+          "wantedly\\.com",
+          "案件募集",
+          "independent work"
+        ]
+      },
+      "naval-gazette-notes": {
+        "README.md": [
+          "神奈川の陸軍の家系"
+        ]
+      }
+    }
   },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",

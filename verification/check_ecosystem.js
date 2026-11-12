@@ -1591,16 +1591,19 @@ console.log('\n7.7 受けた勧誘');
     ['| **国** |', '| **言語** |', '| **規模** |', '| **水準** |']
       .every((x) => E.indexOf(x) >= 0)
     && E.indexOf('**取れていない**。刊行点数も従業員数も') >= 0);
-  check('会員として見つからないことが、証明ではないと書いてある',
-    E.indexOf('**ただしこれは、会員でないことの証明ではありません**。') >= 0
-    && E.indexOf('見つからなかった、というだけです') >= 0);
-  check('争われている一覧を、確定した事実として使っていない',
-    E.indexOf('**そしてこの一覧自体が、学術界で争われているものです**') >= 0
-    && E.indexOf('こちらは一覧そのものを読んでいない') >= 0
-    && E.indexOf('一覧を作った側の判断であって、確定した事実ではない') >= 0);
-  check('どちらとも判定しないと書いてある',
-    E.indexOf('**この記録は、どちらとも判定しません**。') >= 0
-    && E.indexOf('並べたのは、出典と等級だけです。') >= 0);
+  /* 2026-11-12 の続き。**確かめられない第三者の評価を、名指しの相手について並べない。**
+   * それまでは、会員の名簿・索引・第三者の一覧・体験談を、断りを付けて並べていた。
+   * 断りを付けても、名指しの相手に並べた評判は判定として読まれる。外したことと、外した理由を固定する。 */
+  const 水準 = (/### 水準 —— 第三者の評価は載せない\n([\s\S]*?)\n### /.exec(E) || ['', ''])[1];
+  check('名指しの出版社について、会員の名簿・索引の記述を載せていない（相手の自称だけを残す）',
+    水準.indexOf('**本人の公表**') >= 0 && !/COPE|OASPA|Scopus|Web of Science/.test(水準)
+    && 水準.indexOf('団体の会員の名簿、索引への収録、第三者が作った一覧、利用者の体験談について、検索の結果に出た記述がありました。') >= 0);
+  check('第三者の一覧と体験談を、名指しの相手について使っていない',
+    !/Beall|vanity|否定的な体験談|肯定的な体験談/.test(E)
+    && E.indexOf('第三者による評価は載せません。') >= 0 && E.indexOf('どれも原典を読めていません。') >= 0);
+  check('判定しないと書き、判定しないと書いても判定として届くことを理由に挙げている',
+    水準.indexOf('この記録は、出版社を判定しません。判定できる材料を持っていないからです。') >= 0
+    && 水準.indexOf('確かめられない評判を名指しの相手について並べると、判定しないと書いても、読む側には判定として届きます。') >= 0);
 
   /* 引かれた題名が現行の紙面と一致することは、機械で当たれる。 */
   const cff = (read('autonomy-and-self-cultivation', 'CITATION.cff') || '')
@@ -2347,7 +2350,7 @@ console.log('\n12d. 免責と、法的なずれ');
   const ja = read('cpsbvbng26-dotcom', L.file) || '';
   const en = read('cpsbvbng26-dotcom', L.fileEn) || '';
   const lack = L['必須の文'].filter((x) => ja.indexOf(x) < 0).concat(L['必須の文 英'].filter((x) => en.indexOf(x) < 0));
-  check('免責事項（日本語と英語）が、効く形の免責と、同意とみなさないことを書いている', lack.length === 0,
+  check('免責事項（日本語と英語）が、法令の定めるとおり責任を負うこと、同意とみなさないこと、情報の扱いを書いている', lack.length === 0,
     lack.length ? lack.map((x) => x.slice(0, 24)).join(' / ') : (L['必須の文'].length + L['必須の文 英'].length) + ' 文');
   check('免責事項が 10 リポジトリを名指している', C.repos.every((r) => ja.indexOf(r) >= 0 && en.indexOf(r) >= 0));
   const unlinked = [];
@@ -2502,6 +2505,55 @@ console.log('\n12f. 法令の点検の記録');
   check('10 のリポジトリと deposit-check に、法令の点検の記録がある（' + (先.length - 無い.length) + ' 本）', 無い.length === 0, 無い.join(', '));
   check('点検の記録が、六つの欄の表と五つの判定、調べた法令、取り寄せられなかった文、弁護士が見ていないことの一文を持つ（' + 行数 + ' 行）', 形.length === 0, 形.join(', '));
   check('点検の記録が挙げる条が、どれも取り寄せた条文の表にある（' + 条数 + ' 箇所）', 無い条.length === 0, [...new Set(無い条)].slice(0, 8).join(', '));
+}
+
+/* ---------- 法的なリスクを締めた（2026-11-12 の続き） ----------
+ *
+ * 利用者が「法的リスクをさらにシメて」と求めた。根拠不足や不確かな読みに頼っていたところを、
+ * 厳しいほうの読みでも成り立つ形に直した（責任を免除しない、個人情報取扱事業者として扱う、
+ * 確かめられない評判を名指しの相手に並べない、Vercel で配る頁に受注の場への道を置かない、
+ * 存命かどうか確かめていない親族の出自を書かない）。
+ * **直した文を固定し、外した言い回しが戻れば落とす。**決めたことは 11 の点検の記録の同じ見出しの節にある。 */
+console.log('\n12g. 法的なリスクを締めた（2026-11-12 の続き）');
+{
+  const K = DECL['締めた'] || null;
+  const 先 = C.repos.concat(['deposit-check']);
+  const 欠け = [];
+  let 行 = 0;
+  for (const repo of 先) {
+    const t = K === null ? null : read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length || sec.indexOf(K['決めた']) < 0) 欠け.push(repo + (i < 0 ? '（節が無い）' : '（行か決めた一文が無い）'));
+  }
+  check('11 の点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行と Claude が決めたことの一文がある（' + (先.length - 欠け.length) + ' 本、' + 行 + ' 行）',
+    K !== null && 欠け.length === 0, 欠け.join(', '));
+
+  const 無い文 = [];
+  let 文数 = 0;
+  for (const [repo, files] of Object.entries(K ? K['ある文'] : {})) {
+    for (const [f, xs] of Object.entries(files)) {
+      const t = read(repo, f) || '';
+      xs.forEach((x) => { 文数++; if (t.indexOf(x) < 0) 無い文.push(repo + '/' + f + '「' + x.slice(0, 16) + '」'); });
+    }
+  }
+  check('締めた文が、決めた場所にある（' + 文数 + ' 文）', K !== null && 文数 > 0 && 無い文.length === 0, 無い文.join(', '));
+
+  const 戻り = [];
+  let 語数 = 0;
+  for (const [repo, files] of Object.entries(K ? K['無い言い回し'] : {})) {
+    for (const [f, xs] of Object.entries(files)) {
+      const t = read(repo, f);
+      if (t === null) { 戻り.push(repo + '/' + f + ' が無い'); continue; }
+      xs.forEach((x) => { 語数++; if (new RegExp(x, 'i').test(t)) 戻り.push(repo + '/' + f + '：' + x); });
+    }
+  }
+  check('締めて外した言い回し（免除の文、確かめられない評判、受注の場への道、親族の出自）が戻っていない（' + 語数 + ' 語）',
+    K !== null && 語数 > 0 && 戻り.length === 0, 戻り.join(', '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
