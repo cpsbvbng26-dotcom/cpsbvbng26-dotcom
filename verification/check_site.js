@@ -1507,14 +1507,15 @@ section('10.59 自己紹介が名乗っていること');
   /* **不犯の誓い。**2026-10-04 に、本人の意思で「死後に残すもの」の頁に載せた。
    * 研究の自己紹介には置かない。**誓いであって、達成の報告ではない。**
    * 三つの伝統の教えそのものではないこと、他の誰かの生き方を否定しないこと、
-   * 両親については理解を得ていることの一文だけを書くこと（決めごと 10）を、二言語とも固める。 */
+   * 両親について書く一文は、2026-11-12 に消した（両親の考えを書くことになり、決めごと 10 の一語を越える）。
+   * 消えたままであることは、下の決めごと 10 の見張り（帰属の式）が見る。 */
   {
     const 誓い = [
-      ['notes/afterlife.html', ['合理的な神の前に「不犯の誓い」を立てた', '両親の理解を得ている',
+      ['notes/afterlife.html', ['合理的な神の前に「不犯の誓い」を立てた', '生涯、不犯を貫く。',
                                  '三つの伝統そのものの教えではない', '他の誰かの生き方を否定するものではない',
                                  '宣言であり、その始まりにすぎない',
                                  '心身統一合氣道での昇級は、これが最後になった']],
-      ['notes/afterlife.en.html', ['a vow of lifelong celibacy was made before a rational God', 'Both parents understand this vow.',
+      ['notes/afterlife.en.html', ['a vow of lifelong celibacy was made before a rational God', 'It is to be kept for life.',
                                     'This is not the teaching of the three traditions themselves.',
                                     'does not reject anyone else’s way of life', 'What is written here is a declaration, and only its beginning.',
                                     'It turned out to be the last promotion in Shinshin Toitsu Aikido.']]
@@ -1572,22 +1573,28 @@ section('10.59 自己紹介が名乗っていること');
   /* **存命の人物は「両親」という語までにする**（決めごと 10）。
    * 親がいることは当たり前なので、続柄の一語までは通す。
    * **一人を指す語と、その人の名・職・計画は書かない。**
-   * 祖父・曾祖父・祖母は故人であり、この限りではないので外す。
-   * 「運営母体」のような複合語は、助詞が続かないので当たらない。
+   * 式は verification/kinship.js にあり、check_ecosystem.js も同じ式で self-correction の登録簿を見る。
    *
-   * 一度ここを越えていた —— 英語版だけが父の事業の計画を書いていた。
-   * 日本語は「事業を承継すること」だけである。**訳のほうが広かった。** */
+   * 一度ここを越えていた —— 英語版だけが、存命の第三者の事業計画を書いていた。
+   * 日本語は「事業を承継すること」だけである。**訳のほうが広かった。**
+   * もう一度越えていた（2026-11-12 の続き）。死後の頁が、誓いについて両親の考えを書いていた。
+   * 語は「両親」でも、考え・同意・計画・気持ちを帰せば一語を越える。帰属の式がそれを止める。 */
   {
-    const 越え = /(?<![祖曾伯叔義])(父|母)(が|の|は|を|も|に|と|へ)|父親|母親|my (father|mother)|mein Vater|meine Mutter|mon père|ma mère|mio padre|mia madre/;
-    const 出た = [];
-    ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
-     'README.md', 'README.en.md', 'cv.html',
-     'notes/afterlife.html', 'notes/afterlife.en.html'].forEach((f) => {
+    const { 越え, 帰属 } = require('./kinship');
+    const 面 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html',
+               'README.md', 'README.en.md', 'cv.html',
+               'notes/afterlife.html', 'notes/afterlife.en.html'];
+    const 出た = [], 帰した = [];
+    面.forEach((f) => {
       const m = 越え.exec(read(f));
       if (m) 出た.push(f + ' に「' + m[0] + '」');
+      const b = 帰属.exec(read(f));
+      if (b) 帰した.push(f + ' に「' + b[0].slice(0, 40) + '」');
     });
     ok('存命の人物が、続柄の一語を超えて出ていない', 出た.length === 0,
        出た.length ? 出た.join(' / ') : '10 面とも無し');
+    ok('両親に、考え・同意・計画・気持ちを帰す文が無い', 帰した.length === 0,
+       帰した.length ? 帰した.join(' / ') : 面.length + ' 面とも無し');
   }
 
 

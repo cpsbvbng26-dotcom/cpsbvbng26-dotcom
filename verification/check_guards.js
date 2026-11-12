@@ -464,7 +464,17 @@ const CASES = [
   ['在籍中でない欄に科目の一覧が付くと落ちる', 'index.html',
    swap('<li class="path-now"><span class="path-name">ZEN大学',
         '<li><span class="path-name">ZEN大学'),
-   'check_site.js', '在籍中の学校の欄にだけある']
+   'check_site.js', '在籍中の学校の欄にだけある'],
+
+  /* **決めごと 10 の帰属の式。**「両親」の一語のまま、考えを足す。一人を指す語の式では通ってしまう形である。
+   * 2026-11-12 まで、死後の頁にこの形の一文があった。日英の両方で壊す。 */
+  ['死後の頁で、両親に考えを帰す一文を足すと落ちる', 'notes/afterlife.html',
+   swap('生涯、不犯を貫く。</b>', '生涯、不犯を貫く。</b>この誓いには、両親も賛成している。'),
+   'check_site.js', '両親に、考え・同意・計画・気持ちを帰す文が無い'],
+
+  ['英語の死後の頁で、両親に考えを帰す一文を足すと落ちる', 'notes/afterlife.en.html',
+   swap('It is to be kept for life.</b>', 'It is to be kept for life.</b> Both parents support this vow.'),
+   'check_site.js', '両親に、考え・同意・計画・気持ちを帰す文が無い']
 ];
 
 CASES.forEach(([label, file, mutate, script, expect]) => {
