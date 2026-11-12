@@ -603,22 +603,22 @@ PUBLIC_FACES.forEach((f) => {
 ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
 
 /* **受注の場への道は、どこにも置かない。**配る頁からは 2026-11-12 の続きで、README からは
- * 同じ日に利用者が決めて外した。**肩書きでは書かない**（決めごと 10）。上の禁止語がそちらを押さえている。 */
+ * 同じ日に利用者が決めて外した。LinkedIn も仕事の依頼の窓口として、同じ日に利用者が決めて外した。**肩書きでは書かない**（決めごと 10）。上の禁止語がそちらを押さえている。 */
 {
   /* **配っている頁には置かない**（2026-11-12 の続き）。Vercel の無料の枠（Hobby）は個人の非営利の
    * 利用に限られ、役務の販売の広告を商用の例に挙げる。頁のどれかに戻ったら落とす。 */
-  const 配る = PAGES.filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+  const 配る = PAGES.filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|linkedin\.com\/in\/|案件募集|independent work/i.test(read(f)));
   ok('配っている頁（' + PAGES.length + ' 頁）に、受注の場への道と案件募集の語が無い',
      配る.length === 0, 配る.join(', '));
   const データ = ['catalog.json', 'catalog.bib', 'sitemap.xml', 'robots.txt']
-    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|linkedin\.com\/in\/|案件募集|independent work/i.test(read(f)));
   ok('配っているデータ（catalog.json・catalog.bib・sitemap.xml・robots.txt）にも、受注の場への道が無い',
      データ.length === 0, データ.join(', '));
 
   /* **README からも外す**（2026-11-12、利用者が決めました）。GitHub の上の面にも、受注の場への道と
    * 「案件募集」を置かない。仕事の窓口の折りたたみも置かない。どちらかが戻ったら落とす。 */
   const 説明 = ['README.md', 'README.en.md']
-    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|linkedin\.com\/in\/|案件募集|independent work/i.test(read(f)));
   ok('README（日英）にも、受注の場への道と案件募集の語が無い', 説明.length === 0, 説明.join(', '));
   const 窓口 = [['README.md', '仕事の窓口'], ['README.en.md', 'Work channels']]
     .filter(([f, s]) => read(f).includes(s)).map(([f]) => f);

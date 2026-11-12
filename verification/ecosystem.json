@@ -1669,7 +1669,8 @@
           "crowdworks\\.jp",
           "wantedly\\.com",
           "案件募集",
-          "independent work"
+          "independent work",
+          "linkedin\\.com/in/"
         ],
         "README.md": [
           "lancers\\.jp",
@@ -1678,7 +1679,8 @@
           "wantedly\\.com",
           "案件募集",
           "independent work",
-          "仕事の窓口"
+          "仕事の窓口",
+          "linkedin\\.com/in/"
         ],
         "README.en.md": [
           "lancers\\.jp",
@@ -1687,7 +1689,14 @@
           "wantedly\\.com",
           "案件募集",
           "independent work",
-          "Work channels"
+          "Work channels",
+          "linkedin\\.com/in/"
+        ],
+        "index.html": [
+          "linkedin\\.com/in/"
+        ],
+        "index.en.html": [
+          "linkedin\\.com/in/"
         ]
       },
       "researcher-profile": {
@@ -1697,7 +1706,17 @@
           "crowdworks\\.jp",
           "wantedly\\.com",
           "案件募集",
-          "independent work"
+          "independent work",
+          "linkedin\\.com/in/"
+        ],
+        "site.json": [
+          "linkedin\\.com/in/"
+        ],
+        "site.en.json": [
+          "linkedin\\.com/in/"
+        ],
+        "profile.json": [
+          "linkedin\\.com/in/"
         ]
       },
       "naval-gazette-notes": {
