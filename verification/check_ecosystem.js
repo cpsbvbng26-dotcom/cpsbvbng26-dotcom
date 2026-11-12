@@ -3163,6 +3163,104 @@ console.log('\n12l. 四度目の見落とし（2026-11-12 の続き）');
     + (Z ? Object.keys(Z.repos).length : 0) + ' 本）', Z !== null && Object.keys(Z.repos).length > 0 && 範囲ずれ.length === 0, 範囲ずれ.slice(0, 6).join(' / '));
 }
 
+/* ---------- 六度目の見落とし（2026-11-12 の続き。直したのは日本時間の 2026-11-13） ----------
+ *
+ * 一つ目。海軍公報の史料ノートの英語の要旨が「held by JACAR」と書いていた。JACAR の目録（C12070491000）は
+ * 所蔵館を防衛省防衛研究所と書く。JACAR は画像を公開する側である。13 のリポジトリのどこにも、どの言語でも、
+ * JACAR を所蔵の主に置く文を置かない。直した文が、要旨の出る頁と設定に在ること。
+ * 二つ目。Friedkin と Johnsen の 2011 年の本を「単著の理論書」と書いていた。Crossref は著者を二人と返す。
+ * 二人の名か本の題と同じ段落に、単著や single-authored を置かない。
+ * どちらの式も、止める文と通す文で先に壊して確かめる。記録の節と、点検の検査そのものは探す先から外す
+ * （直す前の文を引いて記録しているため）。 */
+console.log('\n12m. 六度目の見落とし（2026-11-12 の続き）');
+{
+  const K = DECL['六度目の見落とし'] || null;
+
+  const 欠け = [];
+  let 行 = 0;
+  for (const repo of (K ? K['記録'] : [])) {
+    const t = read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length || sec.indexOf(K['決めた']) < 0) 欠け.push(repo + (i < 0 ? '（節が無い）' : '（行か決めた一文が無い）'));
+    const 書く = K['単著の見張り']['記録に書くこと'].filter((x) => sec.indexOf(x) < 0);
+    if (i >= 0 && 書く.length) 欠け.push(repo + '（Crossref の記録の「' + 書く[0] + '」が無い）');
+  }
+  check('点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行と Claude が決めたこと、読んだ Crossref の記録の所在・日・欄がある（'
+    + (K ? K['記録'].length - 欠け.length : 0) + ' 本、' + 行 + ' 行）', K !== null && K['記録'].length > 0 && 欠け.length === 0, 欠け.join(', '));
+
+  /* 13 のリポジトリを、語で絞ってから式で見る。 */
+  const 見ない = new Set(K ? K['見ないファイル'] : []);
+  const 絞る = (repo, words) => {
+    try {
+      return execFileSync('git', ['grep', '-l', '-I', '-F'].concat(words.flatMap((x) => ['-e', x])), { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 1 << 26 })
+        .split('\n').filter((f) => f && !見ない.has(f));
+    } catch (e) { return []; }
+  };
+  const 先 = K ? K['探す先'] : [];
+  const 無い先 = 先.filter((r) => !fs.existsSync(path.join(ROOT, r)));
+
+  const S = K ? K['所蔵の見張り'] : null;
+  const 式 = S ? S['式'].map((x) => new RegExp(x, 'i')) : [];
+  const 所蔵か = (s) => 式.some((re) => re.test(s));
+  const 試験 = [];
+  (S ? S['止める文'] : []).forEach((x) => { if (!所蔵か(x)) 試験.push('通した：' + x.slice(0, 40)); });
+  (S ? S['通す文'] : []).forEach((x) => { if (所蔵か(x)) 試験.push('止めた：' + x.slice(0, 40)); });
+  const 所蔵ずれ = [];
+  let 所蔵面 = 0;
+  for (const repo of 先) {
+    if (無い先.includes(repo) || S === null) continue;
+    for (const f of 絞る(repo, S['絞り込み'])) {
+      所蔵面++;
+      (read(repo, f) || '').split('\n').forEach((l, n) => { if (所蔵か(l)) 所蔵ずれ.push(repo + '/' + f + ':' + (n + 1)); });
+    }
+  }
+  const 在る = (A) => {
+    const out = [];
+    let n = 0;
+    for (const [repo, files] of Object.entries(A || {})) {
+      for (const [f, xs] of Object.entries(files)) {
+        const t = read(repo, f);
+        xs.forEach((x) => { n++; if (t === null || t.indexOf(x) < 0) out.push(repo + '/' + f + ' に「' + x.slice(0, 30) + '」が無い'); });
+      }
+    }
+    return { out, n };
+  };
+  const 所蔵在る = 在る(S ? S['ある文'] : null);
+  check('13 のリポジトリのどこにも、JACAR を原資料の所蔵の主に置く文が無く（JACAR の名を持つ ' + 所蔵面 + ' ファイル、式は日英独仏伊）、要旨の出る面（'
+    + 所蔵在る.n + ' か所）が所蔵館を防衛研究所、JACAR を公開の側と書く',
+    S !== null && 無い先.length === 0 && 所蔵面 > 0 && 所蔵在る.n > 0 && 試験.length + 所蔵ずれ.length + 所蔵在る.out.length === 0,
+    無い先.map((r) => r + ' が並んでいない').concat(試験, 所蔵ずれ, 所蔵在る.out).slice(0, 6).join(' / ')
+      || (S ? '止める文 ' + S['止める文'].length + '・通す文 ' + S['通す文'].length : ''));
+
+  const T = K ? K['単著の見張り'] : null;
+  const 相手 = new RegExp(T ? T['相手'] : 'x^');
+  const 語 = new RegExp(T ? T['語'] : 'x^', 'i');
+  const 単著か = (s) => 相手.test(s) && 語.test(s);
+  const 試験2 = [];
+  (T ? T['止める文'] : []).forEach((x) => { if (!単著か(x)) 試験2.push('通した：' + x.slice(0, 40)); });
+  (T ? T['通す文'] : []).forEach((x) => { if (単著か(x)) 試験2.push('止めた：' + x.slice(0, 40)); });
+  const 単著ずれ = [];
+  let 単著面 = 0;
+  for (const repo of 先) {
+    if (無い先.includes(repo) || T === null) continue;
+    for (const f of 絞る(repo, T['絞り込み'])) {
+      単著面++;
+      (read(repo, f) || '').split(/\n\s*\n|<\/p>|<\/li>|<\/td>/).forEach((p) => { if (単著か(p)) 単著ずれ.push(repo + '/' + f + '：' + p.trim().slice(0, 40)); });
+    }
+  }
+  const 単著在る = 在る(T ? T['ある文'] : null);
+  check('13 のリポジトリのどこにも、Friedkin と Johnsen の本を単著と書く段落が無く（二人の名か題を持つ ' + 単著面 + ' ファイル）、日本語の面（'
+    + 単著在る.n + ' か所）が二人の共著と書く',
+    T !== null && 無い先.length === 0 && 単著面 > 0 && 単著在る.n > 0 && 試験2.length + 単著ずれ.length + 単著在る.out.length === 0,
+    無い先.map((r) => r + ' が並んでいない').concat(試験2, 単著ずれ, 単著在る.out).slice(0, 6).join(' / ')
+      || (T ? '止める文 ' + T['止める文'].length + '・通す文 ' + T['通す文'].length : ''));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
