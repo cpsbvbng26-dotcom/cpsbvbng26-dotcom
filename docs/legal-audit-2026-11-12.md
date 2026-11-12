@@ -183,6 +183,21 @@ README と引用情報のライセンスの範囲は、10 のリポジトリと 
 | CITATION.cff の message と .zenodo.json の notes | 著作権法第21条 | 同上。引用情報の license の欄は、どの部分に掛かるかを書けないので、その範囲を別の欄で書くこと | CITATION.cff の license の欄は CC BY 4.0 と MIT を挙げ、.zenodo.json の欄は CC BY 4.0 で、notes は文書が CC BY 4.0、コードが MIT とだけ書いていた。上の点検の表は、この二つのファイルの欄の掛かる範囲を見ていなかった | 表現 | message と notes に、文章・構造化データ・画像が CC BY 4.0、サイトの実装と検査のスクリプトが MIT で、license の欄はそれぞれ自分の部分だけに掛かることを書いた。他人の文は許諾していないとも、和英で書いた。`check_ecosystem.js` の 12l が、二つのファイルにこの文があり、置き方が目録の licenceLayout と同じことを見る。2026-11-12 に Claude が決めました。Sophaxis の CITATION.cff が三度目の見落としの節で書いた範囲の文に、10 のリポジトリと deposit-check を揃えるためです |
 | 投稿の記録（docs/submission-disclosure.md）の、Research Square が moderation を通してから公開するという一文 | Research Square の利用規約 | 場が何をするかは、取り寄せた場の頁が言う範囲で書くこと | 欄は「全分野。moderation を通ってから公開されます。」と書き、等級を「検索で確認（原典未読）」としていた。Sophaxis の取り寄せの実行（43274367372、枝 `sources/20261112-1755`）が、Research Square の利用規約を Internet Archive の写しから取り寄せた（https://web.archive.org/web/20261105194705id_/https://www.researchsquare.com/legal/terms-of-service、2026-11-12、SHA-256 `a0dc91271505ca5ba7004d9f2b7080814d67215c58969423d7a299268857732a`）。Sophaxis の `verification/sources-raw.json` に残した句は、`You also agree that you will not use any robot, spider, other automated device, or manual process to monitor or copy any content from the Web Sites` などで、公開の前の確認については何も言わない。全文は実行の成果物にあり、作業の場からは届かなかった。同じ文は、ほかのリポジトリにも、どの言語にも無かった | 表現 | 公開の前の確認の一文を外し、取り寄せた規約から引いた句が何も言わないので書かないと書いた。分野と権威の句は検索で得たものとして残し、等級の欄に規約を取り寄せた日を足した。`check_ecosystem.js` の 12l が、外した文が 11 のリポジトリのどこにも戻らないことを見る。2026-11-12 に Claude が決めました。取り寄せた文が言わないことを、場に帰さないためです |
 
+## 2026-11-12 の続き：六度目の見落とし
+
+読むだけの点検を、六度目に別の手で行いました。
+上の節が見落としていたものが見つかりました。
+直した日は、日本時間で 2026-11-13 です。
+前の行は、そのとき何を確かめたかの記録なので、消していません。
+所蔵の主の文は、cpsbvbng26-dotcom の `verification/statutes.json` に写した JACAR の目録と案内から引きます。
+本の著者の数は、Crossref の記録から引きます。
+同じ誤りの点検は、researcher-profile と trinity-infinity の記録の同じ見出しの節にもあります。
+
+| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |
+| --- | --- | --- | --- | --- | --- |
+| 海軍公報の史料ノートの英語の要旨（論文の頁 `papers/naval-gazette-otani-tsune.en.html` の description・og:description・構造化データ・本文、日本語の頁の構造化データ、`notes/index.en.html`、共有カード `og/papers-naval-gazette-otani-tsune.en.png`、README.en.md の作品の表） | JACAR の目録 C12070491000、JACAR「資料画像の利用について」 | 原資料をどこが所蔵しているかは、取り寄せた目録が言うとおりに書くこと | 要旨は「from a gazette held by JACAR」と書いていた。取り寄せた目録（`verification/statutes.json` の「JACAR 目録 C12070491000」、SHA-256 `a35134cc748fb46062362c56827fd8d9433462407573f1c0c26cf1bb202a7a17`）は「（所蔵館：防衛省防衛研究所）」と表示する。JACAR の案内は、この種の資料を「防衛省防衛研究所からの提供資料」と呼ぶ。JACAR は画像を公開している側です。日本語の要旨は「アジア歴史資料センターが公開する」と書いており、目録と合っていた | 誤り | 生成もとの researcher-profile の `papers.json` と `notes.en.json` を「held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)」に直した。論文の頁二頁とノートの英語の目次を作り直し、CSP を入れ直した。共有カードは `update_cards.js` で描き直し、変わったのはこの一枚だけでした。README.en.md の行は手で直した。`check_ecosystem.js` の 12m が、13 のリポジトリのどこにも JACAR やアジア歴史資料センターを所蔵の主に置く文が無いことを、日英独仏伊の式で見る。式は、止める文九つと通す文四つで先に壊して確かめる。直した文が在るべき 6 か所に在ることも見る。2026-11-13 に Claude が決めました。目録が所蔵館を名指ししており、公開する側と分けて書けば目録と食い違わないからです |
+| 自己紹介（トップの頁と README.md の二か所）の、Friedkin と Johnsen の 2011 年の本 | なし（表示の正確さ） | 他人の本の著者を、書誌の記録が言うとおりに書くこと | 文は「2011 年に Cambridge から単著の理論書になり」と書いていた。Crossref の記録（https://api.crossref.org/works/10.1017/cbo9780511976735 、2026-11-13 に日本時間で読んだ。応答の全文の SHA-256 は `90273a725fa9d00a9521ec914df9b67e12acde902c661d96ad3555f0f469bd50`）は、type を「monograph」、title を「Social Influence Network Theory」、author を Noah E. Friedkin（sequence「first」）と Eugene C. Johnsen（sequence「additional」）の二人、publisher を「Cambridge University Press」、issued を 2011-04-18 と返した。単著は一人で書いた本を指すので、記録と食い違っていた。英独仏伊の頁と README.en.md は monograph（Monographie、monographie、monografia）と書いており、著者の数を言っていない | 誤り | 生成もとの researcher-profile の `site.json` を「2011 年に Cambridge から Friedkin と Johnsen の共著の理論書になり」に直し、トップの頁を作り直した。README.md の二か所は手で同じ文に直した。trinity-infinity の正誤表の E8 の表も、本の説明だけを直した。`check_ecosystem.js` の 12m が、13 のリポジトリのどこにも、二人の名か本の題と同じ段落に単著や single-authored を置く文が無いことを見る。式は、止める文四つと通す文三つで先に壊して確かめる。日本語の面の 4 か所が共著と書くことも見る。2026-11-13 に Claude が決めました。Crossref の記録が著者を二人と返すからです。英語の monograph は著者の数を言わないので、そのままにしました |
+
 ## 調べた法令
 
 - 著作権法（第2条、第10条、第13条、第21条、第23条、第32条、第48条、第51条から第54条、第57条）
