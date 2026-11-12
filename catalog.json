@@ -374,7 +374,7 @@
         "period": "first",
         "ja": "学部一年次の成果（Trinity-Infinity）の続き",
         "en": "Continuation of first-year work (Trinity-Infinity)",
-        "noteJa": "保守している版は trinity-operator の games のノート。Trinity-Infinity Framework の一部で、学部一年次の成果の続きにあたる（決めごと 15 が許す続き。利用者の決め、2026-11-11）",
+        "noteJa": "保守している版は trinity-operator の games のノートです。Trinity-Infinity Framework の一部で、学部一年次の成果の続きにあたります（決めごと 15 が許す続きです。利用者の決め、2026-11-11）",
         "noteEn": "The maintained version is the games note in trinity-operator. It is part of the Trinity-Infinity Framework and a continuation of first-year work (a continuation rule 15 allows; the author's decision, 2026-11-11)"
       },
       "registry": "Figshare"
@@ -522,7 +522,7 @@
       "summaryJa": "流派を持たない者が「独我流」を名乗るとき、何が欠けるかを、稽古の記録として確かめる",
       "summaryEn": "What is missing when someone with no school names their practice as one, checked as a record of practice",
       "doi": "10.5281/zenodo.22765695",
-      "conceptDoi": null,
+      "conceptDoi": "10.5281/zenodo.22765694",
       "otherDois": [],
       "url": "https://doi.org/10.5281/zenodo.22765695",
       "version": null,
@@ -564,7 +564,7 @@
       "summaryJa": "エッセイです。都市伝説を反転した通過儀礼として読む。論文ではありません",
       "summaryEn": "An essay. Reads the urban legend as an inverted rite of passage. Not a research paper",
       "doi": "10.5281/zenodo.23114131",
-      "conceptDoi": null,
+      "conceptDoi": "10.5281/zenodo.23114130",
       "otherDois": [],
       "url": "https://doi.org/10.5281/zenodo.23114131",
       "version": null,
@@ -586,7 +586,7 @@
         "period": "second",
         "ja": "学部二年次",
         "en": "Second undergraduate year",
-        "noteJa": "リポジトリを持たない。書き始めた日は確かめていない。利用者の決め（2026-11-11）により、公開の日（2026-10-03）で学部二年次のものとして扱う。独身論の続き（貞潔の話の延長）にあたる",
+        "noteJa": "リポジトリを持ちません。書き始めた日は確かめていません。利用者の決め（2026-11-11）により、公開の日（2026-10-03）で学部二年次のものとして扱います。独身論の続き（貞潔の話の延長）にあたります",
         "noteEn": "No repository; the date the writing began has not been checked. By the author's decision (2026-11-11) it is dated by publication (2026-10-03) and counted as second-year work. It continues the celibacy essay"
       },
       "registry": "DataCite (Zenodo)"
@@ -809,12 +809,12 @@
       "status": "revising",
       "statusJa": "改訂中",
       "statusEn": "In revision",
-      "title": "researcher-profile: 設定ファイル1つから研究者プロフィールの静的サイトを生成するツール",
+      "title": "researcher-profile: 設定ファイル 1 つから研究者プロフィールの静的サイトを生成するツール",
       "titleEn": null,
       "summaryJa": "設定ファイル一つから、外部へリクエストを出さない研究者のサイトを作る道具",
       "summaryEn": "Builds a researcher's site, which makes no external requests, from one configuration file",
       "doi": "10.5281/zenodo.22335692",
-      "conceptDoi": null,
+      "conceptDoi": "10.5281/zenodo.22335691",
       "otherDois": [],
       "url": "https://doi.org/10.5281/zenodo.22335692",
       "version": "1.0.0",
@@ -899,7 +899,9 @@
       "summaryEn": "An overlay preprint server for philosophy and mathematics. Acceptance is moderation, not peer review",
       "doi": "10.5281/zenodo.24033372",
       "conceptDoi": null,
-      "otherDois": [],
+      "otherDois": [
+        "10.17605/osf.io/mq7za"
+      ],
       "url": "https://doi.org/10.5281/zenodo.24033372",
       "version": "1.0.0",
       "repository": "https://github.com/cpsbvbng26-dotcom/sophaxis",
@@ -941,7 +943,9 @@
       "summaryEn": "The public profile site, and the checks across the ten repositories",
       "doi": "10.5281/zenodo.24034360",
       "conceptDoi": "10.5281/zenodo.24034359",
-      "otherDois": [],
+      "otherDois": [
+        "10.17605/osf.io/7kr5n"
+      ],
       "url": "https://doi.org/10.5281/zenodo.24034360",
       "version": "1.0.0",
       "repository": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom",

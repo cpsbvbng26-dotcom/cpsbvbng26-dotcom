@@ -39,8 +39,6 @@ My family line, the course of my schooling, my daily routine, how I live, my mot
 
 ## About me
 
-<img src="portrait.jpg" alt="Portrait of Takuya Nemoto" height="150">
-
 The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate. The course rules are stated here too. The two CS50 courses treat as academically dishonest any use of outside generative tools (ChatGPT, Claude, Copilot, Gemini and the like) that suggest or complete answers or code; only CS50’s own tool, the CS50 Duck, is allowed. The edX Honor Code requires completing all tests and assignments on one’s own unless collaboration is explicitly permitted. There is no way to prove that these rules were kept. Under the rules, however, the certificates above were issued on the basis that they were kept.
 
 I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office; I plan to file it as soon as I have the time.
@@ -311,7 +309,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1739 checks.** There are no dependencies to install.
+**Every push runs 1745 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
@@ -319,7 +317,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 702 checks
-node verification/check_site.js      # site structure, 947 checks
+node verification/check_site.js      # site structure, 953 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

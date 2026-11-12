@@ -105,9 +105,12 @@ section('4. 論文カードと「まとめて解析」リンク');
   const html = read(page);
   const sec = html.slice(html.indexOf('id="papers"'), html.indexOf('</section>', html.indexOf('id="papers"')));
 
-  const cardDois = [...sec.matchAll(/class="doi">DOI (10\.[^\s<]+)</g)].map((m) => m[1]);
-  ok(page + ' の論文カードに DOI が載っている', cardDois.length > 0,
-     cardDois.length + ' 件');
+  /* 2026-11-12 から、論文は表で並べる（題・年・DOI・状態）。表の DOI の欄から拾う。
+   * **行の数と DOI の数を突き合わせる。**DOI の欄が一つでも空なら落ちる。 */
+  const rows = (sec.match(/<tr class="paper">/g) || []).length;
+  const cardDois = [...sec.matchAll(/<td class="t-doi"[^>]*><a href="https:\/\/doi\.org\/(10\.[^"]+)"/g)].map((m) => m[1]);
+  ok(page + ' の論文の表の各行に DOI が載っている', cardDois.length > 0 && cardDois.length === rows,
+     '行 ' + rows + ' / DOI ' + cardDois.length);
 });
 
 /* ----------------------------------------------- 5. 日本語版と英語版の対応 */
@@ -117,7 +120,7 @@ const ja = read('index.html');
 const en = read('index.en.html');
 const countCards = (h, id) => {
   const sec = h.slice(h.indexOf('id="' + id + '"'), h.indexOf('</section>', h.indexOf('id="' + id + '"')));
-  return (sec.match(/class="cert reveal"/g) || []).length;
+  return (sec.match(/class="cert reveal"|<tr class="paper">/g) || []).length;
 };
 ['credentials', 'papers', 'works'].forEach((id) => {
   ok(id + ' のカード数が両言語で一致する', countCards(ja, id) === countCards(en, id),
@@ -1075,11 +1078,12 @@ section('10.5 修得した科目の合計');
 
   /* 「何年何月何日現在」。逐次更新の目安なので、**四つの頁で同じ日でなければ
    * 意味が無い。**先の日付も認めない。 */
-  const asOf = /<p class="as-of">(\d{4})年(\d{1,2})月(\d{1,2})日現在<\/p>/.exec(cv);
+  /* 2026-11-12 から、数字の前後に半角の空白を置く（researcher-profile の verification/spacing.js）。 */
+  const asOf = /<p class="as-of">(\d{4}) 年 (\d{1,2}) 月 (\d{1,2}) 日現在<\/p>/.exec(cv);
   ok('cv.html に「何年何月何日現在」がある', asOf !== null);
   if (asOf) {
     const [, y, mo, d] = asOf;
-    const ja = `${y}年${mo}月${d}日現在`;
+    const ja = `${y} 年 ${mo} 月 ${d} 日現在`;
     const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                  'August', 'September', 'October', 'November', 'December'];
     const en2 = `as of ${Number(d)} ${MON[Number(mo) - 1]} ${y}`;
@@ -1475,24 +1479,25 @@ section('10.59 自己紹介が名乗っていること');
    * 紙面は凍結してあるので、頁は紙面の外から要点と穴を並べる。
    * **射程の限定と、記録の側で認めた穴を、二言語とも固める。**
    * 皇帝主義は「国家でも他者の支配でもない」と未解決の問題、断章論は比喩の限定と限界、
-   * 独身論は射程の狭さと、選べなかった者を称揚する読みを退けること。どれか一つ消えれば落ちる。 */
+   * 独身論は射程の狭さと、選べなかった者を称揚する読みを退けること。どれか一つ消えれば落ちる。
+   * 2026-11-12 に頁をですます調にしたので、語尾を動かした（同じ宣言を、同じ厳しさで求める）。 */
   {
     const 頁 = [
       ['notes/imperial-selfhood.html', '10.5281/zenodo.22057583',
-        ['帝国は、国家でも、他者の支配でもない。', '未解決のまま残してある', '理論ではない。',
-         '免責にはならない', '引いた原典に、著者は当たっていない', 'Claude は著者ではない']],
+        ['帝国は、国家でも、他者の支配でもありません。', '未解決のまま残してあります', '理論ではありません。',
+         '免責にはなりません', '引いた原典に、著者は当たっていません', 'Claude は著者ではありません']],
       ['notes/imperial-selfhood.en.html', '10.5281/zenodo.22057583',
         ['“Empire” here is neither a state nor dominion over others.', 'is left unresolved.', 'This is not a theory.',
          'it is not a discharge.', 'The author has not read the cited sources', 'Claude is not an author.']],
       ['notes/fragmentarian-spiritual-individualism.html', '10.5281/zenodo.22064241',
-        ['断片化を、直すべき傷として扱わない。', '比喩として限定している。', '戦闘は暴力ではない。',
-         '限界は、未解決のまま残してある。', '理論ではない。', 'Claude は著者ではない']],
+        ['断片化を、直すべき傷として扱いません。', '比喩として限定しています。', '戦闘は暴力ではありません。',
+         '限界は、未解決のまま残してあります。', '理論ではありません。', 'Claude は著者ではありません']],
       ['notes/fragmentarian-spiritual-individualism.en.html', '10.5281/zenodo.22064241',
         ['Fragmentation is not treated as a wound.', 'are limited to metaphor.', 'Combat is not violence',
          'The limits are left unresolved.', 'This is not a theory.', 'Claude is not an author.']],
       ['notes/celibate-individual.html', '10.5281/zenodo.22058254',
-        ['主張の射程は狭い。', '他者の生き方を否定しない。', '選べなかったことを称揚する読み',
-         'この頁は、選ばれた独身についてだけ述べる。', '理論ではない。', 'Claude は著者ではない']],
+        ['主張の射程は狭い。', '他者の生き方を否定しません。', '選べなかったことを称揚する読み',
+         'この頁は、選ばれた独身についてだけ述べます。', '理論ではありません。', 'Claude は著者ではありません']],
       ['notes/celibate-individual.en.html', '10.5281/zenodo.22058254',
         ['The scope of the claim is narrow.', 'Other ways of living are not rejected.', 'a reading that praises what was not chosen',
          'This page speaks only of chosen celibacy.', 'This is not a theory.', 'Claude is not an author.']]
@@ -3178,6 +3183,77 @@ section('10.66 サイトの決まりと運営の記録');
     'index.it.html': 'errata-check verrà inviato insieme al codice di Sophaxis, a maggio 2027 o più tardi.', 'docs/joss.md': 'errata-check は、Sophaxis のコードと一緒に出します。' };
   const J欠け = Object.keys(J).filter((f) => read(f).indexOf(J[f]) < 0);
   ok('errata-check を Sophaxis のコードと一緒に 2027 年 5 月以降に出すと、五言語と JOSS の記録に書く', J欠け.length === 0, J欠け.join(', '));
+}
+
+/* ------------------------------------------------- 10.67 百本ノック五：見た目
+ *
+ * 2026-11-12。トップの最初の画面・論文の表・図・顔写真・目録の絞り込み・共有カード・頁の下の欄。
+ * 字・幅・色・印刷の決まりは、生成もとの researcher-profile の check_build.js がテンプレートで見る。 */
+section('10.67 見た目（最初の画面・図・写真・絞り込み・共有カード・頁の下の欄）');
+{
+  const 生成 = PAGES.filter((f) => /<span class="updated">/.test(read(f)));
+  /* 431. 最初の画面は、名前と、何の頁かを言う一文と、三つの入口だけ。自己紹介と ORCID はその下の節へ。 */
+  const トップ = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'];
+  const 画面 = トップ.filter((f) => {
+    const h = heroOf(read(f));
+    const 入口 = ((/<ul class="entries[^"]*">([\s\S]*?)<\/ul>/.exec(h) || [])[1] || '').match(/<li>/g) || [];
+    return (h.match(/<h1\b/g) || []).length !== 1 || (h.match(/<p class="hero-what/g) || []).length !== 1
+      || 入口.length !== 3 || /class="profile|class="ident|class="eyebrow/.test(h);
+  });
+  ok('トップの最初の画面が、名前・一文・三つの入口だけで、自己紹介を下の節に置く（' + トップ.length + ' 言語）',
+     画面.length === 0 && トップ.every((f) => read(f).indexOf('<section id="profile" class="wrap block profile-section">') >= 0),
+     画面.join(', '));
+
+  /* 434. トップに図を一枚。既にある図（黄金比の窓）を、頁の中の SVG で置く。画像のファイルも外の要求も無い。 */
+  const 図 = ['index.html', 'index.en.html'].filter((f) => {
+    const h = read(f);
+    const figs = h.match(/<figure class="figure[^"]*">[\s\S]*?<\/figure>/g) || [];
+    return figs.length !== 1 || !/<svg viewBox="0 0 600 140" role="img" aria-label="[^"]{20,}">/.test(figs[0])
+      || /<img\b/.test(figs[0]) || !/href="\.\/notes\/golden-window(\.en)?\.html"/.test(figs[0]);
+  });
+  ok('トップに図が一枚だけあり、頁の中の SVG で、黄金比の窓の頁へ繋がる', 図.length === 0, 図.join(', '));
+
+  /* 435. 顔写真は置かない。ロゴだけにする（2026-11-12）。 */
+  const 写真 = PAGES.filter((f) => /class="profile-photo|portrait\.jpg/.test(read(f)))
+    .concat(['README.md', 'README.en.md'].filter((f) => /portrait\.jpg|<img src="[^"]*\.jpe?g"/.test(read(f))))
+    .concat(fs.existsSync(path.join(ROOT, 'portrait.jpg')) ? ['portrait.jpg'] : []);
+  ok('顔写真を置かず、頁にも README にも出さない', 写真.length === 0, 写真.join(', '));
+
+  /* 439. 目録の絞り込み。頁の中のリンクで種類の節を指し、スクリプトを足さない。 */
+  const 絞り = ['catalog.html', 'catalog.en.html'].filter((f) => {
+    const h = read(f);
+    const nav = (/<nav class="filter[^"]*" id="filter"[^>]*>([\s\S]*?)<\/nav>/.exec(h) || [])[1] || '';
+    const 指す = [...nav.matchAll(/<a href="#([a-z-]+)">/g)].map((m) => m[1]).filter((x) => x !== 'filter');
+    const 節 = [...h.matchAll(/<section id="([a-z-]+)" class="wrap block filterable">/g)].map((m) => m[1]);
+    const 本数 = (h.match(/<script\b/g) || []).length;
+    return !指す.length || 指す.join() !== 節.join() || !/main:has\(\.filterable:target\)/.test(h)
+      || 本数 !== (read('tools.html').match(/<script\b/g) || []).length;
+  });
+  ok('目録の頁が、種類の節を頁の中のリンクで絞り込み、スクリプトを足していない', 絞り.length === 0, 絞り.join(', '));
+
+  /* 440. 共有カードは頁ごと。og/ の画像は 1200×630 の PNG で、100,000 バイトまで。使われない画像を残さない。 */
+  const カード = [];
+  const 使う = new Set();
+  生成.forEach((f) => {
+    const m = /<meta property="og:image" content="https:\/\/cpsbvbng26-dotcom\.vercel\.app\/og\/([A-Za-z0-9._-]+\.png)">/.exec(read(f));
+    if (!m) { カード.push(f + ' が og/ の画像を指していない'); return; }
+    if (使う.has(m[1])) カード.push(m[1] + ' を二つの頁が指す');
+    使う.add(m[1]);
+    const file = path.join(ROOT, 'og', m[1]);
+    if (!fs.existsSync(file)) { カード.push(m[1] + ' が無い'); return; }
+    const b = fs.readFileSync(file);
+    if (b.readUInt32BE(16) !== 1200 || b.readUInt32BE(20) !== 630 || b.length > 100000) カード.push(m[1] + ' の寸法か重さ');
+  });
+  const 余り = fs.existsSync(path.join(ROOT, 'og')) ? fs.readdirSync(path.join(ROOT, 'og')).filter((x) => !使う.has(x)) : [];
+  ok('生成した頁（' + 生成.length + ' 頁）が、それぞれの共有カード（og/ の 1200×630 の PNG）を指し、使われない画像が無い',
+     カード.length === 0 && 余り.length === 0, カード.concat(余り).slice(0, 5).join(', '));
+
+  /* 442. 頁の下の欄は一行。名前・連絡・免責・最終更新だけで、ほかのリンクを置かない。 */
+  const 下欄 = 生成.filter((f) => {
+    const ft = (/<footer>([\s\S]*?)<\/footer>/.exec(read(f)) || [])[1] || '';
+    return (ft.match(/<a\b/g) || []).length !== 2 || /Built with/.test(ft);
+  });
+  ok('生成した頁の下の欄が、連絡と免責の二つのリンクと名前と日付だけである', 下欄.length === 0, 下欄.join(', '));
 }
 
 /* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
