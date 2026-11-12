@@ -1,7 +1,7 @@
 name: オフラインで読める一つのファイル
 
 # 手で起こすときだけ動く。配っている頁（verification/pages.json）と、頁が読む図とスクリプトを
-# 一つの ZIP にまとめ、Actions の成果物として残す。Release に添えるのは利用者の手である。
+# 一つの ZIP にまとめ、Actions の成果物として残す。Release は作業環境から作れないので、Release には添えていない。
 # 頁は外へ要求を出さないので、展開して index.html を開けばそのまま読める。
 
 on:
