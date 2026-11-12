@@ -703,7 +703,7 @@ section('10.5 修得した科目の合計');
 
   /* **縄張りの語が、二つの文書で衝突していないこと。**
    *
-   * 城の縄張り図は README が持っている。canonical-sources.md は README が
+   * 城の縄張り図は docs/castle.md が持っている（2026-11-12 に README から移した）。canonical-sources.md は README が
    * 言うところの `城絵図` で、**同じ語を別のものに当ててはいけない。**
    *
    * **2026年9月17日に当てた。**外のプロフィール頁を `本丸` と呼び、
@@ -712,7 +712,8 @@ section('10.5 修得した科目の合計');
    * **散文どうしの食い違いは、数の検査では出ない。**ここで見る。 */
   {
     const cs = read('docs/canonical-sources.md');
-    const rd = read('README.md');
+    /* 469（百本ノック五）。縄張りの図は 2026-11-12 に README から docs/castle.md へ移した。 */
+    const rd = read('docs/castle.md');
 
     /* README の縄張りの表から、部位と中身の対応を取る。 */
     const k = rd.indexOf('| 城の部位 | 相当するもの | なぜ |');
@@ -731,12 +732,12 @@ section('10.5 修得した科目の合計');
     };
     const 縄 = 表を('| 城の部位 | 相当するもの | なぜ |')
       .map((l) => l.split('|')[1].trim()).filter(Boolean);
-    ok('README に城の縄張りの表がある（' + 縄.length + ' 部位）', 縄.length >= 6,
+    ok('縄張りの頁に城の縄張りの表がある（' + 縄.length + ' 部位）', 縄.length >= 6,
        String(縄.length));
 
     /* **城絵図が縄張りを指していること。** */
-    ok('canonical-sources.md が、縄張りは README にあると書いてある',
-       cs.indexOf('## 縄張りは README にある') >= 0);
+    ok('canonical-sources.md が、縄張りは castle.md にあると書いてある',
+       cs.indexOf('## 縄張りは castle.md にある') >= 0 && (read('README.md') || '').indexOf('[docs/castle.md](docs/castle.md)') >= 0);
     ok('食い違えば絵図のほうが誤りだと書いてある',
        cs.indexOf('絵図が縄張りと食い違えば、絵図のほうが誤りです。') >= 0);
 
@@ -747,19 +748,19 @@ section('10.5 修得した科目の合計');
     const 六 = ['researchmap', 'CV HAL', 'PhilPeople', 'SSRN',
                 'Google Scholar', 'Kudos'];
     const 本丸表 = 表を('| 特性 | 本丸 | 運営母体 | 性格 |');
-    ok('README に本丸の表がある（' + 本丸表.length + ' 行）',
+    ok('縄張りの頁に本丸の表がある（' + 本丸表.length + ' 行）',
        本丸表.length === 六.length, String(本丸表.length));
     六.forEach((n) => {
-      ok('README の本丸に ' + n + ' がある', 本丸表.some((l) => l.indexOf(n) >= 0));
+      ok('縄張りの頁の本丸に ' + n + ' がある', 本丸表.some((l) => l.indexOf(n) >= 0));
     });
     ok('本丸が城の外にあると書いてある',
        rd.indexOf('### 本丸は六つ、城の外にある') >= 0);
-    ok('本丸が正本でないと、README にも書いてある',
+    ok('本丸が正本でないと、縄張りの頁にも書いてある',
        rd.indexOf('**六つとも写しです**。') >= 0
        && rd.indexOf('Zenodo と ORCID に合わせて六つの側を直します') >= 0);
     ['JST', 'CCSD', 'PhilPapers Foundation', 'Elsevier', 'Google',
      'Kudos Innovations Ltd'].forEach((o) => {
-      ok('README の本丸に運営母体 ' + o + ' がある',
+      ok('縄張りの頁の本丸に運営母体 ' + o + ' がある',
          本丸表.some((l) => l.indexOf(o) >= 0));
     });
 
