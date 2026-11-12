@@ -3002,6 +3002,53 @@
       ]
     }
   },
+  "七度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、七度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。cpsbvbng26-dotcom の免責事項（日英）は最終更新を 2026-11-12 と書いていたが、文を変えた最後のコミット 96e85b4 は日本時間の 2026-11-13 の 3 時 7 分だった。同じ形で、trinity-infinity の正誤表も、文を変えた最後のコミット 56d0887（日本時間の 2026-11-13 の 4 時 38 分）より前の 2026年11月12日 を書いていた。頁の最終更新は、その頁の文を変えた最後のコミットの日本時間の日付より前にならない。最終更新の行だけを変えたコミットは数えない。",
+    "節": "## 2026-11-12 の続き：七度目の見落とし",
+    "決めた": "2026-11-13 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "trinity-infinity"
+    ],
+    "日付の頁": {
+      "_": "10 のリポジトリで、最終更新の行を持つ Markdown を git ls-files から探す。examples/ と tests/ は道具の見本、docs/ は書いたときの事実を残す記録なので外す。式は行の頭から終わりまでで、日付を年・月・日の三つの組で拾う。",
+      "repos": [
+        "cpsbvbng26-dotcom",
+        "errata-check",
+        "self-correction",
+        "trinity-infinity",
+        "trinity-operator",
+        "autonomy-and-self-cultivation",
+        "naval-gazette-notes",
+        "researcher-profile",
+        "justice-and-algorithms",
+        "solitary-school"
+      ],
+      "式": [
+        "^最終更新：(\\d{4})-(\\d{2})-(\\d{2})(?:（日本時間）)?。$",
+        "^Last updated: (\\d{4})-(\\d{2})-(\\d{2})(?: \\(Japan time\\))?\\.$",
+        "^最終更新: (\\d{4})年(\\d{1,2})月(\\d{1,2})日$"
+      ],
+      "見ない": [
+        "examples/",
+        "tests/",
+        "docs/"
+      ],
+      "在るべき頁": [
+        "cpsbvbng26-dotcom/DISCLAIMER.md",
+        "cpsbvbng26-dotcom/DISCLAIMER.en.md",
+        "trinity-infinity/ERRATA.md",
+        "autonomy-and-self-cultivation/ERRATA.md",
+        "naval-gazette-notes/ERRATA.md"
+      ],
+      "日本時間と書く頁": {
+        "_": "最終更新の行の終わり。行に日付が日本時間だと書く。",
+        "cpsbvbng26-dotcom/DISCLAIMER.md": "（日本時間）。",
+        "cpsbvbng26-dotcom/DISCLAIMER.en.md": " (Japan time)."
+      },
+      "workflow": ".github/workflows/ecosystem.yml"
+    }
+  },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",
     "札": "種類：{種類}　状態：{状態}",
