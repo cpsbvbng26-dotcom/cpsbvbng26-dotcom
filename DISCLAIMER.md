@@ -36,6 +36,7 @@ cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-
 errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。
 trinity-operator の lessons/ と games/ は、その中の LICENSE により CC BY 4.0 です。
 trinity-operator の site/ の頁は、頁の末尾の表示により CC BY 4.0 です。
+これらのリポジトリが引き、または引用を確かめるために置いている他人の文は、CC BY 4.0 でも MIT でも許諾しておらず、それぞれの権利者のものです。
 再利用の条件と、その条件のもとでの保証と責任は、それぞれのライセンスの定めによります。
 
 ## ほかのサイト

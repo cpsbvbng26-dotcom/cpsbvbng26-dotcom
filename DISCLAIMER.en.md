@@ -36,6 +36,7 @@ Where a repository has both, the texts and papers are under CC BY 4.0 and the co
 errata-check, self-correction, trinity-operator and researcher-profile have a single LICENSE, and the whole repository, texts included, is under the MIT License.
 In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each.
 In trinity-operator, the page in site/ is under CC BY 4.0, by the notice at its foot.
+Texts by others that these repositories quote, or keep to verify their quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'.
 The terms of reuse, and the warranties and liability under them, are those of the licence that applies.
 
 ## Other sites
