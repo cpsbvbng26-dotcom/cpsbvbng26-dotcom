@@ -61,7 +61,7 @@ external-evaluations.md の「受けた評価」の表にある評価は、す�
 | 38 | ChatGPT — Sophaxis（2026-11-12） | 運営が一人に頼っている。助言者と後を継ぐ人が要る | Sophaxis の側で、助言者の案と、運営者が動けないときの手順を用意している | 対応中 |
 | 39 | ChatGPT — Sophaxis（2026-11-12） | 運営者以外の著者がまだいない | まだ何もしていない | 未対応 |
 | 40 | ChatGPT — Sophaxis（2026-11-12） | モデレーションは品質の保証ではない。寄託・掲載・査読を分けて見せる | Sophaxis の #211 で分けて見せた | 対応済み |
-| 41 | ChatGPT — Sophaxis（2026-11-12） | 認知が限られる。ROAR と OAD には載り、DOAPR と PhilPapers は待ち | DOAPR は月に一度の索引の調べが申請の issue を見る。PhilPapers は利用者が確かめる | 対応中 |
+| 41 | ChatGPT — Sophaxis（2026-11-12） | 認知が限られる。ROAR と OAD には載り、DOAPR と PhilPapers は待ち | DOAPR は月に一度の索引の調べが申請の issue を見る。PhilPapers は作業環境から届かず、こちらでは確かめていない | 対応中 |
 | 42 | ChatGPT — Sophaxis（2026-11-12） | 長期の保存 | まだ何もしていない | 未対応 |
 | 43 | ChatGPT — Sophaxis（2026-11-12） | 外の仕組みとのつなぎ | まだ何もしていない | 未対応 |
 | 44 | ChatGPT — Sophaxis（2026-11-12） | 運営の数を出していない | まだ何もしていない | 未対応 |

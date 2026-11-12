@@ -39,7 +39,7 @@
 （`The Journal of Open Source Software permits the use of generative AI in submissions with mandatory disclosure and human oversight requirements.`）。
 ただし、人が主要な設計を決めたと書かせます
 （`Authors must affirm that human team members thoroughly reviewed, modified, and validated all AI-generated content while making primary architectural and design decisions.`）。
-**`errata-check` のコミットの大半は、Claude との共作です**。この一文に署名できるかは、著者が決めることです。
+**`errata-check` のコミットの大半は、Claude との共作です**。この一文は著者自身が署名する宣言で、Claude には代わって署名できません。
 
 ## 十の外から一本足した —— 2026-11-01
 
@@ -60,7 +60,7 @@ JOSS が求める論文の下書き（`paper/paper.md` と `paper/paper.bib`）�
 
 言語モデルの事情は `errata-check` と同じです。
 コミットの大半は、Claude との共作です。
-人が主要な設計を決めたという一文に署名できるかは、著者が決めることです。
+人が主要な設計を決めたという一文は著者自身が署名する宣言で、Claude には代わって署名できません。
 
 ## 十の外からもう一本足した —— 2026-11-02
 
@@ -161,7 +161,7 @@ Trinity-Infinity の三篇も同じ道具で監査しています。
 **タグは十とも公開しています**。`errata-check` が **3 件**、`autonomy-and-self-cultivation` が **2 件**、残る八つが **1 件**ずつです。
 2026-11-07 に、それまでタグの無かった五つに、利用者が GitHub の Release でタグを付けました。
 同じ日に、Zenodo がそれぞれの版を保存して DOI を出しています（`docs/doi-index.md`）。
-この作業環境からタグを push すると 403 で返ります。タグは利用者の手作業で付きます。
+この作業環境からタグを push すると 403 で返ります。作業環境からは、タグを付けられません。
 
 **ローカルのタグと、公開されたタグは別です**。数え直すまで、こちらは一つだけだと書いていました。
 手元に残っているタグを数えていたためです。検査は `git ls-remote` のほうを見ます。

@@ -339,7 +339,6 @@ Zenodo・HAL・arXiv などが置き場所として使えます。六篇はす�
 
 **三つ目の条件は、どちらもまだ確かめていません**。投稿規程の当該欄へこの作業環境から
 届きません。`episciences.org` も `conatus.philosophy.uoa.gr` も egress proxy が塞いでいます。
-画面を見るのは利用者の手になります。
 
 ### 見込みについて
 
