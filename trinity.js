@@ -706,7 +706,7 @@
       'ρ(A) = ' + fmt(res.rho) + (res.converges ? ' < 1' : ' ≥ 1'),
       res.converges
         ? 'どの初期値から始めても、ただ一つの不動点に収束する。'
-        : '収束しない初期値がある。ρ(A) < 1 が収束の必要十分条件。'));
+        : 'どの初期値からも同じ一つの不動点へ収束する、とは言えない。ρ(A) < 1 が、その必要十分条件。'));
     v1.appendChild(verdict(res.monotone,
       '‖A‖₂ = ' + fmt(res.norm) + (res.monotone ? ' < 1' : ' ≥ 1'),
       res.monotone
