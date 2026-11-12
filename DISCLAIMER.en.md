@@ -24,12 +24,10 @@ Errors that were found are kept, not deleted, in the errata and the record of co
 
 ## Liability
 
-Except for intent or gross negligence, the operator is not liable for loss that arises from using these works.
-Where Japan's Consumer Contract Act applies, the previous sentence does not apply.
-The operator is then liable as that Act and the Civil Code provide, including for loss caused by slight negligence.
-Nothing here excludes or limits a liability that the law does not allow to be excluded or limited.
-The first sentence of this section does not, by itself, exclude a liability that the law imposes.
-This page is not a contract.
+The operator is liable for loss that arises from using these works as the Civil Code, the Consumer Contract Act and other laws provide.
+This page neither excludes nor limits that liability.
+Whether or not the operator is a business under the Consumer Contract Act, the operator follows what that Act requires of a business.
+The section "How the works are offered" states what the operator does not promise; it is not a clause that excludes liability.
 
 ## Reuse
 
@@ -50,7 +48,7 @@ The operator has not checked their content and does not guarantee it.
 An error in a statement about a person, or an infringement of their rights, is received at the email address on the operator's [ORCID record](https://orcid.org/0009-0000-1406-0547), or in an issue of the repository.
 A request that contains personal information is received by email, not in a public issue.
 The operator checks each request promptly and corrects or removes the statement where needed.
-Of living people, nothing is written beyond the word "parents".
+Of living family members, nothing is written beyond the word "parents".
 
 ## Information
 
@@ -60,6 +58,14 @@ Everything a page needs is loaded from the host that serves it.
 Vercel and GitHub, which serve the pages, may keep records of the requests they receive, under their own policies.
 Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections.
 Issues are public on GitHub.
+Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.
+The record of corrections does not carry the name or contact details of the person who asked.
+Personal information received is not passed to a third party without the consent of the person concerned, except where the law allows it.
+A request from the person concerned to disclose, correct, stop using or erase personal information received is accepted at the email address in the section "Statements about people".
+No fee is charged.
+The operator's address is given without delay to a person whose personal information the operator has received, on request.
+The measures taken to keep that personal information secure are also described to that person without delay, on request.
+A complaint about how personal information is handled is accepted at the same email address.
 
 ## Language models
 

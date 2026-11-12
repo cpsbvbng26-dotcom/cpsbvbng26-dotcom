@@ -98,6 +98,10 @@ function usable(u) {
   if (/^api\./.test(h) || /10\.5072(\/|%2F)/i.test(u)) return false;
   /* 名前空間の識別子であって、開く頁ではないもの。 */
   if (/^https?:\/\/www\.w3\.org\/(2000|1999|1998|XML)\//.test(u)) return false;
+  /* SSRN は開かない（2026-11-12 の続き）。SSRN の利用規約は、自動の問い合わせを送らないことを利用者に約させる
+   * （"or otherwise send automated queries of any sort to SSRN"。Sophaxis の sources-raw.json の pages.ssrn-terms）。
+   * SSRN の頁と、SSRN へ転送される DOI（10.2139/ssrn.*）は、数えずに外す。 */
+  if (/(^|\.)ssrn\.com$/i.test(h) || /10\.2139(\/|%2F)ssrn/i.test(u)) return false;
   return true;
 }
 
@@ -222,7 +226,8 @@ async function upsertIssue(body, brokenCount) {
   }
 }
 
-(async () => {
+module.exports = { usable };
+if (require.main === module) (async () => {
   const names0 = await repoNames();
   const { root, names } = checkout(names0);
   const where = collect(root, names);

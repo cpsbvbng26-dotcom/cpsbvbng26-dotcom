@@ -299,17 +299,6 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 </details>
 
-<details>
-<summary>仕事の窓口 —— 研究とは別</summary>
-
-- LinkedIn — [独立での案件募集](https://jp.linkedin.com/in/%E5%8D%93%E5%93%89-%E6%A0%B9%E6%9C%AC-62b9093a0)
-- Wantedly — [職務プロフィール](https://www.wantedly.com/id/takuya_nemoto_q)
-- ランサーズ — [独立での案件募集](https://www.lancers.jp/profile/Itizyou)
-- ココナラ — [独立での案件募集](https://coconala.com/users/4974247)
-- クラウドワークス — [独立での案件募集](https://crowdworks.jp/public/employees/7030074)
-
-</details>
-
 ---
 
 ✴︎Verification✴︎
@@ -357,11 +346,11 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（4
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断（項目の数は docs/checks.md）
-node verification/check_guards.js     # 検査そのものを壊して確かめる 78 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 79 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査します。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 72 通り**あって、
+何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 73 通り**あって、
 壊したところがちょうど落ちることを確かめます。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
@@ -512,4 +501,4 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 
 </details>
 
-責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。
+責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。
