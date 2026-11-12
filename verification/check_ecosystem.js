@@ -2470,6 +2470,25 @@ console.log('\n12f. 法令の点検の記録');
     check('写した条文が、Sophaxis と Nusquama の取り寄せた文と一字一句同じ（' + 比べた + ' 組）', 違い.length === 0 && 比べた > 0, 違い.join(', '));
   }
 
+  /* 2026-11-12 の続き。施行令・施行規則・附則は、Sophaxis の main の sources-raw.json の laws に取り寄せてある（PR #218）。
+   * 「照合」を持つ条は、そこの文と突き合わせる。条は一字一句同じ、附則は取り寄せた附則の文の中に一字一句あること。 */
+  {
+    const rawText = read('sophaxis', path.join('verification', 'sources-raw.json'));
+    const 照合 = Object.entries(条文).filter(([, v]) => v['照合']);
+    const 違い = [];
+    if (rawText === null) 違い.push('sophaxis の sources-raw.json が並んでいない');
+    else {
+      const LAWS = JSON.parse(rawText).laws || {};
+      for (const [k, v] of 照合) {
+        const r = v['照合'], law = LAWS[r.laws];
+        if (!law) { 違い.push(k + '（' + r.laws + ' が無い）'); continue; }
+        if (r['条'] !== undefined) { if (!law.articles || law.articles[r['条']] !== v['文']) 違い.push(k); }
+        else if (!law.suppl || !law.suppl[r['附則']] || law.suppl[r['附則']].text.indexOf(v['文']) < 0) 違い.push(k);
+      }
+    }
+    check('施行令・施行規則・附則から写した条が、Sophaxis の取り寄せた文と一字一句同じ（' + 照合.length + ' 条）', 照合.length > 0 && 違い.length === 0, 違い.join(', '));
+  }
+
   const 法令名 = [...new Set(Object.keys(条文).map((k) => k.replace(/ 第.*$/, '')))].sort((a, b) => b.length - a.length);
   const 名の形 = new RegExp('(' + 法令名.join('|') + ')', 'g');
   const 先 = C.repos.concat(['deposit-check']);
@@ -2554,6 +2573,47 @@ console.log('\n12g. 法的なリスクを締めた（2026-11-12 の続き）');
   }
   check('締めて外した言い回し（免除の文、確かめられない評判、受注の場への道、親族の出自）が戻っていない（' + 語数 + ' 語）',
     K !== null && 語数 > 0 && 戻り.length === 0, 戻り.join(', '));
+
+  /* SSRN の利用規約は、自動の問い合わせを送らないことを利用者に約させる。月に一度のリンクの確認は、
+   * SSRN の頁と SSRN へ転送される DOI を開かない。外す働きそのものを、関数を呼んで確かめる。 */
+  let usable = null;
+  try { usable = require(path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'linkcheck.js')).usable; } catch (e) { usable = null; }
+  const 開く = usable === null ? ['linkcheck.js が読めない'] : ['https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7358779', 'https://www.ssrn.com/index.cfm/en/', 'https://doi.org/10.2139/ssrn.7358779']
+    .filter((u) => usable(u)).concat(usable('https://doi.org/10.5281/zenodo.22058254') ? [] : ['Zenodo の DOI まで外している']);
+  check('月に一度のリンクの確認が、SSRN の頁と SSRN の DOI を開かない（SSRN の利用規約）', 開く.length === 0, 開く.join(', '));
+}
+
+/* ---------- 取り寄せた周辺の文（2026-11-12 の続き） ----------
+ *
+ * Sophaxis の main（PR #218）が、施行令・施行規則・附則と、場の規約を取り寄せた。
+ * **取り寄せた文を、取り寄せられなかった文の一覧に残さない。**残せば、確かめたことを確かめていないと書くことになる。
+ * まだ無いものは、無い理由と一緒に一覧に残す。 */
+console.log('\n12h. 取り寄せた周辺の文（2026-11-12 の続き）');
+{
+  const K = DECL['周辺の文'] || null;
+  const 先 = C.repos.concat(['deposit-check']);
+  const 欠け = [], 古い = [], 無い = [];
+  let 行 = 0;
+  for (const repo of 先) {
+    const t = K === null ? null : read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length) 欠け.push(repo);
+    const h = K['一覧'].map((x) => t.indexOf('\n' + x + '\n')).find((x) => x >= 0);
+    const e = h === undefined ? -1 : t.indexOf('\n## ', h + 1);
+    const 一覧 = h === undefined ? '' : t.slice(h, e < 0 ? t.length : e);
+    K['一覧に残さない言い回し'].forEach((x) => { if (一覧.indexOf(x) >= 0) 古い.push(repo + '：' + x); });
+    (K['一覧に残す文'][repo] || []).forEach((x) => { if (一覧.indexOf(x) < 0) 無い.push(repo + '：' + x.slice(0, 16)); });
+  }
+  check('11 の点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行がある（' + (先.length - 欠け.length) + ' 本、' + 行 + ' 行）',
+    K !== null && 欠け.length === 0, 欠け.join(', '));
+  check('取り寄せられなかった文の一覧に、もう取り寄せた文を残していない（' + (K ? K['一覧に残さない言い回し'].length : 0) + ' 語）',
+    K !== null && 古い.length === 0, 古い.join(', '));
+  check('まだ取り寄せられない文（旧著作権法・報道の記事・東北大学の規約）を、理由と一緒に一覧に残している', K !== null && 無い.length === 0, 無い.join(', '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
