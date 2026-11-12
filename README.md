@@ -314,7 +314,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1745 項目の検査を通します。依存パッケージはありません。
+このリポジトリは、push のたびに 1746 項目の検査を通します。依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
@@ -322,7 +322,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 702 項目
-node verification/check_site.js      # サイトの構造 953 項目
+node verification/check_site.js      # サイトの構造 954 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -403,7 +403,7 @@ node verification/check_datacite.js   # 目録の DOI と DataCite の資源の�
 
 ```
 default-src 'none'; script-src 'self' 'sha256-…'; style-src 'sha256-…';
-img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; base-uri 'none'
+img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 ```
 
 `unsafe-inline` は使っていません。インラインの `<style>` と `<script>` は SHA-256 のハッシュで名指しして許しています。中身を書き換えるとハッシュが変わるので、[`verification/update_csp.js`](verification/update_csp.js) で入れ直します。入れ忘れると検査が落ち、ブラウザもそのスクリプトの実行を拒みます。
@@ -421,6 +421,8 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 | 注入したインライン `style` | 止まる |
 | 許可したホスト（`api.crossref.org`） | 通る |
 
+表の最後の行は、DOI アナライザーの頁が照会先の 6 ホストに問い合わせていたころの結果です。その頁は消しました。2026-11-12 の法令の点検で、上の CSP の一行が古いまま照会先を書いていたことを見つけ、いまの形に直しました。いまは、どの頁の `connect-src` も `'none'` で、`check_site.js` が全部の頁で確かめています。
+
 **正の URL がひとつであること**も見ています。このサイトの正は Vercel（`cpsbvbng26-dotcom.vercel.app`）です。2026-10-27 に GitHub Pages から移しました。別の配信先を指す URL が混ざると、検索エンジンにも読者にも二つの版があるように見えます。`canonical` と `og:url` の食い違いも落とします。
 
 **`check_trinity.js`** は作用素のページの数値を、ブラウザを起こさずに検査します。記録した NumPy の値 728 件と、縮小になる距離の証書 23 件との突き合わせ。
@@ -437,8 +439,10 @@ img-src 'self' data:; connect-src <照会先 6 ホスト>; form-action 'none'; b
 
 | | ライセンス | |
 | --- | --- | --- |
-| **文章・構造化データ** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、JSON-LD | [CC BY 4.0](LICENSE) | 出典を示せば、改変も含めて自由に使える |
-| **サイトの実装** —— `index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/` のマークアップ・スタイル・スクリプト、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
+| **文章・構造化データ・画像** —— プロフィールの本文、論文と制作物の説明、`README.md` と `README.en.md`、`docs/` の記録、JSON-LD、`catalog.json` と `catalog.bib`、ロゴと共有カードの画像 | [CC BY 4.0](LICENSE) | 第 3 節の表示（著作者の名・ライセンスへのリンク・改変したかどうかなど）を添えれば、改変も含めて自由に使える |
+| **サイトの実装** —— 根にある頁（`index*.html`・`cv.html`・`catalog*.html`・`tools*.html`・`card.html`・`trinity.html`・`404.html`）と `notes/`・`papers/` の頁のマークアップ・スタイル・スクリプト、`theme.js` と `trinity.js`、および `verification/` の検査スクリプト | [MIT](LICENSE-CODE) | [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile)（MIT）から起こしたものである |
+
+2026-11-12 の法令の点検で、実装の欄が五つの言語のトップ・目録・道具の一覧・印刷向けの一頁を挙げていなかったことを見つけ、挙げました。`docs/` の記録と画像は、どちらの欄にも無く、根の LICENSE（CC BY 4.0）に当たっていたので、上の欄に書き足しました。区分は変えていません。
 
 © 2026 根本卓哉（Takuya Nemoto）
 
