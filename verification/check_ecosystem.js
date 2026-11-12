@@ -2621,7 +2621,7 @@ console.log('\n12h. 取り寄せた周辺の文（2026-11-12 の続き）');
  * 読むだけの点検をもう一度、別の手で行った。見張りが見ていなかったところを直し、見張りを広げた。
  *   - 決めごと 10 の見張りの式（verification/kinship.js）を、self-correction の登録簿と researcher-profile の設定に当てる。
  *     check_site.js は自分の頁しか見ない。SC-016 の欄は、その外で、存命の第三者の事業計画を写していた。
- *   - 自己紹介から外した、開業届を出す予定の文が戻らず、出していないという事実の文が残っていること。
+ *   - 自己紹介から外した、開業届を出す予定の文が戻らないこと。出していないという文も、二度目の見落としの節で外した（下の検査は向きを逆にした）。
  *   - 月に一度のリンクの確認が、機械での利用を断る場（edX・DataCite の頁・Google Scholar・Academia.edu・ResearchGate）を開かないこと。
  * 三つの点検の記録に同じ見出しの節と、Claude が決めたことの一文があること。 */
 console.log('\n12i. 見落としていたもの（2026-11-12 の続き）');
@@ -2664,7 +2664,7 @@ console.log('\n12i. 見落としていたもの（2026-11-12 の続き）');
       }
     }
   }
-  check('self-correction の登録簿と researcher-profile の設定に、存命の人物の続柄の一語を越える記載が無い（決めごと 10、' + 面 + ' ファイル）',
+  check('self-correction の登録簿と researcher-profile の設定に、存命の人物の続柄の一語を越える記載も、存命の第三者の事業や計画への言及も無い（決めごと 10、' + 面 + ' ファイル）',
     K !== null && 面 > 0 && 当たり.length === 0, 当たり.slice(0, 6).join(' / '));
 
   const 戻り = [];
@@ -2679,16 +2679,20 @@ console.log('\n12i. 見落としていたもの（2026-11-12 の続き）');
   check('外した文（開業届を出す予定、両親の考え）が、設定にも頁にも戻っていない（' + 語数 + ' 語）',
     K !== null && 語数 > 0 && 戻り.length === 0, 戻り.join(', '));
 
-  const 無い文 = [];
+  /* 2026-11-12（二度目の見落とし）。ここはもとは、開業届を出していないという事実の文が残っていることを求めていた。
+   * 「消せば事実を隠すことになる」という理由だったが、誤りだった。公開を求める法令は無く、届け出についての
+   * 事実を公に置き続ける理由も無い。同じ文の並びを、同じ厳しさで、逆の向きに求める。 */
+  const 残り = [];
   let 文数 = 0;
-  for (const [repo, files] of Object.entries(K ? K['ある文'] : {})) {
+  for (const [repo, files] of Object.entries(K ? K['外した届けの文'] : {})) {
     for (const [f, xs] of Object.entries(files)) {
-      const t = read(repo, f) || '';
-      xs.forEach((x) => { 文数++; if (t.indexOf(x) < 0) 無い文.push(repo + '/' + f + '「' + x.slice(0, 16) + '」'); });
+      const t = read(repo, f);
+      if (t === null) { 残り.push(repo + '/' + f + ' が無い'); continue; }
+      xs.forEach((x) => { 文数++; if (t.indexOf(x) >= 0) 残り.push(repo + '/' + f + '「' + x.slice(0, 16) + '」'); });
     }
   }
-  check('開業届を出していないという事実の文は、五つの言語の設定と頁と README に残っている（' + 文数 + ' 文）',
-    K !== null && 文数 > 0 && 無い文.length === 0, 無い文.join(', '));
+  check('開業届を出していないという文も、五つの言語の設定と頁と README から外れている（' + 文数 + ' 文）',
+    K !== null && 文数 > 0 && 残り.length === 0, 残り.join(', '));
 
   let lc = null;
   try { lc = require(path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'linkcheck.js')); } catch (e) { lc = null; }
@@ -2697,6 +2701,123 @@ console.log('\n12i. 見落としていたもの（2026-11-12 の続き）');
       .concat((K ? K['開く'] : []).filter((u) => !lc.usable(u)).map((u) => '外している: ' + u));
   check('月に一度のリンクの確認が、機械での利用を断る場（edX・DataCite の頁・Google Scholar・Academia.edu・ResearchGate）を開かず、ほかは開く（' + (K ? K['開かない'].length + ' と ' + K['開く'].length : 0) + ' 件）',
     K !== null && 誤り.length === 0, 誤り.join(', '));
+}
+
+/* ---------- 二度目の見落とし（2026-11-12 の続き） ----------
+ *
+ * 読むだけの点検を、さらに別の手でもう一度行った。直したものが戻らないことを見る。
+ *   - 安全の窓口（SECURITY.md）が、在るメールの窓口（ORCID の記録）を書き、有効でない GitHub の非公開の報告を約さないこと。
+ *   - 論文と目録の生成が、作品の著者に所属を付けないこと。
+ *   - 存命かどうか確かめていない親族の名を載せる Google サイトの頁へのリンクが、どのリポジトリにも無いこと。
+ *   - SSRN と PhilArchive について、取り寄せた場の文の句だけを置き、場が品質を判定したと読める文を戻さないこと。
+ *   - 「使われた記録」の様式がある限り、免責事項の利用目的にそれがあること。
+ *   - SC-016 が、何についての文だったかを書かないこと。 */
+console.log('\n12j. 二度目の見落とし（2026-11-12 の続き）');
+{
+  const K = DECL['二度目の見落とし'] || null;
+  const present = (r) => fs.existsSync(path.join(ROOT, r));
+
+  const 欠け = [];
+  let 行 = 0;
+  for (const repo of (K ? K['記録'] : [])) {
+    const t = read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length || sec.indexOf(K['決めた']) < 0) 欠け.push(repo + (i < 0 ? '（節が無い）' : '（行か決めた一文が無い）'));
+  }
+  check('点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行と Claude が決めたことの一文がある（' + (K ? K['記録'].length - 欠け.length : 0) + ' 本、' + 行 + ' 行）',
+    K !== null && K['記録'].length > 0 && 欠け.length === 0, 欠け.join(', '));
+
+  /* 安全の窓口。11 の写しのどれもが、在る窓口を書き、無い入口を約さない。 */
+  const S = K ? K['安全の窓口'] : null;
+  const 窓口ずれ = [];
+  for (const repo of (S ? S.repos : [])) {
+    const t = read(repo, 'SECURITY.md');
+    if (t === null) { 窓口ずれ.push(repo + ' に無い'); continue; }
+    S['要る'].forEach((x) => { if (t.indexOf(x) < 0) 窓口ずれ.push(repo + ' に「' + x.slice(0, 20) + '」が無い'); });
+    S['無い'].forEach((x) => { if (t.indexOf(x) >= 0) 窓口ずれ.push(repo + ' に「' + x + '」'); });
+  }
+  check('SECURITY.md が、メールの窓口（ORCID の記録）と、GitHub の非公開の報告が有効でないことを書き、無い入口を約さない（' + (S ? S.repos.length : 0) + ' 本）',
+    S !== null && S.repos.length > 0 && 窓口ずれ.length === 0, 窓口ずれ.slice(0, 6).join(' / '));
+  const 案内ずれ = Object.entries(S ? S['README'] : {}).filter(([f, x]) => (read('cpsbvbng26-dotcom', f) || x).indexOf(x) >= 0).map(([f]) => f);
+  check('README の文書の一覧が、SECURITY.md を「非公開の報告の入口」と呼んでいない', S !== null && 案内ずれ.length === 0, 案内ずれ.join(', '));
+
+  /* 所属。作品の著者に付けない。生成もとで見る（頁の側は check_site.js が見る）。 */
+  const 所属 = [];
+  for (const [repo, files] of Object.entries(K ? K['所属を付けない生成'] : {})) {
+    files.forEach((f) => { const t = read(repo, f); if (t === null || /affiliation/.test(t)) 所属.push(repo + '/' + f); });
+  }
+  check('論文の頁と目録の生成もとが、作品の著者に所属を付けない', K !== null && 所属.length === 0, 所属.join(', '));
+
+  /* Google サイト。記録が出来事を述べるのはよいが、所在そのものはどこにも置かない。 */
+  const 所在 = [];
+  let 本 = 0;
+  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter(present);
+  for (const repo of repos) {
+    let files = [];
+    try { files = execFileSync('git', ['-C', path.join(ROOT, repo), 'ls-files'], { encoding: 'utf8', maxBuffer: 1 << 28 }).split('\n').filter(Boolean); } catch (e) { 所在.push(repo + ' の一覧が読めない'); continue; }
+    本++;
+    for (const f of files) {
+      if (!/\.(md|html|json|toml|yml|yaml|js|py|txt|xml|csv|cff|bib)$/.test(f)) continue;
+      let t = '';
+      try { t = fs.readFileSync(path.join(ROOT, repo, f), 'utf8'); } catch (e) { continue; }
+      if (K && t.indexOf(K['外したリンク']) >= 0 && f !== path.join('verification', 'ecosystem.json')) 所在.push(repo + '/' + f);
+    }
+  }
+  check('Google サイトの頁の所在が、どのリポジトリの頁・設定・README・記録にも無い（' + 本 + ' 本）',
+    K !== null && 本 > 0 && 所在.length === 0, 所在.slice(0, 6).join(', '));
+
+  /* 場の文。取り寄せた頁にある句だけを置き、どの句も点検の記録が取り寄せた所在と一緒に挙げている。 */
+  const 句ずれ = [];
+  const audit = read('cpsbvbng26-dotcom', path.join('docs', 'legal-audit-2026-11-12.md')) || '';
+  for (const q of (K ? K['場の文'] : [])) {
+    for (const [repo, files] of Object.entries(K['場の文を置く'])) {
+      files.forEach((f) => { if ((read(repo, f) || '').indexOf(q['句']) < 0) 句ずれ.push(repo + '/' + f + ' に「' + q['句'].slice(0, 24) + '」が無い'); });
+    }
+    if (audit.indexOf(q['句']) < 0 || audit.indexOf(q['頁']) < 0) 句ずれ.push('点検の記録に「' + q['句'].slice(0, 24) + '」とその所在が無い');
+  }
+  check('SSRN と PhilArchive の句は、取り寄せた場の文の句で、頁と README と点検の記録にある（' + (K ? K['場の文'].length : 0) + ' 句）',
+    K !== null && K['場の文'].length > 0 && 句ずれ.length === 0, 句ずれ.slice(0, 6).join(' / '));
+  const 判断 = [];
+  let 判断数 = 0;
+  for (const [repo, files] of Object.entries(K ? K['無い判断'] : {})) {
+    for (const [f, xs] of Object.entries(files)) {
+      const t = read(repo, f);
+      if (t === null) { 判断.push(repo + '/' + f + ' が無い'); continue; }
+      xs.forEach((x) => { 判断数++; if (t.indexOf(x) >= 0) 判断.push(repo + '/' + f + '：' + x); });
+    }
+  }
+  check('場が品質を判定したと読める文と、取り寄せた頁に無い句が、五つの言語の設定と頁と README に戻っていない（' + 判断数 + ' 語）',
+    K !== null && 判断数 > 0 && 判断.length === 0, 判断.slice(0, 6).join(', '));
+
+  /* 使われた記録。様式がある限り、免責事項の利用目的にある。 */
+  const U = K ? K['使われた記録'] : null;
+  const 様式 = [];
+  for (const repo of C.repos.filter(present)) {
+    const dir = path.join(ROOT, repo, '.github', 'ISSUE_TEMPLATE');
+    if (!fs.existsSync(dir)) continue;
+    fs.readdirSync(dir).filter((n) => /\.ya?ml$/.test(n)).forEach((n) => {
+      if (U && fs.readFileSync(path.join(dir, n), 'utf8').indexOf(U['様式の句']) >= 0) 様式.push(repo + '/' + n);
+    });
+  }
+  const 目的 = Object.entries(U ? U['免責'] : {}).filter(([f, x]) => (read('cpsbvbng26-dotcom', f) || '').indexOf(x) < 0).map(([f]) => f);
+  check('「使われた記録」の様式（' + 様式.length + ' 本）があり、免責事項の利用目的が日英ともそれを挙げている',
+    U !== null && 様式.length > 0 && 目的.length === 0, 目的.join(', ') || 様式.join(', '));
+
+  /* SC-016。自己紹介の一文を直したことと、凍結した写しと履歴の事実だけを書く。 */
+  const reg = read('self-correction', 'register.toml') || '';
+  const i = reg.indexOf('id = "SC-016"');
+  const j = i < 0 ? -1 : reg.indexOf('[[entry]]', i);
+  const blk = i < 0 ? '' : reg.slice(i, j < 0 ? reg.length : j);
+  const P = K ? K['SC-016'] : null;
+  const 余り = P ? P['外す語'].filter((x) => blk.indexOf(x) >= 0).map((x) => '「' + x + '」がある')
+    .concat(P['残す句'].filter((x) => blk.indexOf(x) < 0).map((x) => '「' + x + '」が無い')) : ['宣言が無い'];
+  check('SC-016 が、自己紹介の一文を直したことと、凍結した Zenodo の版と git の履歴の事実だけを書き、第三者・事業・計画に触れない',
+    blk !== '' && 余り.length === 0, 余り.join(', '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
