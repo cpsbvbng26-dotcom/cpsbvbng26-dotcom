@@ -2428,6 +2428,442 @@
       "句": "月に一度のリンクの確認は、三度目の見落としの節で直すまで、philarchive.org・philpapers.org・elsevier.support の頁を機械で開いていました。"
     }
   },
+  "四度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、四度目に別の手で行い、見落としを直した。独仏伊の自己紹介に「SSRN は主題と形式を見る」が残り、trinity-infinity の README（日英）と ARXIV.md にも「主題と体裁を見る」が残っていたこと。自己紹介が deposit-check の読む API から OpenAlex を落としていたこと。自己紹介が登録簿の件数を 97 と書いていたこと（実際は register.toml の項目の数）。一日に一度の見張りがブラウザの名を名乗っていたこと。10 のリポジトリと deposit-check の README・免責事項・CITATION.cff・.zenodo.json が、引いた他人の文までライセンスに含めて読める書き方だったこと。",
+    "節": "## 2026-11-12 の続き：四度目の見落とし",
+    "決めた": "2026-11-12 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "errata-check",
+      "self-correction",
+      "trinity-infinity",
+      "trinity-operator",
+      "autonomy-and-self-cultivation",
+      "naval-gazette-notes",
+      "researcher-profile",
+      "justice-and-algorithms",
+      "solitary-school",
+      "deposit-check"
+    ],
+    "選別の見張り": {
+      "_": "場（SSRN・PhilArchive・PhilPapers）の段落で、選別の動きと中身か担い手を同じ文に置く文を止める。式は verification/screening.js。記録（点検の記録・登録簿・外部の評価）には当てない。",
+      "面": {
+        "researcher-profile": [
+          "site*.json",
+          "golden-window*.json",
+          "notes*.json",
+          "theory-*.json",
+          "sophaxis*.json",
+          "afterlife*.json",
+          "cv.json",
+          "card.json",
+          "catalog.json",
+          "README.md"
+        ],
+        "cpsbvbng26-dotcom": [
+          "*.html",
+          "notes/*.html",
+          "papers/*.html",
+          "README*.md",
+          "DISCLAIMER*.md",
+          "docs/self-assessment.md",
+          "docs/doi-index.md"
+        ],
+        "trinity-infinity": [
+          "README*.md",
+          "ARXIV.md",
+          "TIMELINE.md",
+          "ASSUMPTIONS.md"
+        ],
+        "trinity-operator": [
+          "README*.md",
+          "games/*.md",
+          "site/*.html"
+        ],
+        "autonomy-and-self-cultivation": [
+          "README*.md",
+          "docs/*.md"
+        ],
+        "naval-gazette-notes": [
+          "README*.md"
+        ],
+        "errata-check": [
+          "README*.md"
+        ],
+        "self-correction": [
+          "README*.md"
+        ],
+        "justice-and-algorithms": [
+          "README*.md"
+        ],
+        "solitary-school": [
+          "README*.md",
+          "index.html"
+        ],
+        "deposit-check": [
+          "README*.md"
+        ]
+      },
+      "止める文": [
+        "<p><b>Die Aufnahme bei SSRN ist keine Begutachtung durch Fachkollegen.</b> Geprüft werden Gegenstand und Form.</p>",
+        "<p><b>Le dépôt sur SSRN n’est pas une expertise par les pairs.</b> Ce qui est examiné, c’est le sujet et la forme.</p>",
+        "<p><b>L’accettazione su SSRN non è una revisione paritaria.</b> Si controllano l’argomento e la forma.</p>",
+        "SSRN screening checks scope and format, not correctness.",
+        "SSRN の選別は主題と体裁を見るものであり、査読ではありません。",
+        "SSRN を通ったことは、ここに何も足さない。通ったのは主題と体裁の門である。",
+        "うち二篇は SSRN の編集スタッフの事前審査も通っています。",
+        "PhilArchive editors check every submission before it goes up.",
+        "| PhilArchive | Yes | No | A check by its editors | Philosophy | None |",
+        "| SSRN | 保つ | 与える | 担当者による確認 | 主に社会科学と人文学 | なし |",
+        "Bei PhilArchive prüfen Redakteure jede Einreichung.",
+        "Sur PhilArchive, les éditeurs vérifient chaque dépôt.",
+        "Su PhilArchive i redattori controllano ogni invio."
+      ],
+      "通す文": [
+        "<p>None of the PhilArchive pages fetched says who checks what before an item goes up.</p>",
+        "<p>Keine der abgerufenen Seiten von PhilArchive sagt, wer vor der Veröffentlichung was prüft.</p>",
+        "<p>Aucune des pages de PhilArchive consultées ne dit qui vérifie quoi avant la mise en ligne.</p>",
+        "<p>Nessuna delle pagine di PhilArchive consultate dice chi verifichi che cosa prima della pubblicazione.</p>",
+        "| PhilArchive の収録 | PhilArchive（載る前に誰が何を確かめるかは、取り寄せた頁に書かれていない） |",
+        "<p>SSRN は、論文が学術的な内容の基準を満たすかを決めると書いています（<code>SSRN must determine if a paper meets the criteria of scholarly content</code>）。</p>",
+        "<p><b>Die Aufnahme bei SSRN ist keine Begutachtung durch Fachkollegen.</b></p>",
+        "On SSRN a subject area is itself an eJournal.",
+        "SSRN writes that it must determine if a paper meets the criteria of scholarly content, and that it does not peer review preprints; acceptance there is not a finding on correctness."
+      ]
+    },
+    "API の名": {
+      "_": "自己紹介が名乗る deposit-check の読む API は、deposit-check/src/fetch.js が問い合わせる場と同じ集まりである。場の名は、この対応で引く。",
+      "対応": {
+        "pub.orcid.org": "ORCID",
+        "api.datacite.org": "DataCite",
+        "api.crossref.org": "Crossref",
+        "api.japanlinkcenter.org": "JaLC",
+        "api.openalex.org": "OpenAlex"
+      },
+      "面": [
+        {
+          "repo": "researcher-profile",
+          "file": "site.json",
+          "式": "deposit-check[\\s\\S]{0,600}?「?([^。「]*?) の公開 API を読むだけで"
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "site.en.json",
+          "式": "deposit-check[\\s\\S]{0,600}?It only reads the public APIs of ([^.]*?), and writes nothing anywhere\\."
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "式": "deposit-check[\\s\\S]{0,600}?([^。>]*?) の公開 API を読むだけで"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "式": "deposit-check[\\s\\S]{0,600}?It only reads the public APIs of ([^.]*?), and writes nothing anywhere\\."
+        },
+        {
+          "repo": "deposit-check",
+          "file": "README.md",
+          "式": "apis\\[\"([^\"(]*?) \\(GET only\\)\"\\]"
+        }
+      ]
+    },
+    "登録簿の数": {
+      "_": "自己紹介と README が名乗る登録簿の件数は、self-correction の register.toml の [[entry]] の数と同じである（決めごと 5）。2026-11-12 まで、自己紹介の道具の欄が 97 件のまま残っていた。",
+      "面": [
+        {
+          "repo": "researcher-profile",
+          "file": "site.json",
+          "式": [
+            "いま (\\d+) 件です。",
+            "登録簿（(\\d+) 件）",
+            "<strong>(\\d+) 件</strong>を"
+          ]
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "site.en.json",
+          "式": [
+            "(\\d+) entries so far\\.",
+            "register \\((\\d+) entries\\)",
+            "<strong>(\\d+) entries</strong>"
+          ]
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "site.de.json",
+          "式": [
+            "<b>(\\d+) Einträge</b>"
+          ]
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "site.fr.json",
+          "式": [
+            "<b>(\\d+) entrées</b>"
+          ]
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "site.it.json",
+          "式": [
+            "<b>(\\d+) voci</b>"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.html",
+          "式": [
+            "いま (\\d+) 件です。",
+            "登録簿（(\\d+) 件）",
+            "<strong>(\\d+) 件</strong>を"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.en.html",
+          "式": [
+            "(\\d+) entries so far\\.",
+            "register \\((\\d+) entries\\)",
+            "<strong>(\\d+) entries</strong>"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.de.html",
+          "式": [
+            "<b>(\\d+) Einträge</b>"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.fr.html",
+          "式": [
+            "<b>(\\d+) entrées</b>"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "index.it.html",
+          "式": [
+            "<b>(\\d+) voci</b>"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.md",
+          "式": [
+            "いま (\\d+) 件。",
+            "「登録簿 (\\d+) 件」"
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "README.en.md",
+          "式": [
+            "\\*\\* (\\d+) entries\\."
+          ]
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "式": [
+            "登録簿 \\*\\*(\\d+) 件\\*\\*"
+          ]
+        }
+      ]
+    },
+    "見張りの名乗り": {
+      "_": "一日に一度の見張り（verification/uptime.js）は、linkcheck.js と同じ形で名乗る。ブラウザの名を借りない。11 のリポジトリのどのスクリプトも、ブラウザの名を名乗りに書かない。",
+      "file": "verification/uptime.js",
+      "含む": "github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/uptime.js",
+      "ブラウザ": [
+        "Mozilla",
+        "AppleWebKit",
+        "Chrome/",
+        "Safari/",
+        "Gecko/",
+        "Firefox/",
+        "Edg/"
+      ]
+    },
+    "他人の文": {
+      "_": "引いた他人の文、引用を確かめるために置いた他人の文は、CC BY 4.0 でも MIT でも許諾していない。README のライセンスの節（日英）と免責事項の「再利用」に置く。Sophaxis の README と licences の文に合わせた。",
+      "和": "このリポジトリが引き、または引用を確かめるために置いている他人の文は、CC BY 4.0 でも MIT でも許諾しておらず、それぞれの権利者のものです。",
+      "英": "Texts by others that this repository quotes, or keeps to verify its quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'.",
+      "README": {
+        "cpsbvbng26-dotcom": [
+          "README.md",
+          "README.en.md"
+        ],
+        "errata-check": [
+          "README.md",
+          "README.en.md"
+        ],
+        "self-correction": [
+          "README.md"
+        ],
+        "trinity-infinity": [
+          "README.md"
+        ],
+        "trinity-operator": [
+          "README.md"
+        ],
+        "autonomy-and-self-cultivation": [
+          "README.md"
+        ],
+        "naval-gazette-notes": [
+          "README.md"
+        ],
+        "researcher-profile": [
+          "README.md"
+        ],
+        "justice-and-algorithms": [
+          "README.md"
+        ],
+        "solitary-school": [
+          "README.md"
+        ],
+        "deposit-check": [
+          "README.md"
+        ]
+      },
+      "免責": {
+        "DISCLAIMER.md": "これらのリポジトリが引き、または引用を確かめるために置いている他人の文は、CC BY 4.0 でも MIT でも許諾しておらず、それぞれの権利者のものです。",
+        "DISCLAIMER.en.md": "Texts by others that these repositories quote, or keep to verify their quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'."
+      }
+    },
+    "引用情報の範囲": {
+      "_": "CITATION.cff の message と .zenodo.json の notes が、どの部分が MIT で、どの部分が CC BY 4.0 で、license の欄がどこに掛かるかを書き、他人の文は許諾していないと書く。和は CITATION.cff の message、英は .zenodo.json の notes（deposit-check は message も英）。置き方は目録の licenceLayout と同じであること。",
+      "repos": {
+        "autonomy-and-self-cultivation": {
+          "英": [
+            "The texts and the papers are CC BY 4.0 (LICENSE); the code in verification/ and build.js is MIT (LICENSE-CODE).",
+            "The licence field of this record covers the texts and the papers only."
+          ],
+          "和": [
+            "文書と論文は CC BY 4.0（LICENSE）、verification/ と build.js のコードは MIT（LICENSE-CODE）です。",
+            "license の欄は、文書と論文だけに掛かります。"
+          ]
+        },
+        "cpsbvbng26-dotcom": {
+          "英": [
+            "The texts, the structured data and the images are CC BY 4.0 (LICENSE); the site implementation and the check scripts are MIT (LICENSE-CODE).",
+            "The licence field of this record names both; each covers only its own part."
+          ],
+          "和": [
+            "文章・構造化データ・画像は CC BY 4.0（LICENSE）、サイトの実装と検査のスクリプトは MIT（LICENSE-CODE）です。",
+            "license の欄は二つを挙げ、それぞれが自分の部分だけに掛かります。"
+          ]
+        },
+        "deposit-check": {
+          "英": [
+            "The code is MIT (LICENSE); the README and the other documents are CC BY 4.0.",
+            "The licence field of this record covers the code only."
+          ]
+        },
+        "errata-check": {
+          "英": [
+            "The whole repository, the code and the documents, is MIT (LICENSE).",
+            "The licence field of this record covers the whole repository."
+          ],
+          "和": [
+            "コードも文書も含めて、リポジトリ全体が MIT（LICENSE）です。",
+            "license の欄は、リポジトリ全体に掛かります。"
+          ]
+        },
+        "justice-and-algorithms": {
+          "英": [
+            "The text is CC BY 4.0 (LICENSE); the check and build scripts are MIT (LICENSE-CODE).",
+            "The licence field of this record covers the text only."
+          ],
+          "和": [
+            "本文は CC BY 4.0（LICENSE）、検査と生成のスクリプトは MIT（LICENSE-CODE）です。",
+            "license の欄は、本文だけに掛かります。"
+          ]
+        },
+        "naval-gazette-notes": {
+          "英": [
+            "The source note, the texts and the structured data are CC BY 4.0 (LICENSE); the check scripts are MIT (LICENSE-CODE).",
+            "The licence field of this record covers the texts and the data only.",
+            "It does not cover the Naval Gazette itself; how copyright law treats the gazette is not decided here."
+          ],
+          "和": [
+            "史料ノート・文書・構造化したデータは CC BY 4.0（LICENSE）、検査のスクリプトは MIT（LICENSE-CODE）です。",
+            "license の欄は、文書とデータだけに掛かります。",
+            "海軍公報そのものには掛からず、公報の著作権法上の扱いはここでは決めていません。"
+          ]
+        },
+        "researcher-profile": {
+          "英": [
+            "The whole repository, the code and the documents, is MIT (LICENSE).",
+            "The licence field of this record covers the whole repository."
+          ],
+          "和": [
+            "コードも文書も含めて、リポジトリ全体が MIT（LICENSE）です。",
+            "license の欄は、リポジトリ全体に掛かります。"
+          ]
+        },
+        "self-correction": {
+          "英": [
+            "The whole repository, the register, the code and the documents, is MIT (LICENSE).",
+            "The licence field of this record covers the whole repository."
+          ],
+          "和": [
+            "登録簿・コード・文書を含めて、リポジトリ全体が MIT（LICENSE）です。",
+            "license の欄は、リポジトリ全体に掛かります。"
+          ]
+        },
+        "solitary-school": {
+          "英": [
+            "The text is CC BY 4.0 (LICENSE); the check scripts are MIT (LICENSE-CODE).",
+            "The licence field of this record covers the text only."
+          ],
+          "和": [
+            "本文は CC BY 4.0（LICENSE）、検査のスクリプトは MIT（LICENSE-CODE）です。",
+            "license の欄は、本文だけに掛かります。"
+          ]
+        },
+        "trinity-infinity": {
+          "英": [
+            "The texts and the papers are CC BY 4.0 (LICENSE); the verification code is MIT (LICENSE-CODE).",
+            "The licence field of this record covers the texts and the papers only."
+          ],
+          "和": [
+            "文書と論文は CC BY 4.0（LICENSE）、検証のコードは MIT（LICENSE-CODE）です。",
+            "license の欄は、文書と論文だけに掛かります。"
+          ]
+        },
+        "trinity-operator": {
+          "英": [
+            "The repository is MIT (LICENSE), except the texts in lessons/ and games/ and the page in site/, which are CC BY 4.0.",
+            "The licence field of this record (MIT) does not cover those three."
+          ],
+          "和": [
+            "リポジトリは MIT（LICENSE）です。ただし lessons/ と games/ の文章と site/ の頁は CC BY 4.0 です。",
+            "license の欄（MIT）は、その三つには掛かりません。"
+          ]
+        }
+      }
+    },
+    "公開前の確認": {
+      "_": "取り寄せた場の頁が言わない公開前の確認を、場に帰さない。Research Square の利用規約（Internet Archive の写し、2026-11-12、SHA-256 a0dc91271505ca5ba7004d9f2b7080814d67215c58969423d7a299268857732a、Sophaxis の取り寄せの実行 43274367372）から引いた句は、公開の前の確認について何も言わない。",
+      "無い": {
+        "cpsbvbng26-dotcom": {
+          "docs/submission-disclosure.md": [
+            "moderation を通ってから公開されます"
+          ]
+        }
+      },
+      "要る": {
+        "cpsbvbng26-dotcom": {
+          "docs/submission-disclosure.md": [
+            "公開の前に何を確かめるかは、取り寄せた利用規約から引いた句が何も言わないので、書きません"
+          ]
+        }
+      }
+    }
+  },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",
     "札": "種類：{種類}　状態：{状態}",
