@@ -102,7 +102,25 @@ function usable(u) {
    * （"or otherwise send automated queries of any sort to SSRN"。Sophaxis の sources-raw.json の pages.ssrn-terms）。
    * SSRN の頁と、SSRN へ転送される DOI（10.2139/ssrn.*）は、数えずに外す。 */
   if (/(^|\.)ssrn\.com$/i.test(h) || /10\.2139(\/|%2F)ssrn/i.test(u)) return false;
+  if (closed(u)) return false;
   return true;
+}
+
+/* 機械で開かない場（2026-11-12 の続き：見落としていたもの）。SSRN だけを外していたのは足りなかった。
+ *   edx.org         利用規約 11.6 が、edX の用意したもの以外の "spiders, robots, crawlers" での利用を禁じる
+ *                   （https://www.edx.org/edx-terms-service、2026-11-12 取得、sha256 2aaa9de0…）。
+ *   datacite.org    利用規約が "any systematic or automated data collection activities ... on or in relation to
+ *                   this website" を、書面の同意なしに禁じる（https://datacite.org/terms-and-conditions/、
+ *                   2026-11-12 取得、sha256 25ecf434…）。API（api.datacite.org）は上の api. の行で別に外れる。
+ *   scholar.google.com・academia.edu・researchgate.net
+ *                   規約の文を取り寄せていない。開いてよいと確かめられないので、外す側に倒す。
+ *                   ResearchGate の DOI（10.13140/RG.*）も、転送の先がそこなので外す。
+ * 外したものは数えない。転送の先がここに入るときも、そこから先へは進まない（probe の手での転送）。 */
+const CLOSED = /(^|\.)(ssrn\.com|edx\.org|datacite\.org|scholar\.google\.com|academia\.edu|researchgate\.net)$/i;
+function closed(u) {
+  let h;
+  try { h = new URL(u).hostname; } catch (e) { return false; }
+  return CLOSED.test(h) || /10\.13140(\/|%2F)rg\./i.test(u);
 }
 
 function collect(root, names) {
@@ -140,9 +158,20 @@ async function probe(u) {
   let last = null;
   for (const method of ['HEAD', 'GET']) {
     try {
-      const r = await fetch(u, { method, redirect: 'follow',
-        headers: { 'User-Agent': UA, Accept: 'text/html,application/xhtml+xml,*/*' },
-        signal: AbortSignal.timeout(30000) });
+      /* 転送は手で辿る。行き先が、機械で開かない場（closed）なら、そこで止めて転送の応答を結果にする。 */
+      let r = null;
+      let at = u;
+      for (let hop = 0; hop < 10; hop++) {
+        r = await fetch(at, { method, redirect: 'manual',
+          headers: { 'User-Agent': UA, Accept: 'text/html,application/xhtml+xml,*/*' },
+          signal: AbortSignal.timeout(30000) });
+        const loc = r.status >= 300 && r.status < 400 ? r.headers.get('location') : null;
+        if (!loc) break;
+        const next = new URL(loc, at).href;
+        if (closed(next)) break;
+        if (r.body) { try { await r.body.cancel(); } catch (e) { /* 読み捨て */ } }
+        at = next;
+      }
       /* HEAD を断る場がある。GET で確かめ直す。 */
       if (method === 'HEAD' && (r.status === 405 || r.status === 403 || r.status === 404 || r.status === 410 || r.status >= 500)) {
         last = { status: r.status }; continue;
@@ -226,7 +255,7 @@ async function upsertIssue(body, brokenCount) {
   }
 }
 
-module.exports = { usable };
+module.exports = { usable, closed, probe };
 if (require.main === module) (async () => {
   const names0 = await repoNames();
   const { root, names } = checkout(names0);
