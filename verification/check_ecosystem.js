@@ -3045,7 +3045,7 @@ console.log('\n12l. 四度目の見落とし（2026-11-12 の続き）');
     const got = m[1].split(/・|、|, | and | と /).map((x) => x.trim()).filter(Boolean).sort();
     if (JSON.stringify(got) !== JSON.stringify(名)) API名ずれ.push(s.repo + '/' + s.file + '：' + got.join('・') + ' / ' + 名.join('・'));
   }
-  check('自己紹介と deposit-check の README が名乗る、deposit-check の読む API が、src/fetch.js の問い合わせる場（' + hosts.length + ' か所）と同じ',
+  check('自己紹介と deposit-check の README・.zenodo.json・package.json が名乗る、deposit-check の読む API が、src/fetch.js の問い合わせる場（' + hosts.length + ' か所）と同じ',
     A !== null && hosts.length > 0 && API名ずれ.length === 0, API名ずれ.join(' / ') || 名.join('・'));
 
   /* 登録簿の件数（決めごと 5）。 */
@@ -3161,6 +3161,92 @@ console.log('\n12l. 四度目の見落とし（2026-11-12 の続き）');
   }
   check('CITATION.cff の message と .zenodo.json の notes が、どこが MIT でどこが CC BY 4.0 か、license の欄の掛かる範囲、他人の文を許諾していないことを書き、置き方が目録と同じ（'
     + (Z ? Object.keys(Z.repos).length : 0) + ' 本）', Z !== null && Object.keys(Z.repos).length > 0 && 範囲ずれ.length === 0, 範囲ずれ.slice(0, 6).join(' / '));
+
+  /* 十度目の見落とし（2026-11-13）。**license の欄を語る文が、欄そのものと合うこと。**
+   * cpsbvbng26-dotcom の .zenodo.json の notes は「licence field ... names both」と書き、欄は cc-by-4.0 一つだった。
+   * 上の検査は文があることと置き方しか見ておらず、欄の値を読んでいなかった。ここでは、13 のリポジトリのうち
+   * .zenodo.json を持つものすべてで、notes と CITATION.cff の message を読み、
+   *   一、「A は CC BY 4.0、B は MIT」の形の文から、ライセンスごとに部分を集める。
+   *   二、欄を語る文が名指すライセンスを決める。名を括弧で書けばそれ、「二つを挙げ」「names both」なら両方、
+   *       「X だけに掛かる」「covers X only」なら、X の語がすべて部分の文に出るライセンス（ちょうど一つ）。
+   *   三、それが .zenodo.json の license の値と、CITATION.cff の license の並びと、集合として同じであること。 */
+  const 欄の名 = { 'cc-by-4.0': 'CC BY 4.0', 'CC-BY-4.0': 'CC BY 4.0', mit: 'MIT', MIT: 'MIT' };
+  const 部分 = (text, ja) => {
+    const out = {};
+    const add = (k, v) => { out[k] = (out[k] || '') + ' ' + v; };
+    if (ja) {
+      for (const m of text.matchAll(/([^、。]*?)(?:は|が) (CC BY 4\.0|MIT)(?:（[^）]*）)?(?=[、。]|です)/g)) add(m[2], m[1]);
+    } else {
+      for (const s of text.split(/(?<=[.;])\s+/)) {
+        if (/licen[cs]e field/i.test(s)) continue;
+        const m = /^(.*?)\s+(?:is|are)\s+(CC BY 4\.0|MIT)\b/.exec(s);
+        if (m) add(m[2], m[1]);
+        const e = /except (.*?), which (?:is|are) (CC BY 4\.0|MIT)\b/.exec(s);
+        if (e) add(e[2], e[1]);
+      }
+    }
+    return out;
+  };
+  const 止め語 = new Set(['the', 'and', 'of', 'in', 'only', 'a', 'an', 'this', 'record', 'other', 'its']);
+  const 欄の語 = (s, ja) => (ja ? s.split(/と|・|、|の|\s+/) : s.toLowerCase().split(/[^a-z]+/))
+    .map((x) => x.trim()).filter((x) => x && (ja || !止め語.has(x)));
+  const 名指す = (text, ja) => {
+    const P = 部分(text, ja);
+    const s = ja ? (/license の欄[^。]*。/.exec(text) || [''])[0] : (/The licen[cs]e field of this record[^.]*\./.exec(text) || [''])[0];
+    if (!s) return { err: '欄を語る文が無い' };
+    if (!Object.keys(P).length) return { err: 'どこが何のライセンスかを書く文が読めない' };
+    const ex = ja ? /license の欄（(CC BY 4\.0|MIT)）/.exec(s) : /licen[cs]e field of this record \((CC BY 4\.0|MIT)\)/.exec(s);
+    if (ex) return { set: [ex[1]] };
+    if (ja ? /二つを挙げ/.test(s) : /names both/.test(s)) return { set: Object.keys(P).sort() };
+    const x = ja ? (/license の欄は、(.*?)(?:だけ)?に掛かります/.exec(s) || [])[1] : (/covers (.*?)(?: only)?\.$/.exec(s) || [])[1];
+    if (!x) return { err: '欄を語る文の形が読めない' };
+    const w = 欄の語(x, ja);
+    const hit = Object.keys(P).filter((L) => { const pw = ja ? P[L] : 欄の語(P[L], false); return w.length > 0 && w.every((t) => pw.includes(t)); });
+    return hit.length === 1 ? { set: hit } : { err: '欄が掛かる部分（' + x + '）が、' + (hit.length ? '二つのライセンスに' : 'どのライセンスの部分にも') + '当たる' };
+  };
+  const 欄を読む = (files) => {
+    const bad = [];
+    let n = 0;
+    for (const [repo, f] of Object.entries(files)) {
+      if (f.zenodo === null) continue;
+      n++;
+      let z = null;
+      try { z = JSON.parse(f.zenodo); } catch (e) { bad.push(repo + '/.zenodo.json が読めない'); continue; }
+      const zl = [...new Set([].concat(z.license || []).map((v) => 欄の名[(v && v.id) || v] || String(v)))].sort();
+      const a = 名指す(String(z.notes || ''), false);
+      if (a.err) bad.push(repo + '/.zenodo.json の notes：' + a.err);
+      else if (JSON.stringify(a.set) !== JSON.stringify(zl)) bad.push(repo + '/.zenodo.json：notes は ' + a.set.join('+') + '、license は ' + zl.join('+'));
+      const cff = f.cff;
+      if (cff === null) { bad.push(repo + '/CITATION.cff が無い'); continue; }
+      const msg = ((/^message:[\s\S]*?(?=^[a-z-]+:)/m.exec(cff) || [''])[0]).replace(/\s*\n\s*/g, ' ');
+      const lm = /^license:[ \t]*(\S*)[ \t]*\n((?:[ \t]+-[ \t]*\S+[ \t]*\n)*)/m.exec(cff);
+      const cl = lm === null ? [] : [...new Set((lm[1] ? [lm[1]] : (lm[2].match(/(?<=-[ \t]*)\S+/g) || [])).map((v) => 欄の名[v.replace(/"/g, '')] || v))].sort();
+      const b = 名指す(msg, /[ぁ-ん]/.test(msg));
+      if (b.err) bad.push(repo + '/CITATION.cff の message：' + b.err);
+      else if (JSON.stringify(b.set) !== JSON.stringify(cl)) bad.push(repo + '/CITATION.cff：message は ' + b.set.join('+') + '、license は ' + (cl.join('+') || '無い'));
+    }
+    return { bad, n };
+  };
+  const 十三l = (DECL['八度目の見落とし'] || {})['記録'] || [];
+  const 欄の元 = Object.fromEntries(十三l.map((r) => [r, { zenodo: read(r, '.zenodo.json'), cff: read(r, 'CITATION.cff') }]));
+  const 欄 = 欄を読む(欄の元);
+  check('.zenodo.json の notes と CITATION.cff の message が license の欄について書くことが、欄の値そのものと合う（' + 欄.n + ' 本。13 のリポジトリのうち .zenodo.json を持つもの）',
+    十三l.length === 13 && 欄.n >= 12 && 欄.bad.length === 0, 欄.bad.slice(0, 6).join(' / '));
+  const 欄替 = (r, k, a2, b2) => Object.assign({}, 欄の元, { [r]: Object.assign({}, 欄の元[r], { [k]: String((欄の元[r] || {})[k] || '').replace(a2, b2) }) });
+  const 欄壊す = [
+    ['cpsbvbng26-dotcom の notes を「names both」に戻す', 欄替('cpsbvbng26-dotcom', 'zenodo', 'The licence field of this record covers the texts, the structured data and the images only.', 'The licence field of this record names both; each covers only its own part.')],
+    ['cpsbvbng26-dotcom の .zenodo.json の license を mit にする', 欄替('cpsbvbng26-dotcom', 'zenodo', '"license": "cc-by-4.0"', '"license": "mit"')],
+    ['autonomy の notes の掛かる部分をコードにする', 欄替('autonomy-and-self-cultivation', 'zenodo', 'covers the texts and the papers only', 'covers the code only')],
+    ['sophaxis の .zenodo.json の license を cc-by-4.0 にする', 欄替('sophaxis', 'zenodo', '"license": "mit"', '"license": "cc-by-4.0"')],
+    ['trinity-operator の括弧の名を変える', 欄替('trinity-operator', 'zenodo', 'licence field of this record (MIT)', 'licence field of this record (CC BY 4.0)')],
+    ['cpsbvbng26-dotcom の CITATION.cff の並びから MIT を外す', 欄替('cpsbvbng26-dotcom', 'cff', /\n  - MIT\n/, '\n')],
+    ['justice-and-algorithms の message の掛かる部分をスクリプトにする', 欄替('justice-and-algorithms', 'cff', 'license の欄は、本文だけに掛かります。', 'license の欄は、スクリプトだけに掛かります。')],
+    ['errata-check の CITATION.cff の license を CC-BY-4.0 にする', 欄替('errata-check', 'cff', /^license: MIT$/m, 'license: CC-BY-4.0')],
+    ['naval-gazette-notes の message から欄を語る文を外す', 欄替('naval-gazette-notes', 'cff', 'license の欄は、文書とデータだけに掛かります。', '')],
+  ];
+  const 欄落ちた = 欄壊す.filter(([, y]) => 欄を読む(y).bad.length > 0).map(([n]) => n);
+  check('壊して確かめる：notes を「names both」に戻す・欄の値を替える（二本）・掛かる部分を替える（日英）・括弧の名を替える・CITATION.cff の並びを減らす・値を替える・欄を語る文を外す、のどれでも落ちる（'
+    + 欄落ちた.length + ' / ' + 欄壊す.length + '）', 欄落ちた.length === 欄壊す.length, 欄壊す.filter(([n]) => !欄落ちた.includes(n)).map(([n]) => n).join(' / '));
 }
 
 /* ---------- 六度目の見落とし（2026-11-12 の続き。直したのは日本時間の 2026-11-13） ----------
@@ -3611,6 +3697,152 @@ console.log('\n12p. 九度目の見落とし：削除した ID・口のアドレ
   const 漏れ出た = 壊す.some(([, y]) => mail.some((e) => 判定(y).join(' ').includes(e)));
   check('壊して確かめる：削除した ID（三つのリポジトリ、表の外、元の一文）・口のアドレス（ほかのファイル、別のリポジトリ、別のものと書く）・日本時間の日付・UTC を外す（README、英語の段、イタリア語）・git の日付・記録の節・判定の数・決めた一文のどれでも落ち、知らせにアドレスが出ない（'
     + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length && !漏れ出た, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / ') + (漏れ出た ? ' / アドレスが知らせに出た' : ''));
+}
+
+/* ---------- 十度目の見落とし：引用情報の振る舞い、PhilArchive の三篇、OSF の説明の欄（2026-11-12 の続き） ----------
+ *
+ * 一。**引用情報は、消えた頁の振る舞いを書かない。**cpsbvbng26-dotcom の CITATION.cff と .zenodo.json は、
+ * 2026-09-07 に消した DOI の照会の頁を例外に挙げたまま、外へ要求を出さないと書いていた。README と頁の検査は
+ * 引用情報を読んでいなかった。13 のリポジトリのどのファイルも（記録とこの検査のほか）、その例外を書かない。
+ * 二つのファイルは、どの頁も外へ要求を出さず connect-src が 'none' だと書き、pages.json のどの頁でもそれが本当であること。
+ * deposit-check の .zenodo.json と package.json が名乗る API は、12l が fetch.js と突き合わせる。ここでは壊して確かめる。
+ * 二。license の欄を語る文と欄の値は、12l が見る。
+ * 三。**PhilArchive の三篇は、記録にある事実だけを、五言語で同じに書く。**頁は「三篇とも載っています」と
+ * 現在形で書き、同じ頁の所在の欄は一篇の削除を 2026-09-26 に依頼したと書いていた。いまの状態は、作業環境から
+ * 確かめていない。五つの設定と五つの頁と README（日英）が、載ったこと・削除の依頼・確かめていないことを書き、
+ * 現在形で三篇とも載っているとは書かない。
+ * 四。**OSF のプロジェクトの説明の欄の、各リポジトリを部品とする文を、どのリポジトリにも置かない。**欄は作業環境から
+ * 触れない。記録は DataCite が返した文を、所在と SHA-256 とともに引く。
+ * 五。直したリポジトリの記録に十度目の節がそろうこと。 */
+console.log('\n12q. 十度目の見落とし：引用情報の振る舞い・PhilArchive の三篇・OSF の説明の欄（2026-11-12 の続き）');
+{
+  const K = DECL['十度目の見落とし'] || null;
+  const 十三 = (DECL['八度目の見落とし'] || {})['記録'] || [];
+  const 判定語 = { ja: ['誤り', '根拠不足', '漏れ', '表現', '問題なし'], en: ['Error', 'Insufficient basis', 'Omission', 'Wording', 'No problem'] };
+  const 中身 = (repo) => {
+    let files = [];
+    try { files = execFileSync('git', ['ls-files', '-z'], { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 1 << 28 }).split('\0').filter(Boolean); } catch (e) { return null; }
+    const out = {};
+    for (const f of files) {
+      if (/\.(pdf|png|jpe?g|gif|ico|webp|woff2?|zip|gz|xlsx?|docx?)$/i.test(f)) continue;
+      const p = path.join(ROOT, repo, f);
+      if (!fs.existsSync(p) || !fs.statSync(p).isFile()) continue;
+      const b = fs.readFileSync(p);
+      if (b.includes(0)) continue;
+      out[f] = b.toString('utf8');
+    }
+    return out;
+  };
+  const 実 = { 全部: Object.fromEntries(十三.map((r) => [r, 中身(r)])) };
+  let pages = [];
+  try { pages = JSON.parse((実.全部['cpsbvbng26-dotcom'] || {})['verification/pages.json'] || '{}').pages.map((p) => p.file); } catch (e) { pages = []; }
+  function 判定(x) {
+    const bad = [];
+    if (K === null) return ['宣言が無い'];
+    if (十三.length !== 13) bad.push('13 のリポジトリの一覧が読めない');
+    for (const r of 十三) if (!x.全部[r]) bad.push(r + ' のファイルの一覧が読めない');
+    const 見ない = new RegExp(K['見ないファイル']);
+    const 古い = new RegExp(K['要求']['古い例外'], 'i');
+    const 引用情報 = new RegExp(K['要求']['引用情報']);
+    let 引用数 = 0;
+    for (const [r, fs_] of Object.entries(x.全部)) {
+      for (const [f, t] of Object.entries(fs_ || {})) {
+        if (引用情報.test(f)) 引用数++;
+        if (見ない.test(f)) continue;
+        /* 一。消えた頁を例外に挙げる文。 */
+        if (古い.test(t)) bad.push(r + '/' + f + ' が消えた照会の頁を例外に挙げる');
+        /* 四。OSF の説明の欄の文。 */
+        for (const s of K['OSF']['書かない']) if (t.includes(s)) bad.push(r + '/' + f + ' が OSF の説明の欄の、部品の文を持つ');
+      }
+    }
+    if (引用数 < 25) bad.push('引用情報のファイルが ' + 引用数 + ' 本しか読めない');
+    /* 一。二つのファイルの文と、それが本当であること。 */
+    const 面 = x.全部['cpsbvbng26-dotcom'] || {};
+    for (const [f, xs] of Object.entries(K['要求']['文'])) for (const s of xs) if (!String(面[f] || '').includes(s)) bad.push('cpsbvbng26-dotcom/' + f + ' に「' + s.slice(0, 20) + '」が無い');
+    if (pages.length < 30) bad.push('pages.json の頁が ' + pages.length + ' 本しか読めない');
+    for (const p of pages) {
+      const h = String(面[p] || '');
+      const csp = (/<meta http-equiv="Content-Security-Policy" content="([^"]*)"/.exec(h) || [])[1] || '';
+      if (!/(?:^|;\s*)connect-src 'none'(?:;|$)/.test(csp)) bad.push(p + ' の CSP の connect-src が \'none\' でない');
+    }
+    /* 三。PhilArchive の三篇。 */
+    const PA = K['PhilArchive'];
+    for (const [rf, lang] of Object.entries(PA['面'])) {
+      const [r, ...rest] = rf.split('/');
+      const t = String((x.全部[r] || {})[rest.join('/')] || '');
+      if (!t) { bad.push(rf + ' が無い'); continue; }
+      for (const s of PA['書く'][lang]) if (!t.includes(s)) bad.push(rf + ' に「' + s.slice(0, 24) + '」が無い');
+      if (!/README/.test(rf) && !t.includes(PA['所在の欄'][lang].replace(/"/g, '\\"')) && !t.includes(PA['所在の欄'][lang])) bad.push(rf + ' の所在の欄に削除の依頼が無い');
+      for (const s of PA['書かない']) if (t.includes(s)) bad.push(rf + ' が「' + s + '」と書く');
+    }
+    for (const [r, fl] of Object.entries(PA['記録の面'])) for (const f of fl) {
+      const t = String((x.全部[r] || {})[f] || '');
+      for (const s of PA['書かない']) if (t.includes(s)) bad.push(r + '/' + f + ' が「' + s + '」と書く');
+      if (/PhilArchive に載っています/.test(t)) bad.push(r + '/' + f + ' が PhilArchive に載っていると現在形で書く');
+    }
+    /* 五。記録。 */
+    for (const r of K['記録']) {
+      const t = (x.全部[r] || {})['docs/legal-audit-2026-11-12.md'];
+      if (!t) { bad.push(r + ' の記録が無い'); continue; }
+      const a = t.indexOf('\n' + K['節'] + '\n');
+      const b = a < 0 ? -1 : t.indexOf('\n## ', a + 1);
+      const sec = a < 0 ? '' : t.slice(a, b < 0 ? t.length : b);
+      if (!sec) { bad.push(r + ' に十度目の節が無い'); continue; }
+      const lang = sec.includes('| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |') ? 'ja' : sec.includes('| Place | Law and article | Requirements | Facts | Finding | Action |') ? 'en' : null;
+      if (!lang) { bad.push(r + ' の表の列'); continue; }
+      const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l)).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+      if (!rows.length || !rows.every((c) => c.length === 6 && 判定語[lang].includes(c[4]))) bad.push(r + ' の表の形');
+      const 内訳 = 判定語[lang].filter((w) => rows.some((c) => c[4] === w)).map((w) => w + ' ' + rows.filter((c) => c[4] === w).length).join(lang === 'ja' ? '、' : ', ');
+      if (!sec.includes(lang === 'ja' ? 'この表の判定は、' + 内訳 + ' です。' : 'Findings in this table: ' + 内訳 + '.')) bad.push(r + ' の判定の数');
+      for (const c of rows.filter((c2) => c2[4] !== 判定語[lang][4])) {
+        if (!c[5].includes(K['決めた'])) bad.push(r + '：決めた一文が無い行 ' + c[0].slice(0, 20));
+        else if (lang === 'ja' && !/ためです。?$/.test(c[5])) bad.push(r + '：理由が無い行 ' + c[0].slice(0, 20));
+      }
+      if (!K['弁護士'].some((w) => sec.includes(w))) bad.push(r + ' に弁護士の一文が無い');
+      if (r === 'cpsbvbng26-dotcom') for (const s of K['OSF']['記録に書くこと']) if (!sec.includes(s)) bad.push(r + ' の十度目の節に「' + s.slice(0, 30) + '」が無い');
+    }
+    return bad;
+  }
+  const bad = 判定(実);
+  const 数 = Object.values(実.全部).reduce((a, v) => a + (v ? Object.keys(v).length : 0), 0);
+  check('13 のリポジトリ（' + 数 + ' ファイル）が消えた照会の頁を例外に挙げず、cpsbvbng26-dotcom の引用情報が書くとおり ' + pages.length + ' 頁の connect-src が \'none\' で、PhilArchive の三篇を五言語の設定・頁・README が記録のとおりに書き、OSF の部品の文がどこにも無く、十度目の節が三つの記録にそろう',
+    bad.length === 0, bad.slice(0, 6).join(' / '));
+  const 替 = (r, f, a2, b2) => Object.assign({}, 実, { 全部: Object.assign({}, 実.全部, { [r]: Object.assign({}, 実.全部[r], { [f]: String((実.全部[r] || {})[f] || '').replace(a2, b2) }) }) });
+  const 壊す = [
+    ['CITATION.cff に照会の例外を戻す', 替('cpsbvbng26-dotcom', 'CITATION.cff', 'サイトのどの頁も、外部へリクエストを出さない。', '外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出さない。')],
+    ['.zenodo.json に照会の例外を戻す', 替('cpsbvbng26-dotcom', '.zenodo.json', 'サイトのどの頁も、外部へリクエストを出しません。', '外部へのリクエストは、利用者が照会を押したときの DOI 問い合わせを除いて出しません。')],
+    ['ほかのリポジトリの package.json に英語の例外を書く', 替('deposit-check', 'package.json', '"license": "MIT"', '"license": "MIT", "note": "No requests except the DOI lookup"')],
+    ['一つの頁の connect-src を開く', 替('cpsbvbng26-dotcom', pages[0] || 'index.html', "connect-src 'none'", "connect-src 'self'")],
+    ['日本語の設定を現在形に戻す', 替('researcher-profile', 'site.json', 'PhilArchive には三篇とも載りました。', 'PhilArchive には三篇とも載っています。')],
+    ['英語の頁から確かめていない一文を外す', 替('cpsbvbng26-dotcom', 'index.en.html', ' Whether it is still on PhilArchive has not been checked from here.', '')],
+    ['ドイツ語の頁を「置いたまま」に戻す', 替('cpsbvbng26-dotcom', 'index.de.html', ': Für eine Einreichung bei einer Zeitschrift wird keiner von Zenodo, SSRN oder PhilArchive genommen.', ', auf Zenodo, PhilArchive und SSRN.')],
+    ['フランス語の設定から削除の依頼を外す', 替('researcher-profile', 'site.fr.json', ' La suppression du troisième a été demandée le 2026-09-26.', '')],
+    ['イタリア語の頁の所在の欄から削除の依頼を外す', 替('cpsbvbng26-dotcom', 'index.it.html', ' (cancellazione richiesta il 2026-09-26)', '')],
+    ['README を現在形に戻す', 替('cpsbvbng26-dotcom', 'README.md', 'PhilArchive には三篇とも載りました。', 'PhilArchive には三篇とも載っています。')],
+    ['joss.md を「置いたまま」に戻す', 替('cpsbvbng26-dotcom', 'docs/joss.md', '査読誌に出すために、Zenodo・SSRN・PhilArchive から下ろすことはしません。', 'Zenodo と PhilArchive と SSRN に置いたままにします。')],
+    ['OSF の部品の文を osf.md に書く', 替('cpsbvbng26-dotcom', 'docs/osf.md', /$/, '\nEach repository is a component and links to its GitHub repository.\n')],
+    ['OSF の部品の和文をほかのリポジトリに書く', 替('trinity-operator', 'README.md', /$/, '\n各リポジトリは部品として置き、GitHub につないでいます。\n')],
+    ['記録から DataCite の SHA-256 を外す', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', 'df234f07e9e8090fc56d9ac4c6c1ed96af2376da36dee5611e7ed20a6d010662', '0'.repeat(64))],
+    ['記録から十度目の節を外す', 替('deposit-check', 'docs/legal-audit-2026-11-12.md', K ? K['節'] : 'x^', '## 十度目')],
+    ['英語の記録の判定の数を変える', 替('deposit-check', 'docs/legal-audit-2026-11-12.md', /Findings in this table: ([^\n]*?)(\d+)\.\n(?![\s\S]*Findings in this table:)/, (m, a, n) => 'Findings in this table: ' + a + (Number(n) + 1) + '.\n')],
+    ['決めた一文を外す', 替('researcher-profile', 'docs/legal-audit-2026-11-12.md', /2026-11-13 に Claude が決めました。(?![\s\S]*## 2026-11-12 の続き：九度目)/g, '')],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：照会の例外（CITATION.cff、.zenodo.json、ほかのリポジトリの英語）・頁の connect-src・PhilArchive（日英独仏伊の設定と頁、所在の欄、README、joss.md）・OSF の部品の文（日英、二つのリポジトリ）・記録の SHA-256・節・英語の判定の数・決めた一文のどれでも落ちる（'
+    + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+
+  /* deposit-check の引用情報が名乗る API は 12l が見る。12l の式で、OpenAlex を落とすと名乗りがずれることを確かめる。 */
+  const A = (DECL['四度目の見落とし'] || {})['API の名'] || { 面: [] };
+  const 名乗り = (t, s) => { const m = new RegExp(s['式']).exec(t); return m ? m[1].split(/・|、|, | and | と /).map((v) => v.trim()).filter(Boolean).sort() : null; };
+  const zs = A['面'].find((s) => s.repo === 'deposit-check' && s.file === '.zenodo.json');
+  const ps = A['面'].find((s) => s.repo === 'deposit-check' && s.file === 'package.json');
+  const zt = String((実.全部['deposit-check'] || {})['.zenodo.json'] || '');
+  const pt = String((実.全部['deposit-check'] || {})['package.json'] || '');
+  const 五 = ['Crossref', 'DataCite', 'JaLC', 'OpenAlex', 'ORCID'].sort();
+  check('壊して確かめる：deposit-check の .zenodo.json と package.json の名乗りから OpenAlex を外すと、12l の式が四つしか読まず、ずれる',
+    zs && ps && JSON.stringify(名乗り(zt, zs)) === JSON.stringify(五) && JSON.stringify(名乗り(pt, ps)) === JSON.stringify(五)
+    && JSON.stringify(名乗り(zt.replace('JaLC and OpenAlex', 'and JaLC'), zs)) !== JSON.stringify(五)
+    && JSON.stringify(名乗り(pt.replace('JaLC and OpenAlex', 'and JaLC'), ps)) !== JSON.stringify(五));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
