@@ -3125,5 +3125,43 @@
         "cff": "dataset"
       }
     }
+  },
+  "八度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、八度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。GitHub の利用規約は I 節で追加製品の規約を取り込み、その Actions の節は、GitHub の実行環境での使い方を、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開に限る。13 のリポジトリのどのワークフローも、その記録の八度目の節の表に行を持つ。外したワークフローは、ファイルが無く、行が外したと書く。記録の英語の引用は、statutes.json の規約の引いた句にある。",
+    "節": "## 2026-11-12 の続き：八度目の見落とし",
+    "記録": [
+      "autonomy-and-self-cultivation",
+      "cpsbvbng26-dotcom",
+      "deposit-check",
+      "errata-check",
+      "justice-and-algorithms",
+      "naval-gazette-notes",
+      "nusquama",
+      "researcher-profile",
+      "self-correction",
+      "solitary-school",
+      "sophaxis",
+      "trinity-infinity",
+      "trinity-operator"
+    ],
+    "決めた": [
+      "2026-11-13 に Claude が決めました",
+      "Claude decided this on 2026-11-13"
+    ],
+    "規約": {
+      "GitHub の利用規約 I": "b99f61303568322df9cd36b94e7293c71cc16fb06f8035837d4c44af895874cf",
+      "GitHub の追加製品の規約 Actions": "c39b5a7fc1953ebd37428db18101726acefb55420f766bcd7d912e1b71ee2ffc"
+    },
+    "目的の句": "If using GitHub-hosted runners, any other activity unrelated to the production, testing, deployment, or publication of the software project associated with the repository where GitHub Actions are used.",
+    "外したワークフロー": {
+      "cpsbvbng26-dotcom": [
+        "index-survey.yml",
+        "watch-outside.yml"
+      ]
+    },
+    "外した印": [
+      "外しました",
+      "removed"
+    ]
   }
 }
