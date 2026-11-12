@@ -3363,6 +3363,89 @@ console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 �
     + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
 }
 
+/* ---------- 八度目の見落とし：GitHub Actions の規約（2026-11-12 の続き） ----------
+ *
+ * GitHub の利用規約は I 節で追加製品の規約を取り込み、その Actions の節は、GitHub の実行環境での使い方を、
+ * リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開に限る。どの点検もこの規約を読んでいなかった。
+ * **13 のリポジトリのどのワークフローも、その記録の八度目の節の表に行を持つ。**新しいワークフローは、行を足して判定するまで落ちる。
+ * 外したワークフローは、ファイルが無く、その行が外したと書く。記録の英語の引用は、statutes.json の規約の引いた句にある。 */
+console.log('\n12o. 八度目の見落とし：GitHub Actions の規約（2026-11-12 の続き）');
+{
+  const K = DECL['八度目の見落とし'] || null;
+  const ST = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')));
+  const 判定語 = ['誤り', '根拠不足', '漏れ', '表現', '問題なし', 'Error', 'Insufficient basis', 'Omission', 'Wording', 'No problem'];
+  const 平 = (x) => String(x || '').replace(/\s+/g, '');
+  const 実 = {
+    規約: ST['規約'],
+    記録: Object.fromEntries((K ? K['記録'] : []).map((r) => [r, read(r, path.join('docs', 'legal-audit-2026-11-12.md'))])),
+    流れ: Object.fromEntries((K ? K['記録'] : []).map((r) => {
+      const d = path.join(ROOT, r, '.github', 'workflows');
+      return [r, fs.existsSync(d) ? fs.readdirSync(d).filter((f) => /\.ya?ml$/.test(f)).sort() : null];
+    })),
+  };
+  function 判定(x) {
+    const bad = [];
+    if (K === null) return ['宣言が無い'];
+    for (const [k, h] of Object.entries(K['規約'])) {
+      const e = x.規約[k];
+      if (!e || e['全文の sha256'] !== h || !e['引いた句']) bad.push('statutes.json の「' + k + '」');
+    }
+    const 句 = 平(Object.values(x.規約).flatMap((e) => Object.entries(e).filter(([k]) => /^引いた句/.test(k)).map(([, v]) => v)).join('|'));
+    if (!句.includes(平(K['目的の句']))) bad.push('目的の句を写していない');
+    for (const r of K['記録']) {
+      const t = x.記録[r];
+      if (t === null || t === undefined) { bad.push(r + ' の記録が無い'); continue; }
+      const i = t.indexOf('\n' + K['節'] + '\n');
+      const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+      const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+      if (!sec) { bad.push(r + ' に八度目の節が無い'); continue; }
+      const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l)).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+      if (!rows.length || !rows.every((c) => c.length === 6 && 判定語.includes(c[4]))) bad.push(r + ' の表の形');
+      if (!K['決めた'].some((d) => sec.includes(d))) bad.push(r + ' に決めた一文が無い');
+      if (!sec.includes(K['目的の句'])) bad.push(r + ' が目的の句を引いていない');
+      const 名 = rows.map((c) => (/^`\.github\/workflows\/([^`]+)`/.exec(c[0]) || [])[1]).filter(Boolean);
+      const 外した = (K['外したワークフロー'] || {})[r] || [];
+      const 在る = x.流れ[r] || [];
+      for (const f of 在る) if (!名.includes(f)) bad.push(r + '：行の無いワークフロー ' + f);
+      for (const f of 名) if (!在る.includes(f) && !外した.includes(f)) bad.push(r + '：無いワークフローの行 ' + f);
+      for (const f of 外した) {
+        const row = rows.find((c) => c[0].startsWith('`.github/workflows/' + f + '`'));
+        if (在る.includes(f)) bad.push(r + '：外したはずの ' + f + ' が在る');
+        if (!row || !K['外した印'].some((m) => row[5].includes(m))) bad.push(r + '：' + f + ' の行が外したと書いていない');
+      }
+      /* 英語の引用は、写した規約の句にある。 */
+      for (const m of sec.matchAll(/「([^「」\n]+)」|“([^“”\n]+)”/g)) {
+        const q = m[1] || m[2];
+        if (q.length >= 20 && /^[\x20-\x7E’]+$/.test(q) && !句.includes(平(q))) bad.push(r + '：写した句に無い引用「' + q.slice(0, 24) + '」');
+      }
+    }
+    return bad;
+  }
+  const bad = 判定(実);
+  const 本数 = Object.values(実.流れ).reduce((a, v) => a + (v ? v.length : 0), 0);
+  check('13 のリポジトリのワークフロー（' + 本数 + ' 本）が、どれもその記録の八度目の節の表に行を持ち、外した二つは無く、引用は写した GitHub の規約と OpenAlex の文書の句にある',
+    bad.length === 0, bad.slice(0, 6).join(' / '));
+  const 替 = (r, a2, b2) => Object.assign({}, 実, { 記録: Object.assign({}, 実.記録, { [r]: (実.記録[r] || '').replace(a2, b2) }) });
+  const 流れ替 = (r, v) => Object.assign({}, 実, { 流れ: Object.assign({}, 実.流れ, { [r]: v }) });
+  const 規約替 = (k, v) => Object.assign({}, 実, { 規約: Object.assign({}, 実.規約, { [k]: Object.assign({}, 実.規約[k], v) }) });
+  const 壊す = [
+    ['self-correction に行の無いワークフローを足す', 流れ替('self-correction', (実.流れ['self-correction'] || []).concat(['newsletter.yml']))],
+    ['nusquama に行の無いワークフローを足す', 流れ替('nusquama', (実.流れ.nusquama || []).concat(['newsletter.yml']))],
+    ['sophaxis の表から行を外す', 替('sophaxis', /\n\| `\.github\/workflows\/pdf\.yml`[^\n]*/, '')],
+    ['deposit-check の表から行を外す', 替('deposit-check', /\n\| `\.github\/workflows\/run\.yml`[^\n]*/, '')],
+    ['索引の網羅調査を戻す', 流れ替('cpsbvbng26-dotcom', (実.流れ['cpsbvbng26-dotcom'] || []).concat(['index-survey.yml']).sort())],
+    ['外した行から外したことを消す', 替('cpsbvbng26-dotcom', 'ワークフローと道具（`verification/watch_outside.js`）を外しました。', 'ワークフローと道具（`verification/watch_outside.js`）を残しました。')],
+    ['errata-check の記録から八度目の節を外す', 替('errata-check', K ? K['節'] : 'x^', '## 八度目')],
+    ['引用を一語変える', 替('trinity-operator', 'or publication of the software project', 'or promotion of the software project')],
+    ['英語の引用を一語変える', 替('deposit-check', 'free to use in any way you like.” The page', 'free to use in any way at all.” The page')],
+    ['規約の SHA-256 を変える', 規約替('GitHub の追加製品の規約 Actions', { '全文の sha256': '0'.repeat(64) })],
+    ['決めた一文を外す', 替('trinity-infinity', /2026-11-13 に Claude が決めました/g, '決めました')],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：行の無いワークフロー（二つのリポジトリ）・表から外した行（二つ）・戻したワークフロー・外したと書かない行・節・引用の一語（日英）・規約の SHA-256・決めた一文のどれでも落ちる（'
+    + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
@@ -3736,15 +3819,11 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
     const ずれ = 対.filter(([, a, b]) => a === null || a !== b).map(([n, a, b]) => n + ' 頁 ' + a + ' / 控え ' + b);
     check('名寄せの頁の数が、外の値の控えと合う', o !== null && ずれ.length === 0, ずれ.join(', ') || 対.length + ' 項目');
     check('外の値の控えの日付を、名寄せの頁が名乗っている', o !== null && t.indexOf('数は ' + o.asOf + ' に読んだものです。') >= 0);
-    const self = (f) => { try { return /件すべて通りました。/.test(execFileSync('node', [path.join(ROOT, HOME, 'verification', f), '--self-test'], { encoding: 'utf8' })); } catch (e) { return false; } };
-    check('外の値の見張り（watch_outside.js）の比べる部品が、作り物のずれを拾う（--self-test）', self('watch_outside.js'));
-    check('索引の網羅調査（index_survey.js）の判定の部品が、DOAPR の確かめの頁を載っていると読まない（--self-test）', self('index_survey.js'));
-    const wf = (f) => read(HOME, path.join('.github', 'workflows', f)) || '';
-    check('索引の網羅調査が月に一度回り、main に書かない（contents: read だけ）',
-      /cron: '\d+ \d+ \d+ \* \*'/.test(wf('index-survey.yml')) && /permissions:\n  contents: read\n\n/.test(wf('index-survey.yml'))
-      && !/contents: write/.test(wf('index-survey.yml')) && /upload-artifact/.test(wf('index-survey.yml')));
-    check('外の値の見張りが週に一度回り、書くのは issue だけ',
-      /cron: '\d+ \d+ \* \* \d'/.test(wf('watch-outside.yml')) && /issues: write/.test(wf('watch-outside.yml')) && !/contents: write/.test(wf('watch-outside.yml')));
+    /* 2026-11-13（八度目の見落とし）。索引の網羅調査と外の値の見張りは、著者の記録を外の索引で調べる仕事で、サイトの制作・検査・
+     * 配備・公開のどれにも当たらない。GitHub の追加製品の規約が GitHub の実行環境に許す使い方の外にあったので、ワークフローも道具も外した。
+     * 控え（outside.json）と頁の数の突き合わせは残る。戻せば落ちる。 */
+    const 戻り = ['.github/workflows/index-survey.yml', '.github/workflows/watch-outside.yml', 'verification/index_survey.js', 'verification/watch_outside.js'].filter((f) => read(HOME, f) !== null);
+    check('索引の網羅調査と外の値の見張りは、ワークフローも道具も外してある（GitHub の追加製品の規約、2026-11-13）', 戻り.length === 0, 戻り.join(', '));
   }
 
   /* 468。用語集。使わない語が、研究のリポジトリと Sophaxis・deposit-check の散文に無い。 */
