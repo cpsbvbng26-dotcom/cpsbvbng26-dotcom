@@ -56,7 +56,7 @@ The pages set no cookie and carry no analytics.
 When a reader picks the light or dark display, the choice is kept only in that browser's local storage (localStorage).
 Everything a page needs is loaded from the host that serves it.
 Vercel and GitHub, which serve the pages, may keep records of the requests they receive, under their own policies.
-Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections.
+Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, and to keep the record of use.
 Issues are public on GitHub.
 Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.
 The record of corrections does not carry the name or contact details of the person who asked.

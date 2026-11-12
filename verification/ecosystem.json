@@ -1556,7 +1556,7 @@
       "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。",
       "存命の家族について書くのは、「両親」という語までです。",
       "頁は cookie を置かず、アクセス解析の仕組みも置いていません。",
-      "メールと issue で届いた個人の情報は、その求めに答えることと、訂正の記録を残すことにだけ使います。",
+      "メールと issue で届いた個人の情報は、その求めに答えること、訂正の記録を残すこと、使われた記録を残すことにだけ使います。",
       "運営者は、個人情報取扱事業者に当たるかどうかを問わず、個人情報保護法がその事業者に求める扱いに沿います。",
       "訂正の記録には、求めた人の名と連絡先を載せません。",
       "届いた個人の情報を、本人の同意なく第三者に渡しません。法令が認める場合を除きます。",
@@ -1573,7 +1573,7 @@
       "Whether or not the operator is a business under the Consumer Contract Act, the operator follows what that Act requires of a business.",
       "Of living family members, nothing is written beyond the word \"parents\".",
       "The pages set no cookie and carry no analytics.",
-      "Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections.",
+      "Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, and to keep the record of use.",
       "Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.",
       "The record of corrections does not carry the name or contact details of the person who asked.",
       "Personal information received is not passed to a third party without the consent of the person concerned, except where the law allows it.",
@@ -1780,7 +1780,7 @@
         "./*.json"
       ]
     },
-    "ある文": {
+    "外した届けの文": {
       "researcher-profile": {
         "site.json": [
           "開業届は出していません。"
@@ -1900,6 +1900,235 @@
       "https://github.com/cpsbvbng26-dotcom",
       "https://orcid.org/0009-0000-1406-0547"
     ]
+  },
+  "二度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、さらに別の手でもう一度行い、見落としを直した。SECURITY.md が有効でない GitHub の非公開の報告を約していたこと、論文と目録の構造化データが作品の著者に所属を付けていたこと、存命かどうか確かめていない親族の名を載せる Google サイトの頁へリンクしていたこと、取り寄せた場の文が支えない判断を SSRN と PhilArchive に帰していたこと、免責事項の利用目的に「使われた記録」が無かったこと、開業届を出していないという一文、SC-016 が何についての文だったかを書き続けていたこと。",
+    "節": "## 2026-11-12 の続き：二度目の見落とし",
+    "決めた": "2026-11-12 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "researcher-profile",
+      "self-correction",
+      "autonomy-and-self-cultivation",
+      "errata-check",
+      "justice-and-algorithms",
+      "naval-gazette-notes",
+      "solitary-school",
+      "trinity-infinity",
+      "trinity-operator",
+      "deposit-check"
+    ],
+    "安全の窓口": {
+      "repos": [
+        "cpsbvbng26-dotcom",
+        "researcher-profile",
+        "self-correction",
+        "autonomy-and-self-cultivation",
+        "errata-check",
+        "justice-and-algorithms",
+        "naval-gazette-notes",
+        "solitary-school",
+        "trinity-infinity",
+        "trinity-operator",
+        "deposit-check"
+      ],
+      "要る": [
+        "[ORCID の記録](https://orcid.org/0009-0000-1406-0547)にあるメールアドレスです。",
+        "GitHub の非公開の脆弱性報告（private vulnerability reporting）は、このリポジトリでは有効になっていません（2026-11-12 に確かめました）。",
+        "The address is the one on the operator's [ORCID record](https://orcid.org/0009-0000-1406-0547).",
+        "GitHub's private vulnerability reporting is not enabled for this repository (checked on 2026-11-12)."
+      ],
+      "無い": [
+        "Report a vulnerability",
+        "GitHub の非公開の報告で受けます",
+        "非公開の連絡を求める",
+        "非公開で連絡する方法を返します",
+        "through GitHub's private vulnerability reporting",
+        "Request for private contact",
+        "replies with a private way to talk"
+      ],
+      "README": {
+        "README.md": "非公開の報告の入口",
+        "README.en.md": "The private reporting entry"
+      }
+    },
+    "所属を付けない生成": {
+      "researcher-profile": [
+        "build_papers.js",
+        "build_catalog.js"
+      ]
+    },
+    "外したリンク": "sites.google.com/view/nemototakuya",
+    "場の文": [
+      {
+        "句": "SSRN must determine if a paper meets the criteria of scholarly content",
+        "頁": "https://web.archive.org/web/20260822023102id_/https://www.elsevier.support/ssrn/answer/nonscholarly"
+      },
+      {
+        "句": "SSRN does not peer review preprints",
+        "頁": "https://web.archive.org/web/20260822023102id_/https://www.elsevier.support/ssrn/answer/research-integrity"
+      },
+      {
+        "句": "Non-scholarly content does not meet our submission requirements",
+        "頁": "https://web.archive.org/web/20260822023102id_/https://www.elsevier.support/ssrn/answer/nonscholarly"
+      },
+      {
+        "句": "works of all types (articles, books, dissertations) in all areas of academic philosophy",
+        "頁": "https://web.archive.org/web/20261002001259id_/https://philarchive.org/help/faq.html"
+      },
+      {
+        "句": "cross-disciplinary and of clear interest to philosophers",
+        "頁": "https://web.archive.org/web/20261002001324id_/https://philarchive.org/help/codeofconduct.html"
+      },
+      {
+        "句": "All books and papers submitted should be of professional quality",
+        "頁": "https://web.archive.org/web/20261002001324id_/https://philarchive.org/help/codeofconduct.html"
+      }
+    ],
+    "場の文を置く": {
+      "researcher-profile": [
+        "site.json",
+        "site.en.json"
+      ],
+      "cpsbvbng26-dotcom": [
+        "index.html",
+        "index.en.html",
+        "README.md",
+        "README.en.md"
+      ]
+    },
+    "無い判断": {
+      "researcher-profile": {
+        "site.json": [
+          "編集スタッフ",
+          "学術的言説の一部として扱われました",
+          "却下権",
+          "reject any submissions",
+          "六百人",
+          "part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks",
+          "公開前に人が見て",
+          "を満たすものとして扱われました"
+        ],
+        "site.en.json": [
+          "editorial staff",
+          "Editorial staff",
+          "belong to the scholarly discourse",
+          "reject any submissions",
+          "six hundred category editors",
+          "part of the world-wide scholarly discourse covered",
+          "a person looked before publication",
+          "taken to lie within academic philosophy"
+        ],
+        "site.de.json": [
+          "Redaktion von SSRN",
+          "dem wissenschaftlichen Diskurs ihres Fachs zugerechnet",
+          "Recht auf Ablehnung",
+          "ein Mensch vor der Veröffentlichung geprüft",
+          "der akademischen Philosophie zugehörig"
+        ],
+        "site.fr.json": [
+          "rédaction de SSRN",
+          "équipe éditoriale de SSRN",
+          "au discours savant de",
+          "Le droit de refus",
+          "une personne a examiné",
+          "tenus pour relevant de la philosophie"
+        ],
+        "site.it.json": [
+          "redazione di SSRN",
+          "al discorso scientifico del proprio ambito",
+          "Il diritto di rifiuto",
+          "una persona ha guardato",
+          "considerati appartenenti alla filosofia"
+        ]
+      },
+      "cpsbvbng26-dotcom": {
+        "index.html": [
+          "編集スタッフ",
+          "学術的言説の一部として扱われました",
+          "却下権",
+          "reject any submissions",
+          "六百人",
+          "part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks",
+          "公開前に人が見て",
+          "を満たすものとして扱われました"
+        ],
+        "index.en.html": [
+          "editorial staff",
+          "Editorial staff",
+          "belong to the scholarly discourse",
+          "reject any submissions",
+          "six hundred category editors",
+          "part of the world-wide scholarly discourse covered",
+          "a person looked before publication",
+          "taken to lie within academic philosophy"
+        ],
+        "index.de.html": [
+          "Redaktion von SSRN",
+          "dem wissenschaftlichen Diskurs ihres Fachs zugerechnet",
+          "Recht auf Ablehnung",
+          "ein Mensch vor der Veröffentlichung geprüft",
+          "der akademischen Philosophie zugehörig"
+        ],
+        "index.fr.html": [
+          "rédaction de SSRN",
+          "équipe éditoriale de SSRN",
+          "au discours savant de",
+          "Le droit de refus",
+          "une personne a examiné",
+          "tenus pour relevant de la philosophie"
+        ],
+        "index.it.html": [
+          "redazione di SSRN",
+          "al discorso scientifico del proprio ambito",
+          "Il diritto di rifiuto",
+          "una persona ha guardato",
+          "considerati appartenenti alla filosofia"
+        ],
+        "README.md": [
+          "編集スタッフ",
+          "学術的言説の一部として扱われました",
+          "却下権",
+          "reject any submissions",
+          "六百人",
+          "part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks",
+          "公開前に人が見て",
+          "を満たすものとして扱われました"
+        ],
+        "README.en.md": [
+          "editorial staff",
+          "Editorial staff",
+          "belong to the scholarly discourse",
+          "reject any submissions",
+          "six hundred category editors",
+          "part of the world-wide scholarly discourse covered",
+          "a person looked before publication",
+          "taken to lie within academic philosophy"
+        ]
+      }
+    },
+    "使われた記録": {
+      "様式の句": "使われた記録",
+      "免責": {
+        "DISCLAIMER.md": "その求めに答えること、訂正の記録を残すこと、使われた記録を残すことにだけ使います。",
+        "DISCLAIMER.en.md": "to answer the request, to keep the record of corrections, and to keep the record of use."
+      }
+    },
+    "SC-016": {
+      "外す語": [
+        "第三者",
+        "事業",
+        "計画",
+        "承継",
+        "business",
+        "plan"
+      ],
+      "残す句": [
+        "10.5281/zenodo.24033597",
+        "凍結されていて、こちらからは変えられません",
+        "git の履歴にも、もとの文は残っています"
+      ]
+    }
   },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",

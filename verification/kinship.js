@@ -9,7 +9,11 @@
  *         越えの式は一人を指す語しか見ておらず、通していた。
  *         「両親が存命のうちに」のような、時を区切るだけの文は当たらない。
  *
- * 二つの式を一か所に置くのは、写せば黙ってずれるからである。
+ *   計画  存命の第三者の事業や計画に触れる記載。2026-11-12 の続きの二度目の点検で、self-correction の
+ *         SC-016 が、中身を外したあとも「生存する第三者の事業計画」と、何についての文だったかを書き続けていた。
+ *         続柄の語が無いので、越えの式も帰属の式も通していた。登録簿と設定に当てる（check_ecosystem.js の 12i）。
+ *
+ * 三つの式を一か所に置くのは、写せば黙ってずれるからである。
  */
 
 'use strict';
@@ -25,14 +29,23 @@ const 帰属 = new RegExp([
   /\bgenitori\b[^.\n]*?\b(?:capisc|comprend|approv|consent|sosten|accett|desider|sper)\w*/.source,
 ].join('|'), 'i');
 
-/* 文から、越えと帰属の当たりを返す。当たらなければ空の配列。 */
+const 計画 = new RegExp([
+  /(?:存命|生存)(?:する|している|中の|の)?(?:第三者|家族|親族|人物|方)[^。\n]{0,40}?(?:事業|計画|予定|承継|継が)/.source,
+  /事業計画|事業(?:を|の)承継|承継する事業/.source,
+  /\b(?:living|third[- ]party)\b[^.\n]{0,60}?\b(?:business(?:es)?|plans?|planned|planning|succession)\b/.source,
+  /\bbusiness plans?\b/.source,
+].join('|'), 'i');
+
+/* 文から、越え・帰属・計画の当たりを返す。当たらなければ空の配列。 */
 function scan(text) {
   const hits = [];
   const a = 越え.exec(text);
   if (a) hits.push(a[0]);
   const b = 帰属.exec(text);
   if (b) hits.push(b[0].length > 40 ? b[0].slice(0, 40) + '…' : b[0]);
+  const c = 計画.exec(text);
+  if (c) hits.push(c[0].length > 40 ? c[0].slice(0, 40) + '…' : c[0]);
   return hits;
 }
 
-module.exports = { 越え, 帰属, scan };
+module.exports = { 越え, 帰属, 計画, scan };

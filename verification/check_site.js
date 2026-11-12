@@ -1182,36 +1182,47 @@ section('10.59 自己紹介が名乗っていること');
   ok('GitHub のプロフィールにも単位の断りがある',
      rj.indexOf('ただし、大学の単位は独学ではありません') >= 0
      && /The university credits, though, are not\s+self-study/.test(re_));
+  /* 2026-11-12（二度目の見落とし）。場の明文は、取り寄せた頁（Internet Archive の写し）にある句だけを置く。
+   * 取り寄せた頁に無かった句（分野網の学術的言説・編集スタッフ・却下権・六百人の編集者）を戻さない。 */
   ok('自己紹介に通過基準が具体に書いてある',
-     ja.indexOf('通した基準は、明文で次のとおりです') >= 0
-     && ja.indexOf('part of the world-wide scholarly discourse') >= 0
+     ja.indexOf('場の明文は、取り寄せた頁にある分を、場の言葉のまま置きます') >= 0
+     && ja.indexOf('SSRN must determine if a paper meets the criteria of scholarly content') >= 0
+     && ja.indexOf('Non-scholarly content does not meet our submission requirements') >= 0
      && ja.indexOf('professional quality') >= 0
-     && ja.indexOf('参考文献の無い非学術的なものでないこと') >= 0);
+     && ja.indexOf("part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks") < 0
+     && ja.indexOf('編集スタッフ') < 0);
   /* **到達点は、門ごとに書く。**SSRN だけ書いて PhilArchive を「上のとおり」で
    * 済ませていた。**片方が空欄なら、到達点を書いたことにならない。** */
+  /* 到達点は、場の文が支える分だけを書く。SSRN は学術的な内容の基準を決めると書いており、載ったことは
+   * その基準で落とされなかったことまでである。誰が読んだかは書かれていない。PhilArchive の水準は
+   * 投稿する側への求めであって、載ったことを判定とは読まない。 */
   ok('自己紹介に SSRN の到達点が書いてある',
-     ja.indexOf('そこから導ける到達点は、はっきりしています') >= 0
-     && ja.indexOf('その分野の学術的言説の一部として扱われました') >= 0);
+     ja.indexOf('そこから言えることは、ここまでです') >= 0
+     && ja.indexOf('載ったことは、その基準で落とされなかったということです') >= 0
+     && ja.indexOf('誰がどこまで読んだかは、場の文からは分かりません') >= 0
+     && ja.indexOf('その分野の学術的言説の一部として扱われました') < 0);
   ok('自己紹介に PhilArchive の到達点が書いてある',
-     ja.indexOf('学術哲学の領域にあり、専門職の水準') >= 0
-     && ja.indexOf('却下権は留保されていますが、その二篇には行使されませんでした') >= 0);
+     ja.indexOf('門が何を確かめたかは、取り寄せた PhilArchive の頁のどれにも書かれていません') >= 0
+     && ja.indexOf('載ったことを、その水準の判定とは読みません') >= 0
+     && ja.indexOf('却下権') < 0 && ja.indexOf('専門職の水準（<code translate="no" class="notranslate">professional quality</code>）を満たすものとして') < 0);
   ok('英語版も門ごとに到達点が書いてある',
-     en.indexOf('belong to the scholarly discourse') >= 0
-     && en.indexOf('taken to lie within academic philosophy and to be') >= 0
-     && en.indexOf('it was not exercised') >= 0);
+     en.indexOf('being posted means they were not turned away on that criterion') >= 0
+     && en.indexOf('None of the PhilArchive pages fetched says what that gate checks') >= 0
+     && en.indexOf('being posted is not read here as a finding of that quality') >= 0
+     && en.indexOf('editorial staff') < 0 && en.indexOf('it was not exercised') < 0);
   ok('自己紹介に導けないものが書いてある',
      ja.indexOf('そこから導けないものも、はっきりしています') >= 0
      && ja.indexOf('論証が正しいことは、どちらの門も見ていません') >= 0
      && ja.indexOf('通ったのは受け付けの門であって査読ではなく') >= 0);
   ok('英語版も三つが揃っている',
-     en.indexOf("The bar that was cleared, in the venues' own wording") >= 0
-     && en.indexOf('What follows from that is definite') >= 0
+     en.indexOf("The venues' own wording, as far as the pages fetched hold it") >= 0
+     && en.indexOf('What follows from that goes this far') >= 0
      && en.indexOf('What does not follow is equally definite') >= 0
      && en.indexOf('not peer review') >= 0);
   /* **SSRN で確かめられたのは二篇である。** */
   ok('到達点を三篇に広げていない',
-     ja.indexOf('二篇について、公開前に人が見て、落とさなかった') >= 0
-     && en.indexOf('For two papers, a person looked before publication') >= 0);
+     ja.indexOf('独学と言語モデルで書いた哲学の二篇が、SSRN に載りました') >= 0
+     && en.indexOf('Two philosophy papers written by self-study and with language models were posted on SSRN') >= 0);
   /* **落ちた一篇を書かないと、門が何も落とさないように見える。**
    * 通った二篇だけを並べるのは、誤りではないが、厚く見せる方向にだけ欠ける。
    * 落とす門であることは、落とされた側にしか示せない（SC-035）。 */
@@ -1306,8 +1317,8 @@ section('10.59 自己紹介が名乗っていること');
    * 指しで済ませると、読む側は上に戻らないかぎり中身に辿り着けない。 */
   ok('自己紹介に Trinity-Infinity の SSRN 通過が書いてある',
      ja.indexOf('数学の側でも同じことが起きています') >= 0
-     && ja.indexOf('Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました') >= 0
-     && ja.indexOf('一篇について、公開前に人が見て、落とさなかった') >= 0
+     && ja.indexOf('Trinity-Infinity Series II が、SSRN に載りました') >= 0
+     && ja.indexOf('学術的な内容の基準で落とされなかった一篇です') >= 0
      && ja.indexOf('10.2139/ssrn.7446961') >= 0);
   /* **2026-09-18 に結果が出た。**「まだ出していない」は偽になった。
    * 当てる先を、結果そのものへ移す。**通ったように書いていないことだけでは足りない。**
@@ -1331,8 +1342,8 @@ section('10.59 自己紹介が名乗っていること');
          受付.length ? ('出ている: ' + 受付.join(', ')) : '無し');
     });
   ok('英語版も数学の側の通過を書いている',
-     en.indexOf('Trinity-Infinity Series II was judged by SSRN’s editorial staff to belong to the scholarly discourse of its field') >= 0
-     && en.indexOf('For one paper, a person looked before publication and did not turn it away') >= 0
+     en.indexOf('Trinity-Infinity Series II was posted on SSRN') >= 0
+     && en.indexOf('It is one paper that was not turned away on the criterion of scholarly content') >= 0
      && en.indexOf('10.2139/ssrn.7446961') >= 0);
   /* **道具を特定できないのは哲学三篇だけである。**Trinity-Infinity の側は特定できる。
    * 特定できる側まで「分からない」に混ぜると、開示が薄まる。 */
@@ -1342,13 +1353,13 @@ section('10.59 自己紹介が名乗っていること');
      && ja.indexOf('Claude Code（Anthropic）') >= 0
      && ja.indexOf('道具の名前を一つに絞れないのは、哲学三篇の英訳だけです') >= 0);
   /* 三言語も同じことを書く。**訳だけ古い到達点のまま残さない。** */
-  [['index.de.html', 'Trinity-Infinity Serie II wurde von der Redaktion von SSRN dem wissenschaftlichen Diskurs ihres Fachs zugerechnet',
+  [['index.de.html', 'Trinity-Infinity Serie II wurde auf SSRN veröffentlicht',
     'Serie I (überarbeitet) und Serie III wurden eingereicht und abgewiesen',
     'Serie I und Serie III sind nicht eingereicht'],
-   ['index.fr.html', 'Trinity-Infinity série II a été rattachée par la rédaction de SSRN au discours savant de son domaine',
+   ['index.fr.html', 'Trinity-Infinity série II a été publiée sur SSRN',
     'La série I (révisée) et la série III ont été soumises et écartées',
     'Les séries I et III n’ont pas été soumises'],
-   ['index.it.html', 'Trinity-Infinity serie II è stata ricondotta dalla redazione di SSRN al discorso scientifico del proprio ambito',
+   ['index.it.html', 'Trinity-Infinity serie II è stata pubblicata su SSRN',
     'La serie I (rivista) e la serie III sono state inviate e respinte',
     'Le serie I e III non sono state inviate']].forEach(([f, passed, turned, stale]) => {
     const h = read(f);
@@ -1602,14 +1613,14 @@ section('10.59 自己紹介が名乗っていること');
      ['works of all types (articles, books, dissertations)',
       'cross-disciplinary and of clear interest to philosophers',
       'All books and papers submitted should be of professional quality',
-      'reject any submissions',
-      '事前ではなく事後に効きます'].every((x) => ja.indexOf(x) >= 0));
+      '脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられています',
+      '載る前に誰が何を確かめるかは、PhilArchive の取り寄せた頁のどれにも書かれていません'].every((x) => ja.indexOf(x) >= 0));
   ok('GitHub のプロフィールに根幹の一段がある',
      rj.indexOf('ここにあるものの根幹は、独学と、言語モデルを使って進めたことです') >= 0
      && re_.indexOf('What is here rests on self-study and on working with language models') >= 0);
   ok('GitHub のプロフィールに通過基準と到達点がある',
-     rj.indexOf('part of the world-wide scholarly discourse') >= 0
-     && rj.indexOf('そこから導ける到達点は、はっきりしています') >= 0
+     rj.indexOf('SSRN must determine if a paper meets the criteria of scholarly content') >= 0
+     && rj.indexOf('そこから言えることは、ここまでです') >= 0
      && rj.indexOf('そこから導けないものも、はっきりしています') >= 0);
 
   /* **道具の名前を一つに絞れるのは、こちら側だけである。**
@@ -2239,11 +2250,11 @@ section('10.62 訳した頁が、訳だと名乗っているか');
   });
   /* 三言語の側も、名前と断りを対で持つこと。**片方だけを訳さない。** */
   [['index.de.html', 'mit Claude von Anthropic gebaut', 'lässt sich dagegen nicht bestimmen',
-    'als der akademischen Philosophie zugehörig und als von'],
+    'die Veröffentlichung wird hier nicht als Befund dieser Qualität gelesen'],
    ['index.fr.html', 'construite avec Claude, d’Anthropic', 'ne peuvent être identifiés',
-    'tenus pour relevant de la philosophie'],
+    'la publication n’est pas lue ici comme un constat de cette qualité'],
    ['index.it.html', 'costruita con Claude, di Anthropic', 'non è invece determinabile',
-    'considerati appartenenti alla filosofia']].forEach(([f, named, caveat, reached]) => {
+    'la pubblicazione non è letta qui come un accertamento di quella qualità']].forEach(([f, named, caveat, reached]) => {
     const h = read(f);
     ok(f + ' が Claude を名指ししている', h.indexOf(named) >= 0);
     ok(f + ' が三篇の道具は特定できないと添えている', h.indexOf(caveat) >= 0);
@@ -3157,6 +3168,13 @@ section('10.66 サイトの決まりと運営の記録');
   const 所属 = ['index.html', 'index.en.html', 'cv.html'].filter((f) => !/"affiliation": \{\s*"@type": "CollegeOrUniversity",\s*"name": "ZEN(大学| University)"/.test(read(f)));
   const 独立 = PAGES.filter((f) => /"(affiliation|jobTitle)"[^}]*[Ii]ndependent/.test(read(f)));
   ok('構造化データの所属が ZEN大学 で、Independent の所属も肩書きも無い', 所属.length === 0 && 独立.length === 0, 所属.concat(独立).join(', '));
+  /* 2026-11-12（二度目の見落とし）。作品の頁（論文・目録・道具）は、著者に所属を付けない。
+   * 論文は研究上の所属が無いと書いている。在籍は人の頁（トップと CV）にだけ書く。 */
+  const 作品頁 = fs.readdirSync(path.join(ROOT, 'papers')).filter((f) => f.endsWith('.html')).map((f) => 'papers/' + f)
+    .concat(['catalog.html', 'catalog.en.html', 'tools.html', 'tools.en.html']);
+  const 作品所属 = 作品頁.filter((f) => /"affiliation"/.test(read(f)));
+  ok('作品の頁（論文・目録・道具）の構造化データが、著者に所属を付けていない（' + 作品頁.length + ' 頁）',
+     作品頁.length > 4 && 作品所属.length === 0, 作品所属.join(', '));
 
   /* 346. 法令の条。免責事項が挙げる条は、取り寄せた条文（verification/statutes.json）にあるものだけ。
    * 条文を確かめずに条の番号を書く形（作り出した条）を止める。いまは一つも挙げていない。 */
