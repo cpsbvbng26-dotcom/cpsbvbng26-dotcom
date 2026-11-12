@@ -12,7 +12,7 @@ Type: Project · Status: Running
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office; I plan to file it as soon as I have the time. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
+I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
 My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
 
@@ -41,7 +41,7 @@ My family line, the course of my schooling, my daily routine, how I live, my mot
 
 The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate. The course rules are stated here too. The two CS50 courses treat as academically dishonest any use of outside generative tools (ChatGPT, Claude, Copilot, Gemini and the like) that suggest or complete answers or code; only CS50’s own tool, the CS50 Duck, is allowed. The edX Honor Code requires completing all tests and assignments on one’s own unless collaboration is explicitly permitted. There is no way to prove that these rules were kept. Under the rules, however, the certificates above were issued on the basis that they were kept.
 
-I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office; I plan to file it as soon as I have the time.
+I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences. Since around October 2024, I have also worked as a sole proprietor. I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
@@ -298,7 +298,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1746 checks.** There are no dependencies to install.
+**Every push runs 1747 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
@@ -306,7 +306,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 702 checks
-node verification/check_site.js      # site structure, 954 checks
+node verification/check_site.js      # site structure, 955 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

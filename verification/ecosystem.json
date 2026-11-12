@@ -1760,6 +1760,147 @@
       ]
     }
   },
+  "見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検をもう一度、別の手で行い、見落としを直した。self-correction の SC-016 が存命の第三者の事業計画を写していたこと、死後の頁が両親の考えを書いていたこと、自己紹介が開業届を出す予定を約していたこと、月に一度のリンクの確認が機械での利用を断る場を開いていたこと。三つの点検の記録に同じ見出しの節があること、決めごと 10 の見張りの式（verification/kinship.js）を self-correction の登録簿と researcher-profile の設定に当てること、外した文が戻らず事実の文が残ること、リンクの確認が外す場を開かないことを見る。",
+    "節": "## 2026-11-12 の続き：見落としていたもの",
+    "決めた": "2026-11-12 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "researcher-profile",
+      "self-correction"
+    ],
+    "見張る": {
+      "self-correction": [
+        "register.toml",
+        "REGISTER.md",
+        "data/register.csv",
+        "views/"
+      ],
+      "researcher-profile": [
+        "./*.json"
+      ]
+    },
+    "ある文": {
+      "researcher-profile": {
+        "site.json": [
+          "開業届は出していません。"
+        ],
+        "site.en.json": [
+          "I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office."
+        ],
+        "site.de.json": [
+          "die Anzeige der Geschäftseröffnung (kaigyō todoke) beim japanischen Finanzamt ist nicht eingereicht."
+        ],
+        "site.fr.json": [
+          "la déclaration d’ouverture d’activité (kaigyō todoke) n’a pas été déposée auprès de l’administration fiscale japonaise."
+        ],
+        "site.it.json": [
+          "la dichiarazione di inizio attività (kaigyō todoke) non è stata presentata all’ufficio delle imposte giapponese."
+        ]
+      },
+      "cpsbvbng26-dotcom": {
+        "index.html": [
+          "開業届は出していません。"
+        ],
+        "index.en.html": [
+          "I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office."
+        ],
+        "index.de.html": [
+          "die Anzeige der Geschäftseröffnung (kaigyō todoke) beim japanischen Finanzamt ist nicht eingereicht."
+        ],
+        "index.fr.html": [
+          "la déclaration d’ouverture d’activité (kaigyō todoke) n’a pas été déposée auprès de l’administration fiscale japonaise."
+        ],
+        "index.it.html": [
+          "la dichiarazione di inizio attività (kaigyō todoke) non è stata presentata all’ufficio delle imposte giapponese."
+        ],
+        "README.md": [
+          "開業届は出していません。"
+        ],
+        "README.en.md": [
+          "I have not filed the notice of business commencement (kaigyō todoke) with the Japanese tax office."
+        ]
+      }
+    },
+    "無い言い回し": {
+      "researcher-profile": {
+        "site.json": [
+          "時間が空き次第"
+        ],
+        "site.en.json": [
+          "I plan to file",
+          "as soon as I have the time"
+        ],
+        "site.de.json": [
+          "soll eingereicht werden",
+          "sobald Zeit"
+        ],
+        "site.fr.json": [
+          "elle le sera",
+          "dès que le temps"
+        ],
+        "site.it.json": [
+          "sarà presentata",
+          "quando ci sarà tempo"
+        ],
+        "afterlife.json": [
+          "両親の理解"
+        ],
+        "afterlife.en.json": [
+          "parents understand"
+        ]
+      },
+      "cpsbvbng26-dotcom": {
+        "index.html": [
+          "時間が空き次第"
+        ],
+        "index.en.html": [
+          "I plan to file",
+          "as soon as I have the time"
+        ],
+        "index.de.html": [
+          "soll eingereicht werden",
+          "sobald Zeit"
+        ],
+        "index.fr.html": [
+          "elle le sera",
+          "dès que le temps"
+        ],
+        "index.it.html": [
+          "sarà presentata",
+          "quando ci sarà tempo"
+        ],
+        "README.md": [
+          "時間が空き次第"
+        ],
+        "README.en.md": [
+          "I plan to file",
+          "as soon as I have the time"
+        ],
+        "notes/afterlife.html": [
+          "両親の理解"
+        ],
+        "notes/afterlife.en.html": [
+          "parents understand"
+        ]
+      }
+    },
+    "開かない": [
+      "https://www.edx.org/certificates/x",
+      "https://courses.edx.org/certificates/x",
+      "https://datacite.org/terms-and-conditions/",
+      "https://support.datacite.org/docs/api",
+      "https://scholar.google.com/citations?user=x",
+      "https://independent.academia.edu/x",
+      "https://www.researchgate.net/profile/x",
+      "https://doi.org/10.13140/RG.2.2.34728.33286"
+    ],
+    "開く": [
+      "https://doi.org/10.5281/zenodo.22058254",
+      "https://github.com/cpsbvbng26-dotcom",
+      "https://orcid.org/0009-0000-1406-0547"
+    ]
+  },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",
     "札": "種類：{種類}　状態：{状態}",
