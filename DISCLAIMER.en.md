@@ -1,6 +1,6 @@
 # Disclaimer
 
-Last updated: 2026-11-12.
+Last updated: 2026-11-13 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
