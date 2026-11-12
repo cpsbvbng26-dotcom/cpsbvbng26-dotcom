@@ -1778,6 +1778,15 @@
       ],
       "researcher-profile": [
         "./*.json"
+      ],
+      "naval-gazette-notes": [
+        "README.md",
+        "ERRATA.md"
+      ],
+      "cpsbvbng26-dotcom": [
+        "docs/external-evaluations.md",
+        "docs/personal.md",
+        "docs/personal.en.md"
       ]
     },
     "外した届けの文": {
@@ -1893,12 +1902,26 @@
       "https://scholar.google.com/citations?user=x",
       "https://independent.academia.edu/x",
       "https://www.researchgate.net/profile/x",
-      "https://doi.org/10.13140/RG.2.2.34728.33286"
+      "https://doi.org/10.13140/RG.2.2.34728.33286",
+      "https://philpapers.org/rec/NEMTNA",
+      "https://philarchive.org/rec/NEMTNA",
+      "https://www.elsevier.support/ssrn/answer/nonscholarly",
+      "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7358779",
+      "https://web.archive.org/web/2026id_/https://philarchive.org/help/faq.html",
+      "https://laws.e-gov.go.jp/law/345AC0000000048",
+      "https://github.com/openjournals/joss",
+      "https://github.com/cpsbvbng26-dotcom-other/x",
+      "https://www.constituteproject.org/constitution/Japan_1946"
     ],
     "開く": [
       "https://doi.org/10.5281/zenodo.22058254",
       "https://github.com/cpsbvbng26-dotcom",
-      "https://orcid.org/0009-0000-1406-0547"
+      "https://orcid.org/0009-0000-1406-0547",
+      "https://zenodo.org/records/22058254",
+      "https://sophaxis.vercel.app/",
+      "https://nusquama.vercel.app/",
+      "https://github.com/cpsbvbng26-dotcom/sophaxis/blob/main/README.md",
+      "https://info.orcid.org/terms-of-use/"
     ]
   },
   "二度目の見落とし": {
@@ -2128,6 +2151,281 @@
         "凍結されていて、こちらからは変えられません",
         "git の履歴にも、もとの文は残っています"
       ]
+    }
+  },
+  "三度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、三度目に別の手で行い、見落としを直した。月に一度のリンクの確認が、断りの一覧の形のまま、機械での利用を断る場（PhilPapers・PhilArchive・SSRN の支援の頁）を開いていたこと、ブラウザの名を名乗っていたこと。決めごと 10 の見張りが、祖父・曾祖父・祖母を一律に故人として外していたこと。死後の頁が家の伝統の葬儀の形と名の漢字を付けた場を書いていたこと。Sophaxis の頁がライセンスの範囲を書いていなかったこと。SECURITY.md が、入力を受け取るものは無いと書いていたこと。自己分析と独仏伊の自己紹介が、SSRN の編集の人が見ると書いていたこと。",
+    "節": "## 2026-11-12 の続き：三度目の見落とし",
+    "決めた": "2026-11-12 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "researcher-profile",
+      "self-correction"
+    ],
+    "許す一覧": {
+      "cpsbvbng26-dotcom.vercel.app": "自分の場",
+      "golden-window-conjecture.vercel.app": "自分の場",
+      "sophaxis.vercel.app": "自分の場",
+      "nusquama.vercel.app": "自分の場",
+      "cpsbvbng26-dotcom.github.io": "自分の場",
+      "github.com": "自分の場",
+      "raw.githubusercontent.com": "自分の場",
+      "doi.org": "DOI の解決",
+      "dx.doi.org": "DOI の解決",
+      "zenodo.org": "規約",
+      "orcid.org": "規約",
+      "info.orcid.org": "規約"
+    },
+    "名乗り": {
+      "含む": "github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom",
+      "含まない": [
+        "Mozilla",
+        "Chrome",
+        "Safari",
+        "Gecko"
+      ]
+    },
+    "転送": {
+      "始め": "https://doi.org/10.1234/x",
+      "先": "https://philarchive.org/rec/NEMTNA"
+    },
+    "止める文": [
+      "祖父から聞いた。",
+      "曾祖父は議員だった。",
+      "祖母の家系",
+      "兄が言った。",
+      "妹は",
+      "伯父の",
+      "叔母が",
+      "義父の",
+      "私の配偶者",
+      "My grandfather said so.",
+      "the author's brother",
+      "mein Bruder",
+      "ma sœur",
+      "mio zio",
+      "家の伝統は神葬祭です。",
+      "the family rite is Shinto",
+      "assigned at a shrine"
+    ],
+    "通す文": [
+      "兄弟ディレクトリに並んでいる。",
+      "兄弟が無ければ、見ていないと名乗る。",
+      "姉妹の頁",
+      "師弟の関係",
+      "分母を外す",
+      "大谷恒は著者の外曾祖父です。",
+      "配偶者に配慮せねばならぬ既婚者",
+      "両親が存命のうちに"
+    ],
+    "死後の頁": {
+      "無い": {
+        "researcher-profile": {
+          "afterlife.json": [
+            "家の伝統は神葬祭",
+            "祖母",
+            "祖霊",
+            "神社で付けられた",
+            "伝統の上に"
+          ],
+          "afterlife.en.json": [
+            "family rite",
+            "grandmother",
+            "ancestral deity",
+            "assigned at a shrine",
+            "top of the tradition",
+            "top of that tradition"
+          ]
+        },
+        "cpsbvbng26-dotcom": {
+          "notes/afterlife.html": [
+            "家の伝統は神葬祭",
+            "祖母",
+            "祖霊",
+            "神社で付けられた",
+            "伝統の上に"
+          ],
+          "notes/afterlife.en.html": [
+            "family rite",
+            "grandmother",
+            "ancestral deity",
+            "assigned at a shrine",
+            "top of the tradition",
+            "top of that tradition"
+          ]
+        }
+      },
+      "要る": {
+        "researcher-profile": {
+          "afterlife.json": [
+            "<b>著者は、生前神葬祭の手続きを進めている。</b>"
+          ],
+          "afterlife.en.json": [
+            "<b>The author is arranging a Shinto funeral (神葬祭) in advance, while living.</b>"
+          ]
+        },
+        "cpsbvbng26-dotcom": {
+          "notes/afterlife.html": [
+            "<b>著者は、生前神葬祭の手続きを進めている。</b>"
+          ],
+          "notes/afterlife.en.html": [
+            "<b>The author is arranging a Shinto funeral (神葬祭) in advance, while living.</b>"
+          ]
+        }
+      }
+    },
+    "ライセンスの範囲": {
+      "researcher-profile": {
+        "sophaxis.json": [
+          "載っている作品は、PDF の写しと要旨を含めて、それぞれ自身のライセンスを保ちます。",
+          "のライセンスの欄（MIT）は、コードだけに掛かります。",
+          "CC BY 4.0 で許諾しておらず、それぞれの権利者のものです。"
+        ],
+        "sophaxis.en.json": [
+          "Each listed work, with its PDF copy and its abstract, keeps its own licence.",
+          "(MIT) covers the code only.",
+          "are not licensed under CC BY 4.0 and remain their owners'."
+        ]
+      },
+      "cpsbvbng26-dotcom": {
+        "notes/sophaxis.html": [
+          "載っている作品は、PDF の写しと要旨を含めて、それぞれ自身のライセンスを保ちます。",
+          "のライセンスの欄（MIT）は、コードだけに掛かります。",
+          "CC BY 4.0 で許諾しておらず、それぞれの権利者のものです。"
+        ],
+        "notes/sophaxis.en.html": [
+          "Each listed work, with its PDF copy and its abstract, keeps its own licence.",
+          "(MIT) covers the code only.",
+          "are not licensed under CC BY 4.0 and remain their owners'."
+        ]
+      },
+      "sophaxis": {
+        "README.md": [
+          "Each listed work, with its PDF copy and its abstract, keeps its own licence.",
+          "(MIT) covers the code only.",
+          "are not licensed under CC BY 4.0 and remain their owners'."
+        ]
+      }
+    },
+    "安全の窓口": {
+      "repos": [
+        "cpsbvbng26-dotcom",
+        "researcher-profile",
+        "self-correction",
+        "autonomy-and-self-cultivation",
+        "errata-check",
+        "justice-and-algorithms",
+        "naval-gazette-notes",
+        "solitary-school",
+        "trinity-infinity",
+        "trinity-operator",
+        "deposit-check"
+      ],
+      "要る": [
+        "同じ運営者の errata-check と deposit-check の二つのリポジトリには、そのほかに GitHub Action があります。",
+        "二つの GitHub Action は、使う人のワークフローの中で動き、入力を受け取ります。",
+        "Action についての報告も、この窓口で受けます。",
+        "Two of the operator's repositories, errata-check and deposit-check, also publish a GitHub Action.",
+        "The two GitHub Actions run in their users' workflows and take inputs.",
+        "Reports about the Actions are in scope here."
+      ],
+      "無い": [
+        "入力を受け取る欄も",
+        "nothing takes input"
+      ],
+      "Action": {
+        "errata-check": "action.yml",
+        "deposit-check": "action.yml"
+      }
+    },
+    "SC-030": {
+      "外す語": [
+        "祖父",
+        "祖母",
+        "曾祖父"
+      ],
+      "残す句": [
+        "〔話し手は書きません〕からの伝聞",
+        "話し手が存命かどうかを、どの頁も述べていないからです"
+      ]
+    },
+    "自己分析": {
+      "無い": [
+        "SSRN 編集スタッフ",
+        "カテゴリ編集者",
+        "審査を経ていない",
+        "門を通過"
+      ],
+      "要る": [
+        "| SSRN の受け付け | SSRN（学術的な内容の基準を満たすかを SSRN が決めると書いている。プレプリントは査読しないと書いている） |",
+        "| PhilArchive の収録 | PhilArchive（載る前に誰が何を確かめるかは、取り寄せた頁に書かれていない） |"
+      ]
+    },
+    "独仏伊": {
+      "無い": {
+        "researcher-profile": {
+          "site.de.json": [
+            "Redaktionelle Mitarbeiter",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "Die erfüllten Kriterien"
+          ],
+          "site.fr.json": [
+            "membre de la rédaction",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "Les critères franchis"
+          ],
+          "site.it.json": [
+            "personale redazionale",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "I criteri superati"
+          ]
+        },
+        "cpsbvbng26-dotcom": {
+          "index.de.html": [
+            "Redaktionelle Mitarbeiter",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "Die erfüllten Kriterien"
+          ],
+          "index.fr.html": [
+            "membre de la rédaction",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "Les critères franchis"
+          ],
+          "index.it.html": [
+            "personale redazionale",
+            "world-wide scholarly discourse",
+            "articles with no references",
+            "reject any submissions",
+            "I criteri superati"
+          ]
+        }
+      },
+      "句を置く": {
+        "researcher-profile": [
+          "site.de.json",
+          "site.fr.json",
+          "site.it.json"
+        ],
+        "cpsbvbng26-dotcom": [
+          "index.de.html",
+          "index.fr.html",
+          "index.it.html"
+        ]
+      }
+    },
+    "記録の訂正": {
+      "file": "docs/legal-audit-2026-11-12.md",
+      "句": "月に一度のリンクの確認は、三度目の見落としの節で直すまで、philarchive.org・philpapers.org・elsevier.support の頁を機械で開いていました。"
     }
   },
   "種類と状態": {
