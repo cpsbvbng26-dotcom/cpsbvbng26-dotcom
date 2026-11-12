@@ -1,0 +1,29 @@
+{
+  "_": [
+    "外の場にある値の、最後に確かめた数。watch_outside.js が週に一度、同じ値を外から読み、ここと違えば issue を一つ開くか直す。",
+    "数は手で直す。外の値が変わったと分かったら、確かめた日と一緒にここを書き換え、docs/name-disambiguation.md の数も同じにする。",
+    "check_ecosystem.js が、docs/name-disambiguation.md の数とここの数を突き合わせる。"
+  ],
+  "asOf": "2026-11-12",
+  "orcid": "0009-0000-1406-0547",
+  "orcidWorks": 5,
+  "openalexAuthorIds": 4,
+  "openalexAsked": 43,
+  "openalexFound": 42,
+  "openalexNoAuthor": 16,
+  "dataciteOthers": 11,
+  "zenodoAbstract": {
+    "records": [
+      "22055709",
+      "22057583",
+      "22058254",
+      "22058624",
+      "22058777",
+      "22058964",
+      "22064241"
+    ],
+    "present": [
+      "22058624"
+    ]
+  }
+}

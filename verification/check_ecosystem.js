@@ -190,49 +190,69 @@ for (const item of DECL['写した版と DOI']) {
 
 /* DOI の一覧（docs/doi-index.md）と、実際にリポジトリに出てくる番号を突き合わせる。
  * 片方にしか無い番号があれば落ちる。Zenodo に到達できない環境なので、
- * **番号が実在するかは確かめない。**確かめるのは、一覧と実物がずれていないことだけ。 */
+ * **番号が実在するかは確かめない。**確かめるのは、一覧と実物がずれていないことだけ。
+ *
+ * 475（百本ノック五）。**一覧の番号は一覧自身の中に必ず出てくる。**だから一覧の文書を走査に含めると、
+ * 「一覧の番号が、すべてどこかに出てくる」は決して落ちない。一覧の文書は走査から外す。
+ * 一覧とは表の行（| で始まる行）のことで、散文の中で触れた番号は一覧に数えない。 */
 
 console.log('\n5. DOI の一覧と、実際に出てくる番号');
 
-{
-  const DOI = /10\.5281\/zenodo\.\d+/g;
+const DOI_INDEX = path.join('docs', 'doi-index.md');
+function 一覧の番号(re) {
+  const index = read('cpsbvbng26-dotcom', DOI_INDEX);
+  if (index === null) return null;
+  const rows = index.split('\n').filter((l) => l.indexOf('|') === 0).join('\n');
+  return new Set((rows.match(re) || []).map((d) => d.toLowerCase()));
+}
+function 出てくる番号(re, repos) {
   const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
                         '__pycache__', 'assets', 'data']);
   const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
-
-  function scan(dir, out) {
+  const found = new Set();
+  const 自分 = path.join(ROOT, 'cpsbvbng26-dotcom', DOI_INDEX);
+  const scan = (dir) => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
       if (SKIP.has(e.name)) continue;
       const full = path.join(dir, e.name);
-      if (e.isDirectory()) { scan(full, out); continue; }
+      if (e.isDirectory()) { scan(full); continue; }
       if (!EXT.includes(path.extname(e.name))) continue;
-      for (const d of fs.readFileSync(full, 'utf8').match(DOI) || []) out.add(d);
+      if (full === 自分) continue;
+      for (const d of fs.readFileSync(full, 'utf8').match(re) || []) found.add(d.toLowerCase());
     }
-  }
-
-  const INDEX = path.join('docs', 'doi-index.md');
-  const index = read('cpsbvbng26-dotcom', INDEX);
-  const listed = new Set(index === null ? [] : index.match(DOI) || []);
-
-  const found = new Set();
-  const seen = [];
-  for (const repo of C.repos) {
+  };
+  for (const repo of repos) {
     const dir = path.join(ROOT, repo);
-    if (!fs.existsSync(dir)) continue;
-    seen.push(repo);
-    scan(dir, found);
+    if (fs.existsSync(dir)) scan(dir);
   }
-  found.delete('');
+  return found;
+}
+function 一覧と突き合わせる(名, re, repos) {
+  const listed = 一覧の番号(re);
+  const found = 出てくる番号(re, repos);
+  const missing = [...found].filter((d) => listed === null || !listed.has(d)).sort();
+  const orphan = listed === null ? [] : [...listed].filter((d) => !found.has(d)).sort();
+  check('出てくる' + 名 + 'の番号が、すべて一覧に載っている', listed !== null && missing.length === 0,
+    missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
+  check('一覧の' + 名 + 'の番号が、すべて一覧の外のどこかに出てくる', listed !== null && orphan.length === 0,
+    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + (listed ? listed.size : 0) + ' 種'));
+}
+const 番号の種類 = [
+  ['Zenodo ', /10\.5281\/zenodo\.\d+/g, C.repos],
+  ['SSRN ', /10\.2139\/ssrn\.\d+/g, C.repos],
+  ['Figshare ', /10\.6084\/m9\.figshare\.\d+/g, C.repos],
+  /* 411。OSF のプロジェクトの DOI。Sophaxis の mq7za は Sophaxis のリポジトリに出てくるので、十の外の
+   * sophaxis も走査に入れる。大文字と小文字を区別しない。 */
+  ['OSF ', /10\.17605\/osf\.io\/[a-z0-9]+/gi, C.repos.concat(['sophaxis'])],
+];
 
-  const missing = [...found].filter((d) => !listed.has(d)).sort();
-  const orphan = [...listed].filter((d) => !found.has(d)).sort();
-
-  check('DOI の一覧がある', index !== null, INDEX);
-  check('出てくる番号が、すべて一覧に載っている', index !== null && missing.length === 0,
-    missing.length ? ('一覧に無い: ' + missing.join(', '))
-                   : (seen.length + ' リポジトリに ' + found.size + ' 種'));
-  check('一覧の番号が、すべてどこかに出てくる', index !== null && orphan.length === 0,
-    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
+check('DOI の一覧がある', read('cpsbvbng26-dotcom', DOI_INDEX) !== null, DOI_INDEX);
+for (const [名, re, repos] of 番号の種類) 一覧と突き合わせる(名, re, repos);
+{
+  /* 一覧が名乗る種類の数（「4 種の番号を見ます」）が、ここで見ている種類の数と合う。 */
+  const m = /Zenodo・SSRN・Figshare・OSF の (\d+) 種の番号を見ます。/.exec(read('cpsbvbng26-dotcom', DOI_INDEX) || '');
+  check('一覧が名乗る、突き合わせる番号の種類の数が実際と合う', m !== null && Number(m[1]) === 番号の種類.length,
+    m ? ('名乗り ' + m[1] + ' / 実際 ' + 番号の種類.length) : '名乗りが無い');
 }
 
 /* **Zenodo の記録の中身も、十で揃える。**版を出すたびに、Zenodo は .zenodo.json を読んで記録を作る。
@@ -297,87 +317,7 @@ console.log('\n5b. Zenodo の記録の中身');
   check('Zenodo のコミュニティの所在が四箇所で同じで、どこでも提携ではないと書いてある', 欠け.length === 0, 欠け.length ? 欠け.join(' / ') : 所.length + ' 箇所');
 }
 
-/* SSRN の DOI も同じ扱いにする。Zenodo と違い、番号は SSRN が発行し、
- * 著者が読み取って渡す。**実在は確かめない**（この環境から届かない）。
- * 確かめるのは、写した番号がリポジトリ間でずれていないことだけである。
- * 一箇所だけ直して他を直し忘れると、ここで落ちる。 */
-
-{
-  const DOI = /10\.2139\/ssrn\.\d+/g;
-  const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
-                        '__pycache__', 'assets', 'data']);
-  const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
-
-  function scan(dir, out) {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (SKIP.has(e.name)) continue;
-      const full = path.join(dir, e.name);
-      if (e.isDirectory()) { scan(full, out); continue; }
-      if (!EXT.includes(path.extname(e.name))) continue;
-      for (const d of fs.readFileSync(full, 'utf8').match(DOI) || []) out.add(d);
-    }
-  }
-
-  const INDEX = path.join('docs', 'doi-index.md');
-  const index = read('cpsbvbng26-dotcom', INDEX);
-  const listed = new Set(index === null ? [] : index.match(DOI) || []);
-
-  const found = new Set();
-  for (const repo of C.repos) {
-    const dir = path.join(ROOT, repo);
-    if (fs.existsSync(dir)) scan(dir, found);
-  }
-
-  const missing = [...found].filter((d) => !listed.has(d)).sort();
-  const orphan = [...listed].filter((d) => !found.has(d)).sort();
-
-  check('出てくる SSRN の番号が、すべて一覧に載っている',
-    index !== null && missing.length === 0,
-    missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
-  check('一覧の SSRN の番号が、すべてどこかに出てくる',
-    index !== null && orphan.length === 0,
-    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
-}
-
-/* Figshare の DOI も同じ扱いにする。2026-10-13 に一つ受け取った。
- * 番号は Figshare が発行し、著者が読み取って渡す。**実在は確かめない。** */
-
-{
-  const DOI = /10\.6084\/m9\.figshare\.\d+/g;
-  const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
-                        '__pycache__', 'assets', 'data']);
-  const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
-
-  function scan(dir, out) {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (SKIP.has(e.name)) continue;
-      const full = path.join(dir, e.name);
-      if (e.isDirectory()) { scan(full, out); continue; }
-      if (!EXT.includes(path.extname(e.name))) continue;
-      for (const d of fs.readFileSync(full, 'utf8').match(DOI) || []) out.add(d);
-    }
-  }
-
-  const INDEX = path.join('docs', 'doi-index.md');
-  const index = read('cpsbvbng26-dotcom', INDEX);
-  const listed = new Set(index === null ? [] : index.match(DOI) || []);
-
-  const found = new Set();
-  for (const repo of C.repos) {
-    const dir = path.join(ROOT, repo);
-    if (fs.existsSync(dir)) scan(dir, found);
-  }
-
-  const missing = [...found].filter((d) => !listed.has(d)).sort();
-  const orphan = [...listed].filter((d) => !found.has(d)).sort();
-
-  check('出てくる Figshare の番号が、すべて一覧に載っている',
-    index !== null && missing.length === 0,
-    missing.length ? ('一覧に無い: ' + missing.join(', ')) : (found.size + ' 種'));
-  check('一覧の Figshare の番号が、すべてどこかに出てくる',
-    index !== null && orphan.length === 0,
-    orphan.length ? ('どこにも無い: ' + orphan.join(', ')) : ('一覧 ' + listed.size + ' 種'));
-}
+/* SSRN と Figshare の DOI は、上の 5 で Zenodo と同じ扱いで突き合わせている。 */
 
 /* **落ちた理由の推定に数を書いた。だから数え直す。**
  * 参考文献の項目数と、版元の記載がある項目数を、紙面の書き起こしから数える。
@@ -1159,6 +1099,24 @@ console.log('\n7.16 マージコミットの開示');
     m !== null && 無し === parseInt(m[1], 10),
     '実際 ' + 無し + ' / 名乗り ' + (m ? m[1] : '無し')
       + '  マージ全体 ' + 総 + ' 件  ' + 内訳.join(' / '));
+  /* 477（百本ノック五）。PR の段階の検査を足した。マージのコミットはそこでは確かめられないので、
+   * あとで数えるこの検査は外さない。docs/checks.md が同じ件数を名乗り、理由を書いていること。 */
+  {
+    const ck = read('cpsbvbng26-dotcom', path.join('docs', 'checks.md')) || '';
+    const cm = /10 リポジトリ合わせて (\d+) 件あります。/.exec(ck);
+    check('docs/checks.md が名乗る、開示の無いマージの件数が実際と合う', cm !== null && Number(cm[1]) === 無し,
+      cm ? ('名乗り ' + cm[1] + ' / 実際 ' + 無し) : '名乗りが無い');
+    check('マージのコミットは PR の段階で確かめられないと書き、あとで数える検査を残すと書いてある',
+      ck.indexOf('マージのコミットの本文は、PR の段階では確かめられません。') >= 0
+      && ck.indexOf('マージのあとの件数の検査は、そのまま残します。') >= 0
+      && fs.existsSync(path.join(ROOT, 'cpsbvbng26-dotcom', '.github', 'workflows', 'pr-disclosure.yml')));
+    let selfOk = false;
+    try {
+      const o = require('child_process').execFileSync('node', [path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'check_pr_disclosure.js'), '--self-test'], { encoding: 'utf8' });
+      selfOk = /件すべて通りました。/.test(o);
+    } catch (e) { selfOk = false; }
+    check('PR の段階の開示の検査が、作り物の PR で落ちるべきものを落とす（--self-test）', selfOk);
+  }
   check('総数を固定しないと書いてある',
     cl.indexOf('固定するのは、この欠けた件数だけである') >= 0
     && cl.indexOf('一度そう書いて、次のマージで落ちた') >= 0);
@@ -1306,7 +1264,7 @@ console.log('\n7.18 ですます調 —— 書き方 2 の行き渡り');
    * **形は書き写さない。**check_text.js の表から読む。書き写せば、二つの並びが
    * 黙ってずれる。表を持っている check_text.js 自身は走査から外す。 */
   const CT0 = read('cpsbvbng26-dotcom', path.join('verification', 'check_text.js')) || '';
-  const 壊れ = [...CT0.matchAll(/\{ re: \/([^/]+)\/, right: '[^']+', note: '(?:「[^」]+」＋|助詞)/g)]
+  const 壊れ = [...CT0.matchAll(/\{ re: \/([^/]+)\/, right: '[^']+', note: '(?:「[^」]+」＋|助詞|否定の「ない」)/g)]
     .map((m) => m[1]);
   const 出た = [];
 
@@ -1349,6 +1307,11 @@ console.log('\n7.18 ですます調 —— 書き方 2 の行き渡り');
   const 名乗り = /`CONJUGATION` が\*\*(.)つ\*\*を止める/.exec(CLm);
   const 名乗り助 = /\*\*こちらは(.)つ\*\*を止める/.exec(CLm);
   const 漢 = '〇一二三四五六七八九十'.split('');
+  /* 471（百本ノック五）。三つ目の壊れ方、否定の「ない」を「ありません」に替えた形。
+   * CLAUDE.md の共通の区間は動かさないので、数は名乗らない。表に行があり、上の走査に入っていることだけを見る。 */
+  const 否 = [...CT0.matchAll(/\{ re: \/([^/]+)\/, right: '[^']+', note: '否定の「ない」/g)].map((m) => m[1]);
+  check('否定の「ない」を替えた壊れ方も、表から読んで 10 リポジトリを走査している',
+    否.length > 0 && 否.every((w) => 壊れ.includes(w)), 否.join(', ') || '表に無い');
   check('止めている形の数が、CLAUDE.md の名乗りと合う',
     対 > 0 && 名乗り !== null && 漢.indexOf(名乗り[1]) === 対
     && 助 > 0 && 名乗り助 !== null && 漢.indexOf(名乗り助[1]) === 助,
@@ -2155,8 +2118,13 @@ console.log('\n10. Zenodo との連携の但書');
   const idx = read('cpsbvbng26-dotcom', Z['一覧']) || '';
   check('一覧が、確かめていないことを書いている',
     idx.indexOf(Z['一覧に必ずあること']) >= 0, Z['一覧に必ずあること']);
-  check('一覧に未確認の番号が残っている',
-    idx.indexOf(Z['未確認の番号']) >= 0, Z['未確認の番号']);
+  /* 414（百本ノック五）。2026-11-12 に DataCite で、未確認だった番号が概念 DOI だと決まった。
+   * 番号が一覧に残り、その行が概念 DOI と名乗っていること。決まった結果を書き換えれば落ちる。 */
+  {
+    const 行 = idx.split('\n').find((l) => /^\| \d+ \|/.test(l) && l.indexOf('`' + Z['確かめた番号'] + '`') >= 0) || '';
+    check('一覧に、確かめた番号が概念 DOI として残っている',
+      行.indexOf('概念 DOI') >= 0 && idx.indexOf('## 確かめた番号') >= 0, Z['確かめた番号']);
+  }
   /* **Software Heritage が指している版が、実際に履歴にあるか。**
    * 一覧が木の名前を印字している。そこから短縮ハッシュを取り出して
    * researcher-profile の履歴に当たる。**印字を書き換えれば落ちる。**
@@ -2652,6 +2620,14 @@ console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語�
     let pages = 0;
     for (const s of S) {
       const base = path.join(ROOT, s.repo, s.dir);
+      /* 474（百本ノック五）。site/ は生成物で、git に入っていない。取ってきた直後のリポジトリには無い。
+       * 無ければ、そのリポジトリの build.js で作ってから見る。作れなければ落とす。**検査は緩めない。** */
+      if (!fs.existsSync(base) && C.repos.includes(s.repo) && s.dir === 'site' && fs.existsSync(path.join(ROOT, s.repo, 'build.js'))) {
+        try {
+          execFileSync('node', ['build.js'], { cwd: path.join(ROOT, s.repo), stdio: 'ignore' });
+          console.log('  ・  ' + s.repo + '/site が無かったので、node build.js で作りました');
+        } catch (e) { csp.push(s.repo + '/site を build.js で作れない'); continue; }
+      }
       if (!fs.existsSync(base)) { if (C.repos.includes(s.repo)) csp.push(s.repo + '/' + s.dir + ' が無い'); continue; }
       const htmls = [];
       const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
@@ -2712,27 +2688,216 @@ console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語�
 
 /* ---------- 名乗る件数 ---------- */
 
+console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・数の書き方・外部の指摘）');
+
+{
+  const HOME = 'cpsbvbng26-dotcom';
+  const D = (f) => read(HOME, path.join('docs', f)) || '';
+  const 表 = (text, head) => {
+    const i = text.indexOf(head);
+    if (i < 0) return [];
+    /* 見出しのあとの最初の表だけを取る。表の後ろに続く節の表は混ぜない。 */
+    const lines = text.slice(i + head.length).split('\n');
+    const k = lines.findIndex((l) => l.indexOf('|') === 0);
+    if (k < 0) return [];
+    const block = [];
+    for (let n = k; n < lines.length && lines[n].indexOf('|') === 0; n++) block.push(lines[n]);
+    return block.filter((l) => !/^\|\s*-/.test(l)).slice(1)
+      .map((l) => l.split('|').slice(1, -1).map((c) => c.trim()));
+  };
+
+  /* 401–403・406。OSF は一つのプロジェクトに cpsbvbng26-dotcom を一つつなぐ。
+   * 部品をやめた理由が「ほかの九つへの道を持っている」なので、README がほかの九つへ実際に道を持っていること。 */
+  {
+    const osf = D('osf.md');
+    const 他 = C.repos.filter((r) => r !== HOME);
+    const 漢 = '〇一二三四五六七八九十'.split('');
+    const m = /`cpsbvbng26-dotcom` が、ほかの(.)つのリポジトリへの道をすべて持っているからです。/.exec(osf);
+    /* README と、README から移した縄張りの頁（docs/castle.md）を合わせて、このリポジトリの入口とみる。 */
+    const readme = (read(HOME, 'README.md') || '') + (read(HOME, path.join('docs', 'castle.md')) || '');
+    const 道無し = 他.filter((r) => readme.indexOf('github.com/cpsbvbng26-dotcom/' + r) < 0);
+    check('OSF の計画が名乗る「ほかの九つ」が、README と縄張りの頁から実際に辿れるリポジトリの数と合う',
+      m !== null && 漢.indexOf(m[1]) === 他.length && 道無し.length === 0,
+      (m ? '名乗り ' + m[1] : '名乗りが無い') + ' / 実際 ' + 他.length + (道無し.length ? ' / 道が無い: ' + 道無し.join(', ') : ''));
+    const idx = read(HOME, DOI_INDEX) || '';
+    const o = 表(idx, '## OSF のプロジェクトの DOI').map((r) => (r[1] || '').replace(/`/g, ''));
+    const osfDois = [...osf.matchAll(/`(10\.17605\/osf\.io\/[a-z0-9]+)`/g)].map((x) => x[1]);
+    check('OSF の計画に書いた DOI が、すべて doi-index の OSF の表にある', osfDois.length > 0 && osfDois.every((d) => o.includes(d)),
+      osfDois.filter((d) => !o.includes(d)).join(', ') || osfDois.length + ' 件');
+    const 大 = /10\.17605\/OSF\.IO/.test(osf + idx);
+    check('OSF の番号を、小文字の一つの形で書いている', !大, 大 ? '大文字の形が混ざっている' : '');
+  }
+
+  /* 405。識別子の使い分けの頁。論文は Zenodo で引き、OSF の DOI で引かないこと。 */
+  {
+    const t = D('identifiers.md');
+    check('識別子の頁が、論文は Zenodo で引き、OSF の DOI では引かないと書いている',
+      t.indexOf('引用。論文は Zenodo の DOI で引きます') >= 0 && t.indexOf('論文を引くときに OSF の DOI を使いません。') >= 0);
+  }
+
+  /* 416。Zenodo と SSRN の同一本文。記録の表の組が、doi-index の「別の所在」の表の組と一致する。 */
+  {
+    const idx = read(HOME, DOI_INDEX) || '';
+    const 組 = (rows, zi, si) => rows.map((r) => {
+      const z = /10\.5281\/zenodo\.\d+/.exec(r[zi] || ''); const ss = /10\.2139\/ssrn\.\d+/.exec(r[si] || '');
+      return z && ss ? z[0] + '↔' + ss[0] : null;
+    }).filter(Boolean).sort();
+    const 一覧 = 組(表(idx, '## 別の所在にある同一本文'), 1, 2);
+    const ic = D('identical-copies.md');
+    const 記録 = 組(表(ic, '# Zenodo と SSRN の同一本文のつなぎ'), 0, 1);
+    const 名乗り = /(\d+) 組とも Zenodo の記録に IsIdenticalTo の関係が入っていました。/.exec(ic);
+    check('同一本文のつなぎの記録が、doi-index の Zenodo と SSRN の組と一致し、組の数を正しく名乗る',
+      一覧.length > 0 && JSON.stringify(一覧) === JSON.stringify(記録) && 名乗り !== null && Number(名乗り[1]) === 一覧.length,
+      'doi-index ' + 一覧.length + ' 組 / 記録 ' + 記録.length + ' 組 / 名乗り ' + (名乗り ? 名乗り[1] : '無し'));
+  }
+
+  /* 430・479。名寄せの頁の数は、外の値の控え（verification/outside.json）と同じ。 */
+  {
+    let o = null;
+    try { o = JSON.parse(read(HOME, path.join('verification', 'outside.json'))); } catch (e) { o = null; }
+    const t = D('name-disambiguation.md');
+    const 取 = (re) => { const m = re.exec(t); return m ? Number(m[1]) : null; };
+    const 対 = o ? [
+      ['ORCID の作品', 取(/\| ORCID \| 一つ。作品は \*\*(\d+)\*\* 件/), o.orcidWorks],
+      ['OpenAlex の著者の ID', 取(/著者が \*\*(\d+)\*\* 件に分かれています/), o.openalexAuthorIds],
+      ['OpenAlex で引いた番号', 取(/番号 \*\*(\d+)\*\* 件を OpenAlex で引くと/), o.openalexAsked],
+      ['OpenAlex で見つかった番号', 取(/\*\*(\d+)\*\* 件が見つかり/), o.openalexFound],
+      ['OpenAlex の著者の無い記録', 取(/そのうち \*\*(\d+)\*\* 件に著者が付いていませんでした/), o.openalexNoAuthor],
+      ['DataCite の同名の別人', 取(/別人の記録が \*\*(\d+)\*\* 件あります/), o.dataciteOthers],
+    ] : [];
+    const ずれ = 対.filter(([, a, b]) => a === null || a !== b).map(([n, a, b]) => n + ' 頁 ' + a + ' / 控え ' + b);
+    check('名寄せの頁の数が、外の値の控えと合う', o !== null && ずれ.length === 0, ずれ.join(', ') || 対.length + ' 項目');
+    check('外の値の控えの日付を、名寄せの頁が名乗っている', o !== null && t.indexOf('数は ' + o.asOf + ' に読んだものです。') >= 0);
+    const self = (f) => { try { return /件すべて通りました。/.test(execFileSync('node', [path.join(ROOT, HOME, 'verification', f), '--self-test'], { encoding: 'utf8' })); } catch (e) { return false; } };
+    check('外の値の見張り（watch_outside.js）の比べる部品が、作り物のずれを拾う（--self-test）', self('watch_outside.js'));
+    check('索引の網羅調査（index_survey.js）の判定の部品が、DOAPR の確かめの頁を載っていると読まない（--self-test）', self('index_survey.js'));
+    const wf = (f) => read(HOME, path.join('.github', 'workflows', f)) || '';
+    check('索引の網羅調査が月に一度回り、main に書かない（contents: read だけ）',
+      /cron: '\d+ \d+ \d+ \* \*'/.test(wf('index-survey.yml')) && /permissions:\n  contents: read\n\n/.test(wf('index-survey.yml'))
+      && !/contents: write/.test(wf('index-survey.yml')) && /upload-artifact/.test(wf('index-survey.yml')));
+    check('外の値の見張りが週に一度回り、書くのは issue だけ',
+      /cron: '\d+ \d+ \* \* \d'/.test(wf('watch-outside.yml')) && /issues: write/.test(wf('watch-outside.yml')) && !/contents: write/.test(wf('watch-outside.yml')));
+  }
+
+  /* 468。用語集。使わない語が、研究のリポジトリと Sophaxis・deposit-check の散文に無い。 */
+  const 散文の行 = (text) => {
+    const out = [];
+    let fence = false;
+    text.split('\n').forEach((l, i) => {
+      if (l.trim().indexOf('```') === 0) { fence = !fence; return; }
+      if (fence) return;
+      const s0 = l.replace(/^\s+/, '');
+      if (s0.indexOf('>') === 0 || s0.indexOf('#') === 0) return;
+      out.push([i + 1, l.replace(/「[^」]*」/g, '＿').replace(/『[^』]*』/g, '＿').replace(/`[^`]*`/g, '＿')]);
+    });
+    return out;
+  };
+  const 散文のファイル = (repos, skip) => {
+    const files = [];
+    const walk = (repo, rel) => {
+      let ents;
+      try { ents = fs.readdirSync(path.join(ROOT, repo, rel), { withFileTypes: true }); } catch (e) { return; }
+      for (const e of ents) {
+        const r = rel ? rel + '/' + e.name : e.name;
+        if (e.isDirectory()) {
+          if (/^(\.git|node_modules|site|dist|papers|examples|fixtures|__pycache__|preprint)$/.test(e.name)) continue;
+          walk(repo, r);
+        } else if (/\.(md|toml)$/.test(e.name) && !/\.en\.md$/.test(e.name) && !/(^|\/)CLAUDE\.md$/.test(r) && !skip(repo, r)) files.push([repo, r]);
+      }
+    };
+    repos.forEach((r) => walk(r, ''));
+    return files;
+  };
+  {
+    const g = D('glossary.md');
+    const rows = 表(g, '# 用語集');
+    const 禁 = [];
+    rows.forEach((r) => (r[1] || '').split('、').map((w) => w.trim()).filter(Boolean).forEach((w) => 禁.push([w, r[0]])));
+    const repos = C.repos.concat(['sophaxis', 'deposit-check']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const 出た = [];
+    for (const [repo, rel] of 散文のファイル(repos, (r, f) => r === HOME && f === 'docs/glossary.md')) {
+      for (const [n, l] of 散文の行(read(repo, rel) || '')) for (const [w, right] of 禁) if (l.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ':' + n + ' 「' + w + '」→「' + right + '」');
+    }
+    check('用語集が使わないと決めた語が、' + repos.length + ' リポジトリの散文に無い', rows.length > 0 && 禁.length > 0 && 出た.length === 0,
+      出た.length ? 出た.slice(0, 4).join(' / ') : (rows.length + ' 語 / 使わない語 ' + 禁.length));
+  }
+
+  /* 473。数の書き方。一つの日付の中で漢数字と算用数字を混ぜない。全角の数字を使わない。
+   * Sophaxis は自分の英日の数の検査を直してから入れる（docs/number-style.md）。 */
+  {
+    const K = '[〇一二三四五六七八九十]';
+    const 混 = [new RegExp(K + '+月\\s*\\d+\\s*日'), new RegExp('\\d+\\s*月\\s*' + K + '+日'),
+               new RegExp(K + '{2,}年\\s*\\d+\\s*月'), new RegExp('\\d+\\s*年\\s*' + K + '+月'), /[０-９]/];
+    const repos = C.repos.concat(['deposit-check']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const 出た = [];
+    const files = 散文のファイル(repos, () => false);
+    for (const [repo, rel] of files) {
+      for (const [n, l] of 散文の行(read(repo, rel) || '')) for (const re of 混) { const m = re.exec(l); if (m) 出た.push(repo + '/' + rel + ':' + n + ' 「' + m[0] + '」'); }
+    }
+    check('漢数字と算用数字の混ざった日付と、全角の数字が、' + repos.length + ' リポジトリの散文（' + files.length + ' ファイル）に無い',
+      files.length > 0 && 出た.length === 0, 出た.slice(0, 4).join(' / '));
+    check('数の書き方の決まりが、混ぜない例と外すところを書いている',
+      D('number-style.md').indexOf('「十月 30 日」とは書かず、「10 月 30 日」と書きます。') >= 0 && D('number-style.md').indexOf('`papers/*.md`。紙面の逐語の翻刻です。') >= 0);
+  }
+
+  /* 480。外部の指摘の追跡表。行の数と評価の数を名乗り、受けた評価の表の評価がすべて行を持つ。状態は五つのどれか。 */
+  {
+    const t = D('external-review-tracker.md');
+    const rows = 表(t, '外部の評価は査読ではありません。');
+    const 状態 = new Set(['対応済み', '対応中', '未対応', '採らない', '外れ']);
+    const 評価 = [...new Set(rows.map((r) => r[1]))];
+    const m = /いま、評価 (\d+) 件から、指摘 (\d+) 件です。/.exec(t);
+    const 番号 = rows.map((r) => Number(r[0]));
+    check('外部の指摘の追跡表が名乗る評価と指摘の数が、表と合う',
+      m !== null && Number(m[1]) === 評価.length && Number(m[2]) === rows.length && 番号.every((n, i) => n === i + 1),
+      (m ? '名乗り ' + m[1] + ' / ' + m[2] : '名乗りが無い') + ' / 表 ' + 評価.length + ' / ' + rows.length);
+    const 外れ状態 = rows.filter((r) => !状態.has(r[4])).map((r) => r[0]);
+    check('追跡表の状態が、決めた五つのどれかである', rows.length > 0 && 外れ状態.length === 0, 外れ状態.join(', '));
+    const ev = read(HOME, path.join('docs', 'external-evaluations.md')) || '';
+    /* 受けた評価の表の行ごとに、追跡表の評価が一つある。Sophaxis への評価（ChatGPT）は Sophaxis の側に記録するので、
+     * 受けた評価の表には入っていない。それを除いた数が、受けた評価の表の行の数と同じ。 */
+    const 受 = 表(ev, '## 受けた評価');
+    const 外 = 評価.filter((e) => e.indexOf('ChatGPT — Sophaxis') !== 0);
+    const 場の無い = 外.filter((e) => !受.some((r) => r[0].indexOf(e.split(' — ')[0]) === 0));
+    check('external-evaluations.md の受けた評価が、すべて追跡表に行を持つ',
+      受.length > 0 && 外.length === 受.length && 場の無い.length === 0,
+      '受けた評価 ' + 受.length + ' 件 / 追跡表 ' + 外.length + ' 件' + (場の無い.length ? ' / 場が無い: ' + 場の無い.join(', ') : ''));
+  }
+
+  /* 489。Figshare の頁の表の DOI が、doi-index の Figshare の番号と同じ。 */
+  {
+    const f = D('figshare.md');
+    const a = [...new Set(f.match(/10\.6084\/m9\.figshare\.\d+/g) || [])].sort();
+    const b = [...(一覧の番号(/10\.6084\/m9\.figshare\.\d+/g) || [])].sort();
+    check('Figshare の頁の稿が、doi-index の Figshare の番号と一致する', a.length > 0 && JSON.stringify(a) === JSON.stringify(b), a.join(', ') + ' / ' + b.join(', '));
+    check('Figshare の頁が、決めごと 15 の水準（researchmap の MISC）を書いている', f.indexOf('researchmap の MISC に載せられる水準のものに限ります') >= 0);
+  }
+}
+
+/* 481（百本ノック五）。**この検査の件数は docs/checks.md の一か所にだけ書く。**
+ * 2026-11-12 まで五か所に書いて突き合わせていた。ほかの場所は、その頁を指す。数を書き戻せば落とす。 */
 console.log('\n14. この検査が名乗る件数');
 
 {
-  const total = passed + failures.length + 1;
-  const claims = [
-    ['README.md', /10 リポジトリ横断 (\d+) 項目/],
-    ['.github/workflows/ecosystem.yml', /10 リポジトリ横断 (\d+) 項目/],
-    ['.claude/commands/check.md', /横断のずれ（(\d+) 項目）/],
-    ['.claude/commands/開始.md', /check_ecosystem\.js`（(\d+) 項目）/],
-    ['docs/self-assessment.md', /横断 \*\*(\d+) 項目\*\*/]
+  const total = passed + failures.length + 2;
+  const 正 = read('cpsbvbng26-dotcom', path.join('docs', 'checks.md')) || '';
+  const m = /いま 10 リポジトリ横断 (\d+) 項目です。/.exec(正);
+  check('この検査が名乗る件数が実際と合う（docs/checks.md の一か所）', m !== null && Number(m[1]) === total,
+    '実際 ' + total + ' / 名乗り ' + (m ? m[1] : '無し'));
+  const 指す = [
+    ['README.md', /10 リポジトリ横断 \d+ 項目/],
+    ['.github/workflows/ecosystem.yml', /10 リポジトリ横断 \d+ 項目/],
+    ['.claude/commands/check.md', /横断のずれ（\d+ 項目）/],
+    ['.claude/commands/開始.md', /check_ecosystem\.js`（\d+ 項目）/],
+    ['docs/self-assessment.md', /横断 \*\*\d+ 項目\*\*/],
   ];
-  const wrong = [];
-  for (const [f, re] of claims) {
+  const 書き戻し = [];
+  for (const [f, re] of 指す) {
     const text = read('cpsbvbng26-dotcom', f);
-    if (text === null) { wrong.push(f + ' が無い'); continue; }
-    const m = re.exec(text);
-    if (!m) { wrong.push(f + ' に名乗りが無い'); continue; }
-    if (parseInt(m[1], 10) !== total) wrong.push(f + ' が ' + m[1]);
+    if (text === null || re.test(text) || text.indexOf('checks.md') < 0) 書き戻し.push(f);
   }
-  check('この検査が名乗る件数が実際と合う', wrong.length === 0,
-    wrong.length ? ('実際 ' + total + ' / ' + wrong.join(', ')) : ('実際 ' + total + ' / 名乗り ' + claims.length + ' 箇所すべて一致'));
+  check('ほかの場所は件数を書かず、docs/checks.md を指している', 書き戻し.length === 0,
+    書き戻し.length ? ('数を書いている、または指していない: ' + 書き戻し.join(', ')) : 指す.length + ' 箇所');
 }
 
 /* ---------- ここまで ---------- */
