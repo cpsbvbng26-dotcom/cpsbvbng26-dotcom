@@ -2822,6 +2822,33 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
       出た.length ? 出た.slice(0, 4).join(' / ') : (rows.length + ' 語 / 使わない語 ' + 禁.length));
   }
 
+  /* 共通の決めごと 16（2026-11-12）。Claude は利用者に作業を割り当てない。文書のどこにも、利用者の仕事を作る形を置かない。
+   * 研究の十と、Sophaxis・deposit-check・nusquama の散文（英語の対も含む）を走る。CLAUDE.md は指示書なので外す。
+   * 鉤括弧とコードの中は、散文の行が伏せるので、規則そのものを引くことはできる。過去の事実（「利用者が行いました」）は止めない。 */
+  {
+    const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の手にな', '利用者の手です', '利用者の作業', '利用者が手で',
+      '利用者が行います', '利用者が決めます', '利用者を待', '利用者の観察を待', '案（利用者',
+      'needs the owner', 'for the owner to', "owner's steps", 'for the operator to confirm', 'is for the King to decide', '埋めるかどうかは、王が決めます'];
+    const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const files = [];
+    const walk = (repo, rel) => {
+      let ents;
+      try { ents = fs.readdirSync(path.join(ROOT, repo, rel), { withFileTypes: true }); } catch (e) { return; }
+      for (const e of ents) {
+        const r = rel ? rel + '/' + e.name : e.name;
+        if (e.isDirectory()) { if (!/^(\.git|node_modules|site|dist|papers|examples|fixtures|__pycache__|preprint)$/.test(e.name)) walk(repo, r); }
+        else if (/\.(md|toml)$/.test(e.name) && !/(^|\/)CLAUDE\.md$/.test(r)) files.push([repo, r]);
+      }
+    };
+    repos.forEach((r) => walk(r, ''));
+    const 出た = [];
+    for (const [repo, rel] of files) {
+      for (const [n, l] of 散文の行(read(repo, rel) || '')) for (const w of 形) if (l.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ':' + n + ' 「' + w + '」');
+    }
+    check('利用者に作業を割り当てる形が、' + repos.length + ' リポジトリの散文（' + files.length + ' ファイル）に無い（共通の決めごと 16）',
+      repos.length >= 13 && files.length > 0 && 出た.length === 0, 出た.slice(0, 4).join(' / '));
+  }
+
   /* 473。数の書き方。一つの日付の中で漢数字と算用数字を混ぜない。全角の数字を使わない。
    * Sophaxis は自分の英日の数の検査を直してから入れる（docs/number-style.md）。 */
   {
