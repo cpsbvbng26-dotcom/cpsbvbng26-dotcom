@@ -2901,9 +2901,12 @@ section('10.63 全作品の目録と、道具の一覧');
   /* ライセンスの列は、免責事項の「再利用」と同じ区別で書く。 */
   const 区別 = works.filter((w) => w.repository).every((w) => {
     const s = w.licence.spdx.join('+');
-    return s === 'MIT' || s === 'CC-BY-4.0+MIT' || s === 'CC-BY-4.0';
+    /* 全体が MIT で、中のディレクトリだけ CC BY 4.0 のもの（trinity-operator。2026-11-12 の法令の点検で足した）は、
+     * その例外を文に出しているときだけ通す。例外の表は check_ecosystem.js が免責事項と突き合わせる。 */
+    return s === 'MIT' || s === 'CC-BY-4.0+MIT' || s === 'CC-BY-4.0'
+      || (s === 'MIT+CC-BY-4.0' && /^MIT（ただし .+ は CC BY 4\.0）$/.test(w.licence.ja) && /^MIT \(except .+, under CC BY 4\.0\)$/.test(w.licence.en));
   });
-  ok('目録のライセンスの列が、全体が MIT か、CC BY 4.0 と MIT の二つかで書かれている', 区別);
+  ok('目録のライセンスの列が、全体が MIT か、CC BY 4.0 と MIT の二つか、全体が MIT で例外を名指す形で書かれている', 区別);
 
   /* 道具の一覧。四つを一行ずつ、リポジトリ・DOI・ライセンスを添えて。 */
   const tools = works.filter((w) => w.type === 'software');
@@ -3179,6 +3182,32 @@ section('10.66 サイトの決まりと運営の記録');
     .map((m) => m[1] ? m[1] + ' 第' + m[2] + '条' + (m[3] ? 'の' + m[3] : '') : m[5] + ' Article ' + m[4]));
   const 無い条 = 挙げた.filter((x) => !Object.prototype.hasOwnProperty.call(条文, x));
   ok('免責事項が挙げる法令の条が、取り寄せた条文の表にある（' + 挙げた.length + ' 条）', 無い条.length === 0, 無い条.join(', '));
+
+  /* 2026-11-12 の法令の点検。免責事項の「情報の扱い」が述べる事実を、頁の側で確かめる。
+   * cookie を置かない、アクセス解析を置かない、端末に置くのは明暗の選択だけ、読むものは配っているホストからだけ。
+   * 述べたことと頁がずれたら落とす（述べる文が消えても落とす）。 */
+  {
+    const 免 = read('DISCLAIMER.md'), 免英 = read('DISCLAIMER.en.md');
+    const 述べ = ['頁は cookie を置かず、アクセス解析の仕組みも置いていません。', '明暗の表示を選んだときは、その選択を、その端末のブラウザの保存域（localStorage）にだけ置きます。', '頁の表示に要るものは、頁を配っているホストからだけ読みます。']
+      .every((x) => 免.indexOf(x) >= 0) && ['The pages set no cookie and carry no analytics.', "kept only in that browser's local storage (localStorage)", 'Everything a page needs is loaded from the host that serves it.'].every((x) => 免英.indexOf(x) >= 0);
+    const 本体 = PAGES.concat(['theme.js', 'trinity.js']);
+    const 外れ = [];
+    本体.forEach((f) => {
+      const h = read(f);
+      if (/document\.cookie|sessionStorage|indexedDB|navigator\.sendBeacon|googletagmanager|gtag\(|_vercel\/insights|plausible|matomo/i.test(h)) 外れ.push(f + ' に記録や解析の仕組み');
+      const 鍵 = [...h.matchAll(/KEY = '([^']+)'/g)].map((m) => m[1]);
+      if (/localStorage/.test(h) && !鍵.every((k) => /^(site|researcher-profile)-theme$/.test(k))) 外れ.push(f + ' が明暗のほかを端末に置く');
+      if (/\.(html)$/.test(f)) {
+        const csp = (/<meta http-equiv="Content-Security-Policy" content="([^"]+)"/.exec(h) || [])[1] || '';
+        if (!/default-src 'none'/.test(csp) || /https?:|\*/.test(csp.replace(/'sha256-[^']+'/g, ''))) 外れ.push(f + ' の CSP が外のホストを許す');
+        if (/<(script|img|iframe|link[^>]*stylesheet)[^>]*\s(src|href)="(https?:)?\/\//i.test(h)) 外れ.push(f + ' が外のホストから読む');
+      }
+    });
+    const vj = JSON.parse(read('vercel.json'));
+    if (JSON.stringify(vj).toLowerCase().indexOf('set-cookie') >= 0) 外れ.push('vercel.json が cookie を置く');
+    ok('免責事項の「情報の扱い」が述べる事実（cookie・解析なし、端末には明暗の選択だけ、外のホストから読まない）が、' + 本体.length + ' のファイルで成り立つ',
+      述べ && 外れ.length === 0, (述べ ? '' : '免責事項の文が無い ') + 外れ.slice(0, 5).join(', '));
+  }
 
   /* 351. errata-check は Sophaxis のコードと一緒に、2027 年 5 月以降に JOSS へ。 */
   const J = { 'index.html': 'errata-check は、Sophaxis のコードと一緒に出します。出すのは 2027 年 5 月以降です。', 'index.en.html': 'errata-check goes in together with the code of Sophaxis, in May 2027 or later.',

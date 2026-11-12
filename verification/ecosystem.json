@@ -1553,13 +1553,19 @@
       "法令が免除や制限を認めない責任を、免除したり制限したりするものではありません。",
       "論文はどれも査読を受けていない稿です。",
       "学術上・法律上・医学上・財務上その他の専門的な助言ではありません。",
-      "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。"
+      "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。",
+      "この節の最初の文は、それだけで法令の定める責任を免除するものではありません。",
+      "頁は cookie を置かず、アクセス解析の仕組みも置いていません。",
+      "メールと issue で届いた個人の情報は、その求めに答えることと、訂正の記録を残すことにだけ使います。"
     ],
     "必須の文 英": [
       "Reading or using these works is not taken as agreement to anything.",
       "Except for intent or gross negligence, the operator is not liable for loss that arises from using these works.",
       "Where Japan's Consumer Contract Act applies, the previous sentence does not apply.",
-      "Nothing here excludes or limits a liability that the law does not allow to be excluded or limited."
+      "Nothing here excludes or limits a liability that the law does not allow to be excluded or limited.",
+      "The first sentence of this section does not, by itself, exclude a liability that the law imposes.",
+      "The pages set no cookie and carry no analytics.",
+      "Personal information received by email or in an issue is used only to answer the request and to keep the record of corrections."
     ],
     "無効になりうる言い回し": [
       "一切(の)?責任を負(い|わ)",
@@ -1589,7 +1595,14 @@
         ]
       },
       "中の一節": "trinity-operator の lessons/ と games/ は、その中の LICENSE により CC BY 4.0 です。",
-      "中の一節 英": "In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each."
+      "中の一節 英": "In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE inside each.",
+      "頁の表示で CC BY 4.0": {
+        "trinity-operator": [
+          "site"
+        ]
+      },
+      "表示の一節": "trinity-operator の site/ の頁は、頁の末尾の表示により CC BY 4.0 です。",
+      "表示の一節 英": "In trinity-operator, the page in site/ is under CC BY 4.0, by the notice at its foot."
     },
     "許すメールアドレス": [
       "noreply@anthropic.com",

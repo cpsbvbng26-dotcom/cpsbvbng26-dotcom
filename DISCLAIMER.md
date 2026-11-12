@@ -1,6 +1,6 @@
 # 免責事項
 
-最終更新：2026-11-11。
+最終更新：2026-11-12。
 
 English: [Disclaimer](DISCLAIMER.en.md)。訳と食い違うときは、この日本語の文が正です。
 
@@ -29,6 +29,8 @@ cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-
 日本の消費者契約法が適用される場合は、前の文を適用しません。
 そのときは、軽過失による損害を含め、同法と民法の定めるとおり責任を負います。
 法令が免除や制限を認めない責任を、免除したり制限したりするものではありません。
+この節の最初の文は、それだけで法令の定める責任を免除するものではありません。
+この頁は契約ではないからです。
 
 ## 再利用
 
@@ -36,6 +38,7 @@ cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-
 二つを置くリポジトリでは、文書と論文が CC BY 4.0、コードが MIT です。
 errata-check、self-correction、trinity-operator、researcher-profile は LICENSE 一つで、文書も含めて全体が MIT です。
 trinity-operator の lessons/ と games/ は、その中の LICENSE により CC BY 4.0 です。
+trinity-operator の site/ の頁は、頁の末尾の表示により CC BY 4.0 です。
 再利用の条件と、その条件のもとでの保証と責任は、それぞれのライセンスの定めによります。
 
 ## ほかのサイト
@@ -49,6 +52,15 @@ trinity-operator の lessons/ と games/ は、その中の LICENSE により CC
 個人の情報を含む求めは、公開の issue ではなくメールで受け付けます。
 運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。
 存命の人について書くのは、「両親」という語までです。
+
+## 情報の扱い
+
+頁は cookie を置かず、アクセス解析の仕組みも置いていません。
+明暗の表示を選んだときは、その選択を、その端末のブラウザの保存域（localStorage）にだけ置きます。
+頁の表示に要るものは、頁を配っているホストからだけ読みます。
+頁を配っている Vercel と GitHub は、それぞれの方針に従って、届いた要求の記録を持つことがあります。
+メールと issue で届いた個人の情報は、その求めに答えることと、訂正の記録を残すことにだけ使います。
+issue は GitHub の上で公開されます。
 
 ## 言語モデルの利用
 

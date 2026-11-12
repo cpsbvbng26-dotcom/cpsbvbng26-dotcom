@@ -309,7 +309,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1745 checks.** There are no dependencies to install.
+**Every push runs 1746 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
@@ -317,7 +317,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 702 checks
-node verification/check_site.js      # site structure, 953 checks
+node verification/check_site.js      # site structure, 954 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -357,10 +357,10 @@ If DataCite cannot be reached, it stops and says the check did not complete, ins
 
 ```
 default-src 'none'; script-src 'self' 'sha256-…'; style-src 'sha256-…';
-img-src 'self' data:; connect-src <the six lookup hosts>; form-action 'none'; base-uri 'none'
+img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 ```
 
-**No `unsafe-inline`.** Inline `<style>` and `<script>` are allowed by SHA-256 hash. Editing them changes the hash, so it has to be reissued with `verification/update_csp.js` — forget, and the checks fail and the browser refuses to run the script. Blocking was verified against simulated injection: external scripts, injected inline scripts, `fetch` to a non-allowlisted host, tracking images and injected inline styles are all refused; the allowlisted API host is not.
+**No `unsafe-inline`.** Inline `<style>` and `<script>` are allowed by SHA-256 hash. Editing them changes the hash, so it has to be reissued with `verification/update_csp.js` — forget, and the checks fail and the browser refuses to run the script. Blocking was verified against simulated injection: external scripts, injected inline scripts, `fetch` to a non-allowlisted host, tracking images and injected inline styles are all refused; the allowlisted API host is not. That last result dates from the DOI analyzer page, which queried six lookup hosts; the page has been removed. The legal audit of 2026-11-12 found the policy line above still listing those hosts, and corrected it. Every page now has `connect-src 'none'`, and `check_site.js` confirms it on every page.
 
 The check that earns its place is **"the DOIs on the paper cards match the DOIs in the analyse-all link."** Adding a paper and forgetting to update the link is the most likely way this page quietly goes wrong, so a machine holds it.
 
@@ -368,7 +368,7 @@ The check that earns its place is **"the DOIs on the paper cards match the DOIs 
 
 **The checks were confirmed not to be vacuous.** Five deliberate breakages — a changed DOI on a card, an injected external script, a link to a page that does not exist, an inconsistent `hasPart`, a stale sitemap entry — produced five failures.
 
-**Some things are not checked.** How the DOI analyzer renders a *successful* response from Crossref, DataCite, OpenAlex, Semantic Scholar or ORCID has only been exercised against recorded response shapes, because those APIs are unreachable from the environment the page was built in. **If a real response differs, the display may break.** The failure path — reporting the reason and restoring the button — is verified.
+The DOI analyzer, which sent requests to Crossref, DataCite, OpenAlex, Semantic Scholar and ORCID from the reader's browser, has been removed. No page sends a request to another host.
 
 </details>
 
@@ -380,8 +380,10 @@ This repository holds two kinds of thing, so it carries two licences.
 
 | | Licence | |
 | --- | --- | --- |
-| **Prose and structured data** — the profile text, the paper and work descriptions, `README.md`, `README.en.md`, the JSON-LD | [CC BY 4.0](LICENSE) | Free to use, including modification, with attribution |
-| **Site implementation** — the markup, styles and scripts in `index.html` / `index.en.html` / `trinity.html` / `trinity.js` / `404.html` / `theme.js` / `cv.html` / `notes/` / `papers/`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
+| **Prose, structured data and images** — the profile text, the paper and work descriptions, `README.md`, `README.en.md`, the records in `docs/`, the JSON-LD, `catalog.json` and `catalog.bib`, the logo and the share-card images | [CC BY 4.0](LICENSE) | Free to use, including modification, with the attribution that Section 3 requires (the creator, a link to the licence, whether it was modified, and so on) |
+| **Site implementation** — the markup, styles and scripts of the pages at the root (`index*.html`, `cv.html`, `catalog*.html`, `tools*.html`, `card.html`, `trinity.html`, `404.html`) and in `notes/` and `papers/`, `theme.js` and `trinity.js`, and the check scripts in `verification/` | [MIT](LICENSE-CODE) | Derived from [researcher-profile](https://github.com/cpsbvbng26-dotcom/researcher-profile) (MIT) |
+
+The legal audit of 2026-11-12 found that the implementation row did not name the front pages in five languages, the catalogue, the tool list or the one-page print card; they are now named. The records in `docs/` and the images were in neither row and fell under the root LICENSE (CC BY 4.0), so they are now written into the first row. The split itself is unchanged.
 
 © 2026 Takuya Nemoto (根本卓哉)
 

@@ -868,10 +868,11 @@
       },
       "licence": {
         "spdx": [
-          "MIT"
+          "MIT",
+          "CC-BY-4.0"
         ],
-        "ja": "MIT（全体）",
-        "en": "MIT (whole repository)"
+        "ja": "MIT（ただし lessons/・games/・site/ は CC BY 4.0）",
+        "en": "MIT (except lessons/, games/, site/, under CC BY 4.0)"
       },
       "resourceType": "Software",
       "begun": {

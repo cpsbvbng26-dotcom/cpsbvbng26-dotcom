@@ -2411,6 +2411,97 @@ console.log('\n12d. 免責と、法的なずれ');
   }
   check('免責事項が、中の LICENSE で CC BY 4.0 にしたディレクトリを全部名指し、その LICENSE がある',
     中.length === 0 && ja.indexOf(LC['中の一節']) >= 0 && en.indexOf(LC['中の一節 英']) >= 0, 中.join(', '));
+
+  /* 2026-11-12 の法令の点検。trinity-operator の site/ の頁は、LICENSE ファイルではなく頁の末尾の表示で
+   * CC BY 4.0 にしている。免責事項はそれを書いていなかった（全体が MIT と読めた）。
+   * 免責事項がその一文を持ち、site/ の頁がどれも末尾に CC BY 4.0 と書いていることを見る。 */
+  const 表示 = [];
+  for (const [repo, dirs] of Object.entries(LC['頁の表示で CC BY 4.0'])) {
+    for (const d of dirs) {
+      const dir = path.join(ROOT, repo, d);
+      const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => /\.html$/.test(f)) : [];
+      if (!pages.length) 表示.push(repo + '/' + d + ' に頁が無い');
+      pages.forEach((f) => {
+        const ft = (/<footer[\s\S]*?<\/footer>/.exec(fs.readFileSync(path.join(dir, f), 'utf8')) || [''])[0];
+        if (ft.indexOf('CC BY 4.0') < 0) 表示.push(repo + '/' + d + '/' + f);
+      });
+    }
+  }
+  check('免責事項が、頁の末尾の表示で CC BY 4.0 にした頁（trinity-operator の site/）を名指し、その頁が末尾に CC BY 4.0 と書く',
+    表示.length === 0 && ja.indexOf(LC['表示の一節']) >= 0 && en.indexOf(LC['表示の一節 英']) >= 0, 表示.join(', '));
+}
+
+/* ---------- 法令の点検の記録（2026-11-12） ----------
+ *
+ * 10 のリポジトリと deposit-check に、法令の点検の記録 docs/legal-audit-2026-11-12.md を置いた。
+ * **記録が挙げる条は、取り寄せた条文にあるものだけ。**条文は verification/statutes.json にあり、
+ * Sophaxis の取り寄せの仕事の結果から写した。記憶から書いた条（作り出した条）を止める。
+ * 写した文は、Sophaxis と Nusquama が別に取り寄せた同じ条の文と一字一句同じであること。
+ * 記録は六つの欄の表で、判定は五つの語のどれかで、弁護士が見ていないことを書く。 */
+console.log('\n12f. 法令の点検の記録');
+{
+  const ST = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')));
+  const 条文 = ST['条文'];
+  const crypto = require('crypto');
+  const 壊れ = Object.entries(条文).filter(([, v]) => crypto.createHash('sha256').update(v['文'], 'utf8').digest('hex') !== v.sha256).map(([k]) => k);
+  check('取り寄せた条文の表（statutes.json）の各条の SHA-256 が、その文と合う（' + Object.keys(条文).length + ' 条）', 壊れ.length === 0, 壊れ.join(', '));
+
+  /* 同じ条を Sophaxis と Nusquama も取り寄せている。そろって CI が複製する。無ければ、無いと言って通さない。 */
+  const EN = { '著作権法': 'Copyright Act', '個人情報保護法': 'Act on the Protection of Personal Information', '消費者契約法': 'Consumer Contract Act',
+    '民法': 'Civil Code', '刑法': 'Penal Code', '商標法': 'Trademark Act', '電気通信事業法': 'Telecommunications Business Act',
+    '情報流通プラットフォーム対処法': 'Act on providers of specified telecommunications services' };
+  const so = read('sophaxis', path.join('verification', 'statutes-texts.json'));
+  const nu = read('nusquama', path.join('verification', 'statutes-texts.json'));
+  if (so === null || nu === null) {
+    check('写した条文が、Sophaxis と Nusquama の取り寄せた文と一字一句同じ', false, 'sophaxis か nusquama が並んでいない');
+  } else {
+    const S = JSON.parse(so), N = JSON.parse(nu);
+    let 比べた = 0;
+    const 違い = [];
+    for (const [k, v] of Object.entries(条文)) {
+      const m = /^(.+) 第(\d+)条(?:の(\d+))?$/.exec(k);
+      const ek = m && EN[m[1]] ? EN[m[1]] + ' Article ' + m[2] + (m[3] ? '-' + m[3] : '') : null;
+      if (ek && S[ek] !== undefined) { 比べた++; if (S[ek] !== v['文']) 違い.push('Sophaxis ' + k); }
+      if (N[k] !== undefined) { 比べた++; if (N[k] !== v['文']) 違い.push('Nusquama ' + k); }
+    }
+    check('写した条文が、Sophaxis と Nusquama の取り寄せた文と一字一句同じ（' + 比べた + ' 組）', 違い.length === 0 && 比べた > 0, 違い.join(', '));
+  }
+
+  const 法令名 = [...new Set(Object.keys(条文).map((k) => k.replace(/ 第.*$/, '')))].sort((a, b) => b.length - a.length);
+  const 名の形 = new RegExp('(' + 法令名.join('|') + ')', 'g');
+  const 先 = C.repos.concat(['deposit-check']);
+  const JA = { head: '| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |', 判定: ['誤り', '根拠不足', '漏れ', '表現', '問題なし'],
+    節: ['## 調べた法令', '## 取り寄せられなかった文'], 弁護士: '弁護士は、この点検を見ていません。' };
+  const EN_ = { head: '| Place | Law and article | Requirements | Facts | Finding | Action |', 判定: ['Error', 'Insufficient basis', 'Omission', 'Wording', 'No problem'],
+    節: ['## Laws checked', '## Texts that could not be fetched'], 弁護士: 'No lawyer has reviewed this audit.' };
+  const 無い = [], 形 = [], 無い条 = [];
+  let 条数 = 0, 行数 = 0;
+  for (const repo of 先) {
+    const f = path.join('docs', 'legal-audit-2026-11-12.md');
+    const t = read(repo, f);
+    if (t === null) { 無い.push(repo); continue; }
+    const L = t.indexOf(EN_.head) >= 0 ? EN_ : JA;
+    const rows = t.split('\n').filter((l) => /^\| /.test(l) && l !== L.head && !/^\| ---/.test(l));
+    行数 += rows.length;
+    const 悪い行 = rows.filter((l) => { const c = l.split('|').slice(1, -1).map((x) => x.trim()); return c.length !== 6 || !L.判定.includes(c[4]); });
+    if (t.indexOf(L.head) < 0 || !rows.length || 悪い行.length || !L.節.every((x) => t.indexOf(x) >= 0) || t.indexOf(L.弁護士) < 0) {
+      形.push(repo + (悪い行.length ? '（判定の欄 ' + 悪い行.length + ' 行）' : ''));
+    }
+    /* 「第N条」は、同じ行で前に出た法令の名の条として読む。名が無ければ、それも作り出した条として落とす。 */
+    t.split('\n').forEach((line) => {
+      for (const m of line.matchAll(/第\s*(\d+)\s*条(?:の\s*(\d+))?/g)) {
+        条数++;
+        const before = line.slice(0, m.index);
+        const names = [...before.matchAll(名の形)];
+        const law = names.length ? names[names.length - 1][1] : null;
+        const key = law ? law + ' 第' + m[1] + '条' + (m[2] ? 'の' + m[2] : '') : null;
+        if (!key || !Object.prototype.hasOwnProperty.call(条文, key)) 無い条.push(repo + '：' + (key || '名の無い 第' + m[1] + '条'));
+      }
+    });
+  }
+  check('10 のリポジトリと deposit-check に、法令の点検の記録がある（' + (先.length - 無い.length) + ' 本）', 無い.length === 0, 無い.join(', '));
+  check('点検の記録が、六つの欄の表と五つの判定、調べた法令、取り寄せられなかった文、弁護士が見ていないことの一文を持つ（' + 行数 + ' 行）', 形.length === 0, 形.join(', '));
+  check('点検の記録が挙げる条が、どれも取り寄せた条文の表にある（' + 条数 + ' 箇所）', 無い条.length === 0, [...new Set(無い条)].slice(0, 8).join(', '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
@@ -2477,6 +2568,24 @@ console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
     }
     check('目録のライセンスの列の出所（licenceLayout）が、各リポジトリの LICENSE の置き方と同じ', 置きずれ.length === 0
       && C.repos.every((r) => lay.mit.includes(r) || lay.split.includes(r)), 置きずれ.join(', '));
+
+    /* 2026-11-12 の法令の点検。目録は trinity-operator を「MIT（全体）」と書いていたが、lessons/・games/・site/ は
+     * CC BY 4.0 である。目録の例外の表（licenceLayout.exceptions）が、免責事項の表（中の LICENSE と頁の表示）と
+     * 同じで、目録の頁がその例外を出していることを見る。 */
+    const LCx = DECL['免責']['ライセンス'];
+    const 免責の例外 = {};
+    [LCx['中の LICENSE で CC BY 4.0'], LCx['頁の表示で CC BY 4.0']].forEach((m) => Object.entries(m).forEach(([r, ds]) => {
+      免責の例外[r] = (免責の例外[r] || []).concat(ds);
+    }));
+    const 目録の例外 = Object.fromEntries(Object.entries(lay.exceptions || {}).filter(([k]) => k !== '_'));
+    const 例外ずれ = Object.keys(Object.assign({}, 免責の例外, 目録の例外)).filter((r) =>
+      JSON.stringify((免責の例外[r] || []).slice().sort()) !== JSON.stringify((目録の例外[r] || []).slice().sort()));
+    const 頁ずれ = Object.entries(目録の例外).filter(([r, ds]) => {
+      const row = (new RegExp('<tr id="' + r + '">[\\s\\S]*?</tr>').exec(read('cpsbvbng26-dotcom', 'catalog.html') || '') || [''])[0];
+      return !ds.every((d) => row.indexOf(d + '/') >= 0) || row.indexOf('CC BY 4.0') < 0;
+    }).map(([r]) => r);
+    check('目録のライセンスの例外が、免責事項の表と同じで、目録の頁に出ている（' + Object.keys(目録の例外).join(', ') + '）',
+      例外ずれ.length === 0 && 頁ずれ.length === 0, 例外ずれ.concat(頁ずれ).join(', '));
 
     /* 始めた時期の列の出所。最初のコミットの日付が、git の履歴と同じこと。
      * 浅い複製では最初のコミットが取れないので、落とす（取れないことを通ったことにしない）。 */
