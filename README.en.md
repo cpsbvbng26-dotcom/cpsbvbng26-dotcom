@@ -445,4 +445,4 @@ Commit authorship, trailers and pull request bodies are all fixed in the history
 
 </details>
 
-The extent of liability is set out in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md).
+Liability is as the law provides; the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md) explains it.

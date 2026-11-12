@@ -512,4 +512,4 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 
 </details>
 
-責任の範囲は、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)に定めています。
+責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。
