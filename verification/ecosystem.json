@@ -1670,6 +1670,24 @@
           "wantedly\\.com",
           "案件募集",
           "independent work"
+        ],
+        "README.md": [
+          "lancers\\.jp",
+          "coconala\\.com",
+          "crowdworks\\.jp",
+          "wantedly\\.com",
+          "案件募集",
+          "independent work",
+          "仕事の窓口"
+        ],
+        "README.en.md": [
+          "lancers\\.jp",
+          "coconala\\.com",
+          "crowdworks\\.jp",
+          "wantedly\\.com",
+          "案件募集",
+          "independent work",
+          "Work channels"
         ]
       },
       "researcher-profile": {

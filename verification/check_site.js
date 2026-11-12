@@ -602,15 +602,11 @@ PUBLIC_FACES.forEach((f) => {
 });
 ok('本文の核に置かないと決めたものが出ていない', offenders.length === 0, offenders.join(' / '));
 
-/* **独立での受注は、四つの場に出している。**説明文が一つだけずれると、
- * そこだけ別の売り方に見える。四つとも同じ一語で揃っていることを見る。
- * **肩書きでは書かない**（決めごと 10）。上の禁止語がそちらを押さえている。 */
+/* **受注の場への道は、どこにも置かない。**配る頁からは 2026-11-12 の続きで、README からは
+ * 同じ日に利用者が決めて外した。**肩書きでは書かない**（決めごと 10）。上の禁止語がそちらを押さえている。 */
 {
-  const 受注 = [['ランサーズ', 'lancers.jp'], ['ココナラ', 'coconala.com'],
-                ['クラウドワークス', 'crowdworks.jp'], ['LinkedIn', 'linkedin.com']];
   /* **配っている頁には置かない**（2026-11-12 の続き）。Vercel の無料の枠（Hobby）は個人の非営利の
-   * 利用に限られ、役務の販売の広告を商用の例に挙げる。受注の場への道と「案件募集」は、
-   * GitHub の上の README にだけ置く。頁のどれかに戻ったら落とす。 */
+   * 利用に限られ、役務の販売の広告を商用の例に挙げる。頁のどれかに戻ったら落とす。 */
   const 配る = PAGES.filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
   ok('配っている頁（' + PAGES.length + ' 頁）に、受注の場への道と案件募集の語が無い',
      配る.length === 0, 配る.join(', '));
@@ -619,31 +615,14 @@ ok('本文の核に置かないと決めたものが出ていない', offenders.
   ok('配っているデータ（catalog.json・catalog.bib・sitemap.xml・robots.txt）にも、受注の場への道が無い',
      データ.length === 0, データ.join(', '));
 
-  const md = read('README.md');
-  const 抜け = 受注.filter(([, host]) => !new RegExp(
-    '— \\[独立での案件募集\\]\\(https://[^)]*' + host.replace('.', '\\.')).test(md));
-  ok('README でも、四つの受注先が同じ説明文で揃っている',
-     抜け.length === 0, 抜け.map((x) => x[0]).join(', '));
-
-  /* **仕事の窓口は、研究のリンクと分けて置く**（2026-09-30）。受注先と職務の頁は
-   * 「仕事の窓口 —— 研究とは別」の組にだけ出す。研究者プロフィールの組や
-   * ウェブの組に混ざったら落とす。README でも、別の折りたたみに置く。 */
-  {
-    const 仕事 = 受注.map(([, host]) => host).concat(['wantedly.com']);
-    const 分け = [['README.md', '<summary>仕事の窓口 —— 研究とは別</summary>'],
-                  ['README.en.md', '<summary>Work channels, separate from research</summary>']];
-    const 外れ = [];
-    分け.forEach(([f, sum]) => {
-      const t = read(f);
-      const j = t.indexOf(sum);
-      仕事.forEach((h) => {
-        const k = t.indexOf(h);
-        if (j < 0 || k < 0 || k < j) 外れ.push(f + ' の ' + h);
-      });
-    });
-    ok('README でも、仕事の窓口が別の折りたたみにある', 外れ.length === 0,
-       外れ.length ? 外れ.join(', ') : 'README 二つとも');
-  }
+  /* **README からも外す**（2026-11-12、利用者が決めました）。GitHub の上の面にも、受注の場への道と
+   * 「案件募集」を置かない。仕事の窓口の折りたたみも置かない。どちらかが戻ったら落とす。 */
+  const 説明 = ['README.md', 'README.en.md']
+    .filter((f) => /lancers\.jp|coconala\.com|crowdworks\.jp|wantedly\.com|案件募集|independent work/i.test(read(f)));
+  ok('README（日英）にも、受注の場への道と案件募集の語が無い', 説明.length === 0, 説明.join(', '));
+  const 窓口 = [['README.md', '仕事の窓口'], ['README.en.md', 'Work channels']]
+    .filter(([f, s]) => read(f).includes(s)).map(([f]) => f);
+  ok('README（日英）に、仕事の窓口の折りたたみが無い', 窓口.length === 0, 窓口.join(', '));
 }
 
 /* ------------------------------------------------- 10.5 修得した科目の合計
