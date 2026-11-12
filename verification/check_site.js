@@ -2752,6 +2752,46 @@ section('10.61 置き場が、紙面と記録で揃っている');
        消した.length > 0 && 残り.length === 0,
        消した.length === 0 ? '削除の表が読めない' : (残り.length ? 残り.join(' / ') : 消した.length + ' 件'));
   }
+
+  /* 2026-11-13（九度目の見落とし）。**消した ID は、削除の表の行にだけ置く。**上の二つはリンクと
+   * 別の所在の表しか見ておらず、地の文に書いた ID（submission-disclosure.md の一文）を通していた。
+   * ここは、このリポジトリのどのファイルも、リンクでなくても、消した ID を表の外に持たないことを見る。
+   * ID は数字の並びで探す（hal- を付けても、URL でも、数字だけでも拾う）。13 のリポジトリは
+   * check_ecosystem.js が同じやり方で見る。 */
+  {
+    const di = read('docs/doi-index.md');
+    const i = di.indexOf('## 削除した所在');
+    const j = di.indexOf('## 第三者の SSRN DOI');
+    const 節 = (i >= 0 && j > i) ? di.slice(i, j) : '';
+    const 消した = [...節.matchAll(/^\| `hal-(\d+)` \|/gm)].map((m) => m[1]);
+    /* 表の行だけを外す。表の外に同じ ID を書けば、doi-index.md の中でも落ちる。 */
+    const 表を外す = (x) => x.split('\n').filter((l) => !/^\| `hal-\d+` \| /.test(l)).join('\n');
+    const 探す = (texts) => {
+      const hits = [];
+      for (const [f, x] of Object.entries(texts)) {
+        const y = f === 'docs/doi-index.md' ? 表を外す(x) : x;
+        消した.forEach((n) => { if (new RegExp('(?<!\\d)' + n + '(?!\\d)').test(y)) hits.push(f + ' に hal-' + n); });
+      }
+      return hits;
+    };
+    const files = require('child_process').execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' }).split('\0')
+      .filter((f) => f && fs.existsSync(path.join(ROOT, f)) && !/\.(pdf|png|jpe?g|gif|ico|webp|woff2?|zip)$/i.test(f));
+    const texts = Object.fromEntries(files.map((f) => [f, read(f)]));
+    const 残り = 探す(texts);
+    ok('削除した HAL の ID が、削除の表の行のほかに、このリポジトリのどのファイルにも無い（リンクでなくても）',
+       消した.length >= 9 && 残り.length === 0,
+       消した.length < 9 ? '削除の表が読めない（' + 消した.length + ' 件）' : (残り.length ? 残り.join(' / ') : files.length + ' ファイル、' + 消した.length + ' 件'));
+    const 一つ = 消した[0] || '0';
+    const 壊す = [
+      ['地の文に hal- を付けて書く', Object.assign({}, texts, { 'docs/submission-disclosure.md': texts['docs/submission-disclosure.md'] + '\nHAL の書誌の登録 `hal-' + 一つ + '` も削除しました。\n' })],
+      ['数字だけを書く', Object.assign({}, texts, { 'README.md': texts['README.md'] + '\nHAL ' + 一つ + '\n' })],
+      ['URL で書く', Object.assign({}, texts, { 'docs/catalog-notes.md': 'https://hal.science/hal-' + 一つ + 'v1\n' })],
+      ['doi-index.md の表の外に書く', Object.assign({}, texts, { 'docs/doi-index.md': texts['docs/doi-index.md'].replace('## 削除した所在', '## 削除した所在\n\nいちばん古いのは hal-' + 一つ + ' です。') })],
+    ];
+    const 落ちた = 壊す.filter(([, x]) => 探す(x).length > 0).map(([n]) => n);
+    ok('壊して確かめる：地の文に hal- を付けて・数字だけ・URL で・doi-index.md の表の外に書くと、どれも落ちる（' + 落ちた.length + ' / ' + 壊す.length + '）',
+       落ちた.length === 壊す.length && 探す(texts).length === 0, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+  }
 }
 
 /* ------------------------------------------------- 10.59 読み取りが通った日の記録

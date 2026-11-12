@@ -3446,6 +3446,173 @@ console.log('\n12o. 八度目の見落とし：GitHub Actions の規約（2026-1
     + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
 }
 
+/* ---------- 九度目の見落とし：削除した HAL の ID、OAI-PMH の口のアドレス、最初のコミットの日付（2026-11-12 の続き） ----------
+ *
+ * 一。**削除した HAL の ID は、doi-index.md の削除の表の行にだけ置く。**それまでの検査はリンクしか見ておらず、
+ * 地の文の ID（cpsbvbng26-dotcom・solitary-school・justice-and-algorithms）を通していた。13 のリポジトリの
+ * どのファイルも、表の行のほかに削除した ID を持たない。数字の並びで探すので、hal- を付けても、URL でも、数字だけでも拾う。
+ * 二。**Sophaxis の OAI-PMH の口のアドレスは、運営者の ORCID の記録と同じで、sophaxis の二つのファイルにだけ書く。**
+ * 頁は「収集者のための別のアドレス」と書いていた。13 のリポジトリのどのファイルも、宣言した二つの外にそのアドレスを持たない。
+ * 知らせにはアドレスを出さない（ファイルの名だけを出す）。
+ * 三。**最初のコミットの日付は、git の履歴が記す UTC の日付である。**七つの面は時刻の帯を書かずに
+ * 「2026-10-30 と 2026-11-02」と書いていた。deposit-check の最初のコミットは日本時間では 2026-11-03 になる。
+ * 面の日付が git の UTC の日付と合い、最初のコミットの日付を書く段が、その文か段のそれより前に UTC と書くこと。
+ * 四。直したリポジトリの記録に九度目の節がそろうこと。 */
+console.log('\n12p. 九度目の見落とし：削除した ID・口のアドレス・最初のコミットの日付（2026-11-12 の続き）');
+{
+  const K = DECL['九度目の見落とし'] || null;
+  const 十三 = (DECL['八度目の見落とし'] || {})['記録'] || [];
+  const 判定語 = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const 中身 = (repo) => {
+    let files = [];
+    try { files = execFileSync('git', ['ls-files', '-z'], { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 1 << 28 }).split('\0').filter(Boolean); } catch (e) { return null; }
+    const out = {};
+    for (const f of files) {
+      if (/\.(pdf|png|jpe?g|gif|ico|webp|woff2?|zip|gz|xlsx?|docx?)$/i.test(f)) continue;
+      const p = path.join(ROOT, repo, f);
+      if (!fs.existsSync(p) || !fs.statSync(p).isFile()) continue;
+      const b = fs.readFileSync(p);
+      if (b.includes(0)) continue;
+      out[f] = b.toString('utf8');
+    }
+    return out;
+  };
+  const 最初の日 = (repo) => {
+    try {
+      const dir = path.join(ROOT, repo);
+      if (execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: dir, encoding: 'utf8' }).trim() === 'true') return '浅い複製';
+      return execFileSync('git', ['log', '--reverse', '--format=%cd', '--date=format-local:%Y-%m-%d'],
+        { cwd: dir, encoding: 'utf8', env: Object.assign({}, process.env, { TZ: 'UTC' }) }).split('\n')[0].trim();
+    } catch (e) { return ''; }
+  };
+  const 全部 = Object.fromEntries(十三.map((r) => [r, 中身(r)]));
+  const di = (全部['cpsbvbng26-dotcom'] || {})['docs/doi-index.md'] || '';
+  const 実 = {
+    全部,
+    git: Object.fromEntries(Object.keys((K || {})['最初のコミット'] || {}).map((r) => [r, 最初の日(r)])),
+    site: (() => { try { return JSON.parse((全部.sophaxis || {})['site.json'] || '{}'); } catch (e) { return {}; } })(),
+  };
+  const 表を外す = (x) => x.split('\n').filter((l) => !/^\| `hal-\d+` \| /.test(l)).join('\n');
+  const 文 = (x) => String(x).split(/\n|(?<=[.。])\s+|(?<=。)/);
+  const 履歴 = /^(?:docs\/legal-audit-2026-11-12\.md|CHANGELOG\.md|verification\/|data\/policy-changes\.json|site\/policies\/changes\.xml)/;
+  const 離す = /separate (?:e-?mail )?address|different (?:e-?mail )?address|made for (?:harvesters|this use)|address the operator made|(?:is|are) for harvesters|not the one for harvesters|収集者のため|別のアドレス|別の宛先/i;
+  const 初語 = /最初のコミット|first commits?|ersten? Commits?|premiers? commits?|prim[oi] commit/i;
+  const 一文 = {
+    'index.html': /最初のコミットは、協定世界時（UTC）で (\d{4}-\d{2}-\d{2}) と (\d{4}-\d{2}-\d{2}) です。/,
+    'README.md': /最初のコミットは、協定世界時（UTC）で (\d{4}-\d{2}-\d{2}) と (\d{4}-\d{2}-\d{2}) です。/,
+    'index.en.html': /Their first commits are dated (\d{4}-\d{2}-\d{2}) and (\d{4}-\d{2}-\d{2}), in UTC\./,
+    'README.en.md': /Their first commits are dated (\d{4}-\d{2}-\d{2}) and (\d{4}-\d{2}-\d{2}), in UTC\./,
+    'index.de.html': /Ihre ersten Commits tragen die Daten (\d{4}-\d{2}-\d{2}) und (\d{4}-\d{2}-\d{2}), in UTC\./,
+    'index.fr.html': /Leurs premiers commits datent du (\d{4}-\d{2}-\d{2}) et du (\d{4}-\d{2}-\d{2}), en UTC\./,
+    'index.it.html': /I loro primi commit sono datati (\d{4}-\d{2}-\d{2}) e (\d{4}-\d{2}-\d{2}), in UTC\./,
+  };
+  const 覚え = new Map();
+  function 判定(x) {
+    const bad = [];
+    if (K === null) return ['宣言が無い'];
+    if (十三.length !== 13) bad.push('13 のリポジトリの一覧が読めない');
+    for (const r of 十三) if (!x.全部[r]) bad.push(r + ' のファイルの一覧が読めない');
+    /* 一。削除した ID。 */
+    const idx = (x.全部['cpsbvbng26-dotcom'] || {})['docs/doi-index.md'] || '';
+    const i = idx.indexOf('## 削除した所在');
+    const j = idx.indexOf('\n## ', i + 1);
+    const 節 = i >= 0 ? idx.slice(i, j < 0 ? idx.length : j) : '';
+    const 消した = [...節.matchAll(/^\| `hal-(\d+)` \|/gm)].map((m) => m[1]);
+    if (消した.length < 9) bad.push('削除の表が読めない（' + 消した.length + ' 件）');
+    /* 二。口のアドレス。 */
+    const mails = ((x.site || {}).oai || {}).adminEmails || [];
+    if (mails.length !== 1) bad.push('sophaxis の site.json の口のアドレスが ' + mails.length + ' 件');
+    /* 一と二を、ファイルごとに一度だけ読む。壊して確かめるときは、替えたファイルだけを読み直す。 */
+    const 鍵 = 消した.join(',') + '|' + mails.join(',');
+    for (const [r, fs_] of Object.entries(x.全部)) {
+      for (const [f, t] of Object.entries(fs_ || {})) {
+        const k = r + '/' + f;
+        let v = 覚え.get(k);
+        if (!v || v.t !== t || v.鍵 !== 鍵) {
+          const y = r === 'cpsbvbng26-dotcom' && f === 'docs/doi-index.md' ? 表を外す(t) : t;
+          v = { t, 鍵, ids: 消した.filter((n) => y.includes(n) && new RegExp('(?<!\\d)' + n + '(?!\\d)').test(y)),
+                mail: mails.some((e) => t.includes(e)),
+                apart: !履歴.test(f) && t.includes('OAI') && 離す.test(t) && 文(t).some((s) => /OAI/.test(s) && 離す.test(s)) };
+          覚え.set(k, v);
+        }
+        for (const n of v.ids) bad.push(k + ' に削除した hal-' + n);
+        if (v.mail && !(r === 'sophaxis' && K['アドレスの置き場'].includes(f))) bad.push(k + ' が口のアドレスを持つ');
+        if (v.apart) bad.push(k + ' が口のアドレスを別のものと書く');
+      }
+    }
+    for (const f of K['アドレスの置き場']) if (!mails.every((e) => String(((x.全部.sophaxis || {})[f]) || '').includes(e))) bad.push('sophaxis/' + f + ' に口のアドレスが無い');
+    /* 三。最初のコミットの日付。 */
+    const 宣言 = K['最初のコミット'];
+    for (const [r, d] of Object.entries(宣言)) if (x.git[r] !== d) bad.push(r + ' の最初のコミット（UTC）が ' + (x.git[r] || '取れない') + '、宣言は ' + d);
+    const 面 = x.全部['cpsbvbng26-dotcom'] || {};
+    for (const f of K['面']) {
+      const t = String(面[f] || '');
+      const m = 一文[f] ? 一文[f].exec(t) : null;
+      if (!m || m[1] !== 宣言.sophaxis || m[2] !== 宣言['deposit-check']) bad.push(f + ' の一文が UTC で git の日付を書いていない');
+      /* 段（HTML は </p>、Markdown は空行）ごとに、最初のコミットの日付の文か、段のそれより前に UTC がある。 */
+      const 段 = /\.html$/.test(f) ? t.split(/<\/p>/) : t.split(/\n\s*\n/);
+      段.forEach((p, k) => {
+        if (/^\s*\|/.test(p)) return;
+        const mm = 初語.exec(p);
+        if (!mm) return;
+        const d = /\d{4}-\d{2}-\d{2}/.exec(p.slice(mm.index));
+        if (!d) return;
+        const at = mm.index + d.index;
+        const end = p.slice(at).search(/[。.](?:\s|<|$)/);
+        const s = p.slice(Math.max(p.lastIndexOf('。', at), p.lastIndexOf('. ', at)) + 1, end < 0 ? p.length : at + end + 1);
+        if (p.slice(0, at).indexOf('UTC') < 0 && s.indexOf('UTC') < 0) bad.push(f + ' の ' + (k + 1) + ' 段目が UTC と書かずに最初のコミットの日付を書く');
+      });
+    }
+    /* 四。記録。 */
+    for (const r of K['記録']) {
+      const t = (x.全部[r] || {})['docs/legal-audit-2026-11-12.md'];
+      if (!t) { bad.push(r + ' の記録が無い'); continue; }
+      const a = t.indexOf('\n' + K['節'] + '\n');
+      const b = a < 0 ? -1 : t.indexOf('\n## ', a + 1);
+      const sec = a < 0 ? '' : t.slice(a, b < 0 ? t.length : b);
+      if (!sec) { bad.push(r + ' に九度目の節が無い'); continue; }
+      if (!sec.includes('| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |')) bad.push(r + ' の表の列');
+      const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|---)/.test(l)).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+      if (!rows.length || !rows.every((c) => c.length === 6 && 判定語.includes(c[4]))) bad.push(r + ' の表の形');
+      const 数 = 'この表の判定は、' + 判定語.filter((w) => rows.some((c) => c[4] === w)).map((w) => w + ' ' + rows.filter((c) => c[4] === w).length).join('、') + ' です。';
+      if (!sec.includes(数)) bad.push(r + ' の判定の数');
+      for (const c of rows.filter((c2) => c2[4] !== '問題なし')) if (!c[5].includes(K['決めた']) || !/ためです$/.test(c[5])) bad.push(r + '：決めた一文か理由が無い行 ' + c[0].slice(0, 20));
+      if (!K['弁護士'].some((w) => sec.includes(w))) bad.push(r + ' に弁護士の一文が無い');
+      if (/[^\s@<>"`]+@[^\s@<>"`]+\.[a-z]{2,}/i.test(sec)) bad.push(r + ' の九度目の節がアドレスを書く');
+    }
+    return bad;
+  }
+  const bad = 判定(実);
+  const 数 = Object.values(実.全部).reduce((a, v) => a + (v ? Object.keys(v).length : 0), 0);
+  check('13 のリポジトリ（' + 数 + ' ファイル）に、削除した HAL の ID が表の外に無く、Sophaxis の口のアドレスが二つのファイルの外に無く、最初のコミットの日付が git の UTC の日付と合って七つの面が UTC と書き、九度目の節が五つの記録にそろう',
+    bad.length === 0, bad.slice(0, 6).join(' / '));
+  const mail = ((実.site || {}).oai || {}).adminEmails || ['x'];
+  const 一つ = ([...di.matchAll(/^\| `hal-(\d+)` \|/gm)][0] || [])[1] || '0';
+  const 替 = (r, f, a2, b2) => Object.assign({}, 実, { 全部: Object.assign({}, 実.全部, { [r]: Object.assign({}, 実.全部[r], { [f]: String((実.全部[r] || {})[f] || '').replace(a2, b2) }) }) });
+  const 壊す = [
+    ['solitary-school の README に削除した ID を書く', 替('solitary-school', 'README.md', /$/, '\nHAL（`hal-' + 一つ + '`）\n')],
+    ['justice-and-algorithms に数字だけを書く', 替('justice-and-algorithms', 'README.md', /$/, '\nHAL ' + 一つ + '\n')],
+    ['nusquama に削除した ID の URL を書く', 替('nusquama', 'README.md', /$/, '\nhttps://hal.science/hal-' + 一つ + 'v1\n')],
+    ['doi-index.md の表の外に書く', 替('cpsbvbng26-dotcom', 'docs/doi-index.md', '## 削除した所在', '## 削除した所在\n\nいちばん古いのは hal-' + 一つ + ' です。')],
+    ['submission-disclosure.md に戻す', 替('cpsbvbng26-dotcom', 'docs/submission-disclosure.md', 'HAL には、取り消した PDF の投稿とは別に、同じ篇の書誌の登録がありました。', 'HAL の書誌の登録 `hal-' + 一つ + '` は、取り消した PDF の投稿とは別のものです。')],
+    ['口のアドレスを sophaxis のほかのファイルに書く', 替('sophaxis', 'docs/operations.md', /$/, '\n' + mail[0] + '\n')],
+    ['口のアドレスを別のリポジトリに書く', 替('deposit-check', 'README.md', /$/, '\n' + mail[0] + '\n')],
+    ['口のアドレスを別のものと書く', 替('sophaxis', 'contact.md', 'gives the same address, because', 'gives a separate address made for harvesters, because')],
+    ['日本時間の日付にする', 替('cpsbvbng26-dotcom', 'index.html', 'と 2026-11-02 です。', 'と 2026-11-03 です。')],
+    ['README から UTC を外す', 替('cpsbvbng26-dotcom', 'README.md', '最初のコミットは、協定世界時（UTC）で 2026-10-30', '最初のコミットは 2026-10-30')],
+    ['英語の JOSS の段から UTC の一文を外す', 替('cpsbvbng26-dotcom', 'index.en.html', 'Every date in this paragraph is a date in UTC. ', '')],
+    ['イタリア語の一文から UTC を外す', 替('cpsbvbng26-dotcom', 'index.it.html', '2026-11-02, in UTC.', '2026-11-02.')],
+    ['git の最初のコミットがずれる', Object.assign({}, 実, { git: Object.assign({}, 実.git, { 'deposit-check': '2026-11-03' }) })],
+    ['記録から九度目の節を外す', 替('solitary-school', 'docs/legal-audit-2026-11-12.md', K ? K['節'] : 'x^', '## 九度目')],
+    ['記録の判定の数を変える', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', 'この表の判定は、漏れ 3、表現 2 です。', 'この表の判定は、漏れ 2、表現 2 です。')],
+    ['決めた一文を外す', 替('justice-and-algorithms', 'docs/legal-audit-2026-11-12.md', /2026-11-13 に Claude が決めました。/g, '')],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  const 漏れ出た = 壊す.some(([, y]) => mail.some((e) => 判定(y).join(' ').includes(e)));
+  check('壊して確かめる：削除した ID（三つのリポジトリ、表の外、元の一文）・口のアドレス（ほかのファイル、別のリポジトリ、別のものと書く）・日本時間の日付・UTC を外す（README、英語の段、イタリア語）・git の日付・記録の節・判定の数・決めた一文のどれでも落ち、知らせにアドレスが出ない（'
+    + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length && !漏れ出た, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / ') + (漏れ出た ? ' / アドレスが知らせに出た' : ''));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
