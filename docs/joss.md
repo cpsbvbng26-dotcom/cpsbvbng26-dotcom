@@ -228,7 +228,7 @@ Friedkin–Johnsen 意見動学の特殊例です。新しい結果はありま�
 開示を求める場と、著者自身の筆であることを申告させる場は、別です。
 前者には出します。後者には出しません。
 
-**プレプリントは動かしません**。Zenodo と PhilArchive と SSRN に置いたままにします。
+**プレプリントは動かしません**。査読誌に出すために、Zenodo・SSRN・PhilArchive から下ろすことはしません。
 **取り下げるのではありません**。査読誌に出すこととは別です。
 
 貼る形の開示文は [`submission-disclosure.md`](submission-disclosure.md) にあります。
