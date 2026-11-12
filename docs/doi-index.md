@@ -1,14 +1,17 @@
 # DOI の一覧
 
 **この一覧は、リポジトリ内部の記述から起こしたものです**。作業環境から
-`zenodo.org` にも `doi.org` にも DataCite にも届きません。
+`zenodo.org` にも `doi.org` にも届きません。DataCite の API には、2026-11-12 に届きました。
+番号の種類（版の DOI か概念 DOI か）は、そこで確かめています。
 
 **番号の存在は疑っていません**。登録したのは著者本人であり、番号は Zenodo が発行した
 ものを著者が読み取って渡しています。**確かめられないのは、書き写しが合っているかと、
 どのレコードを指すかです**。決まらないものは「未確認」と書きます。番号を当てにいきません。
 
 `check_ecosystem.js` が、この一覧と実際にリポジトリに出てくる番号を突き合わせます。
-片方にしか無い番号があれば落ちます。Zenodo・SSRN・Figshare の三つの番号を見ます。
+片方にしか無い番号があれば落ちます。Zenodo・SSRN・Figshare・OSF の 4 種の番号を見ます。
+一覧とは、この文書の表の行のことです。散文の中で触れた番号は、一覧に入れていません。
+「どこかに出てくる」は、この文書の外で数えます。この文書の中を数えると、一覧の番号が必ず見つかってしまうからです。
 
 ---
 
@@ -25,13 +28,13 @@
 | 7 | `10.5281/zenodo.22058964` | Trinity-Infinity Series III | 現行 |
 | 8 | `10.5281/zenodo.22064241` | Fragmentarian Spiritual Individualism | 現行 |
 | 9 | `10.5281/zenodo.22335676` | 正義論とアルゴリズム | 現行。論点の整理であり研究成果ではない |
-| 10 | `10.5281/zenodo.22335691` | researcher-profile —— **一部だけ確認した** | 下の「未確認の番号」を見ること |
+| 10 | `10.5281/zenodo.22335691` | researcher-profile のすべての版 | 概念 DOI。いちばん新しい版を指す |
 | 11 | `10.5281/zenodo.22335692` | researcher-profile v1.0.0 | 現行 |
 | 12 | `10.5281/zenodo.22649054` | errata-check v0.1.0 | 旧版。**だが消してはいけない**（下記） |
 | 13 | `10.5281/zenodo.22649899` | errata-check v0.2.0 | 旧版。**だが消してはいけない**（下記） |
 | 14 | `10.5281/zenodo.22685687` | errata-check v0.3.0 | 現行 |
-| 15 | `10.5281/zenodo.22765695` | solitary-school —— **概念か版かを確かめていない** | 現行。下の「未確認の番号」を見ること |
-| 16 | `10.5281/zenodo.23114131` | 「30歳魔法使い」都市伝説の構造分析 —— **概念か版かを確かめていない** | 現行（v1.0、2026年10月3日） |
+| 15 | `10.5281/zenodo.22765695` | solitary-school v1.0.0 | 現行。版の DOI |
+| 16 | `10.5281/zenodo.23114131` | 「30歳魔法使い」都市伝説の構造分析 | 現行（v1.0、2026年10月3日）。版の DOI |
 
 ## 一括置換してはいけない二つ
 
@@ -48,35 +51,43 @@
 新しい番号を足したのは、道具そのものの現行版が v0.3.0 になったからです。
 `CITATION.cff` と README の記章がこれを指します。写しの側は動きません。
 
-## 未確認の番号
+## 確かめた番号
 
-`10.5281/zenodo.22335691` は `researcher-profile/README.md` の Software Heritage
+2026-11-12 まで、次の三つを「概念か版かを確かめていない」として置いていました。
+同じ日に DataCite の記録を読み、版の関係（HasVersion と IsVersionOf）で決まりました。
+対になる概念 DOI は、この表にだけ置きます。「著者自身の Zenodo DOI」の表は成果物の番号を並べるもので、検査がその行の数を数えています。
+
+| 番号 | 何か | 対になる番号 |
+| --- | --- | --- |
+| `10.5281/zenodo.22335691` | researcher-profile の概念 DOI | 版の DOI は `10.5281/zenodo.22335692`（v1.0.0） |
+| `10.5281/zenodo.22765695` | solitary-school の版の DOI（v1.0.0） | 概念 DOI は `10.5281/zenodo.22765694` |
+| `10.5281/zenodo.23114131` | 「30歳魔法使い」の版の DOI | 概念 DOI は `10.5281/zenodo.23114130` |
+
+`10.5281/zenodo.22335691` は、`researcher-profile/README.md` の Software Heritage
 リンクの中に一度だけ出ます。他の六箇所は `22335692` です。
+書き写しの誤りではなく、概念 DOI と版 DOI の違いでした。
 
-**誤記ではないところまでは分かりました**。Software Heritage がこの DOI を origin として
-持っており、その snapshot `83f09cc8…` に researcher-profile の版があります。木の名前は
-`cpsbvbng26-dotcom-researcher-profile-65b3622` です。
+Software Heritage はこの DOI を origin として持っており、その snapshot `83f09cc8…` に
+researcher-profile の版があります。木の名前は `cpsbvbng26-dotcom-researcher-profile-65b3622` です。
+Software Heritage の中身は、利用者から受け取ったものです（`証言`）。
+commit `65b3622`（`Add Zenodo and citation metadata`、2026-09-05）は researcher-profile の履歴に実在します。
+`check_ecosystem.js` が当たっています。
 
-**その版は、機械で確かめました**。commit `65b3622`（`Add Zenodo and citation metadata`、
-2026-09-05）は researcher-profile の履歴に実在します。`check_ecosystem.js` が当たっています。
-
-**残っているのは、概念 DOI か、もう一つの版 DOI かの区別です**。Zenodo が概念 DOI と
-版 DOI に連番を振ることがあるので、`...691` が概念 DOI である可能性は高い。だが
-Zenodo にも Software Heritage にもこの作業環境から出られないので、そこは確かめていません。
-上の Software Heritage の中身は、利用者から受け取ったものです（`証言`）。
-
-到達できるようになったら、次のどちらかにします。
-
-- 概念 DOI であれば、その旨を一語添える
-- 版 DOI であれば、どの版かを書く
-
-推測で直しません。
-
-`10.5281/zenodo.22765695` も同じ形で未確認です。`solitary-school` の番号として
-利用者から受け取りました。**概念 DOI か版 DOI かは確かめていません**。Zenodo へ出られません。
-
-同じ日に `10.5281/zenodo.22765621` も作られ、利用者が消しました。消えたことも確かめていません。
+solitary-school の番号と同じ日に、`10.5281/zenodo.22765621` も作られ、利用者が消しました。
+2026-11-12 に DataCite に問い合わせると、この番号の記録はありませんでした（404）。
 この一覧には載せません。載せれば、実在する番号として引かれる余地が残ります。
+
+## OSF のプロジェクトの DOI
+
+OSF のプロジェクトに付いた DOI です。プロジェクトは置き場を束ねる入口で、論文の引用には使いません（[identifiers.md](identifiers.md)）。
+番号は小文字で書きます。DataCite は大文字で返しますが、DOI は大文字と小文字を区別しません。
+
+| # | DOI | 何か | 状態 |
+| --- | --- | --- | --- |
+| O1 | `10.17605/osf.io/mq7za` | Sophaxis: An Independent Overlay Preprint Server | 現行。2026-11-12 に DataCite で確かめた。種類は Text |
+| O2 | `10.17605/osf.io/7kr5n` | Takuya Nemoto: first-year research repositories（学部一年次の研究のプロジェクト。GitHub の `cpsbvbng26-dotcom` につないだ入口） | 現行。2026-11-12 に利用者から受け取り、同じ日に DataCite で確かめた。種類は Project、ライセンスは CC BY 4.0。論文の引用には使わない |
+
+学部一年次の研究のプロジェクトは O2 です。部品は持たず、`cpsbvbng26-dotcom` 一つをつないでいます。計画は [osf.md](osf.md) にあります。
 
 ## リポジトリの保存版の DOI
 
