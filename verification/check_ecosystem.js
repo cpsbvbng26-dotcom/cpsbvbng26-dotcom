@@ -2616,6 +2616,89 @@ console.log('\n12h. 取り寄せた周辺の文（2026-11-12 の続き）');
   check('まだ取り寄せられない文（旧著作権法・報道の記事・東北大学の規約）を、理由と一緒に一覧に残している', K !== null && 無い.length === 0, 無い.join(', '));
 }
 
+/* ---------- 見落としていたもの（2026-11-12 の続き） ----------
+ *
+ * 読むだけの点検をもう一度、別の手で行った。見張りが見ていなかったところを直し、見張りを広げた。
+ *   - 決めごと 10 の見張りの式（verification/kinship.js）を、self-correction の登録簿と researcher-profile の設定に当てる。
+ *     check_site.js は自分の頁しか見ない。SC-016 の欄は、その外で、存命の第三者の事業計画を写していた。
+ *   - 自己紹介から外した、開業届を出す予定の文が戻らず、出していないという事実の文が残っていること。
+ *   - 月に一度のリンクの確認が、機械での利用を断る場（edX・DataCite の頁・Google Scholar・Academia.edu・ResearchGate）を開かないこと。
+ * 三つの点検の記録に同じ見出しの節と、Claude が決めたことの一文があること。 */
+console.log('\n12i. 見落としていたもの（2026-11-12 の続き）');
+{
+  const K = DECL['見落とし'] || null;
+  const 欠け = [];
+  let 行 = 0;
+  for (const repo of (K ? K['記録'] : [])) {
+    const t = read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length || sec.indexOf(K['決めた']) < 0) 欠け.push(repo + (i < 0 ? '（節が無い）' : '（行か決めた一文が無い）'));
+  }
+  check('点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行と Claude が決めたことの一文がある（' + (K ? K['記録'].length - 欠け.length : 0) + ' 本、' + 行 + ' 行）',
+    K !== null && K['記録'].length > 0 && 欠け.length === 0, 欠け.join(', '));
+
+  /* 決めごと 10。check_site.js と同じ式を、兄弟のリポジトリの記録と設定に当てる。 */
+  const { scan } = require('./kinship');
+  const 当たり = [];
+  let 面 = 0;
+  for (const [repo, list] of Object.entries(K ? K['見張る'] : {})) {
+    for (const p of list) {
+      let files = [p];
+      const dir = path.join(ROOT, repo, p.endsWith('/') ? p : path.dirname(p));
+      if (p.endsWith('/') || p.indexOf('*') >= 0) {
+        const ext = p.endsWith('/') ? null : path.extname(p);
+        files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((n) => ext === null || n.endsWith(ext))
+          .map((n) => path.join(p.endsWith('/') ? p : path.dirname(p), n)) : [];
+      }
+      if (!files.length) { 当たり.push(repo + '/' + p + ' が無い'); continue; }
+      for (const f of files) {
+        const t = read(repo, f);
+        if (t === null) { 当たり.push(repo + '/' + f + ' が無い'); continue; }
+        面++;
+        scan(t).forEach((h) => 当たり.push(repo + '/' + f + ' に「' + h + '」'));
+      }
+    }
+  }
+  check('self-correction の登録簿と researcher-profile の設定に、存命の人物の続柄の一語を越える記載が無い（決めごと 10、' + 面 + ' ファイル）',
+    K !== null && 面 > 0 && 当たり.length === 0, 当たり.slice(0, 6).join(' / '));
+
+  const 戻り = [];
+  let 語数 = 0;
+  for (const [repo, files] of Object.entries(K ? K['無い言い回し'] : {})) {
+    for (const [f, xs] of Object.entries(files)) {
+      const t = read(repo, f);
+      if (t === null) { 戻り.push(repo + '/' + f + ' が無い'); continue; }
+      xs.forEach((x) => { 語数++; if (t.indexOf(x) >= 0) 戻り.push(repo + '/' + f + '：' + x); });
+    }
+  }
+  check('外した文（開業届を出す予定、両親の考え）が、設定にも頁にも戻っていない（' + 語数 + ' 語）',
+    K !== null && 語数 > 0 && 戻り.length === 0, 戻り.join(', '));
+
+  const 無い文 = [];
+  let 文数 = 0;
+  for (const [repo, files] of Object.entries(K ? K['ある文'] : {})) {
+    for (const [f, xs] of Object.entries(files)) {
+      const t = read(repo, f) || '';
+      xs.forEach((x) => { 文数++; if (t.indexOf(x) < 0) 無い文.push(repo + '/' + f + '「' + x.slice(0, 16) + '」'); });
+    }
+  }
+  check('開業届を出していないという事実の文は、五つの言語の設定と頁と README に残っている（' + 文数 + ' 文）',
+    K !== null && 文数 > 0 && 無い文.length === 0, 無い文.join(', '));
+
+  let lc = null;
+  try { lc = require(path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'linkcheck.js')); } catch (e) { lc = null; }
+  const 誤り = lc === null || typeof lc.usable !== 'function' ? ['linkcheck.js が読めない'] :
+    (K ? K['開かない'] : []).filter((u) => lc.usable(u)).map((u) => '開く: ' + u)
+      .concat((K ? K['開く'] : []).filter((u) => !lc.usable(u)).map((u) => '外している: ' + u));
+  check('月に一度のリンクの確認が、機械での利用を断る場（edX・DataCite の頁・Google Scholar・Academia.edu・ResearchGate）を開かず、ほかは開く（' + (K ? K['開かない'].length + ' と ' + K['開く'].length : 0) + ' 件）',
+    K !== null && 誤り.length === 0, 誤り.join(', '));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
