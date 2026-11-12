@@ -380,6 +380,8 @@ The legal audit of 2026-11-12 found that the implementation row did not name the
 
 This repository is archived at Zenodo with each release. Version 1.0.0: [10.5281/zenodo.24034360](https://doi.org/10.5281/zenodo.24034360). Every version: [10.5281/zenodo.24034359](https://doi.org/10.5281/zenodo.24034359), which resolves to the latest.
 
+Texts by others that this repository quotes, or keeps to verify its quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'.
+
 ---
 
 ✴︎The Keep✴︎

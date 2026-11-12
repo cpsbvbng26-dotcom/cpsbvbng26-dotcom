@@ -17,7 +17,9 @@ const LIST = JSON.parse(fs.readFileSync(path.join(__dirname, 'sites.json'), 'utf
 const TOKEN = process.env.GITHUB_TOKEN || '';
 const MARK = '<!-- uptime:daily -->';
 const TITLE = 'サイトが応答しない（一日に一度の見張り）';
-const UA = 'Mozilla/5.0 (uptime check; https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom)';
+/* 名乗り。ブラウザの名を借りない（2026-11-12、四度目の見落とし。それまでは Mozilla/5.0 を頭に付けていた）。
+ * linkcheck.js と同じ形で、どのリポジトリの、どの仕事かを書く。check_ecosystem.js の 12l が見る。 */
+const UA = 'cpsbvbng26-dotcom-uptime/1.0 (+https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/uptime.js)';
 
 async function probe(u) {
   try {
@@ -56,7 +58,9 @@ async function upsert(body, down) {
   }
 }
 
-(async () => {
+module.exports = { UA, probe, up };
+
+if (require.main === module) (async () => {
   const results = [];
   for (const u of LIST) {
     let r = await probe(u);

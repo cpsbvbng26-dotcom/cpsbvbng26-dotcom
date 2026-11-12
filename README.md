@@ -442,6 +442,8 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 版 1.0.0 の DOI は [10.5281/zenodo.24034360](https://doi.org/10.5281/zenodo.24034360) です。
 すべての版に共通する DOI は [10.5281/zenodo.24034359](https://doi.org/10.5281/zenodo.24034359) で、いちばん新しい版を指します。
 
+このリポジトリが引き、または引用を確かめるために置いている他人の文は、CC BY 4.0 でも MIT でも許諾しておらず、それぞれの権利者のものです。
+
 ---
 
 ✴︎The Keep✴︎

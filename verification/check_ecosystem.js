@@ -2980,6 +2980,189 @@ console.log('\n12k. 三度目の見落とし（2026-11-12 の続き）');
     F !== null && f1.n > 0 && 句.length > 0 && f1.out.length + f2.length === 0, f1.out.concat(f2).slice(0, 6).join(' / '));
 }
 
+console.log('\n12l. 四度目の見落とし（2026-11-12 の続き）');
+{
+  const K = DECL['四度目の見落とし'] || null;
+
+  const 欠け = [];
+  let 行 = 0;
+  for (const repo of (K ? K['記録'] : [])) {
+    const t = read(repo, path.join('docs', 'legal-audit-2026-11-12.md'));
+    if (t === null) { 欠け.push(repo); continue; }
+    const i = t.indexOf('\n' + K['節'] + '\n');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+    const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l));
+    行 += rows.length;
+    if (i < 0 || !rows.length || sec.indexOf(K['決めた']) < 0) 欠け.push(repo + (i < 0 ? '（節が無い）' : '（行か決めた一文が無い）'));
+  }
+  check('点検の記録に「' + (K ? K['節'].replace(/^## /, '') : '') + '」の節があり、表の行と Claude が決めたことの一文がある（' + (K ? K['記録'].length - 欠け.length : 0) + ' 本、' + 行 + ' 行）',
+    K !== null && K['記録'].length > 0 && 欠け.length === 0, 欠け.join(', '));
+
+  /* 場の選別。語の表ではなく形で止める。式は screening.js。 */
+  const SC = require('./screening');
+  const V = K ? K['選別の見張り'] : null;
+  const 止めない = (V ? V['止める文'] : []).filter((x) => SC.scan(x).length === 0);
+  const 止める = (V ? V['通す文'] : []).filter((x) => SC.scan(x).length > 0);
+  check('選別の見張りの式が、SSRN・PhilArchive に選別の中身か担い手を帰す文を日英独仏伊で止め、取り寄せた頁が言わないと述べる文を通す（'
+    + (V ? V['止める文'].length + ' と ' + V['通す文'].length : 0) + ' 文）',
+    V !== null && 止めない.length === 0 && 止める.length === 0,
+    止めない.map((x) => '通した：' + x.slice(0, 40)).concat(止める.map((x) => '止めた：' + x.slice(0, 40))).join(' / '));
+  /* 面を開く。* は一つの階層の中だけを指す。 */
+  const 開く = (repo, pat) => {
+    const dir = path.dirname(pat) === '.' ? '' : path.dirname(pat);
+    const base = path.basename(pat);
+    const re = new RegExp('^' + base.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '[^/]*') + '$');
+    const abs = path.join(ROOT, repo, dir);
+    if (!fs.existsSync(abs)) return [];
+    return fs.readdirSync(abs).filter((f) => re.test(f)).map((f) => path.join(dir, f));
+  };
+  const 選別ずれ = [];
+  let 面 = 0;
+  for (const [repo, pats] of Object.entries(V ? V['面'] : {})) {
+    if (!fs.existsSync(path.join(ROOT, repo))) { 選別ずれ.push(repo + ' が無い'); continue; }
+    for (const pat of pats) {
+      for (const f of 開く(repo, pat)) {
+        面++;
+        SC.scan(read(repo, f) || '').forEach((s) => 選別ずれ.push(repo + '/' + f + '：' + s.slice(0, 60)));
+      }
+    }
+  }
+  check('自己紹介・頁・README のどの言語も、SSRN・PhilArchive が載せる前に何を、誰が見るかを、取り寄せた頁に無い形で書かない（' + 面 + ' 面）',
+    V !== null && 面 > 0 && 選別ずれ.length === 0, 選別ずれ.slice(0, 6).join(' / '));
+
+  /* deposit-check の読む API。自己紹介が名乗る場の集まりが、fetch.js の問い合わせる場の集まりと同じ。 */
+  const A = K ? K['API の名'] : null;
+  const fetchJs = read('deposit-check', path.join('src', 'fetch.js')) || '';
+  const hosts = [...new Set((fetchJs.match(/get\('https:\/\/[a-z0-9.-]+/g) || []).map((x) => x.replace(/^get\('https:\/\//, '')))].sort();
+  const 名 = A ? hosts.map((h) => A['対応'][h] || ('対応に無い場 ' + h)).sort() : [];
+  const API名ずれ = [];
+  if (!hosts.length) API名ずれ.push('fetch.js の問い合わせる場が読めない');
+  for (const s of (A ? A['面'] : [])) {
+    const t = read(s.repo, s.file);
+    const m = t === null ? null : new RegExp(s['式']).exec(t);
+    if (m === null) { API名ずれ.push(s.repo + '/' + s.file + ' に API の名乗りが無い'); continue; }
+    const got = m[1].split(/・|、|, | and | と /).map((x) => x.trim()).filter(Boolean).sort();
+    if (JSON.stringify(got) !== JSON.stringify(名)) API名ずれ.push(s.repo + '/' + s.file + '：' + got.join('・') + ' / ' + 名.join('・'));
+  }
+  check('自己紹介と deposit-check の README が名乗る、deposit-check の読む API が、src/fetch.js の問い合わせる場（' + hosts.length + ' か所）と同じ',
+    A !== null && hosts.length > 0 && API名ずれ.length === 0, API名ずれ.join(' / ') || 名.join('・'));
+
+  /* 登録簿の件数（決めごと 5）。 */
+  const R = K ? K['登録簿の数'] : null;
+  const 実 = ((read('self-correction', 'register.toml') || '').match(/^\[\[entry\]\]/gm) || []).length;
+  const 数ずれ = [];
+  let 名乗り数 = 0;
+  for (const s of (R ? R['面'] : [])) {
+    const t = read(s.repo, s.file);
+    if (t === null) { 数ずれ.push(s.repo + '/' + s.file + ' が無い'); continue; }
+    s['式'].forEach((x) => {
+      const ms = [...t.matchAll(new RegExp(x, 'g'))];
+      if (!ms.length) 数ずれ.push(s.repo + '/' + s.file + ' に「' + x + '」が無い');
+      ms.forEach((m) => { 名乗り数++; if (parseInt(m[1], 10) !== 実) 数ずれ.push(s.repo + '/' + s.file + '：' + m[0] + '（実際 ' + 実 + '）'); });
+    });
+  }
+  check('自己紹介・頁・README・自己分析が名乗る登録簿の件数が、register.toml の項目の数（' + 実 + ' 件）と同じ（' + 名乗り数 + ' か所）',
+    R !== null && 実 > 0 && 名乗り数 > 0 && 数ずれ.length === 0, 数ずれ.slice(0, 6).join(' / '));
+
+  /* 一日に一度の見張りの名乗り。どのスクリプトも、ブラウザの名を名乗りに書かない。 */
+  const U = K ? K['見張りの名乗り'] : null;
+  let up = null;
+  try { up = require(path.join(ROOT, 'cpsbvbng26-dotcom', U ? U.file : 'x')); } catch (e) { up = null; }
+  const 見張り = up === null ? '' : String(up.UA || '');
+  check('一日に一度の見張りの名乗りが、ブラウザの名を借りず、このリポジトリのこの仕事を書く', U !== null && 見張り.indexOf(U['含む']) >= 0
+    && U['ブラウザ'].every((x) => 見張り.indexOf(x) < 0), 見張り);
+  const 借り = [];
+  const 文字列 = new RegExp('[\'"`][^\'"`\\n]*(?:' + (U ? U['ブラウザ'] : ['x']).map((x) => x.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')).join('|') + ')[^\'"`\\n]*[\'"`]');
+  const 歩く = (dir, rel) => fs.readdirSync(path.join(dir, rel), { withFileTypes: true }).flatMap((e) => {
+    const r = path.join(rel, e.name);
+    if (e.isDirectory()) return /^(\.git|node_modules)$/.test(e.name) ? [] : 歩く(dir, r);
+    return /\.(?:js|mjs|cjs|py|sh|yml|yaml)$/.test(e.name) ? [r] : [];
+  });
+  let 走査 = 0;
+  for (const repo of (K ? K['記録'] : [])) {
+    const dir = path.join(ROOT, repo);
+    if (!fs.existsSync(dir)) continue;
+    for (const f of 歩く(dir, '')) {
+      if (repo === 'cpsbvbng26-dotcom' && f === path.join('verification', 'check_ecosystem.js')) continue;
+      走査++;
+      const t = fs.readFileSync(path.join(dir, f), 'utf8');
+      t.split('\n').forEach((l, n) => { if (/user-agent|\bUA\b|ua\s*=/i.test(l) && 文字列.test(l)) 借り.push(repo + '/' + f + ':' + (n + 1)); });
+    }
+  }
+  check('11 のリポジトリのどのスクリプトも、名乗り（User-Agent）にブラウザの名を書かない（' + 走査 + ' ファイル）', U !== null && 走査 > 0 && 借り.length === 0, 借り.join(', '));
+
+  /* 他人の文。README のライセンスの節と免責事項の「再利用」。 */
+  const O = K ? K['他人の文'] : null;
+  const 他ずれ = [];
+  for (const [repo, files] of Object.entries(O ? O['README'] : {})) {
+    files.forEach((f) => {
+      const t = read(repo, f);
+      if (t === null) { 他ずれ.push(repo + '/' + f + ' が無い'); return; }
+      const want = /\.en\.md$/.test(f) ? [O['英']] : repo === 'deposit-check' ? [O['英'], O['和']] : [O['和']];
+      want.forEach((x) => { if (t.indexOf(x) < 0) 他ずれ.push(repo + '/' + f + ' に' + (x === O['英'] ? '英' : '和') + 'の一文が無い'); });
+    });
+  }
+  Object.entries(O ? O['免責'] : {}).forEach(([f, x]) => {
+    const t = read('cpsbvbng26-dotcom', f) || '';
+    const i = t.indexOf(/\.en\.md$/.test(f) ? '## Reuse' : '## 再利用');
+    const j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+    if (i < 0 || t.slice(i, j < 0 ? t.length : j).indexOf(x) < 0) 他ずれ.push(f + ' の再利用の節に一文が無い');
+  });
+  check('README のライセンスの節（' + (O ? Object.values(O['README']).flat().length : 0) + ' 面）と免責事項の「再利用」（日英）が、引いた他人の文は CC BY 4.0 でも MIT でも許諾していないと書く',
+    O !== null && 他ずれ.length === 0, 他ずれ.join(', '));
+
+  /* 公開前の確認。取り寄せた頁が言わない確認を、場に帰さない（Research Square）。全リポジトリを語で探す。 */
+  const Q = K ? K['公開前の確認'] : null;
+  const 確認ずれ = [];
+  let 確認数 = 0;
+  [['無い', false], ['要る', true]].forEach(([key, must]) => {
+    for (const [repo, files] of Object.entries(Q ? Q[key] : {})) {
+      for (const [f, xs] of Object.entries(files)) {
+        const t = read(repo, f);
+        if (t === null) { 確認ずれ.push(repo + '/' + f + ' が無い'); continue; }
+        xs.forEach((x) => { 確認数++; if ((t.indexOf(x) >= 0) !== must) 確認ずれ.push(repo + '/' + f + (must ? ' に無い：' : ' にある：') + x.slice(0, 24)); });
+      }
+    }
+  });
+  const 語 = (Q ? Q['無い']['cpsbvbng26-dotcom']['docs/submission-disclosure.md'] : []);
+  for (const repo of (K ? K['記録'] : [])) {
+    const dir = path.join(ROOT, repo);
+    if (!fs.existsSync(dir)) continue;
+    let out = '';
+    try { out = execFileSync('git', ['grep', '-l', '-F'].concat(語.flatMap((x) => ['-e', x])), { cwd: dir, encoding: 'utf8' }); } catch (e) { out = ''; }
+    out.split('\n').filter((f) => f && !/legal-audit|ecosystem\.json|check_ecosystem\.js/.test(f)).forEach((f) => 確認ずれ.push(repo + '/' + f + ' に残る'));
+  }
+  check('Research Square が公開の前に確認するという、取り寄せた頁に無い文を、どのリポジトリにも置かない（' + 確認数 + ' 句）',
+    Q !== null && 確認数 > 0 && 確認ずれ.length === 0, 確認ずれ.join(', '));
+
+  /* CITATION.cff と .zenodo.json のライセンスの範囲。置き方は目録の licenceLayout と同じ。 */
+  const Z = K ? K['引用情報の範囲'] : null;
+  let lay = null;
+  try { lay = JSON.parse(read('researcher-profile', 'catalog.json')).licenceLayout; } catch (e) { lay = null; }
+  const 範囲ずれ = [];
+  for (const [repo, e] of Object.entries(Z ? Z.repos : {})) {
+    const cff = read(repo, 'CITATION.cff');
+    let notes = null;
+    try { notes = JSON.parse(read(repo, '.zenodo.json')).notes; } catch (err) { notes = null; }
+    if (cff === null || notes === null) { 範囲ずれ.push(repo + ' に CITATION.cff か .zenodo.json が無い'); continue; }
+    const msg = (/^message:[\s\S]*?(?=^[a-z-]+:)/m.exec(cff) || [''])[0];
+    const 和 = e['和'] ? e['和'].concat([O ? O['和'] : '']) : e['英'].concat([O ? O['英'] : '']);
+    和.forEach((x) => { if (msg.indexOf(x) < 0) 範囲ずれ.push(repo + '/CITATION.cff の message に「' + x.slice(0, 24) + '」が無い'); });
+    e['英'].concat([O ? O['英'] : '']).forEach((x) => { if (notes.indexOf(x) < 0) 範囲ずれ.push(repo + '/.zenodo.json の notes に「' + x.slice(0, 24) + '」が無い'); });
+    const 英 = e['英'].join(' ');
+    if (lay === null) 範囲ずれ.push('目録の licenceLayout が読めない');
+    else if (lay.mit.includes(repo)) {
+      if (英.indexOf('MIT (LICENSE)') < 0 || 英.indexOf('LICENSE-CODE') >= 0) 範囲ずれ.push(repo + '：目録は LICENSE 一つで MIT');
+      ((lay.exceptions || {})[repo] || []).forEach((d) => { if (英.indexOf(d + '/') < 0) 範囲ずれ.push(repo + '：例外の ' + d + '/ が無い'); });
+    } else if (lay.split.includes(repo)) {
+      if (英.indexOf('CC BY 4.0 (LICENSE)') < 0 || 英.indexOf('MIT (LICENSE-CODE)') < 0) 範囲ずれ.push(repo + '：目録は LICENSE が CC BY 4.0、LICENSE-CODE が MIT');
+    } else 範囲ずれ.push(repo + '：目録の licenceLayout に無い');
+  }
+  check('CITATION.cff の message と .zenodo.json の notes が、どこが MIT でどこが CC BY 4.0 か、license の欄の掛かる範囲、他人の文を許諾していないことを書き、置き方が目録と同じ（'
+    + (Z ? Object.keys(Z.repos).length : 0) + ' 本）', Z !== null && Object.keys(Z.repos).length > 0 && 範囲ずれ.length === 0, 範囲ずれ.slice(0, 6).join(' / '));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
