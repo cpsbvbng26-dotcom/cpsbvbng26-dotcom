@@ -10,8 +10,8 @@
  *
  * 控えと違えば、issue を一つ立てるか直す。同じに戻れば閉じる。読めなかった値は「読めなかった」と書き、
  * ずれとは数えない（読めないことと、値が変わったことは違う）。
- * 控えを直すのは人である。外の値が変わったと確かめてから、outside.json と
- * docs/name-disambiguation.md を同じ日に書き換える。
+ * 控えは自動では直さない。外の値が変わったと確かめてから、outside.json と
+ * docs/name-disambiguation.md を同じ日に書き換える。issue は、まだ書き換えていないことだけを書く。
  */
 
 'use strict';
@@ -45,7 +45,7 @@ function body(rows, asOf) {
     '| 値 | 控え | いま | |', '| --- | --- | --- | --- |'];
   const show = (v) => Array.isArray(v) ? (v.length ? v.join(', ') : '無し') : String(v);
   rows.forEach((r) => L.push('| ' + r.name + ' | ' + show(r.want) + ' | ' + show(r.have) + ' | ' + (r.moved ? '**ずれ**' : '') + ' |'));
-  L.push('', '外の値が本当に変わったと確かめたら、`verification/outside.json` と `docs/name-disambiguation.md` を同じ日に書き換えます。',
+  L.push('', '控えの `verification/outside.json` と `docs/name-disambiguation.md` は、まだ書き換えていません。',
     '', '生成: `verification/watch_outside.js`（' + new Date().toISOString().slice(0, 10) + '）');
   return L.join('\n');
 }

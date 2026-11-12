@@ -1,9 +1,9 @@
 # OSF のプロジェクト
 
 2026-11-12 に、OSF のプロジェクトの組み方を決めました。
-この文書は、その計画と、残っている作業の記録です。
-OSF でプロジェクトを作り、DOI を付けるのは利用者です。
-こちらは手順を書き、受け取った DOI を書くだけです。
+この文書は、その計画と、まだできていないことの記録です。
+OSF のプロジェクトは、作業環境から触れません。
+こちらは、受け取った DOI を書くだけです。
 
 ---
 
@@ -51,11 +51,18 @@ OSF の DOI は、ばらばらの置き場を一つに束ねる入口を指し�
 Takuya Nemoto: first-year research repositories (根本卓哉 学部一年次の研究)
 ```
 
-## 残っている作業
+## まだできていないこと
 
 説明の欄には、各リポジトリを部品として置くと書いた文が残っています。
-部品は作らないので、利用者がその文を書き換えます。
-書き換えたあとの説明の文は、利用者が決めます。
+部品は作らないので、この文は計画と食い違っています。
+OSF の説明の欄は作業環境から触れず、書き換えていません。
+
+書き換えたあとの文は、次のものと Claude が決めました（2026-11-12）。
+部品に触れず、論文は Zenodo の DOI で引くことを書いた文です。
+
+```
+First-year undergraduate research of Takuya Nemoto. This project is linked to the GitHub repository cpsbvbng26-dotcom, which links the other nine research repositories. Each paper is cited by its own Zenodo DOI, not by the DOI of this project.
+```
 
 ## これまでの手順
 
@@ -73,4 +80,5 @@ Sophaxis の OSF のプロジェクトは `mq7za` です。DOI は `10.17605/osf
 
 DataCite の記録には、ライセンスの欄がありません。
 deposit-check が「ライセンスが無い」と出したのは、この記録です。
-OSF の Settings の License で CC-By Attribution 4.0 International を選べば埋まります。これも利用者の作業です。
+ライセンスを選ぶ OSF の設定は、作業環境から触れません。
+この記録のライセンスの欄は、空のままです。

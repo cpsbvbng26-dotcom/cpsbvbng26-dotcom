@@ -2822,6 +2822,49 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
       出た.length ? 出た.slice(0, 4).join(' / ') : (rows.length + ' 語 / 使わない語 ' + 禁.length));
   }
 
+  /* 共通の決めごと 16（2026-11-12）。Claude は利用者に作業を割り当てない。文書のどこにも、利用者の仕事を作る形を置かない。
+   * 研究の十と、Sophaxis・deposit-check・nusquama の散文（英語の対も含む）を走る。CLAUDE.md は指示書なので外す。
+   * 鉤括弧とコードの中は、散文の行が伏せるので、規則そのものを引くことはできる。過去の事実（「利用者が行いました」）は止めない。 */
+  {
+    const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の手にな', '利用者の手です', '利用者の作業', '利用者が手で',
+      '利用者が行います', '利用者が決めます', '利用者を待', '利用者の観察を待', '案（利用者',
+      'needs the owner', 'for the owner to', "owner's steps", 'for the operator to confirm', 'is for the King to decide', '埋めるかどうかは、王が決めます'];
+    const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const files = [];
+    const walk = (repo, rel) => {
+      let ents;
+      try { ents = fs.readdirSync(path.join(ROOT, repo, rel), { withFileTypes: true }); } catch (e) { return; }
+      for (const e of ents) {
+        const r = rel ? rel + '/' + e.name : e.name;
+        if (e.isDirectory()) { if (!/^(\.git|node_modules|site|dist|papers|examples|fixtures|__pycache__|preprint)$/.test(e.name)) walk(repo, r); }
+        else if (/\.(md|toml)$/.test(e.name) && !/(^|\/)CLAUDE\.md$/.test(r)) files.push([repo, r]);
+      }
+    };
+    repos.forEach((r) => walk(r, ''));
+    /* 決めたことと理由は Claude が書く。2026-11-12 からの決めの行は、決めた者を名乗る。利用者の決めと見分けるためである。
+     * 決めの行：日付に決めの語が続く行（「2026-11-12 に Claude が決めました」「決めました（2026-11-12）」「Decided by Claude on 2026-11-12」の形）。
+     *   日付が 2026-11-12 より前の行と、先の日付を挙げるだけの行は見ない。
+     * 名乗りは Claude か、利用者・著者・運営者・王（owner・operator・author・King）。
+     * 決めごと 16 より前に置かれ、決めた者を書いていなかった三行だけは除く（誰の決めかを、こちらで書き足して作り出さない）。 */
+    /* 決めの語と日付の組を拾い、その組の中か直前に、決めた者の名乗りがあるかを見る（行のどこかに名があるだけでは足りない）。 */
+    const 決めの形 = [/(\d{4}-\d{2}-\d{2}) に、?[^。]{0,40}?(?:決めました|決めて|決めた|採りました|採った|凍結と決め)/g, /(?:決めました|採った|決め)（(\d{4}-\d{2}-\d{2})）/g,
+      /(?:Decided|decided|decisions|Adopted|adopted)[^.]{0,40}? on (\d{4}-\d{2}-\d{2})/g];
+    const 名乗り = /Claude|(利用者|著者|運営者|王)が|by the (owner|operator|author|King)|(owner|operator|author|King) (decided|adopted)/;
+    const 名の無い決め = (l) => 決めの形.some((re) => [...l.matchAll(re)].some((m) => m[1] >= '2026-11-12' && !名乗り.test(l.slice(Math.max(0, m.index - 20), m.index + m[0].length))));
+    const 前から = [['cpsbvbng26-dotcom', 'docs/site-rules.md', '顔写真は置きません'], ['cpsbvbng26-dotcom', 'docs/osf.md', 'OSF のプロジェクトの組み方を決めました'],
+      ['researcher-profile', 'README.md', 'テンプレート']];
+    const 出た = [];
+    for (const [repo, rel] of files) {
+      for (const [n, l] of 散文の行(read(repo, rel) || '')) {
+        for (const w of 形) if (l.indexOf(w) >= 0) 出た.push(repo + '/' + rel + ':' + n + ' 「' + w + '」');
+        if (名の無い決め(l)
+          && !前から.some(([r, f, t]) => r === repo && f === rel && l.indexOf(t) >= 0)) 出た.push(repo + '/' + rel + ':' + n + ' 決めた者の無い決め');
+      }
+    }
+    check('利用者に作業を割り当てる形が、' + repos.length + ' リポジトリの散文（' + files.length + ' ファイル）に無く、2026-11-12 からの決めの行が決めた者を名乗る（共通の決めごと 16）',
+      repos.length >= 13 && files.length > 0 && 出た.length === 0, 出た.slice(0, 4).join(' / '));
+  }
+
   /* 473。数の書き方。一つの日付の中で漢数字と算用数字を混ぜない。全角の数字を使わない。
    * Sophaxis は自分の英日の数の検査を直してから入れる（docs/number-style.md）。 */
   {
