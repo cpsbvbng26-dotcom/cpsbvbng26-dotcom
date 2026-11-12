@@ -2864,6 +2864,144 @@
       }
     }
   },
+  "六度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、六度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。海軍公報の史料ノートの英語の要旨が「held by JACAR」と書いていた。JACAR の目録は所蔵館を防衛省防衛研究所と書き、JACAR は画像を公開する側である。日本語の自己紹介と trinity-infinity の正誤表が、Friedkin と Johnsen の 2011 年の本を「単著の理論書」と書いていた。Crossref の記録は種類を monograph、著者を二人と返す。",
+    "節": "## 2026-11-12 の続き：六度目の見落とし",
+    "決めた": "2026-11-13 に Claude が決めました",
+    "記録": [
+      "cpsbvbng26-dotcom",
+      "researcher-profile",
+      "trinity-infinity"
+    ],
+    "探す先": [
+      "autonomy-and-self-cultivation",
+      "cpsbvbng26-dotcom",
+      "deposit-check",
+      "errata-check",
+      "justice-and-algorithms",
+      "naval-gazette-notes",
+      "nusquama",
+      "researcher-profile",
+      "self-correction",
+      "solitary-school",
+      "sophaxis",
+      "trinity-infinity",
+      "trinity-operator"
+    ],
+    "見ないファイル": [
+      "docs/legal-audit-2026-11-12.md",
+      "verification/ecosystem.json",
+      "verification/check_ecosystem.js",
+      "verification/check_build.js",
+      "verification/check_errata.py"
+    ],
+    "所蔵の見張り": {
+      "_": "JACAR やアジア歴史資料センターを、原資料の所蔵の主に置く文。日英独仏伊。researcher-profile の check_build.js の 3e と同じ式。",
+      "絞り込み": [
+        "JACAR",
+        "アジア歴史資料センター",
+        "Japan Center for Asian Historical Records"
+      ],
+      "式": [
+        "held (?:by|at|in) (?:the )?(?:JACAR|Japan Center for Asian Historical Records)",
+        "(?:JACAR|Japan Center for Asian Historical Records)(?:'s|’s)? (?:holds|holding|collection|owns|keeps)",
+        "(?:JACAR|アジア歴史資料センター)\\s*(?:が|の)?\\s*(?:所蔵|保管|所有)",
+        "所蔵(?:館|機関|先|元)?(?:[:：は]\\s*)?(?:JACAR|アジア歴史資料センター)",
+        "(?:im Besitz|im Bestand|aufbewahrt) (?:von |des |der |bei )?JACAR",
+        "conserv\\S* (?:par|à|au|aux) (?:le |la |l’)?JACAR",
+        "conservat\\S* (?:da|presso|dal|dall’) ?(?:il |lo )?JACAR"
+      ],
+      "止める文": [
+        "Transcribes a single investiture entry for an Imperial Japanese Navy lieutenant from a gazette held by JACAR, and separates",
+        "JACAR holds the original gazette.",
+        "The gazette is in JACAR's collection.",
+        "アジア歴史資料センター所蔵の海軍公報",
+        "JACAR が所蔵する海軍公報",
+        "所蔵：JACAR",
+        "ein Blatt im Besitz von JACAR",
+        "un bulletin conservé par JACAR",
+        "un bollettino conservato presso JACAR"
+      ],
+      "通す文": [
+        "from a gazette held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000), and separates",
+        "アジア歴史資料センターが公開する海軍公報",
+        "JACAR（アジア歴史資料センター）Ref.C12070491000、海軍公報（部内限）號外　昭和十八年九月十一日發令（防衛省防衛研究所）",
+        "簿冊名まで書き、所蔵機関名をかっこに入れる。二回目以降は JACAR と Ref. を略してよい"
+      ],
+      "ある文": {
+        "cpsbvbng26-dotcom": {
+          "papers/naval-gazette-otani-tsune.en.html": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ],
+          "papers/naval-gazette-otani-tsune.html": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ],
+          "notes/index.en.html": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ],
+          "README.en.md": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ]
+        },
+        "researcher-profile": {
+          "papers.json": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ],
+          "notes.en.json": [
+            "held by the National Institute for Defense Studies (Ministry of Defense) and published by JACAR (Ref. C12070491000)"
+          ]
+        }
+      }
+    },
+    "単著の見張り": {
+      "_": "Friedkin・Johnsen の名か 2011 年の本の題と同じ段落に、単著や single-authored を置かない。Crossref の記録（https://api.crossref.org/works/10.1017/cbo9780511976735、2026-11-13 に日本時間で読んだ）は type を monograph、author を Noah E. Friedkin と Eugene C. Johnsen の二人と返した。",
+      "絞り込み": [
+        "Friedkin",
+        "Johnsen",
+        "Social Influence Network Theory"
+      ],
+      "相手": "Friedkin|Johnsen|Social Influence Network Theory",
+      "語": "単著|single-authored|sole-authored|single author|sole author|einzig\\S* Autor|auteur unique|unico autore",
+      "止める文": [
+        "Friedkin–Johnsen モデルは 2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り",
+        "| 2011 | Cambridge University Press から単著の理論書 *Social Influence Network Theory: A Sociological Examination of Small Group Dynamics*",
+        "Social Influence Network Theory, a single-authored book from Cambridge",
+        "Friedkin–Johnsen wurde 2011 die Monographie eines einzigen Autors"
+      ],
+      "通す文": [
+        "Friedkin–Johnsen モデルは 2011 年に Cambridge から Friedkin と Johnsen の共著の理論書になり",
+        "it became a Cambridge monograph in 2011",
+        "単著しかない場合、自動の条件は満たせません"
+      ],
+      "ある文": {
+        "cpsbvbng26-dotcom": {
+          "index.html": [
+            "2011 年に Cambridge から Friedkin と Johnsen の共著の理論書になり"
+          ],
+          "README.md": [
+            "2011 年に Cambridge から Friedkin と Johnsen の共著の理論書になり"
+          ]
+        },
+        "researcher-profile": {
+          "site.json": [
+            "2011 年に Cambridge から Friedkin と Johnsen の共著の理論書になり"
+          ]
+        },
+        "trinity-infinity": {
+          "ERRATA.md": [
+            "Cambridge University Press から、Noah E. Friedkin と Eugene C. Johnsen の共著の理論書 *Social Influence Network Theory"
+          ]
+        }
+      },
+      "記録に書くこと": [
+        "https://api.crossref.org/works/10.1017/cbo9780511976735",
+        "monograph",
+        "Noah E. Friedkin",
+        "Eugene C. Johnsen",
+        "2026-11-13 に日本時間で読んだ"
+      ]
+    }
+  },
   "種類と状態": {
     "_": "各リポジトリの README.md（と README.en.md）の H1 のすぐ下に置く「種類」と「状態」の札、CITATION.cff の type。札は目録と食い違えば落ちる。凍結は公開した論文を指し、正誤表と検査はそのあとも足す。",
     "札": "種類：{種類}　状態：{状態}",
