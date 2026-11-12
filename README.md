@@ -12,7 +12,7 @@
 
 ### 根本卓哉（2001.01.18-）とは？
 
-独学で、言語モデル（LLM）の助けを借りながら、哲学とゲーム理論を研究しています。博士号を取得したあとは、実存哲学を専門にする計画です。ZEN大学 知能情報社会学部 知能情報社会学科の学生です。2024 年 10 月頃から、個人事業主として働いています。開業届は出していません。SSRN と PhilArchive に査読前の論文を置き、OSS を公開し、[ROAR](https://roar.eprints.org/27422/)（サウサンプトン大学のオープンアクセス・リポジトリ登録簿）掲載の [Sophaxis](https://sophaxis.vercel.app/) を運営しています。Claude 愛好家であり、Claude Code 愛好家です。
+独学で、言語モデル（LLM）の助けを借りながら、哲学とゲーム理論を研究しています。博士号を取得したあとは、実存哲学を専門にする計画です。ZEN大学 知能情報社会学部 知能情報社会学科の学生です。2024 年 10 月頃から、個人事業主として働いています。SSRN と PhilArchive に査読前の論文を置き、OSS を公開し、[ROAR](https://roar.eprints.org/27422/)（サウサンプトン大学のオープンアクセス・リポジトリ登録簿）掲載の [Sophaxis](https://sophaxis.vercel.app/) を運営しています。Claude 愛好家であり、Claude Code 愛好家です。
 
 主な活動の場は、GitHub・SSRN・PhilArchive・Figshare・OSF です。aiXiv.science では、言語モデル五体による公式査読を経た論文が 1 篇あります。学術誌・学会の査読ではありません。
 
@@ -41,7 +41,7 @@
 
 edX の修了証を、技術の目安として先に書きます。どれも入門の課程です。CS50x（HarvardX）は計算機科学の入門です。C・Python・SQL・Web の課題を全部出し、最終課題を作って修了しました。プログラムを一から書いて動かせる、という目安です。CS50AI（HarvardX）は Python による人工知能の入門です。探索・論理推論・確率・最適化・機械学習・ニューラルネットワーク・言語処理を、課題として実装しました。古典的な手法を自分で組める、という目安です。CC0201EN（IBM）は、コンテナ・Kubernetes・OpenShift の入門です。コンテナを作って動かす演習を含みます。ER22.1x（HarvardX）は政治哲学の講義 Justice で、技術の修了証ではありません。受講の規約も書いておきます。CS50 の二講座は、答えやコードを示したり補ったりする外部の生成系の道具（ChatGPT・Claude・Copilot・Gemini など）を使うことを、学業上の不正として禁じています。認められているのは、CS50 自身の道具（CS50 Duck）だけです。edX の Honor Code は、協働が明示的に認められていない限り、試験と課題を自分で仕上げることを求めています。規約を守ったことを、こちらから証明する手段はありません。ただし規約の上では、守ったものとして上の修了証が発行されています。
 
-ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。あわせて、2024 年 10 月頃から、個人事業主として働いています。開業届は出していません。
+ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。あわせて、2024 年 10 月頃から、個人事業主として働いています。
 
 大学では主に**哲学**と**実務**を学んでいます。**数学**も履修できます。修得した科目は [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) に並べてあります。この場所に置いているのは、コンピュータサイエンスと人工知能の学習です。
 
@@ -49,11 +49,11 @@ ZEN大学 知能情報社会学部 知能情報社会学科に在籍していま
 
 この場所そのものは、Anthropic の Claude を使って作っています。頁の生成、検査の道具、記録 —— git の履歴に Co-Authored-By: Claude Opus 5 が並んでいます。ただし、哲学三篇の英訳に何を使ったかは特定できません —— 記録が残っておらず、著者の記憶でも定まりません（三篇の正誤表 E5）。Trinity-Infinity の側は特定できます —— 2025 年の初稿は言語モデル（ChatGPT / OpenAI）が生成し、2026 年の改訂は Claude Code（Anthropic）で書いています。哲学三篇の改訂と起草に Claude（Anthropic）を使ったことは、三篇それぞれの開示文にあります。道具の名前を一つに絞れないのは、哲学三篇の英訳だけです。
 
-通した基準は、明文で次のとおりです。SSRN —— 主題が分野網の学術的言説に属すること（part of the world-wide scholarly discourse covered by one or more of SSRN's subject area networks）。参考文献の無い非学術的なものでないこと。題・執筆日・要旨・全著者の情報が揃っていること。剽窃などの研究公正を通ること。編集スタッフが公開前に見ます。PhilArchive —— 学術哲学のすべての領域が対象で、論文・書籍・学位論文を受け付けます（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に限ります（cross-disciplinary and of clear interest to philosophers）。投稿されるすべての本と論文が専門職の水準を満たすこと（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられています。いかなる投稿も却下する権利を留保しています（reserve the right to reject any submissions）。六百人を超えるカテゴリ編集者が、担当分野に無関係な項目や誤った項目が入らないようにしています —— これは事前ではなく事後に効きます。
+場の明文は、取り寄せた頁にある分を、場の言葉のまま置きます。SSRN —— 論文が学術的な内容の基準を満たすかどうかを、SSRN が決めます（SSRN must determine if a paper meets the criteria of scholarly content）。SSRN は、プレプリントを査読しません（SSRN does not peer review preprints）。非学術的なものは、投稿の要件を満たしません（Non-scholarly content does not meet our submission requirements）。題・執筆日・要旨・全著者の情報が要ります。PhilArchive —— 学術哲学のすべての領域で、論文・書籍・学位論文を受け付けます（works of all types (articles, books, dissertations) in all areas of academic philosophy）。哲学でないものは、学際的で哲学者に明らかな関心がある場合に受け付けます（cross-disciplinary and of clear interest to philosophers）。投稿するすべての本と論文に、専門職の水準を求めています（All books and papers submitted should be of professional quality）。脅迫・嫌がらせ、無断の個人情報、なりすましは禁じられています。載る前に誰が何を確かめるかは、PhilArchive の取り寄せた頁のどれにも書かれていません。
 
-そこから導ける到達点は、はっきりしています。独学と言語モデルで書いたものが、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました。二篇について、公開前に人が見て、落とさなかったということです。そして、三篇目は落とされました。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれています。この門は、実際に落とします。どの分野に置いたかも決まっています —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）です。海軍公報の史料ノートも SSRN の編集スタッフに受け付けられ、歴史研究網（History Research Network）の東アジア史（East Asian History）に置かれています（SSRN 10.2139/ssrn.7449338）。科学哲学の論文 Machine-mediated Rediscovery も、SSRN の編集スタッフに受け付けられています（SSRN 10.2139/ssrn.7537983）。SSRN では区分がそのまま eJournal になっています。弾かれた一篇も同じ大陸哲学に出しています。受け付けられていないので、どの eJournal にも載っていません。PhilArchive では、三篇のうち二篇が、学術哲学の領域にあり、専門職の水準（professional quality）を満たすものとして扱われました。却下権は留保されていますが、その二篇には行使されませんでした。数学の側でも同じことが起きています。Trinity-Infinity Series II が、SSRN の編集スタッフの判断で、その分野の学術的言説の一部として扱われました（SSRN 10.2139/ssrn.7446961）。一篇について、公開前に人が見て、落とさなかったということです。Series I の改訂版と Series III は、出して落とされました。2026-09-18 に SSRN から二通が届いています。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていません。ここで確かなことが一つあります —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはなりません。落ちた二篇と通った一篇の違いは、まだ分かっていません。つまり、この門は同じ系列の中でも選り分けます。出した八篇のうち、受け付けられたのは五篇、落とされたのは三篇です。
+そこから言えることは、ここまでです。独学と言語モデルで書いた哲学の二篇が、SSRN に載りました。SSRN は、学術的な内容の基準を満たすかを決めると書いています。載ったことは、その基準で落とされなかったということです。誰がどこまで読んだかは、場の文からは分かりません。そして、三篇目は落とされました。断片主義的精神的個人主義（Fragmentarian Spiritual Individualism、10.5281/zenodo.22064241）は SSRN に出して弾かれています。この門は、実際に落とします。どの分野に置いたかも決まっています —— 通った哲学二篇は哲学研究網（Philosophy Research Network）の大陸哲学（Continental Philosophy）、Trinity-Infinity Series II は数学研究網（Mathematics Research Network）の数値解析（Numerical Analysis）です。海軍公報の史料ノートも SSRN に受け付けられ、歴史研究網（History Research Network）の東アジア史（East Asian History）に置かれています（SSRN 10.2139/ssrn.7449338）。科学哲学の論文 Machine-mediated Rediscovery も、SSRN に受け付けられています（SSRN 10.2139/ssrn.7537983）。SSRN では区分がそのまま eJournal になっています。弾かれた一篇も同じ大陸哲学に出しています。受け付けられていないので、どの eJournal にも載っていません。PhilArchive には三篇とも載っています。うち二篇は載る前に門が下り、一篇には下りていません。門が何を確かめたかは、取り寄せた PhilArchive の頁のどれにも書かれていません。専門職の水準（professional quality）は投稿する側への求めです。載ったことを、その水準の判定とは読みません。数学の側でも同じことが起きています。Trinity-Infinity Series II が、SSRN に載りました（SSRN 10.2139/ssrn.7446961）。学術的な内容の基準で落とされなかった一篇です。Series I の改訂版と Series III は、出して落とされました。2026-09-18 に SSRN から二通が届いています。文面は定型で、「投稿の要件を満たさないか、この場の範囲外である」と書かれており、どちらなのかは示されていません。ここで確かなことが一つあります —— 同じ数学研究網に Series II が載っているのだから、数学が範囲外だということにはなりません。落ちた二篇と通った一篇の違いは、まだ分かっていません。つまり、この門は同じ系列の中でも選り分けます。出した八篇のうち、受け付けられたのは五篇、落とされたのは三篇です。
 
-そこから導けないものも、はっきりしています。論証が正しいことは、どちらの門も見ていません。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていません。Series II も同じで、SSRN が見たのは主題と体裁です。落とされたことも、通ったことの裏返しでしかありません。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではありません。場の側がそう書いています —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べています。断章論については理由が示されていません。数学の二篇には定型の文面が届きましたが、要件と範囲のどちらなのかは示されていません。こちらも確かめていません。明文は上に、場の側の言葉のまま置いてあります。
+そこから導けないものも、はっきりしています。論証が正しいことは、どちらの門も見ていません。通ったのは受け付けの門であって査読ではなく、PhilArchive については三篇のうち二篇は門が下りており、一篇は下りていません。Series II も同じで、SSRN が書いている基準は、学術的な内容かどうかと、要る情報が揃っているかです。落とされたことも、通ったことの裏返しでしかありません。弾かれた三篇について言えるのは、SSRN が受け付けなかったということだけで、論証が誤っていると判定されたわけではありません。場の側がそう書いています —— 数学の二篇に届いた文面は、this decision does not reflect a judgement on the merits of your work と述べています。断章論については理由が示されていません。数学の二篇には定型の文面が届きましたが、要件と範囲のどちらなのかは示されていません。こちらも確かめていません。明文は上に、場の側の言葉のまま置いてあります。
 
 数学の側について、一つ確定したことがあります。Trinity-Infinity の三篇が扱う作用素 x ← DQx + (I−D)p は、既知の模型でした —— 社会学の Friedkin–Johnsen モデル（1990 / 1999）です。意見動学の文献は、この領域で最も影響力のある模型として DeGroot と Friedkin–Johnsen の二つを並べて挙げるのが通例です。Friedkin–Johnsen モデルは 2011 年に Cambridge から単著の理論書になり、2016 年に Science に載り、いまは制御理論と計算機科学でも使われています。脚注ではなく、その分野の二本柱の一本でした。そして Series I は、自分の第 1 節で consensus dynamics と名指ししたうえで、その分野を一件も引いていません（ERRATA の E8、重大度・高）。ただし寸法は正確に書きます。この作用素は影響行列 W を巡回置換に限った特殊例で、それは各主体がちょうど一人の隣人だけを聴く輪です。誰が誰にどれだけ影響するかという一般の W —— Friedkin–Johnsen を社会学たらしめている当のもの —— を全部落としています。再発見したのは、一級の社会学モデルの、社会学を抜いた数学的な躯体と、要の一項です。
 
@@ -303,7 +303,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1747 項目の検査を通します。依存パッケージはありません。
+このリポジトリは、push のたびに 1748 項目の検査を通します。依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
@@ -311,7 +311,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 702 項目
-node verification/check_site.js      # サイトの構造 955 項目
+node verification/check_site.js      # サイトの構造 956 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -346,11 +346,11 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（4
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断（項目の数は docs/checks.md）
-node verification/check_guards.js     # 検査そのものを壊して確かめる 81 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 84 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査します。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 75 通り**あって、
+何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 78 通り**あって、
 壊したところがちょうど落ちることを確かめます。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
@@ -464,7 +464,7 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 | [ダイヤモンド・オープンアクセスの場](docs/diamond-oa.md) | 取り寄せて確かめた場だけの一覧 |
 | [一緒に進める相手を探すときの一頁](docs/collaboration.md) | できることと、求めていること |
 | [キーワードの語彙](docs/keywords.json) | 全作品のキーワードに使う語 |
-| [安全の問題の知らせ方](SECURITY.md) | 非公開の報告の入口 |
+| [安全の問題の知らせ方](SECURITY.md) | メールで受ける窓口。GitHub の非公開の報告は有効になっていない |
 
 </details>
 
