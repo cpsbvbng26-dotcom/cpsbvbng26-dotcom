@@ -219,8 +219,53 @@ README と引用情報のライセンスの範囲は、10 のリポジトリと 
 枝のコミットが後の日にマージされて公開されると、公開の日はコミットの日より遅くなります。
 そのずれは、この検査では見つけられません。
 
+## 2026-11-12 の続き：八度目の見落とし
+
+読むだけの点検を、八度目に別の手で行いました。
+上の節が見落としていたものが見つかりました。
+直した日は、日本時間で 2026-11-13 です。
+前の行は、そのとき何を確かめたかの記録なので、消していません。
+GitHub の利用規約の I 節は「Some Service features may be subject to additional terms specific to that feature or product as set forth in the GitHub Additional Product Terms.」と書きます。
+その追加の規約（GitHub Terms for Additional Products and Features）を、これまでの点検は取り寄せていませんでした。
+追加の規約は、`github/site-policy` のコミット `166eb97e485b7de3cd5dbaf8c8d16e4310fda46c` の文を、2026-11-13 に raw.githubusercontent.com から直に取り寄せました。
+ファイルの SHA-256 は `c39b5a7fc1953ebd37428db18101726acefb55420f766bcd7d912e1b71ee2ffc` です。
+Actions の節は「Additionally, regardless of whether an Action is using self-hosted runners, Actions should not be used for:」と書き、次の二つを挙げます。
+一つは「Any activity that places a burden on our servers, where that burden is disproportionate to the benefits provided to users (for example, don't use Actions as a content delivery network or as part of a serverless application, but a low benefit Action could be ok if it’s also low burden); or」です。
+もう一つは「If using GitHub-hosted runners, any other activity unrelated to the production, testing, deployment, or publication of the software project associated with the repository where GitHub Actions are used.」です。
+同じ節は「Misuse of GitHub Actions may result in termination of jobs, restrictions in your ability to use GitHub Actions, disabling of repositories created to run Actions in a way that violates these Terms, or in some cases, suspension or termination of your GitHub account.」とも書きます。
+このリポジトリのワークフローは、どれも GitHub の実行環境（`ubuntu-latest` か `ubuntu-24.04`）で動きます。
+そこで、ワークフローを一つずつ、四つの目的（制作・検査・配備・公開）のどれに当たるか、負荷が益に見合うかで読みました。
+ワークフローの行は、箇所の欄を `.github/workflows/` のファイルの名で始めます。
+実行の時間は、GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。
+GitHub Pages が枝から頁を配るときに GitHub が動かす仕事と、Dependabot の版の更新は、このリポジトリのファイルではないので、表に挙げていません。
+引いた文は、cpsbvbng26-dotcom の `verification/statutes.json` の「GitHub の利用規約 I」と「GitHub の追加製品の規約 Actions」に写しました。
+同じ点検は、13 のリポジトリの記録の同じ見出しの節にあります。
+
+| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |
+| --- | --- | --- | --- | --- | --- |
+| GitHub の追加製品の規約（Actions の節） | GitHub の利用規約 I、GitHub の追加製品の規約 Actions | 使っているサービスの規約を取り寄せて読むこと | 利用規約の I 節は追加の規約を取り込みますが、これまでの点検は追加の規約を読んでいませんでした | 漏れ | 取り寄せ、Actions の節の文を cpsbvbng26-dotcom の `verification/statutes.json` に写しました。Sophaxis の週ごとの見張りにも足しました。2026-11-13 に Claude が決めました。ワークフローの使い方を決める文なので、ほかの規約と同じに読むためです |
+| `.github/workflows/datacite.yml`（main への push・PR、毎週月曜の 15:41、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | 目録（`catalog.json`）に載せた DOI の資源の種類を、DataCite の記録と突き合わせます。実行の中央値は 13 秒です | 問題なし | 変えていません。サイトが公開する目録の正しさを確かめる仕事で、検査に当たります。週に一度の実行は、Zenodo の側で種類が変わったときに気づくためです |
+| `.github/workflows/doi-index-check.yml`（`doi-index-check/` を変えた push・PR） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | このリポジトリの中の道具 `doi-index-check` の検査を回します。実行の中央値は 12 秒です | 問題なし | 変えていません。検査に当たります |
+| `.github/workflows/ecosystem.yml`（main への push、毎日の 06:17、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | 13 のリポジトリを履歴ごと複製し、各リポジトリの検査と横断の検査（`check_ecosystem.js`）を回します。実行の中央値は 232 秒です | 問題なし | 変えていません。2026-11-13 に Claude が決めました。横断の検査はこのリポジトリが持つプロジェクトの一部で（CLAUDE.md）、検査に当たるためです。毎日の実行は、ほかのリポジトリの push がこの仕事を起こさないので、ずれを一日のうちに見つけるためのものです |
+| `.github/workflows/index-survey.yml`（2026-11-13 まで、毎月 9 日の 13:23、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | DOI の一覧の番号を、OpenAlex・Semantic Scholar・OpenAIRE・OpenCitations・ORCID・Wikidata・DataCite に当てていました。結果は Actions の要約と成果物に残り、`main` には書かず、サイトも検査も読みませんでした。`docs/name-disambiguation.md` は 2026-11-11 の実行の数を手で写していますが、その頁はサイトの頁からつながっておらず、`sitemap.xml` にもありません。実行は 2026-11-12 の手で起こした 2 回で、中央値は 329 秒でした | 漏れ | ワークフローと道具（`verification/index_survey.js`）を外しました。この調べは、もう Actions からは回せません。`docs/checks.md` と `docs/name-disambiguation.md` に、そのことを書きました。2026-11-13 に Claude が決めました。著者の記録が外の索引でどう見えるかを調べる仕事で、サイトの制作・検査・配備・公開のどれにも当たらないためです |
+| `.github/workflows/indexnow.yml`（`sitemap.xml` を変えた main への push、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | 変わった頁と消えた頁を IndexNow に知らせます。実行の中央値は 10 秒です | 問題なし | 変えていません。公開した頁を見つけられるようにする仕事で、公開に当たります |
+| `.github/workflows/linkcheck.yml`（毎月 3 日の 14:37、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | 公開のリポジトリを複製し、許した場の外部リンクだけを開いて切れを数え、issue を一つ立てるか直します。2026-11-11 の一度きりの実行は 122 秒でした | 問題なし | 変えていません。サイトとリポジトリが公開するリンクを確かめる仕事で、検査に当たります |
+| `.github/workflows/offline.yml`（手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | 配っている頁を一つの ZIP にまとめ、Actions の成果物に残します。直近の実行の記録はありません | 問題なし | 変えていません。サイトの写しを配る仕事で、公開に当たります |
+| `.github/workflows/pr-disclosure.yml`（PR を開いたとき・直したとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | PR の本文に言語モデル利用の開示があるかを確かめます。実行の中央値は 9 秒です | 問題なし | 変えていません。検査に当たります |
+| `.github/workflows/uptime.yml`（毎日の 12:23、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | `verification/sites.json` の watch の頁が応答するかを見て、応答しなければ issue を一つ立てるか直します。実行は 9 秒でした。2026-11-13 まで、watch には Sophaxis のトップの頁もありました。Sophaxis は自分のリポジトリの `live.yml` で、毎日同じことを確かめています | 漏れ | watch から Sophaxis の頁を外し、このサイトの頁と、同じ生成もとから作る予想のサイトだけを見るようにしました。2026-11-13 に Claude が決めました。配っている頁が応答するかを見ることは配備に当たりますが、Sophaxis の頁を見ることは Sophaxis のプロジェクトの仕事で、すでにそちらで回っているためです |
+| `.github/workflows/verify.yml`（main への push・PR、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | このリポジトリの検査を回します（散文、配色、サイトの構造、作用素の頁、秘密、キーボードでの操作）。実行の中央値は 317 秒です | 問題なし | 変えていません。検査に当たります |
+| `.github/workflows/watch-outside.yml`（2026-11-13 まで、毎週火曜の 12:47、手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | ORCID の作品の数、OpenAlex の著者の ID の数、Zenodo の七つの記録の要旨の有無を外から読み、控え（`verification/outside.json`）と違えば issue を一つ立てていました。控えと `docs/name-disambiguation.md` の数は `check_ecosystem.js` が突き合わせますが、どちらも手で直すもので、その頁はサイトからつながっていません。直近の実行の記録はありません | 漏れ | ワークフローと道具（`verification/watch_outside.js`）を外しました。控えと頁の数の突き合わせは残します。この見張りは、もう Actions からは回せません。2026-11-13 に Claude が決めました。著者の記録を外で見張る仕事で、サイトの制作・検査・配備・公開のどれにも当たらないためです |
+| `.github/workflows/wayback.yml`（手で起こすとき） | GitHub の追加製品の規約 Actions | GitHub の実行環境で、リポジトリのソフトウェアのプロジェクトの制作・検査・配備・公開のどれかに当たること。負荷が利用者への益に見合うこと | `sitemap.xml` の頁と、論文の頁から張っている PDF の実体を、Internet Archive に保存させ、保存されたかを確かめます。直近の実行の記録はありません | 問題なし | 変えていません。サイトが公開するものを残す仕事で、公開に当たります |
+| 索引の API の規約（Semantic Scholar・OpenAIRE・OpenCitations・Wikidata の SPARQL） | なし（各 API の規約） | 呼ぶ API の規約を読み、使い方がそれに合うこと | `verification/index_survey.js` は、この四つの API と OpenAlex・ORCID・DataCite を呼んでいましたが、その規約は取り寄せていませんでした。13 のリポジトリで、四つの API を呼ぶ道具はほかにありません | 漏れ | 道具を外したので、四つの API はどこからも呼びません。規約は取り寄せていません。OpenAlex を呼ぶのは Sophaxis の `tools/watch.js` と deposit-check の `src/fetch.js` だけで、OpenAlex の文書は二つのリポジトリの記録の同じ節で引き直しました。2026-11-13 に Claude が決めました。規約を読まずに呼んでいた道具は、呼ぶ理由もなくなったためです |
+| 検査（`verification/check_ecosystem.js`） | なし | ワークフローごとの判断を、機械で固めること | ありませんでした | 漏れ | 12o を足しました。13 のリポジトリで、`.github/workflows/` のどのファイルもその記録のこの節の表に行を持ち、外したワークフローの行は、ファイルが無く、外したと書いてあることを見ます。`verification/statutes.json` の二つの規約が全文の SHA-256 と引いた句を持ち、記録の英語の引用がその句にあることも見ます。索引の網羅調査と外の値の見張りが戻れば落ちます。2026-11-13 に Claude が決めました。新しいワークフローを、規約に照らさずに足せないようにするためです |
+
+この表の判定は、漏れ 6、問題なし 9 です。
+
+弁護士は、この節を見ていません。
+
 ## 調べた法令
 
+- GitHub の利用規約（I 節）と GitHub の追加製品の規約（Actions の節。2026-11-13 に `github/site-policy` から直に取り寄せた）
 - 著作権法（第2条、第10条、第13条、第21条、第23条、第32条、第48条、第51条から第54条、第57条）
 - 個人情報保護法（個人情報の保護に関する法律。第2条、第16条から第18条、第20条から第30条、第32条から第40条、第57条）
 - 電気通信事業法（第2条、第9条、第16条、第27条の12、第164条）
@@ -247,6 +292,7 @@ README と引用情報のライセンスの範囲は、10 のリポジトリと 
 - 平成28年の改正（法律第108号）より前の、団体名義の著作物の存続期間の文は取り寄せていません。附則は取り寄せましたが、改正の前の本則の文はそこに無いからです。
 - 引用についての判例は取り寄せていません。裁判所の判例の検索は、結果をスクリプトで描く頁で、取り寄せの仕事からは読めませんでした。代わりに文化庁の著作権テキストを取り寄せました。判例ではありません。
 - Vercel のどの計画で配っているかは、確かめていません。Vercel の API が計画の名を返さないからです。
+- Semantic Scholar・OpenAIRE・OpenCitations・Wikidata の SPARQL の規約は取り寄せていません。2026-11-13 に、これらを呼ぶ索引の網羅調査を外しました。
 - Google Scholar・Academia.edu・ResearchGate の利用規約は取り寄せていません。月に一度のリンクの確認は、この三つの場を開かないので、規約の読みには頼っていません。
 - doi.org を運営する DOI Foundation の利用規約と、elsevier.support の場の利用規約は、取り寄せていません。doi.org は DOI の解決の口として一覧に入れ、転送の先が一覧に無ければそこで止めます。elsevier.support は開きません。
 - Internet Archive の利用規約は、2026-11-12 に取り寄せた写しが「Javascript is required for this site.」の頁だけで、文を読めていません。月に一度のリンクの確認は、web.archive.org を開きません。

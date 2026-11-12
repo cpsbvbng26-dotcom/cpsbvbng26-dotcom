@@ -17,7 +17,7 @@
 | 3. 告知 | トップの頁の冒頭に、止めた日と理由を一文で書きます | 届きます（生成もとを直して作り直します） |
 | 4. 保存 | Zenodo に最後の版を出します | 届きません。Zenodo の版は Release から作られ、Release は作れません |
 | 5. 保存 | 配っている頁の写しを Wayback Machine に頼みます（`wayback.yml` を手で起こす） | workflow を起こすことは、作業環境から試していません |
-| 6. 保存 | Software Heritage に保存を頼みます | 届きません。GitHub の実行環境から頼む `swh-save.yml` が errata-check にあります |
+| 6. 保存 | Software Heritage に保存を頼みます | 届きません。errata-check の `swh-save.yml` は、2026-11-13 から errata-check だけを頼みます。ほかのリポジトリを頼む仕事は、GitHub の規約の許す使い方の外なので外しました |
 
 作業環境からは、Release の作成も枝の削除も通りません（403）。
 届かない段は、作業環境からは進められません。
