@@ -63,7 +63,9 @@ Wikidata は誰でも直せる場ですが、作業環境からは届きませ�
 
 ## 調べ直し
 
-索引の調べは、月に一度 GitHub Actions が回します（`.github/workflows/index-survey.yml`）。
-結果は Actions の要約と成果物に残り、`main` には書きません。
-ORCID の作品の数、OpenAlex の著者の ID の数、Zenodo の要旨の有無は、週に一度見張ります（`.github/workflows/watch-outside.yml`）。
-変われば issue が一つ開きます。
+2026-11-13 までは、索引の調べを月に一度、ORCID の作品の数と OpenAlex の著者の ID の数と Zenodo の要旨の有無を週に一度、GitHub Actions が回していました。
+2026-11-13 に、二つの仕事を外しました。
+どちらも、サイトの制作・検査・配備・公開のどれにも当たらない仕事でした。
+GitHub の追加製品の規約は、GitHub の実行環境での Actions を、その四つに関わる使い方に限っています（`docs/legal-audit-2026-11-12.md` の「八度目の見落とし」）。
+この頁の数は、もう Actions からは調べ直せません。
+数は、上に書いた日に読んだものです。
