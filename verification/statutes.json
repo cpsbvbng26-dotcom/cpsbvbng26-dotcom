@@ -875,6 +875,35 @@
       "取り寄せ": "2026-11-12 に raw.githubusercontent.com から直に取り寄せた",
       "全文の sha256": "e5628956f657b34a1edbf43bada8fe26db6cddfb291002c82ac5d912a31b1296",
       "引いた句": "By using the Website and Services, you further represent that you have all necessary authority and consents to post any content to upload to the Websi"
+    },
+    "GitHub の利用規約 I": {
+      "所在": "https://github.com/github/site-policy/blob/166eb97e485b7de3cd5dbaf8c8d16e4310fda46c/Policies/github-terms/github-terms-of-service.md",
+      "取り寄せ": "2026-11-13 に raw.githubusercontent.com から直に取り寄せた（コミット 166eb97）",
+      "全文の sha256": "b99f61303568322df9cd36b94e7293c71cc16fb06f8035837d4c44af895874cf",
+      "引いた句": "Some Service features may be subject to additional terms specific to that feature or product as set forth in the GitHub Additional Product Terms."
+    },
+    "GitHub の追加製品の規約 Actions": {
+      "所在": "https://github.com/github/site-policy/blob/166eb97e485b7de3cd5dbaf8c8d16e4310fda46c/Policies/github-terms/github-terms-for-additional-products-and-features.md",
+      "取り寄せ": "2026-11-13 に raw.githubusercontent.com から直に取り寄せた（コミット 166eb97）",
+      "全文の sha256": "c39b5a7fc1953ebd37428db18101726acefb55420f766bcd7d912e1b71ee2ffc",
+      "引いた句": "Additionally, regardless of whether an Action is using self-hosted runners, Actions should not be used for:",
+      "引いた句 2": "Any activity that places a burden on our servers, where that burden is disproportionate to the benefits provided to users (for example, don't use Actions as a content delivery network or as part of a serverless application, but a low benefit Action could be ok if it’s also low burden); or",
+      "引いた句 3": "If using GitHub-hosted runners, any other activity unrelated to the production, testing, deployment, or publication of the software project associated with the repository where GitHub Actions are used.",
+      "引いた句 4": "Misuse of GitHub Actions may result in termination of jobs, restrictions in your ability to use GitHub Actions, disabling of repositories created to run Actions in a way that violates these Terms, or in some cases, suspension or termination of your GitHub account."
+    },
+    "OpenAlex のライセンス": {
+      "所在": "https://github.com/ourresearch/openalex-docs/blob/8cec9dba1ee17af56e5de4666f63650a02fb798b/license.md",
+      "取り寄せ": "Sophaxis の枝 sources/20261112-2114（実行 43308144509）。2026-11-13 に raw.githubusercontent.com から直にも読んだ",
+      "全文の sha256": "db91f1f49db497f62f6b3899457d6600848671357d050926b3c3f350d2c78db4",
+      "引いた句": "That means it's in the public domain, and free to use in any way you like."
+    },
+    "OpenAlex の利用の上限": {
+      "所在": "https://github.com/ourresearch/openalex-docs/blob/8cec9dba1ee17af56e5de4666f63650a02fb798b/how-to-use-the-api/rate-limits-and-authentication.md",
+      "取り寄せ": "Sophaxis の枝 sources/20261112-2114（実行 43308144509）。2026-11-13 に raw.githubusercontent.com から直にも読んだ",
+      "全文の sha256": "d3d332878845ac67de7ea5e944baff144f9303c47a8f1c95b7a6052acb2b399c",
+      "引いた句": "The OpenAlex API doesn't require authentication.",
+      "引いた句 2": "100,000 singleton requests (like `/works/W123`)",
+      "引いた句 3": "If you exceed your daily credits or make more than 100 requests per second, you'll get `429` errors instead of useful data."
     }
   }
 }
