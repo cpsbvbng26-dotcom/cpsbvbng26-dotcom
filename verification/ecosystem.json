@@ -3323,5 +3323,114 @@
         "c392091eb699e7ddd3cf1b13b29a7cfcb405669c344db71d3f1594459fffdeea"
       ]
     }
+  },
+  "十一度目の見落とし": {
+    "_": "2026-11-12 の続き。読むだけの点検を、十一度目に別の手で行い、見落としを直した（直したのは日本時間の 2026-11-13）。一、PhilArchive の NEMFSI（断章論。2026-09-26 に削除を依頼。いまの状態は作業環境から確かめていない）のリンクは、13 のリポジトリのどのファイルでも、削除の依頼の日と語を伴い、構造化データの sameAs にも .zenodo.json・codemeta.json にも入らない。生成もとの papers.json の所在は deletionRequested に依頼の日を持つ。二、三篇がそろって SSRN にあると書く文を置かない。断章論は SSRN に弾かれている。三、Zenodo の史料ノートの四つの記録の作成者の所属の欄は、使わないと決めた語の英訳と同じ値である。欄は作業環境から触れない。記録は語を書き写さず、欄の所在と値の SHA-256 を引く。語は、凍結した紙面の写し（翻刻の著者の行、Sophaxis の要旨の版の注）と記録と検査の表のほかに書かない。四、直したリポジトリの記録に十一度目の節がそろうこと。",
+    "節": "## 2026-11-12 の続き：十一度目の見落とし",
+    "記録": [
+      "autonomy-and-self-cultivation",
+      "cpsbvbng26-dotcom",
+      "naval-gazette-notes",
+      "researcher-profile"
+    ],
+    "決めた": "2026-11-13 に Claude が決めました",
+    "弁護士": [
+      "弁護士は、この節を見ていません。",
+      "No lawyer has reviewed this section."
+    ],
+    "見ないファイル": "^(?:docs/legal-audit-2026-11-12\\.md|verification/ecosystem\\.json|verification/check[^/]*\\.(?:js|py))$",
+    "第三者の文": "(?:^|/)sources-raw\\.json$|^verification/world/",
+    "NEMFSI": {
+      "式": "(?:philarchive|philpapers)\\.org/(?:rec|archive)/NEMFSI",
+      "窓": 240,
+      "日": "2026-09-26",
+      "依頼": "削除|[Dd]eletion|Löschung|suppression|cancellazione",
+      "sameAs": "\"sameAs\\\\?\"\\s*:\\s*(?:\\[[^\\]]*\\]|\\\\?\"[^\"\\\\]*)",
+      "引用情報で書かない": "(?:^|/)(?:\\.zenodo\\.json|codemeta\\.json)$",
+      "生成のもと": {
+        "repo": "researcher-profile",
+        "file": "papers.json",
+        "欄": "deletionRequested"
+      },
+      "面": {
+        "cpsbvbng26-dotcom": [
+          "papers/fragmentarian-spiritual-individualism.html",
+          "papers/fragmentarian-spiritual-individualism.en.html",
+          "notes/index.html",
+          "notes/index.en.html",
+          "README.md",
+          "README.en.md",
+          "index.html",
+          "index.en.html",
+          "index.de.html",
+          "index.fr.html",
+          "index.it.html"
+        ],
+        "researcher-profile": [
+          "papers.json",
+          "notes.json",
+          "notes.en.json",
+          "site.json",
+          "site.en.json",
+          "site.de.json",
+          "site.fr.json",
+          "site.it.json"
+        ],
+        "autonomy-and-self-cultivation": [
+          "CITATION.cff",
+          "README.md",
+          "papers/fragmentarian-spiritual-individualism.md"
+        ]
+      }
+    },
+    "SSRN": {
+      "書かない": [
+        "三篇は Zenodo・SSRN・PhilArchive に置いたまま",
+        "三篇の PDF は Zenodo・SSRN・PhilArchive で公開済み",
+        "著者による公開は Zenodo・SSRN・PhilArchive で行って",
+        "著者による公開は SSRN・PhilArchive などの窓口で"
+      ],
+      "文の切れ目": "(?<=[。．.!?])\\s*|\\n",
+      "三": "三篇|3 篇|\\ball three\\b|\\bthe three (?:papers|essays)\\b|\\bdrei\\b|\\btrois\\b|tutti e tre",
+      "否": "二篇|一篇|三篇目|2 篇|\\btwo\\b|\\bone of\\b|\\bthird\\b|弾|落と|受け付け|reject|うち|zwei|deux|\\bdue\\b|ない|\\bnot\\b|nicht|\\bpas\\b|—"
+    },
+    "肩書き": {
+      "語の SHA-256": "8cd90a60fc545d0cecb6c54a0245734acb47fd9ee86060fdfc383bd6cbad25d0",
+      "表": {
+        "repo": "naval-gazette-notes",
+        "file": "verification/check_text.py",
+        "式": "\\('([^']+)',\\s*'[^']*'\\)"
+      },
+      "許す": [
+        {
+          "repo": "autonomy-and-self-cultivation",
+          "file": "^papers/[^/]+\\.md$",
+          "行": "^Takuya Nemoto — {語}$"
+        },
+        {
+          "repo": "sophaxis",
+          "file": ".",
+          "句": "author line changed to (?:\"|\\\\\"|&quot;){語}(?:\"|\\\\\"|&quot;)"
+        }
+      ],
+      "記録": [
+        "cpsbvbng26-dotcom",
+        "naval-gazette-notes"
+      ],
+      "所在": [
+        "https://api.datacite.org/dois/10.5281/zenodo.18525531",
+        "https://api.datacite.org/dois/10.5281/zenodo.18525532",
+        "https://api.datacite.org/dois/10.5281/zenodo.22055553",
+        "https://api.datacite.org/dois/10.5281/zenodo.22055709",
+        "data.attributes.creators[0].affiliation[0]"
+      ]
+    },
+    "Crossref": {
+      "記録": "cpsbvbng26-dotcom",
+      "書くこと": [
+        "https://api.crossref.org/prefixes/10.2139/works?query.author=Takuya+Nemoto&rows=20&select=DOI,title,author",
+        "8c76309d83a868cbe77bbb38a58568090def03c377c2067994a4ecfbe3a81d24"
+      ]
+    }
   }
 }
