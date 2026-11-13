@@ -303,15 +303,15 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1750 項目の検査を通します。依存パッケージはありません。
+このリポジトリは、push のたびに 1806 項目の検査を通します。依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 702 項目
-node verification/check_site.js      # サイトの構造 958 項目
+node verification/check_contrast.js  # 配色の読みやすさ 736 項目
+node verification/check_site.js      # サイトの構造 980 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -332,10 +332,10 @@ python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要:
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 718 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 752 項目（要: Chromium）
 ```
 
-42 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+44 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見ます。道具が無ければ 1 を返して止まります。
 走らなかった検査は、通った検査ではありません。
 
