@@ -4143,7 +4143,11 @@ console.log('\n12t. 公開の頁の書き方：続けている行いが法令に
     const m = /この表の判定は、([^。]+)です。/.exec(sec);
     const said = m ? Object.fromEntries(m[1].split('、').map((x) => { const [k, n] = x.split(' '); return [k, Number(n)]; })) : {};
     if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
-    if (Number((/配っている (\d+) の頁と、免責事項/.exec(sec) || [])[1]) !== PAGES.length) bad.push('読んだ頁の数');
+    /* 読んだ頁の数。この節で読んだ数に、あとの節で配る頁に足した数（「配っている頁に、… の N 頁を足しました。」）を足すと、いまの頁の数になる。
+     * 足した頁は、ここの言い方の一覧で読まれている（上の一つ目の確かめ）。2026-11-13 の運営理念・声明の節で 2 頁を足した。 */
+    const 後 = j < 0 ? '' : a.slice(j, a.indexOf('\n## 調べた法令\n'));
+    const 足した = [...後.matchAll(/配っている頁に、[^。]* の (\d+) 頁を足しました。/g)].reduce((n, z) => n + Number(z[1]), 0);
+    if (Number((/配っている (\d+) の頁と、免責事項/.exec(sec) || [])[1]) + 足した !== PAGES.length) bad.push('読んだ頁の数');
     if ((sec.match(/2026-11-13 に Claude が決めました。/g) || []).length < 1 || !sec.includes('見つけたことと直したことを記録が示し、頁が立場を示せば、頁は確かさを言い過ぎず、理由は記録で確かめられるためです。')) bad.push('決めた者と理由');
     if (!sec.includes('1. 扱い 1：') || !sec.includes('2. 扱い 2：') || !sec.includes('12t が')) bad.push('二つの扱いか検査');
     if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec.replace('弁護士が確かめたとも書きません。', ''))) bad.push('弁護士の一文');
@@ -4154,6 +4158,7 @@ console.log('\n12t. 公開の頁の書き方：続けている行いが法令に
   check('配っている頁（' + PAGES.length + '）と免責事項と README（日本語と英語）に、続けている行いが法令に触れうると認める言い方（日本語 ' + ADMIT_JA.length + '、英語 ' + ADMIT_EN.length + '）がなく、点検の記録の節がそろう',
     now.length === 0, now.slice(0, 6).join(' / '));
   const w = (f, a, b) => Object.assign({}, real, { [f]: real[f].replace(a, b) });
+  const 読んだ = Number((/配っている (\d+) の頁と、免責事項/.exec(real[AUD]) || [])[1]);
   const breaks = [
     ['免責事項に認める言い方を足す', w('DISCLAIMER.md', '## 責任\n', '## 責任\n\n違法となるおそれは残りますが、続けます。\n')],
     ['英語の免責事項に認める言い方を足す', w('DISCLAIMER.en.md', '\n## ', '\nThis may be unlawful, but it goes on.\n\n## ')],
@@ -4162,7 +4167,8 @@ console.log('\n12t. 公開の頁の書き方：続けている行いが法令に
     ['README に認める言い方を足す', w('README.md', '\n## ', '\nどこまで違法となるおそれがあるかは言い切れません。\n\n## ')],
     ['記録の節を外す', w(AUD, HEAD, '\n## 公開の頁\n')],
     ['記録の判定の数を変える', w(AUD, 'この表の判定は、問題なし 5 です。', 'この表の判定は、問題なし 4 です。')],
-    ['読んだ頁の数を変える', w(AUD, '配っている ' + PAGES.length + ' の頁と、免責事項', '配っている ' + (PAGES.length - 1) + ' の頁と、免責事項')],
+    ['読んだ頁の数を変える', w(AUD, '配っている ' + 読んだ + ' の頁と、免責事項', '配っている ' + (読んだ - 1) + ' の頁と、免責事項')],
+    ['あとで足した頁の数を変える', w(AUD, 'notes/mission.en.html` の 2 頁を足しました。', 'notes/mission.en.html` の 1 頁を足しました。')],
     ['決めた理由を外す', w(AUD, '頁は確かさを言い過ぎず、理由は記録で確かめられるためです。', '頁は立場を示します。')],
     ['弁護士の一文を外す', w(AUD, 'この節も、弁護士は見ていません。\n', '')],
     ['弁護士が確かめたと書く', w(AUD, 'この節も、弁護士は見ていません。\n', 'この節も、弁護士は見ていません。弁護士が確かめました。\n')],
@@ -4470,11 +4476,171 @@ console.log('\n12w. 十七度目の見落とし：issue の題と本文が Claud
     ['前の行を誤りとした文を外す', w('aud', '「点検の表」の「第三者への提供」の行は、問題なしとしていました。この判定は誤りでした。', '')],
     ['記録が名乗る様式の数をずらす', w('aud', 'ほかの様式（不具合の報告 ' + others.bug + ' 本', 'ほかの様式（不具合の報告 ' + (others.bug + 1) + ' 本')],
     ['決めた理由を外す', w('aud', '同意を得る前に中身が渡らないよう、issue を開くときに求めるためです |', '同意を求めます |')],
-    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 2026-11-13：運営理念・声明', '\n\n## 2026-11-13：運営理念・声明')],
   ];
   const missed = breaks.filter(([, b]) => problems(b).length === 0).map(([k]) => k);
   check('壊して確かめる：様式の欄・必須・メールの扱い、免責事項の両言語の文・約束・委員会と Anthropic と第28条の句、CLAUDE.md の二つの決めごと、記録の節・判定の数・誤りの文・様式の数・理由・弁護士のどれを崩しても落ちる（' + (breaks.length - missed.length) + ' / ' + breaks.length + '）',
     missed.length === 0, missed.join(' / '));
+}
+
+console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文で、周りの README の短い節が一字一句同じで、弁護士に依頼したと書かない（2026-11-13）');
+{
+  /* 2026-11-13 に利用者が求めた。サイトごとに、中身に合わせた運営理念・声明を置く。このサイトの声明は researcher-profile の
+   * mission.json・mission.en.json から notes/mission.html・notes/mission.en.html を作る。GitHub で読める同じ文を docs/mission.md・
+   * docs/mission.en.md に置き、README（日英）に第 1 条と第 2 条を写す。周りの 10 本（免責事項が挙げる 9 と deposit-check）の README には、
+   * 一字一句同じ短い節を置く。声明は拘束せず、免責事項と各ライセンスが優先する。提供しない地域の条は置かない（利用者が決めた）。
+   * 弁護士には依頼していない。利用者は「弁護士が付く」と書くことを求めたが、事実と違うので、2026-11-13 に Claude が決めた：
+   * 依頼していない・必要に応じて相談する・日本の法令と免責事項とライセンスに沿う・警告ではない、の四つを書く。
+   * 頁・写し・README は、条ごとに見出しと項の文を取り出して比べる。どれか一つだけ直すと落ちる。 */
+  const S = DECL['声明'];
+  const R = 'cpsbvbng26-dotcom', RP = 'researcher-profile';
+  const OPEN = S['短い節'][0], CLOSE = S['短い節'][S['短い節'].length - 1];
+  const OPEN_EN = S['短い節（英語）'][0], CLOSE_EN = S['短い節（英語）'][S['短い節（英語）'].length - 1];
+  const AUD = path.join('docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：運営理念・声明\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const PAGES = JSON.parse(read(R, path.join('verification', 'pages.json')) || '{"pages":[]}').pages.map((p) => p.file);
+  const plain = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+  const mdPlain = (s) => String(s).replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\s+/g, ' ').trim();
+  /* 頁：<section id="a1">…の見出しと、<li> か <p class="profile-core"> の一つずつ。 */
+  function pageUnits(h) {
+    return [...String(h).matchAll(/<section id="a\d+" class="wrap block">([\s\S]*?)<\/section>/g)].map((m) => [
+      plain((/<h2[^>]*>([\s\S]*?)<\/h2>/.exec(m[1]) || [])[1] || ''),
+      [...m[1].matchAll(/<li>([\s\S]*?)<\/li>|<p class="profile-core">([\s\S]*?)<\/p>/g)].map((x) => plain(x[1] || x[2]))]);
+  }
+  /* Markdown：見出し（level）が条の名で始まるものごとに、空でない行を項とする。番号付きの行は番号を外す。番号は 1 から順でなければ落とす。 */
+  function mdUnits(t, level) {
+    const out = [];
+    for (const part of String(t).split('\n' + level).slice(1)) {
+      const lines = part.split('\n');
+      if (!/^(第 \d+ 条（|Article \d+ \()/.test(lines[0])) continue;
+      const items = [];
+      let n = 0;
+      for (const l of lines.slice(1)) {
+        if (/^#/.test(l) || l === '---') break;
+        if (!l.trim()) continue;
+        const m = /^(\d+)\. (.*)$/.exec(l);
+        if (m) { n++; items.push(Number(m[1]) === n ? mdPlain(m[2]) : '番号のずれ'); } else items.push(mdPlain(l));
+      }
+      out.push([lines[0].trim(), items]);
+    }
+    return out;
+  }
+  const sectionOf = (t, head, end) => { const i = String(t).indexOf(head); if (i < 0) return ''; const j = String(t).indexOf(end, i + head.length); return String(t).slice(i, j < 0 ? undefined : j); };
+  const blockOf = (t, a, b) => { const i = String(t).indexOf(a), j = String(t).indexOf(b); return i < 0 || j < 0 || j < i ? null : String(t).slice(i, j + b.length); };
+  const x = {
+    cfg: read(RP, 'mission.json') || '', cfgEn: read(RP, 'mission.en.json') || '',
+    page: read(R, path.join('notes', 'mission.html')) || '', pageEn: read(R, path.join('notes', 'mission.en.html')) || '',
+    md: read(R, path.join('docs', 'mission.md')) || '', mdEn: read(R, path.join('docs', 'mission.en.md')) || '',
+    readme: read(R, 'README.md') || '', readmeEn: read(R, 'README.en.md') || '', aud: read(R, AUD) || '', sitemap: read(R, 'sitemap.xml') || '',
+    homes: Object.fromEntries(['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].map((f) => [f, read(R, f) || ''])),
+    rm: Object.fromEntries(S.repos.map((r) => [r, read(r, 'README.md')])),
+    rmEn: Object.fromEntries(S.repos.map((r) => [r, read(r, 'README.en.md')])),
+  };
+  const N = C.repos.length;
+  function problems(c) {
+    const bad = [];
+    /* 一。頁と設定と写し。 */
+    let cj = null, ce = null;
+    try { cj = JSON.parse(c.cfg); ce = JSON.parse(c.cfgEn); } catch (e) { bad.push('researcher-profile の mission.json か mission.en.json が読めない'); }
+    const ja = pageUnits(c.page), en = pageUnits(c.pageEn);
+    if (ja.length < 10 || ja.length !== en.length || !ja.every((u, i) => u[1].length > 0 && u[1].length === en[i][1].length)) bad.push('頁の日英の条と項の数がそろわない');
+    if (cj && ce && (pageUnits(cj.blocks.map((b) => '<section id="' + b.id + '" class="wrap block"><h2>' + b.title + '</h2>' + b.html + '</section>').join('')).join('\u0000') !== ja.join('\u0000')
+      || pageUnits(ce.blocks.map((b) => '<section id="' + b.id + '" class="wrap block"><h2>' + b.title + '</h2>' + b.html + '</section>').join('')).join('\u0000') !== en.join('\u0000'))) bad.push('頁が researcher-profile の設定と違う（作り直していない）');
+    if (JSON.stringify(mdUnits(c.md, '## ')) !== JSON.stringify(ja)) bad.push('docs/mission.md が頁と違う');
+    if (JSON.stringify(mdUnits(c.mdEn, '## ')) !== JSON.stringify(en)) bad.push('docs/mission.en.md が頁と違う');
+    const tj = ja.map((u) => u[0] + ' ' + u[1].join(' ')).join(' '), te = en.map((u) => u[0] + ' ' + u[1].join(' ')).join(' ');
+    for (const s of S['必須']) if (!tj.includes(s)) bad.push('頁に「' + s.slice(0, 20) + '」が無い');
+    for (const s of S['必須（英語）']) if (!te.includes(s)) bad.push('英語の頁に「' + s.slice(0, 30) + '」が無い');
+    const nj = Number((/免責事項が挙げる (\d+) のリポジトリ/.exec(tj) || [])[1]), ne = Number((/the (\d+) repositories listed in the Disclaimer/.exec(te) || [])[1]);
+    if (nj !== N || ne !== N) bad.push('声明が名乗るリポジトリの数（' + nj + '・' + ne + '）が免責事項の ' + N + ' と違う');
+    if (/提供しない|提供しません|not offered|do not offer/.test(tj + te)) bad.push('提供しない地域の条がある');
+    /* 二。README（日英）の節は、第 1 条と第 2 条をそのまま写す。 */
+    const rs = sectionOf(c.readme, '\n## 運営理念・声明\n', '\n責任は、法令の定めるとおりです。'), rse = sectionOf(c.readmeEn, '\n## Statement of Purpose\n', '\nLiability is as the law provides;');
+    if (JSON.stringify(mdUnits(rs, '### ')) !== JSON.stringify(ja.slice(0, 2))) bad.push('README の第 1 条・第 2 条が頁と違う');
+    if (JSON.stringify(mdUnits(rse, '### ')) !== JSON.stringify(en.slice(0, 2))) bad.push('英語の README の第 1 条・第 2 条が頁と違う');
+    if (Number((/研究の系列の (\d+) のリポジトリ/.exec(rs) || [])[1]) !== N || Number((/for the (\d+) repositories of the research series/.exec(rse) || [])[1]) !== N) bad.push('README が名乗るリポジトリの数');
+    if (!rs.includes('notes/mission.html') || !rs.includes('docs/mission.md') || !rse.includes('notes/mission.en.html') || !rse.includes('docs/mission.en.md')) bad.push('README の節から全文への道が無い');
+    /* 三。トップの五言語から案内し、sitemap に二言語とも載せる。 */
+    for (const [f, u] of [['index.html', './notes/mission.html'], ['index.en.html', './notes/mission.en.html'], ['index.de.html', './notes/mission.en.html'], ['index.fr.html', './notes/mission.en.html'], ['index.it.html', './notes/mission.en.html']]) if (!c.homes[f].includes('href="' + u + '"')) bad.push(f + ' から声明への道が無い');
+    for (const f of ['notes/mission.html', 'notes/mission.en.html']) if (!PAGES.includes(f) || !c.sitemap.includes('https://cpsbvbng26-dotcom.vercel.app/' + f + '<')) bad.push(f + ' が配る頁か sitemap に無い');
+    /* 四。周りの 10 本の短い節。一字一句同じで、全文と同じ句を持つ。 */
+    const canon = S['短い節'].join('\n'), canonEn = S['短い節（英語）'].join('\n');
+    for (const s of S['結ぶ']) if (!canon.includes(s) || !tj.includes(s)) bad.push('短い節と全文が「' + s.slice(0, 16) + '」で結ばれていない');
+    for (const s of S['結ぶ（英語）']) if (!canonEn.includes(s) || !te.includes(s)) bad.push('英語の短い節と全文が「' + s.slice(0, 24) + '」で結ばれていない');
+    if (!canon.includes('notes/mission.html') || !canon.includes('docs/mission.md') || !canonEn.includes('notes/mission.en.html') || !canonEn.includes('docs/mission.en.md')) bad.push('短い節から全文への道が無い');
+    for (const r of S.repos) {
+      const t = c.rm[r];
+      if (t === null) { bad.push(r + ' に README.md が無い'); continue; }
+      if (blockOf(t, OPEN, CLOSE) !== canon || t.split(OPEN).length !== 2) bad.push(r + '/README.md の短い節が違う');
+      const ef = S['英語の面'][r] || (c.rmEn[r] !== null ? 'README.en.md' : null);
+      if (ef) {
+        const te2 = ef === 'README.md' ? t : c.rmEn[r];
+        if (blockOf(te2, OPEN_EN, CLOSE_EN) !== canonEn || te2.split(OPEN_EN).length !== 2) bad.push(r + '/' + ef + ' の英語の短い節が違う');
+      }
+    }
+    /* 五。弁護士に依頼した・付く・確かめたと書かない。打ち消しの文だけは通す。 */
+    const L = S['弁護士の書き方'], RJ = new RegExp(L.ja), RE = new RegExp(L.en, 'i');
+    const faces = [['researcher-profile/mission.json', c.cfg], ['researcher-profile/mission.en.json', c.cfgEn], ['notes/mission.html', c.page], ['notes/mission.en.html', c.pageEn],
+      ['docs/mission.md', c.md], ['docs/mission.en.md', c.mdEn], ['README.md', c.readme], ['README.en.md', c.readmeEn]]
+      .concat(S.repos.map((r) => [r + '/README.md', c.rm[r] || ''])).concat(S.repos.filter((r) => c.rmEn[r] !== null).map((r) => [r + '/README.en.md', c.rmEn[r]]));
+    for (const [f, t] of faces) {
+      const rest = L['打ち消しの文'].reduce((a, s) => a.split(s).join(''), String(t));
+      if (RJ.test(rest) || RE.test(rest)) bad.push(f + ' が弁護士に依頼した・付く・確かめたと読める');
+    }
+    /* 六。記録の節。 */
+    const a = c.aud, i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + HEAD.length);
+    const sec = i < 0 || j < 0 ? '' : a.slice(i, j);
+    if (!sec || a.indexOf('\n## 調べた法令\n') < i) return bad.concat(['記録の節が無いか、調べた法令の後にある']);
+    const t0 = sec.indexOf('\n| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : sec.slice(t0 + 1).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 6 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    const m = /この表の判定は、([^。]+)です。/.exec(sec);
+    const said = m ? Object.fromEntries(m[1].split('、').map((z) => { const [k, n] = z.trim().split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
+    for (const y of rows) if (!/2026-11-13 に(利用者が求め、Claude が(書きました|決めました)| Claude が決めました|利用者が決めました)。[^|]*ためです$/.test(y[5])) bad.push('決めた者か理由の無い行：' + y[0].slice(0, 16));
+    const dispute = rows.find((y) => /紛争/.test(y[0]));
+    if (!dispute || !dispute[5].includes('2026-11-13 に利用者が求め、Claude が決めました。') || !dispute[5].includes('事実と違い')) bad.push('紛争の行に、利用者の求めと Claude が決めたことと理由が無い');
+    const k = /免責事項が挙げる (\d+) のリポジトリのうち、このリポジトリを除く (\d+) と、deposit-check/.exec(sec);
+    if (!k || Number(k[1]) !== N || Number(k[2]) !== N - 1 || S.repos.length !== N || !sec.includes('周りの ' + S.repos.length + ' 本')) bad.push('記録が名乗るリポジトリの数');
+    if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec)) bad.push('弁護士の一文');
+    return bad;
+  }
+  const now = problems(x);
+  check('運営理念・声明の頁（日英）が設定・docs の写し・README の第 1 条と第 2 条と条ごとに同じ文で、拘束しないこと・目指すもの・機関の事業でないこと・紛争の四つを書き、トップの五言語と sitemap から辿れ、周りの '
+    + S.repos.length + ' 本の README の短い節が一字一句同じで全文と結ばれ、弁護士に依頼したと読める文が無く、記録の節がそろう', now.length === 0, now.slice(0, 6).join(' / '));
+  const w = (k, a, b) => Object.assign({}, x, { [k]: x[k].replace(a, b) });
+  const wr = (k, r, a, b) => Object.assign({}, x, { [k]: Object.assign({}, x[k], { [r]: String(x[k][r]).replace(a, b) }) });
+  const wh = (f, a, b) => Object.assign({}, x, { homes: Object.assign({}, x.homes, { [f]: x.homes[f].replace(a, b) }) });
+  const breaks = [
+    ['頁の第 2 条の一文を変える', w('page', 'それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。', 'それ自体で、運営者に義務を生じさせません。')],
+    ['頁だけ直して設定を置いていく', w('pageEn', 'Its continuing is not guaranteed.', 'Its continuing is guaranteed.')],
+    ['docs の写しの一項を変える', w('md', '続くことは保証しません。', '続けることを目指します。')],
+    ['英語の写しの番号をずらす', w('mdEn', '\n2. Its continuing is not guaranteed.', '\n3. Its continuing is not guaranteed.')],
+    ['README の第 1 条を変える', w('readme', '批判と誤りの指摘を受けることが、この場所の一番の用途です', '批判を受けることが、この場所の一番の用途です')],
+    ['英語の README の第 2 条を外す', w('readmeEn', '5. This statement is not legal advice.\n', '')],
+    ['目指すものの一文を外す', w('cfg', 'それが果たされることを、約束も保証もしません。', '')],
+    ['機関の事業でない一文を外す', w('cfgEn', 'These places are not a project of ZEN University or of any other institution. ', '')],
+    ['紛争の警告でない一文を外す', w('page', '<li>この条は、誰かに対する警告ではありません。</li>', '')],
+    ['リポジトリの数をずらす', w('page', '免責事項</a>が挙げる 10 のリポジトリ', '免責事項</a>が挙げる 11 のリポジトリ')],
+    ['提供しない地域の条を足す', w('pageEn', '<li>This article is not a warning to anyone.</li>', '<li>This article is not a warning to anyone.</li><li>The site is not offered in some places.</li>')],
+    ['トップの頁から道を外す', wh('index.fr.html', 'href="./notes/mission.en.html"', 'href="./notes/index.en.html"')],
+    ['sitemap から外す', w('sitemap', 'https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html<', 'https://cpsbvbng26-dotcom.vercel.app/notes/missions.en.html<')],
+    ['周りの README の短い節を一字変える', wr('rm', 'solitary-school', '権利や義務を生じさせません。', '権利を生じさせません。')],
+    ['周りの README から短い節を外す', wr('rm', 'deposit-check', /<!-- 声明:ここから -->[\s\S]*<!-- 声明:ここまで -->\n/, '')],
+    ['英語の短い節を変える', wr('rmEn', 'errata-check', 'This is not a warning to anyone.', 'This is a warning.')],
+    ['周りの README に弁護士が付くと書く', wr('rm', 'trinity-operator', '日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）に沿って対応します。', '日本の法令に沿って対応し、弁護士が付きます。')],
+    ['英語の README に弁護士が確かめたと書く', w('readmeEn', 'Articles 1 and 2 are copied here', 'This section was reviewed by a lawyer. Articles 1 and 2 are copied here')],
+    ['頁に依頼した弁護士を書く', w('page', '<li>この条は、誰かに対する警告ではありません。</li>', '<li>この条は、誰かに対する警告ではありません。顧問弁護士がいます。</li>')],
+    ['記録の節を外す', w('aud', HEAD, '\n## 2026-11-13：声明\n')],
+    ['記録の判定の数を変える', w('aud', 'この表の判定は、問題なし 8 です。', 'この表の判定は、問題なし 7 です。')],
+    ['紛争の行から Claude が決めた一文を外す', w('aud', '2026-11-13 に利用者が求め、Claude が決めました。事実と違う文を書かず', '事実と違う文を書かず')],
+    ['行の理由を外す', w('aud', '一つの場所に二つの声明が重なって掛かることを避けるためです', '一つの場所に一つの声明にします')],
+    ['記録が名乗る数をずらす', w('aud', 'このリポジトリを除く 9 と、deposit-check', 'このリポジトリを除く 8 と、deposit-check')],
+    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+  ];
+  const missed = breaks.filter(([, b]) => problems(b).length === 0).map(([k]) => k);
+  check('壊して確かめる：頁・設定・写し・番号・README・目指すもの・機関・紛争・数・地域の条・トップの道・sitemap・周りの短い節（日英）・弁護士の書き方（日英）・記録の節・判定の数・理由・名乗る数・弁護士の一文のどれを崩しても落ちる（'
+    + (breaks.length - missed.length) + ' / ' + breaks.length + '）', missed.length === 0, missed.join(' / '));
 }
 
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
