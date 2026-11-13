@@ -4109,6 +4109,66 @@ console.log('\n12s. Vercel の Fair Use Guidelines の変更：句と値、い�
  * 札は目録（researcher-profile の catalog.json）と同じ区別で書く。食い違えば落とす。
  * CITATION.cff の type は、道具が software、それ以外が dataset。 */
 
+/* ---------- 公開の頁の書き方（2026-11-13） ----------
+ * 2026-11-13 に Claude が決めた。公開の頁は運営者の立場を示し、疑いを並べない。条文から決まらない点は、決まらないことと
+ * 運営者の扱いを書き、中身は点検の記録に残す。配っている頁と、免責事項と README（日本語と英語）に、続けている行いが
+ * 法令に触れうると認める言い方がないことを、日本語と英語の一覧で確かめる。頁は researcher-profile の設定から作るので、
+ * 作り直した頁に言い方が入れば、ここで落ちる。記録の節（表・判定の数・読んだ頁の数・決めた者と理由・弁護士の一文）もそろう。
+ * 確かめる関数に壊した入力を渡し、落ちることも確かめる（壊して確かめる）。 */
+console.log('\n12t. 公開の頁の書き方：続けている行いが法令に触れうると認める言い方を、配っている頁に置かない（2026-11-13）');
+{
+  const ADMIT_JA = ['おそれは減', 'なくなりはしません', 'なくなるわけではない', 'おそれを断たない', '余地は残る', '余地もある', '当たりうる', '言い切れません', 'はっきりしない', 'はっきりしません',
+    '裁判所の判断による', '判断は裁判所による', '除ききれない', '残る危険', '違法となるおそれ', '違反するおそれ', '違反となるおそれ', '抵触するおそれ', '読む道が残ります', '無効とされる余地',
+    '守るものではない', '違法の可能性', '違反の可能性'];
+  const ADMIT_EN = ['does not remove the risk', 'reduces the possibility', 'a reading remains', 'risks that remain', 'risk that remains', 'risk of illegality', 'how small the risk', 'cannot be ruled out',
+    'is unclear, because', 'for a court to decide', 'that is for a court', 'may also be held void', 'may still count as', 'may violate', 'may breach', 'may infringe', 'may be unlawful', 'may be illegal',
+    'could be unlawful', 'could be illegal', 'might be unlawful', 'might be illegal', 'has not been settled', 'does not protect where'];
+  const AUD = 'docs/legal-audit-2026-11-12.md', HEAD = '\n## 2026-11-13：公開の頁の書き方\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const R = 'cpsbvbng26-dotcom';
+  const PAGES = JSON.parse(read(R, path.join('verification', 'pages.json')) || '{"pages":[]}').pages.map((p) => p.file);
+  const files = PAGES.concat(['DISCLAIMER.md', 'DISCLAIMER.en.md', 'README.md', 'README.en.md']);
+  function problems(c) {
+    const bad = [];
+    for (const f of files) for (const w of ADMIT_JA.concat(ADMIT_EN)) if (c[f].includes(w)) bad.push(f + '：' + w);
+    const a = c[AUD], i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + 5);
+    const sec = i < 0 ? '' : a.slice(i, j < 0 ? undefined : j);
+    if (!sec || a.indexOf('\n## 調べた法令\n') < i) return bad.concat(['記録の節が無いか、調べた法令の後にある']);
+    const t0 = sec.indexOf('\n| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : sec.slice(t0 + 1).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 5 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    const m = /この表の判定は、([^。]+)です。/.exec(sec);
+    const said = m ? Object.fromEntries(m[1].split('、').map((x) => { const [k, n] = x.split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
+    if (Number((/配っている (\d+) の頁と、免責事項/.exec(sec) || [])[1]) !== PAGES.length) bad.push('読んだ頁の数');
+    if ((sec.match(/2026-11-13 に Claude が決めました。/g) || []).length < 1 || !sec.includes('見つけたことと直したことを記録が示し、頁が立場を示せば、頁は確かさを言い過ぎず、理由は記録で確かめられるためです。')) bad.push('決めた者と理由');
+    if (!sec.includes('1. 扱い 1：') || !sec.includes('2. 扱い 2：') || !sec.includes('12t が')) bad.push('二つの扱いか検査');
+    if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec.replace('弁護士が確かめたとも書きません。', ''))) bad.push('弁護士の一文');
+    return bad;
+  }
+  const real = Object.fromEntries(files.concat([AUD]).map((f) => [f, read(R, f) || '']));
+  const now = problems(real);
+  check('配っている頁（' + PAGES.length + '）と免責事項と README（日本語と英語）に、続けている行いが法令に触れうると認める言い方（日本語 ' + ADMIT_JA.length + '、英語 ' + ADMIT_EN.length + '）がなく、点検の記録の節がそろう',
+    now.length === 0, now.slice(0, 6).join(' / '));
+  const w = (f, a, b) => Object.assign({}, real, { [f]: real[f].replace(a, b) });
+  const breaks = [
+    ['免責事項に認める言い方を足す', w('DISCLAIMER.md', '## 責任\n', '## 責任\n\n違法となるおそれは残りますが、続けます。\n')],
+    ['英語の免責事項に認める言い方を足す', w('DISCLAIMER.en.md', '\n## ', '\nThis may be unlawful, but it goes on.\n\n## ')],
+    ['トップの頁に認める言い方を足す', w('index.html', '</main>', '<p>残る危険があります。</p></main>')],
+    ['英語の頁に認める言い方を足す', w('index.en.html', '</main>', '<p>The risk that remains cannot be ruled out.</p></main>')],
+    ['README に認める言い方を足す', w('README.md', '\n## ', '\nどこまで違法となるおそれがあるかは言い切れません。\n\n## ')],
+    ['記録の節を外す', w(AUD, HEAD, '\n## 公開の頁\n')],
+    ['記録の判定の数を変える', w(AUD, 'この表の判定は、問題なし 5 です。', 'この表の判定は、問題なし 4 です。')],
+    ['読んだ頁の数を変える', w(AUD, '配っている ' + PAGES.length + ' の頁と、免責事項', '配っている ' + (PAGES.length - 1) + ' の頁と、免責事項')],
+    ['決めた理由を外す', w(AUD, '頁は確かさを言い過ぎず、理由は記録で確かめられるためです。', '頁は立場を示します。')],
+    ['弁護士の一文を外す', w(AUD, 'この節も、弁護士は見ていません。\n', '')],
+    ['弁護士が確かめたと書く', w(AUD, 'この節も、弁護士は見ていません。\n', 'この節も、弁護士は見ていません。弁護士が確かめました。\n')],
+  ];
+  const missed = breaks.filter(([, x]) => problems(x).length === 0).map(([k]) => k);
+  check('壊して確かめる：免責事項（日本語と英語）・トップの頁（日本語と英語）・README・記録の節・判定の数・読んだ頁の数・理由・弁護士の一文のどれでも落ちる（' + (breaks.length - missed.length) + ' / ' + breaks.length + '）',
+    missed.length === 0, missed.join(' / '));
+}
+
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
 
 {
