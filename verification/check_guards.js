@@ -239,8 +239,9 @@ const CASES = [
         'Medium <span>独立コンサルタントとしての案件募集</span>'),
    'check_site.js', 'コンサルタント肩書き'],
 
-  /* **受注の場への道は、配っている頁に置かない**（2026-11-12 の続き）。Vercel の無料の枠は
-   * 役務の販売の広告を商用の例に挙げる。CV に一本戻すと落ちることを見る。 */
+  /* **受注の場への道は、配っている頁に置かない**（2026-11-12 の続き）。Vercel の利用規約 第 4 節は、
+   * 無料の枠を個人の利用か非商用の利用に限る（商用の例を挙げた Fair use Guidelines の節は、2026-11-13 の頁に無い）。
+   * CV に一本戻すと落ちることを見る。 */
   ['配っている頁に受注の場への道を戻すと落ちる', 'cv.html',
    swap('Medium <span>記事一覧</span></a>',
         'Medium <span>記事一覧</span></a><a class="link" href="https://www.lancers.jp/profile/Itizyou">ランサーズ</a>'),
