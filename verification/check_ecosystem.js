@@ -449,18 +449,19 @@ console.log('\n7. 研究者としての位置');
       return (raw.match(/^\[\[entry\]\]/gm) || []).length;
     })();
 
-    /* **aiXiv.science の公式査読を経た論文。**言語モデルの審査で載ったものを、出した先の表から数え直す。
+    /* **aiXiv.science の公式審査を経た論文。**言語モデルの審査で載ったものを、出した先の表から数え直す。
+     * 言語モデル五体の多数決は、人による査読ではない。だから「査読」の語では呼ばない（2026-11-13。12u が見る）。
      * 「査読を通った論文」の欄とは混ぜない。混ぜれば、軽い門を重い枠で数えることになる。 */
     {
       const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
       const 実 = (ev.match(/^\| aiXiv\.science \|[^\n]*\| 審査を経て掲載された。/gm) || []).length;
-      const m = /^\| aiXiv\.science の公式査読を経た論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
+      const m = /^\| aiXiv\.science の公式審査を経た論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
       /* README の導入も同じ数を名乗る。**査読の主体を書いた一文と一緒でなければ落とす。** */
-      const 和 = /言語モデル五体による公式査読を経た論文が (\d+) 篇あります。学術誌・学会の査読ではありません。/
+      const 和 = /aiXiv\.science では、場の公式審査を経た論文が (\d+) 篇あります。場の審査は言語モデル五体の多数決で、人による査読ではありません。学術誌・学会の査読でもありません。/
         .exec(read('cpsbvbng26-dotcom', 'README.md') || '');
       const 英 = /On aiXiv\.science, (\d+) papers? ha(?:s|ve) passed the platform's official review by a panel of five language models\. This is not peer review by a journal or a society\./
         .exec(read('cpsbvbng26-dotcom', 'README.en.md') || '');
-      check('aiXiv.science の公式査読を経た論文の数が、出した先の表と合う',
+      check('aiXiv.science の公式審査を経た論文の数が、出した先の表と合う',
         m !== null && parseInt(m[1], 10) === 実
         && 和 !== null && parseInt(和[1], 10) === 実
         && 英 !== null && parseInt(英[1], 10) === 実
@@ -4167,6 +4168,91 @@ console.log('\n12t. 公開の頁の書き方：続けている行いが法令に
   const missed = breaks.filter(([, x]) => problems(x).length === 0).map(([k]) => k);
   check('壊して確かめる：免責事項（日本語と英語）・トップの頁（日本語と英語）・README・記録の節・判定の数・読んだ頁の数・理由・弁護士の一文のどれでも落ちる（' + (breaks.length - missed.length) + ' / ' + breaks.length + '）',
     missed.length === 0, missed.join(' / '));
+}
+
+console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「査読」と呼ばない（2026-11-13）');
+{
+  /* aiXiv.science の公式審査は、言語モデル五体の多数決である。人による査読ではない。
+   * README は「言語モデル五体による公式査読」と書き、英語の「official review」とも、docs/external-evaluations.md の
+   * 「人による査読ではない」とも合っていなかった。13 のリポジトリの文を読み、aiXiv を名指す文（表の行は行ごと）で
+   * 「査読」が出たら、その「査読」は「ではない」「でもない」で打ち消されていなければ落とす。英語の peer review も同じ。
+   * この検査のファイルは、壊して確かめるための文を持つので読まない。 */
+  const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
+  const SKIP = new Set(['.git', 'node_modules', '__pycache__', 'venv']);
+  const EXT = new Set(['.md', '.html', '.json', '.yml', '.yaml', '.txt', '.js', '.py', '.toml', '.cff', '.xml', '.bib', '.csv', '.tex']);
+  const SELF = path.join('cpsbvbng26-dotcom', 'verification', 'check_ecosystem.js');
+  const texts = {};
+  function walk(dir, repo) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (SKIP.has(e.name)) continue;
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(full, repo); continue; }
+      if (!EXT.has(path.extname(e.name))) continue;
+      const key = path.join(repo, path.relative(path.join(ROOT, repo), full));
+      if (key === SELF) continue;
+      const t = fs.readFileSync(full, 'utf8');
+      if (/aixiv/i.test(t)) texts[key] = t;
+    }
+  }
+  for (const repo of REPOS) { const dir = path.join(ROOT, repo); if (fs.existsSync(dir)) walk(dir, repo); }
+  /* 点検の記録は、前の文を引いて直したことを書くので、文の検査には掛けず、節の形だけを見る。 */
+  texts[path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md')] = read('cpsbvbng26-dotcom', path.join('docs', 'legal-audit-2026-11-12.md')) || '';
+  const JA = /査読(?!(?:では|でも)(?:ない|なく|あり))/;
+  const EN = /(?<!\bnot )\bpeer[- ]review/i;
+  const AUD = path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：十五度目の見落とし\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  /* 記録の節：調べた法令の前にあり、六つの欄の表、判定の数、決めた者と理由、弁護士の一文がそろうこと。 */
+  function recordProblems(a) {
+    const i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + 5);
+    const sec = i < 0 || j < 0 ? '' : a.slice(i, j);
+    if (!sec || a.indexOf('\n## 調べた法令\n') < i) return ['記録の節が無いか、調べた法令の後にある'];
+    const bad = [];
+    const t0 = sec.indexOf('\n| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : sec.slice(t0 + 1).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 5 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    const m = /この表の判定は、([^。]+)です。/.exec(sec);
+    const said = m ? Object.fromEntries(m[1].split('、').map((x) => { const [k, n] = x.trim().split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
+    if ((sec.match(/2026-11-13 に Claude が決めました。/g) || []).length < 3 || !sec.includes('人による査読ではないことを、審査を名指す段の中で示すためです')) bad.push('決めた者と理由');
+    if (!sec.includes('この一文は README の地の文で、サイトの欄からの写しではありません。')) bad.push('一文の出どころ');
+    if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec)) bad.push('弁護士の一文');
+    return bad;
+  }
+  function problems(c) {
+    const bad = recordProblems(c[AUD] || '');
+    for (const [f, t] of Object.entries(c)) {
+      if (f === AUD) continue;
+      for (const line of t.split('\n')) {
+        if (!/aixiv/i.test(line)) continue;
+        const units = /^\s*\|/.test(line) ? [line] : line.split(/(?<=[。．])|(?<=\.)\s+/);
+        for (const u of units) if (/aixiv/i.test(u) && (JA.test(u) || EN.test(u))) bad.push(f + '：' + u.trim().slice(0, 60));
+      }
+    }
+    return bad;
+  }
+  const now = problems(texts);
+  const readme = texts[path.join('cpsbvbng26-dotcom', 'README.md')] || '';
+  check('13 のリポジトリで、aiXiv.science を名指す文が、その審査を打ち消しなしに「査読」（peer review）と呼んでいない（aiXiv を含む ' + (Object.keys(texts).length - 1) + ' ファイル）。点検の記録に節がそろう',
+    now.length === 0 && readme.includes('場の審査は言語モデル五体の多数決で、人による査読ではありません。'), now.slice(0, 6).join(' / '));
+  const w = (f, a, b) => Object.assign({}, texts, { [f]: (texts[f] || '').replace(a, b) });
+  const RM = path.join('cpsbvbng26-dotcom', 'README.md'), SA = path.join('cpsbvbng26-dotcom', 'docs', 'self-assessment.md'), EV = path.join('cpsbvbng26-dotcom', 'docs', 'external-evaluations.md');
+  const REN = path.join('cpsbvbng26-dotcom', 'README.en.md');
+  const breaks = [
+    ['README を前の文に戻す', w(RM, 'aiXiv.science では、場の公式審査を経た論文が 1 篇あります。', 'aiXiv.science では、言語モデル五体による公式査読を経た論文が 1 篇あります。')],
+    ['自己評価の表の行を「公式査読」にする', w(SA, '| aiXiv.science の公式審査を経た論文 |', '| aiXiv.science の公式査読を経た論文 |')],
+    ['外部の評価の行を「査読を経て」にする', w(EV, '| aiXiv.science | Machine-Mediated Rediscovery | `aixiv.261024.000001`（DOI ではない） | 審査を経て掲載された。', '| aiXiv.science | Machine-Mediated Rediscovery | `aixiv.261024.000001`（DOI ではない） | 査読を経て掲載された。')],
+    ['英語の README を peer-reviewed にする', w(REN, 'On aiXiv.science, 1 paper has passed', 'On aiXiv.science, 1 paper was peer-reviewed and has passed')],
+    ['ほかのリポジトリに足す', Object.assign({}, texts, { [path.join('sophaxis', 'README.md')]: 'aiXiv.science で査読を受けました。\n' })],
+    ['記録の節を外す', w(AUD, HEAD, '\n## aiXiv の呼び方\n')],
+    ['記録の判定の数を変える', w(AUD, 'この表の判定は、表現 2、問題なし 2、漏れ 1 です。', 'この表の判定は、表現 1、問題なし 2、漏れ 1 です。')],
+    ['決めた理由を外す', w(AUD, '人による査読ではないことを、審査を名指す段の中で示すためです', '人による査読ではないことを示します')],
+    ['弁護士の一文を外す', w(AUD, '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+  ];
+  const missed = breaks.filter(([, x]) => problems(x).length === 0).map(([k]) => k);
+  /* 打ち消した「査読」は通す。 */
+  const negOk = problems(Object.assign({}, texts, { [path.join('sophaxis', 'README.md')]: 'aiXiv.science の審査は、人による査読ではありません。This is not peer review on aiXiv.\n' })).length === 0;
+  check('壊して確かめる：README・自己評価の表・外部の評価の行・英語の README・ほかのリポジトリのどれで aiXiv の審査を査読と呼んでも落ち、記録の節・判定の数・理由・弁護士の一文を崩しても落ち、打ち消した「査読」は通る（' + (breaks.length - missed.length + (negOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
+    missed.length === 0 && negOk, missed.concat(negOk ? [] : ['打ち消し']).join(' / '));
 }
 
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
