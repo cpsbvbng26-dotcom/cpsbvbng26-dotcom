@@ -456,10 +456,11 @@ console.log('\n7. 研究者としての位置');
       const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
       const 実 = (ev.match(/^\| aiXiv\.science \|[^\n]*\| 審査を経て掲載された。/gm) || []).length;
       const m = /^\| aiXiv\.science の公式審査を経た論文 \|[^|]*\| \*\*(\d+) 篇\*\*/m.exec(text);
-      /* README の導入も同じ数を名乗る。**査読の主体を書いた一文と一緒でなければ落とす。** */
-      const 和 = /aiXiv\.science では、場の公式審査を経た論文が (\d+) 篇あります。場の審査は言語モデル五体の多数決で、人による査読ではありません。学術誌・学会の査読でもありません。/
+      /* README の導入も同じ数を名乗る。**場の説明として書いた審査の仕組みと、この稿を誰が審査したかを確かめていない一文と、
+       * 査読として数えない一文と一緒でなければ落とす**（2026-11-13、十六度目。仕組みを、この稿の審査の事実として書かない）。 */
+      const 和 = /aiXiv\.science では、場の公式審査を経た論文が (\d+) 篇あります。場は、その審査を言語モデルの多数決と説明しています。この稿を誰が審査したかは、確かめていません。ここでは、この審査を査読ではないものとして数えます。学術誌・学会の査読でもありません。/
         .exec(read('cpsbvbng26-dotcom', 'README.md') || '');
-      const 英 = /On aiXiv\.science, (\d+) papers? ha(?:s|ve) passed the platform's official review by a panel of five language models\. This is not peer review by a journal or a society\./
+      const 英 = /On aiXiv\.science, (\d+) papers? ha(?:s|ve) passed the platform's official review\. The platform describes its review as a vote of language models\. Who reviewed this paper was not checked here\. It is counted here as not peer review, and it is not review by a journal or a society either\./
         .exec(read('cpsbvbng26-dotcom', 'README.en.md') || '');
       check('aiXiv.science の公式審査を経た論文の数が、出した先の表と合う',
         m !== null && parseInt(m[1], 10) === 実
@@ -3825,7 +3826,8 @@ console.log('\n12q. 十度目の見落とし：引用情報の振る舞い・Phi
     ['OSF の部品の和文をほかのリポジトリに書く', 替('trinity-operator', 'README.md', /$/, '\n各リポジトリは部品として置き、GitHub につないでいます。\n')],
     ['記録から DataCite の SHA-256 を外す', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', 'df234f07e9e8090fc56d9ac4c6c1ed96af2376da36dee5611e7ed20a6d010662', '0'.repeat(64))],
     ['記録から十度目の節を外す', 替('deposit-check', 'docs/legal-audit-2026-11-12.md', K ? K['節'] : 'x^', '## 十度目')],
-    ['英語の記録の判定の数を変える', 替('deposit-check', 'docs/legal-audit-2026-11-12.md', /Findings in this table: ([^\n]*?)(\d+)\.\n(?![\s\S]*Findings in this table:)/, (m, a, n) => 'Findings in this table: ' + a + (Number(n) + 1) + '.\n')],
+    /* 十度目の節の判定の数を変える。後ろに節が増えても（十六度目、2026-11-13）、十度目の節の一行を狙う。 */
+    ['英語の記録の判定の数を変える', 替('deposit-check', 'docs/legal-audit-2026-11-12.md', new RegExp('(' + (K ? K['節'] : 'x^').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?Findings in this table: [^\\n]*?)(\\d+)\\.\\n'), (m, a, n) => a + (Number(n) + 1) + '.\n')],
     ['決めた一文を外す', 替('researcher-profile', 'docs/legal-audit-2026-11-12.md', /2026-11-13 に Claude が決めました。(?![\s\S]*## 2026-11-12 の続き：九度目)/g, '')],
   ];
   const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
@@ -4176,7 +4178,11 @@ console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「�
    * README は「言語モデル五体による公式査読」と書き、英語の「official review」とも、docs/external-evaluations.md の
    * 「人による査読ではない」とも合っていなかった。13 のリポジトリの文を読み、aiXiv を名指す文（表の行は行ごと）で
    * 「査読」が出たら、その「査読」は「ではない」「でもない」で打ち消されていなければ落とす。英語の peer review も同じ。
-   * この検査のファイルは、壊して確かめるための文を持つので読まない。 */
+   * この検査のファイルは、壊して確かめるための文を持つので読まない。
+   * 十六度目（2026-11-13）：英語の README は「by a panel of five language models」と、日本語の README は「言語モデル五体の多数決で」と、
+   * 場の仕組みをこの稿の審査の事実として書いていた。この稿を誰が審査したかは確かめていない（docs/external-evaluations.md）。
+   * aiXiv を名指す行の文（表の行は欄ごと）で「五体」「five ... models」が出たら、同じ文が場の説明であることか、
+   * 確かめていないことを書いていなければ落とす。 */
   const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
   const SKIP = new Set(['.git', 'node_modules', '__pycache__', 'venv']);
   const EXT = new Set(['.md', '.html', '.json', '.yml', '.yaml', '.txt', '.js', '.py', '.toml', '.cff', '.xml', '.bib', '.csv', '.tex']);
@@ -4199,6 +4205,8 @@ console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「�
   texts[path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md')] = read('cpsbvbng26-dotcom', path.join('docs', 'legal-audit-2026-11-12.md')) || '';
   const JA = /査読(?!(?:では|でも)(?:ない|なく|あり))/;
   const EN = /(?<!\bnot )\bpeer[- ]review/i;
+  const FIVE = /五体|5\s*体|\bfive\b[^.。|]{0,40}\bmodels?\b|\bpanel of five\b/i;
+  const HEDGE = /説明して|説明では|確かめて(?:い|は)(?:ない|ません)|取り寄せて|\bdescribes?\b|\bdescribed\b|\bnot (?:been )?(?:checked|verified)\b/i;
   const AUD = path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：十五度目の見落とし\n';
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
   /* 記録の節：調べた法令の前にあり、六つの欄の表、判定の数、決めた者と理由、弁護士の一文がそろうこと。 */
@@ -4226,6 +4234,8 @@ console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「�
         if (!/aixiv/i.test(line)) continue;
         const units = /^\s*\|/.test(line) ? [line] : line.split(/(?<=[。．])|(?<=\.)\s+/);
         for (const u of units) if (/aixiv/i.test(u) && (JA.test(u) || EN.test(u))) bad.push(f + '：' + u.trim().slice(0, 60));
+        /* 五体の多数決を、この稿の審査の事実として書かない。文ごと（表は欄ごと）に、場の説明か、確かめていないことを求める。 */
+        for (const s of line.split(/\||(?<=[。．])|(?<=\.)\s+/)) if (FIVE.test(s) && !HEDGE.test(s)) bad.push(f + '：五体を事実として：' + s.trim().slice(0, 60));
       }
     }
     return bad;
@@ -4233,7 +4243,7 @@ console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「�
   const now = problems(texts);
   const readme = texts[path.join('cpsbvbng26-dotcom', 'README.md')] || '';
   check('13 のリポジトリで、aiXiv.science を名指す文が、その審査を打ち消しなしに「査読」（peer review）と呼んでいない（aiXiv を含む ' + (Object.keys(texts).length - 1) + ' ファイル）。点検の記録に節がそろう',
-    now.length === 0 && readme.includes('場の審査は言語モデル五体の多数決で、人による査読ではありません。'), now.slice(0, 6).join(' / '));
+    now.length === 0 && readme.includes('場は、その審査を言語モデルの多数決と説明しています。この稿を誰が審査したかは、確かめていません。'), now.slice(0, 6).join(' / '));
   const w = (f, a, b) => Object.assign({}, texts, { [f]: (texts[f] || '').replace(a, b) });
   const RM = path.join('cpsbvbng26-dotcom', 'README.md'), SA = path.join('cpsbvbng26-dotcom', 'docs', 'self-assessment.md'), EV = path.join('cpsbvbng26-dotcom', 'docs', 'external-evaluations.md');
   const REN = path.join('cpsbvbng26-dotcom', 'README.en.md');
@@ -4246,13 +4256,111 @@ console.log('\n12u. 十五度目の見落とし：aiXiv.science の審査を「�
     ['記録の節を外す', w(AUD, HEAD, '\n## aiXiv の呼び方\n')],
     ['記録の判定の数を変える', w(AUD, 'この表の判定は、表現 2、問題なし 2、漏れ 1 です。', 'この表の判定は、表現 1、問題なし 2、漏れ 1 です。')],
     ['決めた理由を外す', w(AUD, '人による査読ではないことを、審査を名指す段の中で示すためです', '人による査読ではないことを示します')],
-    ['弁護士の一文を外す', w(AUD, '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+    ['弁護士の一文を外す', w(AUD, '\n\nこの節も、弁護士は見ていません。\n\n## 2026-11-13：十六度目の見落とし', '\n\n## 2026-11-13：十六度目の見落とし')],
+    /* 十六度目：五体の多数決を、この稿の審査の事実として書き戻す。 */
+    ['英語の README を五体の審査に戻す', w(REN, "passed the platform's official review. The platform describes its review as a vote of language models.", "passed the platform's official review by a panel of five language models.")],
+    ['日本語の README を五体の多数決に戻す', w(RM, '場は、その審査を言語モデルの多数決と説明しています。', '場の審査は言語モデル五体の多数決で、人による査読ではありません。')],
+    ['自己評価の表の欄を五体の多数決に戻す', w(SA, '| aiXiv.science（場は、審査を言語モデルの多数決と説明している。この稿を誰が審査したかは確かめていない） |', '| aiXiv.science（言語モデル五体の多数決） |')],
+    ['外部の評価の行に、場の仕組みを事実として戻す', w(EV, '場は、その審査を言語モデルの多数決と説明している。五体のうち三体以上の受理で載るという数は、場の文を取り寄せて確かめてはいない。', '場の仕組みは、言語モデル五体のうち三体以上が受理と判定すれば載るもの。')],
+    ['ほかのリポジトリに五体の審査を足す', Object.assign({}, texts, { [path.join('sophaxis', 'README.md')]: 'The paper passed review on aiXiv.science by five language models.\n' })],
   ];
   const missed = breaks.filter(([, x]) => problems(x).length === 0).map(([k]) => k);
   /* 打ち消した「査読」は通す。 */
-  const negOk = problems(Object.assign({}, texts, { [path.join('sophaxis', 'README.md')]: 'aiXiv.science の審査は、人による査読ではありません。This is not peer review on aiXiv.\n' })).length === 0;
-  check('壊して確かめる：README・自己評価の表・外部の評価の行・英語の README・ほかのリポジトリのどれで aiXiv の審査を査読と呼んでも落ち、記録の節・判定の数・理由・弁護士の一文を崩しても落ち、打ち消した「査読」は通る（' + (breaks.length - missed.length + (negOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
+  const negOk = problems(Object.assign({}, texts, { [path.join('sophaxis', 'README.md')]: 'aiXiv.science の審査は、人による査読ではありません。This is not peer review on aiXiv. aiXiv.science describes its review as a vote of five language models.\n' })).length === 0;
+  check('壊して確かめる：README・自己評価の表・外部の評価の行・英語の README・ほかのリポジトリのどれで aiXiv の審査を査読と呼んでも、五体の多数決をこの稿の審査の事実として書いても落ち、記録の節・判定の数・理由・弁護士の一文を崩しても落ち、打ち消した「査読」と場の説明として書いた五体は通る（' + (breaks.length - missed.length + (negOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
     missed.length === 0 && negOk, missed.concat(negOk ? [] : ['打ち消し']).join(' / '));
+}
+
+console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の DOI・ORCID iD と、その人の記録についての道具の指摘を求めない（2026-11-13）');
+{
+  /* deposit-check の不具合の報告の様式は、「A DOI that shows the problem helps most.」と書き、走らせた DOI か ORCID iD と、
+   * 道具の出力をそのまま貼るよう求めていた。DOI の登録情報は著者の名を持ち、出力は、その人の記録の欠けや食い違いを挙げる。
+   * 2026-11-13 に Claude が決めた：道具を走らせた識別子を求める欄を持つ様式は、自分の DOI か iD で示すことを求め、
+   * 記録が他人のものなら、DOI も iD も書かず、その人の記録についての指摘も貼らずに問題を書くよう求める。
+   * 13 のリポジトリの .github/ISSUE_TEMPLATE/*.yml を欄ごとに読み、識別子（DOI・ORCID iD・--doi・--orcid）と、走らせる・再現する・出力を貼る語を
+   * 同じ欄に持つものを「識別子を求める欄」とする。その様式は二つの文を持ち、その欄の見本に実在の形の DOI も iD も置かない。
+   * どの様式にも CONTRIBUTING.md にも、識別子を出すよう誘う前の句を置かない。記録の節の形も見る。 */
+  const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
+  const DC = path.join('deposit-check', '.github', 'ISSUE_TEMPLATE', 'bug_report.yml');
+  const DCC = path.join('deposit-check', 'CONTRIBUTING.md');
+  const OWN = 'Show the problem on your own DOI or ORCID iD where you can';
+  const OTHER = "If the record that shows the problem belongs to someone else, describe the problem (the rule, the field and what was expected) without naming its DOI or iD, and without pasting what the tool found about that person's record.";
+  const OWN_C = "Show it on a DOI of your own work, if you can. If the deposit is someone else's, describe the problem without naming its DOI, and without pasting what the tool found about it.";
+  const ID = /--doi|--orcid|\bORCID\b|\bDOIs?\b|\biDs?\b/;
+  const RUN = /\brun on\b|reproduce|再現|走らせ|--doi|--orcid|paste the output|出力/i;
+  const CONCRETE = /\b10\.\d{4,9}\/[^\s<>"'`]+|\b\d{4}-\d{4}-\d{4}-\d{3}[\dX]\b/;
+  const INVITE = /helps most|Give a DOI that shows it|DOI の登録情報は公開|metadata of a DOI is public, so it can be named/;
+  const AUD = path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：十六度目の見落とし\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const forms = {}, contrib = {};
+  for (const repo of REPOS) {
+    const dir = path.join(ROOT, repo, '.github', 'ISSUE_TEMPLATE');
+    if (fs.existsSync(dir)) fs.readdirSync(dir).filter((n) => /\.ya?ml$/.test(n)).sort().forEach((n) => { forms[path.join(repo, '.github', 'ISSUE_TEMPLATE', n)] = fs.readFileSync(path.join(dir, n), 'utf8'); });
+    const c = read(repo, 'CONTRIBUTING.md');
+    if (c !== null) contrib[path.join(repo, 'CONTRIBUTING.md')] = c;
+  }
+  function recordProblems(a) {
+    const i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + 5);
+    const sec = i < 0 || j < 0 ? '' : a.slice(i, j);
+    if (!sec || a.indexOf('\n## 調べた法令\n') < i) return ['記録の節が無いか、調べた法令の後にある'];
+    const bad = [];
+    const t0 = sec.indexOf('\n| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : sec.slice(t0 + 1).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 8 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    const m = /この表の判定は、([^。]+)です。/.exec(sec);
+    const said = m ? Object.fromEntries(m[1].split('、').map((x) => { const [k, n] = x.trim().split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
+    if ((sec.match(/2026-11-13 に Claude が決めました。/g) || []).length < 4) bad.push('決めた者');
+    if (!sec.includes('十五度目の見落としの節の「13 のリポジトリの、aiXiv.science を名指す文」の行は、英語の README を問題なしとしていました。この判定は誤りでした。')) bad.push('十五度目の行を誤りとした文');
+    if (!sec.includes('この稿を誰が審査したかは、確かめていません。')) bad.push('審査の主体を確かめていないこと');
+    /* 記録が名乗る様式の数を、実際に読んだ数と突き合わせる。 */
+    const n = Object.keys(forms).length, nErr = Object.keys(forms).filter((k) => k.endsWith('error-report.yml')).length, nUsed = Object.keys(forms).filter((k) => k.endsWith('used-this-data.yml')).length;
+    if (!sec.includes('deposit-check の不具合の報告のほかに、' + (n - 1) + ' 本を読みました。') || !sec.includes('誤りの知らせの様式（' + nErr + ' 本）') || !sec.includes('使われた記録の様式（' + nUsed + ' 本）')) bad.push('記録が名乗る様式の数');
+    if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec)) bad.push('弁護士の一文');
+    return bad;
+  }
+  function problems(fm, cm, aud) {
+    const bad = recordProblems(aud || '');
+    const asking = [];
+    for (const [k, t] of Object.entries(fm)) {
+      const fields = t.split(/\n  - type: /);
+      const ask = fields.filter((x) => ID.test(x) && RUN.test(x));
+      if (ask.length) {
+        asking.push(k);
+        if (!t.includes(OWN) || !t.includes(OTHER)) bad.push(k + '：自分の DOI か iD に限る文と、他人の記録のときの文が無い');
+        ask.filter((x) => CONCRETE.test(x)).forEach(() => bad.push(k + '：識別子を求める欄の見本に、実在の形の DOI か iD がある'));
+      }
+      if (INVITE.test(t)) bad.push(k + '：識別子を出すよう誘う句');
+    }
+    for (const [k, t] of Object.entries(cm)) if (INVITE.test(t)) bad.push(k + '：識別子を出すよう誘う句');
+    if (!asking.includes(DC)) bad.push('deposit-check の不具合の報告を、識別子を求める様式と見分けられない');
+    if (!(cm[DCC] || '').includes(OWN_C)) bad.push('deposit-check の CONTRIBUTING.md に、自分の作品の DOI に限る文が無い');
+    return { bad, asking };
+  }
+  const audText = read('cpsbvbng26-dotcom', path.join('docs', 'legal-audit-2026-11-12.md')) || '';
+  const now = problems(forms, contrib, audText);
+  check('13 のリポジトリの issue の様式（' + Object.keys(forms).length + ' 本）のうち、道具を走らせた識別子を求める様式（' + now.asking.length + ' 本）は、自分の DOI か iD に限り、他人の記録なら識別子も指摘も書かないよう求める。どの様式と CONTRIBUTING.md（' + Object.keys(contrib).length + ' 本）にも、識別子を出すよう誘う句が無い。点検の記録に節がそろう',
+    now.bad.length === 0 && now.asking.length > 0, now.bad.slice(0, 6).join(' / ') || now.asking.join(', '));
+  const wf = (k, a, b) => Object.assign({}, forms, { [k]: (forms[k] || '').replace(a, b) });
+  const wc = (k, a, b) => Object.assign({}, contrib, { [k]: (contrib[k] || '').replace(a, b) });
+  const breaks = [
+    ['前の誘いの句を戻す', wf(DC, OWN + ': name it, and paste what the tool printed.', 'A DOI that shows the problem helps most. The metadata of a DOI is public, so it can be named here.'), contrib, audText],
+    ['他人の記録のときの文を外す', wf(DC, OTHER, ''), contrib, audText],
+    ['見本に実在の形の DOI を戻す', wf(DC, '--doi <your own DOI>', '--doi 10.' + '5281/zen' + 'odo.1234567'), contrib, audText],
+    ['見本に ORCID iD を置く', wf(DC, '--doi <your own DOI>', '--orcid 0000-0002-1825-0097'), contrib, audText],
+    ['ほかのリポジトリに識別子を求める様式を足す', Object.assign({}, forms, { [path.join('errata-check', '.github', 'ISSUE_TEMPLATE', 'x.yml')]: 'body:\n  - type: textarea\n    attributes:\n      description: The DOI it was run on, and the output.\n' }), contrib, audText],
+    ['CONTRIBUTING.md に前の文を戻す', forms, wc(DCC, OWN_C, 'Give a DOI that shows it, if you can.'), audText],
+    ['記録の節を外す', forms, contrib, audText.replace(HEAD, '\n## 様式\n')],
+    ['記録の判定の数を変える', forms, contrib, audText.replace(/(## 2026-11-13：十六度目の見落とし[\s\S]*?この表の判定は、[^。]*?)(\d+)( です。)/, (_, a, n, b) => a + (Number(n) + 1) + b)],
+    ['十五度目の行を誤りとした文を外す', forms, contrib, audText.replace('この判定は誤りでした。', '')],
+    ['記録が名乗る様式の数をずらす', forms, contrib, audText.replace('deposit-check の不具合の報告のほかに、', 'deposit-check の不具合の報告のほかに、1').replace('1' + (Object.keys(forms).length - 1) + ' 本を読みました。', (Object.keys(forms).length) + ' 本を読みました。')],
+    ['弁護士の一文を外す', forms, contrib, audText.replace('\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+  ];
+  const missed = breaks.filter(([, f, c, a]) => problems(f, c, a).bad.length === 0).map(([k]) => k);
+  /* 自分の識別子を求めない、ほかの様式は通る。 */
+  const passOk = problems(Object.assign({}, forms, { [path.join('errata-check', '.github', 'ISSUE_TEMPLATE', 'y.yml')]: 'body:\n  - type: input\n    attributes:\n      description: A file, a page URL, or a DOI\n' }), contrib, audText).bad.length === 0;
+  check('壊して確かめる：前の誘いの句・他人の記録のときの文・見本の DOI と iD・ほかのリポジトリの識別子を求める様式・CONTRIBUTING.md の前の文・記録の節と判定の数と十五度目の行の訂正と名乗る様式の数と弁護士の一文のどれを崩しても落ち、識別子を走らせた先として求めない様式は通る（' + (breaks.length - missed.length + (passOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
+    missed.length === 0 && passOk, missed.concat(passOk ? [] : ['ほかの様式']).join(' / '));
 }
 
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');

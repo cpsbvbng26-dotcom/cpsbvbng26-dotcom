@@ -14,7 +14,7 @@ Type: Project · Status: Running
 
 I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
-My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review by a panel of five language models. This is not peer review by a journal or a society.
+My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review. The platform describes its review as a vote of language models. Who reviewed this paper was not checked here. It is counted here as not peer review, and it is not review by a journal or a society either.
 
 Errors in what I have published are kept, not deleted, in the errata and the [record of corrections](https://github.com/cpsbvbng26-dotcom/self-correction).
 

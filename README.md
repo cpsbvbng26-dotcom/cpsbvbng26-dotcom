@@ -14,7 +14,7 @@
 
 独学で、言語モデル（LLM）の助けを借りながら、哲学とゲーム理論を研究しています。博士号を取得したあとは、実存哲学を専門にする計画です。ZEN大学 知能情報社会学部 知能情報社会学科の学生です。2024 年 10 月頃から、個人事業主として働いています。SSRN と PhilArchive に査読前の論文を置き、OSS を公開し、[ROAR](https://roar.eprints.org/27422/)（サウサンプトン大学のオープンアクセス・リポジトリ登録簿）掲載の [Sophaxis](https://sophaxis.vercel.app/) を運営しています。Claude 愛好家であり、Claude Code 愛好家です。
 
-主な活動の場は、GitHub・SSRN・PhilArchive・Figshare・OSF です。aiXiv.science では、場の公式審査を経た論文が 1 篇あります。場の審査は言語モデル五体の多数決で、人による査読ではありません。学術誌・学会の査読でもありません。
+主な活動の場は、GitHub・SSRN・PhilArchive・Figshare・OSF です。aiXiv.science では、場の公式審査を経た論文が 1 篇あります。場は、その審査を言語モデルの多数決と説明しています。この稿を誰が審査したかは、確かめていません。ここでは、この審査を査読ではないものとして数えます。学術誌・学会の査読でもありません。
 
 公開したものの誤りは、消さずに正誤表と[訂正の記録](https://github.com/cpsbvbng26-dotcom/self-correction)に残しています。
 
