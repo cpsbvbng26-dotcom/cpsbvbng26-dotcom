@@ -503,4 +503,33 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 
 </details>
 
+---
+
+## 運営理念・声明
+
+このアカウントの運営理念・声明は、[サイトの頁](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)と [docs/mission.md](docs/mission.md) にあります。
+適用されるのは、研究の系列の 10 のリポジトリでは[免責事項](DISCLAIMER.md)と各ライセンス、deposit-check ではそのライセンスです。
+Sophaxis と Nusquama には、それぞれのサイトの規約と声明が掛かります。
+第 1 条と第 2 条を、声明からそのまま写します。
+
+### 第 1 条（目的）
+
+このサイト（cpsbvbng26-dotcom.vercel.app）は、根本卓哉のプロフィールサイトです。
+
+この声明は、このサイトと、[免責事項](DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis と Nusquama には、それぞれのサイトの規約と声明があり、この声明は掛かりません。
+
+これらの場所は、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。
+
+運営者は、公開したものを誰でも料金を払わずに読めるように置き、あとから機械で監査し、誤りを消さずに記録に残すことを目的としています。
+
+批判と誤りの指摘を受けることが、この場所の一番の用途です（[トップの頁](https://cpsbvbng26-dotcom.vercel.app/index.html)）。
+
+### 第 2 条（この声明の性格）
+
+1. この声明は、運営の考え方を述べたものです。
+2. この声明は、[免責事項](DISCLAIMER.md)と、各リポジトリのライセンス（LICENSE と、あれば LICENSE-CODE）の条項ではありません。それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。
+3. この声明と、免責事項・各ライセンスとが食い違うときは、免責事項と各ライセンスが優先します。
+4. 第 1 条の目的は、運営者が目指すものです。それが果たされることを、約束も保証もしません。
+5. この声明は、法的な助言ではありません。
+
 責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。
