@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-bJxfq3VRGq/AryV8kqT1wDd9P+lcYeuGIiHI1jeoUL4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-r/Q5i2Sd5QikgAA6/nyuQri8Ama1Vtf9O7bac1yrHdQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>運営理念・声明 | 根本卓哉</title>
+<meta name="description" content="根本卓哉のプロフィールサイトと、そこから案内するリポジトリの運営理念・声明の頁です。何のための場所かと、適用されるのは免責事項と各ライセンスであることを書いています。">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="運営理念・声明 | 根本卓哉">
+<meta property="og:description" content="根本卓哉のプロフィールサイトと、そこから案内するリポジトリの運営理念・声明の頁です。何のための場所かと、適用されるのは免責事項と各ライセンスであることを書いています。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cpsbvbng26-dotcom.vercel.app/notes/mission.html">
+<link rel="canonical" href="https://cpsbvbng26-dotcom.vercel.app/notes/mission.html">
+<meta property="og:image" content="https://cpsbvbng26-dotcom.vercel.app/og/notes-mission.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cpsbvbng26-dotcom.vercel.app/og/notes-mission.png">
+<link rel="icon" href="./../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ja" href="https://cpsbvbng26-dotcom.vercel.app/notes/mission.html">
+<link rel="alternate" hreflang="en" href="https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html">
+<link rel="alternate" hreflang="x-default" href="https://cpsbvbng26-dotcom.vercel.app/notes/mission.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://cpsbvbng26-dotcom.vercel.app/notes/mission.html",
+  "url": "https://cpsbvbng26-dotcom.vercel.app/notes/mission.html",
+  "name": "運営理念・声明",
+  "inLanguage": "ja",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://cpsbvbng26-dotcom.vercel.app/"
+  }
+}
+</script>
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
+<script>document.documentElement.className+=" js";</script>
+<style>
+:root {
+  --bg: #faf9f7;
+  --card: #ffffff;
+  --text: #17171a;
+  --muted: #63636b;
+  --faint: #727278;
+  --line: #e6e4df;
+  --line-soft: #efedE9;
+  --accent: #8a6a3d;
+  --accent-soft: rgba(138, 106, 61, .12);
+  --accent-wash: rgba(138, 106, 61, .06);
+  --header-bg: rgba(250, 249, 247, .92);
+}
+
+:root[data-theme="dark"] {
+  --bg: #121214;
+  --card: #191919;
+  --text: #ececee;
+  --muted: #9c9ca4;
+  --faint: #81818b;
+  --line: #2a2a2d;
+  --line-soft: #232326;
+  --accent: #b08d57;
+  --accent-soft: rgba(176, 141, 87, .16);
+  --accent-wash: rgba(176, 141, 87, .08);
+  --header-bg: rgba(18, 18, 20, .92);
+}
+
+/* **JS が動かない環境にも暗い側を出す。**上の指定は data-theme が立ったときにしか
+   効かず、そこを立てるのは JS である。明示の選択が無いときは OS の設定に従う。
+   中身は上と一字一句同じにする —— 食い違いは check_site.js が落とす。 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121214;
+    --card: #191919;
+    --text: #ececee;
+    --muted: #9c9ca4;
+    --faint: #81818b;
+    --line: #2a2a2d;
+    --line-soft: #232326;
+    --accent: #b08d57;
+    --accent-soft: rgba(176, 141, 87, .16);
+    --accent-wash: rgba(176, 141, 87, .08);
+    --header-bg: rgba(18, 18, 20, .92);
+  }
+}
+
+/* ---------- 字と幅の決まり（2026-11-12） ----------
+   **字の大きさは五段だけにする。**12・14・16・20・24 px と、名前の 36 px。
+   以前は .68rem から 1.02rem まで十を超える大きさが混ざっていた。
+   書体は端末にあるものだけを使う。外から読み込まない（CSP は default-src 'none'）。
+   **一行は 40 字まで。**本文の塊はどれも --measure に収める。表とカードは頁の幅まで使う。
+   **指し色は一つ。**--accent とその薄め（-soft・-wash）だけを使う。 */
+:root {
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: .75rem;
+  --fs-sm: .875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-name: 2.25rem;
+  --measure: 40rem;
+  --page: 48rem;
+}
+
+html { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s, color .25s;
+}
+
+.serif { font-family: var(--font-serif); font-feature-settings: "palt" 1; }
+
+.wrap { max-width: calc(var(--page) + 3rem); margin: 0 auto; padding: 0 1.5rem; }
+
+a { color: inherit; }
+
+/* ---------- ヘッダー ---------- */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.head-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-top: .75rem; padding-bottom: .75rem;
+  /* **折り返しは、狭い画面だけの話ではない。**節の多い頁では、1440px でも
+     ナビが横幅を 776px 押し広げ、頁ごと横スクロールしていた。 */
+  flex-wrap: wrap; row-gap: .5rem;
+}
+/* ロゴだけを置く。顔写真は置かない（2026-11-12 に決めた）。 */
+.mark { display: inline-flex; flex: none; line-height: 0; text-decoration: none; }
+.mark img { width: 2rem; height: 2rem; border-radius: .3rem; }
+.nav { flex: 1 1 0; display: flex; align-items: center; gap: .4rem 1.1rem;
+       flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
+.nav a {
+  font-size: var(--fs-sm); line-height: 1.6; color: var(--muted); text-decoration: none;
+  white-space: nowrap; transition: color .15s;
+}
+.nav a:hover { color: var(--text); }
+
+.theme-toggle {
+  width: 2rem; height: 2rem; flex: none;
+  display: grid; place-items: center;
+  font: inherit; font-size: var(--fs-sm); line-height: 1; cursor: pointer;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color .15s, border-color .15s;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+
+/* ---------- 最初の画面 ----------
+   名前と、何の頁かを言う一文と、入口。それ以外はその下に置く。 */
+/* 上下だけを決める。一括で書くと左右も 0 になり、.wrap の余白が消える。 */
+.hero { padding-top: 4.5rem; padding-bottom: 3.5rem; }
+.eyebrow {
+  font-size: var(--fs-xs); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--faint); margin: 0 0 1rem;
+}
+.hero h1 {
+  margin: 0 0 .25rem;
+  font-size: var(--fs-name);
+  font-weight: 600; letter-spacing: .04em; line-height: 1.35;
+}
+.hero .romaji {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm); letter-spacing: .16em; color: var(--faint);
+}
+.hero p.lead, .hero-what {
+  margin: 0; max-width: var(--measure);
+  font-size: var(--fs-md); color: var(--muted);
+}
+.hero-what { font-size: var(--fs-lg); line-height: 1.8; color: var(--text); }
+
+/* 入口は三つ。並べて同じ大きさにする。狭い画面では縦に積む。 */
+.entries {
+  list-style: none; margin: 2rem 0 0; padding: 0;
+  display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+.entries a {
+  display: block; height: 100%;
+  padding: .9rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line); border-radius: .5rem;
+  text-decoration: none;
+  transition: border-color .15s;
+}
+.entries a:hover { border-color: var(--accent); }
+.entries b { display: block; font-size: var(--fs-md); font-weight: 600; color: var(--text); }
+.entries b::after { content: " →"; color: var(--accent); }
+.entries span { display: block; margin-top: .2rem; font-size: var(--fs-sm); line-height: 1.7; color: var(--muted); }
+
+.ident { margin: 0 0 1.5rem; font-size: var(--fs-sm); }
+.ident .label { font-size: var(--fs-xs); letter-spacing: .12em; color: var(--faint); margin-right: .7rem; }
+.ident a {
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s, border-color .15s;
+}
+.ident a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- 図 ----------
+   トップに一枚だけ置く。既にある図（黄金比の窓）を、生成のときに描いて埋める。
+   色は CSS の変数から取るので、暗い側でもそのまま読める。 */
+/* 図の節は見出しを持たないので、節の番号を数えない。 */
+section.figure-section { counter-increment: none; padding-top: 3rem; padding-bottom: 3rem; }
+.figure { margin: 0; max-width: var(--measure); }
+.figure svg { display: block; width: 100%; height: auto; }
+.figure figcaption { margin-top: .6rem; font-size: var(--fs-sm); line-height: 1.8; color: var(--muted); }
+.figure figcaption a { color: var(--accent); }
+.figure .band { fill: var(--line-soft); }
+.figure .win { fill: var(--accent-soft); }
+.figure .tick { stroke: var(--faint); }
+.figure .now { stroke: var(--accent); fill: var(--accent); }
+.figure .set { stroke: var(--accent); fill: none; }
+.figure text { fill: var(--muted); font-size: var(--fs-xs); font-family: var(--font-sans); }
+
+/* ---------- 事実の欄 ----------
+   ヒーローで、数えられる事実と、著者自身の解釈を分けて置く。
+   **列は minmax(0, 1fr) にする。**1fr の最小は中身の最小幅で、DOI のように折り返せない語があると、
+   列ごと画面より広がる。360px の画面で 2px はみ出していた。 */
+.facts { margin: 1.5rem 0 0; max-width: var(--measure); display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+.facts .fact {
+  display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1rem;
+  padding: .6rem 0; border-bottom: 1px solid var(--line-soft);
+}
+.facts dt { margin: 0; font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint); padding-top: .25rem; }
+.facts dd { margin: 0; font-size: var(--fs-sm); line-height: 1.9; color: var(--muted); overflow-wrap: anywhere; }
+.facts dd b { color: var(--text); }
+.facts dd a { color: var(--accent); }
+.facts .faint { color: var(--faint); }
+
+/* ---------- 主張 ----------
+   一つだけ出す。反証の手順まで書いていなければ、主張ではなく宣伝である。 */
+.claim {
+  max-width: var(--measure);
+  padding: 1.4rem 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 .5rem .5rem 0;
+}
+.claim-what { margin: 0 0 1.2rem; font-size: var(--fs-md); line-height: 1.9; }
+.claim-what code, .claim-kv code { font-family: var(--font-mono); font-size: inherit; color: var(--text); }
+.claim-kv { margin: 0; display: grid; gap: 0; }
+.claim-kv > div {
+  display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem;
+  padding: .7rem 0; border-top: 1px solid var(--line);
+}
+.claim-kv dt { margin: 0; font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint); padding-top: .25rem; }
+.claim-kv dd { margin: 0; font-size: var(--fs-sm); line-height: 1.9; color: var(--muted); }
+.claim-kv dd b { color: var(--text); }
+.claim-kv dd a { color: var(--accent); }
+.claim-kv dd .faint { color: var(--faint); }
+.claim-foot {
+  margin: 1.2rem 0 0; padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm); line-height: 1.9; color: var(--faint);
+}
+
+@media (max-width: 40rem) {
+  .facts .fact, .claim-kv > div { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
+}
+
+/* ---------- 自己紹介 ----------
+   最初の画面から外し、節として置く。見出しは自己紹介の板が持つ。 */
+.profile { max-width: var(--measure); margin: 2rem 0 0; }
+.profile-section .profile { margin: 0; }
+.profile-section .lead { margin: 1.5rem 0 0; max-width: var(--measure); font-size: var(--fs-sm); color: var(--muted); }
+.profile-label, .aims-label {
+  margin: 0 0 .7rem;
+  font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--faint);
+}
+.profile-section .profile-label {
+  margin: 0 0 2rem; position: relative;
+  font-family: var(--font-serif); font-feature-settings: "palt" 1;
+  font-size: var(--fs-xl); font-weight: 600; letter-spacing: .04em; line-height: 1.4;
+  text-transform: none; color: var(--text);
+}
+.profile-photo {
+  display: block; width: 8.5rem; height: auto; margin: 0 0 1.1rem;
+  border-radius: .4rem; border: 1px solid var(--line);
+}
+.profile-photos { margin: 0 0 1.1rem; max-width: 100%; }
+.profile-photos-row { display: flex; gap: .55rem; align-items: flex-start; }
+.profile-photo-note { margin: .45rem 0 0; font-size: var(--fs-xs); line-height: 1.7; color: var(--faint); }
+.profile-photos .profile-photo {
+  height: 9.5rem; aspect-ratio: 3 / 4; width: auto; margin: 0;
+  object-fit: cover; object-position: right center;
+}
+.profile-now { margin: 0; font-size: var(--fs-md); line-height: 1.95; color: var(--text); }
+.profile-study { margin-top: .8rem; color: var(--muted); }
+.profile-cred { margin-bottom: .8rem; color: var(--muted); }
+.profile-study b, .profile-study strong { color: var(--text); font-weight: 600; }
+
+/* 来た道。縦の線を左に一本引き、節ごとに丸を置く。 */
+.path {
+  list-style: none;
+  margin: 1.5rem 0 0; padding: 0 0 0 1.15rem;
+  border-left: 1px solid var(--line);
+}
+.path li {
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .4rem 1rem;
+  align-items: baseline;
+  padding: .55rem 0;
+}
+.path li + li { border-top: 1px solid var(--line-soft); }
+.path li::before {
+  content: ""; position: absolute;
+  left: -1.15rem; top: 1.1rem;
+  width: .42rem; height: .42rem; margin-left: -.22rem;
+  border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--line);
+}
+.path .path-now::before { background: var(--accent); border-color: var(--accent); }
+.path-name { font-size: var(--fs-sm); line-height: 1.8; color: var(--text); }
+.path-courses {
+  grid-column: 1 / -1; list-style: none;
+  margin: .5rem 0 .2rem; padding: 0 0 0 .8rem;
+  display: grid; gap: .3rem;
+  border-left: 2px solid var(--accent-soft);
+}
+.path-courses li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem;
+  font-size: var(--fs-sm); line-height: 1.7; color: var(--muted);
+}
+.path-courses li i {
+  font-style: normal; font-size: var(--fs-xs);
+  padding: 0 .4rem; border-radius: .2rem;
+  color: var(--accent); background: var(--accent-soft);
+}
+/* 評語。区分と同じ大きさで、評語ごとに色を変えない。
+   色を変えれば、良し悪しの序列を紙面のほうが語ることになる。 */
+.path-courses li b {
+  font-weight: 600; font-size: var(--fs-xs);
+  padding: 0 .4rem; border-radius: .2rem;
+  color: var(--muted); border: 1px solid var(--accent-soft);
+}
+.path-now .path-name { color: var(--accent); }
+.path-state { font-size: var(--fs-xs); color: var(--muted); white-space: nowrap; }
+.path-note {
+  grid-column: 1 / -1;
+  margin-top: .2rem; padding-left: .8rem;
+  font-size: var(--fs-xs); line-height: 1.7; color: var(--faint);
+  border-left: 2px solid var(--accent-soft);
+}
+
+/* 表。**頁を押し広げない。**幅が足りなければ、表が自分の中で横へ流れる。
+   表の CSS がそもそも無く、既定のまま置いていた。四列の表が 390px の画面で
+   482px になり、**頁ごと横スクロールしていた** —— 本文の一行目から読めなくなる。 */
+.notes-list table, .prose table {
+  display: block; max-width: 100%; overflow-x: auto;
+}
+.notes-list table code, .prose table code {
+  white-space: normal; overflow-wrap: anywhere;
+}
+/* 引用の形の長い URL は、どこでも折り返せるようにする。字を大きくしたら、360px で 32px はみ出した。 */
+.notes-list code, .prose code { overflow-wrap: anywhere; }
+
+/* 根幹の一段。自己紹介の地の文と同じ大きさで、左の縁だけで分ける。 */
+.profile-core {
+  margin: 1rem 0 0; padding: .1rem 0 .1rem 1rem;
+  font-size: var(--fs-md); line-height: 1.95; color: var(--text);
+  border-left: 2px solid var(--accent);
+}
+.profile-core a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+/* 一覧の中に置いた根幹の段は、一覧の行の余白に負けないようにする。負けると、文字が左の縁に貼り付く。 */
+.notes-list p.profile-core { margin: 1.1rem 0 0; padding: .1rem 0 .1rem 1rem; border-bottom: 0; }
+
+/* 科目名についての断り。**訳を公式名のように見せない。**
+   本文より小さくするが、薄くはしない —— 読み飛ばされると断りにならない。 */
+.path-caveat {
+  margin: 1rem 0 0; padding: .7rem .9rem;
+  font-size: var(--fs-sm); line-height: 1.85; color: var(--muted);
+  background: var(--accent-wash);
+  border-left: 2px solid var(--accent);
+  border-radius: .3rem;
+}
+.path-caveat b { color: var(--text); }
+
+.aims-label { margin: 1.5rem 0 .6rem; }
+.aims { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.aims li {
+  position: relative; padding-left: 1.15rem;
+  font-size: var(--fs-sm); line-height: 1.85; color: var(--muted);
+}
+.aims li::before {
+  content: ""; position: absolute; left: 0; top: .8rem;
+  width: .5rem; height: 1px; background: var(--accent);
+}
+
+@media (max-width: 40rem) {
+  .path li { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  .path-state { white-space: normal; }
+}
+
+/* ---------- 修得した科目 ----------
+   修了証と違って検証ページが無い。だからカードにせず、行で並べる。 */
+.courses { list-style: none; margin: 0; padding: 0; max-width: var(--measure); }
+.courses li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .3rem 1rem;
+  align-items: baseline;
+  padding: .6rem 0; border-top: 1px solid var(--line-soft);
+}
+.courses li:first-child { border-top: 1px solid var(--line); }
+.course-name { font-size: var(--fs-sm); line-height: 1.8; color: var(--text); }
+.course-note { font-size: var(--fs-xs); color: var(--faint); white-space: nowrap; }
+.as-of { margin: .5rem 0 0; font-size: var(--fs-xs); color: var(--faint); }
+.courses-total {
+  margin: .7rem 0 0; padding-left: .8rem;
+  font-size: var(--fs-sm); color: var(--muted);
+  border-left: 2px solid var(--accent);
+}
+
+@media (max-width: 40rem) {
+  .courses li { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  .course-note { white-space: normal; }
+}
+
+/* ---------- 一覧 ---------- */
+.notes-list { max-width: var(--measure); }
+.notes-list p {
+  margin: 0; padding: .85rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: var(--fs-md); line-height: 1.85;
+}
+.notes-list a { color: var(--accent); text-decoration: none; }
+.notes-list a:hover { text-decoration: underline; }
+.notes-list span {
+  display: block; margin-top: .15rem;
+  font-size: var(--fs-sm); color: var(--faint);
+}
+
+/* 仕切り。細い線一本にする。 */
+.rule {
+  height: 1px; border: 0; margin: 0 auto;
+  width: calc(100% - 3rem); max-width: var(--page);
+  background: var(--line);
+}
+
+/* ---------- セクション ----------
+   節の番号は HTML に持たせない。**印字するのは装飾であって内容ではない**ので、
+   CSS のカウンタで出す。読み上げには乗らず、順番だけが見える。 */
+body { counter-reset: sec; }
+/* 上下だけを決める。**padding の一括指定は左右も 0 にし、.wrap の余白を消していた。** */
+section.block { padding-top: 4rem; padding-bottom: 4rem; counter-increment: sec; }
+.sec-head { margin-bottom: 2rem; position: relative; max-width: var(--measure); }
+.sec-head h2, .profile-section .profile-label { font-size: var(--fs-xl); }
+.sec-head h2 { margin: 0; font-weight: 600; letter-spacing: .04em; line-height: 1.4; }
+.sec-head h2::before, .profile-section .profile-label::before {
+  content: counter(sec, decimal-leading-zero);
+  display: block; margin-bottom: .4rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs); font-weight: 400; letter-spacing: .2em; color: var(--faint);
+}
+.sec-head h2::after, .profile-section .profile-label::after {
+  content: ""; display: block; width: 2rem; height: 2px; margin-top: .7rem;
+  background: var(--accent);
+}
+.sec-head p { margin: .9rem 0 0; font-size: var(--fs-sm); color: var(--muted); }
+
+/* 広い画面では、番号を本文の外へ出す。組版の余白を使う。 */
+@media (min-width: 62rem) {
+  .sec-head h2::before, .profile-section .profile-label::before {
+    position: absolute; left: -4rem; top: .5rem;
+    margin: 0; text-align: right; width: 3rem;
+  }
+}
+
+/* ---------- カード ---------- */
+.group + .group { margin-top: 2.5rem; }
+.group-name {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: var(--fs-xs); letter-spacing: .14em; color: var(--faint);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.group-name::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+.cert {
+  display: flex; flex-direction: column; gap: .5rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  text-decoration: none;
+  transition: border-color .15s;
+}
+.cert:hover { border-color: var(--accent); }
+.cert .code { font-size: var(--fs-xs); letter-spacing: .08em; color: var(--accent); }
+.cert h3 { margin: 0; font-size: var(--fs-md); font-weight: 600; line-height: 1.6; }
+.cert .issuer { font-size: var(--fs-sm); color: var(--muted); margin: 0; }
+.cert .alt { margin: 0; font-size: var(--fs-xs); line-height: 1.7; color: var(--faint); }
+.cert .when { margin: 0; font-size: var(--fs-xs); color: var(--faint); }
+.cert .doi { margin: 0; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--accent); overflow-wrap: anywhere; }
+
+.sec-head .go {
+  display: inline-block; margin-left: .6rem;
+  font-size: var(--fs-sm); color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s;
+}
+.sec-head .go:hover { border-bottom-color: var(--accent); }
+.sec-head .go::after { content: " →"; }
+
+.cert .verify { margin-top: .3rem; font-size: var(--fs-xs); color: var(--faint); transition: color .15s; }
+.cert:hover .verify { color: var(--accent); }
+.cert .verify::after { content: " →"; }
+
+/* ---------- 論文の表 ----------
+   題・年・DOI・状態を一行に並べる。比べやすさを先に取る（2026-11-12）。
+   狭い画面では、行を一つずつの塊に組み直す。表の見出しは各欄の前に札として出す。 */
+.works-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); line-height: 1.75; }
+.works-table caption { text-align: left; font-size: var(--fs-sm); color: var(--muted); padding-bottom: .75rem; }
+.works-table th {
+  text-align: left; font-weight: 600; font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint);
+  padding: .5rem .75rem .5rem 0; border-bottom: 1px solid var(--line);
+}
+.works-table td {
+  padding: .85rem .75rem .85rem 0; border-bottom: 1px solid var(--line-soft);
+  vertical-align: top; color: var(--muted);
+}
+.works-table .t-title { width: 52%; }
+.works-table .t-title > a { font-size: var(--fs-md); font-weight: 600; color: var(--text); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .2em; }
+.works-table .t-title > a:hover { text-decoration-color: var(--accent); }
+.works-table .t-sum { display: block; margin-top: .25rem; }
+.works-table .t-where { display: block; margin-top: .25rem; font-size: var(--fs-xs); color: var(--faint); }
+.works-table .t-where a { color: var(--faint); text-decoration: underline; text-underline-offset: .15em; }
+.works-table .t-where a:hover { color: var(--accent); }
+.works-table .t-year { white-space: nowrap; }
+.works-table .t-doi { font-family: var(--font-mono); font-size: var(--fs-xs); overflow-wrap: anywhere; }
+.works-table .t-doi a { color: var(--accent); }
+.works-table .t-state { white-space: nowrap; color: var(--text); }
+@media (max-width: 40rem) {
+  .works-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .works-table, .works-table tbody, .works-table tr, .works-table td { display: block; width: 100%; }
+  .works-table tr { padding: .9rem 0; border-bottom: 1px solid var(--line-soft); }
+  .works-table td { padding: .1rem 0; border: 0; }
+  .works-table .t-title { width: 100%; }
+  .works-table td[data-label]::before {
+    content: attr(data-label); display: inline-block; min-width: 3.5rem; margin-right: .5rem;
+    font-family: var(--font-sans); font-size: var(--fs-xs); color: var(--faint);
+  }
+}
+
+/* ---------- 学習領域 ---------- */
+.areas { display: grid; gap: 0; max-width: var(--measure); }
+.area {
+  display: grid; gap: .3rem 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.area:last-child { border-bottom: 1px solid var(--line-soft); }
+@media (min-width: 40rem) { .area { grid-template-columns: 12rem minmax(0, 1fr); } }
+.area h3 { margin: 0; font-size: var(--fs-md); font-weight: 600; }
+.area p { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+
+/* ---------- リンク ---------- */
+.links { display: flex; flex-wrap: wrap; gap: .6rem; }
+.link {
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .2rem .6rem;
+  max-width: 100%;
+  padding: .55rem 1.1rem;
+  font-size: var(--fs-sm); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s;
+}
+.link:hover { border-color: var(--accent); }
+.link span { font-size: var(--fs-xs); color: var(--faint); }
+
+/* ---------- 頁の下の欄 ----------
+   一行に収める。名前・連絡・免責・最終更新だけを置く。 */
+footer { border-top: 1px solid var(--line); margin-top: 2rem; }
+.foot {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem;
+  padding-top: 1.5rem; padding-bottom: 2rem;
+  font-size: var(--fs-xs); line-height: 1.8; color: var(--faint);
+}
+
+/* ---------- 登場演出 ----------
+   **既定は「見える」である。**以前は .reveal に opacity:0 を直接当てており、
+   JS が動かない環境では本文が一つも出なかった（31 要素すべて）。
+   隠すのは、head の一行で js が立ったときだけにする。動きは小さくする。 */
+.reveal { transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: calc(var(--i, 0) * 50ms); }
+.js .reveal { opacity: 0; transform: translateY(6px); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* **焦点の入った塊は、待たずに見せる。**Tab で辿るとスクロールより先に焦点が入る。
+   そのままだと opacity 0 の行に焦点が置かれる。:focus-within は祖先にも掛かる。 */
+.js .reveal:focus-within { opacity: 1; transform: none; transition: none; }
+
+/* 登場の時間差。CSP の style-src がインラインの style 適用を拒むため、CSS だけで与える。 */
+.cards > *:nth-child(1), .areas > *:nth-child(1) { --i: 0; }
+.cards > *:nth-child(2), .areas > *:nth-child(2) { --i: 1; }
+.cards > *:nth-child(3), .areas > *:nth-child(3) { --i: 2; }
+.cards > *:nth-child(4), .areas > *:nth-child(4) { --i: 3; }
+.cards > *:nth-child(5), .areas > *:nth-child(5) { --i: 4; }
+.cards > *:nth-child(6), .areas > *:nth-child(6) { --i: 5; }
+.cards > *:nth-child(n+7), .areas > *:nth-child(n+7) { --i: 6; }
+
+/* 入力欄も同じ枠を出す。境界線の色だけで示すと、焦点の在りかが読めない。 */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: .3rem;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem; z-index: 50;
+  padding: .55rem 1rem;
+  color: var(--bg); background: var(--text);
+  text-decoration: none; font-size: var(--fs-sm);
+  border-radius: .5rem;
+  transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* 項目が 1 行に収まらない幅では、ナビを折り返して見切れを防ぐ */
+@media (max-width: 30rem) {
+  .head-row { flex-wrap: wrap; align-items: flex-start; padding-top: .6rem; padding-bottom: .6rem; }
+  .nav { width: 100%; justify-content: flex-start; gap: .3rem .9rem; }
+  .wrap { padding: 0 1rem; }
+  .hero { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  :root { --fs-name: 2rem; }
+  section.block { padding-top: 3rem; padding-bottom: 3rem; }
+  .rule { width: calc(100% - 2rem); }
+  /* **狭い画面では貼り付けない。**折り返した項目が三行になり、貼り付けたままだと
+     画面の高さを常に一割以上ふさぐ。 */
+  header { position: static; }
+}
+
+@media (max-width: 22rem) {
+  .nav { gap: .25rem .7rem; }
+  .nav a { font-size: var(--fs-xs); }
+  .wrap { padding: 0 .9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- 印刷 ----------
+   紙では、頁の上の欄と切り替えの釦を外し、白地に黒で刷る。
+   リンクは下線のまま残し、外への URL を後ろに書き出す。表とカードは途中で切らない。 */
+@media print {
+  @page { margin: 16mm; }
+  header, .theme-toggle, .skip-link, .entries b::after, .cert .verify { display: none !important; }
+  :root, :root[data-theme="dark"] {
+    --bg: #fff; --card: #fff; --text: #000; --muted: #222; --faint: #444;
+    --line: #bbb; --line-soft: #ddd; --accent: #000; --accent-soft: transparent; --accent-wash: transparent;
+    --fs-xs: 7.5pt; --fs-sm: 9pt; --fs-md: 10.5pt; --fs-lg: 12.5pt; --fs-xl: 15pt; --fs-name: 22pt;
+  }
+  body { background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrap { max-width: none; padding: 0; }
+  .hero { padding-top: 0; padding-bottom: 1rem; }
+  section.block { padding-top: 1rem; padding-bottom: 1rem; }
+  .rule { display: none; }
+  .js .reveal { opacity: 1; transform: none; }
+  .cert, .works-table tr, .fact, .claim, figure, .entries li { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+  main a[href^="http"]::after { content: " <" attr(href) ">"; font-size: var(--fs-xs); color: var(--faint); overflow-wrap: anywhere; }
+  main .t-doi a::after { content: none; }
+  .entries a, .cert { border-color: var(--line); }
+  footer { margin-top: 1rem; }
+}
+
+/* リンクは色だけで示さない。指し色と本文色の差はどう選んでも 1.2:1 程度にしか
+   ならず（3:1 必要）、色覚や低コントラストの環境では見分けがつかない。下線で示す。 */
+.facts dd a, .claim-kv dd a, .notes-list a, .prose a, .lead-block a,
+.lead a, .issuer a, .sec-head p a, .foot a { text-decoration: underline; text-underline-offset: .15em; }
+.facts dd a:hover, .claim-kv dd a:hover, .notes-list a:hover,
+.prose a:hover, .lead-block a:hover, .lead a:hover { text-decoration-thickness: 2px; }
+
+/* 同じ資料の別の所在。カードの外に出したので .cert の子孫ではない。 */
+.where {
+  margin: .2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs); line-height: 1.7; color: var(--faint);
+  /* 等幅の DOI は途中で切れない。切れないと、360px の画面で行ごと 4px はみ出していた。 */
+  overflow-wrap: anywhere;
+}
+.cert-group { display: flex; flex-direction: column; gap: .35rem; }
+.cert-group .cert { flex: 1; }
+.cert-group .where { padding: 0 .35rem; }
+.cert-group .where a { color: var(--faint); text-decoration: underline; text-underline-offset: .15em; }
+.cert-group .where a:hover { color: var(--accent); }
+.foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
+.foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header>
+  <div class="wrap head-row">
+    <a class="mark" href="#main"><img src="./../favicon.svg" alt="運営理念・声明" width="32" height="32"></a>
+    <nav class="nav">
+      <a href="./../index.html">自己紹介</a>
+      <a href="./../trinity.html">作用素</a>
+      <a href="./index.html">ノート</a>
+      <a href="./mission.en.html">English</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="wrap hero">
+    <p class="eyebrow reveal">声明</p>
+    <h1 class="serif reveal">運営理念・声明</h1>
+    <p class="romaji reveal">Statement of Purpose</p>
+
+    <p class="lead reveal">このプロフィールサイトと、そこから案内するリポジトリの運営理念・声明の頁です。権利や義務を生じさせるものではなく、適用されるのは<a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a>と各リポジトリのライセンスです。</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a1" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 1 条（目的）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <p class="profile-core">このサイト（cpsbvbng26-dotcom.vercel.app）は、根本卓哉のプロフィールサイトです。</p>
+      <p class="profile-core">この声明は、このサイトと、<a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a>が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis と Nusquama には、それぞれのサイトの規約と声明があり、この声明は掛かりません。</p>
+      <p class="profile-core">これらの場所は、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。</p>
+      <p class="profile-core">運営者は、公開したものを誰でも料金を払わずに読めるように置き、あとから機械で監査し、誤りを消さずに記録に残すことを目的としています。</p>
+      <p class="profile-core">批判と誤りの指摘を受けることが、この場所の一番の用途です（<a href="./../index.html">トップの頁</a>）。</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a2" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 2 条（この声明の性格）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>この声明は、運営の考え方を述べたものです。</li>
+        <li>この声明は、<a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a>と、各リポジトリのライセンス（LICENSE と、あれば LICENSE-CODE）の条項ではありません。それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。</li>
+        <li>この声明と、免責事項・各ライセンスとが食い違うときは、免責事項と各ライセンスが優先します。</li>
+        <li>第 1 条の目的は、運営者が目指すものです。それが果たされることを、約束も保証もしません。</li>
+        <li>この声明は、法的な助言ではありません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a3" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 3 条（料金と再利用）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>頁を読むのに、料金は掛かりません。頁に、販売・広告・寄付の求めはありません。</li>
+        <li>文書・論文・コードは、各リポジトリのライセンスの定めのもとで再利用できます（免責事項「再利用」）。</li>
+        <li>これらのリポジトリが引き、または引用を確かめるために置いている他人の文は、それぞれの権利者のものです。</li>
+        <li>独学で進めたものは、読む側からも書く側からも金を取らないダイヤモンド・オープンアクセスの場にしか出しません（<a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/README.md" target="_blank" rel="noopener">README</a>）。</li>
+        <li>料金が掛からないことは、正確さや完全さを保証する意味を持ちません。保証しないことは、免責事項「提供のしかた」に書いたとおりです。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a4" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 4 条（査読前の稿であること）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>論文はどれも、査読を受けていない稿です。</li>
+        <li>DOI があることは、査読を受けたことを意味しません。</li>
+        <li>プレプリントの場や索引に載ったことも、査読を受けたことを意味しません。</li>
+        <li>文書・論文・コードは、学術上・法律上・医学上・財務上その他の専門的な助言ではありません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a5" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 5 条（誤りと訂正）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>誤りが見つかったものは、消さずに正誤表と訂正の記録に残します。</li>
+        <li>撤回すべきものが見つかったら、撤回して記録に残します。</li>
+        <li>各リポジトリの検査と、それらをまたぐ横断の検査が、公開物の数と文を機械で突き合わせています。</li>
+        <li>検証の量は、検証される中身の価値について何も言いません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a6" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 6 条（運営主体と独立）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>これらの場所は、根本卓哉が個人で運営しています。法人や団体ではありません。</li>
+        <li>指導教員も共同研究者もいません。</li>
+        <li>運営者は、ZEN大学の学生です。これらの場所は、ZEN大学その他の機関の事業ではありません。どの機関からも、承認・後援・推薦を受けていません。</li>
+        <li>預け先・索引・登録簿に載っていることは、それらとの提携でも、それらによる推薦でもありません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a7" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 7 条（人についての記載）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>人についての記載の誤りや権利の侵害は、免責事項「人についての記載」の窓口で受け付けます。</li>
+        <li>届いた求めは速やかに確かめ、必要なときは訂正または削除します。</li>
+        <li>存命の家族について書くのは、「両親」という語までです。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a8" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 8 条（個人の情報）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>頁は cookie を置かず、アクセス解析の仕組みも置いていません。</li>
+        <li>届いた個人の情報は、免責事項「情報の扱い」のとおりに扱います。</li>
+        <li>issue の題と本文が言語モデルに渡るのは、本人の同意があるときだけです（免責事項「issue の中身と言語モデル」）。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a9" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 9 条（言語モデル）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>文書とコードの一部は、運営者の求めにより Claude Code（Anthropic）で書いています。</li>
+        <li>運営者が内容を確かめ、責任を負います。Claude は著者ではありません。</li>
+        <li>この声明も、運営者の求めにより Claude Code で書きました。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a10" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 10 条（法令）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>免責事項が掛かる場所での運営者の責任は、免責事項「責任」の節のとおり、法令の定めるとおりです。</li>
+        <li>再利用の条件と、その条件のもとでの保証と責任は、それぞれのライセンスの定めによります（免責事項「再利用」）。</li>
+        <li>免責事項は、日本の法令に従って解釈します（免責事項「準拠法と変更」）。</li>
+        <li>この声明は、これらの定めを変えません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a11" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 11 条（紛争への対応）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>運営者は、現在、弁護士その他の専門家に依頼していません。この声明と免責事項は、弁護士の確認を受けていません。</li>
+        <li>紛争が生じたときは、運営者は、必要に応じて弁護士その他の専門家に相談したうえで対応します。</li>
+        <li>対応は、日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）と、免責事項の「責任」と「準拠法と変更」の節と、各ライセンスの定めに沿います。</li>
+        <li>この条は、誰かに対する警告ではありません。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a12" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 12 条（継続）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>このサイトは、いま運営中です。</li>
+        <li>続くことは保証しません。</li>
+        <li>続けられなくなったときの手順は、<a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/continuity.md" target="_blank" rel="noopener">続けられなくなったとき</a>の頁にあります。</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="a13" class="wrap block">
+    <div class="sec-head reveal">
+      <h2 class="serif">第 13 条（この声明の変更）</h2>
+      
+    </div>
+    <div class="notes-list reveal">
+      <div class="profile-core"><ol>
+        <li>運営者は、この声明を変えることがあります。</li>
+        <li>変えたときは、頁の下の欄の最終更新の日付が改まります。過去の版は、公開のリポジトリの履歴に残ります。</li>
+        <li>この声明を変えても、免責事項と各ライセンスの定めは変わりません。</li>
+      </ol></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 根本卓哉</span>
+    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">連絡</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a> · <span class="updated">最終更新 <time datetime="2026-11-13">2026-11-13</time></span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- テーマ ---------- */
+  var KEY = 'researcher-profile-theme';
+  var root = document.documentElement;
+
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function system() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function current() { return root.getAttribute('data-theme') || stored() || system(); }
+
+  function apply(theme) {
+    root.setAttribute('data-theme', theme);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#121214' : '#faf9f7');
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = theme === 'dark' ? '☀' : '☾';
+  }
+
+  var saved = stored();
+  if (saved) root.setAttribute('data-theme', saved);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    apply(current());
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        apply(next);
+        save(next);
+      });
+    }
+
+    /* ---------- スクロールに合わせた表示 ---------- */
+    var targets = document.querySelectorAll('.reveal');
+    document.querySelectorAll('.cards, .areas, .links').forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (el, i) {
+        el.style.setProperty('--i', String(i));
+      });
+    });
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var show = function (el) { el.classList.add('is-visible'); io.unobserve(el); };
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) show(entry.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    /* 閾値は 0 にする。割合で判定すると、画面より高い塊が永久に出ない。
+     * 自己紹介が 8819px まで伸びたとき、844px の画面では最大 9.6% しか
+     * 見えず、1 割の条件に届かなかった。頁の上半分が丸ごと消えていた。 */
+    Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+    /* 上へ通り過ぎた塊も出す。交差の通知は、画面に入ったときと出たときにしか来ない。
+     * End キーや頁末へのリンクで一度に飛び越えた塊は、一度も画面に入らないので通知が来ず、
+     * 消えたまま残っていた。2026-11-02、トップの頁で End キーを押すと 34 塊のうち 20 塊が出なかった。 */
+    var queued = false;
+    window.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(function () {
+        queued = false;
+        var edge = window.innerHeight * 0.9;
+        /* 頁末まで来たら残りを全部出す。下 1 割に頭がある最後の塊は、それ以上送れないので出る機会が無い。 */
+        var end = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        Array.prototype.forEach.call(targets, function (el) {
+          if (!el.classList.contains('is-visible') && (end || el.getBoundingClientRect().top < edge)) show(el);
+        });
+      });
+    }, { passive: true });
+  });
+})();
+</script>
+</body>
+</html>
