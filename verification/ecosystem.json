@@ -3432,5 +3432,93 @@
         "8c76309d83a868cbe77bbb38a58568090def03c377c2067994a4ecfbe3a81d24"
       ]
     }
+  },
+  "声明": {
+    "_": "運営理念・声明（2026-11-13）。全文は researcher-profile の mission.json・mission.en.json から notes/mission.html・notes/mission.en.html を作り、GitHub で読める同じ文を docs/mission.md・docs/mission.en.md に置く。README（日英）は第 1 条と第 2 条を写す。周りの 10 本の README には、印から印までが一字一句同じ短い節を置く（日本語は全部、英語は英語の README を持つものと deposit-check）。短い節と全文は「結ぶ」の句を両方が持つことで結ぶ。声明は拘束せず、免責事項と各ライセンスが優先する。弁護士に依頼していないので、依頼した・付く・確かめたと書かない。12x が見る。",
+    "repos": [
+      "errata-check",
+      "self-correction",
+      "trinity-infinity",
+      "trinity-operator",
+      "autonomy-and-self-cultivation",
+      "naval-gazette-notes",
+      "justice-and-algorithms",
+      "solitary-school",
+      "deposit-check",
+      "researcher-profile"
+    ],
+    "英語の面": {
+      "errata-check": "README.en.md",
+      "deposit-check": "README.md"
+    },
+    "短い節": [
+      "<!-- 声明:ここから -->",
+      "このリポジトリには、根本卓哉の[運営理念・声明](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)が掛かります。",
+      "声明は、運営の考え方を述べたものです。それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。",
+      "適用されるのは、このリポジトリのライセンスと、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)が挙げるリポジトリではその免責事項です。声明とそれらが食い違うときは、それらが優先します。",
+      "運営者は、現在、弁護士その他の専門家に依頼していません。声明と免責事項は、弁護士の確認を受けていません。",
+      "紛争が生じたときは、運営者は、必要に応じて弁護士その他の専門家に相談したうえで、日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）に沿って対応します。これは、誰かに対する警告ではありません。",
+      "全文は、[サイトの頁](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)と、cpsbvbng26-dotcom の [docs/mission.md](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/mission.md) にあります。",
+      "<!-- 声明:ここまで -->"
+    ],
+    "短い節（英語）": [
+      "<!-- statement:start -->",
+      "This repository is covered by the [Statement of Purpose](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) of Takuya Nemoto.",
+      "The statement sets out how the operator approaches running these places. By itself it creates no right or obligation for the operator, for readers or for anyone else.",
+      "What applies is this repository's licence and, for the repositories listed in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md), that Disclaimer. Where the statement and they differ, they prevail.",
+      "The operator has not, at present, retained a lawyer or other professional. The statement and the Disclaimer have not been reviewed by a lawyer.",
+      "If a dispute arises, the operator will respond after consulting a lawyer or other professional where needed, following the laws of Japan (including their rules on international jurisdiction and on the governing law). This is not a warning to anyone.",
+      "The full text is on [the site](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) and in [docs/mission.en.md](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/mission.en.md) of cpsbvbng26-dotcom.",
+      "<!-- statement:end -->"
+    ],
+    "結ぶ": [
+      "運営の考え方を述べたものです。",
+      "それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。",
+      "運営者は、現在、弁護士その他の専門家に依頼していません。",
+      "必要に応じて弁護士その他の専門家に相談したうえで",
+      "日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）",
+      "誰かに対する警告ではありません。"
+    ],
+    "結ぶ（英語）": [
+      "sets out how the operator approaches running these places.",
+      "By itself it creates no right or obligation for the operator, for readers or for anyone else.",
+      "The operator has not, at present, retained a lawyer or other professional.",
+      "after consulting a lawyer or other professional where needed",
+      "the laws of Japan (including their rules on international jurisdiction and on the governing law)",
+      "not a warning to anyone."
+    ],
+    "必須": [
+      "それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。",
+      "この声明と、免責事項・各ライセンスとが食い違うときは、免責事項と各ライセンスが優先します。",
+      "第 1 条の目的は、運営者が目指すものです。それが果たされることを、約束も保証もしません。",
+      "この声明は、法的な助言ではありません。",
+      "これらの場所は、ZEN大学その他の機関の事業ではありません。どの機関からも、承認・後援・推薦を受けていません。",
+      "運営者は、現在、弁護士その他の専門家に依頼していません。この声明と免責事項は、弁護士の確認を受けていません。",
+      "紛争が生じたときは、運営者は、必要に応じて弁護士その他の専門家に相談したうえで対応します。",
+      "対応は、日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）と、免責事項の「責任」と「準拠法と変更」の節と、各ライセンスの定めに沿います。",
+      "この条は、誰かに対する警告ではありません。",
+      "この声明を変えても、免責事項と各ライセンスの定めは変わりません。"
+    ],
+    "必須（英語）": [
+      "By itself it creates no right or obligation for the operator, for readers or for anyone else.",
+      "Where this statement and the Disclaimer or a licence differ, the Disclaimer and the licence prevail.",
+      "The purpose in Article 1 is what the operator aims at. Its being achieved is neither promised nor guaranteed.",
+      "This statement is not legal advice.",
+      "These places are not a project of ZEN University or of any other institution. No institution has approved, sponsored or recommended them.",
+      "The operator has not, at present, retained a lawyer or other professional. This statement and the Disclaimer have not been reviewed by a lawyer.",
+      "If a dispute arises, the operator will respond after consulting a lawyer or other professional where needed.",
+      "The response will follow the laws of Japan (including their rules on international jurisdiction and on the governing law), the sections “Liability” and “Governing law and changes” of the Disclaimer, and the terms of each licence.",
+      "This article is not a warning to anyone.",
+      "Changing this statement changes nothing in the Disclaimer or in any licence."
+    ],
+    "弁護士の書き方": {
+      "ja": "弁護士が(つく|付く|ついて|付いて|確認|監修|顧問)|顧問弁護士|弁護士(を|に)(つけ|付け|依頼しています|依頼しました)|弁護士の(確認|監修)を受け(ています|ました)",
+      "en": "our lawyers?|legal counsel will|reviewed by (a )?lawyer|retained",
+      "打ち消しの文": [
+        "The operator has not, at present, retained a lawyer or other professional.",
+        "This statement and the Disclaimer have not been reviewed by a lawyer.",
+        "The statement and the Disclaimer have not been reviewed by a lawyer."
+      ]
+    }
   }
 }

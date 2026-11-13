@@ -303,15 +303,15 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 1750 項目の検査を通します。依存パッケージはありません。
+このリポジトリは、push のたびに 1806 項目の検査を通します。依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 702 項目
-node verification/check_site.js      # サイトの構造 958 項目
+node verification/check_contrast.js  # 配色の読みやすさ 736 項目
+node verification/check_site.js      # サイトの構造 980 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -332,10 +332,10 @@ python3 verification/check_pdf_shape.py  # 三篇の PDF の形 16 項目（要:
 Chromium を起こして測ります。playwright と Chromium が要るので、上の並びには入れていません。
 
 ```
-node verification/check_keyboard.js  # Tab で辿って測る 718 項目（要: Chromium）
+node verification/check_keyboard.js  # Tab で辿って測る 752 項目（要: Chromium）
 ```
 
-42 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
+44 ページを Tab で辿り、焦点の罠、透けたまま焦点を受ける要素、焦点の枠が出ない要素、
 大きさの無い要素、辿る順と読む順のずれを見ます。道具が無ければ 1 を返して止まります。
 走らなかった検査は、通った検査ではありません。
 
@@ -502,5 +502,34 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 コミットの著者名・トレーラ・プルリクエストの本文はいずれも履歴に固定されており、あとから表示だけを取り繕うことはできません。
 
 </details>
+
+---
+
+## 運営理念・声明
+
+このアカウントの運営理念・声明は、[サイトの頁](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)と [docs/mission.md](docs/mission.md) にあります。
+適用されるのは、研究の系列の 10 のリポジトリでは[免責事項](DISCLAIMER.md)と各ライセンス、deposit-check ではそのライセンスです。
+Sophaxis と Nusquama には、それぞれのサイトの規約と声明が掛かります。
+第 1 条と第 2 条を、声明からそのまま写します。
+
+### 第 1 条（目的）
+
+このサイト（cpsbvbng26-dotcom.vercel.app）は、根本卓哉のプロフィールサイトです。
+
+この声明は、このサイトと、[免責事項](DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis と Nusquama には、それぞれのサイトの規約と声明があり、この声明は掛かりません。
+
+これらの場所は、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。
+
+運営者は、公開したものを誰でも料金を払わずに読めるように置き、あとから機械で監査し、誤りを消さずに記録に残すことを目的としています。
+
+批判と誤りの指摘を受けることが、この場所の一番の用途です（[トップの頁](https://cpsbvbng26-dotcom.vercel.app/index.html)）。
+
+### 第 2 条（この声明の性格）
+
+1. この声明は、運営の考え方を述べたものです。
+2. この声明は、[免責事項](DISCLAIMER.md)と、各リポジトリのライセンス（LICENSE と、あれば LICENSE-CODE）の条項ではありません。それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。
+3. この声明と、免責事項・各ライセンスとが食い違うときは、免責事項と各ライセンスが優先します。
+4. 第 1 条の目的は、運営者が目指すものです。それが果たされることを、約束も保証もしません。
+5. この声明は、法的な助言ではありません。
 
 責任は、法令の定めるとおりです。説明は[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)にあります。

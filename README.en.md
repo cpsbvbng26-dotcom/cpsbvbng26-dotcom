@@ -298,15 +298,15 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1750 checks.** There are no dependencies to install.
+**Every push runs 1806 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 702 checks
-node verification/check_site.js      # site structure, 958 checks
+node verification/check_contrast.js  # colour contrast, 736 checks
+node verification/check_site.js      # site structure, 980 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -316,10 +316,10 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 718 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 752 checks (needs Chromium)
 ```
 
-It tabs through 42 pages and looks for focus traps, elements that receive focus while
+It tabs through 44 pages and looks for focus traps, elements that receive focus while
 still transparent, elements with no focus ring, elements with no size, and a tab order
 that diverges from reading order. **If the tools are absent it exits 1.** A check that
 did not run is not a check that passed.
@@ -435,5 +435,34 @@ The site implementation in this repository (`index.html` / `index.en.html` / `tr
 Commit authorship, trailers and pull request bodies are all fixed in the history. They cannot be tidied up after the fact to look different from what happened.
 
 </details>
+
+---
+
+## Statement of Purpose
+
+The Statement of Purpose for this account is on [the site](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) and in [docs/mission.en.md](docs/mission.en.md).
+What applies is the [Disclaimer](DISCLAIMER.en.md) and each licence for the 10 repositories of the research series, and its licence for deposit-check.
+Sophaxis and Nusquama are covered by the terms and statement of each site.
+Articles 1 and 2 are copied here from the statement as they stand.
+
+### Article 1 (Purpose)
+
+This site (cpsbvbng26-dotcom.vercel.app) is the profile site of Takuya Nemoto.
+
+This statement applies to this site, to the 10 repositories listed in the [Disclaimer](DISCLAIMER.en.md), and to deposit-check. Sophaxis and Nusquama have their own terms and statements, and this statement does not apply to them.
+
+These places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
+
+The operator aims to keep what is published readable by anyone without charge, to audit it by machine afterwards, and to keep errors on record rather than delete them.
+
+Receiving criticism and corrections is what this place is chiefly for ([the top page](https://cpsbvbng26-dotcom.vercel.app/index.en.html)).
+
+### Article 2 (Nature of this statement)
+
+1. This statement sets out how the operator approaches running these places.
+2. This statement is not a term of the [Disclaimer](DISCLAIMER.en.md) or of any repository’s licence (LICENSE and, where there is one, LICENSE-CODE). By itself it creates no right or obligation for the operator, for readers or for anyone else.
+3. Where this statement and the Disclaimer or a licence differ, the Disclaimer and the licence prevail.
+4. The purpose in Article 1 is what the operator aims at. Its being achieved is neither promised nor guaranteed.
+5. This statement is not legal advice.
 
 Liability is as the law provides; the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md) explains it.
