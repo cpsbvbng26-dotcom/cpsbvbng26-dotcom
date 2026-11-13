@@ -814,21 +814,31 @@
     },
     "Vercel の利用規約 第4節": {
       "所在": "https://vercel.com/legal/terms",
-      "取り寄せ": "Sophaxis の枝 sources/20261112-0734（コミット 8b6ce3d）",
+      "取り寄せ": "Sophaxis の枝 sources/20261113-0040（実行 43338777855）",
       "全文の sha256": "2d0d059d02faeb2c18a58ce9fe727095d0e386a26f8283b571f498e3ebff661f",
-      "引いた句": "We offer a free Hobby plan at our sole discretion. The Hobby plan is subject to all provisions of these Terms of Service, unless expressly stated otherwise. You shall only use the Services under a Hobby plan for your personal or non-commercial use. We may change th"
+      "引いた句": "You shall only use the Services under a Hobby plan for your personal or non-commercial use. We may change the features, limitations, or other conditions applicable to the Hobby plan or discontinue offering the Hobby plan at any time. We reserve the right to disable or remove any Project or website deployment on the Hobby plan with or without notice at our sole discretion."
     },
     "Vercel の利用規約 第3節": {
       "所在": "https://vercel.com/legal/terms",
-      "取り寄せ": "Sophaxis の枝 sources/20261112-0734（コミット 8b6ce3d）",
+      "取り寄せ": "Sophaxis の枝 sources/20261113-0040（実行 43338777855）",
       "全文の sha256": "ff532fa356dd0dc8d5dd7e0b8a0408e0138505fbc6f97bfec13da73f9abe965b",
-      "引いた句": "In addition, if you are on a Hobby plan or trial Pro plan, you agree that we may use Your Content to train our artificial intelligence (“AI”) and machine learning models, and we may share Your Content with third parties for the purpose of developing and improving their products, including training and improving their AI and machine learning models (collectively, “ Model Training ”). If you are on a paid Pro plan, Mod"
+      "引いた句": "In addition, if you are on a Hobby plan or trial Pro plan, you agree that we may use Your Content to train our artificial intelligence (“AI”) and machine learning models, and we may share Your Content with third parties for the purpose of developing and improving their products, including training and improving their AI and machine learning models (collectively, “ Model Training ”)."
     },
     "Vercel の Fair use Guidelines": {
       "所在": "https://vercel.com/docs/limits/fair-use-guidelines",
-      "取り寄せ": "Sophaxis の枝 sources/20261112-0734（コミット 8b6ce3d）",
-      "全文の sha256": "f241dce3d1f34e326a127ae327a10d6605c0e64fb4ae91c4ed30cc8533cac58f",
-      "引いた句": "Commercial usage Hobby teams are restricted to non-commercial personal use only. All commercial usage of the platform requires either a Pro or Enterprise plan. Commercial usage is defined as any Deployment that is used for the purpose of financial gain of anyone involved in any part of the production of the project, including a paid employee or consultant writing the code. Examples of this include, but are not limited to, the following: Any method of requesting or processing payment from visitors of the site Advert"
+      "取り寄せ": "Sophaxis の枝 sources/20261113-0040（実行 43338777855）",
+      "全文の sha256": "72c94595a48be0ba40257c55fcee8fc60ca983022327cdd00ced5dcfda034565",
+      "引いた句": "Examples of fair use Never fair use Usage guidelines Typical monthly usage guidelines Other guidelines Additional resources General Limits Learn More",
+      "引いた句 2": "Last updated September 14, 2026",
+      "注": "2026-11-13 に取り寄せた頁には「Commercial usage」の節がありません。2026-11-12 の頁の全文の sha256 は f241dce3d1f34e326a127ae327a10d6605c0e64fb4ae91c4ed30cc8533cac58f でした。"
+    },
+    "Vercel の Fair use Guidelines（2026-10-31 の写し）": {
+      "所在": "https://web.archive.org/web/20261031091625id_/https://vercel.com/docs/limits/fair-use-guidelines",
+      "取り寄せ": "Sophaxis の枝 sources/20261113-0040（実行 43338777855）",
+      "全文の sha256": "fcc8293b90ff7f573850bce75fab82400f767d4f733d9b2bcea3972b207684e3",
+      "引いた句": "Commercial usage is defined as any Deployment that is used for the purpose of financial gain of anyone involved in any part of the production of the project",
+      "引いた句 2": "Asking for Donations does not fall under commercial usage.",
+      "注": "Internet Archive の写しです。2026-11-13 に取り寄せた Vercel の頁には、この節がありません。"
     },
     "Zenodo の利用規約": {
       "所在": "https://about.zenodo.org/terms/",
