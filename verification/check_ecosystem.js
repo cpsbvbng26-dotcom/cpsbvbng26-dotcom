@@ -3845,6 +3845,170 @@ console.log('\n12q. 十度目の見落とし：引用情報の振る舞い・Phi
     && JSON.stringify(名乗り(pt.replace('JaLC and OpenAlex', 'and JaLC'), ps)) !== JSON.stringify(五));
 }
 
+/* ---------- 十一度目の見落とし：NEMFSI のすべての所在、三篇と SSRN、作成者の所属の欄（2026-11-12 の続き） ----------
+ *
+ * 一。**PhilArchive の NEMFSI は、どの面でも削除の依頼を添えて書く。**十度目はトップの頁の段と所在の欄だけを
+ * 直し、論文の頁・ノートの頁・README の表・引用情報・翻刻の書誌表は、同じ本文のある所在として挙げたままだった。
+ * 論文の頁とノートの頁の構造化データは sameAs に入れていた。13 のリポジトリのどのファイルでも（記録とこの検査の
+ * ほか）、そのリンクのすぐ後ろに依頼の日と削除の語があり、sameAs にも .zenodo.json・codemeta.json にも入らない。
+ * 生成もと（researcher-profile の papers.json）の所在は、deletionRequested に依頼の日を持つ。
+ * 二。**三篇がそろって SSRN にあると書かない。**断章論は SSRN に弾かれている。直した四つの文を戻さず、
+ * 三篇と SSRN を同じ文に置いて打ち消しの語を持たない文も止める。
+ * 三。**使わないと決めた語の英訳は、凍結した紙面の写しと記録と検査の表のほかに無い。**Zenodo の史料ノートの
+ * 四つの記録は、作成者の所属の欄がこの語である。欄は作業環境から触れない。記録は語を書き写さず、
+ * 欄の所在と値の SHA-256 を引く。SHA-256 は、naval-gazette-notes の check_text.py の表の語から計算して合わせる。
+ * 許すのは、翻刻の著者の行（PDF の扉の写し）と、Sophaxis の要旨の版の注（紙面の著者の行が変わったことを書く）の形だけ。
+ * 四。直したリポジトリの記録に十一度目の節がそろうこと。 */
+console.log('\n12r. 十一度目の見落とし：NEMFSI のすべての所在・三篇と SSRN・作成者の所属の欄（2026-11-12 の続き）');
+{
+  const K = DECL['十一度目の見落とし'] || null;
+  const 十三 = (DECL['八度目の見落とし'] || {})['記録'] || [];
+  const 判定語 = { ja: ['誤り', '根拠不足', '漏れ', '表現', '問題なし'], en: ['Error', 'Insufficient basis', 'Omission', 'Wording', 'No problem'] };
+  const crypto = require('crypto');
+  const sha = (s) => crypto.createHash('sha256').update(s, 'utf8').digest('hex');
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const 中身 = (repo) => {
+    let files = [];
+    try { files = execFileSync('git', ['ls-files', '-z'], { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 1 << 28 }).split('\0').filter(Boolean); } catch (e) { return null; }
+    const out = {};
+    for (const f of files) {
+      if (/\.(pdf|png|jpe?g|gif|ico|webp|woff2?|zip|gz|xlsx?|docx?)$/i.test(f)) continue;
+      const p = path.join(ROOT, repo, f);
+      if (!fs.existsSync(p) || !fs.statSync(p).isFile()) continue;
+      const b = fs.readFileSync(p);
+      if (b.includes(0)) continue;
+      out[f] = b.toString('utf8');
+    }
+    return out;
+  };
+  const 実 = { 全部: Object.fromEntries(十三.map((r) => [r, 中身(r)])) };
+  function 判定(x) {
+    const bad = [];
+    if (K === null) return ['宣言が無い'];
+    if (十三.length !== 13) bad.push('13 のリポジトリの一覧が読めない');
+    for (const r of 十三) if (!x.全部[r]) bad.push(r + ' のファイルの一覧が読めない');
+    const 見ない = new RegExp(K['見ないファイル']);
+    const 第三者 = new RegExp(K['第三者の文']);
+    const N = K['NEMFSI'];
+    const 式 = new RegExp(N['式'], 'g');
+    const 依頼 = new RegExp(N['依頼']);
+    const 同じ = new RegExp(N['sameAs'], 'g');
+    const 引用情報 = new RegExp(N['引用情報で書かない']);
+    const S = K['SSRN'];
+    const 三 = new RegExp(S['三'], 'i');
+    const 否 = new RegExp(S['否'], 'i');
+    const 切れ目 = new RegExp(S['文の切れ目']);
+    /* 三。表の語。SHA-256 が合う語を、naval-gazette-notes の表から取る。 */
+    const T = K['肩書き'];
+    const 表 = String((x.全部[T['表'].repo] || {})[T['表'].file] || '');
+    const 語 = ((表.match(new RegExp(T['表']['式'], 'g')) || []).map((m) => new RegExp(T['表']['式']).exec(m)[1])).find((w) => sha(w) === T['語の SHA-256']) || null;
+    if (語 === null) bad.push(T['表'].repo + '/' + T['表'].file + ' の表に、記録の SHA-256 と合う語が無い');
+    const 許す = T['許す'].map((a) => Object.assign({}, a, { fileRe: new RegExp(a.file), re: new RegExp((a['行'] || a['句']).replace('{語}', esc(語 || '\u0000')), a['行'] ? 'm' : 'g') }));
+    let 所在の数 = 0, 語の数 = 0;
+    for (const [r, fs_] of Object.entries(x.全部)) {
+      for (const [f, t] of Object.entries(fs_ || {})) {
+        if (見ない.test(f) || 第三者.test(f)) continue;
+        /* 一。NEMFSI のリンク。 */
+        for (const m of t.matchAll(式)) {
+          所在の数++;
+          const w = t.slice(m.index, m.index + N['窓']);
+          if (!w.includes(N['日']) || !依頼.test(w)) bad.push(r + '/' + f + ' の NEMFSI のリンクに、削除の依頼の日と語が無い');
+        }
+        if (引用情報.test(f) && new RegExp(N['式']).test(t)) bad.push(r + '/' + f + ' が NEMFSI を引用情報の関連に入れる');
+        for (const m of t.matchAll(同じ)) if (new RegExp(N['式']).test(m[0])) bad.push(r + '/' + f + ' の sameAs に NEMFSI がある');
+        /* 二。三篇と SSRN。 */
+        if (t.includes('SSRN')) {
+          for (const s of S['書かない']) if (t.includes(s)) bad.push(r + '/' + f + ' が「' + s.slice(0, 24) + '」と書く');
+          for (const s of t.split(切れ目)) if (s.includes('SSRN') && 三.test(s) && !否.test(s)) bad.push(r + '/' + f + ' が三篇を SSRN に置くと読める文を持つ：' + s.slice(0, 40));
+        }
+        /* 三。使わないと決めた語。 */
+        if (語 !== null && t.includes(語)) {
+          let n = 0, i = -1;
+          while ((i = t.indexOf(語, i + 1)) >= 0) n++;
+          語の数 += n;
+          const 許した = 許す.filter((a) => a.repo === r && a.fileRe.test(f)).reduce((a2, a) => a2 + (t.match(a.re) || []).length, 0);
+          if (許した !== n) bad.push(r + '/' + f + ' が使わないと決めた語の英訳を、紙面の写しの形のほかで書く（' + n + ' 回、許すのは ' + 許した + ' 回）');
+        }
+      }
+    }
+    if (所在の数 < 20) bad.push('NEMFSI のリンクが ' + 所在の数 + ' しか読めない');
+    if (語 !== null && 語の数 < 3) bad.push('使わないと決めた語の英訳が ' + 語の数 + ' しか読めない（翻刻の著者の行と Sophaxis の注があるはず）');
+    /* 一。面と、生成もと。 */
+    for (const [r, fl] of Object.entries(N['面'])) for (const f of fl) {
+      const t = String((x.全部[r] || {})[f] || '');
+      if (!new RegExp(N['式']).test(t)) bad.push(r + '/' + f + ' に NEMFSI のリンクが無い（面の一覧を見直す）');
+    }
+    const G = N['生成のもと'];
+    let P = null;
+    try { P = JSON.parse(String((x.全部[G.repo] || {})[G.file] || '')); } catch (e) { P = null; }
+    const 所在 = P ? [].concat(...P.papers.map((p) => p.locations || [])).filter((l) => new RegExp(N['式']).test(l.url || '')) : [];
+    if (!所在.length) bad.push(G.repo + '/' + G.file + ' に NEMFSI の所在が無い');
+    for (const l of 所在) if (l[G['欄']] !== N['日']) bad.push(G.repo + '/' + G.file + ' の NEMFSI の所在の ' + G['欄'] + ' が ' + l[G['欄']]);
+    /* 四。記録。 */
+    for (const r of K['記録']) {
+      const t = (x.全部[r] || {})['docs/legal-audit-2026-11-12.md'];
+      if (!t) { bad.push(r + ' の記録が無い'); continue; }
+      const a = t.indexOf('\n' + K['節'] + '\n');
+      const b = a < 0 ? -1 : t.indexOf('\n## ', a + 1);
+      const sec = a < 0 ? '' : t.slice(a, b < 0 ? t.length : b);
+      if (!sec) { bad.push(r + ' に十一度目の節が無い'); continue; }
+      const lang = sec.includes('| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |') ? 'ja' : sec.includes('| Place | Law and article | Requirements | Facts | Finding | Action |') ? 'en' : null;
+      if (!lang) { bad.push(r + ' の表の列'); continue; }
+      const rows = sec.split('\n').filter((l) => /^\| /.test(l) && !/^\| (箇所|Place|---)/.test(l)).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+      if (!rows.length || !rows.every((c) => c.length === 6 && 判定語[lang].includes(c[4]))) bad.push(r + ' の表の形');
+      const 内訳 = 判定語[lang].filter((w) => rows.some((c) => c[4] === w)).map((w) => w + ' ' + rows.filter((c) => c[4] === w).length).join(lang === 'ja' ? '、' : ', ');
+      if (!sec.includes(lang === 'ja' ? 'この表の判定は、' + 内訳 + ' です。' : 'Findings in this table: ' + 内訳 + '.')) bad.push(r + ' の判定の数');
+      for (const c of rows.filter((c2) => c2[4] !== 判定語[lang][4])) {
+        if (!c[5].includes(K['決めた'])) bad.push(r + '：決めた一文が無い行 ' + c[0].slice(0, 20));
+        else if (lang === 'ja' && !/ためです。?$/.test(c[5])) bad.push(r + '：理由が無い行 ' + c[0].slice(0, 20));
+      }
+      if (!K['弁護士'].some((w) => sec.includes(w))) bad.push(r + ' に弁護士の一文が無い');
+      if (T['記録'].includes(r)) {
+        for (const s of T['所在'].concat([T['語の SHA-256']])) if (!sec.includes(s)) bad.push(r + ' の十一度目の節に「' + s.slice(0, 40) + '」が無い');
+        if (語 !== null && sec.includes(語)) bad.push(r + ' の十一度目の節が語を書き写す');
+      }
+      if (r === K['Crossref']['記録']) for (const s of K['Crossref']['書くこと']) if (!sec.includes(s)) bad.push(r + ' の十一度目の節に「' + s.slice(0, 40) + '」が無い');
+    }
+    return bad;
+  }
+  const bad = 判定(実);
+  check('13 のリポジトリで、NEMFSI のリンクはどれも削除の依頼を添えて sameAs と引用情報の関連に無く、生成もとが依頼の日を持ち、三篇を SSRN に置くと書く文が無く、使わないと決めた語の英訳は紙面の写しの形のほかに無く、十一度目の節が四つの記録にそろう',
+    bad.length === 0, bad.slice(0, 6).join(' / '));
+  const 替 = (r, f, a2, b2) => Object.assign({}, 実, { 全部: Object.assign({}, 実.全部, { [r]: Object.assign({}, 実.全部[r], { [f]: String((実.全部[r] || {})[f] || '').replace(a2, b2) }) }) });
+  const 語 = (() => { try { const T = K['肩書き']; const t = String((実.全部[T['表'].repo] || {})[T['表'].file] || ''); return ((t.match(new RegExp(T['表']['式'], 'g')) || []).map((m) => new RegExp(T['表']['式']).exec(m)[1])).find((w) => sha(w) === T['語の SHA-256']) || 'x\u0000'; } catch (e) { return 'x\u0000'; } })();
+  const 壊す = [
+    ['論文の頁の sameAs に NEMFSI を戻す', 替('cpsbvbng26-dotcom', 'papers/fragmentarian-spiritual-individualism.html', '"sameAs": [\n        "https://doi.org/10.5281/zenodo.22064241",\n', '"sameAs": [\n        "https://doi.org/10.5281/zenodo.22064241",\n        "https://philarchive.org/rec/NEMFSI",\n')],
+    ['削除の依頼を添えたまま sameAs に入れる', 替('researcher-profile', 'notes.json', '"url": "https://doi.org/10.5281/zenodo.22064241",\n', '"url": "https://doi.org/10.5281/zenodo.22064241",\n        "sameAs": "https://philarchive.org/rec/NEMFSI（2026-09-26 に削除を依頼）",\n')],
+    ['英語の論文の頁の所在の欄を「Same text」に戻す', 替('cpsbvbng26-dotcom', 'papers/fragmentarian-spiritual-individualism.en.html', 'Deletion requested on 2026-09-26. Its current state has not been checked from here', 'Same text')],
+    ['ノートの頁の所在の注を外す', 替('cpsbvbng26-dotcom', 'notes/index.html', '（2026-09-26 に削除を依頼。いまの状態は、ここからは確かめていません）', '')],
+    ['ノートの設定の構造化データに sameAs を戻す', 替('researcher-profile', 'notes.en.json', '"url": "https://doi.org/10.5281/zenodo.22064241",\n', '"url": "https://doi.org/10.5281/zenodo.22064241",\n        "sameAs": "https://philarchive.org/rec/NEMFSI",\n')],
+    ['生成もとから依頼の日を外す', 替('researcher-profile', 'papers.json', ', "deletionRequested": "2026-09-26"', '')],
+    ['生成もとの依頼の日を変える', 替('researcher-profile', 'papers.json', '"deletionRequested": "2026-09-26"', '"deletionRequested": "2026-09-27"')],
+    ['引用情報の説明から削除の依頼を外す', 替('autonomy-and-self-cultivation', 'CITATION.cff', 'PhilArchive の掲載ページ。2026-09-26 に削除を依頼しました。いまの状態は、ここからは確かめていません', 'PhilArchive の掲載ページ')],
+    ['翻刻の書誌表から削除の依頼を外す', 替('autonomy-and-self-cultivation', 'papers/fragmentarian-spiritual-individualism.md', '（2026-09-26 に削除を依頼。いまの状態は、ここからは確かめていません）', '')],
+    ['README の英語の表から削除の依頼を外す', 替('cpsbvbng26-dotcom', 'README.en.md', ' (deletion requested on 2026-09-26; its current state has not been checked from here)', '')],
+    ['.zenodo.json の関連に NEMFSI を置く', 替('autonomy-and-self-cultivation', '.zenodo.json', /\n\}\s*$/, ',\n  "x": "https://philarchive.org/rec/NEMFSI (deletion requested on 2026-09-26)"\n}\n')],
+    ['submission-disclosure.md の一文を戻す', 替('cpsbvbng26-dotcom', 'docs/submission-disclosure.md', 'プレプリントは置いたままにします。', '三篇は Zenodo・SSRN・PhilArchive に置いたままにします。')],
+    ['正誤表の冒頭を戻す', 替('autonomy-and-self-cultivation', 'ERRATA.md', '三篇の PDF は Zenodo で公開済みで', '三篇の PDF は Zenodo・SSRN・PhilArchive で公開済みで')],
+    ['引用の書き方の頁を戻す', 替('autonomy-and-self-cultivation', 'docs/how-to-cite.md', '著者による公開は Zenodo で行っており', '著者による公開は Zenodo・SSRN・PhilArchive で行って')],
+    ['新しい英語の文で三篇を SSRN に置く', 替('trinity-operator', 'README.md', /$/, '\nAll three essays are on Zenodo and SSRN.\n')],
+    ['naval-gazette-notes の README に語を書く', 替('naval-gazette-notes', 'README.md', /$/, '\nTakuya Nemoto, ' + 語 + '.\n')],
+    ['Sophaxis の頁で語を名乗る', 替('sophaxis', 'README.md', /$/, '\nSophaxis is run by Takuya Nemoto, ' + 語 + '.\n')],
+    ['翻刻の著者の行の形を変える', 替('autonomy-and-self-cultivation', 'papers/celibate-individual.md', 'Takuya Nemoto — ' + 語, 'Takuya Nemoto, ' + 語)],
+    ['naval-gazette-notes の表から語を外す', 替('naval-gazette-notes', 'verification/check_text.py', "('" + 語 + "', '同上（英訳）')", "('x', '同上（英訳）')")],
+    ['記録から DataCite の所在を一つ外す', 替('naval-gazette-notes', 'docs/legal-audit-2026-11-12.md', /https:\/\/api\.datacite\.org\/dois\/10\.5281\/zenodo\.22055553/g, '')],
+    ['記録の語の SHA-256 を変える', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', /8cd90a60fc545d0cecb6c54a0245734acb47fd9ee86060fdfc383bd6cbad25d0/g, '0'.repeat(64))],
+    ['記録に語を書き写す', 替('naval-gazette-notes', 'docs/legal-audit-2026-11-12.md', '語そのものは、ここに書き写していません。', '語は「' + 語 + '」です。')],
+    ['記録から Crossref の SHA-256 を外す', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', '8c76309d83a868cbe77bbb38a58568090def03c377c2067994a4ecfbe3a81d24', '0'.repeat(64))],
+    ['記録から十一度目の節を外す', 替('autonomy-and-self-cultivation', 'docs/legal-audit-2026-11-12.md', K ? K['節'] : 'x^', '## 十一度目')],
+    ['記録の判定の数を変える', 替('researcher-profile', 'docs/legal-audit-2026-11-12.md', 'この表の判定は、誤り 3 です。', 'この表の判定は、誤り 2 です。')],
+    ['決めた一文を外す', 替('naval-gazette-notes', 'docs/legal-audit-2026-11-12.md', /2026-11-13 に Claude が決めました。触れられないものを/, '触れられないものを')],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：NEMFSI（論文の頁の sameAs と所在の欄、ノートの頁と設定、生成もとの日、引用情報、翻刻の書誌表、README、.zenodo.json）・三篇と SSRN（戻した三つの文、新しい英語の文）・使わないと決めた語（二つのリポジトリ、翻刻の行の形、表）・記録（所在、SHA-256、書き写し、Crossref、節、判定の数、決めた一文）のどれでも落ちる（'
+    + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+}
+
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
  *
  * 各リポジトリの README の H1 のすぐ下に「種類」と「状態」の札を置いた（2026-11-11）。
