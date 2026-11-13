@@ -4001,12 +4001,106 @@ console.log('\n12r. 十一度目の見落とし：NEMFSI のすべての所在�
     ['記録に語を書き写す', 替('naval-gazette-notes', 'docs/legal-audit-2026-11-12.md', '語そのものは、ここに書き写していません。', '語は「' + 語 + '」です。')],
     ['記録から Crossref の SHA-256 を外す', 替('cpsbvbng26-dotcom', 'docs/legal-audit-2026-11-12.md', '8c76309d83a868cbe77bbb38a58568090def03c377c2067994a4ecfbe3a81d24', '0'.repeat(64))],
     ['記録から十一度目の節を外す', 替('autonomy-and-self-cultivation', 'docs/legal-audit-2026-11-12.md', K ? K['節'] : 'x^', '## 十一度目')],
-    ['記録の判定の数を変える', 替('researcher-profile', 'docs/legal-audit-2026-11-12.md', 'この表の判定は、誤り 3 です。', 'この表の判定は、誤り 2 です。')],
+    ['記録の判定の数を変える', 替('researcher-profile', 'docs/legal-audit-2026-11-12.md', 'この表の判定は、誤り 3、根拠不足 1、表現 1 です。', 'この表の判定は、誤り 2、根拠不足 1、表現 1 です。')],
     ['決めた一文を外す', 替('naval-gazette-notes', 'docs/legal-audit-2026-11-12.md', /2026-11-13 に Claude が決めました。触れられないものを/, '触れられないものを')],
   ];
   const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
   check('壊して確かめる：NEMFSI（論文の頁の sameAs と所在の欄、ノートの頁と設定、生成もとの日、引用情報、翻刻の書誌表、README、.zenodo.json）・三篇と SSRN（戻した三つの文、新しい英語の文）・使わないと決めた語（二つのリポジトリ、翻刻の行の形、表）・記録（所在、SHA-256、書き写し、Crossref、節、判定の数、決めた一文）のどれでも落ちる（'
     + 落ちた.length + ' / ' + 壊す.length + '）', 落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+}
+
+/* ---------- Vercel の Fair Use Guidelines の変更（2026-11-13） ----------
+ *
+ * Vercel は、最終更新の日を変えずに Fair Use Guidelines から「Commercial usage」の節を外した。利用規約の第 4 節は変わらない。
+ * 一。statutes.json の Vercel の句は、Sophaxis が残す部分に一字一句あり、全文の SHA-256 は Sophaxis が記した値と同じ。
+ *     利用規約の節は第 N 節の値、頁は頁の値、消えた節の句は Internet Archive の 2026-10-31 の写しの項にだけある。
+ *     Vercel がまた頁を変えれば、Sophaxis の取り寄せ直しで値が変わり、ここが落ちる。
+ * 二。記録と検査の注釈のほかのどのファイルも、Fair Use Guidelines を、いまの商用の定めとして書かない。
+ * 三。五つの記録の十一度目の節が、取り寄せ直した頁の SHA-256 を持つ。 */
+console.log('\n12s. Vercel の Fair Use Guidelines の変更：句と値、いまの定めとして書かないこと、記録（2026-11-13）');
+{
+  const 節 = '## 2026-11-12 の続き：十一度目の見落とし';
+  const 新しい値 = '72c94595a48be0ba40257c55fcee8fc60ca983022327cdd00ced5dcfda034565';
+  const 写し = 'https://web.archive.org/web/20261031091625id_/https://vercel.com/docs/limits/fair-use-guidelines';
+  const 記録 = ['cpsbvbng26-dotcom', 'researcher-profile', 'trinity-operator', 'sophaxis', 'nusquama'];
+  const 平 = (x) => String(x || '').replace(/\s+/g, '');
+  const 部分 = (a) => (Array.isArray(a) ? a.map((y) => y.text).join(' ') : '');
+  /* いまの定めとして書く文：Fair Use Guidelines と非商用・商用の例を同じ行に置き、日付も消えたことも書かない行。 */
+  const いまの定め = /Fair use Guidelines|Fair Use Guidelines/i;
+  const 商用 = /non-commercial|非営利|非商用|商用の例|commercial use/i;
+  const 断り = /2026-11-12|2026-11-13|2026-11-08|消え|ありません|無い|no longer|until|gone|had a section|defined commercial use/i;
+  const 見ない = /(^|\/)docs\/legal-audit-2026-11-12\.md$|(^|\/)docs\/world-law-2026-11-12\.md$|(^|\/)CHANGELOG\.md$|(^|\/)verification\/|(^|\/)tools\/|(^|\/)site\/llms-full\.txt$|sources-raw\.json$/;
+  const 走る = (dir, rel = '') => {
+    const out = [];
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git' || e.name === 'node_modules') continue;
+      const f = path.join(dir, e.name), r = rel + e.name;
+      if (e.isDirectory()) out.push(...走る(f, r + '/'));
+      else if (/\.(md|html|json|ya?ml|txt|js|py)$/.test(e.name)) out.push(r);
+    }
+    return out;
+  };
+  const repos = fs.readdirSync(ROOT).filter((r) => fs.existsSync(path.join(ROOT, r, '.git')));
+  const 頁 = {};
+  for (const r of repos) for (const f of 走る(path.join(ROOT, r))) if (!見ない.test(f)) { const t = read(r, f); if (t && いまの定め.test(t)) 頁[r + '/' + f] = t; }
+  let SX = null;
+  try { SX = JSON.parse(read('sophaxis', path.join('verification', 'sources-raw.json'))); } catch (e) { SX = null; }
+  const 実 = {
+    規約: JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')))['規約'],
+    SX,
+    頁,
+    記録: Object.fromEntries(記録.map((r) => [r, read(r, path.join('docs', 'legal-audit-2026-11-12.md'))])),
+  };
+  function 判定(x) {
+    const bad = [];
+    if (!x.SX) return ['Sophaxis の取り寄せた文が読めない'];
+    const 元 = (k, e) => {
+      if (e['所在'] === 写し) { const p = (x.SX.pages || {})['vercel-fair-use-archived'] || {}; return [p.sha256, 部分(p.spans), p.url === 写し]; }
+      if (e['所在'] === 'https://vercel.com/docs/limits/fair-use-guidelines') { const p = (x.SX.pages || {})['vercel-fair-use'] || {}; return [p.sha256, 部分(p.spans), true]; }
+      const n = (/第(\d+)節/.exec(k) || [])[1];
+      const t = (x.SX.sources || {})['vercel-terms'] || {};
+      return [(t.sha256 || {})[n], 部分((t.articles || {})[n]), !!n];
+    };
+    const vs = Object.entries(x.規約).filter(([, e]) => /vercel\.com/.test(e['所在'] || ''));
+    if (vs.length < 4) bad.push('statutes.json の Vercel の項が足りない');
+    for (const [k, e] of vs) {
+      const [h, 句, 所] = 元(k, e);
+      if (!所 || !h || e['全文の sha256'] !== h) bad.push('値が Sophaxis と違う：' + k);
+      if (!/^Sophaxis の枝 sources\/\d{8}-\d{4}/.test(e['取り寄せ'] || '')) bad.push('取り寄せの枝：' + k);
+      for (const [f, v] of Object.entries(e)) if (/^引いた句/.test(f) && !平(句).includes(平(v))) bad.push('Sophaxis の残す部分に無い句：' + k);
+      if (e['所在'] !== 写し && Object.entries(e).some(([f, v]) => /^引いた句/.test(f) && /Commercial usage is defined|Hobby teams are restricted|Asking for Donations/.test(v))) bad.push('消えた節の句を、いまの頁の項に置いている：' + k);
+    }
+    if (!vs.some(([, e]) => e['所在'] === 写し)) bad.push('写しの項が無い');
+    for (const [f, t] of Object.entries(x.頁)) for (const l of t.split('\n')) if (いまの定め.test(l) && 商用.test(l) && !断り.test(l)) { bad.push('いまの定めとして書いている：' + f); break; }
+    for (const r of 記録) {
+      const t = x.記録[r] || '';
+      const i = t.indexOf('\n' + 節 + '\n'), j = i < 0 ? -1 : t.indexOf('\n## ', i + 1);
+      const sec = i < 0 ? '' : t.slice(i, j < 0 ? t.length : j);
+      if (!sec.includes(新しい値)) bad.push(r + ' の十一度目の節に、取り寄せ直した値が無い');
+    }
+    if (!(x.記録['cpsbvbng26-dotcom'] || '').includes('五つの記録の十一度目の節が取り寄せ直した値を持つこと') || 記録.length !== 5) bad.push('記録が名乗る記録の数');
+    return bad;
+  }
+  const bad = 判定(実);
+  check('statutes.json の Vercel の句と値が Sophaxis の残す部分と値に合い、消えた節の句は写しの項にだけあり、13 のリポジトリのどの頁も Fair Use Guidelines をいまの商用の定めとして書かず（' + Object.keys(頁).length + ' のファイル）、' + 記録.length + ' つの記録の十一度目の節が取り寄せ直した値を持つ',
+    bad.length === 0, bad.slice(0, 6).join(' / '));
+  const 規約替 = (k, v) => Object.assign({}, 実, { 規約: Object.assign({}, 実.規約, { [k]: Object.assign({}, 実.規約[k], v) }) });
+  const SX替 = (fn) => { const t = JSON.parse(JSON.stringify(実.SX)); fn(t); return Object.assign({}, 実, { SX: t }); };
+  const 頁足し = (f, t) => Object.assign({}, 実, { 頁: Object.assign({}, 実.頁, { [f]: t }) });
+  const 記録替 = (r, a, b) => Object.assign({}, 実, { 記録: Object.assign({}, 実.記録, { [r]: (実.記録[r] || '').split(a).join(b) }) });
+  const 壊す = [
+    ['頁の値を前に戻す', 規約替('Vercel の Fair use Guidelines', { '全文の sha256': 'f241dce3d1f34e326a127ae327a10d6605c0e64fb4ae91c4ed30cc8533cac58f' })],
+    ['消えた節の句をいまの頁の項に戻す', 規約替('Vercel の Fair use Guidelines', { '引いた句': 'Commercial usage is defined as any Deployment that is used for the purpose of financial gain of anyone involved in any part of the production of the project' })],
+    ['第 4 節の句を窓の幅で切れた形に戻す', 規約替('Vercel の利用規約 第4節', { '引いた句': 'We offer a free Hobby plan at our sole discretion. The Hobby plan is subject to all provisions of these Terms of Service' })],
+    ['Vercel が第 4 節を変える', SX替((t) => { t.sources['vercel-terms'].sha256['4'] = '0'.repeat(64); })],
+    ['写しの時刻を外す', SX替((t) => { t.pages['vercel-fair-use-archived'].url = 'https://web.archive.org/web/2026id_/https://vercel.com/docs/limits/fair-use-guidelines'; })],
+    ['適法性の説明を前の文に戻す', 頁足し('nusquama/policies/legality.md', '- **Vercel**：サイトは Vercel の Hobby プランで配信している。Hobby プランは、個人的で非営利の利用に限られる（Vercel の [Fair Use Guidelines](https://vercel.com/docs/limits/fair-use-guidelines)）。')],
+    ['英語の頁に前の文を戻す', 頁足し('sophaxis/docs/legal-review.md', "Vercel's Fair Use Guidelines limit the Hobby plan to non-commercial personal use.")],
+    ['記録から値を外す', 記録替('trinity-operator', 新しい値, '0'.repeat(64))],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：頁の値・いまの頁の項の消えた句・切れた句・第 4 節の変更・写しの時刻・前の文（日英）・記録の値のどれでも落ちる（' + 落ちた.length + ' / ' + 壊す.length + '）',
+    落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
 }
 
 /* ---------- 種類と状態の札、CITATION.cff の type、目録 ----------
