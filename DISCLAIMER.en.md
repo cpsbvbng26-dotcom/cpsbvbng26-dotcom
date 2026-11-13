@@ -62,11 +62,43 @@ Issues are public on GitHub.
 Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.
 The record of corrections does not carry the name or contact details of the person who asked.
 Personal information received is not passed to a third party without the consent of the person concerned, except where the law allows it.
+The title and text of an issue reach a language model only with the consent of the person concerned, as the next section sets out.
 A request from the person concerned to disclose, correct, stop using or erase personal information received is accepted at the email address in the section "Statements about people".
 No fee is charged.
 The operator's address is given without delay to a person whose personal information the operator has received, on request.
 The measures taken to keep that personal information secure are also described to that person without delay, on request.
 A complaint about how personal information is handled is accepted at the same email address.
+
+## Issues and the language model
+
+The operator works on these repositories with Claude Code.
+During that work, the title and text of an issue may be given to Claude, the language model of Anthropic.
+Anthropic is a company in the United States.
+The operator treats the title and text of an issue opened by anyone other than the operator, when given to Claude, as a provision of personal data to a third party in a foreign country under Article 28 of Japan's Act on the Protection of Personal Information.
+Paragraph 1 of that Article requires the prior consent of the person concerned to such a provision.
+Paragraph 2 requires that, when seeking that consent, the person is given information on the system for the protection of personal information in that country, on the measures the third party takes to protect personal information, and other information that would help the person.
+
+The error report form (error-report.yml) shows this section and asks, in a required box, for consent to giving the title and text to Claude.
+Only the title and text of an issue opened with that box ticked are given to Claude.
+An issue from another form, and an issue opened without a form, are given neither to Claude nor to any other language model.
+Comments and the content of emails are not given to a language model either.
+The operator reads and answers them without one.
+Issues the operator opens are not covered by this.
+The same applies to issues opened before 2026-11-13.
+The consent can be withdrawn at any time, in an issue or by email.
+After it is withdrawn, that issue is no longer given to a language model.
+What was done before the withdrawal stays lawful.
+The error report form of deposit-check has the same box, and an issue opened from it is handled as this section sets out.
+
+For the system of the United States, the operator relies on the [information on the system of the United States](https://www.ppc.go.jp/enforcement/infoprovision/laws/offshore_report_america/) that Japan's Personal Information Protection Commission publishes.
+For the federal level, the Commission states 「包括的な法令は存在しない。」 (that there is no comprehensive law).
+The United States takes part in the APEC Cross-Border Privacy Rules (CBPR) System, and the Commission gives the day as 「2012年7月25日参加」 (joined on 25 July 2012).
+The Commission explains that, in a country that takes part in the CBPR System, 「個人情報の保護について概ね我が国と同等の保護が期待できる」 for the private sector (protection broadly equal to Japan's can be expected).
+In its [privacy policy](https://www.anthropic.com/legal/privacy), Anthropic says that it takes "appropriate technical and organizational security measures designed to protect personal data from loss, misuse, and unauthorized access, disclosure, alteration, or destruction".
+Sophaxis's fetching job read these two pages on 2026-11-12.
+The quoted phrases and the SHA-256 of each whole text are in Sophaxis's `verification/sources-raw.json`.
+How long Anthropic keeps the title and text it receives, and how it uses them, depends on the settings of the operator's account and on Anthropic's terms.
+Those settings have not been checked for this page.
 
 ## Language models
 

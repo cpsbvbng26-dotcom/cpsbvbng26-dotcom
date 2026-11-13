@@ -4354,13 +4354,127 @@ console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の
     ['記録の判定の数を変える', forms, contrib, audText.replace(/(## 2026-11-13：十六度目の見落とし[\s\S]*?この表の判定は、[^。]*?)(\d+)( です。)/, (_, a, n, b) => a + (Number(n) + 1) + b)],
     ['十五度目の行を誤りとした文を外す', forms, contrib, audText.replace('この判定は誤りでした。', '')],
     ['記録が名乗る様式の数をずらす', forms, contrib, audText.replace('deposit-check の不具合の報告のほかに、', 'deposit-check の不具合の報告のほかに、1').replace('1' + (Object.keys(forms).length - 1) + ' 本を読みました。', (Object.keys(forms).length) + ' 本を読みました。')],
-    ['弁護士の一文を外す', forms, contrib, audText.replace('\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+    /* 十七度目（2026-11-13）：後ろに節が増えたので、十六度目の節の末尾を狙う。 */
+    ['弁護士の一文を外す', forms, contrib, audText.replace('\n\nこの節も、弁護士は見ていません。\n\n## 2026-11-13：十七度目の見落とし', '\n\n## 2026-11-13：十七度目の見落とし')],
   ];
   const missed = breaks.filter(([, f, c, a]) => problems(f, c, a).bad.length === 0).map(([k]) => k);
   /* 自分の識別子を求めない、ほかの様式は通る。 */
   const passOk = problems(Object.assign({}, forms, { [path.join('errata-check', '.github', 'ISSUE_TEMPLATE', 'y.yml')]: 'body:\n  - type: input\n    attributes:\n      description: A file, a page URL, or a DOI\n' }), contrib, audText).bad.length === 0;
   check('壊して確かめる：前の誘いの句・他人の記録のときの文・見本の DOI と iD・ほかのリポジトリの識別子を求める様式・CONTRIBUTING.md の前の文・記録の節と判定の数と十五度目の行の訂正と名乗る様式の数と弁護士の一文のどれを崩しても落ち、識別子を走らせた先として求めない様式は通る（' + (breaks.length - missed.length + (passOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
     missed.length === 0 && passOk, missed.concat(passOk ? [] : ['ほかの様式']).join(' / '));
+}
+
+console.log('\n12w. 十七度目の見落とし：issue の題と本文が Claude（Anthropic、米国）に渡ることを、同意の欄と免責事項で扱う（2026-11-13）');
+{
+  /* 「点検の表」の「第三者への提供」の行は、運営者が個人データを第三者へ渡す仕組みは無いとしていた。作業は Claude Code で行い、
+   * issue の題と本文を読む。読んだものは Anthropic（米国）の言語モデルに渡る。Sophaxis はこれを個人情報保護法第28条の提供として扱い、
+   * 様式の必須の欄で同意を得ている。2026-11-13 に Claude が決めた：同じ形を 10 のリポジトリに当てる。免責事項（両言語）に節を足し、
+   * 誤りの知らせの様式（10 のリポジトリと deposit-check の 11 本）に必須の同意の欄を足し、同意の無い中身は言語モデルに渡さない。
+   * 読み方は CLAUDE.md の共通の決めごと 17（deposit-check は 12）。米国の制度と Anthropic の措置の句は、Sophaxis が取り寄せた
+   * 頁の句（sources-raw.json の pages の spans）にあるものだけ。第28条の句は statutes.json の文にあるものだけ。 */
+  const REPOS = C.repos.concat(['deposit-check']);
+  const ERR = path.join('.github', 'ISSUE_TEMPLATE', 'error-report.yml');
+  const PHRASE = 'I consent to the operator giving the title and text of this issue to Claude';
+  const BOX = '        - label: この issue の題と本文を、運営者が Claude（Anthropic、米国）に渡すことに同意します。 / ' + PHRASE + ' (Anthropic, United States).\n          required: true\n';
+  const JA = ['issue の題と本文が言語モデルに渡るのは、次の節のとおり、本人の同意があるときだけです。', '\n## issue の中身と言語モデル\n',
+    '運営者のほかの人が開いた issue の題と本文が Claude に渡ることを、運営者は、個人情報保護法第 28 条の「外国にある第三者への提供」として扱います。',
+    '誤りの知らせの様式（error-report.yml）は、この節を示したうえで、題と本文が Claude に渡ることへの同意を、必須の欄で求めます。',
+    'Claude に渡すのは、この欄に印を付けて開かれた issue の題と本文だけです。', 'ほかの様式の issue と、様式を通らずに開かれた issue は、Claude にもほかの言語モデルにも渡しません。',
+    'コメントとメールの中身も、言語モデルに渡しません。', '同意は、issue かメールで、いつでも撤回できます。',
+    'deposit-check の誤りの知らせの様式も同じ欄を持ち、そこから開かれた issue も、この節のとおりに扱います。', 'その設定は、この頁では確かめていません。'];
+  const EN = ['The title and text of an issue reach a language model only with the consent of the person concerned, as the next section sets out.', '\n## Issues and the language model\n',
+    "under Article 28 of Japan's Act on the Protection of Personal Information.", 'The error report form (error-report.yml) shows this section and asks, in a required box, for consent to giving the title and text to Claude.',
+    'Only the title and text of an issue opened with that box ticked are given to Claude.', 'An issue from another form, and an issue opened without a form, are given neither to Claude nor to any other language model.',
+    'Comments and the content of emails are not given to a language model either.', 'The consent can be withdrawn at any time, in an issue or by email.',
+    'The error report form of deposit-check has the same box, and an issue opened from it is handled as this section sets out.', 'Those settings have not been checked for this page.'];
+  /* 確かめられない設定に拠る約束を書かない。 */
+  const PROMISE = /学習に使われ(ません|ない)|学習には使|削除されます|保存されません|not used (for|to) train|never (stored|kept|used for training)|deleted after/i;
+  const RULE = ['17. **issue の中身を言語モデルに渡すのは、本人の同意がある題と本文だけにする。**', '（"' + PHRASE + '"）を引用符で囲んで渡し', '`list_issues` で一覧を取らない（本文も返る）。コメントは読まない。メールの中身は扱わない。'];
+  const RULE_DC = ['12. **issue の中身を言語モデルに渡すのは、本人の同意がある題と本文だけにする。**', '`list_issues` で一覧を取らない。コメントは読まない。'];
+  const AUD = path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：十七度目の見落とし\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const ST = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')))['条文'];
+  const rawText = read('sophaxis', path.join('verification', 'sources-raw.json'));
+  const PAGES = rawText === null ? null : JSON.parse(rawText).pages || {};
+  const spansOf = (k) => ((PAGES || {})[k] || {}).spans ? PAGES[k].spans.map((x) => x.text) : [];
+  const x = { disc: read('cpsbvbng26-dotcom', 'DISCLAIMER.md') || '', discEn: read('cpsbvbng26-dotcom', 'DISCLAIMER.en.md') || '', aud: read('cpsbvbng26-dotcom', path.join('docs', 'legal-audit-2026-11-12.md')) || '',
+    forms: Object.fromEntries(REPOS.map((r) => [r, read(r, ERR)])), claude: Object.fromEntries(REPOS.map((r) => [r, read(r, 'CLAUDE.md') || ''])) };
+  const others = { bug: 0, used: 0 };
+  for (const r of REPOS) { const d = path.join(ROOT, r, '.github', 'ISSUE_TEMPLATE'); if (fs.existsSync(d)) fs.readdirSync(d).forEach((n) => { if (n === 'bug_report.yml') others.bug++; if (n === 'used-this-data.yml') others.used++; }); }
+  function problems(c) {
+    const bad = [];
+    for (const s of JA) if (!c.disc.includes(s)) bad.push('免責事項に「' + s.trim().slice(0, 24) + '」が無い');
+    for (const s of EN) if (!c.discEn.includes(s)) bad.push('英語の免責事項に「' + s.trim().slice(0, 30) + '」が無い');
+    if (PROMISE.test(c.disc) || PROMISE.test(c.discEn)) bad.push('免責事項が、確かめられない保ち方や使い方を約束する');
+    /* 免責事項の 「…」 と "…" の句のうち、委員会と Anthropic の頁のものは、取り寄せた句そのもの。第28条の句は条文の中。 */
+    if (PAGES === null) bad.push('sophaxis の sources-raw.json が並んでいない');
+    else {
+      const ppc = spansOf('ppc-report-us'), ant = spansOf('anthropic-privacy');
+      for (const q of ['包括的な法令は存在しない。', '2012年7月25日参加', '個人情報の保護について概ね我が国と同等の保護が期待できる']) if (!ppc.includes(q) || !c.disc.includes('「' + q + '」') || !c.discEn.includes('「' + q + '」')) bad.push('委員会の句「' + q.slice(0, 12) + '」');
+      const aq = (/「(appropriate technical[^」]+)」/.exec(c.disc) || [])[1], aqe = (/"(appropriate technical[^"]+)"/.exec(c.discEn) || [])[1];
+      if (!aq || !ant.includes(aq) || aq !== aqe) bad.push('Anthropic の句が取り寄せた句と違う');
+    }
+    const a28 = (ST['個人情報保護法 第28条'] || {})['文'] || '';
+    const sec = (() => { const i = c.disc.indexOf('\n## issue の中身と言語モデル\n'); const j = c.disc.indexOf('\n## ', i + 5); return i < 0 ? '' : c.disc.slice(i, j < 0 ? undefined : j); })();
+    const q28 = [...sec.matchAll(/「([^」]+)」/g)].map((m) => m[1]).filter((q) => /外国|当該/.test(q) && q !== '外国にある第三者への提供');
+    if (q28.length < 2 || !q28.every((q) => a28.includes(q))) bad.push('免責事項の第28条の句が条文に無い');
+    /* 11 本の様式。一字一句同じで、必須の同意の欄を持つ。 */
+    for (const r of REPOS) {
+      const t = c.forms[r];
+      if (t === null) { bad.push(r + ' に誤りの知らせの様式が無い'); continue; }
+      const field = (t.split('\n  - type: ').find((f) => /^checkboxes\n    id: consent\n/.test(f)) || '') + '\n';
+      if (!field.includes(BOX.trimEnd()) || !field.includes('個人情報保護法第 28 条') || !field.includes('メールの中身は、言語モデルに渡しません。') || !field.includes('The content of an email is not given to a language model.')) bad.push(r + ' の様式に必須の同意の欄が無い');
+      if (t !== c.forms['cpsbvbng26-dotcom']) bad.push(r + ' の様式が cpsbvbng26-dotcom と違う');
+    }
+    for (const r of C.repos) if (!RULE.every((s) => c.claude[r].includes(s))) bad.push(r + ' の CLAUDE.md に決めごと 17 が無い');
+    if (!RULE_DC.every((s) => c.claude['deposit-check'].includes(s))) bad.push('deposit-check の CLAUDE.md に決めごと 12 が無い');
+    /* 記録の節。 */
+    const a = c.aud, i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + HEAD.length);
+    const s17 = i < 0 || j < 0 ? '' : a.slice(i, j).split('\n### 下げられずに残る危険\n').join('\n');
+    if (!s17 || a.indexOf('\n## 調べた法令\n') < i) return bad.concat(['記録の節が無いか、調べた法令の後にある']);
+    const t0 = s17.indexOf('\n| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : s17.slice(t0 + 1).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 8 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    const m = /この表の判定は、([^。]+)です。/.exec(s17);
+    const said = m ? Object.fromEntries(m[1].split('、').map((z) => { const [k, n] = z.trim().split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !KINDS.every((k) => (said[k] || 0) === rows.filter((y) => y[4] === k).length)) bad.push('記録の判定の数');
+    for (const y of rows.filter((z) => z[4] !== '問題なし')) if (!/2026-11-13 に Claude が決めました。[^|]*ためです$/.test(y[5])) bad.push('決めた者か理由の無い行：' + y[0].slice(0, 20));
+    if (!s17.includes('「点検の表」の「第三者への提供」の行は、問題なしとしていました。この判定は誤りでした。')) bad.push('前の行を誤りとした文');
+    if (!s17.includes('誤りの知らせの様式（`error-report.yml`、10 のリポジトリと deposit-check の ' + REPOS.filter((r) => c.forms[r] !== null).length + ' 本）')
+      || !s17.includes('ほかの様式（不具合の報告 ' + others.bug + ' 本、使われた記録 ' + others.used + ' 本）')) bad.push('記録が名乗る様式の数');
+    const r28 = [...s17.matchAll(/「([^」]+)」/g)].map((z) => z[1]).filter((q) => /^あらかじめ外国|^当該外国/.test(q));
+    if (r28.length < 2 || !r28.every((q) => a28.includes(q))) bad.push('記録の第28条の句が条文に無い');
+    if (!s17.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(s17)) bad.push('弁護士の一文');
+    return bad;
+  }
+  const now = problems(x);
+  check('免責事項（両言語）が、issue の題と本文が Claude（Anthropic、米国）に渡ることを第28条の提供として扱い、同意の無い中身を渡さないと書き、取り寄せた句だけを引く。誤りの知らせの様式（' + REPOS.length + ' 本）が一字一句同じで必須の同意の欄を持ち、CLAUDE.md に読み方があり、点検の記録に節がそろう',
+    now.length === 0, now.slice(0, 6).join(' / '));
+  const wf = (r, a, b) => Object.assign({}, x, { forms: Object.assign({}, x.forms, { [r]: (x.forms[r] || '').replace(a, b) }) });
+  const w = (k, a, b) => Object.assign({}, x, { [k]: x[k].replace(a, b) });
+  const wcl = (r, a, b) => Object.assign({}, x, { claude: Object.assign({}, x.claude, { [r]: x.claude[r].replace(a, b) }) });
+  const breaks = [
+    ['様式から同意の欄を外す', wf('solitary-school', /\n  - type: checkboxes\n    id: consent\n[\s\S]*$/, '\n')],
+    ['同意を必須から外す', wf('deposit-check', '          required: true\n', '          required: false\n')],
+    ['様式の説明からメールの扱いを外す', wf('errata-check', 'メールの中身は、言語モデルに渡しません。', '')],
+    ['免責事項からコメントとメールの扱いを外す', w('disc', 'コメントとメールの中身も、言語モデルに渡しません。', '')],
+    ['英語の免責事項から様式の欄を外す', w('discEn', 'The error report form (error-report.yml) shows this section and asks, in a required box, for consent to giving the title and text to Claude.', '')],
+    ['免責事項に確かめられない約束を足す', w('disc', 'その設定は、この頁では確かめていません。', 'その設定は、この頁では確かめていません。題と本文は学習に使われません。')],
+    ['委員会の句を変える', w('disc', '「包括的な法令は存在しない。」', '「包括的な法令は無い。」')],
+    ['Anthropic の句を変える', w('discEn', 'from loss, misuse, and unauthorized access', 'from loss and unauthorized access')],
+    ['第28条の句を変える', w('disc', '「あらかじめ外国にある第三者への提供を認める旨の本人の同意を得なければならない。」', '「あらかじめ本人の同意を得なければならない。」')],
+    ['CLAUDE.md から読み方を外す', wcl('researcher-profile', '`list_issues` で一覧を取らない（本文も返る）。コメントは読まない。メールの中身は扱わない。', '')],
+    ['deposit-check の CLAUDE.md から決めごとを外す', wcl('deposit-check', '12. **issue の中身を言語モデルに渡すのは、本人の同意がある題と本文だけにする。**', '')],
+    ['記録の節を外す', w('aud', HEAD, '\n## 言語モデル\n')],
+    ['記録の判定の数を変える', w('aud', 'この表の判定は、誤り 1、漏れ 4、根拠不足 1、問題なし 2 です。', 'この表の判定は、誤り 1、漏れ 3、根拠不足 1、問題なし 2 です。')],
+    ['前の行を誤りとした文を外す', w('aud', '「点検の表」の「第三者への提供」の行は、問題なしとしていました。この判定は誤りでした。', '')],
+    ['記録が名乗る様式の数をずらす', w('aud', 'ほかの様式（不具合の報告 ' + others.bug + ' 本', 'ほかの様式（不具合の報告 ' + (others.bug + 1) + ' 本')],
+    ['決めた理由を外す', w('aud', '同意を得る前に中身が渡らないよう、issue を開くときに求めるためです |', '同意を求めます |')],
+    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+  ];
+  const missed = breaks.filter(([, b]) => problems(b).length === 0).map(([k]) => k);
+  check('壊して確かめる：様式の欄・必須・メールの扱い、免責事項の両言語の文・約束・委員会と Anthropic と第28条の句、CLAUDE.md の二つの決めごと、記録の節・判定の数・誤りの文・様式の数・理由・弁護士のどれを崩しても落ちる（' + (breaks.length - missed.length) + ' / ' + breaks.length + '）',
+    missed.length === 0, missed.join(' / '));
 }
 
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
