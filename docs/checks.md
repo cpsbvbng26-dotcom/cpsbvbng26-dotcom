@@ -2,7 +2,7 @@
 
 ## 横断の検査の数
 
-`verification/check_ecosystem.js` は、いま 10 リポジトリ横断 619 項目です。
+`verification/check_ecosystem.js` は、いま 10 リポジトリ横断 621 項目です。
 
 この数を書くのは、この頁だけです。
 README、CI の仕事の名前、作業の手順書、現状の自己評価は、この頁を指します。
