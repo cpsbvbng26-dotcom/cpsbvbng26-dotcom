@@ -2314,6 +2314,66 @@ console.log('\n12b. 予想の英語サイト（golden-window-conjecture.vercel.a
     写し === null ? 'site/index.html が無い' : (生成 === null ? '生成できない' : ''));
 }
 
+/* ---------- 作者のサイトの意匠が、生成もとの数から描いたものと同じか（2026-11-14） ----------
+ *
+ * 帯・銘・飾り・年表の棒と意匠の CSS は、researcher-profile の design.js が描く。頁に写したあとで手で直すと、
+ * 次の生成で黙って戻る。design.js を呼んで、頁の SVG と CSS を一字一句で突き合わせる。
+ * ロゴ（favicon.svg、手で置いたもの）は、design.js の寸法から描いたものと一字一句同じであること。飾りの比はそこから取る。
+ * 年表の数（researcher-profile の register-timeline.json）は、self-correction の data/register.csv から数え直したものと同じであること。 */
+console.log('\n12b2. 作者のサイトの意匠と、訂正の登録簿の年表');
+{
+  const R = 'cpsbvbng26-dotcom';
+  const rp = path.join(ROOT, 'researcher-profile');
+  let design = null, tl = null;
+  try { design = require(path.join(rp, 'design.js')); } catch (e) { design = null; }
+  try { tl = require(path.join(rp, 'build_timeline.js')); } catch (e) { tl = null; }
+  const pages = JSON.parse(read(R, path.join('verification', 'pages.json')) || '{"pages":[]}').pages.map((p) => p.file)
+    .filter((f) => /<span class="updated">/.test(read(R, f) || ''));
+  const 判定 = (x) => {
+    const bad = [];
+    if (!design || !tl) return ['researcher-profile の design.js か build_timeline.js を読めない'];
+    if ((x.favicon || '').trim() !== design.logoSvg()) bad.push('favicon.svg が design.js のロゴの寸法と違う');
+    const want = { band: design.bandSvg(), seal: design.sealSvg(), long: design.ornamentSvg('long'), short: design.ornamentSvg('short') };
+    for (const [f, h] of Object.entries(x.pages)) {
+      const got = [...h.matchAll(/<svg class="(band|seal|orn orn-long|orn orn-short)"[\s\S]*?<\/svg>/g)];
+      if (!got.length) bad.push(f + ' に意匠が無い');
+      got.forEach((m) => { const k = { band: 'band', seal: 'seal', 'orn orn-long': 'long', 'orn orn-short': 'short' }[m[1]]; if (m[0] !== want[k]) bad.push(f + ' の ' + k + ' が生成もとと違う'); });
+      if (h.indexOf(design.css()) < 0) bad.push(f + ' の意匠の CSS が生成もとと違う');
+      const rows = [...h.matchAll(/<li><time datetime="(\d{4}-\d{2}-\d{2})">\1<\/time>(<svg class="tl-bar"[\s\S]*?<\/svg>)<span class="tl-count">(\d+)/g)];
+      const max = Math.max(0, ...rows.map((m) => Number(m[3])));
+      rows.forEach((m) => { if (m[2] !== design.barSvg(Number(m[3]), max)) bad.push(f + ' の年表の棒（' + m[1] + '）が件数と合わない'); });
+    }
+    let csvRows = null;
+    try { csvRows = tl.timeline(x.csv || ''); } catch (e) { bad.push('register.csv を読めない'); }
+    if (csvRows && JSON.stringify(csvRows) !== JSON.stringify((x.json || {}).rows)) bad.push('register-timeline.json が register.csv から数えたものと違う');
+    const items = ((x.toml || '').match(/^\[\[(?:entry|entries|item|items|record|records)\]\]/gm) || []).length;
+    const total = csvRows ? csvRows.reduce((n, r) => n + r.count, 0) : -1;
+    if (items > 0 && items !== total) bad.push('年表の合計 ' + total + ' が register.toml の項目の数 ' + items + ' と違う');
+    const ja = x.pages['index.html'] || '';
+    if (ja.indexOf('<p class="timeline-total">合計 ' + total + ' 件</p>') < 0) bad.push('トップの頁の年表の合計が登録簿と違う');
+    return bad;
+  };
+  let json = null;
+  try { json = JSON.parse(read('researcher-profile', 'register-timeline.json') || 'null'); } catch (e) { json = null; }
+  const 実 = { favicon: read(R, 'favicon.svg'), pages: Object.fromEntries(pages.map((f) => [f, read(R, f) || ''])),
+    csv: read('self-correction', path.join('data', 'register.csv')), toml: read('self-correction', 'register.toml'), json };
+  const now = 判定(実);
+  check('生成した頁（' + pages.length + ' 頁）の帯・銘・飾り・年表の棒・意匠の CSS が design.js の描くものと一字一句同じで、favicon.svg がロゴの寸法どおりで、年表の数が self-correction の register.csv から数えたものと同じ',
+    pages.length > 20 && now.length === 0, now.slice(0, 5).join(' / '));
+  const 替 = (f, a, b) => Object.assign({}, 実, { pages: Object.assign({}, 実.pages, { [f]: 実.pages[f].replace(a, b) }) });
+  const 壊す = [
+    ['favicon の枠の太さを変える', Object.assign({}, 実, { favicon: (実.favicon || '').replace('stroke-width="3"', 'stroke-width="2"') })],
+    ['帯の枠の間を変える', 替('cv.html', 'width="16" height="8" patternUnits', 'width="18" height="8" patternUnits')],
+    ['節の飾りの棒を延ばす', 替('notes/mission.html', /(<svg class="orn orn-short"[\s\S]*?class="orn-frame"[^>]*\/><rect x="13" y="4.25" width=")27(")/, '$128$2')],
+    ['意匠の CSS を手で直す', 替('index.en.html', '.band { display: block; }', '.band { display: block; opacity: .9; }')],
+    ['年表の棒の幅を変える', 替('index.html', /(<rect width=")[\d.]+(" height="8" class="tl-fill"\/>)/, '$1' + '1' + '$2')],
+    ['登録簿に一行足す', Object.assign({}, 実, { csv: (実.csv || '') + 'XX-999,open,t,,,,,,,,,,,,,,,2026-11-14,同時,紙面\n' })],
+  ];
+  const 落ちた = 壊す.filter(([, y]) => 判定(y).length > 0).map(([n]) => n);
+  check('壊して確かめる：ロゴの寸法・帯・節の飾り・意匠の CSS・年表の棒・登録簿の行のどれを崩しても落ちる（' + 落ちた.length + ' / ' + 壊す.length + '）',
+    落ちた.length === 壊す.length, 壊す.filter(([n]) => !落ちた.includes(n)).map(([n]) => n).join(' / '));
+}
+
 /* Sophaxis の頁（researcher-profile の sophaxis*.json と、写した notes/sophaxis*.html）は、
  * 載っている記録の数を地の文で名乗る。決めごと 5 により、名乗りを一覧の項目と突き合わせる。
  * 一覧の id は 2026.0001 から欠けずに並ぶ。sophaxis は十に入らないので、その記録とは比べない。 */
@@ -3433,10 +3493,10 @@ console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 �
     + (K ? K['記録'].length : 0) + ' 本）に七度目の節がある', bad.length === 0, bad.slice(0, 6).join(' / '));
   const 替 = (k, a, b) => Object.assign({}, 実, { 今: Object.assign({}, 今, { [k]: (今[k] || '').replace(a, b) }) });
   const 壊す = [
-    ['免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-13（日本時間）。', '最終更新：2026-11-12（日本時間）。')],
-    ['英語の免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-13 (Japan time).', 'Last updated: 2026-11-12 (Japan time).')],
-    ['免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-13（日本時間）。', '最終更新：2026-11-13。')],
-    ['英語の免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-13 (Japan time).', 'Last updated: 2026-11-13.')],
+    ['免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-14（日本時間）。', '最終更新：2026-11-13（日本時間）。')],
+    ['英語の免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-14 (Japan time).', 'Last updated: 2026-11-13 (Japan time).')],
+    ['免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', '最終更新：2026-11-14（日本時間）。', '最終更新：2026-11-14。')],
+    ['英語の免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', 'Last updated: 2026-11-14 (Japan time).', 'Last updated: 2026-11-14.')],
     ['trinity-infinity の正誤表を前の日に戻す', 替('trinity-infinity/ERRATA.md', '最終更新: 2026年11月13日', '最終更新: 2026年11月12日')],
     ['正誤表の文を今日変えて、最終更新を変えない', Object.assign({}, 実, { 最後: Object.assign({}, 最後, { 'naval-gazette-notes/ERRATA.md': '2099-01-01' }) })],
     ['最終更新の行の形を崩す', 替('autonomy-and-self-cultivation/ERRATA.md', /^最終更新: /m, '最終更新 ')],
@@ -4682,7 +4742,7 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     ['紛争の行から Claude が決めた一文を外す', w('aud', '2026-11-13 に利用者が求め、Claude が決めました。事実と違う文を書かず', '事実と違う文を書かず')],
     ['行の理由を外す', w('aud', '一つの場所に二つの声明が重なって掛かることを避けるためです', '一つの場所に一つの声明にします')],
     ['記録が名乗る数をずらす', w('aud', 'このリポジトリを除く 9 と、deposit-check', 'このリポジトリを除く 8 と、deposit-check')],
-    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
+    ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 2026-11-14：意匠と免責', '\n\n## 2026-11-14：意匠と免責')],
   ];
   const missed = breaks.filter(([, b]) => problems(b).length === 0).map(([k]) => k);
   check('壊して確かめる：頁・設定・写し・番号・README・目指すもの・機関・紛争・数・地域の条・トップの道・sitemap・周りの短い節（日英）・弁護士の書き方（日英）・「現在」の定め（頁・設定・写し・README・短い節）・いまの事実の文の「現在」（日英）・約束に足した「現在」・在籍の時の印（五つの面）・記録の節・判定の数・理由・名乗る数・弁護士の一文のどれを崩しても落ちる（'

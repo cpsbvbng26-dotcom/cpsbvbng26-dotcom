@@ -3337,6 +3337,138 @@ section('10.67 見た目（最初の画面・図・写真・絞り込み・共�
  * 検査は 527 項目になっていた。**倍以上ずれていて、誰も気づかない。**
  * 決めごと 5 —— 散文に数を書いたら、その数を機械で確かめられるようにする。
  */
+/* ------------------------------------------------- 10.68 意匠と免責（2026-11-14）
+ *
+ * 作者のサイトの意匠は、researcher-profile の design.js が描く。ここでは頁の側を見る。
+ * 生成した頁はどれも、頁の上の欄の頭に帯を一本持ち、節の見出しごとに飾りを一つ持つ。
+ * 飾りの SVG は長方形・多角形・型だけで、字も外への参照も持たず、読み上げない。
+ * 字のファイルを置かず、外の書体を読まない。年表は五つの言語で同じ行を持ち、合計を行から数える。
+ * 数が design.js の描くものと一字一句同じかは、兄弟を読める check_ecosystem.js が見る。
+ *
+ * 免責事項（日英）。責任の節は法令の定めるとおりと書き、消費者契約法第 8 条第 1 項が無効とする条項を置かないと書く。
+ * 責任を一切負わないと読める形（無効になる形）を、どちらの言語にも置かない。どれも壊して落ちることを確かめる。 */
+section('10.68 意匠と免責（2026-11-14）');
+{
+  const 生成 = PAGES.filter((f) => /<span class="updated">/.test(read(f)));
+  const 飾り = (h) => [...h.matchAll(/<svg class="(?:band|seal|orn orn-(?:long|short)|tl-bar)"[\s\S]*?<\/svg>/g)].map((m) => m[0]);
+  const 形 = (svg) => {
+    const bad = [];
+    [...svg.matchAll(/<\/?([a-zA-Z]+)/g)].map((m) => m[1]).filter((t) => ['svg', 'rect', 'polygon', 'defs', 'pattern'].indexOf(t) < 0).forEach((t) => bad.push(t));
+    if (!/^<svg [^>]*aria-hidden="true"/.test(svg)) bad.push('読み上げる');
+    if (/href|https?:|<text|<image|font/i.test(svg)) bad.push('字か外');
+    return bad;
+  };
+  const 頁の問題 = (h) => {
+    const bad = [];
+    const 見出し = (h.match(/<div class="sec-head reveal">/g) || []).length + (h.match(/<h2 class="profile-label">/g) || []).length;
+    if ((h.match(/<svg class="band"/g) || []).length !== 1 || !/<header>\n  <svg class="band"/.test(h)) bad.push('帯');
+    if ((h.match(/<svg class="orn orn-short"/g) || []).length !== 見出し) bad.push('節の飾り');
+    if ((h.match(/<svg class="orn orn-long"/g) || []).length !== 1 || (h.match(/<svg class="seal"/g) || []).length !== 1) bad.push('名前の下の飾りか銘');
+    if (h.indexOf('/* ---------- 意匠（design.js、2026-11-14） ---------- */') < 0) bad.push('意匠の CSS');
+    飾り(h).forEach((x) => 形(x).forEach((y) => bad.push('SVG の' + y)));
+    const css = [...h.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
+    if (/@font-face|@import|url\(\s*['"]?(?:https?:)?\/\//i.test(css)) bad.push('外の書体');
+    return bad;
+  };
+  const 外れ = 生成.map((f) => [f, 頁の問題(read(f))]).filter(([, b]) => b.length);
+  ok('生成した頁（' + 生成.length + ' 頁）が、帯を一本・名前の下の飾りと銘を一つずつ・節の見出しごとに飾りを一つ持ち、飾りは長方形と多角形だけで読み上げず、外の書体を読まない',
+     生成.length > 20 && 外れ.length === 0, 外れ.slice(0, 4).map(([f, b]) => f + '：' + b.join('・')).join(' / '));
+  const top = read('index.html');
+  const 壊れ = [top.replace('<svg class="band"', '<svg class="bandx"'), top.replace(/<svg class="orn orn-short"[\s\S]*?<\/svg>/, ''),
+    top.replace('<svg class="seal"', '<svg class="seal"><text>TN</text></svg><svg class="seal"'), top.replace('</style>', '@font-face { font-family: X; src: url(https://example.org/x.woff2); }\n</style>'),
+    top.replace(/(<svg class="orn orn-long"[^>]*?) aria-hidden="true"/, '$1')].map(頁の問題);
+  ok('壊して確かめる：帯・節の飾り・銘の字・外の書体・読み上げのどれを崩しても落ちる（' + 壊れ.filter((b) => b.length).length + ' / ' + 壊れ.length + '）', 壊れ.every((b) => b.length > 0));
+
+  const 字の物 = [];
+  const walk = (d) => fs.readdirSync(path.join(ROOT, d), { withFileTypes: true }).forEach((e) => {
+    if (/^(\.git|node_modules)$/.test(e.name)) return;
+    const r = path.join(d, e.name);
+    if (e.isDirectory()) walk(r); else if (/\.(woff2?|ttf|otf|eot)$/i.test(e.name)) 字の物.push(r);
+  });
+  walk('.');
+  ok('字のファイル（woff・woff2・ttf・otf・eot）を一つも置いていない', 字の物.length === 0, 字の物.join(', '));
+
+  /* 年表。五つの言語のトップの頁で、行（日と件数）が同じで、合計が行の和。 */
+  const 行 = (h) => [...h.matchAll(/<li><time datetime="(\d{4}-\d{2}-\d{2})">\1<\/time><svg class="tl-bar"[\s\S]*?<\/svg><span class="tl-count">(\d+)(?: 件)?<\/span><\/li>/g)].map((m) => m[1] + ':' + m[2]);
+  const 和 = (r) => r.reduce((n, x) => n + Number(x.split(':')[1]), 0);
+  const 五 = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'];
+  const 年表 = (pages) => {
+    const rows = pages.map((h) => 行(h));
+    const totals = pages.map((h) => ((/<p class="timeline-total">([^<]*)<\/p>/.exec(h) || [])[1] || '').match(/\d+/g) || []);
+    return rows[0].length > 0 && rows.every((r) => r.join() === rows[0].join()) && rows[0].every((x, i) => i === 0 || rows[0][i - 1] < x)
+      && totals.every((t) => t.length === 1 && Number(t[0]) === 和(rows[0]));
+  };
+  const 頁五 = 五.map(read);
+  ok('五つの言語のトップの頁の年表が、同じ ' + 行(頁五[0]).length + ' 行を日の順に持ち、合計（' + 和(行(頁五[0])) + ' 件）が行の和である', 年表(頁五));
+  ok('壊して確かめる：年表の一行の件数か、合計か、日の順を崩すと落ちる',
+     !年表([頁五[0].replace('<span class="tl-count">25 件</span>', '<span class="tl-count">24 件</span>')].concat(頁五.slice(1)))
+     && !年表(頁五.map((h, i) => i === 1 ? h.replace(/(<p class="timeline-total">)(\d+)/, (m, a, n) => a + (Number(n) + 1)) : h))
+     && !年表(頁五.map((h) => h.replace('datetime="2026-09-07">2026-09-07', 'datetime="2026-09-17">2026-09-17'))));
+
+  /* 免責事項の責任の節と再利用の節。2026-11-14 に、取り寄せた消費者契約法と民法の文に照らして書き直した。 */
+  const 免 = { ja: read('DISCLAIMER.md'), en: read('DISCLAIMER.en.md') };
+  const 置く = {
+    ja: ['民法と消費者契約法その他の法令の定めるとおり責任を負います。', 'この頁は、その責任を免除するものでも、制限するものでもありません。',
+      'この頁は契約ではないので、この頁から運営者の債務は生じません。', '運営者は、同法第 8 条第 1 項が無効とする条項を置きません。',
+      '責任の全部を免除する条項と、故意又は重大な過失による責任の一部を免除する条項です。', '運営者は、軽過失に限って責任の一部を免除する条項も置きません。',
+      'ライセンスが運営者と消費者の間の契約に当たるときは、消費者契約法第 8 条第 1 項が無効とする部分に、運営者は拠りません。',
+      '運営者は、公開物とサイトの提供を続けることも、いつでも読める状態に置くことも約束しません。'],
+    en: ['as the Civil Code, the Consumer Contract Act and other laws provide.', 'This page neither excludes nor limits that liability.',
+      'This page is not a contract, so no obligation of the operator arises from it.', 'The operator sets no clause that Paragraph 1 of Article 8 of that Act makes void.',
+      'These are a clause that excludes all liability, and a clause that excludes part of the liability where the operator acted intentionally or with grave fault.',
+      'The operator also sets no clause that excludes part of the liability for slight negligence only.',
+      "Where a licence is a contract between the operator and a consumer, the operator does not rely on the part that Paragraph 1 of Article 8 of Japan's Consumer Contract Act makes void.",
+      'The operator does not promise to keep offering these works and sites, or to keep them available at all times.'],
+  };
+  /* 無効になる形。責任を一切負わない、どんな損害にも責任を負わない、と読める文。 */
+  const 無効 = { ja: /一切(の)?責任|いかなる(損害|責任)|責任を負いかねます|責任を負いません|免責されます|責任は(負わ|無い|ありません)/,
+    en: /in no event|under no circumstances|not (be )?(held )?liable for any|shall not be liable|disclaims? (all|any) liability|no liability (whatsoever|of any kind)/i };
+  const 条文 = JSON.parse(read('verification/statutes.json'))['条文'];
+  const 免の問題 = (d) => {
+    const bad = [];
+    ['ja', 'en'].forEach((l) => {
+      置く[l].forEach((x) => { if (d[l].indexOf(x) < 0) bad.push(l + '：' + x.slice(0, 20)); });
+      const t = d[l].split('\n').filter((x) => !/^>/.test(x)).join('\n');
+      if (無効[l].test(t)) bad.push(l + '：無効になる形 ' + (無効[l].exec(t) || [''])[0]);
+    });
+    const q = '故意又は過失によって他人の権利又は法律上保護される利益を侵害した者は、これによって生じた損害を賠償する責任を負う。';
+    if ((条文['民法 第709条'] || {})['文'].indexOf(q) < 0 || d.ja.indexOf('「' + q + '」') < 0 || d.en.indexOf('「' + q + '」') < 0) bad.push('民法第709条の句が条文に無いか、引いていない');
+    return bad;
+  };
+  const 免今 = 免の問題(免);
+  ok('免責事項（日英）が、責任を法令の定めるとおりとし、消費者契約法第 8 条第 1 項が無効とする条項を置かず、ライセンスの免責のその部分に拠らないと書き、無効になる形を持たない（' + 置く.ja.length + ' 文ずつ）',
+     免今.length === 0, 免今.join(' / '));
+  const 免壊 = [Object.assign({}, 免, { ja: 免.ja.replace('運営者は、軽過失に限って責任の一部を免除する条項も置きません。\n', '') }),
+    Object.assign({}, 免, { ja: 免.ja + '\n運営者は、公開物の利用から生じたいかなる損害についても責任を負いません。\n' }),
+    Object.assign({}, 免, { en: 免.en + '\nIn no event shall the operator be liable for any damages.\n' }),
+    Object.assign({}, 免, { en: 免.en.replace('This page is not a contract, so no obligation of the operator arises from it.', '') }),
+    Object.assign({}, 免, { ja: 免.ja.replace('法律上保護される利益', '法律上の利益') })].map(免の問題);
+  ok('壊して確かめる：文を外す・無効になる形を足す（日英）・第709条の句を変えるのどれでも落ちる（' + 免壊.filter((b) => b.length).length + ' / ' + 免壊.length + '）', 免壊.every((b) => b.length > 0));
+
+  /* 点検の記録の節「2026-11-14：意匠と免責」。六つの欄の表、判定の数、決めた者と理由、弁護士の一文。 */
+  const 記録の問題 = (t) => {
+    const H = '\n## 2026-11-14：意匠と免責\n', i = t.indexOf(H), j = i < 0 ? -1 : t.indexOf('\n## ', i + H.length);
+    if (i < 0 || j < 0 || t.indexOf('\n## 調べた法令\n') < j) return ['節が無いか、調べた法令の後にある'];
+    const sec = t.slice(i, j), bad = [];
+    const K = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+    const t0 = sec.indexOf('| 箇所 | 法令と条 | 要件 | 事実 | 判定 | 対応 |\n| --- | --- | --- | --- | --- | --- |\n');
+    const rows = t0 < 0 ? [] : sec.slice(t0).split('\n\n')[0].split('\n').slice(2).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    if (rows.length < 8 || !rows.every((r) => r.length === 6 && K.includes(r[4]))) bad.push('表の形');
+    rows.forEach((r) => { if (!/2026-11-14 に利用者が求め、Claude が決めました。[^|]*ためです$/.test(r[5] || '')) bad.push('決めた者か理由の無い行：' + (r[0] || '').slice(0, 16)); });
+    const m = /この表の判定は、([^。]+)です。/.exec(sec);
+    const said = m ? Object.fromEntries(m[1].split('、').map((z) => { const [k, n] = z.trim().split(' '); return [k, Number(n)]; })) : {};
+    if (!m || !K.every((k) => (said[k] || 0) === rows.filter((r) => r[4] === k).length)) bad.push('判定の数');
+    if (sec.indexOf('この節も、弁護士は見ていません。') < 0) bad.push('弁護士の一文');
+    return bad;
+  };
+  const 記録 = read('docs/legal-audit-2026-11-12.md');
+  const 記録今 = 記録の問題(記録);
+  ok('点検の記録に「2026-11-14：意匠と免責」の節があり、六つの欄の表・判定の数・決めた者と理由・弁護士の一文がそろう', 記録今.length === 0, 記録今.join(' / '));
+  const 記録壊 = [記録.replace('この表の判定は、漏れ 2、', 'この表の判定は、漏れ 3、'), 記録.replace('| 書体 | 著作権法第21条 | 同上 |', '| 書体 | 著作権法第21条 |'),
+    記録.replace(/(\| 機関の標章と色 [^\n]*?)2026-11-14 に利用者が求め、Claude が決めました。/, '$1'), 記録.replace('## 2026-11-14：意匠と免責', '## 意匠')].map(記録の問題);
+  ok('壊して確かめる：判定の数・表の欄・決めた者・節の見出しのどれを崩しても落ちる（' + 記録壊.filter((b) => b.length).length + ' / ' + 記録壊.length + '）', 記録壊.every((b) => b.length > 0));
+}
+
 section('10.595 <meta> では出せない安全のヘッダー');
 /* frame-ancestors は <meta> の CSP では効かない。よその頁の枠に埋め込まれないように、Vercel にヘッダーで出させる。
  * ヘッダーの CSP は frame-ancestors だけを名乗る。二つ目の CSP は一つ目を狭めることしかできないので、
