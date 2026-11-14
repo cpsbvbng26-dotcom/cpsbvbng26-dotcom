@@ -10,6 +10,9 @@
  * ブラウザ（playwright の chromium）で描く。CI では回さない。頁を直したら手元で回し、
  * 出た画像を頁と一緒にコミットする。頁が指す画像があることは check_site.js が見る。
  * 外へは何も取りに行かない。字は端末にある書体だけを使う。
+ *
+ * 2026-11-14。頁の意匠（researcher-profile の design.js）に合わせ、左の縦の帯を、上の墨の帯と金の線に替えた。
+ * 色はロゴの二色（墨 #16161a・金 #b08d57）だけである。
  */
 'use strict';
 
@@ -37,7 +40,7 @@ html, body { margin: 0; width: 1200px; height: 630px; }
 body { box-sizing: border-box; padding: 72px 80px; background: #faf9f7; color: #17171a;
   font-family: "Hiragino Sans", "Noto Sans CJK JP", "IPAGothic", "IPAPGothic", sans-serif;
   display: flex; flex-direction: column; justify-content: space-between;
-  border-left: 16px solid #8a6a3d; }
+  border-top: 14px solid #16161a; box-shadow: inset 0 3px 0 #b08d57; }
 .logo svg { width: 96px; height: 96px; display: block; }
 h1 { margin: 0; font-size: 60px; line-height: 1.3; font-weight: 700; letter-spacing: .01em;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
