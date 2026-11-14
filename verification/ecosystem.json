@@ -3456,7 +3456,8 @@
       "このリポジトリには、根本卓哉の[運営理念・声明](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)が掛かります。",
       "声明は、運営の考え方を述べたものです。それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。",
       "適用されるのは、このリポジトリのライセンスと、[免責事項](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md)が挙げるリポジトリではその免責事項です。声明とそれらが食い違うときは、それらが優先します。",
-      "運営者は、現在、弁護士その他の専門家に依頼していません。声明と免責事項は、弁護士の確認を受けていません。",
+      "この節で「現在」と書いたことは、声明の頁の最終更新の日の時点のことです。",
+      "運営者は、現在、弁護士その他の専門家に依頼していません。声明と免責事項は、現在、弁護士の確認を受けていません。",
       "紛争が生じたときは、運営者は、必要に応じて弁護士その他の専門家に相談したうえで、日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）に沿って対応します。これは、誰かに対する警告ではありません。",
       "全文は、[サイトの頁](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)と、cpsbvbng26-dotcom の [docs/mission.md](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/mission.md) にあります。",
       "<!-- 声明:ここまで -->"
@@ -3466,7 +3467,8 @@
       "This repository is covered by the [Statement of Purpose](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) of Takuya Nemoto.",
       "The statement sets out how the operator approaches running these places. By itself it creates no right or obligation for the operator, for readers or for anyone else.",
       "What applies is this repository's licence and, for the repositories listed in the [Disclaimer](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.en.md), that Disclaimer. Where the statement and they differ, they prevail.",
-      "The operator has not, at present, retained a lawyer or other professional. The statement and the Disclaimer have not been reviewed by a lawyer.",
+      "Where this section says \"at present\", it means as of the date the statement's page was last updated.",
+      "The operator has not, at present, retained a lawyer or other professional. The statement and the Disclaimer have not, at present, been reviewed by a lawyer.",
       "If a dispute arises, the operator will respond after consulting a lawyer or other professional where needed, following the laws of Japan (including their rules on international jurisdiction and on the governing law). This is not a warning to anyone.",
       "The full text is on [the site](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) and in [docs/mission.en.md](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/docs/mission.en.md) of cpsbvbng26-dotcom.",
       "<!-- statement:end -->"
@@ -3492,8 +3494,8 @@
       "この声明と、免責事項・各ライセンスとが食い違うときは、免責事項と各ライセンスが優先します。",
       "第 1 条の目的は、運営者が目指すものです。それが果たされることを、約束も保証もしません。",
       "この声明は、法的な助言ではありません。",
-      "これらの場所は、ZEN大学その他の機関の事業ではありません。どの機関からも、承認・後援・推薦を受けていません。",
-      "運営者は、現在、弁護士その他の専門家に依頼していません。この声明と免責事項は、弁護士の確認を受けていません。",
+      "これらの場所は、現在、ZEN大学その他の機関の事業ではありません。どの機関からも、現在、承認・後援・推薦を受けていません。",
+      "運営者は、現在、弁護士その他の専門家に依頼していません。この声明と免責事項は、現在、弁護士の確認を受けていません。",
       "紛争が生じたときは、運営者は、必要に応じて弁護士その他の専門家に相談したうえで対応します。",
       "対応は、日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）と、免責事項の「責任」と「準拠法と変更」の節と、各ライセンスの定めに沿います。",
       "この条は、誰かに対する警告ではありません。",
@@ -3504,8 +3506,8 @@
       "Where this statement and the Disclaimer or a licence differ, the Disclaimer and the licence prevail.",
       "The purpose in Article 1 is what the operator aims at. Its being achieved is neither promised nor guaranteed.",
       "This statement is not legal advice.",
-      "These places are not a project of ZEN University or of any other institution. No institution has approved, sponsored or recommended them.",
-      "The operator has not, at present, retained a lawyer or other professional. This statement and the Disclaimer have not been reviewed by a lawyer.",
+      "At present, these places are not a project of ZEN University or of any other institution. At present, no institution has approved, sponsored or recommended them.",
+      "The operator has not, at present, retained a lawyer or other professional. This statement and the Disclaimer have not, at present, been reviewed by a lawyer.",
       "If a dispute arises, the operator will respond after consulting a lawyer or other professional where needed.",
       "The response will follow the laws of Japan (including their rules on international jurisdiction and on the governing law), the sections “Liability” and “Governing law and changes” of the Disclaimer, and the terms of each licence.",
       "This article is not a warning to anyone.",
@@ -3516,9 +3518,71 @@
       "en": "our lawyers?|legal counsel will|reviewed by (a )?lawyer|retained",
       "打ち消しの文": [
         "The operator has not, at present, retained a lawyer or other professional.",
-        "This statement and the Disclaimer have not been reviewed by a lawyer.",
-        "The statement and the Disclaimer have not been reviewed by a lawyer."
+        "This statement and the Disclaimer have not, at present, been reviewed by a lawyer.",
+        "The statement and the Disclaimer have not, at present, been reviewed by a lawyer."
       ]
+    },
+    "現在": {
+      "_": "2026-11-13 に利用者が求めた。いまの事実を述べる文には「現在」（英語は at present）を付け、事実が変わったあとも本当のこととして読まれないようにする。約束・定め・語の意味の文には付けない。声明の頭に「現在」の時点を定める一文を置き、README の写しと周りの短い節にも同じ定めを置く。ZEN大学の在籍を述べる文は、配る頁と README と docs のどこでも、どの言語でも、時の印を持つ。12x が見る。",
+      "定め": "この声明で「現在」と書いたことは、この頁の最終更新の日の時点のことです。",
+      "定め（英語）": "Where this statement says “at present”, it means as of the date this page was last updated.",
+      "README の定め": "写した条で「現在」と書いたことは、声明の頁の最終更新の日の時点のことです。",
+      "README の定め（英語）": "Where the articles copied here say “at present”, it means as of the date the statement’s page was last updated.",
+      "節の定め": "この節で「現在」と書いたことは、声明の頁の最終更新の日の時点のことです。",
+      "節の定め（英語）": "Where this section says \"at present\", it means as of the date the statement's page was last updated.",
+      "状態の文": [
+        "これらの場所は、現在、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。",
+        "頁を読むのに、現在、料金は掛かりません。",
+        "頁に、現在、販売・広告・寄付の求めはありません。",
+        "論文はどれも、現在、査読を受けていない稿です。",
+        "これらの場所は、現在、根本卓哉が個人で運営しており、法人や団体ではありません。",
+        "現在、指導教員も共同研究者もいません。",
+        "運営者は、現在、ZEN大学の学生です。",
+        "これらの場所は、現在、ZEN大学その他の機関の事業ではありません。",
+        "どの機関からも、現在、承認・後援・推薦を受けていません。",
+        "頁は、現在、cookie を置かず、アクセス解析の仕組みも置いていません。",
+        "文書とコードの一部は、現在、運営者の求めにより Claude Code（Anthropic）で書いています。",
+        "運営者は、現在、弁護士その他の専門家に依頼していません。",
+        "この声明と免責事項は、現在、弁護士の確認を受けていません。",
+        "このサイトは、現在、運営中です。"
+      ],
+      "状態の文（英語）": [
+        "At present, these places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.",
+        "At present, reading the pages costs nothing.",
+        "At present, the pages carry no sales, no advertising and no request for donations.",
+        "At present, every paper is a preprint that has not been peer-reviewed.",
+        "At present, these places are run by Takuya Nemoto as an individual, and are not a company or other organisation.",
+        "At present, there is no supervisor and no collaborator.",
+        "The operator is, at present, a student at ZEN University.",
+        "At present, these places are not a project of ZEN University or of any other institution.",
+        "At present, no institution has approved, sponsored or recommended them.",
+        "At present, the pages set no cookie and carry no analytics.",
+        "At present, parts of the texts and code are written with Claude Code (Anthropic) at the operator’s request.",
+        "The operator has not, at present, retained a lawyer or other professional.",
+        "This statement and the Disclaimer have not, at present, been reviewed by a lawyer.",
+        "At present, this site is in operation."
+      ],
+      "在籍": {
+        "_": "配る頁と README と docs のうち、ZEN大学の在籍を述べる文を持つもの。表と学歴の欄（状態の札）と構造化データは文でないので見ない。どの面にも在籍の文が一つ以上あり、どれも時の印を持つ。",
+        "面": [
+          "index.html",
+          "index.en.html",
+          "index.de.html",
+          "index.fr.html",
+          "index.it.html",
+          "card.html",
+          "notes/mission.html",
+          "notes/mission.en.html",
+          "README.md",
+          "README.en.md",
+          "docs/mission.md",
+          "docs/mission.en.md",
+          "docs/collaboration.md"
+        ],
+        "大学": "ZEN大学|ZEN University|ZEN-Universität",
+        "在籍": "学生です|学部生です|在籍しています|enrolled|a student|eingeschrieben|inscrit|iscritt",
+        "印": "現在|currently|at present|derzeit|actuellement|attualmente"
+      }
     }
   }
 }

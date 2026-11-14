@@ -5,13 +5,15 @@ The page is built from `mission.en.json` in [researcher-profile](https://github.
 `verification/check_ecosystem.js` checks that the two say the same, article by article.
 Japanese: [運営理念・声明](mission.md). It prevails where they differ.
 
+Where this statement says “at present”, it means as of the date this page was last updated.
+
 ## Article 1 (Purpose)
 
 This site (cpsbvbng26-dotcom.vercel.app) is the profile site of Takuya Nemoto.
 
 This statement applies to this site, to the 10 repositories listed in the [Disclaimer](../DISCLAIMER.en.md), and to deposit-check. Sophaxis and Nusquama have their own terms and statements, and this statement does not apply to them.
 
-These places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
+At present, these places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
 
 The operator aims to keep what is published readable by anyone without charge, to audit it by machine afterwards, and to keep errors on record rather than delete them.
 
@@ -27,7 +29,7 @@ Receiving criticism and corrections is what this place is chiefly for ([the top 
 
 ## Article 3 (No charge, and reuse)
 
-1. Reading the pages costs nothing. The pages carry no sales, no advertising and no request for donations.
+1. At present, reading the pages costs nothing. At present, the pages carry no sales, no advertising and no request for donations.
 2. The texts, papers and code can be reused under the licence of each repository (Disclaimer, “Reuse”).
 3. Texts by others that these repositories quote, or keep to verify their quotations, remain their owners’.
 4. Anything taken this far by self-study goes only to diamond open-access venues, which charge neither the reader nor the writer ([README](../README.en.md)).
@@ -35,7 +37,7 @@ Receiving criticism and corrections is what this place is chiefly for ([the top 
 
 ## Article 4 (Preprints, not peer-reviewed)
 
-1. Every paper is a preprint that has not been peer-reviewed.
+1. At present, every paper is a preprint that has not been peer-reviewed.
 2. Having a DOI does not mean having been peer-reviewed.
 3. Appearing on a preprint venue or in an index does not mean having been peer-reviewed either.
 4. The texts, papers and code are not academic, legal, medical, financial or other professional advice.
@@ -49,9 +51,9 @@ Receiving criticism and corrections is what this place is chiefly for ([the top 
 
 ## Article 6 (Operator and independence)
 
-1. These places are run by Takuya Nemoto as an individual. They are not a company or other organisation.
-2. There is no supervisor and no collaborator.
-3. The operator is a student at ZEN University. These places are not a project of ZEN University or of any other institution. No institution has approved, sponsored or recommended them.
+1. At present, these places are run by Takuya Nemoto as an individual, and are not a company or other organisation.
+2. At present, there is no supervisor and no collaborator.
+3. The operator is, at present, a student at ZEN University. At present, these places are not a project of ZEN University or of any other institution. At present, no institution has approved, sponsored or recommended them.
 4. Being held by a repository, or listed in an index or registry, is neither a partnership with it nor a recommendation by it.
 
 ## Article 7 (Statements about people)
@@ -62,13 +64,13 @@ Receiving criticism and corrections is what this place is chiefly for ([the top 
 
 ## Article 8 (Personal information)
 
-1. The pages set no cookie and carry no analytics.
+1. At present, the pages set no cookie and carry no analytics.
 2. Personal information received is handled as the Disclaimer, “Information”, sets out.
 3. The title and text of an issue reach a language model only with the consent of the person concerned (Disclaimer, “Issues and the language model”).
 
 ## Article 9 (Language models)
 
-1. Parts of the texts and code are written with Claude Code (Anthropic) at the operator’s request.
+1. At present, parts of the texts and code are written with Claude Code (Anthropic) at the operator’s request.
 2. The operator checks the content and is responsible for it. Claude is not an author.
 3. This statement, too, was written with Claude Code at the operator’s request.
 
@@ -81,14 +83,14 @@ Receiving criticism and corrections is what this place is chiefly for ([the top 
 
 ## Article 11 (Disputes)
 
-1. The operator has not, at present, retained a lawyer or other professional. This statement and the Disclaimer have not been reviewed by a lawyer.
+1. The operator has not, at present, retained a lawyer or other professional. This statement and the Disclaimer have not, at present, been reviewed by a lawyer.
 2. If a dispute arises, the operator will respond after consulting a lawyer or other professional where needed.
 3. The response will follow the laws of Japan (including their rules on international jurisdiction and on the governing law), the sections “Liability” and “Governing law and changes” of the Disclaimer, and the terms of each licence.
 4. This article is not a warning to anyone.
 
 ## Article 12 (Continuity)
 
-1. This site is currently in operation.
+1. At present, this site is in operation.
 2. Its continuing is not guaranteed.
 3. What is done if it cannot continue is set out in [When it cannot continue](continuity.md) (in Japanese).
 

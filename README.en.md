@@ -12,7 +12,7 @@ Type: Project · Status: Running
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
+I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am currently a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
 
 My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review. The platform describes its review as a vote of language models. Who reviewed this paper was not checked here. It is counted here as not peer review, and it is not review by a journal or a society either.
 
@@ -41,7 +41,7 @@ My family line, the course of my schooling, my daily routine, how I live, my mot
 
 The edX certificates come first, as a guide to technical level. All are introductory courses. CS50x (HarvardX) is an introduction to computer science: every problem set in C, Python, SQL and web programming was submitted, and a final project was built. The guide: able to write a program from scratch and make it run. CS50AI (HarvardX) is an introduction to artificial intelligence with Python: search, logical inference, probability, optimization, machine learning, neural networks and language processing were implemented as projects. The guide: able to build the classical methods by hand. CC0201EN (IBM) is an introduction to containers, Kubernetes and OpenShift, with labs that build and run containers. ER22.1x (HarvardX) is the political-philosophy course Justice, not a technical certificate. The course rules are stated here too. The two CS50 courses treat as academically dishonest any use of outside generative tools (ChatGPT, Claude, Copilot, Gemini and the like) that suggest or complete answers or code; only CS50’s own tool, the CS50 Duck, is allowed. The edX Honor Code requires completing all tests and assignments on one’s own unless collaboration is explicitly permitted. There is no way to prove that these rules were kept. Under the rules, however, the certificates above were issued on the basis that they were kept.
 
-I am enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences. Since around October 2024, I have also worked as a sole proprietor.
+I am currently enrolled at ZEN University, Faculty of Social Informatics — in its first autumn-entry cohort. The programme spans the humanities and the sciences. Since around October 2024, I have also worked as a sole proprietor.
 
 My coursework is mainly **philosophy** and **business practice**. **Mathematics** is on offer as well. The courses I have credit for are listed in the [CV](https://cpsbvbng26-dotcom.vercel.app/cv.html) (in Japanese). What this place holds is my study of computer science and artificial intelligence.
 
@@ -444,6 +444,7 @@ The Statement of Purpose for this account is on [the site](https://cpsbvbng26-do
 What applies is the [Disclaimer](DISCLAIMER.en.md) and each licence for the 10 repositories of the research series, and its licence for deposit-check.
 Sophaxis and Nusquama are covered by the terms and statement of each site.
 Articles 1 and 2 are copied here from the statement as they stand.
+Where the articles copied here say “at present”, it means as of the date the statement’s page was last updated.
 
 ### Article 1 (Purpose)
 
@@ -451,7 +452,7 @@ This site (cpsbvbng26-dotcom.vercel.app) is the profile site of Takuya Nemoto.
 
 This statement applies to this site, to the 10 repositories listed in the [Disclaimer](DISCLAIMER.en.md), and to deposit-check. Sophaxis and Nusquama have their own terms and statements, and this statement does not apply to them.
 
-These places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
+At present, these places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
 
 The operator aims to keep what is published readable by anyone without charge, to audit it by machine afterwards, and to keep errors on record rather than delete them.
 
