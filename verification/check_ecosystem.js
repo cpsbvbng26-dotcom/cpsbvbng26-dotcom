@@ -4483,7 +4483,7 @@ console.log('\n12w. 十七度目の見落とし：issue の題と本文が Claud
     missed.length === 0, missed.join(' / '));
 }
 
-console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文で、周りの README の短い節が一字一句同じで、弁護士に依頼したと書かない（2026-11-13）');
+console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文で、周りの README の短い節が一字一句同じで、弁護士に依頼したと書かない。いまの事実の文と在籍の文は「現在」を持つ（2026-11-13）');
 {
   /* 2026-11-13 に利用者が求めた。サイトごとに、中身に合わせた運営理念・声明を置く。このサイトの声明は researcher-profile の
    * mission.json・mission.en.json から notes/mission.html・notes/mission.en.html を作る。GitHub で読める同じ文を docs/mission.md・
@@ -4533,6 +4533,9 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     md: read(R, path.join('docs', 'mission.md')) || '', mdEn: read(R, path.join('docs', 'mission.en.md')) || '',
     readme: read(R, 'README.md') || '', readmeEn: read(R, 'README.en.md') || '', aud: read(R, AUD) || '', sitemap: read(R, 'sitemap.xml') || '',
     homes: Object.fromEntries(['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].map((f) => [f, read(R, f) || ''])),
+    /* 「現在」（2026-11-13 に利用者が求めた）。在籍の文を見る面と、周りの短い節のもとの並び。 */
+    faces: Object.fromEntries(S['現在']['在籍']['面'].map((f) => [f, read(R, f) || ''])),
+    canon: S['短い節'], canonEn: S['短い節（英語）'],
     rm: Object.fromEntries(S.repos.map((r) => [r, read(r, 'README.md')])),
     rmEn: Object.fromEntries(S.repos.map((r) => [r, read(r, 'README.en.md')])),
   };
@@ -4564,7 +4567,7 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     for (const [f, u] of [['index.html', './notes/mission.html'], ['index.en.html', './notes/mission.en.html'], ['index.de.html', './notes/mission.en.html'], ['index.fr.html', './notes/mission.en.html'], ['index.it.html', './notes/mission.en.html']]) if (!c.homes[f].includes('href="' + u + '"')) bad.push(f + ' から声明への道が無い');
     for (const f of ['notes/mission.html', 'notes/mission.en.html']) if (!PAGES.includes(f) || !c.sitemap.includes('https://cpsbvbng26-dotcom.vercel.app/' + f + '<')) bad.push(f + ' が配る頁か sitemap に無い');
     /* 四。周りの 10 本の短い節。一字一句同じで、全文と同じ句を持つ。 */
-    const canon = S['短い節'].join('\n'), canonEn = S['短い節（英語）'].join('\n');
+    const canon = c.canon.join('\n'), canonEn = c.canonEn.join('\n');
     for (const s of S['結ぶ']) if (!canon.includes(s) || !tj.includes(s)) bad.push('短い節と全文が「' + s.slice(0, 16) + '」で結ばれていない');
     for (const s of S['結ぶ（英語）']) if (!canonEn.includes(s) || !te.includes(s)) bad.push('英語の短い節と全文が「' + s.slice(0, 24) + '」で結ばれていない');
     if (!canon.includes('notes/mission.html') || !canon.includes('docs/mission.md') || !canonEn.includes('notes/mission.en.html') || !canonEn.includes('docs/mission.en.md')) bad.push('短い節から全文への道が無い');
@@ -4577,6 +4580,30 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
         const te2 = ef === 'README.md' ? t : c.rmEn[r];
         if (blockOf(te2, OPEN_EN, CLOSE_EN) !== canonEn || te2.split(OPEN_EN).length !== 2) bad.push(r + '/' + ef + ' の英語の短い節が違う');
       }
+    }
+    /* 四の二。「現在」。声明の頭（頁の初めの段と docs の写しの頭）に、「現在」がいつかを定める一文を置く。いまの事実を述べる文は、
+     * 頁の条の中で「現在」（英語は at present）を持つ。条の中の「現在」と at present の数は、その文の数と同じ（付け落としも余りも落ちる）。
+     * README の写しと周りの短い節も、それぞれの定めの一文を持つ。ZEN大学の在籍を述べる文は、どの面のどの言語でも時の印を持つ。 */
+    const G = S['現在'];
+    const lead = (h) => plain((/<p class="lead[^"]*">([\s\S]*?)<\/p>/.exec(h) || [])[1] || '');
+    if (!lead(c.page).includes(G['定め']) || !lead(c.pageEn).includes(G['定め（英語）']) || !(cj && plain(cj.taglineHtml).includes(G['定め'])) || !(ce && plain(ce.taglineHtml).includes(G['定め（英語）']))) bad.push('頁の頭に「現在」の定めが無い');
+    if (!(c.md.split('\n## 第 1 条')[0] || '').includes('\n' + G['定め'] + '\n') || !(c.mdEn.split('\n## Article 1')[0] || '').includes('\n' + G['定め（英語）'] + '\n')) bad.push('docs の写しの頭に「現在」の定めが無い');
+    for (const s of G['状態の文']) if (!s.includes('現在、') || !tj.includes(s)) bad.push('いまの事実の文に「現在」が無い：' + s.slice(0, 16));
+    for (const s of G['状態の文（英語）']) if (!/at present/i.test(s) || !te.includes(s)) bad.push('いまの事実の文に at present が無い：' + s.slice(0, 24));
+    const nGj = (tj.match(/現在/g) || []).length, nGe = (te.match(/at present/gi) || []).length;
+    if (nGj !== G['状態の文'].length || nGe !== G['状態の文（英語）'].length) bad.push('条の中の「現在」の数（' + nGj + '・' + nGe + '）が、いまの事実の文の数（' + G['状態の文'].length + '・' + G['状態の文（英語）'].length + '）と違う');
+    if (!rs.includes('\n' + G['README の定め'] + '\n') || !rse.includes('\n' + G['README の定め（英語）'] + '\n')) bad.push('README の写しに「現在」の定めが無い');
+    const ci = c.canon.indexOf(G['節の定め']), ce2 = c.canonEn.indexOf(G['節の定め（英語）']);
+    if (ci < 1 || !c.canon.slice(ci + 1).some((l) => l.includes('現在')) || ce2 < 1 || !c.canonEn.slice(ce2 + 1).some((l) => /at present/.test(l))) bad.push('短い節に「現在」の定めが無いか、定めが「現在」より後にある');
+    if (!c.canon.some((l) => l.includes('声明と免責事項は、現在、弁護士の確認を受けていません。')) || !c.canonEn.some((l) => l.includes('have not, at present, been reviewed by a lawyer.'))) bad.push('短い節の弁護士の確認の文に「現在」が無い');
+    const Z = G['在籍'], RZ = new RegExp(Z['大学']), RS = new RegExp(Z['在籍'], 'i'), RM = new RegExp(Z['印'], 'i');
+    const prose = (f, t) => /\.md$/.test(f)
+      ? String(t).split('\n').filter((l) => !/^\s*(\||#|<|>)/.test(l)).join('\n')
+      : [...String(t).replace(/<script[\s\S]*?<\/script>/g, '').matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>|<li>([\s\S]*?)<\/li>/g)].map((m) => plain(m[1] || m[2])).join('\n');
+    for (const f of Z['面']) {
+      const ss = prose(f, c.faces[f]).split(/\n+/).flatMap((l) => l.split(/(?<=。)|(?<=\.)\s+(?=[A-Z])/)).filter((s) => RZ.test(s) && RS.test(s));
+      if (!ss.length) bad.push(f + ' に在籍の文が無い');
+      for (const s of ss) if (!RM.test(s)) bad.push(f + ' の在籍の文に時の印が無い：' + s.slice(0, 30));
     }
     /* 五。弁護士に依頼した・付く・確かめたと書かない。打ち消しの文だけは通す。 */
     const L = S['弁護士の書き方'], RJ = new RegExp(L.ja), RE = new RegExp(L.en, 'i');
@@ -4607,10 +4634,11 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
   }
   const now = problems(x);
   check('運営理念・声明の頁（日英）が設定・docs の写し・README の第 1 条と第 2 条と条ごとに同じ文で、拘束しないこと・目指すもの・機関の事業でないこと・紛争の四つを書き、トップの五言語と sitemap から辿れ、周りの '
-    + S.repos.length + ' 本の README の短い節が一字一句同じで全文と結ばれ、弁護士に依頼したと読める文が無く、記録の節がそろう', now.length === 0, now.slice(0, 6).join(' / '));
+    + S.repos.length + ' 本の README の短い節が一字一句同じで全文と結ばれ、弁護士に依頼したと読める文が無く、声明の頭と README の写しと短い節に「現在」の定めがあり、いまの事実の文がどれも「現在」を持ち、ZEN大学の在籍の文がどの面でも時の印を持ち、記録の節がそろう', now.length === 0, now.slice(0, 6).join(' / '));
   const w = (k, a, b) => Object.assign({}, x, { [k]: x[k].replace(a, b) });
   const wr = (k, r, a, b) => Object.assign({}, x, { [k]: Object.assign({}, x[k], { [r]: String(x[k][r]).replace(a, b) }) });
   const wh = (f, a, b) => Object.assign({}, x, { homes: Object.assign({}, x.homes, { [f]: x.homes[f].replace(a, b) }) });
+  const wf = (f, a, b) => Object.assign({}, x, { faces: Object.assign({}, x.faces, { [f]: x.faces[f].replace(a, b) }) });
   const breaks = [
     ['頁の第 2 条の一文を変える', w('page', 'それ自体で、運営者にも、読む人その他の誰にも、権利や義務を生じさせません。', 'それ自体で、運営者に義務を生じさせません。')],
     ['頁だけ直して設定を置いていく', w('pageEn', 'Its continuing is not guaranteed.', 'Its continuing is guaranteed.')],
@@ -4619,7 +4647,7 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     ['README の第 1 条を変える', w('readme', '批判と誤りの指摘を受けることが、この場所の一番の用途です', '批判を受けることが、この場所の一番の用途です')],
     ['英語の README の第 2 条を外す', w('readmeEn', '5. This statement is not legal advice.\n', '')],
     ['目指すものの一文を外す', w('cfg', 'それが果たされることを、約束も保証もしません。', '')],
-    ['機関の事業でない一文を外す', w('cfgEn', 'These places are not a project of ZEN University or of any other institution. ', '')],
+    ['機関の事業でない一文を外す', w('cfgEn', 'At present, these places are not a project of ZEN University or of any other institution. ', '')],
     ['紛争の警告でない一文を外す', w('page', '<li>この条は、誰かに対する警告ではありません。</li>', '')],
     ['リポジトリの数をずらす', w('page', '免責事項</a>が挙げる 10 のリポジトリ', '免責事項</a>が挙げる 11 のリポジトリ')],
     ['提供しない地域の条を足す', w('pageEn', '<li>This article is not a warning to anyone.</li>', '<li>This article is not a warning to anyone.</li><li>The site is not offered in some places.</li>')],
@@ -4631,15 +4659,33 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     ['周りの README に弁護士が付くと書く', wr('rm', 'trinity-operator', '日本の法令（国際的な事件の裁判管轄と準拠法についての定めを含む）に沿って対応します。', '日本の法令に沿って対応し、弁護士が付きます。')],
     ['英語の README に弁護士が確かめたと書く', w('readmeEn', 'Articles 1 and 2 are copied here', 'This section was reviewed by a lawyer. Articles 1 and 2 are copied here')],
     ['頁に依頼した弁護士を書く', w('page', '<li>この条は、誰かに対する警告ではありません。</li>', '<li>この条は、誰かに対する警告ではありません。顧問弁護士がいます。</li>')],
+    ['頁の頭から「現在」の定めを外す', w('page', 'この声明で「現在」と書いたことは、この頁の最終更新の日の時点のことです。', '')],
+    ['英語の設定の頭から「現在」の定めを外す', w('cfgEn', ' Where this statement says “at present”, it means as of the date this page was last updated.', '')],
+    ['docs の写しから「現在」の定めを外す', w('md', '\nこの声明で「現在」と書いたことは、この頁の最終更新の日の時点のことです。\n', '\n')],
+    ['いまの事実の文から「現在」を外す（頁と設定と写しを同じに直しても）', ['page', 'cfg', 'md'].reduce((y, k) => Object.assign(y, { [k]: y[k].replace('このサイトは、現在、運営中です。', 'このサイトは、運営中です。') }), Object.assign({}, x))],
+    ['英語のいまの事実の文から at present を外す（頁と設定と写しを同じに直しても）', ['pageEn', 'cfgEn', 'mdEn'].reduce((y, k) => Object.assign(y, { [k]: y[k].replace('At present, the pages set no cookie', 'The pages set no cookie') }), Object.assign({}, x))],
+    ['約束の文に「現在」を足す（頁と設定と写しを同じに直しても）', ['page', 'cfg', 'md'].reduce((y, k) => Object.assign(y, { [k]: y[k].replace('続くことは保証しません。', '現在、続くことは保証しません。') }), Object.assign({}, x))],
+    ['README の写しから「現在」の定めを外す', w('readme', '写した条で「現在」と書いたことは、声明の頁の最終更新の日の時点のことです。\n', '')],
+    ['英語の README の写しから「現在」の定めを外す', w('readmeEn', 'Where the articles copied here say “at present”, it means as of the date the statement’s page was last updated.\n', '')],
+    ['短い節のもとの並びと全部の README から「現在」の定めを外す', Object.assign({}, x, { canon: x.canon.filter((l) => l !== S['現在']['節の定め']),
+      rm: Object.fromEntries(Object.entries(x.rm).map(([r, v]) => [r, v === null ? v : v.replace(S['現在']['節の定め'] + '\n', '')])) })],
+    ['短い節の弁護士の確認の文から「現在」を外す（全部の README を同じに直しても）', Object.assign({}, x, { canon: x.canon.map((l) => l.replace('声明と免責事項は、現在、弁護士', '声明と免責事項は、弁護士')),
+      rm: Object.fromEntries(Object.entries(x.rm).map(([r, v]) => [r, v === null ? v : v.replace('声明と免責事項は、現在、弁護士', '声明と免責事項は、弁護士')])) })],
+    ['ドイツ語のトップの頁の在籍から時の印を外す', wf('index.de.html', 'Derzeit eingeschrieben an der', 'Eingeschrieben an der')],
+    ['README の紹介の在籍から「現在」を外す', wf('README.md', '計画です。現在、ZEN大学', '計画です。ZEN大学')],
+    ['英語の README の自己紹介の在籍から currently を外す', wf('README.en.md', 'I am currently enrolled at ZEN University', 'I am enrolled at ZEN University')],
+    ['名刺の頁の在籍から「現在」を外す', wf('card.html', '現在、ZEN大学', 'ZEN大学')],
+    ['docs/collaboration.md の在籍から「現在」を外す', wf('docs/collaboration.md', '現在、ZEN大学', 'ZEN大学')],
+    ['英語の声明の在籍から at present を外す', wf('notes/mission.en.html', 'The operator is, at present, a student at ZEN University.', 'The operator is a student at ZEN University.')],
     ['記録の節を外す', w('aud', HEAD, '\n## 2026-11-13：声明\n')],
-    ['記録の判定の数を変える', w('aud', 'この表の判定は、問題なし 8 です。', 'この表の判定は、問題なし 7 です。')],
+    ['記録の判定の数を変える', w('aud', 'この表の判定は、表現 4、問題なし 10 です。', 'この表の判定は、表現 3、問題なし 10 です。')],
     ['紛争の行から Claude が決めた一文を外す', w('aud', '2026-11-13 に利用者が求め、Claude が決めました。事実と違う文を書かず', '事実と違う文を書かず')],
     ['行の理由を外す', w('aud', '一つの場所に二つの声明が重なって掛かることを避けるためです', '一つの場所に一つの声明にします')],
     ['記録が名乗る数をずらす', w('aud', 'このリポジトリを除く 9 と、deposit-check', 'このリポジトリを除く 8 と、deposit-check')],
     ['弁護士の一文を外す', w('aud', '\n\nこの節も、弁護士は見ていません。\n\n## 調べた法令', '\n\n## 調べた法令')],
   ];
   const missed = breaks.filter(([, b]) => problems(b).length === 0).map(([k]) => k);
-  check('壊して確かめる：頁・設定・写し・番号・README・目指すもの・機関・紛争・数・地域の条・トップの道・sitemap・周りの短い節（日英）・弁護士の書き方（日英）・記録の節・判定の数・理由・名乗る数・弁護士の一文のどれを崩しても落ちる（'
+  check('壊して確かめる：頁・設定・写し・番号・README・目指すもの・機関・紛争・数・地域の条・トップの道・sitemap・周りの短い節（日英）・弁護士の書き方（日英）・「現在」の定め（頁・設定・写し・README・短い節）・いまの事実の文の「現在」（日英）・約束に足した「現在」・在籍の時の印（五つの面）・記録の節・判定の数・理由・名乗る数・弁護士の一文のどれを崩しても落ちる（'
     + (breaks.length - missed.length) + ' / ' + breaks.length + '）', missed.length === 0, missed.join(' / '));
 }
 
