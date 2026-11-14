@@ -78,6 +78,18 @@ PAGES.forEach((page) => {
     });
   });
 
+  /* 2026-11-14 の意匠（researcher-profile の design.js）。帯はロゴの二色（墨と金）で描く。
+   * 字ではない図形なので、WCAG 2.1 の 1.4.11 の 3:1 で測る。値は頁の意匠の :root から読む。
+   * 札の縁と状態の丸い枠は指し色の線なので、カードの地に対して同じ 3:1 で測る（明暗とも）。 */
+  if (html.indexOf('--seal-ink:') >= 0) {
+    const blk = (/:root \{\n  --seal-ink:[^}]*\}/.exec(html) || [''])[0];
+    const ink = (/--seal-ink:\s*(#[0-9a-fA-F]{6});/.exec(blk) || [])[1], gold = (/--seal-gold:\s*(#[0-9a-fA-F]{6});/.exec(blk) || [])[1];
+    ok(page + ' 帯の金 / 墨（図形）', !!ink && !!gold && ratio(gold, ink) >= 3, ink && gold ? ratio(gold, ink).toFixed(2) + ':1（必要 3）' : '値が無い');
+    [['ライト', light], ['ダーク', dark]].forEach(([name, t]) => {
+      ok(page + ' ' + name + ' 札の縁 --accent / --card（図形）', ratio(t.accent, t.card) >= 3, ratio(t.accent, t.card).toFixed(2) + ':1（必要 3）');
+    });
+  }
+
   /* 指し色と本文色の差は、どう選んでも 3:1 に届かない。
    * だからリンクは色ではなく下線で示す。下線の指定が残っているかを見る。 */
   if (/class="(?:facts|claim-kv|notes-list|prose)"/.test(html) || /notes-list/.test(html)) {

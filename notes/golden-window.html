@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-1n+kRM5sg2NydiVM+GKu3jUsOviITbFa+qxMOvpBRUs='; style-src 'sha256-r/Q5i2Sd5QikgAA6/nyuQri8Ama1Vtf9O7bac1yrHdQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-1n+kRM5sg2NydiVM+GKu3jUsOviITbFa+qxMOvpBRUs='; style-src 'sha256-x9Yix3cT+2pbHpNVLmRKHE+p1DGKRcipeaR4LZLDQqQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>黄金比の窓の予想 | 根本卓哉</title>
 <meta name="description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になるという予想で、証明はなく、根拠は数値だけです。">
 <meta name="robots" content="index, follow">
@@ -707,6 +707,76 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 .cert-group .where a:hover { color: var(--accent); }
 .foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
 .foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+/* ---------- 意匠（design.js、2026-11-14） ---------- */
+:root {
+  --seal-ink: #16161a;
+  --seal-gold: #b08d57;
+  --sp-1: .25rem;
+  --sp-2: .5rem;
+  --sp-3: .75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+}
+header { border-bottom: 1px solid var(--line); }
+.band { display: block; }
+.band-ink { fill: var(--seal-ink); }
+.band-gold-stroke { stroke: var(--seal-gold); }
+.hero .orn-long { display: block; margin: 0 0 var(--sp-5); }
+.hero { position: relative; }
+.seal { display: none; }
+.seal-frame { fill: none; stroke: var(--line); }
+.seal-fill { fill: var(--line); }
+@media (min-width: 62rem) {
+  .hero .seal { display: block; position: absolute; top: 4.5rem; right: 1.5rem; width: 7rem; height: 7rem; }
+}
+.hero .romaji { margin-bottom: var(--sp-4); }
+.orn-frame { fill: none; stroke: var(--accent); }
+.orn-bar, .orn-dot { fill: var(--accent); }
+.sec-head h2::after, .profile-section .profile-label::after { content: none; }
+.sec-head .orn-short, .profile-section .orn-short { display: block; margin-top: var(--sp-3); }
+.sec-head h2::before, .profile-section .profile-label::before { color: var(--accent); }
+.entries a { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert .code { display: inline-block; align-self: flex-start; padding: 0 var(--sp-2); border: 1px solid var(--line); border-radius: .2rem; }
+.cert .doi { padding-top: var(--sp-2); border-top: 1px dashed var(--line); }
+.works-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.works-table, .works-table tbody { display: block; width: 100%; }
+.works-table tbody { display: grid; gap: var(--sp-4); }
+.works-table tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-4); padding: var(--sp-4) var(--sp-5); background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 .5rem .5rem 0; }
+.works-table td { display: block; padding: 0; border: 0; }
+.works-table .t-title { flex: 1 1 100%; width: 100%; }
+.works-table td[data-label] { font-size: var(--fs-xs); }
+.works-table td[data-label]::before { content: attr(data-label); display: inline-block; margin-right: var(--sp-2); font-family: var(--font-sans); font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint); }
+.works-table .t-state { padding: 0 var(--sp-2); border: 1px solid var(--accent); border-radius: 999px; color: var(--text); }
+.works-table .t-state::before { content: none; }
+.timeline { margin: var(--sp-6) 0 0; max-width: var(--measure); }
+.timeline-head { margin: 0 0 var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+.timeline ol { list-style: none; margin: 0; padding: 0 0 0 var(--sp-4); border-left: 1px solid var(--line); }
+.timeline li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 3.5rem; gap: var(--sp-3); align-items: center; padding: var(--sp-1) 0; font-size: var(--fs-sm); line-height: 1.6; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1 * var(--sp-4) - .25rem); top: 50%; width: .5rem; height: .5rem; margin-top: -.25rem; background: var(--bg); border: 1px solid var(--accent); transform: rotate(45deg); }
+.timeline time { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted); }
+.timeline .tl-bar { display: block; width: 100%; height: .5rem; }
+.timeline .tl-track { fill: var(--line-soft); }
+.timeline .tl-fill { fill: var(--accent); }
+.timeline .tl-count { text-align: right; color: var(--text); }
+.timeline-total { margin: var(--sp-3) 0 0; padding-left: var(--sp-4); font-size: var(--fs-sm); color: var(--text); border-left: 2px solid var(--accent); }
+footer { border-top: 2px solid var(--seal-gold); }
+@media (max-width: 40rem) {
+  .works-table tr { padding: var(--sp-3) var(--sp-4); }
+  .works-table td { width: auto; }
+  .works-table .t-title { width: 100%; }
+  .works-table td[data-label]::before { min-width: 0; }
+  .timeline li { grid-template-columns: 5.5rem minmax(0, 1fr) 3rem; gap: var(--sp-2); }
+}
+@media print {
+  :root, :root[data-theme="dark"] { --seal-ink: #000; --seal-gold: #000; }
+  .band { display: none; }
+  .works-table tr, .timeline li { break-inside: avoid; }
+  .works-table tr { background: none; }
+  footer { border-top-width: 1px; }
+}
 </style>
 </head>
 <body>
@@ -714,6 +784,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <a class="skip-link" href="#main">本文へスキップ</a>
 
 <header>
+  <svg class="band" width="100%" height="8" aria-hidden="true" focusable="false"><defs><pattern id="band-frames" width="16" height="8" patternUnits="userSpaceOnUse"><rect x="6" y="2" width="4" height="4" fill="none" stroke-width="1" class="band-gold-stroke"/></pattern></defs><rect width="100%" height="8" class="band-ink"/><rect width="100%" height="8" fill="url(#band-frames)"/></svg>
   <div class="wrap head-row">
     <a class="mark" href="#main"><img src="./../favicon.svg" alt="黄金比の窓の予想" width="32" height="32"></a>
     <nav class="nav">
@@ -732,9 +803,11 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <main id="main" tabindex="-1">
 
   <section class="wrap hero">
+    <svg class="seal" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false"><rect x="7" y="7" width="34" height="34" rx="2" class="seal-frame" stroke-width="3"/><rect x="12.5" y="14" width="10" height="3.6" class="seal-fill"/><rect x="15.7" y="14" width="3.6" height="20" class="seal-fill"/><rect x="24.5" y="14" width="3.4" height="20" class="seal-fill"/><rect x="32.1" y="14" width="3.4" height="20" class="seal-fill"/><polygon points="24.5,14 27.9,14 35.5,34 32.1,34" class="seal-fill"/></svg>
     <p class="eyebrow reveal">予想</p>
     <h1 class="serif reveal">黄金比の窓の予想</h1>
     <p class="romaji reveal">Golden-window conjecture</p>
+    <svg class="orn orn-long" viewBox="0 0 96 10" width="96" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="83" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
 
     <p class="lead reveal">三人のゲームの、一本の利得の線分についての、証明されていない予想の頁です。窓より下と、窓の下端と、<code translate="no" class="notranslate">2/3</code> から上で何が起きるかは証明してあります。窓の中の集合の次元が正であることも証明してあります。その集合の長さが 0 になるか、次元がどう振る舞うかは開いており、根拠は数値だけです。</p>
   </section>
@@ -744,6 +817,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="state" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">いまの状態</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal">
@@ -763,6 +837,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="figure" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">δ を動かす</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal">
@@ -781,6 +856,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="conditions" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">名乗ることと、その条件</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal">

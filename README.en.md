@@ -298,15 +298,15 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1806 checks.** There are no dependencies to install.
+**Every push runs 1938 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 736 checks
-node verification/check_site.js      # site structure, 980 checks
+node verification/check_contrast.js  # colour contrast, 859 checks
+node verification/check_site.js      # site structure, 989 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 

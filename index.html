@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-5MipKEHufnf8xQ1jnSPmYAVVppvMK2HkKhSHP+gZwWU=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-QbUhwya7rpfurEWyFJghR88mONe4qLcBDYCf7z8EfZQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-5MipKEHufnf8xQ1jnSPmYAVVppvMK2HkKhSHP+gZwWU=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-7/KmapUmzmUpMHyv1pyevHeJoRSdt6A5L3iiQb3aPeM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>根本卓哉 | Takuya Nemoto</title>
 <meta name="description" content="根本卓哉が公開したプレプリントと、それを機械で監査する道具と記録の頁です。公開した成果物は、もう直せません。直せるのは訂正のほうで、だから訂正は元の資料からずれていきます。そのずれを、推論を使わずに機械で落とします。">
 <meta name="robots" content="index, follow">
@@ -897,6 +897,76 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 .aims-table .aim-status { white-space: nowrap; color: var(--text); }
 .foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
 .foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+/* ---------- 意匠（design.js、2026-11-14） ---------- */
+:root {
+  --seal-ink: #16161a;
+  --seal-gold: #b08d57;
+  --sp-1: .25rem;
+  --sp-2: .5rem;
+  --sp-3: .75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+}
+header { border-bottom: 1px solid var(--line); }
+.band { display: block; }
+.band-ink { fill: var(--seal-ink); }
+.band-gold-stroke { stroke: var(--seal-gold); }
+.hero .orn-long { display: block; margin: 0 0 var(--sp-5); }
+.hero { position: relative; }
+.seal { display: none; }
+.seal-frame { fill: none; stroke: var(--line); }
+.seal-fill { fill: var(--line); }
+@media (min-width: 62rem) {
+  .hero .seal { display: block; position: absolute; top: 4.5rem; right: 1.5rem; width: 7rem; height: 7rem; }
+}
+.hero .romaji { margin-bottom: var(--sp-4); }
+.orn-frame { fill: none; stroke: var(--accent); }
+.orn-bar, .orn-dot { fill: var(--accent); }
+.sec-head h2::after, .profile-section .profile-label::after { content: none; }
+.sec-head .orn-short, .profile-section .orn-short { display: block; margin-top: var(--sp-3); }
+.sec-head h2::before, .profile-section .profile-label::before { color: var(--accent); }
+.entries a { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert .code { display: inline-block; align-self: flex-start; padding: 0 var(--sp-2); border: 1px solid var(--line); border-radius: .2rem; }
+.cert .doi { padding-top: var(--sp-2); border-top: 1px dashed var(--line); }
+.works-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.works-table, .works-table tbody { display: block; width: 100%; }
+.works-table tbody { display: grid; gap: var(--sp-4); }
+.works-table tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-4); padding: var(--sp-4) var(--sp-5); background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 .5rem .5rem 0; }
+.works-table td { display: block; padding: 0; border: 0; }
+.works-table .t-title { flex: 1 1 100%; width: 100%; }
+.works-table td[data-label] { font-size: var(--fs-xs); }
+.works-table td[data-label]::before { content: attr(data-label); display: inline-block; margin-right: var(--sp-2); font-family: var(--font-sans); font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint); }
+.works-table .t-state { padding: 0 var(--sp-2); border: 1px solid var(--accent); border-radius: 999px; color: var(--text); }
+.works-table .t-state::before { content: none; }
+.timeline { margin: var(--sp-6) 0 0; max-width: var(--measure); }
+.timeline-head { margin: 0 0 var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+.timeline ol { list-style: none; margin: 0; padding: 0 0 0 var(--sp-4); border-left: 1px solid var(--line); }
+.timeline li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 3.5rem; gap: var(--sp-3); align-items: center; padding: var(--sp-1) 0; font-size: var(--fs-sm); line-height: 1.6; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1 * var(--sp-4) - .25rem); top: 50%; width: .5rem; height: .5rem; margin-top: -.25rem; background: var(--bg); border: 1px solid var(--accent); transform: rotate(45deg); }
+.timeline time { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted); }
+.timeline .tl-bar { display: block; width: 100%; height: .5rem; }
+.timeline .tl-track { fill: var(--line-soft); }
+.timeline .tl-fill { fill: var(--accent); }
+.timeline .tl-count { text-align: right; color: var(--text); }
+.timeline-total { margin: var(--sp-3) 0 0; padding-left: var(--sp-4); font-size: var(--fs-sm); color: var(--text); border-left: 2px solid var(--accent); }
+footer { border-top: 2px solid var(--seal-gold); }
+@media (max-width: 40rem) {
+  .works-table tr { padding: var(--sp-3) var(--sp-4); }
+  .works-table td { width: auto; }
+  .works-table .t-title { width: 100%; }
+  .works-table td[data-label]::before { min-width: 0; }
+  .timeline li { grid-template-columns: 5.5rem minmax(0, 1fr) 3rem; gap: var(--sp-2); }
+}
+@media print {
+  :root, :root[data-theme="dark"] { --seal-ink: #000; --seal-gold: #000; }
+  .band { display: none; }
+  .works-table tr, .timeline li { break-inside: avoid; }
+  .works-table tr { background: none; }
+  footer { border-top-width: 1px; }
+}
 </style>
 </head>
 <body>
@@ -904,6 +974,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <a class="skip-link" href="#main">本文へスキップ</a>
 
 <header>
+  <svg class="band" width="100%" height="8" aria-hidden="true" focusable="false"><defs><pattern id="band-frames" width="16" height="8" patternUnits="userSpaceOnUse"><rect x="6" y="2" width="4" height="4" fill="none" stroke-width="1" class="band-gold-stroke"/></pattern></defs><rect width="100%" height="8" class="band-ink"/><rect width="100%" height="8" fill="url(#band-frames)"/></svg>
   <div class="wrap head-row">
     <a class="mark" href="#main"><img src="./favicon.svg" alt="根本卓哉" width="32" height="32"></a>
     <nav class="nav">
@@ -929,8 +1000,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <main id="main" tabindex="-1">
 
   <section class="wrap hero">
+    <svg class="seal" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false"><rect x="7" y="7" width="34" height="34" rx="2" class="seal-frame" stroke-width="3"/><rect x="12.5" y="14" width="10" height="3.6" class="seal-fill"/><rect x="15.7" y="14" width="3.6" height="20" class="seal-fill"/><rect x="24.5" y="14" width="3.4" height="20" class="seal-fill"/><rect x="32.1" y="14" width="3.4" height="20" class="seal-fill"/><polygon points="24.5,14 27.9,14 35.5,34 32.1,34" class="seal-fill"/></svg>
     <h1 class="serif reveal">根本卓哉</h1>
     <p class="romaji reveal">TAKUYA NEMOTO</p>
+    <svg class="orn orn-long" viewBox="0 0 96 10" width="96" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="83" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
 
     <p class="hero-what reveal">根本卓哉が公開した、査読を受けていないプレプリントと、それを機械で監査する道具と記録の頁です。</p>
     <ul class="entries reveal">
@@ -954,6 +1027,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="profile" class="wrap block profile-section">
     <div class="profile reveal">
       <h2 class="profile-label">自己紹介</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p class="ident reveal"><span class="label">ORCID</span><a href="https://orcid.org/0009-0000-1406-0547" target="_blank" rel="noopener">0009-0000-1406-0547</a></p>
       <p class="profile-now profile-cred">edX の修了証を、技術の目安として先に書きます。どれも入門の課程です。CS50x（HarvardX）は計算機科学の入門です。C・Python・SQL・Web の課題を全部出し、最終課題を作って修了しました。プログラムを一から書いて動かせる、という目安です。CS50AI（HarvardX）は Python による人工知能の入門です。探索・論理推論・確率・最適化・機械学習・ニューラルネットワーク・言語処理を、課題として実装しました。古典的な手法を自分で組める、という目安です。CC0201EN（IBM）は、コンテナ・Kubernetes・OpenShift の入門です。コンテナを作って動かす演習を含みます。ER22.1x（HarvardX）は政治哲学の講義 Justice で、技術の修了証ではありません。受講の規約も書いておきます。CS50 の二講座は、答えやコードを示したり補ったりする外部の生成系の道具（ChatGPT・Claude・Copilot・Gemini など）を使うことを、学業上の不正として禁じています。認められているのは、CS50 自身の道具（CS50 Duck）だけです。edX の Honor Code は、協働が明示的に認められていない限り、試験と課題を自分で仕上げることを求めています。規約を守ったことを、こちらから証明する手段はありません。ただし規約の上では、守ったものとして上の修了証が発行されています。</p>
       <p class="profile-now">現在、ZEN大学 知能情報社会学部 知能情報社会学科に在籍しています（秋入学一期生）。文理を横断する課程です。あわせて、2024 年 10 月頃から、個人事業主として働いています。</p>
@@ -981,6 +1055,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="works-by-type" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">種類ごとの入口</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>ここにある作品を、種類で辿る入口です。題・状態・DOI・正の所在・ライセンスは目録にまとめてあります。</p>
     </div>
     <div class="notes-list reveal">
@@ -999,6 +1074,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="claim" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">主張</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>この場所でいちばん確かめやすい主張を一つ出します。同意も反証も、手元で試せます。この主張は、ソフトウェア（errata-check）についてのものです。</p>
     </div>
 
@@ -1037,6 +1113,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="verification" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">検証</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>何をどこで、どれだけ当たっているか。すべて push のたびに CI で走ります。上の三つが核にあたるものです。</p>
     </div>
 
@@ -1094,6 +1171,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="withdrawn" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">撤回と、直せなかったこと</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>改訂で撤回したものと、<b>あとから分かって、もう直せなかったもの</b>です。<b>消していません。</b>凍結された PDF は直せないので、直せるのは記録のほうだけです。公開したもの全部の記録は <a href="https://github.com/cpsbvbng26-dotcom/self-correction/blob/main/REGISTER.md" target="_blank" rel="noopener">登録簿（104 件）</a> にあります。</p>
     </div>
 
@@ -1140,6 +1218,24 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
       </div>
     </div>
 
+    <div class="timeline reveal">
+      <p class="timeline-head">訂正の登録簿に、記録した日ごとに書いた件数です。</p>
+      <ol>
+        <li><time datetime="2026-09-07">2026-09-07</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="115.38" height="8" class="tl-fill"/></svg><span class="tl-count">25 件</span></li>
+        <li><time datetime="2026-09-08">2026-09-08</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="120" height="8" class="tl-fill"/></svg><span class="tl-count">26 件</span></li>
+        <li><time datetime="2026-09-09">2026-09-09</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="32.31" height="8" class="tl-fill"/></svg><span class="tl-count">7 件</span></li>
+        <li><time datetime="2026-09-10">2026-09-10</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="46.15" height="8" class="tl-fill"/></svg><span class="tl-count">10 件</span></li>
+        <li><time datetime="2026-09-11">2026-09-11</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="69.23" height="8" class="tl-fill"/></svg><span class="tl-count">15 件</span></li>
+        <li><time datetime="2026-09-12">2026-09-12</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="13.85" height="8" class="tl-fill"/></svg><span class="tl-count">3 件</span></li>
+        <li><time datetime="2026-09-13">2026-09-13</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="23.08" height="8" class="tl-fill"/></svg><span class="tl-count">5 件</span></li>
+        <li><time datetime="2026-09-16">2026-09-16</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="4.62" height="8" class="tl-fill"/></svg><span class="tl-count">1 件</span></li>
+        <li><time datetime="2026-09-29">2026-09-29</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="4.62" height="8" class="tl-fill"/></svg><span class="tl-count">1 件</span></li>
+        <li><time datetime="2026-09-30">2026-09-30</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="18.46" height="8" class="tl-fill"/></svg><span class="tl-count">4 件</span></li>
+        <li><time datetime="2026-11-12">2026-11-12</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="32.31" height="8" class="tl-fill"/></svg><span class="tl-count">7 件</span></li>
+      </ol>
+      <p class="timeline-total">合計 104 件</p>
+    </div>
+
     <p class="hint reveal"><a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity/blob/main/ERRATA.md" target="_blank" rel="noopener">三篇の正誤の記録 —— ERRATA.md</a></p>
   </section>
 
@@ -1148,6 +1244,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="papers" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">論文</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>Trinity-Infinity Series I–III。<strong>この三篇が監査の対象です。</strong>査読は受けていません。三篇が収束の条件として置いた仮定は必要以上に強く、そのことは <a href="./trinity.html">作用素のページ</a> でその場で確かめられます。</p>
     </div>
 
@@ -1189,6 +1286,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="works" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">制作物</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>監査する側の道具と、監査された側の実装です。</p>
     </div>
 
@@ -1245,6 +1343,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
     <span id="credentials"></span><span id="areas"></span><span id="links"></span>
     <div class="sec-head reveal">
       <h2 class="serif">ノート</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>核に置かなかったものは、消さずに <a href="./notes/index.html">ノート</a> と <a href="./cv.html">CV</a> にあります。DOI も GitHub も生きています。</p>
     </div>
     <div class="notes-list reveal">
@@ -1262,6 +1361,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="contact" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">連絡</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p>批判と誤りの指摘を先に置きます。</p>
     </div>
 
