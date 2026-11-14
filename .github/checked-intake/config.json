@@ -1,0 +1,29 @@
+{
+  "from": "2026-12-01",
+  "forms": [
+    {
+      "label": "erratum",
+      "kind": "quote",
+      "where": [
+        "どこか / Where"
+      ],
+      "quote": [
+        "書いてあること / What it says"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://cpsbvbng26-dotcom.vercel.app/",
+      "dir": ""
+    },
+    {
+      "url": "https://cpsbvbng26-dotcom.github.io/cpsbvbng26-dotcom/",
+      "dir": ""
+    }
+  ],
+  "blob": "https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom",
+  "dois": {},
+  "ids": [],
+  "neverClose": []
+}

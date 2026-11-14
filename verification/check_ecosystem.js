@@ -4749,6 +4749,166 @@ console.log('\n12x. 運営理念・声明：頁と写しと README が同じ文�
     + (breaks.length - missed.length) + ' / ' + breaks.length + '）', missed.length === 0, missed.join(' / '));
 }
 
+console.log('\n12y. 突き合わせの受付：13 の写しが同じで、どのワークフローも issue の文を環境とコマンドに入れず、求めを閉じず、記録の節がそろう（2026-11-14）');
+{
+  /* 2026-11-14 に利用者が求め、Claude が決めた。人が嘘をつくこと一般は止められない。止められるのは、申し立てた人がその場で書けない
+   * 出どころと突き合わせられない申し立てを受けることである。道具（.github/checked-intake/verify.js）とワークフロー
+   * （.github/workflows/checked-intake.yml）は 13 のリポジトリで一字一句同じにし、ここで固める。設定（config.json）はリポジトリごとで、
+   * 道具の configProblems が見る。Sophaxis の検査 128 の決まり（issue・コメント・PR の本文と題を、ステップの環境にもコマンドにも入れない。
+   * toJSON(github.event) も入れない）を、13 のリポジトリのすべてのワークフローに当てる。求め（削除・権利・個人の情報・同意の撤回）は閉じない。 */
+  const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
+  const ERR11 = C.repos.concat(['deposit-check']);
+  const VJS = path.join('.github', 'checked-intake', 'verify.js'), CONF = path.join('.github', 'checked-intake', 'config.json'), WFY = path.join('.github', 'workflows', 'checked-intake.yml');
+  const HEAD = '\n## 2026-11-14：突き合わせの受付\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const ST = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')))['条文'];
+  const LAWTEXT = Object.values(ST).map((e) => String(e['文'] || '').replace(/\s+/g, '')).concat(
+    Object.values(JSON.parse(read('sophaxis', path.join('verification', 'statutes-texts.json')) || '{}')).map((t) => t.replace(/\s+/g, '')));
+  const CONTRIB_HEAD = '\n## 突き合わせの受付 / Checked intake\n';
+  const real = { js: {}, wf: {}, conf: {}, flows: {}, contrib: {}, aud: {}, disc: read('cpsbvbng26-dotcom', 'DISCLAIMER.md') || '', discEn: read('cpsbvbng26-dotcom', 'DISCLAIMER.en.md') || '' };
+  for (const r of ALL) {
+    real.js[r] = read(r, VJS); real.wf[r] = read(r, WFY); real.aud[r] = read(r, path.join('docs', 'legal-audit-2026-11-12.md')) || '';
+    try { real.conf[r] = JSON.parse(read(r, CONF)); } catch (e) { real.conf[r] = null; }
+    const d = path.join(ROOT, r, '.github', 'workflows');
+    real.flows[r] = fs.existsSync(d) ? Object.fromEntries(fs.readdirSync(d).filter((f) => /\.ya?ml$/.test(f)).sort().map((f) => [f, fs.readFileSync(path.join(d, f), 'utf8')])) : {};
+    if (ERR11.includes(r)) real.contrib[r] = read(r, 'CONTRIBUTING.md') || '';
+  }
+  /* 道具の文から、その中身を読み込む。壊した写しは壊したまま読み込むので、壊し方がそのまま効く。 */
+  const loaded = new Map();
+  const load = (src) => {
+    if (!loaded.has(src)) {
+      const m = { exports: {} };
+      try { new Function('module', 'exports', 'require', '__dirname', String(src || '').replace(/^#!.*\n/, ''))(m, m.exports, require, path.join(ROOT, 'cpsbvbng26-dotcom', '.github', 'checked-intake')); } catch (e) { m.exports = null; }
+      loaded.set(src, m.exports);
+    }
+    return loaded.get(src);
+  };
+  /* 条件（if:）の行と、その続きの行を除いた、ワークフローの残り。 */
+  const outsideIf = (text) => {
+    const out = []; let col = -1;
+    for (const line of String(text).split('\n')) {
+      const ind = line.length - line.trimStart().length;
+      if (col >= 0 && line.trim() && ind > col) continue;
+      col = -1;
+      const m = /^(\s*(?:- )?)if:/.exec(line);
+      if (m) { col = m[1].length; continue; }
+      out.push(line);
+    }
+    return out.join('\n');
+  };
+  const TEXT = /github\.event\.(issue|comment|pull_request|review|discussion|discussion_comment)\.(body|title)\b|toJSON\(\s*github\.event\b|github\.event\.(issue|comment|pull_request)\s*\}\}/;
+  const REQUESTS = ['この記載の削除を求めます。', '私の個人情報を消してください。', '名誉を傷つける記述です。', '著作権を侵害しています。', '同意を撤回します。', '私の氏名が誤っています。',
+    'Please take down this page.', 'Remove my personal data.', 'This infringes my copyright.', 'I withdraw my consent.', 'This is defamatory.', 'My name is misspelt.'];
+  function problems(x) {
+    const bad = [];
+    const CI = load(x.js['cpsbvbng26-dotcom']);
+    /* 一。道具とワークフローの 13 の写しが、一字一句同じ。 */
+    const js0 = x.js['cpsbvbng26-dotcom'], wf0 = x.wf['cpsbvbng26-dotcom'];
+    for (const r of ALL) {
+      if (!x.js[r] || x.js[r] !== js0) bad.push(r + '：道具の写しが違う');
+      if (!x.wf[r] || x.wf[r] !== wf0) bad.push(r + '：ワークフローの写しが違う');
+    }
+    if (!/^permissions:\n  contents: read\n  issues: write\n(?!  \w)/m.test(wf0 || '') || /^ +permissions:/m.test(wf0 || '')) bad.push('ワークフローの権限');
+    if (!/node \.github\/checked-intake\/verify\.js\n {8}env:\n {10}GITHUB_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/.test(wf0 || '') || !/verify\.js --test/.test(wf0 || '')) bad.push('ワークフローの手順');
+    if (/\b(sophaxis|nusquama|trinity|researcher-profile|cpsbvbng26-dotcom\.vercel)\b/i.test((js0 || '') + (wf0 || ''))) bad.push('道具が一つのリポジトリを名指す');
+    /* 二。13 のリポジトリのすべてのワークフローが、issue の文を環境にもコマンドにも入れない。 */
+    for (const r of ALL) for (const [f, t] of Object.entries(x.flows[r] || {})) {
+      const rest = outsideIf(t);
+      if (TEXT.test(rest)) bad.push(r + '/' + f + '：issue・コメント・PR の文を、条件の外で使う');
+      if (/^\s+(ISSUE_BODY|ISSUE_TITLE|ISSUE_AUTHOR|COMMENT_BODY|PR_BODY|PR_TITLE|TITLE|BODY):/m.test(rest)) bad.push(r + '/' + f + '：環境に issue の文を入れる');
+    }
+    if (!/JSON\.parse\(fs\.readFileSync\(process\.env\.GITHUB_EVENT_PATH, 'utf8'\)\)/.test(js0 || '') || /process\.env\.(ISSUE_|COMMENT_|BODY|TITLE)/.test(js0 || '')) bad.push('道具が出来事のファイルから読まない');
+    for (const m of String(js0 || '').replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/(?:console\.(?:log|error|warn|info)|\bsay)\(([^;]*)\);/g)) {
+      if (/issue\.(body|title)|\bform\b|field\(|quoteOf|\bq\b/.test(m[1].replace(/'[^']*'/g, "''"))) bad.push('道具がログに issue の文を書く');
+    }
+    /* 三。設定：日、形、求めを閉じないラベル。 */
+    for (const r of ALL) {
+      const c = x.conf[r];
+      if (!c) { bad.push(r + '：設定が無い'); continue; }
+      if (c.from !== '2026-12-01') bad.push(r + '：効力の日');
+      if (CI && CI.configProblems(c, path.join(ROOT, r)).length) bad.push(r + '：' + CI.configProblems(c, path.join(ROOT, r)).join('、'));
+      if (ERR11.includes(r)) {
+        const e = (c.forms || []).find((f) => f.label === 'erratum');
+        if (!e || e.kind !== 'quote' || e.where.join() !== 'どこか / Where' || e.quote.join() !== '書いてあること / What it says') bad.push(r + '：誤りの知らせの欄');
+      }
+      if ((c.forms || []).some((f) => f.kind === 'identity') !== (r === 'deposit-check')) bad.push(r + '：本人確認の様式');
+    }
+    if (x.conf.sophaxis && !['submission', 'removal', 'withdrawal', 'published'].every((l) => (x.conf.sophaxis.neverClose || []).includes(l))) bad.push('sophaxis：閉じないラベル');
+    if (x.conf.nusquama && !['求め', '叙任'].every((l) => (x.conf.nusquama.neverClose || []).includes(l))) bad.push('nusquama：閉じないラベル');
+    /* 四。求めは閉じない。道具の語の表と、決まった形。 */
+    if (!CI) bad.push('道具が読めない');
+    else {
+      const miss = REQUESTS.filter((q) => !CI.legalRequest(q));
+      if (miss.length) bad.push('求めと読まない：' + miss.join(' / '));
+      if (CI.actionFor('quote', { ok: false, reason: 'absent' }, { legal: true }).close || CI.actionFor('identity', { ok: false, reason: 'link' }, { legal: true }).close) bad.push('求めを閉じる');
+      if (CI.legalRequest('### What it says\n\n- [X] I consent to the operator giving the title and text of this issue to Claude.\n')) bad.push('様式の決まった欄を求めと読む');
+      if (!/if \(act\.close\) await gh\('PATCH'/.test(js0 || '') || (String(js0 || '').split('async function selfTest')[0].match(/state: 'closed'/g) || []).length !== 1 || !/await run\(\{ event, conf: loadConf\(\), gh: github \}\)/.test(js0 || '')) bad.push('閉じる道が一つでない');
+    }
+    /* 五。CONTRIBUTING.md の節が 11 本で同じ。免責事項（日英）。 */
+    const sec = (t) => { const i = t.indexOf(CONTRIB_HEAD); if (i < 0) return null; const j = t.indexOf('\n## ', i + 5); return t.slice(i, j < 0 ? t.length : j).replace(/\nFrom 2026-12-01, a bug report[^\n]*\n?/, '\n').trimEnd(); };
+    const s0 = sec(x.contrib['cpsbvbng26-dotcom'] || '');
+    for (const r of ERR11) if (!s0 || sec(x.contrib[r] || '') !== s0) bad.push(r + '：CONTRIBUTING.md の節');
+    if (!(x.contrib['deposit-check'] || '').includes('From 2026-12-01, a bug report (`bug_report.yml`) is checked in the same way')) bad.push('deposit-check：不具合の報告の節');
+    for (const t of ['削除・権利・個人の情報・氏名・人についての記述・同意の撤回を求めると読める issue は、自動では閉じず、運営者が読みます。', '確かめるのは前からある文書の語であって、それが誤りかどうかではありません。']) if (!x.disc.includes(t)) bad.push('免責事項：' + t.slice(0, 10));
+    if (!x.discEn.includes('is never closed automatically; the operator reads it.')) bad.push('免責事項（英語）');
+    /* 六。13 の記録の節：表、判定の数、決めた者、取り寄せた文にある引用、弁護士の文。 */
+    for (const r of ALL) {
+      const a = x.aud[r];
+      const i = a.indexOf(HEAD);
+      if (i < 0) { bad.push(r + '：記録の節が無い'); continue; }
+      const t = a.slice(i, a.indexOf('\n## ', i + 5) < 0 ? a.length : a.indexOf('\n## ', i + 5));
+      const rows = t.split('\n').filter((l) => /^\| (?!---|箇所 \||Place \|)/.test(l)).map((l) => l.slice(2, -2).split(' | '));
+      const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
+      const kind = (k) => EN[k] || k;
+      if (rows.length < 4 || !rows.every((y) => y.length === 6 && KINDS.includes(kind(y[4])))) bad.push(r + '：記録の表');
+      const n = (k) => rows.filter((y) => kind(y[4]) === k).length;
+      const ja = 'この表の判定は、' + KINDS.filter((k) => n(k)).map((k) => k + ' ' + n(k)).join('、') + ' です。';
+      const ja2 = '判定は、誤り ' + n('誤り') + ' 件、根拠不足 ' + n('根拠不足') + ' 件、漏れ ' + n('漏れ') + ' 件、表現 ' + n('表現') + ' 件、問題なし ' + n('問題なし') + ' 件で、合わせて ' + rows.length + ' 件です。';
+      const en = 'Findings in this table: ' + Object.keys(EN).filter((k) => n(EN[k])).map((k) => k + ' ' + n(EN[k])).join(', ') + '.';
+      if (!t.includes(ja) && !t.includes(ja2) && !t.includes(en)) bad.push(r + '：記録の判定の数');
+      if (!t.includes('2026-11-14 に利用者が求め、Claude が決めました') || rows.some((y) => !y[5].includes('2026-11-14 に Claude が決めました'))) bad.push(r + '：決めた者');
+      for (const y of rows) for (const m of y[2].matchAll(/「([^「」]+)」/g)) if (/[぀-ヿ一-鿿]{8}/.test(m[1]) && /法|条/.test(y[1]) && !LAWTEXT.some((L) => L.includes(m[1].replace(/\s+/g, '')))) bad.push(r + '：取り寄せた文にない引用「' + m[1].slice(0, 12) + '」');
+      if (!/弁護士は見ていません|弁護士の確認は受けていません|No lawyer has reviewed this section/.test(t) || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(t)) bad.push(r + '：弁護士の文');
+    }
+    return bad;
+  }
+  const now = problems(real);
+  let selfTest = '';
+  try { selfTest = require('child_process').execFileSync('node', [path.join(ROOT, 'cpsbvbng26-dotcom', VJS), '--test'], { encoding: 'utf8' }); } catch (e) { selfTest = String(e.stdout || ''); }
+  let havePdf = true;
+  try { require('child_process').execFileSync('pdftotext', ['-v'], { stdio: 'ignore' }); } catch (e) { havePdf = false; }
+  const flows = ALL.reduce((a, r) => a + Object.keys(real.flows[r] || {}).length, 0);
+  check('突き合わせの受付：道具とワークフローが 13 のリポジトリで一字一句同じで、13 のリポジトリのワークフロー（' + flows + ' 本）のどれも issue の文を環境とコマンドに入れず、設定と求めの語と閉じる道と CONTRIBUTING.md（11 本）と免責事項と 13 の記録の節がそろう',
+    now.length === 0, now.slice(0, 6).join(' / '));
+  check('突き合わせの受付の道具の自己検査が、すべての枝で通る' + (havePdf ? '（PDF の場合を含む）' : '（pdftotext が無く、PDF の場合は走らない）'),
+    /\d+ passed, 0 failed/.test(selfTest) && (!havePdf || !selfTest.includes('the PDF case was not run')), selfTest.split('\n').filter((l) => /FAIL/.test(l)).join(' / '));
+  const w = (k, r, v) => Object.assign({}, real, { [k]: Object.assign({}, real[k], { [r]: v }) });
+  const flowsWith = (r, f, t) => Object.assign({}, real, { flows: Object.assign({}, real.flows, { [r]: Object.assign({}, real.flows[r], { [f]: t }) }) });
+  const breaks = [
+    ['一つの写しの道具を変える', w('js', 'trinity-operator', (real.js['trinity-operator'] || '') + '\n')],
+    ['一つの写しのワークフローを変える', w('wf', 'nusquama', (real.wf.nusquama || '').replace('cancel-in-progress: true', 'cancel-in-progress: false'))],
+    ['ワークフローの権限を広げる', w('wf', 'cpsbvbng26-dotcom', (real.wf['cpsbvbng26-dotcom'] || '').replace('  issues: write\n', '  issues: write\n  contents: write\n'))],
+    ['issue の本文を環境に入れる', flowsWith('errata-check', 'verify.yml', (real.flows['errata-check']['verify.yml'] || '') + '        env:\n          ISSUE_BODY: ${{ github.event.issue.body }}\n')],
+    ['出来事を丸ごと環境に入れる', flowsWith('self-correction', 'hygiene.yml', (real.flows['self-correction']['hygiene.yml'] || '') + '        env:\n          EVENT: ${{ toJSON(github.event) }}\n')],
+    ['コメントの本文をコマンドに入れる', flowsWith('deposit-check', 'check.yml', (real.flows['deposit-check']['check.yml'] || '') + '      - run: echo "${{ github.event.comment.body }}"\n')],
+    ['効力の日を早める', w('conf', 'solitary-school', Object.assign({}, real.conf['solitary-school'], { from: '2026-11-15' }))],
+    ['設定に求めのラベルを取る', w('conf', 'justice-and-algorithms', Object.assign({}, real.conf['justice-and-algorithms'], { forms: real.conf['justice-and-algorithms'].forms.concat([{ label: 'removal', kind: 'quote', where: ['W'], quote: ['Q'] }]) }))],
+    ['Sophaxis の削除を閉じないラベルから外す', w('conf', 'sophaxis', Object.assign({}, real.conf.sophaxis, { neverClose: real.conf.sophaxis.neverClose.filter((l) => l !== 'removal') }))],
+    ['Nusquama の求めを閉じないラベルから外す', w('conf', 'nusquama', Object.assign({}, real.conf.nusquama, { neverClose: ['叙任'] }))],
+    ['求めの語を表から外す', Object.assign({}, real, { js: Object.fromEntries(ALL.map((r) => [r, (real.js[r] || '').replace("'削除', ", '')])) })],
+    ['求めでも閉じる', Object.assign({}, real, { js: Object.fromEntries(ALL.map((r) => [r, (real.js[r] || '').replace('return { close: result.ok === false && !legal,', 'return { close: result.ok === false,')])) })],
+    ['CONTRIBUTING.md の節を一本だけ変える', w('contrib', 'naval-gazette-notes', (real.contrib['naval-gazette-notes'] || '').replace('新しい issue で出し直せる。', '出し直しはできない。'))],
+    ['免責事項から閉じない文を外す', Object.assign({}, real, { disc: real.disc.replace('削除・権利・個人の情報・氏名・人についての記述・同意の撤回を求めると読める issue は、自動では閉じず、運営者が読みます。', '') })],
+    ['記録の節を外す', w('aud', 'researcher-profile', real.aud['researcher-profile'].replace(HEAD, '\n## 突き合わせ\n'))],
+    ['記録の判定の数を変える', w('aud', 'trinity-infinity', real.aud['trinity-infinity'].replace(/(## 2026-11-14：突き合わせの受付[\s\S]*?この表の判定は、問題なし )(\d+)/, (m0, a, b) => a + (Number(b) + 1)))],
+    ['記録の引用を一語変える', w('aud', 'autonomy-and-self-cultivation', real.aud['autonomy-and-self-cultivation'].replace('遅滞なく必要な調査を行い', '遅滞なく調査を行い'))],
+    ['英語の記録から弁護士の文を外す', w('aud', 'deposit-check', real.aud['deposit-check'].replace(/(## 2026-11-14：突き合わせの受付[\s\S]*?)No lawyer has reviewed this section\./, '$1'))],
+  ];
+  const missed = breaks.filter(([, y]) => problems(y).length === 0).map(([k]) => k);
+  check('壊して確かめる：道具とワークフローの一つの写し・権限・issue の本文と出来事とコメントを環境とコマンドに入れること・効力の日・設定の求めのラベル・Sophaxis と Nusquama の閉じないラベル・求めの語・求めでも閉じること・CONTRIBUTING.md の一本・免責事項・記録の節と判定の数と引用と英語の弁護士の文のどれでも落ちる（' + (breaks.length - missed.length) + ' / ' + breaks.length + '）',
+    missed.length === 0, missed.join(' / '));
+}
+
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
 
 {
