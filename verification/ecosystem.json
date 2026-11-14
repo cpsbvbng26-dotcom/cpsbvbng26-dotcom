@@ -1556,7 +1556,7 @@
       "運営者は、届いた求めを速やかに確かめ、必要なときは訂正または削除します。",
       "存命の家族について書くのは、「両親」という語までです。",
       "頁は cookie を置かず、アクセス解析の仕組みも置いていません。",
-      "メールと issue で届いた個人の情報は、その求めに答えること、訂正の記録を残すこと、使われた記録を残すことにだけ使います。",
+      "メールと issue で届いた個人の情報は、その求めに答えること、訂正の記録を残すこと、使われた記録を残すこと、不具合を知らせた人を確かめることにだけ使います。",
       "運営者は、個人情報取扱事業者に当たるかどうかを問わず、個人情報保護法がその事業者に求める扱いに沿います。",
       "訂正の記録には、求めた人の名と連絡先を載せません。",
       "届いた個人の情報を、本人の同意なく第三者に渡しません。法令が認める場合を除きます。",
@@ -1573,7 +1573,7 @@
       "Whether or not the operator is a business under the Consumer Contract Act, the operator follows what that Act requires of a business.",
       "Of living family members, nothing is written beyond the word \"parents\".",
       "The pages set no cookie and carry no analytics.",
-      "Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, and to keep the record of use.",
+      "Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, to keep the record of use, and to check who reports a bug.",
       "Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.",
       "The record of corrections does not carry the name or contact details of the person who asked.",
       "Personal information received is not passed to a third party without the consent of the person concerned, except where the law allows it.",
@@ -2133,8 +2133,8 @@
     "使われた記録": {
       "様式の句": "使われた記録",
       "免責": {
-        "DISCLAIMER.md": "その求めに答えること、訂正の記録を残すこと、使われた記録を残すことにだけ使います。",
-        "DISCLAIMER.en.md": "to answer the request, to keep the record of corrections, and to keep the record of use."
+        "DISCLAIMER.md": "その求めに答えること、訂正の記録を残すこと、使われた記録を残すこと、不具合を知らせた人を確かめることにだけ使います。",
+        "DISCLAIMER.en.md": "to answer the request, to keep the record of corrections, to keep the record of use, and to check who reports a bug."
       }
     },
     "SC-016": {
