@@ -1,6 +1,6 @@
 # Disclaimer
 
-Last updated: 2026-11-13 (Japan time).
+Last updated: 2026-11-14 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
@@ -21,12 +21,20 @@ Their accuracy, completeness and fitness for a particular purpose are not guaran
 Every paper is a preprint that has not been peer-reviewed.
 Nothing here is academic, legal, medical, financial or other professional advice.
 Errors that were found are kept, not deleted, in the errata and the record of corrections.
+The operator does not promise to keep offering these works and sites, or to keep them available at all times.
 
 ## Liability
 
 The operator is liable for loss that arises from using these works as the Civil Code, the Consumer Contract Act and other laws provide.
 This page neither excludes nor limits that liability.
+This page is not a contract, so no obligation of the operator arises from it.
+The operator is liable to pay for loss where the law so provides.
+For example, Article 709 of Japan's Civil Code provides: 「故意又は過失によって他人の権利又は法律上保護される利益を侵害した者は、これによって生じた損害を賠償する責任を負う。」 (a person who, intentionally or negligently, infringes the rights or legally protected interests of another is liable for the loss that results).
 Whether or not the operator is a business under the Consumer Contract Act, the operator follows what that Act requires of a business.
+The operator sets no clause that Paragraph 1 of Article 8 of that Act makes void.
+These are a clause that excludes all liability, and a clause that excludes part of the liability where the operator acted intentionally or with grave fault.
+This page is not a contract, so a clause that lightened liability would not work between the operator and a reader.
+The operator also sets no clause that excludes part of the liability for slight negligence only.
 The section "How the works are offered" states what the operator does not promise; it is not a clause that excludes liability.
 
 ## Reuse
@@ -38,6 +46,9 @@ In trinity-operator, lessons/ and games/ are under CC BY 4.0, by the LICENSE ins
 In trinity-operator, the page in site/ is under CC BY 4.0, by the notice at its foot.
 Texts by others that these repositories quote, or keep to verify their quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'.
 The terms of reuse, and the warranties and liability under them, are those of the licence that applies.
+Section 5 of CC BY 4.0 and the last paragraph of the MIT License state that no warranty is given and exclude the liability of the licensor.
+Those terms work to the extent the law allows.
+Where a licence is a contract between the operator and a consumer, the operator does not rely on the part that Paragraph 1 of Article 8 of Japan's Consumer Contract Act makes void.
 
 ## Other sites
 
