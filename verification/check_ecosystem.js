@@ -4818,8 +4818,8 @@ console.log('\n12y. 突き合わせの受付：13 の写しが同じで、どの
       if (/^\s+(ISSUE_BODY|ISSUE_TITLE|ISSUE_AUTHOR|COMMENT_BODY|PR_BODY|PR_TITLE|TITLE|BODY):/m.test(rest)) bad.push(r + '/' + f + '：環境に issue の文を入れる');
     }
     if (!/JSON\.parse\(fs\.readFileSync\(process\.env\.GITHUB_EVENT_PATH, 'utf8'\)\)/.test(js0 || '') || /process\.env\.(ISSUE_|COMMENT_|BODY|TITLE)/.test(js0 || '')) bad.push('道具が出来事のファイルから読まない');
-    for (const m of String(js0 || '').replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/console\.(log|error|warn|info)\(([^;]*)\);/g)) {
-      if (/issue\.(body|title)|\bform\b|field\(|quoteOf|\bq\b/.test(m[2].replace(/'[^']*'/g, "''"))) bad.push('道具がログに issue の文を書く');
+    for (const m of String(js0 || '').replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/(?:console\.(?:log|error|warn|info)|\bsay)\(([^;]*)\);/g)) {
+      if (/issue\.(body|title)|\bform\b|field\(|quoteOf|\bq\b/.test(m[1].replace(/'[^']*'/g, "''"))) bad.push('道具がログに issue の文を書く');
     }
     /* 三。設定：日、形、求めを閉じないラベル。 */
     for (const r of ALL) {
@@ -4842,7 +4842,7 @@ console.log('\n12y. 突き合わせの受付：13 の写しが同じで、どの
       if (miss.length) bad.push('求めと読まない：' + miss.join(' / '));
       if (CI.actionFor('quote', { ok: false, reason: 'absent' }, { legal: true }).close || CI.actionFor('identity', { ok: false, reason: 'link' }, { legal: true }).close) bad.push('求めを閉じる');
       if (CI.legalRequest('### What it says\n\n- [X] I consent to the operator giving the title and text of this issue to Claude.\n')) bad.push('様式の決まった欄を求めと読む');
-      if (!/if \(act\.close\) await github\('PATCH'/.test(js0 || '') || (js0.match(/state: 'closed'/g) || []).length !== 1) bad.push('閉じる道が一つでない');
+      if (!/if \(act\.close\) await gh\('PATCH'/.test(js0 || '') || (String(js0 || '').split('async function selfTest')[0].match(/state: 'closed'/g) || []).length !== 1 || !/await run\(\{ event, conf: loadConf\(\), gh: github \}\)/.test(js0 || '')) bad.push('閉じる道が一つでない');
     }
     /* 五。CONTRIBUTING.md の節が 11 本で同じ。免責事項（日英）。 */
     const sec = (t) => { const i = t.indexOf(CONTRIB_HEAD); if (i < 0) return null; const j = t.indexOf('\n## ', i + 5); return t.slice(i, j < 0 ? t.length : j).replace(/\nFrom 2026-12-01, a bug report[^\n]*\n?/, '\n').trimEnd(); };
