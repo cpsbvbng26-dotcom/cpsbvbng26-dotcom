@@ -1,6 +1,6 @@
 # Disclaimer
 
-Last updated: 2026-11-14 (Japan time).
+Last updated: 2026-11-15 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
@@ -64,11 +64,17 @@ Of living family members, nothing is written beyond the word "parents".
 
 ## Information
 
+This section applies, besides the 10 repositories above, to the deposit-check repository.
 The pages set no cookie and carry no analytics.
 When a reader picks the light or dark display, the choice is kept only in that browser's local storage (localStorage).
 Everything a page needs is loaded from the host that serves it.
 Vercel and GitHub, which serve the pages, may keep records of the requests they receive, under their own policies.
-Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, and to keep the record of use.
+Personal information received by email or in an issue is used only to answer the request, to keep the record of corrections, to keep the record of use, and to check who reports a bug.
+From 2026-12-01 (Japan time), the checked intake checks who reports a bug in deposit-check (`bug_report.yml`).
+It reads only the links section of the public ORCID record of the iD given in the report, and the ORCID iDs of the creators in the metadata of the DOI given in the report (at DataCite or Crossref).
+It checks that the record links the GitHub account that opened the issue, and that the DOI lists that iD for a creator.
+What it reads is used only for this check. It is not kept, and it is not copied into the issue, a comment or the log of the run.
+What stays in the issue is the iD and the DOI that the reporter wrote, and a label that says whether the check passed.
 Issues are public on GitHub.
 Whether or not the operator is a business handling personal information, the operator follows what the Act on the Protection of Personal Information requires of such a business.
 The record of corrections does not carry the name or contact details of the person who asked.
@@ -120,9 +126,12 @@ From 2026-12-01 (Japan time), it applies to error report issues opened on or aft
 It checks only that the words under "What it says" occur, as written, at the location under "Where".
 The location is a file of the repository, a page that it serves, or the DOI of a paper of which it holds a copy.
 If the words occur, the label "quote verified" is added, and the operator reads the report and decides whether it is an error.
-If they do not, the issue is closed with a fixed comment; the error can be reported again in a new issue.
-An issue that reads as asking for removal, or concerning rights, personal data, a name, a statement about a person or the withdrawal of a consent, is never closed automatically; the operator reads it.
-A request that the law requires to be received and handled is not turned away without being read.
+If they do not, the label "not verified" and a fixed comment are added, and the claim is not accepted; editing the issue, or reporting again in a new issue, runs the check again.
+For a bug report in deposit-check, the reporter is checked as the section "Information" sets out.
+The checked intake never closes or locks an issue; the operator reads every one.
+A request that the law requires to be received and handled is not turned away without being read, in whatever language and words it is written.
+A list of words cannot tell every such request from an error report.
+An issue with words that read as such a request also gets the label "needs a person": a signal for the operator, never relied on.
 Comments and logs carry only fixed words and the issue number, never what the issue says.
 What is checked is the words of an existing document, not whether they are wrong.
 
