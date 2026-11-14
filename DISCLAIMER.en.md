@@ -111,6 +111,21 @@ The quoted phrases and the SHA-256 of each whole text are in Sophaxis's `verific
 How long Anthropic keeps the title and text it receives, and how it uses them, depends on the settings of the operator's account and on Anthropic's terms.
 Those settings have not been checked for this page.
 
+## Checked intake
+
+No system can stop a person from lying in general.
+What a system can do is accept a claim only when it can be checked against a source that the claimant does not write at the moment of claiming, and turn away automatically every claim that fails the check or cannot be checked.
+This is called the checked intake.
+From 2026-12-01 (Japan time), it applies to error report issues opened on or after that day.
+It checks only that the words under "What it says" occur, as written, at the location under "Where".
+The location is a file of the repository, a page that it serves, or the DOI of a paper of which it holds a copy.
+If the words occur, the label "quote verified" is added, and the operator reads the report and decides whether it is an error.
+If they do not, the issue is closed with a fixed comment; the error can be reported again in a new issue.
+An issue that reads as asking for removal, or concerning rights, personal data, a name, a statement about a person or the withdrawal of a consent, is never closed automatically; the operator reads it.
+A request that the law requires to be received and handled is not turned away without being read.
+Comments and logs carry only fixed words and the issue number, never what the issue says.
+What is checked is the words of an existing document, not whether they are wrong.
+
 ## Language models
 
 Parts of the texts and code are written with Claude Code (Anthropic) at the operator's request.
