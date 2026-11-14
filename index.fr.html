@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-wxNZ1WuKapN5UvfvZr2UIl/lEjKwz3dQxRL2A8HbnvY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-QbUhwya7rpfurEWyFJghR88mONe4qLcBDYCf7z8EfZQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-wxNZ1WuKapN5UvfvZr2UIl/lEjKwz3dQxRL2A8HbnvY=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-7/KmapUmzmUpMHyv1pyevHeJoRSdt6A5L3iiQb3aPeM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profil de recherche</title>
 <meta name="description" content="Profil de Takuya Nemoto. Ce qui est ici repose sur l’étude en autodidacte et sur le travail avec des modèles de langue. Ce qu’écrivent les plateformes est donné dans leurs propres termes, dans la mesure où les pages consultées le contiennent.">
 <meta name="robots" content="index, follow">
@@ -715,6 +715,76 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 .aims-table .aim-status { white-space: nowrap; color: var(--text); }
 .foot-links { display: flex; flex-wrap: wrap; gap: .25rem .4rem; }
 .foot-links a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+/* ---------- 意匠（design.js、2026-11-14） ---------- */
+:root {
+  --seal-ink: #16161a;
+  --seal-gold: #b08d57;
+  --sp-1: .25rem;
+  --sp-2: .5rem;
+  --sp-3: .75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+}
+header { border-bottom: 1px solid var(--line); }
+.band { display: block; }
+.band-ink { fill: var(--seal-ink); }
+.band-gold-stroke { stroke: var(--seal-gold); }
+.hero .orn-long { display: block; margin: 0 0 var(--sp-5); }
+.hero { position: relative; }
+.seal { display: none; }
+.seal-frame { fill: none; stroke: var(--line); }
+.seal-fill { fill: var(--line); }
+@media (min-width: 62rem) {
+  .hero .seal { display: block; position: absolute; top: 4.5rem; right: 1.5rem; width: 7rem; height: 7rem; }
+}
+.hero .romaji { margin-bottom: var(--sp-4); }
+.orn-frame { fill: none; stroke: var(--accent); }
+.orn-bar, .orn-dot { fill: var(--accent); }
+.sec-head h2::after, .profile-section .profile-label::after { content: none; }
+.sec-head .orn-short, .profile-section .orn-short { display: block; margin-top: var(--sp-3); }
+.sec-head h2::before, .profile-section .profile-label::before { color: var(--accent); }
+.entries a { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert { border-top: 2px solid var(--accent); border-radius: 0 0 .5rem .5rem; }
+.cert .code { display: inline-block; align-self: flex-start; padding: 0 var(--sp-2); border: 1px solid var(--line); border-radius: .2rem; }
+.cert .doi { padding-top: var(--sp-2); border-top: 1px dashed var(--line); }
+.works-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.works-table, .works-table tbody { display: block; width: 100%; }
+.works-table tbody { display: grid; gap: var(--sp-4); }
+.works-table tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-4); padding: var(--sp-4) var(--sp-5); background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 .5rem .5rem 0; }
+.works-table td { display: block; padding: 0; border: 0; }
+.works-table .t-title { flex: 1 1 100%; width: 100%; }
+.works-table td[data-label] { font-size: var(--fs-xs); }
+.works-table td[data-label]::before { content: attr(data-label); display: inline-block; margin-right: var(--sp-2); font-family: var(--font-sans); font-size: var(--fs-xs); letter-spacing: .06em; color: var(--faint); }
+.works-table .t-state { padding: 0 var(--sp-2); border: 1px solid var(--accent); border-radius: 999px; color: var(--text); }
+.works-table .t-state::before { content: none; }
+.timeline { margin: var(--sp-6) 0 0; max-width: var(--measure); }
+.timeline-head { margin: 0 0 var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+.timeline ol { list-style: none; margin: 0; padding: 0 0 0 var(--sp-4); border-left: 1px solid var(--line); }
+.timeline li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 3.5rem; gap: var(--sp-3); align-items: center; padding: var(--sp-1) 0; font-size: var(--fs-sm); line-height: 1.6; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1 * var(--sp-4) - .25rem); top: 50%; width: .5rem; height: .5rem; margin-top: -.25rem; background: var(--bg); border: 1px solid var(--accent); transform: rotate(45deg); }
+.timeline time { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted); }
+.timeline .tl-bar { display: block; width: 100%; height: .5rem; }
+.timeline .tl-track { fill: var(--line-soft); }
+.timeline .tl-fill { fill: var(--accent); }
+.timeline .tl-count { text-align: right; color: var(--text); }
+.timeline-total { margin: var(--sp-3) 0 0; padding-left: var(--sp-4); font-size: var(--fs-sm); color: var(--text); border-left: 2px solid var(--accent); }
+footer { border-top: 2px solid var(--seal-gold); }
+@media (max-width: 40rem) {
+  .works-table tr { padding: var(--sp-3) var(--sp-4); }
+  .works-table td { width: auto; }
+  .works-table .t-title { width: 100%; }
+  .works-table td[data-label]::before { min-width: 0; }
+  .timeline li { grid-template-columns: 5.5rem minmax(0, 1fr) 3rem; gap: var(--sp-2); }
+}
+@media print {
+  :root, :root[data-theme="dark"] { --seal-ink: #000; --seal-gold: #000; }
+  .band { display: none; }
+  .works-table tr, .timeline li { break-inside: avoid; }
+  .works-table tr { background: none; }
+  footer { border-top-width: 1px; }
+}
 </style>
 </head>
 <body>
@@ -722,6 +792,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <a class="skip-link" href="#main">Aller au contenu</a>
 
 <header>
+  <svg class="band" width="100%" height="8" aria-hidden="true" focusable="false"><defs><pattern id="band-frames" width="16" height="8" patternUnits="userSpaceOnUse"><rect x="6" y="2" width="4" height="4" fill="none" stroke-width="1" class="band-gold-stroke"/></pattern></defs><rect width="100%" height="8" class="band-ink"/><rect width="100%" height="8" fill="url(#band-frames)"/></svg>
   <div class="wrap head-row">
     <a class="mark" href="#main"><img src="./favicon.svg" alt="Takuya Nemoto" width="32" height="32"></a>
     <nav class="nav">
@@ -741,8 +812,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 <main id="main" tabindex="-1">
 
   <section class="wrap hero">
+    <svg class="seal" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false"><rect x="7" y="7" width="34" height="34" rx="2" class="seal-frame" stroke-width="3"/><rect x="12.5" y="14" width="10" height="3.6" class="seal-fill"/><rect x="15.7" y="14" width="3.6" height="20" class="seal-fill"/><rect x="24.5" y="14" width="3.4" height="20" class="seal-fill"/><rect x="32.1" y="14" width="3.4" height="20" class="seal-fill"/><polygon points="24.5,14 27.9,14 35.5,34 32.1,34" class="seal-fill"/></svg>
     <h1 class="serif reveal">Takuya Nemoto</h1>
     <p class="romaji reveal">根本卓哉</p>
+    <svg class="orn orn-long" viewBox="0 0 96 10" width="96" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="83" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
 
     <p class="hero-what reveal">Traduction abrégée de la page de profil de Takuya Nemoto : des prépublications non évaluées par les pairs, et les outils qui les vérifient automatiquement.</p>
     <ul class="entries reveal">
@@ -757,6 +830,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="about" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">À propos de cette page</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal"><p><b>Cette page est une traduction, réalisée avec un modèle de langue.</b> Elle est plus courte que les versions japonaise et anglaise. <b>Ce sont les pages japonaise et anglaise qui font foi</b> ; en cas de divergence, ce sont elles qui valent.</p><p><b>Rien n’a été vérifié ici qui ne le soit là-bas.</b> Les erreurs de traduction sont reçues via <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues" target="_blank" rel="noopener">les issues de ce dépôt</a>.</p></div>
@@ -767,6 +841,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="profile" class="wrap block profile-section">
     <div class="profile reveal">
       <h2 class="profile-label">À propos</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       <p class="profile-now profile-cred">Les certificats edX viennent en premier, comme repère du niveau technique. Tous sont des cours d’introduction. CS50x (HarvardX) est une introduction à l’informatique : tous les exercices en C, Python, SQL et programmation web ont été rendus, ainsi qu’un projet final. Repère : écrire un programme de zéro et le faire fonctionner. CS50AI (HarvardX) est une introduction à l’intelligence artificielle avec Python : recherche, inférence logique, probabilités, optimisation, apprentissage automatique, réseaux de neurones et traitement du langage ont été implémentés en projets. Repère : construire soi-même les méthodes classiques. CC0201EN (IBM) est une introduction aux conteneurs, à Kubernetes et à OpenShift, avec des travaux pratiques qui construisent et exécutent des conteneurs. ER22.1x (HarvardX) est le cours de philosophie politique Justice, pas un certificat technique. Les règles des cours sont aussi indiquées ici. Les deux cours CS50 tiennent pour malhonnêteté académique l’usage d’outils génératifs externes (ChatGPT, Claude, Copilot, Gemini, etc.) qui suggèrent ou complètent des réponses ou du code ; seul l’outil propre à CS50, le CS50 Duck, est autorisé. Le Honor Code d’edX exige de réaliser soi-même tous les examens et devoirs, sauf si la collaboration est explicitement permise. Il n’existe aucun moyen de prouver que ces règles ont été respectées. Selon les règles, cependant, les certificats ci-dessus ont été délivrés en considérant qu’elles avaient été respectées.</p>
       <p class="profile-now">Actuellement inscrit à la <b>ZEN University, Faculty of Social Informatics</b>, dans la première promotion de rentrée d’automne. Le cursus traverse les lettres et les sciences. Également entrepreneur individuel depuis octobre 2024 environ.</p>
       <p class="profile-now profile-study">Les études portent surtout sur la <b>philosophie</b> et la <b>pratique</b> ; les <b>mathématiques</b> sont accessibles. Ce qui est déposé ici relève de l’informatique et de l’intelligence artificielle.</p>
@@ -788,6 +863,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="writings" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Travaux</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal"><p><b>Philosophie — trois articles.</b> La version de référence est celle de Zenodo. Les autres dépôts contiennent le même texte.</p><ul class="notes-list"><li><b>The Nobility and Exemplarity of the Celibate Individual</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22058254" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058254</code></a> / SSRN <a href="https://doi.org/10.2139/ssrn.7358779" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7358779</code></a> / PhilArchive <a href="https://philarchive.org/rec/NEMTNA" target="_blank" rel="noopener"><code translate="no" class="notranslate">NEMTNA</code></a></li><li><b>Manifesto of Imperial Selfhood</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22057583" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22057583</code></a> / SSRN <a href="https://doi.org/10.2139/ssrn.7358818" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7358818</code></a> / PhilArchive <a href="https://philarchive.org/rec/NEMMOI" target="_blank" rel="noopener"><code translate="no" class="notranslate">NEMMOI</code></a></li><li><b>Fragmentarian Spiritual Individualism</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22064241" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22064241</code></a> / PhilArchive <a href="https://philarchive.org/rec/NEMFSI" target="_blank" rel="noopener"><code translate="no" class="notranslate">NEMFSI</code></a> (suppression demandée le 2026-09-26)</li></ul><p><b>Trinity-Infinity, séries I–III.</b> <b>Ce sont ces trois-là qui font l’objet de l’audit.</b> Ils ne sont pas expertisés. L’hypothèse sous laquelle ils établissent la convergence est plus forte que nécessaire. On peut le vérifier directement sur la <a href="./trinity.html">page de l’opérateur</a>.</p><ul class="notes-list"><li><b>Series I</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22058624" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058624</code></a></li><li><b>Series II</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22058777" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058777</code></a> / SSRN <a href="https://doi.org/10.2139/ssrn.7446961" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.2139/ssrn.7446961</code></a></li><li><b>Series III</b> — Zenodo <a href="https://doi.org/10.5281/zenodo.22058964" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22058964</code></a></li></ul><p><b>Les séries II et III citent <code translate="no" class="notranslate">10.5281/zenodo.17173703</code> là où elles visent la série I révisée.</b> Ce numéro désigne la première édition de 2025, c’est-à-dire ce qui a été corrigé (errata E1). Les PDF sont figés et ne sont pas modifiés.</p><p><b>Le dépôt sur SSRN n’est pas une expertise par les pairs.</b></p><p><b>Outils et registres.</b> L’outil qui audite et ce qui est audité.</p><ul class="notes-list"><li><b>errata-check</b> <span>Python / MIT</span> — <a href="https://github.com/cpsbvbng26-dotcom/errata-check" target="_blank" rel="noopener">GitHub</a> / Zenodo <a href="https://doi.org/10.5281/zenodo.22649899" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.5281/zenodo.22649899</code></a></li><li><b>self-correction</b> <span>registre / MIT</span> — <a href="https://github.com/cpsbvbng26-dotcom/self-correction" target="_blank" rel="noopener">GitHub</a></li><li><b>trinity-operator</b> <span>Python / MIT</span> — <a href="https://github.com/cpsbvbng26-dotcom/trinity-operator" target="_blank" rel="noopener">GitHub</a></li><li><b>trinity-infinity</b> <span>PDF / CC BY 4.0</span> — <a href="https://github.com/cpsbvbng26-dotcom/trinity-infinity" target="_blank" rel="noopener">GitHub</a></li></ul></div>
@@ -798,9 +874,28 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="verify" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Vérification</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
-    <div class="notes-list reveal"><p>Chaque push déclenche <b>1806 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>104 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
+    <div class="notes-list reveal"><p>Chaque push déclenche <b>1938 vérifications</b>. Elles portent sur la structure du site, la lisibilité des contrastes et les valeurs numériques de la page consacrée à l’opérateur.</p><p><b>Un registre distinct consigne ce qui s’est révélé faux</b> — <b>104 entrées</b> à ce jour. <b>Rien n’y est supprimé.</b> Les outils de vérification sont eux-mêmes vérifiés : un état valide est délibérément cassé, et l’on établit que c’est bien la vérification correspondante qui échoue.</p></div>
+
+    <div class="timeline reveal">
+      <p class="timeline-head">Entrées du registre des corrections, par date d’enregistrement.</p>
+      <ol>
+        <li><time datetime="2026-09-07">2026-09-07</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="115.38" height="8" class="tl-fill"/></svg><span class="tl-count">25</span></li>
+        <li><time datetime="2026-09-08">2026-09-08</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="120" height="8" class="tl-fill"/></svg><span class="tl-count">26</span></li>
+        <li><time datetime="2026-09-09">2026-09-09</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="32.31" height="8" class="tl-fill"/></svg><span class="tl-count">7</span></li>
+        <li><time datetime="2026-09-10">2026-09-10</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="46.15" height="8" class="tl-fill"/></svg><span class="tl-count">10</span></li>
+        <li><time datetime="2026-09-11">2026-09-11</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="69.23" height="8" class="tl-fill"/></svg><span class="tl-count">15</span></li>
+        <li><time datetime="2026-09-12">2026-09-12</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="13.85" height="8" class="tl-fill"/></svg><span class="tl-count">3</span></li>
+        <li><time datetime="2026-09-13">2026-09-13</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="23.08" height="8" class="tl-fill"/></svg><span class="tl-count">5</span></li>
+        <li><time datetime="2026-09-16">2026-09-16</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="4.62" height="8" class="tl-fill"/></svg><span class="tl-count">1</span></li>
+        <li><time datetime="2026-09-29">2026-09-29</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="4.62" height="8" class="tl-fill"/></svg><span class="tl-count">1</span></li>
+        <li><time datetime="2026-09-30">2026-09-30</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="18.46" height="8" class="tl-fill"/></svg><span class="tl-count">4</span></li>
+        <li><time datetime="2026-11-12">2026-11-12</time><svg class="tl-bar" viewBox="0 0 120 8" width="120" height="8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="120" height="8" class="tl-track"/><rect width="32.31" height="8" class="tl-fill"/></svg><span class="tl-count">7</span></li>
+      </ol>
+      <p class="timeline-total">104 entrées au total</p>
+    </div>
   </section>
 
   <hr class="rule">
@@ -808,6 +903,7 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   <section id="more" class="wrap block">
     <div class="sec-head reveal">
       <h2 class="serif">Pour aller plus loin</h2>
+      <svg class="orn orn-short" viewBox="0 0 40 10" width="40" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="27" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
       
     </div>
     <div class="notes-list reveal"><ul class="notes-list"><li><a href="./index.html">Japonais （日本語）</a></li><li><a href="./index.en.html">Anglais</a></li><li><a href="./cv.html">CV</a></li><li><a href="./notes/index.en.html">Notes</a></li><li><a href="./trinity.html">Opérateur</a></li><li><a href="./notes/mission.en.html">Déclaration d’intention (en anglais)</a></li></ul></div>
