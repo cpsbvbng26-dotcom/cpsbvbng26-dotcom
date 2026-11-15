@@ -164,16 +164,25 @@ function issueBody(findings, seen, when, run) {
 
 /* ------------------------------------------------------------ GitHub */
 
-async function api(p, { method = 'GET', body, auth = true } = {}) {
-  const headers = { Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
-  if (auth && process.env.GITHUB_TOKEN) headers.Authorization = 'Bearer ' + process.env.GITHUB_TOKEN;
-  const r = await ua.request('https://api.github.com' + p, { method, headers, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(60000) });
-  /* The token of a run may not read another repository; the public API is asked again without it. */
-  if (auth && method === 'GET' && [401, 403, 404].includes(r.status) && process.env.GITHUB_TOKEN) return api(p, { method, body, auth: false });
-  if (r.status === 404) return null;
-  if (!r.ok) throw new Error(method + ' ' + p.split('?')[0] + ': HTTP ' + r.status);
-  return r.status === 204 ? null : r.json();
+/* The GitHub API. A GET refused to the token (401 or 403: the token of a run may not read another repository) is asked again
+ * without it; a 404 is an answer, "not there", and is never asked again (2026-11-15: a workflow file removed from main gave 404,
+ * the question was asked again without the token, the anonymous limit answered 403, and the run stopped). */
+function makeApi(request = ua.request, token = process.env.GITHUB_TOKEN) {
+  const call = async (p, { method = 'GET', body, auth = true } = {}) => {
+    const headers = { Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
+    if (auth && token) headers.Authorization = 'Bearer ' + token;
+    const r = await request('https://api.github.com' + p, { method, headers, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(60000) });
+    if (auth && token && method === 'GET' && [401, 403].includes(r.status)) return call(p, { method, body, auth: false });
+    if (r.status === 404) return null;
+    if (!r.ok) {
+      const left = r.headers && typeof r.headers.get === 'function' ? r.headers.get('x-ratelimit-remaining') : null;
+      throw new Error(method + ' ' + p.split('?')[0] + ': HTTP ' + r.status + (auth && token ? '' : ' without the token') + (left === '0' ? ' (the rate limit is used up)' : ''));
+    }
+    return r.status === 204 ? null : r.json();
+  };
+  return call;
 }
+const api = makeApi();
 
 /* Every page of a list on GitHub, to the end; an answer that is not a list stops the run, never read as an empty list. */
 async function allPages(gh, p) {
@@ -206,7 +215,11 @@ async function gather(get = api, now = Date.now()) {
     const base = '/repos/' + CONF.owner + '/' + repo;
     const list = ((await get(base + '/actions/workflows?per_page=100')) || {}).workflows;
     if (!Array.isArray(list)) throw new Error(repo + ': the workflows could not be read');
-    for (const w of list.filter((x) => /^\.github\/workflows\/[^/]+\.ya?ml$/.test(x.path))) {
+    /* GitHub goes on listing a workflow whose file was removed from main. Only the files that main holds are read. */
+    const dir = await get(base + '/contents/.github/workflows?ref=main');
+    if (dir !== null && !Array.isArray(dir)) throw new Error(repo + ': the files of .github/workflows could not be read');
+    const held = new Set((dir || []).filter((x) => x.type === 'file').map((x) => x.name));
+    for (const w of list.filter((x) => /^\.github\/workflows\/[^/]+\.ya?ml$/.test(x.path) && held.has(x.path.split('/').pop()))) {
       const file = w.path.split('/').pop();
       if (CONF.only && CONF.only[repo] && !CONF.only[repo].includes(file)) continue;
       if (CONF.only && !CONF.only[repo]) continue;
@@ -346,8 +359,14 @@ async function selfTest() {
     at: { c3: wf(['17 0 * * *']), c2: wf(['17 0 * * *']), c1: wf([]) },
     jobs: { 31: [{ name: 'The job', conclusion: 'skipped' }], 32: [{ name: 'The job', conclusion: 'failure' }] },
   };
+  /* gone.yml: GitHub still lists it, but main no longer holds its file; its contents answer 404. */
+  A.workflows.workflows.push({ id: 5, path: '.github/workflows/gone.yml', state: 'active', created_at: iso(now - 100 * day) });
+  const asked = [];
   const fake = async (p) => {
+    asked.push(p);
     if (/\/actions\/workflows\?/.test(p)) return A.workflows;
+    if (/\/contents\/\.github\/workflows\?ref=main$/.test(p)) return Object.keys(A.files).map((name) => ({ name, type: 'file' }));
+    if (/\/contents\/\.github\/workflows\/gone\.yml/.test(p)) return null;
     let m = /\/contents\/\.github\/workflows\/([^?]+)\?ref=main$/.exec(p);
     if (m) return { content: Buffer.from(A.files[m[1]]).toString('base64') };
     if (/\/commits\?sha=main&path=/.test(p)) return A.commits;
@@ -369,6 +388,22 @@ async function selfTest() {
   const fs2 = judge(got, now);
   t('gather reads only the workflows with a schedule or a watched job, counts a schedule from the first commit that held it, and the judgement finds the stale schedule and the failed IndexNow job (fixture answers)',
     got.map((e) => e.file).join() === 'daily.yml,indexnow.yml' && got[0].created === iso(now - 40 * day) && fs2.map((f) => f.file + ':' + f.what).join() === 'daily.yml:stale,indexnow.yml:watched');
+  t('a workflow that GitHub still lists but whose file main no longer holds is passed over, and its file is not asked for (fixture answers)',
+    !got.some((e) => e.file === 'gone.yml') && !asked.some((p) => /gone\.yml/.test(p)));
+  /* The API itself, on answers made here: a 404 is "not there" and is not asked again; a 401 or 403 to the token is asked again
+   * without it; an anonymous 403 stops the run and says why. */
+  const reply = (status, json, left) => ({ status, ok: status >= 200 && status < 300, json: async () => json, headers: { get: (k) => (k === 'x-ratelimit-remaining' ? left : null) } });
+  const seen = [];
+  const answers = { '/gone': [reply(404), reply(403, {}, '0')], '/other': [reply(403), reply(200, [1])], '/limit': [reply(403), reply(403, {}, '0')] };
+  const req = async (url, o) => { const p = url.replace('https://api.github.com', ''); seen.push(p + (o.headers.Authorization ? ' token' : ' anonymous')); return answers[p].shift(); };
+  const A2 = makeApi(req, 'tok');
+  const gone = await A2('/gone');
+  const other = await A2('/other');
+  let why = '';
+  try { await A2('/limit'); } catch (e) { why = e.message; }
+  t('the API: a 404 to the token is "not there" and is not asked again without it; a 403 is asked again without it; an anonymous 403 stops the run and names the rate limit (fixture answers)',
+    gone === null && seen.filter((s) => s.startsWith('/gone')).join() === '/gone token' && Array.isArray(other) && other[0] === 1
+    && seen.filter((s) => s.startsWith('/other')).join() === '/other token,/other anonymous' && /HTTP 403 without the token \(the rate limit is used up\)/.test(why));
   /* The schedule came a day ago, in the last commit; the commit before had none. It has not run yet. */
   A.runs[1] = [];
   A.commits = [{ sha: 'c5', commit: { committer: { date: iso(now - 1 * day) } } }, { sha: 'c4', commit: { committer: { date: iso(now - 30 * day) } } }];
@@ -391,5 +426,5 @@ async function selfTest() {
   if (failed.length) process.exit(1);
 }
 
-module.exports = { allPages, onPushToMain, deployFine, jobsOf, cronsOf, periodOf, lastYearly, watchedJobs, yearlyTitle, judge, issueBody, gather, CONF, MARK, TEXTS };
+module.exports = { makeApi, allPages, onPushToMain, deployFine, jobsOf, cronsOf, periodOf, lastYearly, watchedJobs, yearlyTitle, judge, issueBody, gather, CONF, MARK, TEXTS };
 if (require.main === module) (process.argv.includes('--test') ? selfTest() : main()).catch((e) => { console.error(e.message); process.exit(1); });
