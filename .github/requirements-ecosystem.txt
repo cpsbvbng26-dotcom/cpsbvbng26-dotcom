@@ -1,0 +1,8 @@
+# 横断の検査（.github/workflows/ecosystem.yml）が入れる二つ。版とハッシュで固める（pip install --require-hashes）。
+# 2026-11-15 に、作業環境の Python 3.12 の pip が PyPI から解いた版で、2026-10-31 より前に上がったものだけを使う（--uploaded-prior-to）。
+# ハッシュは、その pip が PyPI から取った各ファイル（ubuntu の x86_64 の Python 3.12 が選ぶ wheel）を pip hash で数えた値である。
+# この一覧は手で書いたものではない。版を上げるときも、同じ手順で作り直したものだけを置く。
+numpy==2.5.4 \
+    --hash=sha256:fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a
+pypdf==6.19.0 \
+    --hash=sha256:7e5d6e730e7dae87d560a2cee218b852f6498c8be61966f3cd02ead971e48d14
