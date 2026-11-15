@@ -5444,6 +5444,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
         for (const w of ['`main` についてだけ、力ずくの push と枝の削除を止める規則です。', 'bot の普通の push は止めません。', '公開のリポジトリでは費用が掛からないと理解していますが、GitHub の説明書は取り寄せて確かめていません。'])
           if (!String(rule[5] || '').includes(w)) bad.push('cpsbvbng26-dotcom：枝の規則の勧め「' + w.slice(0, 12) + '」');
         if (!String(rule[3] || '').includes('ここからは読めません')) bad.push('cpsbvbng26-dotcom：枝の規則が読めないことを書かない');
+        if (!String(rule[5] || '').includes('利用者はこの設定を掛けないと決めました。') || !String(rule[5] || '').includes('残る危うさとして')) bad.push('cpsbvbng26-dotcom：枝の規則を掛けないという利用者の決めと、残る危うさを書かない');
       }
       if (r === 'sophaxis' && !t.includes('`main` の枝の規則（ruleset）について勧める設定とその効きめは、cpsbvbng26-dotcom の記録の同じ節に、13 のリポジトリの分をまとめて書きました。')) bad.push('sophaxis：枝の規則の指し先');
       if (r === 'nusquama' && !t.includes('`main` の枝の規則（ruleset）について勧める設定とその効きめは、この国の外の記録に、まとめて書きました。')) bad.push('nusquama：枝の規則の指し先');
