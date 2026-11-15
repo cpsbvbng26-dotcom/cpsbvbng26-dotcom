@@ -5299,6 +5299,22 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
     return m.exports;
   };
 
+  /* 見張りの自己検査を、写しの文のまま回す（壊した写しは、壊したまま回る）。tools/ の写しを一時の場所に置き、heartbeat.js だけを差し替える。 */
+  const hbRan = new Map();
+  const hbSelf = (src) => {
+    if (!hbRan.has(src)) {
+      const os = require('os');
+      const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'hb-'));
+      let ok = false;
+      try {
+        for (const f of ['ua.js', 'heartbeat.json']) fs.copyFileSync(path.join(ROOT, 'cpsbvbng26-dotcom', 'tools', f), path.join(dir, f));
+        fs.writeFileSync(path.join(dir, 'heartbeat.js'), String(src || ''));
+        ok = /\d+ passed, 0 failed/.test(require('child_process').execFileSync('node', [path.join(dir, 'heartbeat.js'), '--test'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }));
+      } catch (e) { ok = false; } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+      hbRan.set(src, ok);
+    }
+    return hbRan.get(src);
+  };
   function problems(x, probe) {
     const bad = [];
     const T = x.table;
@@ -5365,10 +5381,11 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
     if (!hs || !same(hs.repos, ['cpsbvbng26-dotcom']) || !same(hs.only, { 'cpsbvbng26-dotcom': ['ecosystem.yml'] })) bad.push('Sophaxis の見張りが横断の検査を見ない');
     const eco = parseFlow((x.flows['cpsbvbng26-dotcom'] || {})['ecosystem.yml'] || '');
     const hbj = eco.jobs.heartbeat, ecj = eco.jobs.ecosystem;
-    if (!hbj || !same(hbj.perms, { contents: 'read', issues: 'write' }) || hbj.steps.some((s) => /repository:|check_all|check_ecosystem/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js --test/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js\n/.test(s + '\n'))) bad.push('見張りの仕事の形');
+    if (!hbj || !same(hbj.perms, { contents: 'read', actions: 'read', issues: 'write' }) || hbj.steps.some((s) => /repository:|check_all|check_ecosystem/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js --test/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js\n/.test(s + '\n'))) bad.push('見張りの仕事の形');
     if (!ecj || writes(effective(eco, ecj))) bad.push('ほかのリポジトリを動かす仕事が書く権限を持つ');
     const sl = parseFlow((x.flows.sophaxis || {})['live.yml'] || '').jobs.heartbeat;
     if (!sl || !sl.steps.some((s) => /node tools\/heartbeat\.js --test/.test(s)) || !/schedule/.test(sl.if || '')) bad.push('Sophaxis の見張りの仕事が無い');
+    if (!hbSelf(x.hb['cpsbvbng26-dotcom'])) bad.push('見張りの自己検査が落ちる');
     const H = loadHb(x.hb['cpsbvbng26-dotcom']);
     if (!H || typeof H.judge !== 'function') bad.push('見張りが読めない');
     else {
@@ -5484,6 +5501,10 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
     ['見張りから一つのリポジトリを外す', sub('hbConf', 'cpsbvbng26-dotcom', String(real.hbConf['cpsbvbng26-dotcom']).replace('    "solitary-school",\n', ''))],
     ['Sophaxis の見張りが横断の検査を見ない', sub('hbConf', 'sophaxis', String(real.hbConf.sophaxis).replace('"ecosystem.yml"', '"verify.yml"'))],
     ['横断の検査の仕事に issues の書く権限', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace(/(  ecosystem:\n(?: {4}.*\n)*? {4}timeout-minutes: 45\n)/, '$1    permissions:\n      contents: read\n      issues: write\n'))],
+    ['見張りの仕事にほかの書く権限', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace('      actions: read\n      issues: write\n', '      actions: read\n      issues: write\n      pull-requests: write\n'))],
+    ['見張りの仕事から Actions を読む権限を外す', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace('      actions: read\n      issues: write\n', '      issues: write\n'))],
+    ['見張りが 404 を鍵なしで尋ね直す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("[401, 403].includes(r.status)", "[401, 403, 404].includes(r.status)") }) })],
+    ['見張りが main に無いワークフローのファイルを尋ねる', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace(" && held.has(x.path.split('/').pop())))", "))") }) })],
     ['見張りの仕事がほかのリポジトリの検査を動かす', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace('      - run: node tools/heartbeat.js --test\n', '      - run: node tools/heartbeat.js --test\n      - run: node verification/check_all.js\n'))],
     ['見張りが古い定期の仕事を見逃す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace('2 * p.hours * HOUR', '200 * p.hours * HOUR') }) })],
     ['見張りが注釈の行のあとの cron を拾わない', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("(?: {4}(?:- cron: .*|#.*)\\n?)+", "(?: {4}- cron: .*\\n?)+") }) })],

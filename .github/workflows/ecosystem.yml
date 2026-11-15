@@ -79,8 +79,10 @@ jobs:
     name: 定期の仕事が止まっていない
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # 読む権限は、中身と Actions の二つ（Actions の一覧と実行を、このリポジトリについては鍵で読む。2026-11-15 から）。書くのは issue だけ。
     permissions:
       contents: read
+      actions: read
       issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
