@@ -342,7 +342,7 @@ node verification/check_keyboard.js  # Tab で辿って測る 752 項目（要: 
 **リポジトリをまたぐずれは、これだけでは捕まりません**。各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、ということが起きます（実際に起きました）。そこで 10 を並べて隙間だけを見る検査を別に置いています。
 
 ```
-node verification/check_all.js        # 10 リポジトリの検査を全部（41 本）
+node verification/check_all.js        # 10 リポジトリの検査を全部（43 本）
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断（項目の数は docs/checks.md）

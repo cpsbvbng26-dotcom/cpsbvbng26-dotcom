@@ -43,8 +43,14 @@ async function api(p, opts) {
 async function upsert(body, down) {
   const repo = process.env.GITHUB_REPOSITORY;
   if (!repo || !TOKEN) { console.log('GITHUB_TOKEN か GITHUB_REPOSITORY が無いので、issue は触らない。'); return; }
-  const list = await api('/repos/' + repo + '/issues?state=all&per_page=100');
-  const found = list.find((i) => !i.pull_request && (i.body || '').indexOf(MARK) === 0) || null;
+  /* すべての頁を終わりまで読む。一覧でない答えは、issue が無いとは読まずに落とす（2026-11-15）。 */
+  let found = null;
+  for (let page = 1; !found; page++) {
+    const list = await api('/repos/' + repo + '/issues?state=all&per_page=100&page=' + page);
+    if (!Array.isArray(list)) throw new Error('GitHub API の issue の一覧が読めない');
+    found = list.find((i) => !i.pull_request && (i.body || '').indexOf(MARK) === 0) || null;
+    if (list.length < 100) break;
+  }
   const state = down ? 'open' : 'closed';
   if (found) {
     if (found.state === state && !down) { console.log('issue #' + found.number + ' は閉じたまま。'); return; }
@@ -58,7 +64,7 @@ async function upsert(body, down) {
   }
 }
 
-module.exports = { UA, probe, up };
+module.exports = { UA, probe, up, upsert, MARK };
 
 if (require.main === module) (async () => {
   const results = [];

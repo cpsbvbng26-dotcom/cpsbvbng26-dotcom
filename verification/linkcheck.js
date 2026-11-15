@@ -296,8 +296,10 @@ async function upsertIssue(body, brokenCount) {
   const repo = process.env.GITHUB_REPOSITORY;
   if (!repo || !TOKEN) { console.log('GITHUB_TOKEN か GITHUB_REPOSITORY が無いので、issue は触らない。'); return; }
   let found = null;
-  for (let page = 1; page <= 5 && !found; page++) {
+  /* すべての頁を終わりまで読む。一覧でない答えは、issue が無いとは読まずに落とす（2026-11-15。それまでは 5 頁まで）。 */
+  for (let page = 1; !found; page++) {
     const list = await api('/repos/' + repo + '/issues?state=all&per_page=100&page=' + page);
+    if (!Array.isArray(list)) throw new Error('GitHub API の issue の一覧が読めない');
     found = list.find((i) => !i.pull_request && (i.body || '').indexOf(MARK) === 0) || null;
     if (list.length < 100) break;
   }
@@ -314,7 +316,7 @@ async function upsertIssue(body, brokenCount) {
   }
 }
 
-module.exports = { usable, closed, allowed, link, collect, probe, OPEN, CLOSED, UA };
+module.exports = { usable, closed, allowed, link, collect, probe, OPEN, CLOSED, UA, upsertIssue, MARK };
 if (require.main === module) (async () => {
   const names0 = await repoNames();
   const { root, names } = checkout(names0);

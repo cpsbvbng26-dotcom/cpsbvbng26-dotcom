@@ -1,0 +1,25 @@
+{
+  "owner": "cpsbvbng26-dotcom",
+  "repos": [
+    "cpsbvbng26-dotcom",
+    "researcher-profile",
+    "errata-check",
+    "self-correction",
+    "trinity-infinity",
+    "trinity-operator",
+    "autonomy-and-self-cultivation",
+    "naval-gazette-notes",
+    "justice-and-algorithms",
+    "solitary-school",
+    "sophaxis",
+    "deposit-check",
+    "nusquama"
+  ],
+  "yearly": {
+    "sophaxis/audit.yml": "Yearly audit, {year}",
+    "sophaxis/report.yml": "Decisions of {year-1}: record them",
+    "nusquama/review.yml": "年一回の総点検（{year} 年）"
+  },
+  "vercel": ["cpsbvbng26-dotcom", "sophaxis", "nusquama", "trinity-operator"],
+  "lang": "ja"
+}

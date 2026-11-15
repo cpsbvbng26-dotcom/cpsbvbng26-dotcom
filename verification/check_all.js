@@ -4,6 +4,7 @@
  *
  * 兄弟ディレクトリに並んでいることを前提にする。場所が違えば ECOSYSTEM_ROOT で渡す。
  * 無いリポジトリは飛ばす（飛ばしたことは表に出す）。一つでも落ちたら終了コードは 1。
+ * 2026-11-15 から、CI（GITHUB_ACTIONS）では、無いリポジトリも落ちたものと数える。複製に失敗した日を、通った日と取り違えないため。
  *
  * 各リポジトリの CI が同じものを回している。ここはその手元版であって、
  * CI の代わりではない。
@@ -25,6 +26,8 @@ const CHECKS = [
   ['cpsbvbng26-dotcom', 'サイトの構造', 'node', 'verification/check_site.js'],
   ['cpsbvbng26-dotcom', '作用素のページの数値', 'node', 'verification/check_trinity.js'],
   ['cpsbvbng26-dotcom', '秘密情報と連絡先', 'node', 'verification/check_secrets.js'],
+  /* 2026-11-15：三篇の PDF の形（要 pypdf と兄弟ディレクトリ）も、ここで回す。CI は pypdf を、版とハッシュを固めて入れる。 */
+  ['cpsbvbng26-dotcom', '三篇の PDF の形', 'python3', 'verification/check_pdf_shape.py'],
 
   ['errata-check', '道具自身', 'python3', 'tests/check_tool.py'],
   ['errata-check', '見本（最小）', 'python3', 'errata_check.py', 'examples/minimal/audit.toml'],
@@ -53,6 +56,7 @@ const CHECKS = [
    * 生成そのものも一本の検査として先に回す。手元で通って CI で落ちたのがここ。 */
   ['autonomy-and-self-cultivation', '生成', 'node', 'build.js'],
   ['autonomy-and-self-cultivation', '紙面との照合', 'python3', 'verification/check_fidelity.py'],
+  ['autonomy-and-self-cultivation', '原稿', 'python3', 'verification/check_manuscript.py'],
   ['autonomy-and-self-cultivation', '正誤表の監査', 'python3', 'verification/check_errata.py'],
   ['autonomy-and-self-cultivation', '参考文献', 'python3', 'verification/check_references.py'],
   ['autonomy-and-self-cultivation', '誤変換ほか', 'node', 'verification/check_text.js'],
@@ -141,6 +145,8 @@ for (const [repo, label, cmd, ...args] of CHECKS) {
 
 console.log('  ' + '-'.repeat(76));
 console.log('  通 ' + passed + ' / 落 ' + failed + ' / 無い ' + missing);
+/* CI では、無いリポジトリも落ちたものと数える（2026-11-15）。 */
+if (missing && process.env.GITHUB_ACTIONS === 'true') { failed += missing; broke.push('無いリポジトリ ' + missing + ' 件（CI では落とす）'); }
 
 if (process.env.GITHUB_STEP_SUMMARY) {
   const md = ['## 各リポジトリの検査（' + new Date().toISOString().slice(0, 10) + '）', '',

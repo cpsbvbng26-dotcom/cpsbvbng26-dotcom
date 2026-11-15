@@ -1,0 +1,7 @@
+{
+  "base": "https://cpsbvbng26-dotcom.vercel.app/",
+  "dir": ".",
+  "include": ["*.html", "*.js", "*.svg", "*.png", "*.ico", "*.txt", "*.xml", "*.json", "*.bib", "notes/*.html", "og/*.png", "papers/*.html"],
+  "exclude": ["vercel.json", ".zenodo.json"],
+  "lang": "ja"
+}

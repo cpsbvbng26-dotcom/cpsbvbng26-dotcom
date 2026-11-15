@@ -11,7 +11,7 @@ on:
     - cron: '17 21 * * *'
   workflow_dispatch:
 
-# 複製して読むだけ。書き込む仕事は無い。
+# 複製して読むだけ。書き込むのは、定期の仕事の見張り（heartbeat）が自分の issue を開くことだけで、その仕事にだけ渡す。
 permissions:
   contents: read
 
@@ -19,43 +19,46 @@ jobs:
   ecosystem:
     name: 10 リポジトリ横断（項目の数は docs/checks.md）
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       # sitemap の lastmod を git の記録と突き合わせる検査がある。
       # 浅い複製では日付が取れず、取れたものも HEAD の日付に化ける。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }
+        with: { path: repos/cpsbvbng26-dotcom, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/errata-check, path: repos/errata-check, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/self-correction, path: repos/self-correction, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/trinity-infinity, path: repos/trinity-infinity, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/trinity-operator, path: repos/trinity-operator, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/autonomy-and-self-cultivation, path: repos/autonomy-and-self-cultivation, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/naval-gazette-notes, path: repos/naval-gazette-notes, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/researcher-profile, path: repos/researcher-profile, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/justice-and-algorithms, path: repos/justice-and-algorithms, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0, persist-credentials: false }
       # 十の外だが、Zenodo のコミュニティの所在を突き合わせるために読む。
       # 目録の「始めた時期」は最初のコミットの日付から出すので、十の外の二つも履歴ごと読む。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/sophaxis, path: repos/sophaxis, fetch-depth: 0, persist-credentials: false }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0 }
+        with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0, persist-credentials: false }
       # 共通の決めごと 16 の検査は、Nusquama の散文も走る（利用者に作業を割り当てる形が無いか）。読むだけで、つなぎはしない。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/nusquama, path: repos/nusquama }
+        with: { repository: cpsbvbng26-dotcom/nusquama, path: repos/nusquama, persist-credentials: false }
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: '3.12'
-      - run: pip install numpy pypdf==6.19.0
+      # numpy と pypdf は、版とハッシュを固めた一覧から入れる（2026-11-15）。
+      - run: |
+          pip install --require-hashes --only-binary=:all: -r repos/cpsbvbng26-dotcom/.github/requirements-ecosystem.txt
 
       - name: 各リポジトリの検査を全部
         working-directory: repos/cpsbvbng26-dotcom
@@ -66,3 +69,27 @@ jobs:
         if: always()
         working-directory: repos/cpsbvbng26-dotcom
         run: node verification/check_ecosystem.js
+
+  # 定期の仕事の見張り（2026-11-15）。13 のリポジトリのワークフローのファイルから定期の仕事を拾い、公開の Actions の API で、
+  # 周期の二倍のあいだに成功した定期の実行があるか、GitHub が止めていないか、年に一度の issue が開かれたか、
+  # IndexNow に知らせる仕事と Internet Archive に保存させる仕事の最後の実行が成功したかを見る（tools/heartbeat.js）。
+  # 落ちれば、このリポジトリに issue を一つ開くか直し、どれも落ちなくなれば閉じる。issue には決まった語と数だけを書く。
+  # この仕事そのものは、Sophaxis の live.yml が毎日見る。
+  heartbeat:
+    name: 定期の仕事が止まっていない
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22
+      - run: node tools/heartbeat.js --test
+      - run: node tools/heartbeat.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

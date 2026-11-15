@@ -30,16 +30,17 @@ const PAGES = require('./pages.json').pages.filter((p) => !p.noindex);
 
 const CHANGEFREQ = 'monthly';
 
+/* 日付は、両側とも日本時間で読む（2026-11-15）。コミットの日付は、コミットした人の時刻の帯に拠らず、日本時間の日にする。 */
 function git(args) {
-  return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8' }).trim();
+  return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', env: Object.assign({}, process.env, { TZ: 'Asia/Tokyo' }) }).trim();
 }
 
 function lastmod(file) {
   /* 未コミットの変更があるなら、これから入るコミットの日付になる。 */
   if (git(['status', '--porcelain', '--', file])) {
-    return new Date().toISOString().slice(0, 10);
+    return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
   }
-  const d = git(['log', '-1', '--format=%cs', '--', file]);
+  const d = git(['log', '-1', '--format=%cd', '--date=format-local:%Y-%m-%d', '--', file]);
   if (!d) throw new Error(file + ' の履歴が取れません（浅いクローンかもしれません）');
   return d;
 }

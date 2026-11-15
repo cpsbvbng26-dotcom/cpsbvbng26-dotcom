@@ -197,19 +197,35 @@ ok('公開ページがすべて sitemap にある', notListed.length === 0, notL
   ok('lastmod が YYYY-MM-DD の形をしている', badFormat.length === 0,
      badFormat.map((e) => e.loc + ' → ' + e.mod).join(', '));
 
-  const today = new Date().toISOString().slice(0, 10);
+  /* 2026-11-15 から、どちらも日本時間で比べる。UTC の今日と、コミットした人の時刻の帯の日付を比べると、日本時間の朝に入れたコミットが「未来」に化けた。 */
+  const today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
   const future = entries.filter((e) => e.mod > today);
   ok('lastmod が未来の日付になっていない', future.length === 0,
      future.map((e) => e.loc + ' → ' + e.mod).join(', '));
 
   /* git が最後にそのファイルを触った日より古い lastmod は、書き換えを忘れた印。 */
   const cp = require('child_process');
-  const gitDate = (file) => {
+  const gitDate = (file, cwd = ROOT) => {
     try {
-      return cp.execFileSync('git', ['log', '-1', '--format=%cs', '--', file],
-                             { cwd: ROOT, encoding: 'utf8' }).trim();
+      return cp.execFileSync('git', ['log', '-1', '--format=%cd', '--date=format-local:%Y-%m-%d', '--', file],
+                             { cwd, encoding: 'utf8', env: Object.assign({}, process.env, { TZ: 'Asia/Tokyo' }) }).trim();
     } catch (e) { return ''; }
   };
+  /* 2026-11-15：日本時間の朝（UTC では前の日）に入れたコミットの日を、日本時間の日として読む。作った履歴で、上の読み方そのものを確かめる。
+   * 結果は、下の「git の記録より古くない」の一件に入れる（同じ読み方の検査なので、件数を分けない）。 */
+  let tzDay = '';
+  {
+    const os = require('os');
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cps-tz-'));
+    const g = (args, env) => cp.execFileSync('git', args, { cwd: dir, encoding: 'utf8', env: Object.assign({}, process.env, env || {}) }).trim();
+    try {
+      g(['init', '-q']);
+      fs.writeFileSync(path.join(dir, 'a.html'), 'x');
+      g(['add', 'a.html']);
+      g(['-c', 'user.name=t', '-c', 'user.email=', 'commit', '-q', '-m', 't'], { GIT_COMMITTER_DATE: '2026-11-14T23:30:00+00:00', GIT_AUTHOR_DATE: '2026-11-14T23:30:00+00:00' });
+      tzDay = gitDate('a.html', dir);
+    } catch (e) { tzDay = 'error'; } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+  }
   const stale = [];
   let unknown = 0;
   entries.forEach((e) => {
@@ -218,7 +234,8 @@ ok('公開ページがすべて sitemap にある', notListed.length === 0, notL
     if (!d) { unknown++; return; }
     if (e.mod < d) stale.push(rel + '  sitemap ' + e.mod + ' / git ' + d);
   });
-  ok('lastmod が git の記録より古くない', stale.length === 0, stale.join(' | '));
+  ok('lastmod が git の記録より古くない（コミットの日を日本時間で読む。UTC の 2026-11-14 23:30 のコミットを 2026-11-15 と読む）', stale.length === 0 && tzDay === '2026-11-15',
+     stale.join(' | ') + (tzDay === '2026-11-15' ? '' : ' / 作った履歴の日 ' + tzDay));
   /* **浅い複製では、この二件は当てにならない。**深さ 1 の複製では、HEAD が
    * 触ったファイルだけが HEAD の日付を返し、残りは空を返す。前者は「sitemap が
    * 古い」に化け、後者だけが unknown に数えられる。**化けたほうは理由を名乗らない。**

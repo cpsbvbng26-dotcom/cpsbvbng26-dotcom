@@ -3474,7 +3474,8 @@ console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 �
       if (!l.endsWith(suf)) bad.push(k + ' の最終更新が日本時間だと書いていない');
     }
     for (const r of G.repos) {
-      const want = r === 'cpsbvbng26-dotcom' ? 'path: repos/cpsbvbng26-dotcom, fetch-depth: 0 }' : 'repository: cpsbvbng26-dotcom/' + r + ', path: repos/' + r + ', fetch-depth: 0 }';
+      /* 2026-11-15 から、どの checkout も鍵を残さない（persist-credentials: false）。履歴をすべて取ることは同じに求める。 */
+      const want = r === 'cpsbvbng26-dotcom' ? 'path: repos/cpsbvbng26-dotcom, fetch-depth: 0, persist-credentials: false }' : 'repository: cpsbvbng26-dotcom/' + r + ', path: repos/' + r + ', fetch-depth: 0, persist-credentials: false }';
       if ((x.WF || '').indexOf(want) < 0) bad.push(G['workflow'] + ' が ' + r + ' の履歴をすべて取らない');
     }
     for (const r of K['記録']) {
@@ -3502,7 +3503,7 @@ console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 �
     ['最終更新の行の形を崩す', 替('autonomy-and-self-cultivation/ERRATA.md', /^最終更新: /m, '最終更新 ')],
     ['頁を数えから外す', Object.assign({}, 実, { 頁: 頁.filter((k) => k !== 'cpsbvbng26-dotcom/DISCLAIMER.en.md') })],
     ['履歴が浅い', Object.assign({}, 実, { 浅い: Object.assign({}, 浅い, { 'self-correction': true }) })],
-    ['横断の CI から fetch-depth を外す', Object.assign({}, 実, { WF: (WF || '').replace('repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0 }', 'repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school }') })],
+    ['横断の CI から fetch-depth を外す', Object.assign({}, 実, { WF: (WF || '').replace('repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, fetch-depth: 0, persist-credentials: false }', 'repository: cpsbvbng26-dotcom/solitary-school, path: repos/solitary-school, persist-credentials: false }') })],
     ['点検の記録から七度目の節を外す', Object.assign({}, 実, { 記録: Object.assign({}, 記録, { 'trinity-infinity': (記録['trinity-infinity'] || '').replace(K ? K['節'] : 'x^', '## 七度目') }) })],
     ['点検の記録から決めた一文を外す', Object.assign({}, 実, { 記録: Object.assign({}, 記録, { 'cpsbvbng26-dotcom': (記録['cpsbvbng26-dotcom'] || '').split(K ? K['決めた'] : 'x^').join('決めた') }) })],
   ];
@@ -4801,7 +4802,9 @@ console.log('\n12y. 突き合わせの受付：13 の写しが同じで、どの
     'Please take down this page.', 'Remove my personal data.', 'This infringes my copyright.', 'I withdraw my consent.', 'This is defamatory.', 'My name is misspelt.',
     /* 2026-11-15：読むだけの十八度目の点検が、拾わなかった書き方として挙げたもの。拾っても閉じないことは変わらず、ラベルの目印になるだけである。 */
     'この記載は誹謗中傷なので消してください', '私の経歴が事実と違うので訂正してください', '私の住所が載っているので非公開にしてください', '載せないでください', 'Please take this down',
-    'My email address is on this page, please hide it', 'The author list misspells my surname', 'unpublish my info', '利用目的を教えてください'];
+    'My email address is on this page, please hide it', 'The author list misspells my surname', 'unpublish my info', '利用目的を教えてください',
+    /* 2026-11-15：読むだけの二度目の自動化の点検が、拾わなかった書き方として挙げたもの。全角・語の間の空白・幅のない文字・ドイツ語・フランス語。 */
+    'ＧＤＰＲ に基づく求めです', '削 除してください', 'この記事を下げて', 'Bitte löschen Sie meine Daten', 'Veuillez supprimer cette page', 'de\u200Blete this page', 'Ich widerspreche der Verarbeitung meiner persönlichen Daten'];
   function problems(x) {
     const bad = [];
     const CI = load(x.js['cpsbvbng26-dotcom']);
@@ -5005,6 +5008,519 @@ console.log('\n12z. 十八度目の点検：突き合わせの受付は 13 の�
     + (breaks.length - missed.length) + ' / ' + breaks.length + '）', missed.length === 0, missed.join(' / '));
 }
 
+console.log('\n12za. 自動化を固める：13 のリポジトリのワークフローが表のとおりに起こされて権限を持ち、時間の上限と鍵を残さない checkout と固めた pip を持ち、同時実行の組が出来事の見本で正しく、見張りと写しと記録がそろう（2026-11-15）');
+{
+  /* 2026-11-15 に、読むだけの二度の点検が、13 のリポジトリのワークフローの乗っ取りへの備えと、黙って止まる仕組みを洗い出した。
+   * 2026-11-15 に利用者が決め、Claude が書いた。ここで固めるもの:
+   *   一  起こす出来事と権限（全体と仕事ごと）が verification/workflows.json の表と一字一句同じ。表はファイルから作らない。
+   *       pull_request_target・workflow_run・write-all はどこにも置けない。書く権限を持つ仕事は、式（${{ }}）から ref も repository も取らない。
+   *   二  どの仕事にも timeout-minutes があり、60 分まで。長い四つだけは LONG の分と同じ。
+   *   三  push しない仕事（contents: write を持たない仕事）の checkout は persist-credentials: false。Sophaxis の removal.yml はすべて。
+   *   四  書く権限か id-token を持つワークフローと横断の検査の pip は、版とハッシュを固めた一覧からだけ入れる。一覧のどの行も版とハッシュを持つ。
+   *   五  tools/live.js は四つのリポジトリで、tools/ua.js は三つで一字一句同じ。道具にはどのリポジトリの名も無く、設定は自分の場だけを名指す。
+   *   六  見張り（tools/heartbeat.js）は二つの写しが同じで、自己検査が通り、見本の古い定期の仕事で落ちる。issues に書くのは見張りの仕事だけ。
+   *   七  同時実行の組：出来事の見本で式を評価し、仕事の if が偽なら、その実行だけの組に入り、真なら決まった組に入る。
+   *   八  自分の issue を探す道具は、一覧を終わりの頁まで読む（4 頁目の issue を見つける）。受付の道具は、取り消しのあとの確かめ直しで二つ目のコメントを作らない。
+   *   九  13 の記録の節。cpsbvbng26-dotcom の記録に、13 のリポジトリの main の枝の規則の勧めがある。
+   * GitHub の同時実行の振る舞いは取り寄せて確かめていないので、どちらに振る舞っても正しい形（スキップされた仕事が場所を取らない）を見る。 */
+  const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
+  const HEAD = '\n## 2026-11-15：自動化を固める\n';
+  const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
+  const DECIDED = '2026-11-15 に利用者が決め、Claude が書きました';
+  const MAX = 60;
+  const LONG = { 'nusquama/world.yml/fetch': 340, 'errata-check/swh-save.yml/save': 150, 'cpsbvbng26-dotcom/wayback.yml/save': 90, 'sophaxis/watch.yml/watch': 180 };
+  const LIVE4 = ['sophaxis', 'nusquama', 'cpsbvbng26-dotcom', 'trinity-operator'], UA3 = ['nusquama', 'cpsbvbng26-dotcom', 'trinity-operator'];
+  const LOCKS = { 'cpsbvbng26-dotcom/ecosystem.yml': '.github/requirements-ecosystem.txt', 'errata-check/pypi.yml': '.github/requirements-pypi.txt' };
+  const NAMES = ALL.filter((r) => r !== 'nusquama').concat(['cpsbvbng26']);
+  const real = { table: null, flows: {}, live: {}, ua: {}, liveConf: {}, liveYml: {}, hb: {}, hbConf: {}, aud: {}, locks: {},
+    uptime: read('cpsbvbng26-dotcom', path.join('verification', 'uptime.js')) || '', linkcheck: read('cpsbvbng26-dotcom', path.join('verification', 'linkcheck.js')) || '',
+    verify: read('cpsbvbng26-dotcom', path.join('.github', 'checked-intake', 'verify.js')) || '', checkAll: read('cpsbvbng26-dotcom', path.join('verification', 'check_all.js')) || '' };
+  try { real.table = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'workflows.json'))); } catch (e) { real.table = null; }
+  for (const r of ALL) {
+    const d = path.join(ROOT, r, '.github', 'workflows');
+    real.flows[r] = fs.existsSync(d) ? Object.fromEntries(fs.readdirSync(d).filter((f) => /\.ya?ml$/.test(f)).sort().map((f) => [f, fs.readFileSync(path.join(d, f), 'utf8')])) : {};
+    real.aud[r] = read(r, path.join('docs', 'legal-audit-2026-11-12.md')) || '';
+  }
+  for (const r of LIVE4) { real.live[r] = read(r, path.join('tools', 'live.js')); real.liveConf[r] = read(r, path.join('tools', 'live.json')); real.ua[r] = read(r, path.join('tools', 'ua.js')); }
+  for (const r of ['cpsbvbng26-dotcom', 'sophaxis']) { real.hb[r] = read(r, path.join('tools', 'heartbeat.js')); real.hbConf[r] = read(r, path.join('tools', 'heartbeat.json')); }
+  for (const [k, f] of Object.entries(LOCKS)) real.locks[k] = read(k.split('/')[0], f);
+
+  /* ---- ワークフローを読む。決まった形（ブロックの YAML、二つ空けの字下げ）の外は、読めないものとして表と合わない。 */
+  const permsOf = (head, rest, ind) => {
+    if (head.trim()) return head.trim();
+    const out = {};
+    for (const l of rest) {
+      const m = new RegExp('^ {' + ind + '}([a-z-]+): (read|write|none)\\s*$').exec(l);
+      if (!m) return '<読めない>';
+      out[m[1]] = m[2];
+    }
+    return out;
+  };
+  function parseFlow(text) {
+    const lines = String(text).replace(/\r/g, '').split('\n');
+    const block = (i, ind) => { const out = []; for (let k = i + 1; k < lines.length; k++) { const l = lines[k]; if (l.trim() === '' || /^\s*#/.test(l)) continue; if (l.length - l.trimStart().length < ind) break; out.push(l); } return out; };
+    const res = { on: null, perms: null, jobs: {}, topConcurrency: false };
+    lines.forEach((l, i) => {
+      let m;
+      if ((m = /^on:(.*)$/.exec(l))) res.on = m[1].trim() ? ['<一行で書いた on: ' + m[1].trim() + '>'] : block(i, 2).filter((x) => /^ {2}\S/.test(x)).map((x) => x.trim().replace(/:.*$/, '')).sort();
+      if ((m = /^permissions:(.*)$/.exec(l))) res.perms = permsOf(m[1], block(i, 2), 2);
+      if (/^concurrency:/.test(l)) res.topConcurrency = true;
+    });
+    const at = lines.findIndex((l) => /^jobs:\s*$/.test(l));
+    let cur = null;
+    for (const l of at < 0 ? [] : lines.slice(at + 1)) {
+      if (/^\S/.test(l)) break;
+      const m = /^ {2}([A-Za-z0-9_-]+):\s*$/.exec(l);
+      if (m) { cur = res.jobs[m[1]] = { lines: [] }; continue; }
+      if (cur) cur.lines.push(l);
+    }
+    for (const j of Object.values(res.jobs)) {
+      const L = j.lines;
+      const sub = (i, ind) => { const out = []; for (let k = i + 1; k < L.length; k++) { const l = L[k]; if (l.trim() === '' || /^\s*#/.test(l)) continue; if (l.length - l.trimStart().length < ind) break; out.push(l); } return out; };
+      j.perms = null; j.timeout = null; j.group = null; j.cancel = null; j.if = null;
+      L.forEach((l, i) => {
+        let m;
+        if ((m = /^ {4}permissions:(.*)$/.exec(l))) j.perms = permsOf(m[1], sub(i, 6), 6);
+        if ((m = /^ {4}timeout-minutes:\s*(\d+)\s*$/.exec(l))) j.timeout = Number(m[1]);
+        if ((m = /^ {6}group:\s*(.+?)\s*$/.exec(l))) j.group = m[1];
+        if ((m = /^ {6}cancel-in-progress:\s*(\S+)\s*$/.exec(l))) j.cancel = m[1];
+        if ((m = /^ {4}if:\s*(.*?)\s*$/.exec(l))) j.if = /^>-?$/.test(m[1]) ? sub(i, 6).map((x) => x.trim()).join(' ') : m[1];
+      });
+      if (j.if) j.if = j.if.replace(/^\$\{\{([\s\S]*)\}\}$/, '$1').trim();
+      /* 手順。「      - 」で始まる行から次のそれまで。 */
+      j.steps = [];
+      for (const l of L) { if (/^ {6}- /.test(l)) j.steps.push([l]); else if (j.steps.length && (/^ {8}/.test(l) || l.trim() === '')) j.steps[j.steps.length - 1].push(l); }
+      j.steps = j.steps.map((s) => s.join('\n'));
+    }
+    return res;
+  }
+  const writes = (p) => (typeof p === 'string' ? /write/.test(p) : Object.values(p || {}).some((v) => v === 'write'));
+  const effective = (flow, j) => (j.perms !== null ? j.perms : flow.perms);
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const code = (t) => String(t).split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+
+  /* ---- GitHub の式の小さな評価器。この 13 のリポジトリが組の名と if に使う形（|| && ! == != 括弧 文字列 数 format contains always）だけを読む。 */
+  function evalExpr(src, ctx) {
+    const toks = [];
+    let i = 0;
+    while (i < src.length) {
+      const c = src[i];
+      if (/\s/.test(c)) { i++; continue; }
+      if (c === "'") { let j = i + 1, s = ''; for (; j < src.length; j++) { if (src[j] === "'" && src[j + 1] === "'") { s += "'"; j++; continue; } if (src[j] === "'") break; s += src[j]; } if (j >= src.length) throw new Error('閉じない文字列'); toks.push({ t: 'str', v: s }); i = j + 1; continue; }
+      const two = src.slice(i, i + 2);
+      if (['&&', '||', '==', '!='].includes(two)) { toks.push({ t: two }); i += 2; continue; }
+      if ('()!,'.includes(c)) { toks.push({ t: c }); i++; continue; }
+      let m = /^\d+/.exec(src.slice(i));
+      if (m) { toks.push({ t: 'num', v: Number(m[0]) }); i += m[0].length; continue; }
+      m = /^[A-Za-z_][A-Za-z0-9_-]*(?:\.(?:\*|[A-Za-z_][A-Za-z0-9_-]*))*/.exec(src.slice(i));
+      if (m) { toks.push({ t: 'id', v: m[0] }); i += m[0].length; continue; }
+      throw new Error('読めない字「' + src.slice(i, i + 8) + '」');
+    }
+    let p = 0;
+    const peek = () => toks[p] || {};
+    const eat = (t) => { if (peek().t !== t) throw new Error(t + ' が無い'); p++; };
+    const truthy = (v) => !(v === false || v === null || v === undefined || v === 0 || v === '');
+    const eq = (a, b) => {
+      if (a === null || a === undefined) return b === null || b === undefined;
+      if (b === null || b === undefined) return false;
+      return typeof a === 'string' && typeof b === 'string' ? a.toLowerCase() === b.toLowerCase() : String(a) === String(b);
+    };
+    const resolve = (name) => {
+      let cur = [ctx], star = false;
+      for (const part of name.split('.')) {
+        if (part === '*') { star = true; cur = cur.flatMap((x) => (Array.isArray(x) ? x : [])); continue; }
+        cur = cur.map((x) => (x !== null && typeof x === 'object' && part in x ? x[part] : undefined));
+      }
+      return star ? cur.filter((x) => x !== undefined) : (cur[0] === undefined ? null : cur[0]);
+    };
+    const call = (f, a) => {
+      if (f === 'format') return String(a[0]).replace(/\{(\d+)\}/g, (_, k) => String(a[Number(k) + 1] ?? ''));
+      if (f === 'contains') return Array.isArray(a[0]) ? a[0].some((x) => eq(x, a[1])) : String(a[0] ?? '').toLowerCase().includes(String(a[1] ?? '').toLowerCase());
+      if (f === 'always') return true;
+      throw new Error('知らない関数 ' + f);
+    };
+    let or;
+    const prim = () => {
+      const k = toks[p++] || {};
+      if (k.t === 'str' || k.t === 'num') return k.v;
+      if (k.t === '(') { const v = or(); eat(')'); return v; }
+      if (k.t === '!') return !truthy(prim());
+      if (k.t === 'id') {
+        if (peek().t === '(') { p++; const a = []; if (peek().t !== ')') { a.push(or()); while (peek().t === ',') { p++; a.push(or()); } } eat(')'); return call(k.v, a); }
+        if (k.v === 'true') return true;
+        if (k.v === 'false') return false;
+        if (k.v === 'null') return null;
+        return resolve(k.v);
+      }
+      throw new Error('式の形');
+    };
+    const cmp = () => { let v = prim(); while (peek().t === '==' || peek().t === '!=') { const op = toks[p++].t; const r = prim(); v = op === '==' ? eq(v, r) : !eq(v, r); } return v; };
+    const and = () => { let v = cmp(); while (peek().t === '&&') { p++; const r = cmp(); v = truthy(v) ? r : v; } return v; };
+    or = () => { let v = and(); while (peek().t === '||') { p++; const r = and(); v = truthy(v) ? v : r; } return v; };
+    const v = or();
+    if (p !== toks.length) throw new Error('式の残り');
+    return v;
+  }
+  const truthy = (v) => !(v === false || v === null || v === undefined || v === 0 || v === '');
+  const interp = (s, ctx) => String(s).replace(/\$\{\{([\s\S]*?)\}\}/g, (_, e) => String(evalExpr(e, ctx) ?? ''));
+  const OWNER = 'cpsbvbng26-dotcom';
+  const ctxOf = (repo, name, event, runId, extra = {}) => ({ github: { event_name: name, event: Object.assign({ sender: { login: 'alice' } }, event), repository_owner: OWNER, repository: OWNER + '/' + repo, run_id: runId, ref: 'refs/heads/main' }, inputs: extra.inputs || {} });
+  const issue = (n, labels, o = {}) => Object.assign({ number: n, labels: labels.map((x) => ({ name: x })) }, o);
+  /* 出来事の見本。[名, 出来事の名, 出来事]。同じ見本を二つの run_id で評価する。 */
+  const FIX = {
+    'checked-intake.yml': [
+      ['よその人の issue #5', 'issues', { action: 'opened', issue: issue(5, ['erratum']) }, 'checked-intake-issue-5'],
+      ['よその人の issue #6', 'issues', { action: 'edited', issue: issue(6, ['erratum']) }, 'checked-intake-issue-6'],
+      ['持ち主の issue #5（名の大小が違う）', 'issues', { action: 'edited', sender: { login: 'CPSBVBNG26-Dotcom' }, issue: issue(5, ['erratum']) }, null],
+      ['push', 'push', {}, null], ['PR', 'pull_request', { pull_request: { number: 9 } }, null]],
+    'sophaxis/removal.yml': [
+      ['削除の issue を開く', 'issues', { action: 'opened', issue: issue(11, ['removal']) }, { intake: 'removal' }],
+      ['持ち主が upheld を付ける', 'issues', { action: 'labeled', label: { name: 'upheld' }, sender: { login: OWNER }, issue: issue(11, ['removal', 'upheld']) }, { decide: 'removal' }],
+      ['持ち主が取り下げに not-upheld を付ける', 'issues', { action: 'labeled', label: { name: 'not-upheld' }, sender: { login: OWNER }, issue: issue(12, ['withdrawal', 'not-upheld']) }, { decide: 'removal' }],
+      ['よその人が upheld を付ける', 'issues', { action: 'labeled', label: { name: 'upheld' }, issue: issue(11, ['removal', 'upheld']) }, {}],
+      ['持ち主がほかのラベルを付ける', 'issues', { action: 'labeled', label: { name: 'question' }, sender: { login: OWNER }, issue: issue(11, ['removal', 'question']) }, {}],
+      ['投稿の issue を開く', 'issues', { action: 'opened', issue: issue(13, ['submission']) }, {}],
+      ['毎日の手順', 'schedule', {}, { remind: 'removal' }], ['手で起こす', 'workflow_dispatch', {}, { manual: 'removal' }]],
+    'sophaxis/record.yml': [
+      ['持ち主が見張りの枝の PR に record を付ける', 'pull_request', { action: 'labeled', label: { name: 'record' }, sender: { login: OWNER }, pull_request: { head: { repo: { full_name: OWNER + '/sophaxis' }, ref: 'statutes/record' } } }, { record: 'removal' }],
+      ['よその人が付ける', 'pull_request', { action: 'labeled', label: { name: 'record' }, pull_request: { head: { repo: { full_name: OWNER + '/sophaxis' }, ref: 'statutes/record' } } }, {}],
+      ['ほかの枝', 'pull_request', { action: 'labeled', label: { name: 'record' }, sender: { login: OWNER }, pull_request: { head: { repo: { full_name: OWNER + '/sophaxis' }, ref: 'claude/x' } } }, {}],
+      ['よそのリポジトリの枝', 'pull_request', { action: 'labeled', label: { name: 'record' }, sender: { login: OWNER }, pull_request: { head: { repo: { full_name: 'mallory/sophaxis' }, ref: 'statutes/record' } } }, {}]],
+    'sophaxis/intake.yml': [
+      ['投稿の issue #7', 'issues', { action: 'edited', issue: issue(7, ['submission']) }, { intake: 'intake-issue-7' }],
+      ['投稿の issue #8', 'issues', { action: 'opened', issue: issue(8, ['submission']) }, { intake: 'intake-issue-8' }],
+      ['確かめの語のあるコメント', 'issue_comment', { action: 'created', comment: { user: { type: 'User' }, body: 'I vouch for this submission to Sophaxis' }, issue: issue(7, ['submission']) }, {}],
+      ['確かめの語の無いコメント', 'issue_comment', { action: 'created', comment: { user: { type: 'User' }, body: 'thanks' }, issue: issue(7, ['submission']) }, {}],
+      ['取り下げの issue', 'issues', { action: 'opened', issue: issue(9, ['withdrawal']) }, { withdrawal: 'intake-withdrawal-9' }],
+      ['出版の issue', 'issues', { action: 'opened', issue: issue(10, ['published']) }, { published: 'intake-published-10' }],
+      ['毎日の手順', 'schedule', {}, { deadline: 'intake-daily' }]],
+    'nusquama/reporter.yml': [
+      ['よその人の誤りの issue #3', 'issues', { action: 'opened', issue: issue(3, ['誤り']) }, { place: 'reporter-issue-3' }],
+      ['持ち主の誤りの issue #3', 'issues', { action: 'edited', sender: { login: OWNER }, issue: issue(3, ['誤り']) }, {}],
+      ['PR', 'issues', { action: 'opened', issue: issue(4, ['誤り'], { pull_request: {} }) }, {}],
+      ['ラベルの無い issue', 'issues', { action: 'opened', issue: issue(5, []) }, {}]],
+  };
+  /* 一つのワークフローの、見本ごとの組の答え。if が偽の仕事は run ごとに違う組、真の仕事は表の組。表に無い真の仕事は、run ごとに違う組。 */
+  function groupProblems(repo, file, text, fixtures) {
+    const bad = [];
+    const f = parseFlow(text);
+    if (f.topConcurrency) bad.push(repo + '/' + file + '：同時実行の組をワークフローの全体に置く');
+    const grouped = Object.entries(f.jobs).filter(([, j]) => j.group);
+    if (!grouped.length) bad.push(repo + '/' + file + '：組が無い');
+    for (const [name, ev, event, want] of fixtures) {
+      for (const [id, j] of grouped) {
+        let g1, g2, on;
+        try { g1 = interp(j.group, ctxOf(repo, ev, event, 1001)); g2 = interp(j.group, ctxOf(repo, ev, event, 1002)); on = j.if ? truthy(evalExpr(j.if, ctxOf(repo, ev, event, 1001))) : true; } catch (e) { bad.push(repo + '/' + file + ' ' + id + '：式が読めない（' + e.message + '）'); continue; }
+        const shared = typeof want === 'string' || want === null ? want : (want[id] || null);
+        if (!on && shared !== null) bad.push(repo + '/' + file + ' ' + id + '：見本（' + name + '）で仕事の if が偽');
+        if (!on && g1 === g2) bad.push(repo + '/' + file + ' ' + id + '：動かない実行（' + name + '）が共有の組「' + g1 + '」に入る');
+        if (on && shared !== null && (g1 !== shared || g2 !== shared)) bad.push(repo + '/' + file + ' ' + id + '：' + name + ' の組が「' + g1 + '」');
+        if (shared === null && g1 === g2) bad.push(repo + '/' + file + ' ' + id + '：' + name + ' が共有の組「' + g1 + '」に入る');
+      }
+    }
+    return bad;
+  }
+
+  /* ---- 非同期の見本（子の工程で回す）：一覧の頁、受付の確かめ直し。 */
+  const CHILD = String.raw`
+    const path = require('path'), Mod = require('module');
+    const S = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+    process.env.GITHUB_TOKEN = 'x'; process.env.GITHUB_REPOSITORY = 'o/r';
+    const load = (src, file, env) => { const m = { exports: {} }; const old = process.env; process.env = Object.assign({}, old, env || {});
+      try { new Function('module', 'exports', 'require', '__dirname', '__filename', String(src).replace(/^#!.*\n/, ''))(m, m.exports, Mod.createRequire(file), path.dirname(file), file); } finally { process.env = old; } return m.exports; };
+    /* 350 の issue：1〜3 頁は 100 ずつ、4 頁目は 50。2 頁目に印を持つ PR、4 頁目に印を持つ issue #321。 */
+    const items = (mark) => Array.from({ length: 350 }, (_, k) => k === 150 ? { number: 151, pull_request: {}, body: mark } : k === 320 ? { number: 321, state: 'closed', body: mark + '\n' } : { number: k + 1, body: 'other' });
+    const pageOf = (url, list) => { const per = Number((/[?&]per_page=(\d+)/.exec(url) || [, 30])[1]); const page = Number((/[?&]page=(\d+)/.exec(url) || [, 1])[1]); return list.slice((page - 1) * per, page * per); };
+    const out = {};
+    (async () => {
+      for (const k of ['uptime', 'linkcheck']) {
+        const calls = [];
+        let broken = false;
+        globalThis.fetch = async (url, o) => { const u = String(url); const m = (o && o.method) || 'GET'; calls.push(m + ' ' + u); const body = broken ? { message: 'x' } : (m === 'GET' ? pageOf(u, items(S.marks[k])) : { number: 999 }); return { ok: true, status: 200, json: async () => body }; };
+        const log = console.log; console.log = () => {};
+        try {
+          const M = load(S[k], S.files[k], { GITHUB_TOKEN: 'x', GITHUB_REPOSITORY: 'o/r' });
+          const up = M.upsert || M.upsertIssue;
+          await up('body', 1);
+          out[k + 'Page4'] = calls.some((c) => /^PATCH .*\/issues\/321$/.test(c)) && !calls.some((c) => /^POST /.test(c) || /\/issues\/151$/.test(c));
+          broken = true; calls.length = 0;
+          try { await up('body', 1); out[k + 'NotList'] = false; } catch (e) { out[k + 'NotList'] = !calls.some((c) => /^POST /.test(c)); }
+        } catch (e) { out[k + 'Page4'] = false; out[k + 'NotList'] = false; }
+        console.log = log;
+      }
+      try {
+        const L = load(S.live, S.files.live, {});
+        const got = await L.allPages(async (m, u) => pageOf(u, items(L.MARK)), '/issues?state=open');
+        out.livePage4 = got.length === 350 && got.some((i) => i.number === 321);
+        try { await L.allPages(async () => ({ message: 'x' }), '/issues'); out.liveNotList = false; } catch (e) { out.liveNotList = true; }
+      } catch (e) { out.livePage4 = false; out.liveNotList = false; }
+      try {
+        /* 受付：一つ目の実行が取り消され（何もしない）、編まれた issue の二つ目の実行と、同じ出来事の三つ目の実行が、一つのコメントとそのときのラベルを残す。 */
+        const V = load(S.verify, S.files.verify, {});
+        const ID = '0000-0002-1825-0097';
+        const conf = { forms: [{ label: 'bug', kind: 'identity', orcid: ['Your ORCID iD'], doi: ['Your DOI (optional)'] }], neverClose: ['needs a person'], from: '2026-12-01' };
+        const look = async (k, id) => (k === 'orcid' && id === ID ? { 'researcher-url': [{ url: { value: 'https://github.com/alice' } }] } : null);
+        const st = { comments: [], labels: new Set(), next: 1 };
+        const gh = async (m, u, b) => {
+          if (m === 'GET') return st.comments.map((c) => Object.assign({}, c));
+          if (m === 'POST' && /\/comments$/.test(u)) { st.comments.push({ id: st.next++, user: { type: 'Bot' }, body: b.body }); return {}; }
+          if (m === 'PATCH') { const c = st.comments.find((x) => '/issues/comments/' + x.id === u); if (c) c.body = b.body; return {}; }
+          if (m === 'DELETE') { st.labels.delete(decodeURIComponent(u.split('/').pop())); return {}; }
+          if (m === 'POST') { b.labels.forEach((l) => st.labels.add(l)); return {}; }
+          return {};
+        };
+        const ev = (action, login, body) => ({ action, sender: { login: 'alice' }, repository: { owner: { login: 'example' } }, issue: { number: 7, state: 'open', created_at: '2026-12-02T00:00:00Z', title: 't', user: { login }, labels: [{ name: 'bug' }], body } });
+        const bodyOf = (id) => '### Your ORCID iD\n\n' + id + '\n\n### Your DOI (optional)\n\n_No response_\n';
+        const say = () => {};
+        await V.run({ event: ev('opened', 'alice', bodyOf('0000-0001-5109-3700')), conf, gh, look, say });
+        const afterFirst = [...st.labels].join();
+        await V.run({ event: ev('edited', 'alice', bodyOf(ID)), conf, gh, look, say });
+        await V.run({ event: ev('edited', 'alice', bodyOf(ID)), conf, gh, look, say });
+        out.verifyRerun = st.comments.length === 1 && st.labels.has(V.LABELS.identity) && !st.labels.has(V.LABELS.notFound) && afterFirst.includes(V.LABELS.notFound);
+      } catch (e) { out.verifyRerun = false; }
+      process.stdout.write(JSON.stringify(out));
+    })();`;
+  const markOf = (src, re) => (re.exec(src) || [, ''])[1];
+  const asyncProbe = (x) => {
+    try {
+      return JSON.parse(require('child_process').execFileSync('node', ['-e', CHILD], { encoding: 'utf8', input: JSON.stringify({
+        uptime: x.uptime, linkcheck: x.linkcheck, live: x.live['cpsbvbng26-dotcom'], verify: x.verify,
+        marks: { uptime: markOf(x.uptime, /const MARK = '([^']+)'/), linkcheck: markOf(x.linkcheck, /const MARK = '([^']+)'/) },
+        files: { uptime: path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'uptime.js'), linkcheck: path.join(ROOT, 'cpsbvbng26-dotcom', 'verification', 'linkcheck.js'),
+          live: path.join(ROOT, 'cpsbvbng26-dotcom', 'tools', 'live.js'), verify: path.join(ROOT, 'cpsbvbng26-dotcom', '.github', 'checked-intake', 'verify.js') } }) }));
+    } catch (e) { return {}; }
+  };
+  /* 見張りの判定を、写しの文から読み込む。 */
+  const loadHb = (src) => {
+    const file = path.join(ROOT, 'cpsbvbng26-dotcom', 'tools', 'heartbeat.js');
+    const m = { exports: {} };
+    try { new Function('module', 'exports', 'require', '__dirname', '__filename', String(src || '').replace(/^#!.*\n/, ''))(m, m.exports, require('module').createRequire(file), path.dirname(file), file); } catch (e) { return null; }
+    return m.exports;
+  };
+
+  function problems(x, probe) {
+    const bad = [];
+    const T = x.table;
+    /* 一。表と同じ。 */
+    if (!T) bad.push('表（verification/workflows.json）が読めない');
+    for (const r of ALL) {
+      const files = Object.keys(x.flows[r] || {}).sort(), want = Object.keys((T && T[r]) || {}).sort();
+      if (!same(files, want)) bad.push(r + '：ワークフローの並びが表と違う（' + files.filter((f) => !want.includes(f)).concat(want.filter((f) => !files.includes(f))).join('、') + '）');
+      for (const [file, text] of Object.entries(x.flows[r] || {})) {
+        const f = parseFlow(text), e = (T && T[r] && T[r][file]) || null;
+        const at = r + '/' + file;
+        if (e) {
+          if (!same(f.on, e.on)) bad.push(at + '：起こす出来事が表と違う（' + JSON.stringify(f.on) + '）');
+          if (!same(f.perms, e.permissions)) bad.push(at + '：全体の権限が表と違う');
+          if (!same(Object.keys(f.jobs).sort(), Object.keys(e.jobs || {}).sort())) bad.push(at + '：仕事の並びが表と違う');
+          for (const [id, j] of Object.entries(f.jobs)) if (e.jobs && id in e.jobs && !same(j.perms, e.jobs[id])) bad.push(at + ' ' + id + '：仕事の権限が表と違う');
+        }
+        const c = code(text);
+        for (const w of ['pull_request_target', 'workflow_run', 'write-all']) if (new RegExp('\\b' + w + '\\b').test(c)) bad.push(at + '：' + w + ' がある');
+        for (const [id, j] of Object.entries(f.jobs)) {
+          const eff = effective(f, j);
+          if (writes(eff) && j.steps.some((s) => /\b(ref|repository):\s*[^\n]*\$\{\{/.test(code(s)))) bad.push(at + ' ' + id + '：書く権限を持つ仕事が、式から ref か repository を取る');
+          /* 二。時間の上限。 */
+          const key = r + '/' + file + '/' + id;
+          if (j.timeout === null) bad.push(key + '：時間の上限が無い');
+          else if (key in LONG ? j.timeout !== LONG[key] : j.timeout > MAX) bad.push(key + '：時間の上限 ' + j.timeout + ' 分');
+          /* 三。鍵を残さない checkout。 */
+          const pushes = typeof eff === 'object' && eff && eff.contents === 'write';
+          for (const s of j.steps) if (/uses: actions\/checkout@/.test(s) && (!pushes || at === 'sophaxis/removal.yml') && !/persist-credentials: false/.test(s)) bad.push(key + '：checkout が鍵を残す');
+        }
+        /* 四。固めた pip。 */
+        const strict = Object.values(f.jobs).some((j) => { const eff = effective(f, j); return writes(eff) || (typeof eff === 'object' && eff && eff['id-token'] === 'write'); }) || at in LOCKS;
+        if (strict) for (const m of c.matchAll(/\bpip3? install\b([^\n]*)/g)) {
+          const mm = /^ --require-hashes --only-binary=:all: -r (\S+)\s*$/.exec(m[1]);
+          if (!mm) bad.push(at + '：pip が版とハッシュを固めた一覧から入れない');
+          else if (LOCKS[at] === undefined || mm[1].replace(new RegExp('^repos/' + r + '/'), '') !== LOCKS[at]) bad.push(at + '：pip の一覧が決めたファイルでない');
+        }
+        if (at in LOCKS && !/\bpip3? install --require-hashes/.test(c)) bad.push(at + '：固めた pip が無い');
+      }
+    }
+    for (const k of Object.keys(LONG)) { const [r, file, id] = k.split('/'); if (!x.flows[r] || !x.flows[r][file] || !parseFlow(x.flows[r][file]).jobs[id]) bad.push(k + '：長い仕事の表が古い'); }
+    for (const [k, t] of Object.entries(x.locks)) {
+      const entries = String(t || '').split(/\n(?=[A-Za-z])/).filter((e) => /^[A-Za-z]/.test(e));
+      if (!entries.length) bad.push(k + '：一覧が無い');
+      for (const e of entries) if (!/^[A-Za-z0-9._-]+==[0-9][0-9A-Za-z.]*(?: \\\n {4}--hash=sha256:[0-9a-f]{64})+\s*(?:\n#.*)*\s*$/.test(e)) bad.push(k + '：版かハッシュを持たない行「' + e.split('\n')[0].slice(0, 30) + '」');
+    }
+    /* 五。写し。 */
+    for (const r of LIVE4) {
+      if (!x.live[r] || x.live[r] !== x.live['cpsbvbng26-dotcom']) bad.push(r + '：tools/live.js の写しが違う');
+      if (!(x.flows[r] || {})['live.yml'] || !/node tools\/live\.js/.test(x.flows[r]['live.yml'])) bad.push(r + '：live.yml が無い');
+      let conf = null;
+      try { conf = JSON.parse(x.liveConf[r]); } catch (e) { conf = null; }
+      if (!conf || !/^https:\/\//.test(conf.base || '')) bad.push(r + '：tools/live.json');
+      const names = r === 'nusquama' ? NAMES : ['nusquama'];
+      if (names.some((n) => new RegExp(n, 'i').test(x.liveConf[r] || ''))) bad.push(r + '：tools/live.json がほかの場を名指す');
+    }
+    for (const r of UA3) if (!x.ua[r] || x.ua[r] !== x.ua['cpsbvbng26-dotcom']) bad.push(r + '：tools/ua.js の写しが違う');
+    for (const t of [x.live['cpsbvbng26-dotcom'], x.ua['cpsbvbng26-dotcom']]) if (NAMES.concat(['nusquama']).some((n) => new RegExp(n, 'i').test(t || ''))) bad.push('tools/live.js か tools/ua.js がリポジトリを名指す');
+    /* 六。見張り。 */
+    if (!x.hb['cpsbvbng26-dotcom'] || x.hb.sophaxis !== x.hb['cpsbvbng26-dotcom']) bad.push('tools/heartbeat.js の写しが違う');
+    let hc = null, hs = null;
+    try { hc = JSON.parse(x.hbConf['cpsbvbng26-dotcom']); hs = JSON.parse(x.hbConf.sophaxis); } catch (e) { hc = null; }
+    if (!hc || !same((hc.repos || []).slice().sort(), ALL.slice().sort()) || hc.owner !== OWNER) bad.push('見張りが 13 のリポジトリを読まない');
+    if (!hs || !same(hs.repos, ['cpsbvbng26-dotcom']) || !same(hs.only, { 'cpsbvbng26-dotcom': ['ecosystem.yml'] })) bad.push('Sophaxis の見張りが横断の検査を見ない');
+    const eco = parseFlow((x.flows['cpsbvbng26-dotcom'] || {})['ecosystem.yml'] || '');
+    const hbj = eco.jobs.heartbeat, ecj = eco.jobs.ecosystem;
+    if (!hbj || !same(hbj.perms, { contents: 'read', issues: 'write' }) || hbj.steps.some((s) => /repository:|check_all|check_ecosystem/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js --test/.test(s)) || !hbj.steps.some((s) => /run: node tools\/heartbeat\.js\n/.test(s + '\n'))) bad.push('見張りの仕事の形');
+    if (!ecj || writes(effective(eco, ecj))) bad.push('ほかのリポジトリを動かす仕事が書く権限を持つ');
+    const sl = parseFlow((x.flows.sophaxis || {})['live.yml'] || '').jobs.heartbeat;
+    if (!sl || !sl.steps.some((s) => /node tools\/heartbeat\.js --test/.test(s)) || !/schedule/.test(sl.if || '')) bad.push('Sophaxis の見張りの仕事が無い');
+    const H = loadHb(x.hb['cpsbvbng26-dotcom']);
+    if (!H || typeof H.judge !== 'function') bad.push('見張りが読めない');
+    else {
+      const now = Date.UTC(2026, 10, 15, 12), day = 24 * 3600 * 1000, iso = (t) => new Date(t).toISOString();
+      const ok = { repo: 'r', file: 'daily.yml', crons: ['17 21 * * *'], state: 'active', created: iso(now - 30 * day), lastSuccess: iso(now - day), watched: [] };
+      if (H.judge([ok], now).length !== 0 || H.judge([Object.assign({}, ok, { lastSuccess: iso(now - 3 * day) })], now).map((y) => y.what).join() !== 'stale'
+        || H.judge([Object.assign({}, ok, { state: 'disabled_inactivity' })], now).map((y) => y.what).join() !== 'stopped'
+        || H.judge([Object.assign({}, ok, { pushConclusion: 'failure' })], now).map((y) => y.what).join() !== 'push'
+        || H.judge([Object.assign({}, ok, { deploy: false })], now).map((y) => y.what).join() !== 'deploy'
+        || H.judge([Object.assign({}, ok, { watched: [{ name: 'indexnow', conclusion: 'failure' }] })], now).map((y) => y.what).join() !== 'watched') bad.push('見張りの判定が、見本の古い仕事・止められた仕事・push の失敗・配備の失敗・IndexNow の失敗を拾わない');
+      /* 見張りは定期の仕事をファイルから拾う。13 のリポジトリのどのファイルでも、cron の行をすべて拾うこと。 */
+      for (const r of ALL) for (const [file, text] of Object.entries(x.flows[r] || {})) {
+        const n = (code(text).match(/^ {4}- cron: '[^']+'\s*$/gm) || []).length;
+        if (H.cronsOf(text).length !== n) bad.push(r + '/' + file + '：見張りが cron を ' + H.cronsOf(text).length + ' / ' + n + ' だけ拾う');
+      }
+      /* 年に一度の仕事の最初の期日を、ファイルの cron から求める。 */
+      const first = { 'sophaxis/report.yml': '2027-01-02', 'sophaxis/audit.yml': '2027-10-30', 'nusquama/review.yml': '2027-11-07' };
+      for (const [k, d] of Object.entries(first)) {
+        const [r, file] = k.split('/');
+        const crons = H.cronsOf ? H.cronsOf((x.flows[r] || {})[file] || '') : [];
+        const y = crons.length ? Math.max(...crons.map((c) => H.lastYearly(c, Date.UTC(2027, 11, 31)))) : 0;
+        if (!y || iso(y).slice(0, 10) !== d) bad.push(k + '：年に一度の最初の期日が ' + d + ' でない');
+        if (!hc || !hc.yearly || !hc.yearly[k]) bad.push(k + '：年に一度の issue の題が無い');
+      }
+    }
+    /* 七。同時実行の組。 */
+    const ci = (x.flows['cpsbvbng26-dotcom'] || {})['checked-intake.yml'] || '';
+    bad.push(...groupProblems('cpsbvbng26-dotcom', 'checked-intake.yml', ci, FIX['checked-intake.yml']));
+    for (const k of Object.keys(FIX).filter((y) => y.includes('/'))) { const [r, file] = k.split('/'); bad.push(...groupProblems(r, file, (x.flows[r] || {})[file] || '', FIX[k])); }
+    const cij = parseFlow(ci).jobs.intake;
+    if (!cij || cij.cancel !== 'true') bad.push('受付の組が古い確かめを取り消さない');
+    /* 八。非同期の見本。 */
+    for (const [k, what] of [['uptimePage4', 'uptime.js が 4 頁目の自分の issue を見つけない'], ['uptimeNotList', 'uptime.js が一覧でない答えで落ちない'], ['linkcheckPage4', 'linkcheck.js が 4 頁目の自分の issue を見つけない'],
+      ['linkcheckNotList', 'linkcheck.js が一覧でない答えで落ちない'], ['livePage4', 'live.js が 4 頁目まで読まない'], ['liveNotList', 'live.js が一覧でない答えで落ちない'], ['verifyRerun', '受付が、取り消しのあとの確かめ直しで、一つのコメントとそのときのラベルを残さない']]) if (probe[k] !== true) bad.push(what);
+    /* C3・C4：回す検査と、無いリポジトリ。 */
+    if (!/'verification\/check_pdf_shape\.py'\]/.test(x.checkAll) || !/'verification\/check_manuscript\.py'\]/.test(x.checkAll) || !/if \(missing && process\.env\.GITHUB_ACTIONS === 'true'\) \{ failed \+= missing;/.test(x.checkAll)) bad.push('check_all.js が二つの検査を回さないか、CI で無いリポジトリを落とさない');
+    /* 九。記録。 */
+    for (const r of ALL) {
+      const a = x.aud[r], i = a.indexOf(HEAD);
+      if (i < 0) { bad.push(r + '：記録の節が無い'); continue; }
+      const j = a.indexOf('\n## ', i + 5);
+      const t = a.slice(i, j < 0 ? a.length : j);
+      if (/\n## 2026-/.test(a.slice(i + 5))) bad.push(r + '：記録の節が最後の日付の節でない');
+      const rows = t.split('\n').filter((l) => /^\| (?!---|箇所 \||Place \|)/.test(l)).map((l) => l.slice(2, -2).split(' | '));
+      const kind = (k) => EN[k] || k;
+      if (rows.length < 3 || !rows.every((y) => y.length === 6 && KINDS.includes(kind(y[4])))) bad.push(r + '：記録の表');
+      const n = (k) => rows.filter((y) => kind(y[4]) === k).length;
+      const ja = 'この表の判定は、' + KINDS.filter((k) => n(k)).map((k) => k + ' ' + n(k)).join('、') + ' です。';
+      const en = 'Findings in this table: ' + Object.keys(EN).filter((k) => n(EN[k])).map((k) => k + ' ' + n(EN[k])).join(', ') + '.';
+      if (!t.includes(ja) && !t.includes(en)) bad.push(r + '：記録の判定の数');
+      if (!t.split('\n|')[0].includes(DECIDED) || rows.some((y) => !y[5].includes(DECIDED))) bad.push(r + '：決めた者');
+      if (!/GitHub の説明書を取り寄せて確かめていません|\(unverified\)/.test(t)) bad.push(r + '：確かめていないことを書かない');
+      if (!/弁護士は見ていません|No lawyer has reviewed this section/.test(t) || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(t)) bad.push(r + '：弁護士の文');
+      if (r === 'cpsbvbng26-dotcom') {
+        const rule = rows.find((y) => /枝の規則/.test(y[0])) || [];
+        for (const w of ['`main` についてだけ、力ずくの push と枝の削除を止める規則です。', 'bot の普通の push は止めません。', '公開のリポジトリでは費用が掛からないと理解していますが、GitHub の説明書は取り寄せて確かめていません。'])
+          if (!String(rule[5] || '').includes(w)) bad.push('cpsbvbng26-dotcom：枝の規則の勧め「' + w.slice(0, 12) + '」');
+        if (!String(rule[3] || '').includes('ここからは読めません')) bad.push('cpsbvbng26-dotcom：枝の規則が読めないことを書かない');
+      }
+      if (r === 'sophaxis' && !t.includes('`main` の枝の規則（ruleset）について勧める設定とその効きめは、cpsbvbng26-dotcom の記録の同じ節に、13 のリポジトリの分をまとめて書きました。')) bad.push('sophaxis：枝の規則の指し先');
+      if (r === 'nusquama' && !t.includes('`main` の枝の規則（ruleset）について勧める設定とその効きめは、この国の外の記録に、まとめて書きました。')) bad.push('nusquama：枝の規則の指し先');
+    }
+    return bad;
+  }
+  const probe = asyncProbe(real);
+  const now = problems(real, probe);
+  const flows = ALL.reduce((s, r) => s + Object.keys(real.flows[r] || {}).length, 0);
+  check('自動化を固める：13 のリポジトリのワークフロー（' + flows + ' 本）の起こす出来事と権限が表のとおりで、どの仕事にも時間の上限と鍵を残さない checkout があり、固めた pip と写しと見張りと同時実行の組と一覧の頁と記録がそろう',
+    now.length === 0, now.slice(0, 6).join(' / '));
+  let hbTest = '';
+  for (const r of ['cpsbvbng26-dotcom', 'sophaxis']) { try { hbTest += require('child_process').execFileSync('node', [path.join(ROOT, r, 'tools', 'heartbeat.js'), '--test'], { encoding: 'utf8' }); } catch (e) { hbTest += String(e.stdout || '') + ' FAILED'; } }
+  check('見張りの自己検査が、二つの写しで通る', (hbTest.match(/\d+ passed, 0 failed/g) || []).length === 2 && !hbTest.includes('FAILED'));
+
+  /* 壊して確かめる。点検の書いた壊し方（J1）と、各部を一つずつ。 */
+  const fw = (r, f, fn) => Object.assign({}, real, { flows: Object.assign({}, real.flows, { [r]: Object.assign({}, real.flows[r], { [f]: fn(real.flows[r][f] || '') }) }) });
+  const addOn = (r, f, line) => fw(r, f, (t) => t.replace(/^on:\n/m, 'on:\n' + line + '\n'));
+  const sub = (k, r, v) => Object.assign({}, real, { [k]: Object.assign({}, real[k], { [r]: v }) });
+  const tableWith = (fn) => { const t = JSON.parse(JSON.stringify(real.table)); fn(t); return Object.assign({}, real, { table: t }); };
+  const breaks = [
+    ['uptime.yml に pull_request_target', addOn('cpsbvbng26-dotcom', 'uptime.yml', '  pull_request_target:')],
+    ['uptime.yml に issue_comment', addOn('cpsbvbng26-dotcom', 'uptime.yml', '  issue_comment:\n    types: [created]')],
+    ['uptime.yml の権限を write-all に', fw('cpsbvbng26-dotcom', 'uptime.yml', (t) => t.replace(/^permissions:\n(?: {2}.*\n)+/m, 'permissions: write-all\n'))],
+    ['linkcheck.yml に pull_request_target と PR の先の checkout', fw('cpsbvbng26-dotcom', 'linkcheck.yml', (t) => t.replace(/^on:\n/m, 'on:\n  pull_request_target:\n').replace(/(uses: actions\/checkout@\S+[^\n]*\n)/, '$1        with:\n          ref: ${{ github.event.pull_request.head.sha }}\n'))],
+    ['書く仕事が PR の先を取り出す', Object.assign({}, fw('sophaxis', 'statutes.yml', (t) => t.replace(/(  statutes:\n[\s\S]*?uses: actions\/checkout@\S+[^\n]*\n)/, '$1        with:\n          ref: ${{ github.event.pull_request.head.ref }}\n')))],
+    ['sophaxis の intake.yml に pull_request_target', addOn('sophaxis', 'intake.yml', '  pull_request_target:')],
+    ['sophaxis の removal.yml に issue_comment', addOn('sophaxis', 'removal.yml', '  issue_comment:\n    types: [created]')],
+    ['sophaxis の live.yml に workflow_run', addOn('sophaxis', 'live.yml', '  workflow_run:\n    workflows: [check]')],
+    ['sophaxis の audit.yml に pull_request', addOn('sophaxis', 'audit.yml', '  pull_request:')],
+    ['nusquama の statutes.yml に pull_request_target', addOn('nusquama', 'statutes.yml', '  pull_request_target:')],
+    ['nusquama の world.yml に pull_request_target', addOn('nusquama', 'world.yml', '  pull_request_target:')],
+    ['nusquama の record.yml に issue_comment', addOn('nusquama', 'record.yml', '  issue_comment:')],
+    ['表にも同じ出来事を足して pull_request_target', Object.assign({}, addOn('trinity-operator', 'labels.yml', '  pull_request_target:'), { table: (() => { const t = JSON.parse(JSON.stringify(real.table)); t['trinity-operator']['labels.yml'].on = t['trinity-operator']['labels.yml'].on.concat(['pull_request_target']).sort(); return t; })() })],
+    ['on を一行で書く', fw('justice-and-algorithms', 'pages.yml', (t) => t.replace(/^on:\n(?: {2}.*\n|\s*\n)*/m, 'on: [push, workflow_dispatch]\n'))],
+    ['組む仕事に Pages に書く権限', fw('researcher-profile', 'pages.yml', (t) => t.replace(/(  build:\n[\s\S]*?    permissions:\n)/, '$1      pages: write\n'))],
+    ['表の仕事の権限だけを変える', tableWith((t) => { t['errata-check']['pypi.yml'].jobs.build = { contents: 'read' }; })],
+    ['表に無いワークフローを足す', fw('naval-gazette-notes', 'extra.yml', () => 'on:\n  push:\npermissions:\n  contents: read\njobs:\n  x:\n    runs-on: ubuntu-latest\n    timeout-minutes: 5\n    steps:\n      - run: true\n')],
+    ['一つの仕事から時間の上限を外す', fw('trinity-infinity', 'verify.yml', (t) => t.replace(/^ {4}timeout-minutes: \d+\n/m, ''))],
+    ['一つの仕事の時間の上限を 61 分に', fw('self-correction', 'verify.yml', (t) => t.replace(/^( {4}timeout-minutes: )\d+$/m, '$161'))],
+    ['長い仕事の上限を変える', fw('nusquama', 'world.yml', (t) => t.replace(/timeout-minutes: 340/, 'timeout-minutes: 341'))],
+    ['読むだけの仕事の checkout が鍵を残す', fw('deposit-check', 'check.yml', (t) => t.replace(/\n {10}persist-credentials: false|, persist-credentials: false/, ''))],
+    ['removal.yml の書く仕事の checkout が鍵を残す', fw('sophaxis', 'removal.yml', (t) => t.replace(/(  decide:\n[\s\S]*?)\n {10}persist-credentials: false/, '$1'))],
+    ['pypi.yml の pip がハッシュを求めない', fw('errata-check', 'pypi.yml', (t) => t.replace('pip install --require-hashes --only-binary=:all: -r .github/requirements-pypi.txt', 'pip install build twine'))],
+    ['横断の検査の pip を元に戻す', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace(/pip install --require-hashes --only-binary=:all: -r \S+/, 'pip install numpy pypdf==6.19.0'))],
+    ['一覧の一行からハッシュを外す', sub('locks', 'cpsbvbng26-dotcom/ecosystem.yml', String(real.locks['cpsbvbng26-dotcom/ecosystem.yml']).replace(/^(numpy==\S+) \\\n {4}--hash=sha256:[0-9a-f]{64}/m, '$1'))],
+    ['一覧の一行を版の幅にする', sub('locks', 'errata-check/pypi.yml', String(real.locks['errata-check/pypi.yml']).replace(/^twine==/m, 'twine>='))],
+    ['live.js の一つの写しを変える', sub('live', 'trinity-operator', (real.live['trinity-operator'] || '') + '\n')],
+    ['ua.js の Nusquama の写しを変える', sub('ua', 'nusquama', (real.ua.nusquama || '').replace('live-site-check', 'live-check'))],
+    ['live.js がリポジトリを名指す', Object.assign({}, real, { live: Object.fromEntries(LIVE4.map((r) => [r, String(real.live[r]).replace("'use strict';", "'use strict';\n/* like sophaxis */")])) })],
+    ['研究のリポジトリの設定が Nusquama を名指す', sub('liveConf', 'trinity-operator', String(real.liveConf['trinity-operator']).replace('"base"', '"note": "as nusquama",\n  "base"'))],
+    ['Nusquama の設定がほかの場を名指す', sub('liveConf', 'nusquama', String(real.liveConf.nusquama).replace('"base"', '"note": "like sophaxis",\n  "base"'))],
+    ['trinity-operator の live.yml を外す', fw('trinity-operator', 'live.yml', () => '')],
+    ['見張りの写しを変える', sub('hb', 'sophaxis', (real.hb.sophaxis || '') + '\n')],
+    ['見張りから一つのリポジトリを外す', sub('hbConf', 'cpsbvbng26-dotcom', String(real.hbConf['cpsbvbng26-dotcom']).replace('    "solitary-school",\n', ''))],
+    ['Sophaxis の見張りが横断の検査を見ない', sub('hbConf', 'sophaxis', String(real.hbConf.sophaxis).replace('"ecosystem.yml"', '"verify.yml"'))],
+    ['横断の検査の仕事に issues の書く権限', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace(/(  ecosystem:\n(?: {4}.*\n)*? {4}timeout-minutes: 45\n)/, '$1    permissions:\n      contents: read\n      issues: write\n'))],
+    ['見張りの仕事がほかのリポジトリの検査を動かす', fw('cpsbvbng26-dotcom', 'ecosystem.yml', (t) => t.replace('      - run: node tools/heartbeat.js --test\n', '      - run: node tools/heartbeat.js --test\n      - run: node verification/check_all.js\n'))],
+    ['見張りが古い定期の仕事を見逃す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace('2 * p.hours * HOUR', '200 * p.hours * HOUR') }) })],
+    ['見張りが注釈の行のあとの cron を拾わない', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("(?: {4}(?:- cron: .*|#.*)\\n?)+", "(?: {4}- cron: .*\\n?)+") }) })],
+    ['見張りが push の失敗を見逃す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("['success', 'skipped', 'neutral'].includes(e.pushConclusion)", 'true') }) })],
+    ['年に一度の仕事の cron を変える', fw('sophaxis', 'report.yml', (t) => t.replace("'23 3 2 1 *'", "'23 3 2 2 *'"))],
+    ['受付の組を一つにする', Object.assign({}, real, { flows: Object.fromEntries(ALL.map((r) => [r, Object.assign({}, real.flows[r], { 'checked-intake.yml': String(real.flows[r]['checked-intake.yml']).replace(/group: \$\{\{[^\n]*\}\}/, 'group: checked-intake') })])) })],
+    ['受付の組から持ち主の条件を外す', fw('cpsbvbng26-dotcom', 'checked-intake.yml', (t) => t.replace(" && github.event.sender.login != github.repository_owner) && format('checked-intake-issue-{0}'", ") && format('checked-intake-issue-{0}'"))],
+    ['受付の組をワークフローの全体に戻す', fw('cpsbvbng26-dotcom', 'checked-intake.yml', (t) => t.replace(/^jobs:\n/m, 'concurrency:\n  group: checked-intake\n  cancel-in-progress: true\njobs:\n'))],
+    ['受付が古い確かめを取り消さない', fw('cpsbvbng26-dotcom', 'checked-intake.yml', (t) => t.replace(/(group: \$\{\{[^\n]*\n {6}cancel-in-progress: )true/, '$1false'))],
+    ['削除の判断の組から持ち主の条件を外す', fw('sophaxis', 'removal.yml', (t) => t.replace(" && github.event.sender.login == github.repository_owner) && 'removal'", ") && 'removal'"))],
+    ['削除の受付の組を一つにする', fw('sophaxis', 'removal.yml', (t) => t.replace(/(  intake:\n[\s\S]*?group: )\$\{\{[^\n]*\}\}/, '$1removal'))],
+    ['取り込みの組から枝の条件を外す', fw('sophaxis', 'record.yml', (t) => t.replace(" && github.event.pull_request.head.ref == 'statutes/record') && 'removal'", ") && 'removal'"))],
+    ['投稿のコメントの実行を issue の組に入れる', fw('sophaxis', 'intake.yml', (t) => t.replace("${{ (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'submission'))", "${{ (contains(github.event.issue.labels.*.name, 'submission'))"))],
+    ['毎日の手順の組を run ごとにする', fw('sophaxis', 'intake.yml', (t) => t.replace("github.event_name == 'schedule' && 'intake-daily'", "github.event_name == 'never' && 'intake-daily'"))],
+    ['報告の組から持ち主の条件を外す', fw('nusquama', 'reporter.yml', (t) => t.replace(/(group: \$\{\{ \(!github\.event\.issue\.pull_request) && github\.event\.sender\.login != github\.repository_owner/, '$1'))],
+    ['uptime.js が 3 頁までしか読まない', Object.assign({}, real, { uptime: real.uptime.replace('for (let page = 1; !found; page++)', 'for (let page = 1; page <= 3 && !found; page++)') })],
+    ['uptime.js が一覧でない答えを空と読む', Object.assign({}, real, { uptime: real.uptime.replace("if (!Array.isArray(list)) throw new Error('GitHub API の issue の一覧が読めない');", "if (!Array.isArray(list)) break;") })],
+    ['linkcheck.js が PR を除かない', Object.assign({}, real, { linkcheck: real.linkcheck.replace("found = list.find((i) => !i.pull_request && (i.body || '').indexOf(MARK) === 0)", "found = list.find((i) => (i.body || '').indexOf(MARK) === 0)") })],
+    ['live.js が一頁だけ読む', sub('live', 'cpsbvbng26-dotcom', String(real.live['cpsbvbng26-dotcom']).replace('if (list.length < 100) return out;', 'return out;'))],
+    ['live.js の per_page を 1 に', sub('live', 'cpsbvbng26-dotcom', String(real.live['cpsbvbng26-dotcom']).replace("'per_page=100&page='", "'per_page=1&page='"))],
+    ['受付が確かめ直しのたびにコメントを足す', Object.assign({}, real, { verify: real.verify.replace("  if (mine) await gh('PATCH', '/issues/comments/' + mine.id, { body });\n  else await gh('POST', '/issues/' + n + '/comments', { body });", "  await gh('POST', '/issues/' + n + '/comments', { body });") })],
+    ['check_all.js が PDF の形を回さない', Object.assign({}, real, { checkAll: real.checkAll.replace("'verification/check_pdf_shape.py']", "'verification/check_pdf.py']") })],
+    ['check_all.js が CI で無いリポジトリを通す', Object.assign({}, real, { checkAll: real.checkAll.replace("if (missing && process.env.GITHUB_ACTIONS === 'true') { failed += missing;", "if (false) { failed += missing;") })],
+    ['記録の節を外す', sub('aud', 'solitary-school', real.aud['solitary-school'].replace(HEAD, '\n## 2026-11-15：自動化\n'))],
+    ['記録の判定の数を変える', sub('aud', 'errata-check', real.aud['errata-check'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?この表の判定は、漏れ )(\d+)/, (m0, a, b) => a + (Number(b) + 1)))],
+    ['記録の一行から決めた者を外す', sub('aud', 'trinity-operator', real.aud['trinity-operator'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?\| 漏れ \| [^\n]*?)2026-11-15 に利用者が決め、Claude が書きました。/, '$1'))],
+    ['記録から確かめていないことを外す', sub('aud', 'justice-and-algorithms', real.aud['justice-and-algorithms'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?)GitHub の説明書を取り寄せて確かめていません。/, '$1'))],
+    ['英語の記録から弁護士の文を外す', sub('aud', 'deposit-check', real.aud['deposit-check'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?)No lawyer has reviewed this section\./, '$1'))],
+    ['枝の規則の勧めから bot の push のことを外す', sub('aud', 'cpsbvbng26-dotcom', real.aud['cpsbvbng26-dotcom'].replace('bot の普通の push は止めません。', ''))],
+    ['Sophaxis の記録から枝の規則の指し先を外す', sub('aud', 'sophaxis', real.aud.sophaxis.replace('`main` の枝の規則（ruleset）について勧める設定とその効きめは、cpsbvbng26-dotcom の記録の同じ節に、13 のリポジトリの分をまとめて書きました。', ''))],
+  ];
+  const ASYNC = /uptime\.js|linkcheck\.js|live\.js が|live\.js の per_page|受付が確かめ直し/;
+  const missed = breaks.filter(([k, y]) => problems(y, ASYNC.test(k) ? asyncProbe(y) : probe).length === 0).map(([k]) => k);
+  check('壊して確かめる：点検の書いた起こし方（uptime・linkcheck・Sophaxis の intake・removal・live・audit・Nusquama の statutes・world・record）、表と権限と一行の on、時間の上限、鍵を残す checkout、固めない pip と一覧、写し、見張り、同時実行の組、一覧の頁、受付の確かめ直し、回す検査、記録のどれでも落ちる（'
+    + (breaks.length - missed.length) + ' / ' + breaks.length + '）', missed.length === 0, missed.join(' / '));
+}
+
 console.log('\n12e. 種類と状態の札、CITATION.cff の type、目録');
 
 {
@@ -5161,6 +5677,7 @@ console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語�
   {
     const 権限 = [], 固定 = [], 依存 = [];
     const ALLOWED = new Set(['pypdf', 'numpy', 'playwright', 'build', 'twine']);
+    const TRANSITIVE = new Set(JSON.parse((/^transitive = (\[.*\])$/m.exec(read('errata-check', path.join('tests', 'hygiene.toml')) || '') || [, '[]'])[1]));
     for (const r of C.repos) {
       const dir = path.join(ROOT, r, '.github', 'workflows');
       if (!fs.existsSync(dir)) continue;
@@ -5173,8 +5690,18 @@ console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語�
         }
         const code = y.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
         for (const m of code.matchAll(/(?:pip|npm) (?:install|i)\s+([^\n]+)/g)) {
-          m[1].split(/\s+/).filter((w) => w && !w.startsWith('-') && w !== 'requirements.txt' && !/^\$/.test(w))
+          const words = m[1].split(/\s+/);
+          /* 2026-11-15 から、版とハッシュを固めた一覧（-r の次のファイル）からも入れる。一覧の名は、上の五つか、
+           * errata-check の tests/hygiene.toml の transitive に挙げたその依存でなければならない。 */
+          const lists = words.filter((w, i) => i > 0 && words[i - 1] === '-r' && w !== 'requirements.txt');
+          words.filter((w, i) => w && !w.startsWith('-') && w !== 'requirements.txt' && !/^\$/.test(w) && !(i > 0 && words[i - 1] === '-r'))
             .map((w) => w.replace(/[@=<>].*$/, '')).filter((w) => !ALLOWED.has(w)).forEach((w) => 依存.push(r + '/' + f + ' ' + w));
+          for (const l of lists) {
+            const lt = read(r, l.replace(new RegExp('^repos/' + r + '/'), ''));
+            if (lt === null) { 依存.push(r + '/' + f + ' ' + l + '（無い）'); continue; }
+            lt.split('\n').filter((x) => /^[A-Za-z]/.test(x)).map((x) => x.replace(/[<>=!~\s\\].*$/, ''))
+              .filter((n) => !ALLOWED.has(n) && !TRANSITIVE.has(n)).forEach((n) => 依存.push(r + '/' + l + ' ' + n));
+          }
         }
       }
       const req = read(r, 'requirements.txt');
@@ -5194,7 +5721,7 @@ console.log('\n13. リポジトリをまたぐ決まり（安全・様式・語�
     }
     check('10 リポジトリのすべての CI に、上の段の permissions がある', 権限.length === 0, 権限.join(', '));
     check('10 リポジトリの CI の外部のアクションが、コミットの値（40 桁）と版の注釈で固定されている', 固定.length === 0, 固定.slice(0, 6).join(', '));
-    check('10 リポジトリが依存を足していない（CI が入れるのは pypdf・numpy・playwright・build・twine だけ）', 依存.length === 0, 依存.join(', '));
+    check('10 リポジトリが依存を足していない（CI が入れるのは pypdf・numpy・playwright・build・twine と、版とハッシュを固めた一覧にある、その ' + TRANSITIVE.size + ' の依存だけ）', 依存.length === 0, 依存.join(', '));
   }
 
   /* 316。**秘密の鍵の形が、どこにも無い。**メールアドレスは上の免責の段が見ている。

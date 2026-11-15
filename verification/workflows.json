@@ -1,0 +1,101 @@
+{
+  "_": "2026-11-15。13 のリポジトリのワークフローごとに、起こすもの（on の鍵）と、先頭と仕事ごとの権限を挙げる表。check_ecosystem.js の 12za が、ファイルをこの表と一字一句照らす。表はファイルから作らず、ここに書いたものが正である。ワークフローを足すか、起こすものや権限を変えるときは、この表も直す。null は、その仕事が自分の権限を持たず、先頭の権限に従うことを示す。",
+  "autonomy-and-self-cultivation": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "pages.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"build": {"contents": "read", "pages": "read"}, "deploy": {"pages": "write", "id-token": "write"}} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"fidelity": null, "build": null, "keyboard": null} }
+  },
+  "cpsbvbng26-dotcom": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "datacite.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"datacite": null} },
+    "doi-index-check.yml": { "on": ["pull_request", "push"], "permissions": {"contents": "read"}, "jobs": {"verify": null} },
+    "ecosystem.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"ecosystem": null, "heartbeat": {"contents": "read", "issues": "write"}} },
+    "indexnow.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"indexnow": null} },
+    "linkcheck.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"links": null} },
+    "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null} },
+    "offline.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"zip": null} },
+    "pr-disclosure.yml": { "on": ["pull_request"], "permissions": {"contents": "read", "pull-requests": "read"}, "jobs": {"disclosure": null} },
+    "uptime.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"uptime": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null, "keyboard": null} },
+    "wayback.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"save": null} }
+  },
+  "deposit-check": {
+    "check.yml": { "on": ["pull_request", "push", "schedule"], "permissions": {"contents": "read"}, "jobs": {"check": null, "action": null} },
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "run.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"run": {"contents": "read", "issues": "write"}} }
+  },
+  "errata-check": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "pypi.yml": { "on": ["release", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"build": null, "publish": {"id-token": "write"}} },
+    "swh-save.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"save": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null, "action": null} }
+  },
+  "justice-and-algorithms": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "pages.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"build": {"contents": "read", "pages": "read"}, "deploy": {"pages": "write", "id-token": "write"}} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"site": null, "keyboard": null} }
+  },
+  "naval-gazette-notes": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"check": null} }
+  },
+  "nusquama": {
+    "check.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"check": null, "layout": null} },
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "knighting.yml": { "on": ["issues"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"check": null} },
+    "labels.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"issues": "write"}, "jobs": {"labels": null} },
+    "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null} },
+    "personal.yml": { "on": ["issue_comment", "issues"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"mask": null} },
+    "record.yml": { "on": ["pull_request"], "permissions": {"contents": "read"}, "jobs": {"record": {"contents": "write", "issues": "write", "pull-requests": "write"}} },
+    "reporter.yml": { "on": ["issues"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"place": null} },
+    "review.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"review": null} },
+    "sources.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "write"}, "jobs": {"fetch": null} },
+    "statutes.yml": { "on": ["pull_request", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"compare": {"contents": "read"}, "watch": {"contents": "write", "issues": "write", "pull-requests": "write"}} },
+    "world.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "write"}, "jobs": {"fetch": null} }
+  },
+  "researcher-profile": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "pages.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"build": {"contents": "read", "pages": "read"}, "deploy": {"pages": "write", "id-token": "write"}} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} }
+  },
+  "self-correction": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} }
+  },
+  "solitary-school": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"check": null} }
+  },
+  "sophaxis": {
+    "audit.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"audit": null} },
+    "check.yml": { "on": ["pull_request", "push", "schedule"], "permissions": {"contents": "read"}, "jobs": {"check": null, "keyboard": null} },
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "indexnow.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"indexnow": null} },
+    "intake.yml": { "on": ["issue_comment", "issues", "schedule"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"intake": null, "withdrawal": null, "published": null, "deadline": null} },
+    "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null, "heartbeat": null} },
+    "monthly.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"monthly": null} },
+    "pdf.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"fetch": {"contents": "read"}, "push": {"contents": "write"}} },
+    "record.yml": { "on": ["pull_request"], "permissions": {"contents": "read"}, "jobs": {"record": {"contents": "write", "issues": "write", "pull-requests": "write"}} },
+    "removal.yml": { "on": ["issues", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"intake": {"contents": "write", "issues": "write"}, "decide": {"contents": "write", "issues": "write"}, "manual": {"contents": "write", "issues": "write"}, "remind": {"contents": "write", "issues": "write"}, "indexnow": {"contents": "read"}} },
+    "report.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"report": null} },
+    "sources.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "write"}, "jobs": {"fetch": null} },
+    "statutes.yml": { "on": ["pull_request", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"compare": {"contents": "read"}, "statutes": {"contents": "write", "issues": "write", "pull-requests": "write"}} },
+    "watch.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"watch": null} }
+  },
+  "trinity-infinity": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} }
+  },
+  "trinity-operator": {
+    "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
+    "labels.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"issues": "write"}, "jobs": {"labels": null} },
+    "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null} },
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} }
+  }
+}

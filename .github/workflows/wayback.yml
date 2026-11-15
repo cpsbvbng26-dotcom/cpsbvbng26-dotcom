@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: 頼む
         run: |
           python3 - <<'EOF'
@@ -71,4 +73,7 @@ jobs:
                   f.write("\n今日の写しが見えなかったもの（取り込みが遅れているだけのこともある）\n\n")
                   for u, _ in failed:
                       f.write("- %s\n" % u)
+          # 2026-11-15：今日の写しが見えないものが一つでもあれば、実行を落とす。成功に見せないため。横断の見張りが最後の実行を見る。
+          if failed:
+              raise SystemExit("今日の写しが見えないもの %d / 頼んだもの %d" % (len(failed), len(urls)))
           EOF
