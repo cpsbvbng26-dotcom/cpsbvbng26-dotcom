@@ -4,7 +4,8 @@
     "数は手で直す。外の値が変わったと分かったら、確かめた日と一緒にここを書き換え、docs/name-disambiguation.md の数も同じにする。",
     "check_ecosystem.js が、docs/name-disambiguation.md の数とここの数を突き合わせる。",
     "2026-11-15 に、ORCID・OpenAlex・DataCite の数を作業環境から公開の API で読み直した。zenodoAbstract は Zenodo に届かないので読み直しておらず、2026-11-12 の値のまま（zenodoAbstractAsOf）。",
-    "zenodoStats は、2026-11-16 に Zenodo の API（/api/records/<番号>）から読んだ、重複を除いた閲覧とダウンロードの数（全版の合計）。DataCite の viewCount と downloadCount は 0 のままで、Zenodo の数は DataCite に届いていない。"
+    "zenodoStats は、2026-11-16 に Zenodo の API（/api/records/<番号>）から読んだ、重複を除いた閲覧とダウンロードの数（全版の合計）。DataCite の viewCount と downloadCount は 0 のままで、Zenodo の数は DataCite に届いていない。",
+    "wikidata は、2026-11-16 23 時 19 分（日本時間、readAt は協定世界時）に Wikidata の Special:EntityData/<Q>.json から読んだ値。person は人物の項目、personIds はその項目の識別子（P31 のほか）、works は著者（P50）としてその項目を指す作品の項目と、項目にある DOI（Wikidata の書き方のまま大文字）。check_ecosystem.js が、docs/name-disambiguation.md の Wikidata の節の二つの表と件数、生成した頁の構造化データ、doi-index.md と突き合わせる。"
   ],
   "asOf": "2026-11-15",
   "orcid": "0009-0000-1406-0547",
@@ -112,6 +113,29 @@
         2,
         1
       ]
+    }
+  },
+  "wikidata": {
+    "asOf": "2026-11-16",
+    "readAt": "2026-11-16T14:19:02Z",
+    "person": "Q139590485",
+    "personIds": {
+      "P496": "0009-0000-1406-0547",
+      "P4450": "nemoto-takuya",
+      "P1960": "_HEl3dYAAAAJ",
+      "P10283": "A5133339711",
+      "P5029": "takuyanemoto",
+      "P3747": "8730280",
+      "P3233": "takuyanemoto",
+      "P11780": "nemoto200101",
+      "P4232": "25693617",
+      "P7238": "phtr4"
+    },
+    "works": {
+      "Q142184034": "10.5281/ZENODO.22058254",
+      "Q142184151": "10.5281/ZENODO.22057583",
+      "Q142184207": "10.5281/ZENODO.22064241",
+      "Q142184237": "10.2139/SSRN.7537983"
     }
   }
 }
