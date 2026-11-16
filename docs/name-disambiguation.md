@@ -65,6 +65,37 @@ DOI の一覧の番号で引いても、作品は一件も出ませんでした�
 Wikidata は誰でも直せる場ですが、作業環境からは届きません。
 項目は直していません。
 
+## Zenodo の閲覧とダウンロード
+
+Zenodo の記録の頁は、閲覧とダウンロードの数を持っています。
+数は 2026-11-16 に Zenodo の API から読んだもので、重複を除いた数の、全版の合計です。
+Zenodo はロボットを除いて数えますが、除ききれない分が含まれている可能性があります。
+DataCite の記録では、同じ DOI の閲覧とダウンロードはどれも 0 です。
+Zenodo の数は、DataCite には届いていません。
+
+| Zenodo の記録 | 題 | 閲覧 | ダウンロード |
+| --- | --- | --- | --- |
+| `22058624` | Trinity-Infinity Framework, Series I | **4145** | **2224** |
+| `22058254` | The Nobility and Exemplarity of the Celibate Individual | **1865** | **1113** |
+| `22064241` | Fragmentarian Spiritual Individualism | **1280** | **962** |
+| `22058777` | Trinity-Infinity Framework, Series II | **906** | **627** |
+| `22055709` | A Naval Gazette Entry for Lieutenant Otani Tsune | **874** | **405** |
+| `22057583` | Manifesto of Imperial Selfhood | **423** | **306** |
+| `22058964` | Trinity-Infinity Framework, Series III | **170** | **399** |
+| `22685687` | errata-check | **80** | **5** |
+| `23114131` | 「30歳魔法使い」都市伝説の構造分析 | **77** | **56** |
+| `22335676` | 正義論とアルゴリズム | **63** | **4** |
+| `22335692` | researcher-profile | **61** | **0** |
+| `22765695` | 自己実験としての名乗り | **32** | **4** |
+| `24033372` | Sophaxis | **26** | **2** |
+| `24033809` | 自律と自己陶冶 — 三篇のプレプリント | **10** | **1** |
+| `24034131` | Naval Gazette Notes | **7** | **5** |
+| `24033597` | self-correction | **6** | **2** |
+| `24033961` | Trinity-Infinity — 三本の系列と、その検証の記録 | **6** | **3** |
+| `24034360` | 根本卓哉 — 公開プロフィールと、その検証 | **3** | **1** |
+| `24033082` | deposit-check | **3** | **1** |
+| `24033459` | trinity-operator | **2** | **1** |
+
 ## 調べ直し
 
 2026-11-13 までは、索引の調べを月に一度、ORCID の作品の数と OpenAlex の著者の ID の数と Zenodo の要旨の有無を週に一度、GitHub Actions が回していました。
