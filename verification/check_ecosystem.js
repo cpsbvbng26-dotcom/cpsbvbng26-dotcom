@@ -5921,6 +5921,13 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
     const ずれ = 対.filter(([, a, b]) => a === null || a !== b).map(([n, a, b]) => n + ' 頁 ' + a + ' / 控え ' + b);
     check('名寄せの頁の数が、外の値の控えと合う', o !== null && ずれ.length === 0, ずれ.join(', ') || 対.length + ' 項目');
     check('外の値の控えの日付を、名寄せの頁が名乗っている', o !== null && t.indexOf('数は ' + o.asOf + ' に読んだものです。') >= 0);
+    {
+      /* 2026-11-16。Zenodo の閲覧とダウンロードの表は、控え（zenodoStats）と一行ずつ合う。 */
+      const zs = o && o.zenodoStats ? o.zenodoStats.records : null;
+      const 表 = [...t.matchAll(/^\| `(\d+)` \| [^|]+ \| \*\*(\d+)\*\* \| \*\*(\d+)\*\* \|$/gm)].map((m) => [m[1], Number(m[2]), Number(m[3])]);
+      const ずれZ = zs ? 表.filter(([r, v, d]) => !zs[r] || zs[r][0] !== v || zs[r][1] !== d).map(([r]) => r).concat(Object.keys(zs).filter((r) => !表.some((x) => x[0] === r))) : ['控え無し'];
+      check('名寄せの頁の Zenodo の閲覧とダウンロードの表が、控えと一行ずつ合い、読んだ日を名乗る', zs !== null && 表.length > 0 && ずれZ.length === 0 && t.includes('数は ' + o.zenodoStats.asOf + ' に Zenodo の API から読んだもの'), ずれZ.join(', ') || 表.length + ' 行');
+    }
     /* 2026-11-13（八度目の見落とし）。索引の網羅調査と外の値の見張りは、著者の記録を外の索引で調べる仕事で、サイトの制作・検査・
      * 配備・公開のどれにも当たらない。GitHub の追加製品の規約が GitHub の実行環境に許す使い方の外にあったので、ワークフローも道具も外した。
      * 控え（outside.json）と頁の数の突き合わせは残る。戻せば落ちる。 */
