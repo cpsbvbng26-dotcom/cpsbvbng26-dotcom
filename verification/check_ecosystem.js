@@ -5928,6 +5928,109 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
       const ずれZ = zs ? 表.filter(([r, v, d]) => !zs[r] || zs[r][0] !== v || zs[r][1] !== d).map(([r]) => r).concat(Object.keys(zs).filter((r) => !表.some((x) => x[0] === r))) : ['控え無し'];
       check('名寄せの頁の Zenodo の閲覧とダウンロードの表が、控えと一行ずつ合い、読んだ日を名乗る', zs !== null && 表.length > 0 && ずれZ.length === 0 && t.includes('数は ' + o.zenodoStats.asOf + ' に Zenodo の API から読んだもの'), ずれZ.join(', ') || 表.length + ' 行');
     }
+    {
+      /* 2026-11-16。Wikidata の節。2026-11-16 に利用者が求め、Claude が書いた。控え（outside.json の wikidata）と四つの面で突き合わせる。
+       * (a) 節の二つの表（人物の項目の識別子、作品の項目と DOI）が、控えと一行ずつ同じ。
+       * (b) 頁が名乗る作品の項目の件数が、控えの作品の数と同じ。前の「作品の項目が 0 件」は戻さない。
+       * (c) 生成した頁（verification/pages.json）の構造化データで、人物の項目はトップの五言語の Person（#person）の sameAs にあり、
+       *     作品の項目は、その作品の論文の頁があるものに限り、その DOI を持つ論文のすべての sameAs にある。ほかの Q は無く、付け先も違えない。
+       * (d) 控えの DOI は、小文字にすると、どれも doi-index.md にある。 */
+      const WD = 'https://www.wikidata.org/wiki/';
+      const PERSON_ID = 'https://cpsbvbng26-dotcom.vercel.app/#person';
+      const TOPS = ['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'];
+      const ldNodes = (html) => {
+        const out = [];
+        for (const m of String(html || '').matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+          let j; try { j = JSON.parse(m[1]); } catch (e) { continue; }
+          (function walk(x) {
+            if (Array.isArray(x)) x.forEach(walk);
+            else if (x && typeof x === 'object') { if (x['@type']) out.push(x); Object.keys(x).forEach((k) => walk(x[k])); }
+          }(j));
+        }
+        return out;
+      };
+      const doiOf = (n) => {
+        for (const x of [n['@id'], n.url].concat([].concat(n.identifier || []).map((y) => (y && typeof y === 'object') ? y.value : y))) {
+          const m = /(?:doi\.org\/)?(10\.\d{4,}\/[^\s"]+)$/i.exec(String(x || ''));
+          if (m) return m[1].toLowerCase();
+        }
+        return null;
+      };
+      const wdProblems = (w, text, pages, idx) => {
+        const bad = [];
+        if (!w || !w.person || !w.works || !w.personIds) return ['控えに wikidata が無い'];
+        const works = w.works;
+        const n = Object.keys(works).length;
+        const a0 = text.indexOf('\n## Wikidata\n');
+        const sec = a0 < 0 ? '' : text.slice(a0 + 1, (text.indexOf('\n## ', a0 + 5) + 1 || text.length + 1) - 1);
+        if (!sec) bad.push('Wikidata の節が無い');
+        /* (a) */
+        const 項 = 表(sec, '次の表の識別子').map((r) => [r[0], (/^`(.*)`$/.exec(r[2]) || [])[1]]);
+        const 項控 = Object.entries(w.personIds);
+        if (JSON.stringify(項) !== JSON.stringify(項控)) bad.push('(a) 識別子の表が控えと違う（頁 ' + 項.length + ' 行 / 控え ' + 項控.length + ' 行）');
+        const 作 = 表(sec, '著者と DOI が次の表のとおり').map((r) => [(/^`(Q\d+)`$/.exec(r[0]) || [])[1], (/^`(.*)`$/.exec(r[2]) || [])[1]]);
+        if (JSON.stringify(作) !== JSON.stringify(Object.entries(works))) bad.push('(a) 作品の項目の表が控えと違う（頁 ' + 作.length + ' 行 / 控え ' + n + ' 行）');
+        if (sec.indexOf('`' + w.person + '`') < 0 || text.indexOf('| Wikidata | 人物の項目 `' + w.person + '`') !== 0 && text.indexOf('\n| Wikidata | 人物の項目 `' + w.person + '`') < 0) bad.push('人物の項目の番号が表か節に無い');
+        if (sec.indexOf('値は、' + w.asOf + ' ') < 0) bad.push('節が読んだ日 ' + w.asOf + ' を名乗らない');
+        /* (b) */
+        const 名乗り = [...text.matchAll(/作品の項目 \*\*(\d+)\*\* 件/g)].map((m) => Number(m[1])).concat([...sec.matchAll(/(\d+) 件とも/g)].map((m) => Number(m[1])));
+        if (名乗り.length < 3 || 名乗り.some((x) => x !== n)) bad.push('(b) 作品の項目の件数の名乗り ' + 名乗り.join(',') + ' / 控え ' + n);
+        if (/作品の項目(が|は) ?\**0\** ?件/.test(text)) bad.push('(b) 作品の項目が 0 件という前の文が残る');
+        /* (c) */
+        const byDoi = {};
+        Object.entries(works).forEach(([q, d]) => { byDoi[d.toLowerCase()] = q; });
+        const 頁あり = new Set();
+        Object.entries(pages).forEach(([f, h]) => { if (/^papers\//.test(f)) ldNodes(h).forEach((x) => { const d = doiOf(x); if (byDoi[d] && /Article/.test(x['@type'])) 頁あり.add(byDoi[d]); }); });
+        if (!頁あり.size) bad.push('(c) 作品の項目のある論文の頁が一つも無い');
+        TOPS.forEach((f) => {
+          if (!ldNodes(pages[f]).some((x) => x['@type'] === 'Person' && x['@id'] === PERSON_ID && [].concat(x.sameAs || []).includes(WD + w.person))) bad.push('(c) ' + f + ' の Person に ' + w.person + ' が無い');
+        });
+        Object.entries(pages).forEach(([f, h]) => {
+          ldNodes(h).forEach((x) => {
+            const qs = [].concat(x.sameAs || []).filter((u) => /wikidata\.org/.test(u)).map((u) => (u.indexOf(WD) === 0 ? u.slice(WD.length) : u));
+            const d = doiOf(x);
+            qs.forEach((q) => {
+              if (q === w.person) { if (x['@type'] !== 'Person' || x['@id'] !== PERSON_ID) bad.push('(c) ' + f + ' の ' + (d || x['@type']) + ' に人物の項目'); }
+              else if (!works[q]) bad.push('(c) ' + f + ' に控えに無い項目 ' + q);
+              else if (!頁あり.has(q)) bad.push('(c) ' + f + ' に、論文の頁の無い作品の項目 ' + q);
+              else if (byDoi[d] !== q) bad.push('(c) ' + f + ' の ' + (d || x['@type']) + ' に ' + q);
+            });
+            if (byDoi[d] && 頁あり.has(byDoi[d]) && /Article/.test(x['@type']) && !qs.includes(byDoi[d])) bad.push('(c) ' + f + ' の ' + d + ' に ' + byDoi[d] + ' が無い');
+          });
+          for (const m of String(h).matchAll(/wikidata\.org\/(?:wiki|entity)\/(Q\d+)/g)) if (m[1] !== w.person && !頁あり.has(m[1])) bad.push('(c) ' + f + ' の本文か属性に ' + m[1]);
+        });
+        /* (d) */
+        const low = String(idx).toLowerCase();
+        Object.values(works).forEach((d) => { if (low.indexOf(d.toLowerCase()) < 0) bad.push('(d) ' + d + ' が doi-index.md に無い'); });
+        return bad;
+      };
+      const w = o ? o.wikidata : null;
+      const pageFiles = JSON.parse(read(HOME, path.join('verification', 'pages.json')) || '{"pages":[]}').pages.map((p) => p.file);
+      const pages = Object.fromEntries(pageFiles.map((f) => [f, read(HOME, f) || '']));
+      const idx = read(HOME, DOI_INDEX) || '';
+      const nowW = wdProblems(w, t, pages, idx);
+      const 頁数 = pageFiles.filter((f) => /wikidata\.org/.test(pages[f])).length;
+      check('名寄せの頁の Wikidata の節が控えと合う：識別子と作品の表・作品の件数・生成した頁の sameAs（' + 頁数 + ' 頁）・doi-index の DOI', w && nowW.length === 0,
+        nowW.slice(0, 4).join(' / ') || (w ? Object.keys(w.works).length + ' 件' : ''));
+      const 替W = (fn) => { const c = { w: JSON.parse(JSON.stringify(w || {})), t, pages: Object.assign({}, pages), idx }; fn(c); return wdProblems(c.w, c.t, c.pages, c.idx).length > 0; };
+      const QS = (q) => '"' + WD + q + '"';
+      const breaksW = [
+        ['(a) 作品の表から一行を消す', (c) => { c.t = c.t.replace(/^\| `Q142184237` \|.*\n/m, ''); }],
+        ['(a) 作品の表の DOI を変える', (c) => { c.t = c.t.replace('`10.5281/ZENODO.22057583` |', '`10.5281/ZENODO.22058254` |'); }],
+        ['(a) 識別子の表の値を変える', (c) => { c.t = c.t.replace('| P3747 | SSRN の著者 ID | `8730280` |', '| P3747 | SSRN の著者 ID | `8730281` |'); }],
+        ['(a) 控えに作品を足す', (c) => { c.w.works.Q1 = '10.5281/zenodo.1'; }],
+        ['(b) 件数の名乗りを変える', (c) => { c.t = c.t.replace('作品の項目 **' + Object.keys(w.works).length + '** 件が、著者（P50）', '作品の項目 **5** 件が、著者（P50）'); }],
+        ['(b) 前の文を戻す', (c) => { c.t = c.t.replace('著者としてこの項目を指す作品の項目は、ありませんでした。', '作品の項目は 0 件でした。'); }],
+        ['(c) ドイツ語のトップの頁の Person から項目を外す', (c) => { c.pages['index.de.html'] = c.pages['index.de.html'].replace(QS(w.person), '"https://orcid.org/0009-0000-1406-0547"'); }],
+        ['(c) 論文の頁から作品の項目を外す', (c) => { c.pages['papers/imperial-selfhood.en.html'] = c.pages['papers/imperial-selfhood.en.html'].replace(',\n        ' + QS('Q142184151'), ''); }],
+        ['(c) ノートの頁の項目を取り違える', (c) => { c.pages['notes/index.html'] = c.pages['notes/index.html'].replace(QS('Q142184034'), QS('Q142184151')); }],
+        ['(c) 頁の無い作品の項目を足す', (c) => { c.pages['cv.html'] = c.pages['cv.html'].replace('</main>', '<a href="' + WD + 'Q142184237">x</a></main>'); }],
+        ['(d) doi-index から DOI を消す', (c) => { c.idx = c.idx.split('ssrn.7537983').join('ssrn.'); }],
+      ];
+      const 取り = breaksW.filter(([, fn]) => { try { return !替W(fn); } catch (e) { return true; } }).map(([k]) => k);
+      check('壊して確かめる：Wikidata の節の表・件数・前の文、生成した頁の人物と作品の項目、doi-index のどれを崩しても落ちる（' + (breaksW.length - 取り.length) + ' / ' + breaksW.length + '）',
+        w && 取り.length === 0, 取り.join(' / '));
+    }
     /* 2026-11-13（八度目の見落とし）。索引の網羅調査と外の値の見張りは、著者の記録を外の索引で調べる仕事で、サイトの制作・検査・
      * 配備・公開のどれにも当たらない。GitHub の追加製品の規約が GitHub の実行環境に許す使い方の外にあったので、ワークフローも道具も外した。
      * 控え（outside.json）と頁の数の突き合わせは残る。戻せば落ちる。 */
