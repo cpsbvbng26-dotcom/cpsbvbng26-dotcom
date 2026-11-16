@@ -86,8 +86,10 @@ OSF のプロジェクトに付いた DOI です。プロジェクトは置き�
 | --- | --- | --- | --- |
 | O1 | `10.17605/osf.io/mq7za` | Sophaxis: An Independent Overlay Preprint Server | 現行。2026-11-12 に DataCite で確かめた。種類は Text |
 | O2 | `10.17605/osf.io/7kr5n` | Takuya Nemoto: first-year research repositories（学部一年次の研究のプロジェクト。GitHub の `cpsbvbng26-dotcom` につないだ入口） | 現行。2026-11-12 に利用者から受け取り、同じ日に DataCite で確かめた。種類は Project、ライセンスは CC BY 4.0。論文の引用には使わない |
+| O3 | `10.17605/osf.io/6ew38` | A confirmatory numerical scan of the golden-window conjecture on a preregistered grid（trinity-operator の黄金比の窓の予想の、確かめの走査の事前登録） | 現行。2026-11-16 20:15:06 JST に利用者が出し、2026-11-17 に承認した。DataCite の登録は 2026-11-16T21:10:44Z（2026-11-17 06:10 JST）。2026-11-17 に利用者から受け取り、同じ日に DataCite で確かめた。種類は Pre-registration（StudyRegistration）、ライセンスは CC BY 4.0。登録の文は OSF のものが優先する |
 
 学部一年次の研究のプロジェクトは O2 です。部品は持たず、`cpsbvbng26-dotcom` 一つをつないでいます。計画は [osf.md](osf.md) にあります。
+O3 はプロジェクトではなく、事前登録に付いた DOI です。登録の頁は trinity-operator の `games/PREREGISTRATION.md` にあります。
 
 ## リポジトリの保存版の DOI
 
