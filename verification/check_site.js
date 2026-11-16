@@ -3005,6 +3005,9 @@ section('10.63 全作品の目録と、道具の一覧');
    * 日付は catalog.json が持ち、check_ecosystem.js が git の履歴と突き合わせる。ここは頁の表示を見る。 */
   const 時期欠け = [];
   const 二年 = ['sophaxis', 'deposit-check'];
+  /* 黄金比の窓の予想のプレプリント（Figshare）と、その確かめの走査の事前登録（OSF、2026-11-17 に足した）。
+   * この二つだけが一年次の成果の続きで、ほかの行がその書き方になっても、二つのどちらかが外れても落とす。 */
+  const 続きの作品 = ['repeated-games-cyclic-operator', 'golden-window-preregistration'];
   [['catalog.html', '学部一年次', '学部二年次'], ['catalog.en.html', 'First undergraduate year', 'Second undergraduate year']].forEach(([f, y1, y2]) => {
     const h = read(f);
     works.forEach((w) => {
@@ -3012,13 +3015,14 @@ section('10.63 全作品の目録と、道具の一覧');
       const last = m ? (m[1].match(/<td>([^<]*)<\/td>$/) || [])[1] : null;
       /* 一年次の成果の続き（黄金比の窓の予想は Trinity-Infinity の続き）は、その旨を名指した文になる。 */
       const 続き = f === 'catalog.html' ? '学部一年次の成果（Trinity-Infinity）の続き' : 'Continuation of first-year work (Trinity-Infinity)';
-      const want = w.id === 'repeated-games-cyclic-operator' ? 続き
+      const want = 続きの作品.includes(w.id) ? 続き
         : w.begun.period === 'first' ? y1 : w.begun.period === 'second' ? y2 : null;
       if (want && last !== want) 時期欠け.push(f + ' の ' + w.id + ' が ' + last);
-      if ((w.id === 'repeated-games-cyclic-operator') !== (last === 続き)) 時期欠け.push(f + ' の ' + w.id + ' の続きの書き方');
+      if (続きの作品.includes(w.id) !== (last === 続き)) 時期欠け.push(f + ' の ' + w.id + ' の続きの書き方');
       if (二年.includes(w.id) && (w.begun.period !== 'second' || (last || '').indexOf(y1) >= 0)) 時期欠け.push(f + ' の ' + w.id + ' を二年次としていない');
     });
   });
+  続きの作品.filter((id) => !works.some((w) => w.id === id)).forEach((id) => 時期欠け.push('目録に ' + id + ' が無い'));
   ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次、黄金比の窓の予想を一年次の成果の続きとする', 時期欠け.length === 0,
      時期欠け.join(' / ') || works.length + ' 作品 × 2 言語');
 
