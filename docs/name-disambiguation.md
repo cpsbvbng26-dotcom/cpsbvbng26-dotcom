@@ -124,18 +124,18 @@ Zenodo の数は、DataCite には届いていません。
 | `22058624` | Trinity-Infinity Framework, Series I | **4145** | **2224** |
 | `22058254` | The Nobility and Exemplarity of the Celibate Individual | **1868** | **1113** |
 | `22064241` | Fragmentarian Spiritual Individualism | **1282** | **962** |
-| `22058777` | Trinity-Infinity Framework, Series II | **906** | **627** |
-| `22055709` | A Naval Gazette Entry for Lieutenant Otani Tsune | **874** | **405** |
-| `22057583` | Manifesto of Imperial Selfhood | **423** | **306** |
-| `22058964` | Trinity-Infinity Framework, Series III | **170** | **399** |
+| `22058777` | Trinity-Infinity Framework, Series II | **907** | **627** |
+| `22055709` | A Naval Gazette Entry for Lieutenant Otani Tsune | **875** | **407** |
+| `22057583` | Manifesto of Imperial Selfhood | **425** | **307** |
+| `22058964` | Trinity-Infinity Framework, Series III | **171** | **399** |
 | `22685687` | errata-check | **82** | **5** |
-| `23114131` | 「30歳魔法使い」都市伝説の構造分析 | **77** | **57** |
+| `23114131` | 「30歳魔法使い」都市伝説の構造分析 | **77** | **58** |
 | `22335676` | 正義論とアルゴリズム | **63** | **4** |
 | `22335692` | researcher-profile | **61** | **0** |
 | `24033372` | Sophaxis | **33** | **2** |
 | `22765695` | 自己実験としての名乗り | **32** | **4** |
 | `24033809` | 自律と自己陶冶 — 三篇のプレプリント | **11** | **1** |
-| `24034131` | Naval Gazette Notes | **7** | **5** |
+| `24034131` | Naval Gazette Notes | **8** | **5** |
 | `24033597` | self-correction | **6** | **2** |
 | `24033961` | Trinity-Infinity — 三本の系列と、その検証の記録 | **6** | **3** |
 | `24033082` | deposit-check | **4** | **1** |
