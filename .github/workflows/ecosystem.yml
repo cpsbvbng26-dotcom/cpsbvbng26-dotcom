@@ -55,6 +55,9 @@ jobs:
       # 共同研究の入口（2026-11-18、十の外）。正本の写し・決めごとの番号・条文を突き合わせ、決めごと 16 の形を走る。読むだけ。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/research-collaboration, path: repos/research-collaboration, persist-credentials: false }
+      # 黄金比の窓の予想の解決の稿（十の外）。本文の空の issue に答える仕事の写しを突き合わせるために読む（2026-11-19）。読むだけ。
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with: { repository: cpsbvbng26-dotcom/golden-window-resolution, path: repos/golden-window-resolution, persist-credentials: false }
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
