@@ -496,6 +496,19 @@ console.log('\n7. 研究者としての位置');
     if (papers !== null && (地の文 === null || parseInt(地の文[1], 10) !== papers)) {
       wrong.push('地の文の「DOI の付いた成果物が ' + (地の文 ? 地の文[1] : '無し') + ' 篇」が実際 ' + papers + ' 篇と合わない');
     }
+    /* 2026-11-18。篇の内訳（哲学・数学・…）の和と、実績の時期の欄の「下の N 篇」も、同じ数え直しと突き合わせる。
+     * 黄金比の窓の予想の解決の稿（Figshare）を足して 10 篇から 11 篇にしたとき、内訳の数学も 4 から 5 に動かした。
+     * 内訳だけ、または時期の欄だけを据え置けば落ちる。 */
+    const 内訳 = /^\| 公開した成果物 \|[^\n]*\*\*(\d+) 篇\*\*（([^）]*)）/m.exec(text);
+    const 内訳の和 = 内訳 ? (内訳[2].match(/ \d+(?=・|$)/g) || []).reduce((s, x) => s + parseInt(x, 10), 0) : null;
+    if (papers !== null && (内訳 === null || parseInt(内訳[1], 10) !== papers || 内訳の和 !== papers)) {
+      wrong.push('公開した成果物の内訳の和 ' + 内訳の和 + ' が実際 ' + papers + ' 篇と合わない');
+    }
+    const 時期の行 = text.split('\n').find((l) => l.indexOf('| 実績の時期 |') === 0) || '';
+    const 下の = [...時期の行.matchAll(/下の (\d+) 篇/g)].map((m) => parseInt(m[1], 10));
+    if (papers !== null && (下の.length === 0 || 下の.some((n) => n !== papers))) {
+      wrong.push('実績の時期の欄の「下の N 篇」' + 下の.join('・') + ' が実際 ' + papers + ' 篇と合わない');
+    }
     check('置いた数が、他のファイルから数え直したものと合う', wrong.length === 0,
       wrong.length ? wrong.join(' / ') : rows.map((r) => r[1]).join(' / '));
 
