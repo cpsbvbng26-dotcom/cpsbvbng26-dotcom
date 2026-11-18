@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-1n+kRM5sg2NydiVM+GKu3jUsOviITbFa+qxMOvpBRUs='; style-src 'sha256-x9Yix3cT+2pbHpNVLmRKHE+p1DGKRcipeaR4LZLDQqQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-L1fe9dGihr+4yG1JJ8R6SYmSglM+P/uo9XZ1Ax/C4fk='; style-src 'sha256-x9Yix3cT+2pbHpNVLmRKHE+p1DGKRcipeaR4LZLDQqQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>黄金比の窓の予想 | 根本卓哉</title>
-<meta name="description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になるという予想で、証明はなく、根拠は数値だけです。">
+<meta name="description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になり、その次元は δ の式の根として決まる、という予想と、その証明です。二つの部分は 2026 年 11 月 18 日に解決しました。(a) と (b) の式は既知の定理の特別な場合です。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つかりませんでした。">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="黄金比の窓の予想 | 根本卓哉">
-<meta property="og:description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になるという予想で、証明はなく、根拠は数値だけです。">
+<meta property="og:description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になり、その次元は δ の式の根として決まる、という予想と、その証明です。二つの部分は 2026 年 11 月 18 日に解決しました。(a) と (b) の式は既知の定理の特別な場合です。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つかりませんでした。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html">
 <link rel="canonical" href="https://cpsbvbng26-dotcom.vercel.app/notes/golden-window.html">
@@ -809,7 +809,7 @@ footer { border-top: 2px solid var(--seal-gold); }
     <p class="romaji reveal">Golden-window conjecture</p>
     <svg class="orn orn-long" viewBox="0 0 96 10" width="96" height="10" aria-hidden="true" focusable="false"><rect x="1.19" y="1.69" width="6.62" height="6.62" class="orn-frame" stroke-width="2.38"/><rect x="13" y="4.25" width="83" height="1.5" class="orn-bar"/><polygon points="3,5 4.5,3.5 6,5 4.5,6.5" class="orn-dot"/></svg>
 
-    <p class="lead reveal">三人のゲームの、一本の利得の線分についての、証明されていない予想の頁です。窓より下と、窓の下端と、<code translate="no" class="notranslate">2/3</code> から上で何が起きるかは証明してあります。窓の中の集合の次元が正であることも証明してあります。その集合の長さが 0 になるか、次元がどう振る舞うかは開いており、根拠は数値だけです。</p>
+    <p class="lead reveal">三人のゲームの、一本の利得の線分についての、予想とその証明の頁です。窓より下と、窓の下端と、<code translate="no" class="notranslate">2/3</code> から上で何が起きるかは証明してあります。窓の中の集合の次元が正であることも証明してあります。その集合の長さが 0 になることと、次元がどう振る舞うかも証明してあります。最後の二つの証明は 2026 年 11 月 18 日に書いたものです。長さが 0 であることと次元の式は、既知の定理の特別な場合です。このゲームの曲線に沿った次元の振る舞いは、読んだ文献には見つかりませんでした。</p>
   </section>
 
   <hr class="rule">
@@ -821,12 +821,13 @@ footer { border-top: 2px solid var(--seal-gold); }
       
     </div>
     <div class="notes-list reveal">
-      <p class="profile-core"><b>黄金比の窓の予想（Golden-window conjecture）は、証明されていない予想である。</b>Trinity-Infinity の三篇が扱う作用素を、繰り返しゲームに当てたノートで立てた（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator の games</a>）。英語の論文の形にしたものを Figshare に置いた。命題 1〜7 と予想を収めている（<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>、2026 年 10 月 13 日）。プレプリントであり、査読は受けていない。置いた版は動かさない。直すのはノートのほうである。</p>
+      <p class="profile-core"><b>黄金比の窓の予想（Golden-window conjecture）は、二つの部分からなる。(a) は証明した（命題 8）。(b) も証明した（命題 9）。状態は、解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つからない）である。</b>名前は、問題の名として残す。名前はすでに公開した DOI と issue のラベルに入っているからである。予想は、Trinity-Infinity の三篇が扱う作用素を、繰り返しゲームに当てたノートで立てた（<a href="https://github.com/cpsbvbng26-dotcom/trinity-operator/tree/main/games" target="_blank" rel="noopener">trinity-operator の games</a>）。英語の論文の形にしたものを Figshare に置いた。命題 1〜7 と予想を収めている（<a href="https://doi.org/10.6084/m9.figshare.34419198" target="_blank" rel="noopener"><code translate="no" class="notranslate">10.6084/m9.figshare.34419198</code></a>、2026 年 10 月 13 日）。プレプリントであり、査読は受けていない。置いた版は動かさない。その版は、(a) と (b) を予想として載せたままである。直すのはノートのほうで、命題 8 と 9 もノートにだけある。</p>
+      <p class="profile-core"><b>命題 8 と 9。</b>2026 年 11 月 18 日に利用者が求め、Claude Code（Anthropic）が証明を書いた。責任は著者にある。同じ日に、文献と照合した。命題 8 は既知である。Lu・Steiner・Zou（2026）の Proposition 2.5 の、すぐ出る特別な場合であり、ゼロと数える。命題 9 の式は、同じ論文の Theorem 1.2 と Lemma 2.7 の特別な場合であり、この部分もゼロである。底と穴が一緒に動くこの曲線に沿った連続・<code translate="no" class="notranslate">δ</code> についての狭義の増加・両端の極限は、読んだ文献には見つからなかった。この部分は、まだ数えていない。</p>
       <p class="profile-core"><b>問い。</b>三人が、それぞれ協力か裏切りを選ぶ。協力した相手が <code translate="no" class="notranslate">k</code> 人いるとき、協力すれば <code translate="no" class="notranslate">k + 1</code>、裏切れば <code translate="no" class="notranslate">k + 2</code> を得る。Series I の利得表である。これを限りなく繰り返し、先の利得を割引因子 <code translate="no" class="notranslate">δ</code> で割り引く。乱数を使わずに、利得 <code translate="no" class="notranslate">(2+t, 4−t, 2+t)</code>（<code translate="no" class="notranslate">0 &lt; t ≤ 1</code>）を均衡として保てるのは、どの <code translate="no" class="notranslate">t</code> か。その集合を <code translate="no" class="notranslate">T_δ</code> と書く。Series II が持続すると書いた端 <code translate="no" class="notranslate">(2,4,2)</code> は、どの <code translate="no" class="notranslate">δ</code> でも保てない（命題 3）。</p>
       <p><b><code translate="no" class="notranslate">δ &lt; 1/2</code></b><span>保てる <code translate="no" class="notranslate">t</code> は無い。証明してある（命題 4）。</span></p>
       <p><b><code translate="no" class="notranslate">1/2 ≤ δ &lt; 1/φ</code></b><span>保てるのは <code translate="no" class="notranslate">t = δ</code> と <code translate="no" class="notranslate">t = 1</code> だけ。証明してある（命題 5）。</span></p>
       <p><b><code translate="no" class="notranslate">δ = 1/φ</code></b><span>可算無限の集合。証明してある（命題 5）。</span></p>
-      <p><b>窓 <code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code></b><span>ハウスドルフ次元が正であること：証明してある（命題 6）。(a) 長さが 0 になること：予想。(b) 次元は 1 より小さく、<code translate="no" class="notranslate">δ</code> について連続で減らず、窓の下端で 0、上端で 1 に近づくこと：予想。(a) と (b) の根拠は数値だけである。区間を期ごとに細かく分けて数えると、生き残る区間の総長は縮み続け、次元の推定は <code translate="no" class="notranslate">δ</code> とともに大きくなった。どちらも有限の深さでの計算であり、証明ではない。</span></p>
+      <p><b>窓 <code translate="no" class="notranslate">1/φ &lt; δ &lt; 2/3</code></b><span>ハウスドルフ次元が正であること：証明してある（命題 6）。(a) 長さが 0 になること：証明してある（命題 8）。既知の定理の特別な場合である。(b) 次元は 1 より小さく、<code translate="no" class="notranslate">δ</code> について連続で狭義に増え、窓の下端で 0、上端で 1 に近づくこと：証明してある（命題 9）。式は既知の定理の特別な場合である。次元は <code translate="no" class="notranslate">δ</code> の式の根として決まる。狭義に増えることは、予想の「減らない」より強い。証明の前の根拠は数値だった。区間を期ごとに細かく分けて数えると、生き残る区間の総長は縮み続け、次元の推定は <code translate="no" class="notranslate">δ</code> とともに大きくなった。</span></p>
       <p><b><code translate="no" class="notranslate">δ ≥ 2/3</code></b><span><code translate="no" class="notranslate">1 − δ</code> から 1 までのすべての <code translate="no" class="notranslate">t</code>。証明してある（命題 5）。</span></p>
       <p><b>公開の乱数を使えるとき</b> <span><code translate="no" class="notranslate">δ ≥ max(1/2, 1 − t)</code> のときに限って保てる。証明してある（命題 4）。</span></p>
     </div>
@@ -860,11 +861,11 @@ footer { border-top: 2px solid var(--seal-gold); }
       
     </div>
     <div class="notes-list reveal">
-      <p class="profile-core"><b>理論ではない。証明は文献と照合しておらず、第三者の公認もない。</b>その条件のうえで、名乗る貢献は三つある。命題は、数学的証明としての貢献であり、先行が見つかればゼロに移る。予想は、問いを立てたことの貢献であって、解いたことの貢献ではない。再発見の経路は、科学哲学におけるケーススタディとしての貢献である（Machine-mediated Rediscovery、SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>）。SSRN の受け付けを通ったが、査読は受けていない。<b>名乗ることと、分野が数えることは別である。</b></p>
-      <p class="profile-core"><b>三篇の数学への寄与はゼロである。窓の外の証明は、ゼロではなく、まだ数えていない。</b>窓の中の命題 6 も同じである。「ゼロ」は、照合した結果、新しいものが無かった状態である。「数えていない」は、照合がまだの状態である。</p>
+      <p class="profile-core"><b>理論ではない。証明は文献と照合しておらず、第三者の公認もない。</b>その条件のうえで、名乗る貢献は三つある。命題は、数学的証明としての貢献であり、先行が見つかればゼロに移る。予想は、問いを立てたことの貢献である。その答えの命題 8 と 9 は、命題として数える。再発見の経路は、科学哲学におけるケーススタディとしての貢献である（Machine-mediated Rediscovery、SSRN <code translate="no" class="notranslate">10.2139/ssrn.7537983</code>）。SSRN の受け付けを通ったが、査読は受けていない。<b>名乗ることと、分野が数えることは別である。</b></p>
+      <p class="profile-core"><b>三篇の数学への寄与はゼロである。窓の外の証明は、ゼロではなく、まだ数えていない。</b>窓の中の命題 6・9 も同じである。命題 8 と命題 9 の式は、照合の結果、既知の定理の特別な場合なので、ゼロである。「ゼロ」は、照合した結果、新しいものが無かった状態である。「数えていない」は、照合がまだの状態である。</p>
       <p class="profile-core"><b>数学的な意義は、文献照合の条件つきである。</b>同じ命題が先にあれば、意義はそちらに属する。<b>科学哲学的な意義は、そのまま残る。</b>結果としての寄与がゼロの再発見でも、その模型をさらに押し進めると、まだ答えのない問いに行き着くことがある。</p>
       <p class="profile-core"><b>証明されても、上がるのはこの一命題だけである。</b>作用素は既知の模型の特殊例のままで、枠組みが新しい理論になるわけではない。</p>
-      <p class="profile-core"><b>文献とは照合していない。</b>Berg と Kitti（2014）が、純粋戦略の均衡の利得集合がフラクタルになりうることを示している。その方法で決着がつく可能性がある。三篇の作用素は、Friedkin–Johnsen モデルの特殊例である。</p>
+      <p class="profile-core"><b>命題 1〜7 は、文献とは照合していない。</b>Berg と Kitti（2014）が、純粋戦略の均衡の利得集合がフラクタルになりうることを示している。読んだのは要旨だけで、それによれば次元を見積もる方法である。三篇の作用素は、Friedkin–Johnsen モデルの特殊例である。</p>
       <p class="profile-core"><b>名前は中身を表すもので、人名ではない。</b>窓は割引因子の <code translate="no" class="notranslate">1/φ</code> から <code translate="no" class="notranslate">2/3</code> までの区間を指す。下端の <code translate="no" class="notranslate">1/φ</code> は、三人で裏切り役を回す道が均衡になる閾値と同じ数である（命題 1）。どちらも多項式 <code translate="no" class="notranslate">δ² + δ − 1</code> から出ている。それが偶然かどうかは分かっておらず、予想ではなく問いとして置いている。</p>
       <p class="profile-core">この予想と、証明と、図は、Claude Code（Anthropic）を用いて書いた。主張の責任は著者にある。Claude は著者ではない。</p>
     </div>
@@ -874,7 +875,7 @@ footer { border-top: 2px solid var(--seal-gold); }
 <footer>
   <div class="wrap foot">
     <span>© 2026 根本卓哉</span>
-    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">連絡</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a> · <span class="updated">最終更新 <time datetime="2026-11-12">2026-11-12</time></span></span>
+    <span class="foot-links"><a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose" target="_blank" rel="noopener">連絡</a> · <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/DISCLAIMER.md" target="_blank" rel="noopener">免責事項</a> · <span class="updated">最終更新 <time datetime="2026-11-18">2026-11-18</time></span></span>
   </div>
 </footer>
 
@@ -984,7 +985,7 @@ footer { border-top: 2px solid var(--seal-gold); }
     below: 'δ < 1/2: no t can be kept. Proved (Proposition 4).',
     two: '1/2 ≤ δ < 1/φ: only t = δ and t = 1 can be kept. Proved (Proposition 5).',
     at: 'δ = 1/φ: a countably infinite set. Proved (Proposition 5).',
-    window: 'Inside the window 1/φ < δ < 2/3: the set has positive dimension, which is proved (Proposition 6). That its length is zero is conjecture (a), and is not proved.',
+    window: 'Inside the window 1/φ < δ < 2/3: the set has positive dimension (Proposition 6) and length zero (Proposition 8), and its dimension is below 1 and strictly increasing in δ (Proposition 9). All are proved; length zero and the dimension formula are special cases of known theorems.',
     full: 'δ ≥ 2/3: every t from 1 − δ to 1 can be kept. Proved (Proposition 5).',
     depth: function (k, n, len) {
       return 'Drawn: the values of t that survive ' + n + ' periods, ' + k + ' interval' + (k === 1 ? '' : 's')
@@ -995,7 +996,7 @@ footer { border-top: 2px solid var(--seal-gold); }
     below: 'δ < 1/2：保てる t は無い。証明してある（命題 4）。',
     two: '1/2 ≤ δ < 1/φ：保てる t は δ と 1 の二点だけ。証明してある（命題 5）。',
     at: 'δ = 1/φ：可算無限の集合。証明してある（命題 5）。',
-    window: '窓の中 1/φ < δ < 2/3：集合の次元が正であることは証明してある（命題 6）。長さが 0 になることは予想 (a) で、証明していない。',
+    window: '窓の中 1/φ < δ < 2/3：集合の次元が正であること（命題 6）、長さが 0 になること（命題 8）、次元が 1 未満で δ について狭義に増えること（命題 9）は証明してある。長さが 0 であることと次元の式は、既知の定理の特別な場合である。',
     full: 'δ ≥ 2/3：1 − δ から 1 までのすべての t を保てる。証明してある（命題 5）。',
     depth: function (k, n, len) {
       return '描いているのは、' + n + ' 期を生き残る t の区間 ' + k + ' 個、総長 ' + len + '。有限の深さの計算であって、証明ではない。';
