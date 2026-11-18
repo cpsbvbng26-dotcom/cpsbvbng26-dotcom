@@ -1259,7 +1259,7 @@
         "cmd": [
           "node",
           "-e",
-          "const fs=require('fs'),p=require('path');const f=p.join('.github','checked-intake','verify.js');const a=fs.readFileSync(p.join('cpsbvbng26-dotcom',f),'utf8');let n=0;for(const d of fs.readdirSync('.')){try{if(fs.readFileSync(p.join(d,f),'utf8')===a)n++;}catch(e){}}console.log('同じ写し '+n);"
+          "const fs=require('fs'),p=require('path');const f=p.join('.github','checked-intake','verify.js');const a=fs.readFileSync(p.join('cpsbvbng26-dotcom',f),'utf8');const 十三=JSON.parse(fs.readFileSync(p.join('cpsbvbng26-dotcom','verification','ecosystem.json'),'utf8'))['八度目の見落とし']['記録'];let n=0;for(const d of 十三){try{if(fs.readFileSync(p.join(d,f),'utf8')===a)n++;}catch(e){}}console.log('同じ写し '+n);"
         ],
         "regex": "同じ写し (\\d+)"
       },
