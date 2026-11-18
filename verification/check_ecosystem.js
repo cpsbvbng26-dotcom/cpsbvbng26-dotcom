@@ -209,7 +209,9 @@ function 一覧の番号(re) {
  * 「すべての版」の DOI が、一覧に無いまま README と CITATION.cff に出ていた。十の外の三つでは、道具と検査と
  * 作り物の答え（verification・tools・bin・src・scripts・tests・examples）を外し、配る文と設定だけを見る。
  * そこには他人の稿の DOI と、試験のための作り物の番号が並ぶので、一覧に載せる意味が無い。 */
-const 十の外 = ['sophaxis', 'deposit-check', 'nusquama'];
+/* 2026-11-18 に research-collaboration（共同研究の入口）を十の外に足した。DOI の走査・Google サイトの所在・
+ * 決めごと 16 の形の走査（散文と YAML）は、この並びを使う。開示の無いマージの数え（13c）は、前の三つのまま。 */
+const 十の外 = ['sophaxis', 'deposit-check', 'nusquama', 'research-collaboration'];
 const 十の外で外す = ['verification', 'tools', 'bin', 'src', 'scripts', 'tests', 'examples'];
 function 出てくる番号(re, repos, extraSkip) {
   const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
@@ -2827,7 +2829,7 @@ console.log('\n12j. 二度目の見落とし（2026-11-12 の続き）');
   /* Google サイト。記録が出来事を述べるのはよいが、所在そのものはどこにも置かない。 */
   const 所在 = [];
   let 本 = 0;
-  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter(present);
+  const repos = C.repos.concat(十の外).filter(present);
   for (const repo of repos) {
     let files = [];
     try { files = execFileSync('git', ['-C', path.join(ROOT, repo), 'ls-files'], { encoding: 'utf8', maxBuffer: 1 << 28 }).split('\n').filter(Boolean); } catch (e) { 所在.push(repo + ' の一覧が読めない'); continue; }
@@ -6110,7 +6112,7 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
     const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の手にな', '利用者の手です', '利用者の作業', '利用者が手で',
       '利用者が行います', '利用者が決めます', '利用者を待', '利用者の観察を待', '案（利用者',
       'needs the owner', 'for the owner to', "owner's steps", 'for the operator to confirm', 'is for the King to decide', '埋めるかどうかは、王が決めます'];
-    const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const repos = C.repos.concat(十の外).filter((r) => fs.existsSync(path.join(ROOT, r)));
     const files = [];
     const walk = (repo, rel) => {
       let ents;
@@ -6281,7 +6283,7 @@ console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの�
    * 2026-11-18 に、二つの Dependabot の設定の注釈が、マージを運営者の仕事として書いていた。 */
   const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の作業', '利用者が手で', '運営者が確かめてから', '運営者が読んでから',
     'needs the owner', 'for the owner to', 'the operator merges', 'for the operator to confirm'];
-  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+  const repos = C.repos.concat(十の外).filter((r) => fs.existsSync(path.join(ROOT, r)));
   const 面 = {};
   const walk = (repo, rel) => {
     let ents;
@@ -6295,7 +6297,7 @@ console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの�
   const 出た = (m) => Object.keys(m).flatMap((k) => 形.filter((w) => m[k].includes(w)).map((w) => k + ' 「' + w + '」'));
   const now = 出た(面);
   check('.github の YAML（' + repos.length + ' リポジトリ、' + Object.keys(面).length + ' ファイル）に、利用者に作業を割り当てる形が無い（共通の決めごと 16）',
-    repos.length === 13 && Object.keys(面).length > 50 && now.length === 0, now.slice(0, 4).join(' / '));
+    repos.length === C.repos.length + 十の外.length && Object.keys(面).length > 50 && now.length === 0, now.slice(0, 4).join(' / '));
   const 壊し = [
     ['Dependabot の注釈を前の文に戻す', Object.assign({}, 面, { 'nusquama/.github/dependabot.yml': '# マージは運営者が確かめてから行う。\n' })],
     ['英語の注釈を前の文に戻す', Object.assign({}, 面, { 'sophaxis/.github/dependabot.yml': '# the operator merges each one after its checks pass.\n' })],
@@ -6548,6 +6550,69 @@ console.log('\n13d. 2026-11-18：黄金比の窓の予想の (a) と (b) の状�
   ];
   const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
   check('壊して確かめる：ノート・ラベル・続ける範囲・サイト・生成された頁・五言語の一つ・設定・目録・年表・英語の欄・事前登録の前書きのどれか一つを戻すと落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+console.log('\n13e. 2026-11-18：research-collaboration（共同研究の入口、十の外）の写し・決めごとの番号・条文・入口のリンク');
+{
+  /* research-collaboration は、決めごと 15 が新しい主題の経路に挙げる共同研究の入口である。十の外に置く。
+   * 一。SECURITY.md・誤りの知らせの様式・突き合わせの受付の二つは、ここの正本と一字一句同じで、
+   *     その verification/copies.json の sha256 も、ここの正本の sha256 と同じ。
+   * 二。その散文が引く「決めごと 15」は、ここの CLAUDE.md の 15 番で、台帳（numbers.json）の初めの文で始まる。
+   * 三。その取り寄せた条文は、ここと Sophaxis と Nusquama が取り寄せた同じ条の文と一字一句同じ。
+   * 四。docs/collaboration.md が、その入口を指す。 */
+  const RC = 'research-collaboration';
+  const 写し = ['SECURITY.md', '.github/ISSUE_TEMPLATE/error-report.yml', '.github/checked-intake/verify.js', '.github/workflows/checked-intake.yml'];
+  const 今 = {
+    copies: read(RC, path.join('verification', 'copies.json')), numbers: read(RC, path.join('verification', 'numbers.json')),
+    texts: read(RC, path.join('verification', 'statutes-texts.json')), claude: read('cpsbvbng26-dotcom', 'CLAUDE.md'),
+    collab: read('cpsbvbng26-dotcom', path.join('docs', 'collaboration.md')),
+    so: read('sophaxis', path.join('verification', 'statutes-texts.json')), nu: read('nusquama', path.join('verification', 'statutes-texts.json')),
+    cp: read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')),
+  };
+  写し.forEach((f) => { 今['正:' + f] = read('cpsbvbng26-dotcom', f); 今['写:' + f] = read(RC, f); });
+  const 英 = { '個人情報保護法': 'Act on the Protection of Personal Information', '著作権法': 'Copyright Act', '民法': 'Civil Code' };
+  const 問題 = (m) => {
+    const bad = [];
+    const 無い = Object.keys(m).filter((k) => m[k] === null);
+    if (無い.length) return [RC + ' か兄弟のファイルが無い：' + 無い.join(', ')];
+    let J, N, T, S, U, P;
+    try { J = JSON.parse(m.copies); N = JSON.parse(m.numbers); T = JSON.parse(m.texts); S = JSON.parse(m.so); U = JSON.parse(m.nu); P = JSON.parse(m.cp)['条文']; } catch (e) { return ['JSON が読めない']; }
+    for (const f of 写し) {
+      if (m['写:' + f] !== m['正:' + f]) bad.push(f + ' が正本と違う');
+      if (require('crypto').createHash('sha256').update(m['正:' + f], 'utf8').digest('hex') !== (J['写し'] || {})[f]) bad.push('copies.json の ' + f + ' の sha256 が正本と違う');
+    }
+    if (Object.keys(J['写し'] || {}).length !== 写し.length) bad.push('copies.json の写しの数');
+    const r = N.rule || {};
+    const 行 = m.claude.split('\n').find((l) => l.startsWith(r.number + '. '));
+    if (!行 || 行 !== r.number + '. ' + r.begins || r.re !== '決めごと ' + r.number) bad.push('決めごと ' + r.number + ' の初めの文が CLAUDE.md と違う');
+    let 比べた = 0;
+    for (const [k, v] of Object.entries(T)) {
+      const law = k.split(' ')[0], 条 = (/第(\d+)条$/.exec(k) || [])[1];
+      const 相手 = [U[k], P[k] && P[k]['文'], 条 && 英[law] ? S[英[law] + ' Article ' + 条] : undefined].filter((x) => x !== undefined);
+      比べた += 相手.length;
+      if (相手.some((x) => x !== v)) bad.push(k + ' が兄弟の取り寄せた文と違う');
+    }
+    if (比べた < 10) bad.push('比べた組が少ない（' + 比べた + '）');
+    if (m.collab.indexOf('(https://github.com/cpsbvbng26-dotcom/research-collaboration)') < 0) bad.push('docs/collaboration.md が入口を指さない');
+    return bad;
+  };
+  const now = 問題(今);
+  check('research-collaboration：正本の写しと sha256、決めごと 15 の初めの文、取り寄せた条文が兄弟の文と同じこと、docs/collaboration.md のリンク',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: String(今[k] || '').replace(a, b) });
+  const 壊し = [
+    ['写しの SECURITY.md を一字変える', 替('写:SECURITY.md', '7 日以内', '8 日以内')],
+    ['正本の様式だけを変える', 替('正:.github/ISSUE_TEMPLATE/error-report.yml', 'title: "誤り: "', 'title: "誤りの知らせ: "')],
+    ['copies.json の sha256 を一つ変える', 替('copies', /"SECURITY\.md": "[0-9a-f]/, '"SECURITY.md": "x')],
+    ['決めごと 15 の初めの文を変える', 替('claude', '15. **独学の成果は、学部一年次までのものとする。**', '15. **独学の成果は、学部二年次までのものとする。**')],
+    ['台帳の決めごとの番号を変える', 替('numbers', '"number": 15', '"number": 14')],
+    ['取り寄せた条文を一字変える', 替('texts', '個人情報取扱事業者は、個人情報を取り扱うに当たっては', '個人情報取扱事業者は、個人情報を扱うに当たっては')],
+    ['docs/collaboration.md のリンクを外す', 替('collab', '(https://github.com/cpsbvbng26-dotcom/research-collaboration)', '(https://github.com/cpsbvbng26-dotcom)')],
+    ['research-collaboration が無い', Object.assign({}, 今, { copies: null })],
+  ];
+  const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
+  check('壊して確かめる：写し・正本・sha256・決めごとの文・番号・条文・リンク・リポジトリの欠けのどれか一つで落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
