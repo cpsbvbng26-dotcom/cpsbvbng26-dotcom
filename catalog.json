@@ -1,6 +1,6 @@
 {
   "_": "Generated from catalog.json in researcher-profile by build_catalog.js. Do not edit by hand.",
-  "asOf": "2026-11-17",
+  "asOf": "2026-11-18",
   "author": {
     "name": "Takuya Nemoto",
     "alternateName": "根本卓哉",
@@ -418,6 +418,46 @@
         "noteEn": "A preregistration approved on OSF on 2026-11-17 (JST). The draft is games/PREREGISTRATION.md in trinity-operator, and the output of the scan is games/scan-confirmatory.txt. It tests the golden-window conjecture stated in the Figshare preprint (10.6084/m9.figshare.34419198), and is a continuation of first-year work (a continuation rule 15 allows; decided by Claude on 2026-11-17)"
       },
       "registry": "OSF"
+    },
+    {
+      "id": "golden-window-resolution",
+      "type": "thought-experiment",
+      "typeJa": "思考実験・予想",
+      "typeEn": "Thought experiment and conjecture",
+      "status": "frozen",
+      "statusJa": "凍結",
+      "statusEn": "Frozen",
+      "title": "Resolution of the Golden-Window Conjecture and Related Results on β-Transformations with a Hole and on the Trinity-Infinity Series II Game",
+      "titleEn": null,
+      "summaryJa": "黄金比の窓の予想を解き、穴の開いた β 変換と Trinity-Infinity の Series II のゲームについての関連する結果を足した稿。ノートの命題 8 と 9 を証明とともに収める。解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つからない）。Figshare の稿（10.6084/m9.figshare.34419198）の新しい版ではなく、別の項目",
+      "summaryEn": "Resolves the golden-window conjecture and adds related results on β-transformations with a hole and on the Trinity-Infinity Series II game. It contains Propositions 8 and 9 of the note with their proofs. Resolved: part (a) and the formula of part (b) are special cases of known theorems; continuity and strict increase in δ and the limits at both ends were not found in the texts read. A separate Figshare item, not a new version of the preprint 10.6084/m9.figshare.34419198",
+      "doi": "10.6084/m9.figshare.35050300",
+      "conceptDoi": null,
+      "otherDois": [],
+      "url": "https://doi.org/10.6084/m9.figshare.35050300",
+      "version": null,
+      "repository": null,
+      "canonical": {
+        "ja": "Figshare",
+        "en": "Figshare",
+        "url": "https://doi.org/10.6084/m9.figshare.35050300"
+      },
+      "licence": {
+        "spdx": [],
+        "ja": "—（リポジトリに置いていない）",
+        "en": "— (not in a repository)"
+      },
+      "resourceType": "Preprint",
+      "begun": {
+        "date": "2026-09-06",
+        "basis": "first commit of trinity-operator",
+        "period": "first",
+        "ja": "学部一年次の成果（Trinity-Infinity）の続き",
+        "en": "Continuation of first-year work (Trinity-Infinity)",
+        "noteJa": "原稿・PDF・台本は golden-window-resolution（十の外）にあります。trinity-operator の games のノートが置いた黄金比の窓の予想の続きで、学部一年次の成果の続きにあたります（決めごと 15 が、黄金比の窓の予想の続きを許しています）。DOI は 2026-11-18 に利用者から受け取りました。資源の種類は、DataCite で確かめていません",
+        "noteEn": "The source, the PDF and the scripts are in golden-window-resolution (outside the ten repositories). It continues the golden-window conjecture stated in the games note in trinity-operator, and is a continuation of first-year work (rule 15 allows continuations of the golden-window conjecture). The DOI was received from the owner on 2026-11-18. The resource type has not been checked against DataCite"
+      },
+      "registry": "Figshare"
     },
     {
       "id": "celibate-individual",

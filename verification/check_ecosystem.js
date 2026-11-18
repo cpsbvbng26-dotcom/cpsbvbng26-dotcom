@@ -258,7 +258,9 @@ function 一覧の番号(re) {
  * 「すべての版」の DOI が、一覧に無いまま README と CITATION.cff に出ていた。十の外の三つでは、道具と検査と
  * 作り物の答え（verification・tools・bin・src・scripts・tests・examples）を外し、配る文と設定だけを見る。
  * そこには他人の稿の DOI と、試験のための作り物の番号が並ぶので、一覧に載せる意味が無い。 */
-const 十の外 = ['sophaxis', 'deposit-check', 'nusquama'];
+/* 2026-11-18 に research-collaboration（共同研究の入口）を十の外に足した。DOI の走査・Google サイトの所在・
+ * 決めごと 16 の形の走査（散文と YAML）は、この並びを使う。開示の無いマージの数え（13c）は、前の三つのまま。 */
+const 十の外 = ['sophaxis', 'deposit-check', 'nusquama', 'research-collaboration'];
 const 十の外で外す = ['verification', 'tools', 'bin', 'src', 'scripts', 'tests', 'examples'];
 function 出てくる番号(re, repos, extraSkip) {
   const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
@@ -542,6 +544,19 @@ console.log('\n7. 研究者としての位置');
     const 地の文 = /DOI の付いた成果物が (\d+) 篇あり/.exec(text);
     if (papers !== null && (地の文 === null || parseInt(地の文[1], 10) !== papers)) {
       wrong.push('地の文の「DOI の付いた成果物が ' + (地の文 ? 地の文[1] : '無し') + ' 篇」が実際 ' + papers + ' 篇と合わない');
+    }
+    /* 2026-11-18。篇の内訳（哲学・数学・…）の和と、実績の時期の欄の「下の N 篇」も、同じ数え直しと突き合わせる。
+     * 黄金比の窓の予想の解決の稿（Figshare）を足して 10 篇から 11 篇にしたとき、内訳の数学も 4 から 5 に動かした。
+     * 内訳だけ、または時期の欄だけを据え置けば落ちる。 */
+    const 内訳 = /^\| 公開した成果物 \|[^\n]*\*\*(\d+) 篇\*\*（([^）]*)）/m.exec(text);
+    const 内訳の和 = 内訳 ? (内訳[2].match(/ \d+(?=・|$)/g) || []).reduce((s, x) => s + parseInt(x, 10), 0) : null;
+    if (papers !== null && (内訳 === null || parseInt(内訳[1], 10) !== papers || 内訳の和 !== papers)) {
+      wrong.push('公開した成果物の内訳の和 ' + 内訳の和 + ' が実際 ' + papers + ' 篇と合わない');
+    }
+    const 時期の行 = text.split('\n').find((l) => l.indexOf('| 実績の時期 |') === 0) || '';
+    const 下の = [...時期の行.matchAll(/下の (\d+) 篇/g)].map((m) => parseInt(m[1], 10));
+    if (papers !== null && (下の.length === 0 || 下の.some((n) => n !== papers))) {
+      wrong.push('実績の時期の欄の「下の N 篇」' + 下の.join('・') + ' が実際 ' + papers + ' 篇と合わない');
     }
     check('置いた数が、他のファイルから数え直したものと合う', wrong.length === 0,
       wrong.length ? wrong.join(' / ') : rows.map((r) => r[1]).join(' / '));
@@ -2876,7 +2891,7 @@ console.log('\n12j. 二度目の見落とし（2026-11-12 の続き）');
   /* Google サイト。記録が出来事を述べるのはよいが、所在そのものはどこにも置かない。 */
   const 所在 = [];
   let 本 = 0;
-  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter(present);
+  const repos = C.repos.concat(十の外).filter(present);
   for (const repo of repos) {
     let files = [];
     try { files = execFileSync('git', ['-C', path.join(ROOT, repo), 'ls-files'], { encoding: 'utf8', maxBuffer: 1 << 28 }).split('\n').filter(Boolean); } catch (e) { 所在.push(repo + ' の一覧が読めない'); continue; }
@@ -6159,7 +6174,7 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
     const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の手にな', '利用者の手です', '利用者の作業', '利用者が手で',
       '利用者が行います', '利用者が決めます', '利用者を待', '利用者の観察を待', '案（利用者',
       'needs the owner', 'for the owner to', "owner's steps", 'for the operator to confirm', 'is for the King to decide', '埋めるかどうかは、王が決めます'];
-    const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+    const repos = C.repos.concat(十の外).filter((r) => fs.existsSync(path.join(ROOT, r)));
     const files = [];
     const walk = (repo, rel) => {
       let ents;
@@ -6330,7 +6345,7 @@ console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの�
    * 2026-11-18 に、二つの Dependabot の設定の注釈が、マージを運営者の仕事として書いていた。 */
   const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の作業', '利用者が手で', '運営者が確かめてから', '運営者が読んでから',
     'needs the owner', 'for the owner to', 'the operator merges', 'for the operator to confirm'];
-  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+  const repos = C.repos.concat(十の外).filter((r) => fs.existsSync(path.join(ROOT, r)));
   const 面 = {};
   const walk = (repo, rel) => {
     let ents;
@@ -6344,7 +6359,7 @@ console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの�
   const 出た = (m) => Object.keys(m).flatMap((k) => 形.filter((w) => m[k].includes(w)).map((w) => k + ' 「' + w + '」'));
   const now = 出た(面);
   check('.github の YAML（' + repos.length + ' リポジトリ、' + Object.keys(面).length + ' ファイル）に、利用者に作業を割り当てる形が無い（共通の決めごと 16）',
-    repos.length === 13 && Object.keys(面).length > 50 && now.length === 0, now.slice(0, 4).join(' / '));
+    repos.length === C.repos.length + 十の外.length && Object.keys(面).length > 50 && now.length === 0, now.slice(0, 4).join(' / '));
   const 壊し = [
     ['Dependabot の注釈を前の文に戻す', Object.assign({}, 面, { 'nusquama/.github/dependabot.yml': '# マージは運営者が確かめてから行う。\n' })],
     ['英語の注釈を前の文に戻す', Object.assign({}, 面, { 'sophaxis/.github/dependabot.yml': '# the operator merges each one after its checks pass.\n' })],
@@ -6597,6 +6612,223 @@ console.log('\n13d. 2026-11-18：黄金比の窓の予想の (a) と (b) の状�
   ];
   const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
   check('壊して確かめる：ノート・ラベル・続ける範囲・サイト・生成された頁・五言語の一つ・設定・目録・年表・英語の欄・事前登録の前書きのどれか一つを戻すと落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+console.log('\n13e. 2026-11-18：research-collaboration（共同研究の入口、十の外）の写し・決めごとの番号・条文・入口のリンク');
+{
+  /* research-collaboration は、決めごと 15 が新しい主題の経路に挙げる共同研究の入口である。十の外に置く。
+   * 一。SECURITY.md・誤りの知らせの様式・突き合わせの受付の二つは、ここの正本と一字一句同じで、
+   *     その verification/copies.json の sha256 も、ここの正本の sha256 と同じ。
+   * 二。その散文が引く「決めごと 15」は、ここの CLAUDE.md の 15 番で、台帳（numbers.json）の初めの文で始まる。
+   * 三。その取り寄せた条文は、ここと Sophaxis と Nusquama が取り寄せた同じ条の文と一字一句同じ。
+   * 四。docs/collaboration.md が、その入口を指す。 */
+  const RC = 'research-collaboration';
+  const 写し = ['SECURITY.md', '.github/ISSUE_TEMPLATE/error-report.yml', '.github/checked-intake/verify.js', '.github/workflows/checked-intake.yml'];
+  const 今 = {
+    copies: read(RC, path.join('verification', 'copies.json')), numbers: read(RC, path.join('verification', 'numbers.json')),
+    texts: read(RC, path.join('verification', 'statutes-texts.json')), claude: read('cpsbvbng26-dotcom', 'CLAUDE.md'),
+    collab: read('cpsbvbng26-dotcom', path.join('docs', 'collaboration.md')),
+    so: read('sophaxis', path.join('verification', 'statutes-texts.json')), nu: read('nusquama', path.join('verification', 'statutes-texts.json')),
+    cp: read('cpsbvbng26-dotcom', path.join('verification', 'statutes.json')),
+  };
+  写し.forEach((f) => { 今['正:' + f] = read('cpsbvbng26-dotcom', f); 今['写:' + f] = read(RC, f); });
+  const 英 = { '個人情報保護法': 'Act on the Protection of Personal Information', '著作権法': 'Copyright Act', '民法': 'Civil Code' };
+  const 問題 = (m) => {
+    const bad = [];
+    const 無い = Object.keys(m).filter((k) => m[k] === null);
+    if (無い.length) return [RC + ' か兄弟のファイルが無い：' + 無い.join(', ')];
+    let J, N, T, S, U, P;
+    try { J = JSON.parse(m.copies); N = JSON.parse(m.numbers); T = JSON.parse(m.texts); S = JSON.parse(m.so); U = JSON.parse(m.nu); P = JSON.parse(m.cp)['条文']; } catch (e) { return ['JSON が読めない']; }
+    for (const f of 写し) {
+      if (m['写:' + f] !== m['正:' + f]) bad.push(f + ' が正本と違う');
+      if (require('crypto').createHash('sha256').update(m['正:' + f], 'utf8').digest('hex') !== (J['写し'] || {})[f]) bad.push('copies.json の ' + f + ' の sha256 が正本と違う');
+    }
+    if (Object.keys(J['写し'] || {}).length !== 写し.length) bad.push('copies.json の写しの数');
+    const r = N.rule || {};
+    const 行 = m.claude.split('\n').find((l) => l.startsWith(r.number + '. '));
+    if (!行 || 行 !== r.number + '. ' + r.begins || r.re !== '決めごと ' + r.number) bad.push('決めごと ' + r.number + ' の初めの文が CLAUDE.md と違う');
+    let 比べた = 0;
+    for (const [k, v] of Object.entries(T)) {
+      const law = k.split(' ')[0], 条 = (/第(\d+)条$/.exec(k) || [])[1];
+      const 相手 = [U[k], P[k] && P[k]['文'], 条 && 英[law] ? S[英[law] + ' Article ' + 条] : undefined].filter((x) => x !== undefined);
+      比べた += 相手.length;
+      if (相手.some((x) => x !== v)) bad.push(k + ' が兄弟の取り寄せた文と違う');
+    }
+    if (比べた < 10) bad.push('比べた組が少ない（' + 比べた + '）');
+    if (m.collab.indexOf('(https://github.com/cpsbvbng26-dotcom/research-collaboration)') < 0) bad.push('docs/collaboration.md が入口を指さない');
+    return bad;
+  };
+  const now = 問題(今);
+  check('research-collaboration：正本の写しと sha256、決めごと 15 の初めの文、取り寄せた条文が兄弟の文と同じこと、docs/collaboration.md のリンク',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: String(今[k] || '').replace(a, b) });
+  const 壊し = [
+    ['写しの SECURITY.md を一字変える', 替('写:SECURITY.md', '7 日以内', '8 日以内')],
+    ['正本の様式だけを変える', 替('正:.github/ISSUE_TEMPLATE/error-report.yml', 'title: "誤り: "', 'title: "誤りの知らせ: "')],
+    ['copies.json の sha256 を一つ変える', 替('copies', /"SECURITY\.md": "[0-9a-f]/, '"SECURITY.md": "x')],
+    ['決めごと 15 の初めの文を変える', 替('claude', '15. **独学の成果は、学部一年次までのものとする。**', '15. **独学の成果は、学部二年次までのものとする。**')],
+    ['台帳の決めごとの番号を変える', 替('numbers', '"number": 15', '"number": 14')],
+    ['取り寄せた条文を一字変える', 替('texts', '個人情報取扱事業者は、個人情報を取り扱うに当たっては', '個人情報取扱事業者は、個人情報を扱うに当たっては')],
+    ['docs/collaboration.md のリンクを外す', 替('collab', '(https://github.com/cpsbvbng26-dotcom/research-collaboration)', '(https://github.com/cpsbvbng26-dotcom)')],
+    ['research-collaboration が無い', Object.assign({}, 今, { copies: null })],
+  ];
+  const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
+  check('壊して確かめる：写し・正本・sha256・決めごとの文・番号・条文・リンク・リポジトリの欠けのどれか一つで落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+console.log('\n13f. 2026-11-19：本文の空の issue に答えるワークフロー（.github/workflows/empty-issue.yml）が 15 のリポジトリで一字一句同じで、閉じず・鍵を掛けず・消さず、決めた issue にだけ答える');
+{
+  /* 2026-11-18 に利用者が余計な issue を除く仕組みを求め、2026-11-19 に Claude が決めた。きっかけは、スマートフォンで様式が出ず、本文の空のまま
+   * 開かれた issue である。GitHub の説明書（Deleting an issue）は、個人のアカウントが持つリポジトリでは、そのアカウントだけが
+   * issue を消せると書く。実行の鍵はそのアカウントではないので、消さない。閉じもせず、鍵も掛けない。題に求め（削除・権利・
+   * 個人の情報・氏名・同意の撤回）が書かれうるが、語の並びでは見分けきれず（2026-11-15）、Sophaxis の規程は自動の手順が鍵を
+   * 掛けないと書くためである。することは、ラベル empty body と、様式を指す決まった文のコメントを一つ付けることだけである。
+   * 一。15 のリポジトリの写しが、ここの正本と一字一句同じ。docs/checks.md の名乗る数が、写しの数と同じ。
+   * 二。形：権限は issues: write だけ、起こすのは開いた・直した issue と週に一度、仕事は一つで時間の上限は 15 分まで、
+   *     開いたときだけ 10 分待つ、actions は 40 桁で固め、受付と同じコミットを指す。issue の文を環境とコマンドに入れない。
+   *     道具に閉じる・鍵を掛ける・消す呼び出しが無い。
+   * 三。振る舞い：道具の文をそのまま子の工程で、作った issue に走らせ、どの見本でも、呼んだ API が決めたとおりになる。
+   *     ログに題も本文も出ない。 */
+  const EI = path.join('.github', 'workflows', 'empty-issue.yml');
+  const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check', 'research-collaboration', 'golden-window-resolution']);
+  const 今 = { wf: Object.fromEntries(REPOS.map((r) => [r, read(r, EI)])), checks: read('cpsbvbng26-dotcom', path.join('docs', 'checks.md')) || '',
+    intake: read('cpsbvbng26-dotcom', path.join('.github', 'workflows', 'checked-intake.yml')) || '' };
+  const SAY = /本文の空の issue に答える仕事（`empty-issue\.yml`）は、(\d+) のリポジトリに一字一句同じ写しを置いています。/;
+  const scriptOf = (t) => {
+    const m = /\n {10}node - <<'SCRIPT'\n([\s\S]*?)\n {10}SCRIPT\n/.exec(String(t || ''));
+    return m ? m[1].split('\n').map((l) => l.replace(/^ {10}/, '')).join('\n') : null;
+  };
+  /* 子の工程：道具を見本ごとに走らせ、呼んだ API・ログ・終わりの番号を返す。fetch・fs・process・console は差し替える。 */
+  const CHILD = String.raw`
+    const S = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+    const out = [];
+    (async () => {
+      for (const sc of S.scenarios) {
+        const calls = [], logs = [];
+        let code = 0;
+        const now = Date.now(), H = 60 * 60 * 1000;
+        const fix = (i) => Object.assign({ state: 'open', body: '', labels: [], comments: 0, user: { login: 'alice', type: 'User' }, author_association: 'NONE',
+          title: 'TITLE-MARK-' + i.number }, i, { created_at: new Date(now - (i.hours === undefined ? 0.2 : i.hours) * H).toISOString() });
+        const api = Object.fromEntries((sc.api || []).map((i) => [i.number, fix(i)]));
+        const list = (sc.list || []).map(fix);
+        const fetch = async (url, o) => {
+          const m = (o && o.method) || 'GET', u = String(url).replace('https://api.github.com/repos/o/r', '');
+          calls.push({ m, u, b: o && o.body ? JSON.parse(o.body) : null });
+          if (sc.fail && m !== 'GET') return { ok: false, status: 500, json: async () => ({}) };
+          let body = {}, status = 200;
+          if (m === 'GET' && /^\/issues\?/.test(u)) { const p = Number(/[?&]page=(\d+)/.exec(u)[1]), per = Number(/[?&]per_page=(\d+)/.exec(u)[1]); body = list.slice((p - 1) * per, p * per); }
+          else if (m === 'GET') { const n = Number(u.split('/')[2]); body = api[n] || list.find((i) => i.number === n); if (!body) status = 404; }
+          else if (m === 'POST' && u === '/labels') status = sc.labelExists ? 422 : 201;
+          return { ok: status < 300, status, json: async () => body };
+        };
+        const fakeFs = { readFileSync: () => JSON.stringify(sc.event || {}) };
+        const proc = { env: { GITHUB_REPOSITORY: 'o/r', GITHUB_SERVER_URL: 'https://github.com', GITHUB_TOKEN: 'x', GITHUB_EVENT_PATH: '/e', GITHUB_EVENT_NAME: sc.name }, exit: (c) => { code = c; } };
+        const cons = { log: (...a) => logs.push(a.join(' ')), error: (...a) => logs.push(a.join(' ')) };
+        try { new Function('require', 'process', 'fetch', 'console', S.script)((n) => (n === 'fs' ? fakeFs : require(n)), proc, fetch, cons); } catch (e) { code = 'throw'; }
+        await new Promise((r) => setTimeout(r, 30));
+        out.push({ calls, logs, code });
+      }
+      process.stdout.write(JSON.stringify(out));
+    })();`;
+  const ev = (action, n, o = {}) => ({ action, issue: Object.assign({ number: n, body: '', labels: [] }, o) });
+  const many = (extra) => Array.from({ length: 150 }, (_, k) => ({ number: 1000 + k, body: 'filled', hours: 100 })).map((i, k) => extra[k] || i);
+  /* 見本：[名, 見本, 呼ぶはずの書き込み（GET を除く、メソッドと URL）]。 */
+  const W3 = (n) => ['POST /labels', 'POST /issues/' + n + '/labels', 'POST /issues/' + n + '/comments'];
+  const SC = [
+    ['開いた・空・ラベル無し', { name: 'issues', event: ev('opened', 5), api: [{ number: 5 }] }, W3(5)],
+    ['開いた・待つあいだに本文が書かれた', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, body: '### What it says\n\nBODY-MARK' }] }, []],
+    ['開いた・空白だけ', { name: 'issues', event: ev('opened', 6), api: [{ number: 6, body: ' \n\t \r\n' }] }, W3(6)],
+    ['開いた・ラベルあり', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, labels: [{ name: 'erratum' }] }] }, []],
+    ['開いた・bot', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, user: { login: 'x[bot]', type: 'Bot' } }] }, []],
+    ['開いた・持ち主', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, author_association: 'OWNER' }] }, []],
+    ['開いた・共同作業者', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, author_association: 'COLLABORATOR' }] }, []],
+    ['開いた・コメントあり', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, comments: 1 }] }, []],
+    ['開いた・もう閉じている', { name: 'issues', event: ev('opened', 5), api: [{ number: 5, state: 'closed' }] }, []],
+    ['開いた・ラベルがもうある（422）', { name: 'issues', labelExists: true, event: ev('opened', 7), api: [{ number: 7 }] }, W3(7)],
+    ['直した・ラベルあり・本文が書かれた', { name: 'issues', event: ev('edited', 8), api: [{ number: 8, body: 'BODY-MARK', labels: [{ name: 'empty body' }] }] }, ['DELETE /issues/8/labels/empty%20body']],
+    ['直した・ラベルあり・まだ空', { name: 'issues', event: ev('edited', 8), api: [{ number: 8, labels: [{ name: 'empty body' }] }] }, []],
+    ['直した・ラベル無し・書かれた', { name: 'issues', event: ev('edited', 8), api: [{ number: 8, body: 'BODY-MARK' }] }, []],
+    ['週に一度・2 頁目の古い空の issue だけ', { name: 'schedule', event: {}, list: many({ 3: { number: 21, hours: 2 }, 5: { number: 22, hours: 72, pull_request: {} }, 7: { number: 23, hours: 72, labels: [{ name: 'x' }] },
+      9: { number: 24, hours: 72, body: 'BODY-MARK' }, 11: { number: 25, hours: 72, user: { login: 'b[bot]', type: 'Bot' } }, 120: { number: 20, hours: 72 } }) }, W3(20)],
+    ['API が落ちる', { name: 'issues', fail: true, event: ev('opened', 9), api: [{ number: 9 }] }, ['POST /labels']],
+  ];
+  const run = (script) => {
+    try { return JSON.parse(execFileSync(process.execPath, ['-e', CHILD], { encoding: 'utf8', input: JSON.stringify({ script, scenarios: SC.map((s) => s[1]) }) })); } catch (e) { return null; }
+  };
+  const ran = new Map();
+  const runOnce = (s) => { if (!ran.has(s)) ran.set(s, run(s)); return ran.get(s); };
+  function 問題(x) {
+    const bad = [];
+    const t0 = x.wf['cpsbvbng26-dotcom'];
+    if (!t0) return ['正本が無い'];
+    /* 一。写しと名乗る数。 */
+    for (const r of REPOS) if (x.wf[r] !== t0) bad.push(r + '：' + (x.wf[r] === null ? '写しが無い' : '写しが違う'));
+    const m = SAY.exec(x.checks);
+    if (!m || Number(m[1]) !== REPOS.filter((r) => x.wf[r] === t0).length || Number(m[1]) !== REPOS.length) bad.push('docs/checks.md の名乗る数が写しの数と違う');
+    /* 二。形。 */
+    const code = t0.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+    if (!/\non:\n  issues:\n    types: \[opened, edited\]\n  schedule:\n    - cron: '\d+ \d+ \* \* \d'\npermissions:\n  issues: write\njobs:\n  answer:\n/.test(code)) bad.push('起こすもの・権限・仕事の形');
+    if ((code.match(/permissions:/g) || []).length !== 1) bad.push('権限がほかにもある');
+    const to = /\n {4}timeout-minutes: (\d+)\n/.exec(code);
+    if (!to || Number(to[1]) > 15 || (code.match(/timeout-minutes:/g) || []).length !== 1) bad.push('時間の上限');
+    if (!/\n {6}- if: github\.event_name == 'issues' && github\.event\.action == 'opened'\n {8}run: sleep 600\n/.test(code)) bad.push('開いたときに 10 分待たない');
+    const uses = [...code.matchAll(/uses: (\S+)@(\S+)/g)];
+    if (!uses.length || uses.some(([, a, sha]) => !/^[0-9a-f]{40}$/.test(sha) || !x.intake.includes('uses: ' + a + '@' + sha))) bad.push('actions を受付と同じコミットで固めていない');
+    if (/\$\{\{[^}]*github\.event\.(issue|comment)\.(body|title|user)|toJSON\(/.test(code) || /\$\{\{/.test(code.replace(/\$\{\{ secrets\.GITHUB_TOKEN \}\}/, ''))) bad.push('式で issue の中身を読む');
+    const s = scriptOf(t0);
+    if (s === null) return bad.concat(['道具が取り出せない']);
+    if (/'PATCH'|'PUT'|\/lock|lock_reason|state_reason|state:|deleteIssue|graphql/i.test(s)) bad.push('道具に閉じる・鍵を掛ける・消す呼び出しがある');
+    if (!s.includes('const DAY = 24 * 60 * 60 * 1000;')) bad.push('週の見回りの 24 時間');
+    for (const w of ['この issue は閉じず、鍵も掛けません。', 'This issue is not closed or locked.', "'/issues/new/choose'", '一部のスマートフォンのアプリやブラウザでは、issue の様式が表示されないことがあります。', 'The issue forms may not show in some mobile apps and browsers.'])
+      if (!s.includes(w)) bad.push('コメントに「' + w.slice(0, 16) + '」が無い');
+    /* 三。振る舞い。 */
+    const res = runOnce(s);
+    if (!res || res.length !== SC.length) return bad.concat(['道具が走らない']);
+    SC.forEach(([name, sc, want], k) => {
+      const r = res[k];
+      const writes = r.calls.filter((c) => c.m !== 'GET').map((c) => c.m + ' ' + c.u);
+      if (JSON.stringify(writes) !== JSON.stringify(want)) bad.push(name + '：' + (writes.join('、') || '書かない'));
+      if (r.logs.some((l) => /TITLE-MARK|BODY-MARK/.test(l))) bad.push(name + '：ログに題か本文が出る');
+      if (sc.fail ? r.code !== 1 : r.code !== 0) bad.push(name + '：終わりの番号 ' + r.code);
+      const c = r.calls.find((y) => /\/comments$/.test(y.u));
+      if (c && !(c.b.body.includes('https://github.com/o/r/issues/new/choose') && /本文が空/.test(c.b.body) && /empty body/.test(c.b.body))) bad.push(name + '：コメントが様式を指さない');
+      if (/^開いた|^直した/.test(name) && !r.calls.some((y) => y.m === 'GET' && y.u === '/issues/' + sc.event.issue.number)) bad.push(name + '：issue を読み直さない');
+    });
+    return bad;
+  }
+  const now = 問題(今);
+  check('本文の空の issue に答えるワークフロー：' + REPOS.length + ' のリポジトリの写しが正本と一字一句同じで、権限は issues: write だけ、閉じる・鍵を掛ける・消す呼び出しが無く、'
+    + SC.length + ' の見本で決めた issue にだけラベルとコメントを付け、ログに題と本文を出さない', now.length === 0, now.slice(0, 6).join(' / '));
+  const wf = (r, f) => Object.assign({}, 今, { wf: Object.assign({}, 今.wf, { [r]: f(今.wf[r]) }) });
+  const all = (f) => Object.assign({}, 今, { wf: Object.fromEntries(REPOS.map((r) => [r, f(今.wf[r])])) });
+  const 壊し = [
+    ['一つの写しを一字変える', wf('golden-window-resolution', (t) => t.replace('waits 10 minutes', 'waits ten minutes'))],
+    ['一つの写しが無い', wf('research-collaboration', () => null)],
+    ['名乗る数を変える', Object.assign({}, 今, { checks: 今.checks.replace(SAY, (a, n) => a.replace(n, String(Number(n) + 1))) })],
+    ['権限に contents: write を足す', all((t) => t.replace('permissions:\n  issues: write\n', 'permissions:\n  contents: write\n  issues: write\n'))],
+    ['PR でも起こす', all((t) => t.replace('  schedule:\n', '  pull_request_target:\n  schedule:\n'))],
+    ['時間の上限を 60 分に', all((t) => t.replace('timeout-minutes: 15', 'timeout-minutes: 60'))],
+    ['待たない', all((t) => t.replace('run: sleep 600', 'run: sleep 6'))],
+    ['actions を版の名で指す', all((t) => t.replace(/setup-node@[0-9a-f]{40}/, 'setup-node@v7'))],
+    ['本文を環境に入れる', all((t) => t.replace('GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n', 'GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          BODY: ${{ github.event.issue.body }}\n'))],
+    ['閉じる', all((t) => t.replace("            await gh('POST', '/issues/' + n + '/comments', { body: COMMENT });\n", "            await gh('POST', '/issues/' + n + '/comments', { body: COMMENT });\n            await gh('PATCH', '/issues/' + n, { state: 'closed', state_reason: 'not_planned' });\n"))],
+    ['鍵を掛ける', all((t) => t.replace("            await gh('POST', '/issues/' + n + '/comments', { body: COMMENT });\n", "            await gh('POST', '/issues/' + n + '/comments', { body: COMMENT });\n            await gh('PUT', '/issues/' + n + '/lock', { lock_reason: 'off-topic' });\n"))],
+    ['ラベルを見ない', all((t) => t.replace('&& (i.labels || []).length === 0 ', ''))],
+    ['bot を見ない', all((t) => t.replace("&& !(i.user && i.user.type === 'Bot') ", ''))],
+    ['持ち主と共同作業者を見ない', all((t) => t.replace('&& !STAFF.includes(i.author_association)', ''))],
+    ['コメントを見ない', all((t) => t.replace('&& Number(i.comments || 0) === 0', ''))],
+    ['週の見回りが 24 時間を待たない', all((t) => t.replace('if (!qualifies(x, DAY)) continue;', 'if (!qualifies(x, 0)) continue;').replace('if (qualifies(i, DAY))', 'if (qualifies(i, 0))'))],
+    ['1 頁目しか読まない', all((t) => t.replace('if (list.length < 100) break;', 'break;'))],
+    ['読み直さず出来事の issue を使う', all((t) => t.replace("const i = await gh('GET', '/issues/' + n);", 'const i = event.issue;'))],
+    ['ログに題を書く', all((t) => t.replace("else console.log('#' + n + ': left alone.');", "else console.log('#' + n + ': left alone. ' + i.title);"))],
+    ['本文が書かれてもラベルを外さない', all((t) => t.replace("await gh('DELETE', '/issues/' + n + '/labels/' + encodeURIComponent(LABEL));", ''))],
+    ['コメントから様式のリンクを外す', all((t) => t.replace("const forms = server + '/' + repo + '/issues/new/choose';", "const forms = server + '/' + repo;"))],
+    ['API の失敗で止まらない', all((t) => t.replace("if (!r.ok) throw new Error(method + ' ' + url.split('?')[0] + ' answered ' + r.status);", ''))],
+  ];
+  const 通った = 壊し.filter(([, y]) => 問題(y).length === 0).map(([n]) => n);
+  check('壊して確かめる：写し・名乗る数・権限・起こすもの・時間の上限・待ち・固めた actions・環境の本文・閉じる・鍵を掛ける・ラベル・bot・持ち主・コメント・24 時間・頁・読み直し・ログの題・ラベルを外すこと・様式のリンク・API の失敗のどれか一つで落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 

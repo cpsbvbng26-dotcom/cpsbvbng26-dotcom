@@ -160,8 +160,9 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 | --- | --- |
 | Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA`、aiXiv.science `aixiv.261024.000001` |
 | Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | Figshare `10.6084/m9.figshare.34419198` |
+| Resolution of the Golden-Window Conjecture and Related Results on β-Transformations with a Hole and on the Trinity-Infinity Series II Game | Figshare `10.6084/m9.figshare.35050300` |
 
-Figshare の稿は凍結しており、黄金比の窓の予想の (a) と (b) を予想のまま載せています。
+2026-10-13 の Figshare の稿は凍結しており、黄金比の窓の予想の (a) と (b) を予想のまま載せています。
 二つは、2026-11-18 に trinity-operator のノートの命題 8 と命題 9 で証明しました。(a) と (b) の式は既知の定理の特別な場合です。
 
 SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
@@ -172,6 +173,12 @@ aiXiv.science に出したのは 2026-10-24 です。番号は利用者から受
 場の設計には DOI が含まれています。運営が場の仕組みを書いた論文（arXiv `2508.15126`）は、arXiv や論文誌と並べた機能の比較表に DOI の項目を置いています。DOI が場の計画に入っていることは、利用者から受け取りました。この稿には、2026-10-30 の時点でまだ DOI が振られていません。比較表のうち aiXiv.science 自身の欄の値は、こちらでは確かめていません。
 
 Figshare に載ったのは 2026-10-13 です。DOI は利用者から受け取りました。trinity-operator の games のノートを、英語の論文の形にしたものです。ノートのほうは GitHub にあり、DOI を持ちません。
+
+黄金比の窓の予想の解決の稿（Resolution of the Golden-Window Conjecture …）の DOI は、2026-11-18 に利用者から受け取りました。
+2026-10-13 の Figshare の稿の新しい版ではなく、別の項目です。
+ノートの命題 8 と命題 9 を、証明とともに収めています。
+原稿・PDF・台本は golden-window-resolution にあります。このリポジトリは 10 リポジトリの外です。
+番号が指す記録の中身と、DataCite の資源の種類は、確かめていません。
 
 ### 論文の頁をまだ作っていない本文
 
