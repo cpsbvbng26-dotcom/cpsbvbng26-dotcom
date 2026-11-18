@@ -1427,17 +1427,25 @@ section('10.59 自己紹介が名乗っていること');
    * 検索にかかるように sitemap に載せ、自己紹介の七つの面から案内する。
    * **予想を「証明した」に書き換えない。**未証明と、文献と照合していないことと、
    * 人名ではないことを、二言語とも固める。どれか一つ消えれば落ちる。
+   * 2026-11-18 に、(a) と (b) を trinity-operator のノートの命題 8 と 9 で証明した。証明を足してから
+   * 頁の状態を動かした。同じ日に文献と照合した。固める文を「未証明」から「(a)・(b) を命題 8・9 で証明した」と
+   * 「状態は解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、
+   * 読んだ文献には見つからない）」と「命題 1〜7 は照合していない」に移した。同じ厳しさで、どれか一つ消えれば落ちる。
    * **三篇のゼロと、窓の外の証明の「まだ数えていない」を混ぜない。**ゼロは照合して
    * 何も無かった状態、数えていないは照合がまだの状態である。 */
   {
     const 頁 = [
-      ['notes/golden-window.html', ['証明されていない予想である', '文献とは照合していない', '人名ではない',
+      ['notes/golden-window.html', ['(a) は証明した（命題 8）。(b) も証明した（命題 9）。', '状態は、解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つからない）である。',
+                                    '文献とは照合していない', '人名ではない',
                                     '窓の外の証明は、ゼロではなく、まだ数えていない',
                                     '枠組みが新しい理論になるわけではない',
                                     '数学的な意義は、文献照合の条件つきである。', '科学哲学的な意義は、そのまま残る。',
                                     '理論ではない。証明は文献と照合しておらず、第三者の公認もない。',
                                     '名乗ることと、分野が数えることは別である。']],
-      ['notes/golden-window.en.html', ['It has not been proved.', 'It has not been checked against the literature.',
+      ['notes/golden-window.en.html', ['Both are proved: part (a) is Proposition 8 and part (b) is Proposition 9 of the note.',
+                                       'Status: resolved (part (a) and the formula of part (b) are special cases of known theorems; continuity and strict increase in ',
+                                       'and the limits at both ends were not found in the texts read).',
+                                       'Propositions 1–7 have not been checked against the literature.',
                                        'It is not a person’s name.',
                                        'The proofs outside the window are not zero: they are not yet counted.',
                                        'the framework does not become a new theory.',
@@ -1452,7 +1460,7 @@ section('10.59 自己紹介が名乗っていること');
       const 出た = xs.filter((x) => h.indexOf(x) >= 0);
       if (出た.length !== xs.length) 欠け.push(f + ' は ' + 出た.length);
     });
-    ok('黄金比の窓の予想の頁が、未証明・未照合・人名でないこと・ゼロとまだ数えていないの区別・解けても新理論でないこと・意義の条件と科学哲学の側・名乗る貢献の条件を二言語とも書いている',
+    ok('黄金比の窓の予想の頁が、(a)・(b) を命題 8・9 で証明したこと・未照合・人名でないこと・ゼロとまだ数えていないの区別・解けても新理論でないこと・意義の条件と科学哲学の側・名乗る貢献の条件を二言語とも書いている',
        欠け.length === 0, 欠け.length ? 欠け.join(' / ') : (頁.length + ' 言語 × ' + 頁[0][1].length));
 
     const 証明済み = 頁.filter(([f]) => /conjecture has been proved|予想を証明した|予想は証明された/.test(read(f)))
