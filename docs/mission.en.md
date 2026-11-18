@@ -11,7 +11,7 @@ Where this statement says “at present”, it means as of the date this page wa
 
 This site (cpsbvbng26-dotcom.vercel.app) is the profile site of Takuya Nemoto.
 
-This statement applies to this site, to the 10 repositories listed in the [Disclaimer](../DISCLAIMER.en.md), and to deposit-check. Sophaxis and Nusquama have their own terms and statements, and this statement does not apply to them.
+This statement applies to this site, to the 10 repositories listed in the [Disclaimer](../DISCLAIMER.en.md), and to deposit-check. Sophaxis has its own terms and statement, and this statement does not apply to it.
 
 At present, these places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
 

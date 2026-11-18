@@ -11,7 +11,7 @@ English: [Statement of Purpose](mission.en.md)。訳と食い違うときは、�
 
 このサイト（cpsbvbng26-dotcom.vercel.app）は、根本卓哉のプロフィールサイトです。
 
-この声明は、このサイトと、[免責事項](../DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis と Nusquama には、それぞれのサイトの規約と声明があり、この声明は掛かりません。
+この声明は、このサイトと、[免責事項](../DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis には、そのサイトの規約と声明があり、この声明は掛かりません。
 
 これらの場所は、現在、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。
 

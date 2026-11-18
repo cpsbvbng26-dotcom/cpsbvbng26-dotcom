@@ -509,7 +509,7 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 
 このアカウントの運営理念・声明は、[サイトの頁](https://cpsbvbng26-dotcom.vercel.app/notes/mission.html)と [docs/mission.md](docs/mission.md) にあります。
 適用されるのは、研究の系列の 10 のリポジトリでは[免責事項](DISCLAIMER.md)と各ライセンス、deposit-check ではそのライセンスです。
-Sophaxis と Nusquama には、それぞれのサイトの規約と声明が掛かります。
+Sophaxis には、そのサイトの規約と声明が掛かります。
 第 1 条と第 2 条を、声明からそのまま写します。
 写した条で「現在」と書いたことは、声明の頁の最終更新の日の時点のことです。
 
@@ -517,7 +517,7 @@ Sophaxis と Nusquama には、それぞれのサイトの規約と声明が掛�
 
 このサイト（cpsbvbng26-dotcom.vercel.app）は、根本卓哉のプロフィールサイトです。
 
-この声明は、このサイトと、[免責事項](DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis と Nusquama には、それぞれのサイトの規約と声明があり、この声明は掛かりません。
+この声明は、このサイトと、[免責事項](DISCLAIMER.md)が挙げる 10 のリポジトリと、deposit-check に掛かります。Sophaxis には、そのサイトの規約と声明があり、この声明は掛かりません。
 
 これらの場所は、現在、独学で書いた査読前のプレプリントと、それをあとから機械で監査する道具と記録を公開しています。
 
