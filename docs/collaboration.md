@@ -39,5 +39,7 @@ ORCID は 0009-0000-1406-0547 です。
 
 ## 連絡
 
-[GitHub の issue](https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/issues/new/choose) で受けます。
+申し出は、[research-collaboration](https://github.com/cpsbvbng26-dotcom/research-collaboration) の様式で受けます。
+協力の条件、著者の示し方、個人情報の扱い、法令の読み方も、そのリポジトリに置いてあります。
+2026-11-18 に置きました。
 個人の連絡先は、ここには置きません。
