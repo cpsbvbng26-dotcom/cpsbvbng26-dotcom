@@ -442,7 +442,7 @@ Commit authorship, trailers and pull request bodies are all fixed in the history
 
 The Statement of Purpose for this account is on [the site](https://cpsbvbng26-dotcom.vercel.app/notes/mission.en.html) and in [docs/mission.en.md](docs/mission.en.md).
 What applies is the [Disclaimer](DISCLAIMER.en.md) and each licence for the 10 repositories of the research series, and its licence for deposit-check.
-Sophaxis and Nusquama are covered by the terms and statement of each site.
+Sophaxis is covered by the terms and statement of its site.
 Articles 1 and 2 are copied here from the statement as they stand.
 Where the articles copied here say “at present”, it means as of the date the statement’s page was last updated.
 
@@ -450,7 +450,7 @@ Where the articles copied here say “at present”, it means as of the date the
 
 This site (cpsbvbng26-dotcom.vercel.app) is the profile site of Takuya Nemoto.
 
-This statement applies to this site, to the 10 repositories listed in the [Disclaimer](DISCLAIMER.en.md), and to deposit-check. Sophaxis and Nusquama have their own terms and statements, and this statement does not apply to them.
+This statement applies to this site, to the 10 repositories listed in the [Disclaimer](DISCLAIMER.en.md), and to deposit-check. Sophaxis has its own terms and statement, and this statement does not apply to it.
 
 At present, these places publish preprints written through self-study, none of them peer-reviewed, together with the tools and records that audit them by machine afterwards.
 

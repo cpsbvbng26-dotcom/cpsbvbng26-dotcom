@@ -205,9 +205,15 @@ function 一覧の番号(re) {
   const rows = index.split('\n').filter((l) => l.indexOf('|') === 0).join('\n');
   return new Set((rows.match(re) || []).map((d) => d.toLowerCase()));
 }
-function 出てくる番号(re, repos) {
+/* 2026-11-18 の点検。十の外の三つ（sophaxis・deposit-check・nusquama）も走る。sophaxis と deposit-check の
+ * 「すべての版」の DOI が、一覧に無いまま README と CITATION.cff に出ていた。十の外の三つでは、道具と検査と
+ * 作り物の答え（verification・tools・bin・src・scripts・tests・examples）を外し、配る文と設定だけを見る。
+ * そこには他人の稿の DOI と、試験のための作り物の番号が並ぶので、一覧に載せる意味が無い。 */
+const 十の外 = ['sophaxis', 'deposit-check', 'nusquama'];
+const 十の外で外す = ['verification', 'tools', 'bin', 'src', 'scripts', 'tests', 'examples'];
+function 出てくる番号(re, repos, extraSkip) {
   const SKIP = new Set(['.git', 'node_modules', 'site', 'dist', 'pdf', 'venv',
-                        '__pycache__', 'assets', 'data']);
+                        '__pycache__', 'assets', 'data'].concat(extraSkip || []));
   const EXT = ['.md', '.html', '.cff', '.json', '.js', '.py', '.yml', '.toml'];
   const found = new Set();
   const 自分 = path.join(ROOT, 'cpsbvbng26-dotcom', DOI_INDEX);
@@ -230,6 +236,7 @@ function 出てくる番号(re, repos) {
 function 一覧と突き合わせる(名, re, repos) {
   const listed = 一覧の番号(re);
   const found = 出てくる番号(re, repos);
+  for (const d of 出てくる番号(re, 十の外.filter((r) => !repos.includes(r)), 十の外で外す)) found.add(d);
   const missing = [...found].filter((d) => listed === null || !listed.has(d)).sort();
   const orphan = listed === null ? [] : [...listed].filter((d) => !found.has(d)).sort();
   check('出てくる' + 名 + 'の番号が、すべて一覧に載っている', listed !== null && missing.length === 0,
@@ -6185,10 +6192,266 @@ console.log('\n13b. 百本ノック五（OSF・識別子・名寄せ・用語・
   {
     const f = D('figshare.md');
     const a = [...new Set(f.match(/10\.6084\/m9\.figshare\.\d+/g) || [])].sort();
-    const b = [...(一覧の番号(/10\.6084\/m9\.figshare\.\d+/g) || [])].sort();
+    /* 2026-11-18：「例として置いた番号」の節は、十の外の二つが例に置いた他人の番号なので、著者の稿と比べない。 */
+    const 例 = (read('cpsbvbng26-dotcom', DOI_INDEX) || '').split('\n## 例として置いた番号\n')[1] || '';
+    const 例の番号 = new Set((例.split('\n## ')[0].match(/10\.6084\/m9\.figshare\.\d+/g) || []).map((d) => d.toLowerCase()));
+    const b = [...(一覧の番号(/10\.6084\/m9\.figshare\.\d+/g) || [])].filter((d) => !例の番号.has(d)).sort();
     check('Figshare の頁の稿が、doi-index の Figshare の番号と一致する', a.length > 0 && JSON.stringify(a) === JSON.stringify(b), a.join(', ') + ' / ' + b.join(', '));
     check('Figshare の頁が、決めごと 15 の水準（researchmap の MISC）を書いている', f.indexOf('researchmap の MISC に載せられる水準のものに限ります') >= 0);
   }
+}
+
+/* 2026-11-18 の点検（利用者の「命令違反していないかもう一回リポジトリ全部チェックして」に、Claude が決めたやり方で答えた）。
+ * 見つけたものを直し、同じものが戻らないように三つを固める。決めたことと理由は docs/incidents.md の I6 にある。 */
+console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの二行・ワークフローの注釈');
+{
+  /* 一。研究の系列とプロフィールの散文は、創作の系列の名を書かない（nusquama の決めごと 4、2026-11-18 の点検）。
+   * 見るのは配る文と記録：Markdown（CLAUDE.md を除く）・HTML・CFF・BibTeX・XML・テキストと、
+   * researcher-profile の根の設定、.zenodo.json と catalog.json。横断の検査とワークフローと検査の控えは、
+   * そのリポジトリを走るために名を持つので外す（verification・tools・tests・fixtures・.github）。 */
+  const 名 = /nusquama|ヌスクァマ|無何有|騎士王国/i;
+  const 外す = new Set(['.git', 'node_modules', 'verification', 'tools', 'tests', 'fixtures', '.github', 'world']);
+  const 見る = (repo, rel) => /\.(md|html|cff|bib|xml|txt)$/.test(rel) && !/(^|\/)CLAUDE\.md$/.test(rel)
+    || rel === '.zenodo.json' || rel === 'catalog.json' || (repo === 'researcher-profile' && /^[^/]+\.json$/.test(rel));
+  const repos = C.repos.concat(['sophaxis', 'deposit-check']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+  const 面 = {};
+  const walk = (repo, rel) => {
+    let ents;
+    try { ents = fs.readdirSync(path.join(ROOT, repo, rel), { withFileTypes: true }); } catch (e) { return; }
+    for (const e of ents) {
+      const r = rel ? rel + '/' + e.name : e.name;
+      if (e.isDirectory()) { if (!外す.has(e.name)) walk(repo, r); } else if (見る(repo, r)) 面[repo + '/' + r] = read(repo, r) || '';
+    }
+  };
+  repos.forEach((r) => walk(r, ''));
+  const 名のある = (m) => Object.keys(m).filter((k) => 名.test(m[k]));
+  const now = 名のある(面);
+  check('研究の系列とプロフィールの散文（' + repos.length + ' リポジトリ、' + Object.keys(面).length + ' ファイル）が、創作の系列の名を書かない',
+    repos.length === 12 && Object.keys(面).length > 100 && now.length === 0, now.slice(0, 6).join(', '));
+  const 足す = (k, t) => Object.assign({}, 面, { [k]: (面[k] || '') + t });
+  const 壊し = [
+    ['プロフィールの README に名を足す', 足す('cpsbvbng26-dotcom/README.md', '\nSophaxis と Nusquama には、それぞれの規約があります。\n')],
+    ['声明の設定にカナで名を足す', 足す('researcher-profile/mission.json', 'ヌスクァマ')],
+    ['頁に国の名を足す', 足す('cpsbvbng26-dotcom/notes/mission.html', '<p>無何有騎士王国</p>')],
+    ['記録に小文字で名を足す', 足す('cpsbvbng26-dotcom/docs/legal-audit-2026-11-12.md', 'nusquama の検査')],
+  ];
+  const 通った = 壊し.filter(([, m]) => 名のある(m).length === 0).map(([n]) => n);
+  check('壊して確かめる：創作の系列の名を README・設定・頁・記録に足すと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）',
+    通った.length === 0, 通った.join(', '));
+}
+{
+  /* 二。マージの本文の二行。開示の無いマージを数える検査（5 の上）は Co-authored-by だけを見ていた。
+   * Claude-Session の行の欠けも数え、十では欠けたマージが同じ 63 件であること、十の外の三つでは、
+   * Claude の二行の無いマージが、ラベル record でワークフローが記したもの（作者が github-actions[bot]）だけであることを見る。 */
+  const BOT = 'github-actions[bot]';
+  const 欠け = (rows) => rows.filter((r) => !/^Co-authored-by: Claude /mi.test(r.body) || !/^Claude-Session: https:\/\/claude\.ai\/code\/session_/m.test(r.body));
+  const 開示なし = (rows) => rows.filter((r) => !/^Co-authored-by: /mi.test(r.body));
+  const 読む = (repo) => {
+    try {
+      const out = require('child_process').execFileSync('git', ['log', '--merges', '--format=%H%x1f%an%x1f%B%x1e'],
+        { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+      return out.split('\x1e').map((x) => x.replace(/^\n/, '')).filter((x) => x.trim()).map((x) => { const [h, an, body] = x.split('\x1f'); return { h, an, body: body || '' }; });
+    } catch (e) { return null; }
+  };
+  const 十 = DECL['共通の決めごと'].repos.map((r) => [r, 読む(r)]);
+  const 外 = ['sophaxis', 'deposit-check', 'nusquama'].filter((r) => fs.existsSync(path.join(ROOT, r))).map((r) => [r, 読む(r)]);
+  const 名乗り = Number((/\*\*開示の無いマージが、10 リポジトリ合わせて (\d+) 件ある。\*\*/.exec(read('cpsbvbng26-dotcom', 'CLAUDE.md') || '') || [])[1]);
+  const 問題 = (十, 外) => {
+    const bad = [];
+    if (十.some(([, x]) => x === null) || 外.some(([, x]) => x === null)) return ['git を読めない'];
+    const k = 十.flatMap(([, x]) => 欠け(x)), n = 十.flatMap(([, x]) => 開示なし(x));
+    if (k.length !== 名乗り) bad.push('十で二行の欠けたマージ ' + k.length + ' / 名乗り ' + 名乗り);
+    if (k.map((r) => r.h).sort().join() !== n.map((r) => r.h).sort().join()) bad.push('十で、Co-authored-by の無いマージと二行の欠けたマージが違う');
+    for (const [r, x] of 外) for (const m of 欠け(x)) if (!(m.an === BOT && m.body.includes('Recorded at the operator\'s label `record`') && m.body.includes('Co-authored-by: ' + BOT))) bad.push(r + ' ' + m.h.slice(0, 7));
+    return bad;
+  };
+  const now = 問題(十, 外);
+  check('マージの本文の二行：十では欠けたマージが名乗りの ' + 名乗り + ' 件と同じもので、十の外の ' + 外.length + ' つでは record のワークフローが記したものだけ', now.length === 0 && 外.length === 3, now.slice(0, 4).join(' / '));
+  const 足す = (list, repo, row) => list.map(([r, x]) => [r, r === repo ? x.concat([row]) : x]);
+  const 壊し = [
+    ['十に Session の行の無いマージを足す', 足す(十, 'cpsbvbng26-dotcom', { h: 'f'.repeat(40), an: 'Claude', body: 'Merge pull request #1\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n' }), 外],
+    ['十の外に開示の無いマージを足す', 十, 足す(外, 'deposit-check', { h: 'e'.repeat(40), an: 'Claude', body: 'Merge pull request #1\n' })],
+    ['十の外に、人が bot の行だけで記したマージを足す', 十, 足す(外, 'sophaxis', { h: 'd'.repeat(40), an: 'someone', body: 'x (#1)\n\nRecorded at the operator\'s label `record`, after the checks below passed on the merged result.\n\nCo-authored-by: ' + BOT + ' <x>\n' })],
+  ];
+  const 通った = 壊し.filter(([, a, b]) => 問題(a, b).length === 0).map(([n]) => n);
+  check('壊して確かめる：二行の欠けたマージを十と十の外に足すと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+{
+  /* 三。決めごと 16 の形を、ワークフローと様式と Dependabot の設定（.github の YAML）でも見る。散文の検査は Markdown しか見ていなかった。
+   * 2026-11-18 に、二つの Dependabot の設定の注釈が、マージを運営者の仕事として書いていた。 */
+  const 形 = ['利用者が確かめる', '利用者が確かめます', '利用者の手作業', '利用者の作業', '利用者が手で', '運営者が確かめてから', '運営者が読んでから',
+    'needs the owner', 'for the owner to', 'the operator merges', 'for the operator to confirm'];
+  const repos = C.repos.concat(['sophaxis', 'deposit-check', 'nusquama']).filter((r) => fs.existsSync(path.join(ROOT, r)));
+  const 面 = {};
+  const walk = (repo, rel) => {
+    let ents;
+    try { ents = fs.readdirSync(path.join(ROOT, repo, rel), { withFileTypes: true }); } catch (e) { return; }
+    for (const e of ents) {
+      const r = rel + '/' + e.name;
+      if (e.isDirectory()) walk(repo, r); else if (/\.ya?ml$/.test(e.name)) 面[repo + '/' + r] = read(repo, r) || '';
+    }
+  };
+  repos.forEach((r) => walk(r, '.github'));
+  const 出た = (m) => Object.keys(m).flatMap((k) => 形.filter((w) => m[k].includes(w)).map((w) => k + ' 「' + w + '」'));
+  const now = 出た(面);
+  check('.github の YAML（' + repos.length + ' リポジトリ、' + Object.keys(面).length + ' ファイル）に、利用者に作業を割り当てる形が無い（共通の決めごと 16）',
+    repos.length === 13 && Object.keys(面).length > 50 && now.length === 0, now.slice(0, 4).join(' / '));
+  const 壊し = [
+    ['Dependabot の注釈を前の文に戻す', Object.assign({}, 面, { 'nusquama/.github/dependabot.yml': '# マージは運営者が確かめてから行う。\n' })],
+    ['英語の注釈を前の文に戻す', Object.assign({}, 面, { 'sophaxis/.github/dependabot.yml': '# the operator merges each one after its checks pass.\n' })],
+    ['取り寄せの注釈を前の文に戻す', Object.assign({}, 面, { 'nusquama/.github/workflows/sources.yml': '# 取り寄せた文は、運営者が読んでから使う。\n' })],
+  ];
+  const 通った = 壊し.filter(([, m]) => 出た(m).length === 0).map(([n]) => n);
+  check('壊して確かめる：.github の YAML に割り当ての形を戻すと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+{
+  /* 四。反論の頁（docs/objections.md）が名乗る登録簿の件数（決めごと 5）。2026-09-19 に書いた 92・33・59 のまま、
+   * 登録簿が 104 件になっても、どの検査も数えていなかった。登録簿の basis（再構成・同時）から数え直す。 */
+  const 数える = (toml) => {
+    const ents = String(toml).split(/^\[\[entry\]\]$/m).slice(1);
+    return { 全: ents.length, 再構成: ents.filter((e) => /^basis = "再構成"$/m.test(e)).length, 同時: ents.filter((e) => /^basis = "同時"$/m.test(e)).length };
+  };
+  const 名乗りの問題 = (text, n) => {
+    const m = /^(\d+) 件はすべて、起きたあとに書いたものです。(\d+) 件は再構成で、同時に記録したのは (\d+) 件。$/m.exec(text);
+    if (!m) return ['名乗りの文が無い'];
+    const bad = [];
+    if (Number(m[1]) !== n.全) bad.push('全 ' + m[1] + ' / 実際 ' + n.全);
+    if (Number(m[2]) !== n.再構成) bad.push('再構成 ' + m[2] + ' / 実際 ' + n.再構成);
+    if (Number(m[3]) !== n.同時) bad.push('同時 ' + m[3] + ' / 実際 ' + n.同時);
+    if (n.再構成 + n.同時 !== n.全) bad.push('basis が再構成でも同時でもない項目がある');
+    return bad;
+  };
+  const text = read('cpsbvbng26-dotcom', path.join('docs', 'objections.md')) || '';
+  const toml = read('self-correction', 'register.toml');
+  const n = 数える(toml || '');
+  const now = toml === null ? ['self-correction が並んでいない'] : 名乗りの問題(text, n);
+  check('反論の頁が名乗る登録簿の件数（' + n.全 + ' 件・再構成 ' + n.再構成 + '・同時 ' + n.同時 + '）が、登録簿と合う', now.length === 0, now.join(' / '));
+  const 壊し = [
+    ['頁の全体の数を動かす', 名乗りの問題(text.replace(n.全 + ' 件はすべて', (n.全 - 1) + ' 件はすべて'), n)],
+    ['登録簿に同時の項目を一つ足す', 名乗りの問題(text, 数える((toml || '') + '\n[[entry]]\nid = "X-1"\nbasis = "同時"\n'))],
+    ['登録簿に basis の無い項目を足す', 名乗りの問題(text.replace(n.全 + ' 件はすべて', (n.全 + 1) + ' 件はすべて'), 数える((toml || '') + '\n[[entry]]\nid = "X-2"\n'))],
+  ];
+  const 通った = 壊し.filter(([, b]) => b.length === 0).map(([x]) => x);
+  check('壊して確かめる：頁の数か登録簿の項目を動かすと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+/* 五。2026-11-18 の点検（決めごと 5）。作用素の頁の検査が突き合わせる記録の件数を、散文が名乗っている。
+ * README（日英）・トップの頁（日英）・作用素の頁が 728 と 23 を書いていたが、どの検査も控えのファイルと数え合わせていなかった。 */
+{
+  const fx = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'trinity_fixtures.json')) || '{"cases":[]}');
+  const cert = JSON.parse(read('cpsbvbng26-dotcom', path.join('verification', 'certificate_fixtures.json')) || '{"cases":[]}');
+  const 実 = { numpy: fx.cases.length, cert: cert.cases.length };
+  const 名乗り = [
+    ['README.md', /NumPy の値と? (\d+) 件/g, 'numpy', 2], ['README.md', /証書 (\d+) 件/g, 'cert', 1],
+    ['README.en.md', /against (\d+) recorded NumPy results/g, 'numpy', 2], ['README.en.md', /and (\d+) recorded contraction certificates/g, 'cert', 1],
+    ['index.html', /NumPy の値 (\d+) 件/g, 'numpy', 1], ['index.html', /証書 (\d+) 件/g, 'cert', 1],
+    ['index.en.html', /against (\d+) recorded NumPy results/g, 'numpy', 1], ['index.en.html', /against (\d+) recorded certificates/g, 'cert', 1],
+    ['trinity.html', /行列 (\d+) 個/g, 'numpy', 1], ['trinity.html', /証書 (\d+) 件/g, 'cert', 1],
+  ];
+  const ずれ = (texts) => 名乗り.flatMap(([f, re, k, n]) => {
+    const ms = [...(texts[f] || '').matchAll(re)].map((m) => Number(m[1]));
+    return ms.length === n && ms.every((x) => x === 実[k]) ? [] : [f + ' ' + k + ' ' + ms.join(',') + ' / 実際 ' + 実[k]];
+  });
+  const texts = Object.fromEntries([...new Set(名乗り.map((x) => x[0]))].map((f) => [f, read('cpsbvbng26-dotcom', f) || '']));
+  const now = ずれ(texts);
+  check('散文が名乗る作用素の記録の件数（NumPy ' + 実.numpy + ' 件・証書 ' + 実.cert + ' 件）が、控えのファイルと合う（' + 名乗り.length + ' 箇所）', now.length === 0, now.join(' / '));
+  const 壊す = [['README.md', '728 件と、', '729 件と、'], ['index.en.html', 'against 23 recorded certificates', 'against 24 recorded certificates'], ['trinity.html', '行列 728 個', '行列 727 個']]
+    .map(([f, a, b]) => ずれ(Object.assign({}, texts, { [f]: texts[f].replace(a, b) })).length > 0);
+  check('壊して確かめる：README・英語のトップ・作用素の頁の件数を一つ動かすと落ちる（' + 壊す.filter(Boolean).length + ' / ' + 壊す.length + '）', 壊す.every(Boolean), '');
+}
+
+{
+  /* 六。README（日英）の修了証の節が名乗る件数（決めごと 5）。群ごとの見出しの数と合計を、その下に並ぶバッジの行から数える。 */
+  const 問題 = (t, en) => {
+    const i = t.indexOf('✴︎Credentials✴︎'), j = i < 0 ? -1 : t.indexOf('</details>', i);
+    if (i < 0 || j < 0) return ['修了証の節が無い'];
+    const sec = t.slice(i, j);
+    const 見出し = en ? /^\*\*([^*]+)\*\* \((\d+)\)$/gm : /^\*\*([^*]+)\*\*（(\d+) 件）$/gm;
+    const hs = [...sec.matchAll(見出し)];
+    if (hs.length < 2) return ['群の見出しが足りない'];
+    const bad = [];
+    let 全 = 0;
+    hs.forEach((h, k) => {
+      const body = sec.slice(h.index + h[0].length, k + 1 < hs.length ? hs[k + 1].index : undefined);
+      const n = (body.match(/^\[!\[/gm) || []).length;
+      全 += n;
+      if (n !== Number(h[2])) bad.push(h[1] + ' ' + h[2] + ' / 実際 ' + n);
+    });
+    const W = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+    const m = en ? /<summary>(\w+) certificates and open badges/.exec(sec) : /<summary>修了証・オープンバッジ 計 (\d+) 件/.exec(sec);
+    const 名 = m ? (en ? W.indexOf(m[1].toLowerCase()) : Number(m[1])) : -1;
+    if (名 !== 全) bad.push('合計 ' + (m ? m[1] : '無し') + ' / 実際 ' + 全);
+    return bad;
+  };
+  const ja = read('cpsbvbng26-dotcom', 'README.md') || '', en = read('cpsbvbng26-dotcom', 'README.en.md') || '';
+  const now = 問題(ja, false).concat(問題(en, true).map((x) => 'en ' + x));
+  check('README（日英）の修了証の節が名乗る群ごとの件数と合計が、並ぶバッジの数と合う', now.length === 0, now.join(' / '));
+  const 壊し = [
+    問題(ja.replace('**edX**（4 件）', '**edX**（5 件）'), false),
+    問題(ja.replace('修了証・オープンバッジ 計 7 件', '修了証・オープンバッジ 計 8 件'), false),
+    問題(en.replace('**edX** (4)', '**edX** (3)'), true),
+    問題(ja.replace(/\n\[!\[ER22\.1x[^\n]*\n/, '\n'), false),
+  ];
+  check('壊して確かめる：群の件数・合計・英語の群・バッジの行を動かすと落ちる（' + 壊し.filter((b) => b.length).length + ' / ' + 壊し.length + '）', 壊し.every((b) => b.length > 0), '');
+}
+{
+  /* 七。README の「次に読むなら」が名乗る、読者が誤った版に辿り着く誤りの件数（決めごと 5）。trinity-infinity の正誤表の重大度の印から数える。 */
+  const 印 = '**重大度: 高（読者が誤った版に辿り着く）**';
+  const 問題 = (readme, errata) => {
+    if (errata === null) return ['trinity-infinity が並んでいない'];
+    const m = /読者が誤った版に辿り着く誤りが (\d+) 件ある/.exec(readme);
+    const n = errata.split(印).length - 1;
+    return m && Number(m[1]) === n && n > 0 ? [] : ['名乗り ' + (m ? m[1] : '無し') + ' / 正誤表 ' + n];
+  };
+  const r = read('cpsbvbng26-dotcom', 'README.md') || '', e = read('trinity-infinity', 'ERRATA.md');
+  const now = 問題(r, e);
+  check('README が名乗る、読者が誤った版に辿り着く誤りの件数が、trinity-infinity の正誤表の印の数と合う', now.length === 0, now.join(''));
+  const 壊し = [問題(r.replace(/(読者が誤った版に辿り着く誤りが )(\d+)/, (x, p, d) => p + (Number(d) + 1)), e), 問題(r, (e || '') + '\n' + 印 + '\n')];
+  check('壊して確かめる：README の数を動かすか、正誤表に印を一つ足すと落ちる（' + 壊し.filter((b) => b.length).length + ' / ' + 壊し.length + '）', 壊し.every((b) => b.length > 0), '');
+}
+
+{
+  /* 八。README（日英）の検査の並びが名乗る数（決めごと 5）。ほかの検査が実際と突き合わせている名乗りに揃える。
+   * キーボードの項目は verify.yml の仕事の名（check_site.js が頁の数から数え直す）、DOI の索引を当たる道具の項目と壊す先は
+   * doi-index-check/README.md（道具自身が数え直す）、辿る頁は verification/pages.json、全部回す検査の本数は check_all.js の表。
+   * self-correction の README が名乗る登録簿の全体の数も、ここで register.toml と数え合わせる。 */
+  const R = 'cpsbvbng26-dotcom';
+  const x = {
+    ja: read(R, 'README.md') || '', en: read(R, 'README.en.md') || '', yml: read(R, path.join('.github', 'workflows', 'verify.yml')) || '',
+    tool: read(R, path.join('doi-index-check', 'README.md')) || '', toolYml: read(R, path.join('.github', 'workflows', 'doi-index-check.yml')) || '',
+    pages: read(R, path.join('verification', 'pages.json')) || '{"pages":[]}', all: read(R, path.join('verification', 'check_all.js')) || '',
+    sc: read('self-correction', 'README.md') || '', reg: read('self-correction', 'register.toml') || '',
+  };
+  const 数 = (t, re) => { const m = re.exec(t); return m ? Number(m[1]) : NaN; };
+  const 問題 = (c) => {
+    const bad = [];
+    const kb = 数(c.yml, /キーボードで辿れるか (\d+) 項目/), tl = 数(c.tool, /検査は \*\*(\d+) 項目\*\*/), br = 数(c.tool, /壊す先は \*\*(\d+) 通り\*\*/);
+    const pg = JSON.parse(c.pages).pages.length, ck = (c.all.match(/^ {2}\['[^']+', '[^']+', '(?:node|python3)'/gm) || []).length;
+    const reg = (c.reg.match(/^\[\[entry\]\]$/gm) || []).length;
+    const want = [
+      ['README.md のキーボード', 数(c.ja, /Tab で辿って測る (\d+) 項目/), kb], ['README.en.md のキーボード', 数(c.en, /Tab traversal, (\d+) checks/), kb],
+      ['README.md の道具の項目', 数(c.ja, /DOI の索引を当たる道具 (\d+) 項目/), tl], ['README.md の壊す先', 数(c.ja, /--break {2}# 壊す先 (\d+) 通り/), br],
+      ['道具の仕事の名の項目', 数(c.toolYml, /name: 道具自身 (\d+) 項目/), tl], ['道具の仕事の名の壊す先', 数(c.toolYml, /項目 \/ 壊す先 (\d+) 通り/), br],
+      ['README.md の辿る頁', 数(c.ja, /(\d+) ページを Tab で辿り/), pg], ['README.en.md の辿る頁', 数(c.en, /It tabs through (\d+) pages/), pg],
+      ['README.md の全部回す本数', 数(c.ja, /10 リポジトリの検査を全部（(\d+) 本）/), ck],
+      ['self-correction の README の全体', 数(c.sc, /^(\d+) 件のうち \d+ 件は、あとからの再構成です。/m), reg],
+      ['self-correction の README の found_by の無い項目', 数(c.sc, /残る (\d+) 件には書いていません。/), reg - (c.reg.match(/^found_by = /gm) || []).length],
+    ];
+    for (const [w, a, b] of want) if (!(a === b && b > 0)) bad.push(w + ' ' + a + ' / 実際 ' + b);
+    return bad;
+  };
+  const now = 問題(x);
+  check('README（日英）の検査の並びと道具の仕事の名が名乗る数、self-correction の README の登録簿の数が、数え直した側と合う（11 箇所）', now.length === 0, now.join(' / '));
+  const w = (k, a, b) => Object.assign({}, x, { [k]: x[k].replace(a, b) });
+  const 壊し = [
+    ['キーボードの項目', w('ja', /Tab で辿って測る \d+ 項目/, 'Tab で辿って測る 1 項目')], ['英語の頁の数', w('en', /It tabs through \d+ pages/, 'It tabs through 1 pages')],
+    ['道具の仕事の名', w('toolYml', /name: 道具自身 \d+ 項目/, 'name: 道具自身 1 項目')], ['壊す先', w('ja', /--break {2}# 壊す先 \d+ 通り/, '--break  # 壊す先 1 通り')],
+    ['全部回す本数', w('ja', /全部（\d+ 本）/, '全部（1 本）')], ['登録簿の全体', w('sc', /^\d+ 件のうち/m, '1 件のうち')],
+    ['found_by の無い項目', w('sc', /残る \d+ 件には/, '残る 1 件には')],
+  ];
+  const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
+  check('壊して確かめる：README・仕事の名・self-correction の README の数を動かすと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
 /* 481（百本ノック五）。**この検査の件数は docs/checks.md の一か所にだけ書く。**
