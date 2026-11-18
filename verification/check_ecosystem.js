@@ -64,23 +64,72 @@ if (base !== null) {
 
 console.log('\n2. 散文が名乗る数が、実際に走らせた数と合うか');
 
+/* 2026-11-18（決めごと 5 の総点検）。過去の日付の付いた数は、git のその時点から数え直す。
+ * commit を書いた宣言は、ファイルならその時点の中身を git show で読み、コマンドならその時点の木を
+ * git worktree で一時の場所に出して走らせる（git の履歴を引く検査もあるので、archive ではなく worktree）。
+ * 出した木はコミットごとに一度だけ作り、終わりに外す。 */
+const 過去の木 = new Map();
+function その時点の木(repo, commit) {
+  const k = repo + '@' + commit;
+  if (過去の木.has(k)) return 過去の木.get(k).dir;
+  const dir = path.join(fs.mkdtempSync(path.join(require('os').tmpdir(), 'ecosystem-past-')), 'w');
+  execFileSync('git', ['worktree', 'add', '--quiet', '--detach', dir, commit],
+    { cwd: path.join(ROOT, repo), stdio: ['ignore', 'ignore', 'pipe'] });
+  過去の木.set(k, { repo, dir });
+  return dir;
+}
+process.on('exit', () => {
+  for (const { repo, dir } of 過去の木.values()) {
+    try { execFileSync('git', ['worktree', 'remove', '--force', dir], { cwd: path.join(ROOT, repo), stdio: 'ignore' }); }
+    catch (e) { /* 外せなくても判定は変わらない */ }
+    try { fs.rmSync(path.dirname(dir), { recursive: true, force: true }); } catch (e) { /* 同じ */ }
+  }
+});
+function その時点の中身(repo, commit, rel) {
+  try {
+    return execFileSync('git', ['show', commit + ':' + rel],
+      { cwd: path.join(ROOT, repo), encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+  } catch (e) { return null; }
+}
+/* 区間：[始まりの文字列, 終わりの文字列]。始まりから終わりの手前までだけを数える。 */
+function 区間で切る(text, 区間) {
+  if (!区間) return text;
+  const i = text.indexOf(区間[0]);
+  if (i < 0) return null;
+  const j = text.indexOf(区間[1], i + 区間[0].length);
+  return text.slice(i, j < 0 ? text.length : j);
+}
+
 function actual(spec, label) {
+  /* 差：[前, 後]。二つの時点の数の差（「見本はそれぞれ 1 項目増えます」）。 */
+  if (spec['差']) return actual(spec['差'][1], label) - actual(spec['差'][0], label);
   if (spec.cmd) {
     let out;
     try {
       out = execFileSync(spec.cmd[0], spec.cmd.slice(1),
-        { cwd: path.join(ROOT, spec.repo), encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+        { cwd: spec.commit ? その時点の木(spec.repo, spec.commit) : path.join(ROOT, spec.repo),
+          encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 64 * 1024 * 1024 });
     } catch (e) {
-      throw new Error('走らせられなかった: ' + spec.repo + ' ' + spec.cmd.join(' '));
+      /* その時点の検査が落ちて終わっても、出した数は読む。いまの木の検査は、走らなければ落とす。 */
+      if (spec.commit && e.stdout) out = String(e.stdout);
+      else throw new Error('走らせられなかった: ' + spec.repo + ' ' + spec.cmd.join(' '));
     }
+    out = 区間で切る(out, spec['区間']);
+    if (out === null) throw new Error('出力に区間が無い: ' + spec.repo + ' ' + spec['区間'][0]);
+    if (spec['数える']) return (out.match(new RegExp(spec['数える'], 'gm')) || []).length;
     /* 出力の途中にも数は出る（見本を走らせた分など）。
      * 名乗りの元にするのは、最後に出た数 —— そのコマンド自身の合計である。 */
     const ms = [...out.matchAll(new RegExp(spec.regex, 'g'))];
     if (!ms.length) throw new Error('出力から数を取れなかった: ' + spec.repo);
+    /* 足す：その時点の検査は、いまの作業環境では落ちる項目がある（git の無い木で日付を引くなど）。
+     * 項目の数は「通った数 + 落ちた数」なので、取った組をすべて足す。 */
+    if (spec['足す']) return ms[ms.length - 1].slice(1).reduce((a, x) => a + (x ? parseInt(x, 10) : 0), 0);
     return parseInt(ms[ms.length - 1][1], 10);
   }
-  const text = read(spec.repo, spec.file);
-  if (text === null) throw new Error('無い: ' + spec.repo + '/' + spec.file);
+  let text = spec.commit ? その時点の中身(spec.repo, spec.commit, spec.file) : read(spec.repo, spec.file);
+  if (text === null) throw new Error('無い: ' + spec.repo + '/' + spec.file + (spec.commit ? ' @' + spec.commit : ''));
+  text = 区間で切る(text, spec['区間']);
+  if (text === null) throw new Error('区間が無い: ' + spec.repo + '/' + spec.file + ' ' + spec['区間'][0]);
   if (spec['数える']) {
     return (text.match(new RegExp(spec['数える'], 'gm')) || []).length;
   }
@@ -6553,6 +6602,61 @@ console.log('\n13d. 2026-11-18：黄金比の窓の予想の (a) と (b) の状�
 
 /* 481（百本ノック五）。**この検査の件数は docs/checks.md の一か所にだけ書く。**
  * 2026-11-12 まで五か所に書いて突き合わせていた。ほかの場所は、その頁を指す。数を書き戻せば落とす。 */
+console.log('\n13e. 2026-11-18：散文に書いた「NN 件・NN 項目・NN 通り」が、どれも区分にある（検査で捕まる・数えられない・外す）');
+{
+  /* 決めごと 5。2026-11-18 に、13 のリポジトリの散文の数を一つずつ壊して、どの検査が落ちるかを見た。
+   * 落ちなかった数には、いまの数なら数え直す宣言を、日付の付いた過去の数なら git のその時点から数え直す宣言を、
+   * 2 の「数」に足した。どちらもできない数は、理由とともに verification/prose-numbers.json の「数えられない」に置いた。
+   * 算術の恒等式・行の番号・年・注釈・直す前の文の引用は「外す」に置いた。
+   * ここでは、散文に出てくる数がすべてどれかの区分にあり、区分の側に余りが無いことを見る。
+   * 新しく数を書けば、区分が無くて落ちる。そのとき、検査を足して「捕まる」に入れるか、数えられない理由を書く。 */
+  const PN = require('./prose_numbers.js');
+  const 宣言 = JSON.parse(fs.readFileSync(path.join(__dirname, 'prose-numbers.json'), 'utf8'));
+  const 表 = PN.表にする(宣言);
+  const 走査 = PN.scan(ROOT);
+  const r = PN.突き合わせる(走査.found, 表);
+  const 見えない = 走査.無い.filter((x) => PN.REPOS.includes(x));
+  check('13 のリポジトリの散文の数（' + 走査.found.length + '）が、どれも区分にあり（捕まる ' + 表['捕まる'].length + '・数えられない '
+    + 表['数えられない'].length + '・外す ' + 表['外す'].length + '）、区分の側に余りが無い',
+    r.無区分.length === 0 && r.余り.length === 0 && 見えない.length === 0,
+    [].concat(見えない.map((x) => x + ' が無い'),
+      r.無区分.slice(0, 4).map((x) => '区分が無い ' + x.f + ':' + x.line + ' 「' + x.num + ' ' + x.語 + '」'),
+      r.余り.slice(0, 4).map((k) => '余り ' + k[0] + ' 「' + k[1] + '」')).join(' / '));
+  const 理由なし = (宣言['数えられない'] || []).concat(宣言['外す'] || []).filter((x) => !x['理由'] || !x['文']);
+  const 検査なし = Object.values(宣言['捕まる'] || {}).flat().filter((x) => !x[2]);
+  check('数えられない数と外した数には理由と文があり、捕まる数には捕まえる検査の名がある',
+    理由なし.length === 0 && 検査なし.length === 0, 理由なし.length + ' / ' + 検査なし.length);
+  /* 壊して確かめる。散文に数を一つ書き足す、区分を一つ消す、区分を一つ余らせる。どれも落ちなければならない。 */
+  const 一つ目 = 走査.found[0];
+  const 壊し = [
+    ['README に区分の無い数を書き足す', () => {
+      const f = 'cpsbvbng26-dotcom/README.md';
+      const t = (read('cpsbvbng26-dotcom', 'README.md') || '') + '\n検査は 7 項目です。\n';
+      const 外 = 走査.found.filter((x) => x.f !== f).concat(PN.scanText(f, t));
+      return PN.突き合わせる(外, 表);
+    }],
+    ['捕まる数の区分を一つ消す', () => {
+      const t2 = { 捕まる: 表['捕まる'].slice(1), 数えられない: 表['数えられない'], 外す: 表['外す'] };
+      return PN.突き合わせる(走査.found, t2);
+    }],
+    ['数えられない数の区分を一つ消す', () => {
+      const t2 = { 捕まる: 表['捕まる'], 数えられない: 表['数えられない'].slice(1), 外す: 表['外す'] };
+      return PN.突き合わせる(走査.found, t2);
+    }],
+    ['区分を一つ余らせる', () => {
+      const t2 = { 捕まる: 表['捕まる'].concat([[一つ目.f, 'ここには無い前の字', '件']]), 数えられない: 表['数えられない'], 外す: 表['外す'] };
+      return PN.突き合わせる(走査.found, t2);
+    }],
+    ['数の前の字を書き換える', () => {
+      const 外 = 走査.found.filter((x) => x !== 一つ目).concat([Object.assign({}, 一つ目, { 前: 一つ目.前 + '改' })]);
+      return PN.突き合わせる(外, 表);
+    }],
+  ];
+  const 通った = 壊し.filter(([, f]) => { const x = f(); return x.無区分.length === 0 && x.余り.length === 0; }).map(([n]) => n);
+  check('壊して確かめる：区分の無い数・消した区分・余った区分・書き換えた前の字のどれでも落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 console.log('\n14. この検査が名乗る件数');
 
 {
