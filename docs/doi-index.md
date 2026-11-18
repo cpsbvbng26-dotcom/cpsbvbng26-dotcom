@@ -161,6 +161,9 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 | Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA`、aiXiv.science `aixiv.261024.000001` |
 | Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | Figshare `10.6084/m9.figshare.34419198` |
 
+Figshare の稿は凍結しており、黄金比の窓の予想の (a) と (b) を予想のまま載せています。
+二つは、2026-11-18 に trinity-operator のノートの命題 8 と命題 9 で証明しました。(a) と (b) の式は既知の定理の特別な場合です。
+
 SSRN に載ったのは 2026-09-30 です。番号は SSRN からの通知で受け取りました。
 PhilArchive にも同じ日に置きました。記号は利用者から受け取りました。
 
