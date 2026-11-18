@@ -1897,6 +1897,8 @@ section('10.59 自己紹介が名乗っていること');
       'README.en.md': ['Eight preprints, 15 Zenodo DOIs', 'It continues the celibacy essay'],
       /* 現状評価は全部を含む 16 件を置く。一年時の 15 件がどちらの数かを、同じ欄で言い分ける。 */
       'docs/self-assessment.md': ['「Zenodo の 15 件」は、この一篇を除いた数'],
+      /* 2026-11-18（決めごと 5）。開示の頁の内訳の表も、同じ数え直しの数を書く。 */
+      'docs/submission-disclosure.md': ['| Zenodo の DOI | 15 件 | `doi-index.md` の表 |', '| 修了証とオープンバッジ | 7 件 | `cv.html` の検証リンク |'],
     };
     Object.entries(五言語).forEach(([f, xs]) => xs.forEach((x) => { if (read(f).indexOf(x) < 0) ずれ.push(f + ' に「' + x.slice(0, 20) + '」が無い'); }));
     /* 「次の四つ」は、すぐ後ろに並べた項目の数である。**語で書いた数も数える。**（決めごと 5） */

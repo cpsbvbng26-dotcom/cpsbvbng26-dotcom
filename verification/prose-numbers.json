@@ -1,0 +1,3703 @@
+{
+  "_": [
+    "散文に書いた「NN 件・NN 項目・NN 通り」と英語の同じもの（items・checks・entries・repositories ほか）の区分。決めごと 5。",
+    "2026-11-18 に、13 のリポジトリのこの数を一つずつ壊し（数を一つ増やし）、どの検査が落ちるかを見た。",
+    "捕まる：壊すと落ちる数。ファイルごとに [数の前の 16 字（数字は #）, 助数詞, 落ちた検査] を並べる。",
+    "数えられない：いまの数としても、git のその時点からも数え直せない数。理由を書く。外のサービスの応答、他人の論文の数、証言、その日の実行の記録など。",
+    "外す：数ではないか、数え直す意味が無いもの。算術の恒等式、行の番号、年、注釈、直す前の文の引用、記録として直さない文。",
+    "check_ecosystem.js の 13e が、散文の数がすべてどれかの区分にあり、区分に余りが無いことを見る。数の前の文を書き換えたら、区分を決め直す。",
+    "node verification/prose_numbers.js が、区分の無い数と余りを挙げる。"
+  ],
+  "捕まる": {
+    "autonomy-and-self-cultivation/.github/workflows/verify.yml": [
+      [
+        "紙面との照合 / 正誤表の監査 ",
+        "項目",
+        "autonomy-and-self-cultivation: verification/check_errata.py / autonomy-and-self-cultivation: verification/check_hygiene.py"
+      ],
+      [
+        "# 項目 / 参考文献と書棚 ",
+        "項目",
+        "autonomy-and-self-cultivation: verification/check_errata.py"
+      ],
+      [
+        "正誤表が紙面からずれていないか（",
+        "項目",
+        "autonomy-and-self-cultivation: verification/check_errata.py"
+      ],
+      [
+        "ame: 参考文献の宣言と書棚（",
+        "項目",
+        "autonomy-and-self-cultivation: verification/check_errata.py"
+      ]
+    ],
+    "autonomy-and-self-cultivation/ERRATA.md": [
+      [
+        "| 一致 | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "| 部分一致 | ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "| 不一致 | ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "| **未検証** | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "| 自前 | ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "ト #、ニーチェ #、第#節の ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "| 外から | ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "| 未記載 | ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "て、なお読んでいないものが **",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "の形を持っていました。第#節の ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "**合計 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "未記入は **",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py / cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ながら位置を指せないものが **",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "参考文献欄に新渡戸はありません。",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ニーチェの ",
+        "件",
+        "autonomy-and-self-cultivation: verification/check_references.py"
+      ],
+      [
+        "皇帝主義の ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " # 回現れます。参考文献欄 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/.github/workflows/doi-index-check.yml": [
+      [
+        "    name: 道具自身 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "具自身 # 項目 / 壊す先 ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/.github/workflows/verify.yml": [
+      [
+        " name: 誤変換 / 配色 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "# 項目 / サイトの構造 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "構造 # 項目 / 作用素 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "ame: キーボードで辿れるか ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/DISCLAIMER.en.md": [
+      [
+        "o the following ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "es, besides the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/README.en.md": [
+      [
+        " aiXiv.science, ",
+        "paper",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "counterexample. ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "it needs to be. ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ever deleted.** ",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "Every push runs ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "olour contrast, ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "site structure, ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "rator numerics, ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " Tab traversal, ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "It tabs through ",
+        "pages",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "licence for the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "is site, to the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/README.md": [
+      [
+        "読者が誤った版に辿り着く誤りが ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "— 上の主張の実装と反例。検査 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "解いている。NumPy の値と ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "現代制御です。三篇と、その検証 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "たときに何が残るかの展望。検査 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ずつ消さずに記録する**。いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "y>修了証・オープンバッジ 計 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "**edX**（",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "OOC / オープンバッジ**（",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ポジトリは、push のたびに ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        ".js  # 配色の読みやすさ ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "s      # サイトの構造 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "y.js   # 作用素の数値 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "y  # 三篇の PDF の形 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "s  # Tab で辿って測る ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# DOI の索引を当たる道具 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " --break  # 壊す先 ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " 検査そのものを壊して確かめる ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_guards.js"
+      ],
+      [
+        "複製し、通る状態を**壊す先は ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_guards.js"
+      ],
+      [
+        "数（「道具自身 #」「登録簿 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "「登録簿 # 件」「壊す先 ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "す。記録した NumPy の値 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# 件と、縮小になる距離の証書 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/checks.md": [
+      [
+        "は、いま # リポジトリ横断 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "のが、# リポジトリ合わせて ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/doi-index.md": [
+      [
+        "残っていた ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/external-evaluations.md": [
+      [
+        "いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "laims_audit.py`（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ndent_check.py`、",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "二つの引用を機械で固定しました（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# 回**現れます。参考文献欄 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "参考文献欄に新渡戸がありません。",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "**落ちた一篇は、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "た版ではありません**。項目は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/external-review-tracker.md": [
+      [
+        "いま、評価 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "いま、評価 # 件から、指摘 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/frames.md": [
+      [
+        "検査 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/github-about.md": [
+      [
+        "公開リポジトリ **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ぐる三篇のプレプリントと、検証 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "rection` | 核の記録。",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/joss.md": [
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ENSE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ENSE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ENSE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ENSE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "CODE` が MIT | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "rata-check` が **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ultivation` が **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "**# 件**、残る八つが **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/legal-audit-2026-11-12.md": [
+      [
+        "ようにすること | 欄は「いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "egister.toml には ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "頁の別の段と README は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "profile の日英の設定を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " 欄は「いま # 件です。」「",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "の記録を、著者の名で関連の順に ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "読んだのは関連の順の上位 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/mission.en.md": [
+      [
+        "is site, to the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/name-disambiguation.md": [
+      [
+        "",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/objections.md": [
+      [
+        "、消さずに残っています。撤回が ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "簿の `found_by` は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "て、起きたあとに書いたものです。",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "は再構成で、同時に記録したのは ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/predictions.md": [
+      [
+        "登録簿は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "すべて ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/self-assessment.md": [
+      [
+        "#-#-#） | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "#-#-#） | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "学会での発表 | 学会 | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        " 受賞 | 授与する側 | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "長）にあたる。下の # 篇と ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "として挙げる「Zenodo の ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        " | DataCite | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " | DataCite | **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "の装置 | —— | 検査 **",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ks.md)）、キーボード **",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "*# 項目**、壊す先 **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " **# 件**、登録簿 **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "k_route.py` の **",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "に # 回出るのに、参考文献 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/docs/submission-disclosure.md": [
+      [
+        "現状評価の表に、その二つの軸を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " Zenodo の DOI | ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "| 修了証とオープンバッジ | ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/doi-index-check/CONTRIBUTING.md": [
+      [
+        "「検査は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "検査は # 項目」「壊す先は ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/doi-index-check/README.md": [
+      [
+        "検査は **",
+        "項目",
+        "cpsbvbng26-dotcom/doi-index-check: verification/check_tool.js / cpsbvbng26-dotcom/doi-index-check: verification/check_tool.js --break / cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "を確かめます**。壊す先は **",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "cpsbvbng26-dotcom/trinity.html": [
+      [
+        "り方で突き合わせています。証書 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ]
+    ],
+    "deposit-check/README.md": [
+      [
+        "plete record in ",
+        "ways",
+        "deposit-check: verification/check.js"
+      ]
+    ],
+    "deposit-check/docs/legal-audit-2026-11-12.md": [
+      [
+        " records of all ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "tcom checks the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ue forms of all ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " same as in the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "me files in the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "me files in the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "com covered the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "orkflows of the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "h `main` of the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "e same files in ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "deposit-check/docs/runs/2026-11-11-catalog/report.md": [
+      [
+        ", # DOIs read. ",
+        "errors",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "errata-check/.github/workflows/verify.yml": [
+      [
+        "    name: 道具自身 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " / 見本 # + # + ",
+        "項目",
+        "errata-check: tests/check_tool.py"
+      ]
+    ],
+    "errata-check/CHANGELOG.md": [
+      [
+        "しました（自身の検査 # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "  壊す先は # から ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "りへ、自身の検査は # から ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "検査**（自身の検査 # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "  （自身の検査 # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "  壊す先は # から ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "りへ、自身の検査は # から ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " # 項目へ。見本はそれぞれ ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "  壊す先は # から ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "りへ、自身の検査は # から ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "査**（自身の検査は # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "errata-check/CITATION.cff": [
+      [
+        "  道具自身の検査は、通る状態を",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / errata-check: tests/check_hygiene.py / errata-check: tests/check_tool.py"
+      ]
+    ],
+    "errata-check/README.en.md": [
+      [
+        "audit.toml    # ",
+        "checks",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "s/references/) (",
+        "checks",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "udit.toml     # ",
+        "checks",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "k_tool.py     # ",
+        "checks",
+        "errata-check: tests/check_tool.py"
+      ]
+    ],
+    "errata-check/README.md": [
+      [
+        "audit.toml    # ",
+        "項目",
+        "errata-check: tests/check_hygiene.py / errata-check: tests/check_tool.py"
+      ],
+      [
+        "es/references/)（",
+        "項目",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "udit.toml     # ",
+        "項目",
+        "errata-check: tests/check_hygiene.py / errata-check: tests/check_tool.py"
+      ],
+      [
+        "k_tool.py     # ",
+        "項目",
+        "errata-check: tests/check_hygiene.py / errata-check: tests/check_tool.py"
+      ],
+      [
+        "壊す先は ",
+        "通り",
+        "autonomy-and-self-cultivation: verification/check_hygiene.py / cpsbvbng26-dotcom: verification/check_ecosystem.js / errata-check: tests/check_tool.py"
+      ]
+    ],
+    "justice-and-algorithms/.zenodo.json": [
+      [
+        " approach) onto ",
+        "issues",
+        "justice-and-algorithms: verification/check_hygiene.py"
+      ]
+    ],
+    "justice-and-algorithms/README.md": [
+      [
+        "docs/issues/`）の ",
+        "件",
+        "justice-and-algorithms: verification/check_hygiene.py"
+      ],
+      [
+        "生成物 # ページを ",
+        "項目",
+        "justice-and-algorithms: verification/check_site.js"
+      ]
+    ],
+    "naval-gazette-notes/.github/workflows/verify.yml": [
+      [
+        "原画像の混入 / 正誤表の監査 ",
+        "項目",
+        "naval-gazette-notes: data/check.py / naval-gazette-notes: verification/check_hygiene.py"
+      ],
+      [
+        "正誤表が紙面からずれていないか（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "naval-gazette-notes/README.md": [
+      [
+        "いまのところ ",
+        "件",
+        "naval-gazette-notes: data/check.py"
+      ],
+      [
+        "参照コードを持つ典拠は ",
+        "件",
+        "naval-gazette-notes: data/check.py"
+      ],
+      [
+        "#-#-#.csv) | ",
+        "件",
+        "naval-gazette-notes: verification/check_hygiene.py"
+      ],
+      [
+        "",
+        "項目",
+        "naval-gazette-notes: data/check.py"
+      ],
+      [
+        "PDF で、**埋め込み画像は ",
+        "件",
+        "naval-gazette-notes: verification/check_hygiene.py"
+      ]
+    ],
+    "naval-gazette-notes/data/README.md": [
+      [
+        "#-#.json` は同じ ",
+        "件",
+        "naval-gazette-notes: verification/check_hygiene.py"
+      ],
+      [
+        "—— 公報に振り仮名がないため、",
+        "件",
+        "naval-gazette-notes: verification/check_hygiene.py"
+      ],
+      [
+        "#-# 〜 #-#（",
+        "件",
+        "naval-gazette-notes: verification/check_hygiene.py"
+      ]
+    ],
+    "nusquama/ERRATA.md": [
+      [
+        "最古の区画は、第 ",
+        "件",
+        "nusquama: verification/check.js"
+      ]
+    ],
+    "nusquama/LEXICON.md": [
+      [
+        "表](ERRATA.md)の第 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "ATA.md)の第 # 件と第 ",
+        "件",
+        "nusquama: verification/check.js"
+      ]
+    ],
+    "nusquama/README.md": [
+      [
+        "い」に分けていた称号・栄典の条 ",
+        "件",
+        "nusquama: verification/check.js"
+      ]
+    ],
+    "nusquama/docs/legal-audit-2026-11-12.md": [
+      [
+        "判定の数は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "の数は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "かめ直した表の判定の数は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "の数は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "#-#-# の時点で ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、漏れ # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " の行を足したので、問題なしが ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ので、問題なしが # 件から ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " の行を足したので、問題なしが ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ので、問題なしが # 件から ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " の行を足したので、問題なしが ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ので、問題なしが # 件から ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件、漏れ # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件、表現 # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、漏れ # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "件、根拠不足 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "ら取り寄せられないものは、次の ",
+        "件",
+        "nusquama: verification/check.js"
+      ]
+    ],
+    "nusquama/docs/world-law-2026-11-12.md": [
+      [
+        "当たった条は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " 件です。そのうち「当たる」が ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "が # 件、「当たりうる」が ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "トリアの貴族の廃止の法律の条を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "#-#-# の数は、条が ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# 件、「当たりうる」が ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "urs-foreign）が拾う ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "ols-similar）が拾う ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "外国の称号の型の ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "国の称号の型の # 件のうち、",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "「当たりうる」としました。残る ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "国のしるしの型の ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定の数は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "の数は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "取れたのは ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "のは # 件、取れなかったのは ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# で取れた（# 条に分け、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "t# で取れた（# 条に分け、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "t# で取れた（# 条に分け、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ct で取れた（# 条に分け、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# で取れた（# 条に分け、",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "data/` で文を外した条は ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " Project の英語の文が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、韓国法制研究院の英訳が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "roject の英語の文の条を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "物 | 韓国法制研究院の英訳を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "だけで分けていた称号・栄典の条 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "そのうち ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "けで分けていた称号・栄典の条は ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "の機関が栄典を授ける権限の型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、制服や一様の語の型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件、貴族の制度を設けない型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "件、オランダの刑法典の題の型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件、メキシコの賞の法律の型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "の型が # 件、その他の型が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "貴族の廃止の法律から記した条は ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "記した条は # 件で、そのうち ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "国の憲法と法令の称号・栄典の条（",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "判定は、誤り # 件、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "足 # 件、漏れ # 件、表現 ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "# 件、表現 # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "当たった条は ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        " 件です。そのうち「当たる」が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "」が # 件、「当たりうる」が ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "外した条は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "nusquama/policies/knighting.md": [
+      [
+        " に、開いている叙任の願い出は ",
+        "件",
+        "nusquama: verification/check.js"
+      ],
+      [
+        "叙任の願い出の issue は ",
+        "件",
+        "nusquama: verification/check.js"
+      ]
+    ],
+    "researcher-profile/.github/workflows/verify.yml": [
+      [
+        "   name: 設定と生成物 ",
+        "項目",
+        "researcher-profile: verification/check_build.js"
+      ]
+    ],
+    "researcher-profile/README.md": [
+      [
+        "ありません。push のたびに ",
+        "項目",
+        "researcher-profile: verification/check_build.js"
+      ]
+    ],
+    "researcher-profile/catalog.json": [
+      [
+        " に事前登録したもの。登録した ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/cv.json": [
+      [
+        "\": \"修了証・オープンバッジ ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/docs/legal-audit-2026-11-12.md": [
+      [
+        "受注の場への道が無いことを見る（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ようにすること | 欄は「いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "egister.toml には ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# 件ある。同じ頁の別の段は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "った | 誤り | 日英の欄を ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " 欄は「いま # 件です。」「",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/mission.en.json": [
+      [
+        "is site, to the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/site.en.json": [
+      [
+        "not by reading. ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "itself. <strong>",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "       \"name\": \"",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_guards.js / cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "ner\\\">register (",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " never deleted. ",
+        "entries",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "r verification. ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "it needs to be. ",
+        "checks",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/site.fr.json": [
+      [
+        "Huit préprints, ",
+        "DOI",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ]
+    ],
+    "researcher-profile/site.it.json": [
+      [
+        " Otto preprint, ",
+        "DOI",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ]
+    ],
+    "researcher-profile/site.json": [
+      [
+        "プレプリント、Zenodo の ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_site.js"
+      ],
+      [
+        "械です。正誤表そのものへの検査 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "査 # 項目、道具自身への ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "は、通る状態を <strong>",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "す。通る状態を <strong>",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ものの形と履歴。<strong>",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ています。<strong>うち ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ng>第三者が確かめられるのは ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "められるのは # 件で、残る ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "を、記録した NumPy の値 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "⁵。縮小になる距離のほうも証書 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "\"noopener\\\">登録簿（",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "\"# 人 # 戦略は #³ = ",
+        "通り",
+        "researcher-profile: verification/check_build.js"
+      ],
+      [
+        "件ずつ消さずに記録します。いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "リです。定理を独立に実装し直す ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "項目と、紙面の数値を計算し直す ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "に膨らんでから収束する例を含む ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "目、破れた議論を組み直す構成の ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "残るかを段ごとに走らせる展望の ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "researcher-profile/sophaxis.json": [
+      [
+        "re\\\">いま載っている記録は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "self-correction/.github/workflows/verify.yml": [
+      [
+        "    name: 登録簿 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "self-correction/README.md": [
+      [
+        "egister.py    # ",
+        "項目",
+        "self-correction: verification/check_hygiene.py"
+      ],
+      [
+        "いま **",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: verification/check_register.py"
+      ],
+      [
+        "",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "# 件のうち ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "構成です。同時に記録したものは ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ら、**誰でも確かめられる**（",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "外に根拠が無い。反証もできない（",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "*機械が自分で**（通る状態を ",
+        "通り",
+        "self-correction: verification/check_hygiene.py"
+      ],
+      [
+        "inity-infinity)（",
+        "項目",
+        "self-correction: verification/check_hygiene.py"
+      ],
+      [
+        "lf-cultivation)（",
+        "項目",
+        "self-correction: verification/check_hygiene.py"
+      ],
+      [
+        "-gazette-notes)（",
+        "項目",
+        "self-correction: verification/check_hygiene.py"
+      ],
+      [
+        "ound_by` がある項目は ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "ある項目は # 件です。残る ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "二者以上が関わったものが ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "機械が最初に見つけたのは ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "の研究補助が最初に挙げたものが ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "たものが # 件あります。残る ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "ck` の欄で名指しているのは ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "つ。利用者が「どこかに出る」で ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ],
+      [
+        "最初に名指しされるのは ",
+        "件",
+        "self-correction: verification/check_register.py"
+      ]
+    ],
+    "self-correction/register.toml": [
+      [
+        "# # 件のうち ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "claims_audit.py ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "v#.#.# の時点で壊す先は ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "えたときで、そのときには実際は ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "correction = \"",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        ".py に足しました（# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "古いまま残っていました。実際は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "ME が名乗る件数が、実際より ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "eck_errata.py # ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "ta.py # # 項目 / ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "_errata.py の中身は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "拠として数えています**（いま ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "site.js の #.#（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "ck_route.py の #（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "と、外した理由の両方を保ちます（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        " # 回現れます。参考文献欄 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "無いことを確かめます（# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "に当たって確かめます（# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "紙面の記述と一致します。過去の ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "に変えました（配色 # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "は WCAG の比で測ってある（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "# に足しました（# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "とを確かめてあります（# → ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "` の #.#、# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "た。検査を六つ足し（# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "F です。README の出典 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "語そのものを機械で固定しており（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "の種でもう一度だけ引きます**（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "check.py に入れました（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "errata.py が落ちます（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "#dd#）では、#.# は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "す。コミットの題も「# → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "項目に書きます。#.# は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "site.js は # → ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ],
+      [
+        "= \"三篇の PDF に対して ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "して # 項目。道具自身は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "身は # 項目で、通る状態を ",
+        "通り",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "heck_route.py の ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
+      ]
+    ],
+    "solitary-school/.github/workflows/verify.yml": [
+      [
+        ": 本文が自分と食い違わないか ",
+        "項目",
+        "solitary-school: verification/check_hygiene.py"
+      ]
+    ],
+    "solitary-school/CONTRIBUTING.md": [
+      [
+        "ck_text.js    # ",
+        "項目",
+        "solitary-school: verification/check_text.js"
+      ]
+    ],
+    "solitary-school/README.md": [
+      [
+        "いない典拠、外部の反応も見ます。",
+        "項目",
+        "solitary-school: verification/check_text.js"
+      ]
+    ],
+    "sophaxis/CHANGELOG.md": [
+      [
+        "p page, at most ",
+        "records",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ame file in the ",
+        "repositories",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " and was broken ",
+        "ways",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "#-#-#.md`: ",
+        "rows",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " what was done (",
+        "error",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "sophaxis/README.md": [
+      [
+        "収録が #,",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/SECURITY.md": [
+      [
+        "-#-#, at most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/automation.ja.md": [
+      [
+        "らず数えて、一日（日本時間）に ",
+        "件",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "ものとして拾い上げます。一日に ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/automation.md": [
+      [
+        "-#-#, at most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "d. The limit of ",
+        "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/data/policy-changes.json": [
+      [
+        "itle\": \"At most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "l data, at most ",
+        "records",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "らず数えて、一日（日本時間）に ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "sophaxis/docs/legal-audit-2026-11-12.md": [
+      [
+        "変の有無の表示 | 載っている ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "s.json` の未了の務めは ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "いま載っている ",
+        "件",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "けて読みます。いま載せた記録は ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "判定は、問題なし ",
+        "件",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "当たる・当たりうると分けた条の ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "らず数えて、一日（日本時間）に ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "sophaxis/docs/legal-review.md": [
+      [
+        "lly for at most ",
+        "records",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "sophaxis/history.ja.md": [
+      [
+        "と設定を置き、載っている記録が ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/policies/privacy.ja.md": [
+      [
+        "#-#-# から一日に ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/policies/privacy.md": [
+      [
+        "p takes at most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/policies/takedown.ja.md": [
+      [
+        "らず数えて、一日（日本時間）に ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/policies/takedown.md": [
+      [
+        "-#-#, at most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/site.json": [
+      [
+        "l data, at most ",
+        "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "trinity-infinity/.github/workflows/verify.yml": [
+      [
+        "    name: 定理 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-infinity: verification/check_errata.py"
+      ],
+      [
+        "# 項目 / 印字された数値 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-infinity: verification/check_errata.py"
+      ],
+      [
+        " # 項目 / 正誤表の監査 ",
+        "項目",
+        "autonomy-and-self-cultivation: verification/check_hygiene.py / trinity-infinity: verification/check_errata.py"
+      ],
+      [
+        "の監査 # 項目 / 経路 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-infinity: verification/check_errata.py"
+      ]
+    ],
+    "trinity-infinity/ARXIV-SUBMIT.md": [
+      [
+        "raft: attached (",
+        "pages",
+        "trinity-infinity: verification/check_errata.py"
+      ],
+      [
+        "",
+        "pages",
+        "trinity-infinity: verification/check_errata.py"
+      ]
+    ],
+    "trinity-infinity/ERRATA.md": [
+      [
+        "いません。README の出典 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "一般の `W` から作った均衡 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        " 件（`n = #…#` で各 ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ndent_check.py)、",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "trinity-infinity/README.md": [
+      [
+        "dent_check.py` (",
+        "checks",
+        "trinity-infinity: verification/check_meta.py"
+      ],
+      [
+        "要とし、乱数種を固定しています。",
+        "項目",
+        "trinity-infinity: verification/check_meta.py"
+      ],
+      [
+        "突き合わせます（",
+        "項目",
+        "trinity-infinity: verification/check_errata.py"
+      ]
+    ],
+    "trinity-infinity/ROUTE.md": [
+      [
+        "この表の形と筋を検査しています（",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "trinity-infinity/docs/legal-audit-2026-11-12.md": [
+      [
+        "red があれば落ちる。件数は ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ]
+    ],
+    "trinity-operator/.github/workflows/verify.yml": [
+      [
+        "    name: 作用素 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-operator: verification/check_docs.py"
+      ],
+      [
+        " 作用素 # 項目 / 証書 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "/ 証書 # 項目 / 展望 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "展望 # 項目 / 引用情報 ",
+        "項目",
+        "trinity-operator: verification/check_docs.py"
+      ]
+    ],
+    "trinity-operator/CITATION.cff": [
+      [
+        "  乱数種を固定した検査 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "査 # 項目、証書についての ",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ],
+      [
+        "の # 項目、展望についての ",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ],
+      [
+        "F と、紙面の数値を計算し直す ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-operator: verification/check_docs.py"
+      ],
+      [
+        " 項目、定理を独立に実装し直す ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / trinity-operator: verification/check_docs.py / trinity-operator: verification/check_guards.py"
+      ]
+    ],
+    "trinity-operator/README.md": [
+      [
+        "置換 ",
+        "通り",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "eck.py        # ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "cate.py   # 証書の ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        ".py       # 展望の ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "を組み、逆行列で求めた V と ",
+        "件",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "# まで #.# 刻みの ",
+        "通り",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "登録のあとで、確かめの格子（",
+        "通り",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "",
+        "通り",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "作用素の主張 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "証書 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "展望 ",
+        "項目",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "通る状態の写しを ",
+        "通り",
+        "trinity-operator: verification/check_guards.py"
+      ],
+      [
+        "状態の写しを # 通りに壊し、",
+        "通り",
+        "trinity-operator: verification/check_guards.py"
+      ]
+    ],
+    "trinity-operator/games/OPEN-PROBLEM.md": [
+      [
+        "the same on all ",
+        "rows",
+        "trinity-operator: verification/check_docs.py"
+      ]
+    ],
+    "trinity-operator/games/README.md": [
+      [
+        "s at # of the ",
+        "steps",
+        "trinity-operator: verification/check_games.py"
+      ],
+      [
+        " `#/δ` in # of ",
+        "rows",
+        "trinity-operator: verification/check_games.py"
+      ],
+      [
+        "- In ",
+        "rows",
+        "trinity-operator: verification/check_games.py"
+      ],
+      [
+        "  in # of ",
+        "rows",
+        "trinity-operator: verification/check_games.py"
+      ]
+    ],
+    "trinity-operator/games/SCOPE.ja.md": [
+      [
+        "#-# に行いました。δ は ",
+        "通り",
+        "trinity-operator: verification/check_docs.py"
+      ]
+    ],
+    "trinity-operator/lessons/01-contractions-and-banach.md": [
+      [
+        " must be. After ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ]
+    ],
+    "trinity-operator/lessons/02-sufficient-is-not-necessary.md": [
+      [
+        "wo bounds after ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "| | error after ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "decays. After ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "magnitude after ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ]
+    ],
+    "trinity-operator/lessons/04-errors-that-grow.md": [
+      [
+        "t holds for all ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ]
+    ],
+    "trinity-operator/lessons/05-switching.md": [
+      [
+        "`(#, #)`. After ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "#.#e-#. After ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "ng sequences of ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ],
+      [
+        "of ",
+        "steps",
+        "trinity-operator: verification/check_lessons.py"
+      ]
+    ],
+    "trinity-operator/roadmap/README.md": [
+      [
+        "oadmap.py     # ",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ],
+      [
+        "こまでは `check.py`（",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ],
+      [
+        "certificate.py`（",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ],
+      [
+        "一般の `W` から作った均衡 ",
+        "件",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "必要条件が「ほぼ必ず」通ること。",
+        "件",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        "必ず」通ること。# 件で ",
+        "件",
+        "trinity-operator: verification/check_docs.py"
+      ],
+      [
+        " # + # + # = ",
+        "項目",
+        "trinity-operator: verification/check_citation.py"
+      ]
+    ]
+  },
+  "数えられない": [
+    {
+      "ファイル": "cpsbvbng26-dotcom/README.md",
+      "前": "errata-check` が ",
+      "語": "項目",
+      "文": "。各リポジトリの検査は自分の中しか見ないので、`errata-check` が 63 項目になったのにこのサイトが 60 のまま、",
+      "理由": "日付の無い過去の出来事の例（errata-check が 63 項目のとき、サイトが 60 のまま）。いつの状態かが書かれておらず、git の一点を決められない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/doi-index.md",
+      "前": "公開の検索でも、その日のうちに ",
+      "語": "件",
+      "文": "6-11-06 に著者が削除しました。HAL の公開の検索でも、その日のうちに 0 件になったことを確かめています。",
+      "理由": "HAL の公開の検索の応答（2026-11-06）。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/external-evaluations.md",
+      "前": "| ICLR # の投稿 ",
+      "語": "件",
+      "文": "| ICLR 2025 の投稿 300 件で評価した（150 件で学習、147 件",
+      "理由": "他人の論文が公表しているとされる数。こちらで確かめていないと同じ行に書いてある"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/external-evaluations.md",
+      "前": " の投稿 # 件で評価した（",
+      "語": "件",
+      "文": "| ICLR 2025 の投稿 300 件で評価した（150 件で学習、147 件で試験） | 未確認",
+      "理由": "他人の論文が公表しているとされる数。こちらで確かめていないと同じ行に書いてある"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/external-evaluations.md",
+      "前": "件で評価した（# 件で学習、",
+      "語": "件",
+      "文": "| ICLR 2025 の投稿 300 件で評価した（150 件で学習、147 件で試験） | 未確認 |",
+      "理由": "他人の論文が公表しているとされる数。こちらで確かめていないと同じ行に書いてある"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "RCID iD で著者を引くと、",
+      "語": "件",
+      "文": "ORCID iD で著者を引くと、4 件の著者の ID が出ます。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "#`）がそれぞれ ",
+      "語": "件",
+      "文": "5328`、`A5125355290`、`A5133413198`）がそれぞれ 1 件ずつ付いています。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "の名として引くと、別人の記録が ",
+      "語": "件",
+      "文": "ite で「Nemoto, Takuya」を著者の名として引くと、別人の記録が 11 件出ます。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "# 年の arXiv の ",
+      "語": "件",
+      "文": "aylor & Francis の論文の図表）、2016 年の arXiv の 2 件、2021 年の結晶構造の記録です。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "作品は ",
+      "語": "件",
+      "文": "作品は 4 件です。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "",
+      "語": "件",
+      "文": "4 件とも SSRN の記録です。",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "#-#-# には ",
+      "語": "件",
+      "文": "2026-11-12 には 5 件あり、5 件目は OSF のプロジェクト",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/name-disambiguation.md",
+      "前": "-#-# には # 件あり、",
+      "語": "件",
+      "文": "2026-11-12 には 5 件あり、5 件目は OSF のプロジェクト（`10.1",
+      "理由": "OpenAlex・DataCite・ORCID の応答。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/predictions.md",
+      "前": "件（著者自身）で、fork は ",
+      "語": "件",
+      "文": "すべて 1 件（著者自身）で、fork は 0 件、issue は 2 件とも著者自身のも",
+      "理由": "GitHub の star・fork・issue の数（2026-09-19）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/predictions.md",
+      "前": "k は # 件、issue は ",
+      "語": "件",
+      "文": "すべて 1 件（著者自身）で、fork は 0 件、issue は 2 件とも著者自身のものです。",
+      "理由": "GitHub の star・fork・issue の数（2026-09-19）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "errata-check/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "self-correction/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "、大谷恒の続柄）、未確認（刊本 ",
+      "語": "件",
+      "文": "書（戸籍謄本の記載）、証言（村會議員であったこと、大谷恒の続柄）、未確認（刊本 2 件の記載が同一人物を指すかの照合）。登録簿",
+      "理由": "証言（刊本 2 件）。紙面にも git にも数え直す元が無い"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "記録されていました。本人名義は ",
+      "語": "件",
+      "文": "で、手元から push したコミットがすべてそう記録されていました。本人名義は 85 件で、GitHub の画面や API から",
+      "理由": "本人名義のコミットの数（SC-019 のとき）。九つのリポジトリの履歴を同じ時刻で切ると 87 になり、85 になる切り方を記録から再現できなかった"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "ck_keyboard.js`、",
+      "語": "項目",
+      "文": "ab で辿って測る検査を置きました**（`check_keyboard.js`、184 項目）。字面を見る側にも 10.58 を足し",
+      "理由": "check_keyboard.js の項目数。ブラウザで頁を辿る検査で、その時点の頁とブラウザが揃わないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "d = \"大正・昭和初期の刊本 ",
+      "語": "件",
+      "文": "claimed = \"大正・昭和初期の刊本 2 件に、横川村會議員として同じ名が載っている",
+      "理由": "証言（刊本 2 件）。紙面にも git にも数え直す元が無い"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "た、というところまでです。刊本 ",
+      "語": "件",
+      "文": "m = \"伝聞の話し手から聞いたのは、議員であった、というところまでです。刊本 2 件を挙げたのは話し手ではありません。識別子",
+      "理由": "証言（刊本 2 件）。紙面にも git にも数え直す元が無い"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "とすること（著者による）、刊本 ",
+      "語": "件",
+      "文": "議員であったこと（伝聞）、肩書きを横川村會議員とすること（著者による）、刊本 2 件に名が載っていること（**話し手は刊本を",
+      "理由": "証言（刊本 2 件）。紙面にも git にも数え直す元が無い"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "eck_keyboard.js、",
+      "語": "項目",
+      "文": "、頁もナビも横へ流れないことを確かめてある（check_keyboard.js、288 項目）\"",
+      "理由": "check_keyboard.js の項目数。ブラウザで頁を辿る検査で、その時点の頁とブラウザが揃わないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "流れないことを測り直しています（",
+      "語": "項目",
+      "文": "` も折り返します。四つの幅すべてで、頁もナビも流れないことを測り直しています（288 項目すべて通過）。**あわせて、ブラウザ抜き",
+      "理由": "check_keyboard.js の項目数。ブラウザで頁を辿る検査で、その時点の頁とブラウザが揃わないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": " として落ちます。深い複製では ",
+      "語": "件",
+      "文": "-09-11 / git 2026-09-12` として落ちます。深い複製では 516 件すべて通ります\"",
+      "理由": "check_ecosystem.js の sitemap の項目数（SC-034 のとき）。横断の検査は十のリポジトリのその時点の状態を並べないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "aimed = \"横断の検査は ",
+      "語": "項目",
+      "文": "claimed = \"横断の検査は 246 項目です\"",
+      "理由": "横断の検査の項目数（SC-038・SC-040・SC-041 のとき）。十のリポジトリのその時点の状態を並べないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "査を六つ足しました（# → ",
+      "語": "項目",
+      "文": "同じ取り違えが、別の語で起きるためです。横断の検査を六つ足しました（328 → 334 項目）\"",
+      "理由": "横断の検査の項目数（SC-038・SC-040・SC-041 のとき）。十のリポジトリのその時点の状態を並べないと出ない"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "確かめ直しました。横断の検査は ",
+      "語": "項目",
+      "文": "し替え、読み替える向きに書き換えると落ちることを確かめ直しました。横断の検査は 335 項目のまま変わりません\"",
+      "理由": "横断の検査の項目数（SC-038・SC-040・SC-041 のとき）。十のリポジトリのその時点の状態を並べないと出ない"
+    },
+    {
+      "ファイル": "trinity-infinity/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "trinity-operator/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "autonomy-and-self-cultivation/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "naval-gazette-notes/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "researcher-profile/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "justice-and-algorithms/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "solitary-school/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "sophaxis/CHANGELOG.md",
+      "前": " and was broken ",
+      "語": "ways",
+      "文": "ahead. Check 134 pins it and was broken 26 ways. No lawyer has revi",
+      "理由": "その日の検査 134 の壊し方の数。CHANGELOG を書いたコミットと、検査を足したコミットが別で、どの時点の数かを記録から一つに決められなかった。いまの検査 134 は壊し方が増えている"
+    },
+    {
+      "ファイル": "sophaxis/CHANGELOG.md",
+      "前": "eaks on purpose ",
+      "語": "ways",
+      "文": "ose what they say; it breaks on purpose 20 ways. The record of the",
+      "理由": "その日の検査の壊し方の数。CHANGELOG を書いたコミットの検査 128 は 21 通りで、どの時点の 20 通りかを記録から一つに決められなかった"
+    },
+    {
+      "ファイル": "sophaxis/CHANGELOG.md",
+      "前": "ole, and of the ",
+      "語": "pages",
+      "文": "hers whole: laws stay whole, and of the 118 pages and the 12 other te",
+      "理由": "sophaxis の変更履歴の頁の数（118 頁と 12 の文）。そのときの取り寄せの数で未確認"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "ntake.yml` の実行は ",
+      "語": "件",
+      "文": "`intake.yml` の実行は 11 件で、どれも記録に issue の番号と本",
+      "理由": "GitHub の Actions の実行の数。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "ntake.yml` の実行は ",
+      "語": "件",
+      "文": "コメントの出来事で動いた `intake.yml` の実行は 88 件で、どれも仕事を飛ばしていました。飛ばし",
+      "理由": "GitHub の Actions の実行の数。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "、issue の一覧の最初の頁（",
+      "語": "件",
+      "文": "ssue が無いと読まないこと | 多くの道具が、issue の一覧の最初の頁（20 件から 100 件）だけを読み、読めない答",
+      "理由": "直す前の道具が一度に読んだ上限。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "の一覧の最初の頁（# 件から ",
+      "語": "件",
+      "文": "いと読まないこと | 多くの道具が、issue の一覧の最初の頁（20 件から 100 件）だけを読み、読めない答えを空の一覧とし",
+      "理由": "直す前の道具が一度に読んだ上限。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": " 頁までしか読まず、コメントは ",
+      "語": "件",
+      "文": "の issue を空にすること | 一覧を 10 頁までしか読まず、コメントは 100 件までしか読みませんでした | 漏れ |",
+      "理由": "直す前の道具が一度に読んだ上限。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "なし（自動の手順の確かさ） | ",
+      "語": "件",
+      "文": "のコメント（M7）と外から来た文（J2） | なし（自動の手順の確かさ） | 101 件目からのコメントも読むこと。外から来た文",
+      "理由": "直す前の道具が一度に読んだ上限。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "たりしないこと | コメントを ",
+      "語": "件",
+      "文": "。外から来た文で、人を呼んだり、実行の環境に命じたりしないこと | コメントを 100 件までしか読みませんでした。DOI のメタ",
+      "理由": "直す前の道具が一度に読んだ上限。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "sophaxis/docs/legal-audit-2026-11-12.md",
+      "前": "に運営者が EUIPO で調べ、",
+      "語": "件",
+      "文": "べ、見つかりませんでした。2026-11-17 に運営者が EUIPO で調べ、0 件でした。Claude は画面の写しで見た",
+      "理由": "運営者が EUIPO で調べた結果（2026-11-17）。外のサービスで、Claude は画面の写しを見ただけ"
+    },
+    {
+      "ファイル": "deposit-check/CHANGELOG.md",
+      "前": "of one author's ",
+      "語": "DOIs",
+      "文": "; the URL alone found 4 of one author's 34 DOIs, none of them at Ze",
+      "理由": "DataCite の応答（最初の実行）。外のサービスで、作業環境から届かない"
+    },
+    {
+      "ファイル": "deposit-check/docs/runs/2026-11-11-catalog/report.md",
+      "前": "#-#-#: ",
+      "語": "works",
+      "文": "ORCID iD 0009-0000-1406-0547: 4 works with a DOI on the r",
+      "理由": "deposit-check の実行が外の API から読んだ数（2026-11-11）。報告の本文からは数え直せない"
+    },
+    {
+      "ファイル": "deposit-check/docs/runs/2026-11-11-catalog/report.md",
+      "前": " on the record, ",
+      "語": "DOIs",
+      "文": "0547: 4 works with a DOI on the record, 54 DOIs read. 8 errors, 45",
+      "理由": "deposit-check の実行が外の API から読んだ数（2026-11-11）。報告の本文からは数え直せない"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "決めた日に、開いている願い出は ",
+      "語": "件",
+      "文": "だけで決まり、人の手を待たない形にするためです。決めた日に、開いている願い出は 0 件だった。（のちに改めた：正誤 37・第",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "（ラベル「求め」）はこの日まで ",
+      "語": "件",
+      "文": "ったので、狭まった権利はなく、求めの issue（ラベル「求め」）はこの日まで 0 件だったためです。求めることができるものと",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "一覧（#-#-# に ",
+      "語": "件",
+      "文": "false）、ラベル「求め」の issue の一覧（2026-11-12 に 0 件）、個人情報保護法第32条（e-Gov",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "らない」に分けた称号・栄典の条 ",
+      "語": "件",
+      "文": "んだ条から作っていたが、調べは、型の決めで「当たらない」に分けた称号・栄典の条 339 件を読み直していなかった。読み直すと、ギリ",
+      "理由": "称号・栄典の条のうち型の決めで「当たらない」に分けたもの（2026-11-13）。記録のデータからは、その数え方を再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "叙任の願い出の issue は ",
+      "語": "件",
+      "文": "11-22 からの改めた規程は、予定のまま残す。叙任の願い出の issue は 0 件で、名簿に騎士はいない。 | Norma",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "、開いているものも閉じたものも ",
+      "語": "件",
+      "文": "止を決めた時点で、叙任の願い出の issue は、開いているものも閉じたものも 0 件でした。",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "頁に示すまでに開かれた願い出は ",
+      "語": "件",
+      "文": "効力の生じる前に」を満たしていません。始まりから頁に示すまでに開かれた願い出は 0 件で、この差で受けなかった願い出はありませ",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "はなく、求めの issue も ",
+      "語": "件",
+      "文": "た。返せる方法がもとからなかったので狭まった権利はなく、求めの issue も 0 件だったためです。求めることができるものと",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "かった。求めの issue は ",
+      "語": "件",
+      "文": "すること | 示していた非公開の道は、もとからなかった。求めの issue は 0 件 | 表現 | 事実の訂正として、予告を",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "# に読んだ直近の実行（多くて ",
+      "語": "件",
+      "文": "GitHub の API で 2026-11-13 に読んだ直近の実行（多くて 300 件）の中央値です。",
+      "理由": "外の API の応答。2026-11-13 に GitHub の API で読んだ実行の記録の上限で、git にも作業環境にも残っていない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "、開いているものも閉じたものも ",
+      "語": "件",
+      "文": "-11-13 に、叙任の願い出の issue は、開いているものも閉じたものも 0 件で、騎士の名簿に騎士はいませんでした。",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "叙任の願い出の issue は ",
+      "語": "件",
+      "文": "の実行の記録は、手順に渡した環境変数を示します。叙任の願い出の issue は 0 件で実行がなかったので、実際の記録では確か",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "たラベルのない issue は ",
+      "語": "件",
+      "文": "-13 に、2026-11-12 から後に開かれたラベルのない issue は 0 件でした。",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "たラベルのない issue は ",
+      "語": "件",
+      "文": "る形だった。2026-11-12 から後に開かれたラベルのない issue は 0 件だった | 漏れ | どの issue",
+      "理由": "GitHub の issue の数（その日）。外のサービスの値で、git に残らない"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "読まないこと | 一覧の最初の ",
+      "語": "件",
+      "文": "さないこと。読めない答えを、issue が無いと読まないこと | 一覧の最初の 50 件だけを読んでいました。年一回の総点検は、",
+      "理由": "直す前の道具が一度に読んだ上限（issue の一覧の最初の 50 件）。数えた数ではなく、前の版の引数"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "quamae を調べ、どちらも ",
+      "語": "件",
+      "文": "が EUIPO で Nusquama と Nusquamae を調べ、どちらも 0 件でした。Claude は画面の写しで見た",
+      "理由": "運営者が EUIPO で調べた結果（2026-11-17）。外のサービスで、Claude は画面の写しを見ただけ"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "honours-foreign（",
+      "語": "件",
+      "文": "### C-honours-foreign（32 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "# C-data-habeas（",
+      "語": "件",
+      "文": "### C-data-habeas（30 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "DP-registration（",
+      "語": "件",
+      "文": "### DP-registration（44 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "### DP-transfer（",
+      "語": "件",
+      "文": "### DP-transfer（160 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "### DP-scope（",
+      "語": "件",
+      "文": "### DP-scope（166 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "## K-defamation（",
+      "語": "件",
+      "文": "### K-defamation（166 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "-representative（",
+      "語": "件",
+      "文": "### DP-representative（59 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "### DP-minors（",
+      "語": "件",
+      "文": "### DP-minors（68 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "symbols-similar（",
+      "語": "件",
+      "文": "### K-symbols-similar（13 件）",
+      "理由": "型ごとの見出しの数（2026-11-12）。そのときの道具の数え方によるもので、記録のデータから再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "# 件です。外国の称号の型の ",
+      "語": "件",
+      "文": "型（K-symbols-similar）が拾う 13 件です。外国の称号の型の 35 件には、検索語を足して憲法を取り寄せ直した",
+      "理由": "一つずつ読み直した条の数（2026-11-13）。記録のデータからは、その数え方を再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "り寄せ直したときに新しく拾った ",
+      "語": "件",
+      "文": "称号の型の 35 件には、検索語を足して憲法を取り寄せ直したときに新しく拾った 3 件を含みます。",
+      "理由": "一つずつ読み直した条の数（2026-11-13）。記録のデータからは、その数え方を再現できなかった"
+    },
+    {
+      "ファイル": "nusquama/docs/world-law-2026-11-12.md",
+      "前": "の頁を返しました。条に分けると ",
+      "語": "件",
+      "文": "別の所在（大統領府の法令の頁）が、法典を名指す別の頁を返しました。条に分けると 15 件しかなく、法典の文ではありませんでした。",
+      "理由": "取り寄せ直したロシアの刑法典の頁を条に分けた数。記さなかった頁で、git に残っていない"
+    }
+  ],
+  "外す": [
+    {
+      "ファイル": "cpsbvbng26-dotcom/.github/workflows/ecosystem.yml",
+      "前": "「errata-check が ",
+      "語": "項目",
+      "文": "# だから「errata-check が 63 項目になったのに、サイトが 60 のまま」が",
+      "理由": "ワークフローの注釈（YAML の # の行）。コードの注釈で、例として挙げた数"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/legal-audit-2026-11-12.md",
+      "前": " aiXiv.science, ",
+      "語": "paper",
+      "文": "審査の主体を確かめたとおりに書くこと | 「On aiXiv.science, 1 paper has passed the plat",
+      "理由": "直す前の文の引用（「」の中）。いまの文ではない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/legal-audit-2026-11-12.md",
+      "前": " aiXiv.science, ",
+      "語": "paper",
+      "文": "査したかは確かめていません | 表現 | 「On aiXiv.science, 1 paper has passed the plat",
+      "理由": "直す前の文の引用（「」の中）。いまの文ではない"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/number-style.md",
+      "前": "るときは、算用数字で書きます。「",
+      "語": "件",
+      "文": "助数詞（件・箇所・人・本・項目・戦略など）で数えるときは、算用数字で書きます。「3 件」「2 戦略」のように書きます。",
+      "理由": "書き方の決めの例（「3 件」「2 戦略」）"
+    },
+    {
+      "ファイル": "cpsbvbng26-dotcom/docs/objections.md",
+      "前": "# 人・# 戦略なら #³ = ",
+      "語": "通り",
+      "文": "人ゲームの利得を 4 セルの表で示していました。3 人・2 戦略なら 2³ = 8 通りある |",
+      "理由": "算術の恒等式（2³ = 8）"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "# ",
+      "語": "件",
+      "文": "# 105 件のうち 45 件は再構成です。2025年",
+      "理由": "TOML の注釈（# の行）。コードの注釈"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "# 人・# 戦略なら #³ = ",
+      "語": "通り",
+      "文": "problem = \"3 人・2 戦略なら 2³ = 8 通りあります。4 セルでは表現できません\"",
+      "理由": "算術の恒等式（2³ = 8）"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "ite.js` の #.#（",
+      "語": "項目",
+      "文": "23/23、10/10、8/8。`check_site.js` の 10.53（10 項目、270 → 278）\"",
+      "理由": "SC-015 が当時書いた数。git の履歴と合わない（10.53 は 18 項目、260 → 278）。登録簿は書いた文を直さないので、合わないことを SC-046 に記した"
+    },
+    {
+      "ファイル": "self-correction/register.toml",
+      "前": "ite.js` の #.#（",
+      "語": "項目",
+      "文": "claimed = \"`check_site.js` の 10.53（10 項目、270 → 278）\"",
+      "理由": "SC-015 が当時書いた数の引用（SC-046 の claimed）。git の履歴と合わないことを SC-046 が書いている"
+    },
+    {
+      "ファイル": "trinity-infinity/README.md",
+      "前": "ice exists. The ",
+      "語": "record",
+      "文": "no retraction notice exists. The 2025 record remains live and is",
+      "理由": "年（2025 年の記録）。数ではない"
+    },
+    {
+      "ファイル": "trinity-infinity/README.md",
+      "前": "りません。# 人・# 戦略なら ",
+      "語": "通り",
+      "文": "1. 三人ゲームの利得表が 4 セルしかありません。3 人・2 戦略なら 8 通りあります",
+      "理由": "算術の恒等式（2³ = 8）"
+    },
+    {
+      "ファイル": "trinity-infinity/README.md",
+      "前": "#人#戦略のゲームは #³ = ",
+      "語": "通り",
+      "文": "| 三人ゲームの利得表 | 3人2戦略のゲームは 2³ = 8 通り。4セルの表はこのゲームを表現できない",
+      "理由": "算術の恒等式（2³ = 8）"
+    },
+    {
+      "ファイル": "naval-gazette-notes/data/README.md",
+      "前": "#-# 〜 #-#（",
+      "語": "件",
+      "文": "未収録 | 敍勲三等授瑞寶章 —— 假記 2603-13 〜 2603-17（5件）。論文は人数のみ記録し、氏名は翻刻してい",
+      "理由": "算術の恒等式（假記 2603-13 〜 2603-17 の幅）"
+    },
+    {
+      "ファイル": "sophaxis/CHANGELOG.md",
+      "前": "map dates and a ",
+      "語": "page",
+      "文": "data, share links, sitemap dates and a 404 page (#25).",
+      "理由": "HTTP の状態の番号（404）。数ではない"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "し、そのことを正誤表のもとの第 ",
+      "語": "件",
+      "文": "稿へのリンクを README「ほかの場所」から外し、そのことを正誤表のもとの第 9 件と年表の一行に記した。同じ日に、その二行",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "のちの行の番を詰めた（いまの第 ",
+      "語": "件",
+      "文": "一行に記した。同じ日に、その二行を消し、正誤表ののちの行の番を詰めた（いまの第 9 件は別の行である）。消した正誤表の行は、誤",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/ERRATA.md",
+      "前": "に反する二つめの誤りである。第 ",
+      "語": "件",
+      "文": "書いていた。記した行を消したことは、基本法第五条に反する二つめの誤りである。第 7 件は X の投稿も「ほかの場所」に挙げる形",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "改める前の文は、王の正誤表の第 ",
+      "語": "件",
+      "文": "改める前の文は、王の正誤表の第 48 件から第 50 件に残しました。",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "王の正誤表の第 # 件から第 ",
+      "語": "件",
+      "文": "改める前の文は、王の正誤表の第 48 件から第 50 件に残しました。",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "いと書きました。王の正誤表の第 ",
+      "語": "件",
+      "文": "の記載の訂正」と改め、どの issue も閉じないと書きました。王の正誤表の第 49 件に記しました。2026-11-15 に",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "止めたままです。王の正誤表の第 ",
+      "語": "件",
+      "文": "きました。受けない三つの場合も書きました。受付は止めたままです。王の正誤表の第 50 件に記しました。2026-11-15 に",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "改める前の文は、王の正誤表の第 ",
+      "語": "件",
+      "文": "改める前の文は、王の正誤表の第 51 件から第 56 件に残しました。",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "王の正誤表の第 # 件から第 ",
+      "語": "件",
+      "文": "改める前の文は、王の正誤表の第 51 件から第 56 件に残しました。",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "とを書きました。王の正誤表の第 ",
+      "語": "件",
+      "文": "であることと、使えるのは有効になってからであることを書きました。王の正誤表の第 51 件に前の文を残しました。公開できない求めに",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "うと改めました。王の正誤表の第 ",
+      "語": "件",
+      "文": "厳しい読み方を採り、刑罰の罰金が残るものとして扱うと改めました。王の正誤表の第 53 件に前の文を残しました。軽いほうの読みに拠",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "」を添えました。王の正誤表の第 ",
+      "語": "件",
+      "文": "が書きました。「（他人の登録商標と重なるとき）」を添えました。王の正誤表の第 54 件に前の文を残しました。ヌスクァマが商標を",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    },
+    {
+      "ファイル": "nusquama/docs/legal-audit-2026-11-12.md",
+      "前": "日から効きます。王の正誤表の第 ",
+      "語": "件",
+      "文": "を置くことに改めました。狭める点はないので公開の日から効きます。王の正誤表の第 55 件に前の文を残しました。二つの規程が同じこ",
+      "理由": "番号（王の正誤表の第 N 件）。数ではなく、行を指す"
+    }
+  ]
+}

@@ -50,8 +50,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/deposit-check, path: repos/deposit-check, fetch-depth: 0, persist-credentials: false }
       # 共通の決めごと 16 の検査は、Nusquama の散文も走る（利用者に作業を割り当てる形が無いか）。読むだけで、つなぎはしない。
+      # 2026-11-18：散文の過去の数（各国の法令の調べの数など）を git のその時点から数え直すので、履歴ごと読む。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with: { repository: cpsbvbng26-dotcom/nusquama, path: repos/nusquama, persist-credentials: false }
+        with: { repository: cpsbvbng26-dotcom/nusquama, path: repos/nusquama, fetch-depth: 0, persist-credentials: false }
       # 共同研究の入口（2026-11-18、十の外）。正本の写し・決めごとの番号・条文を突き合わせ、決めごと 16 の形を走る。読むだけ。
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with: { repository: cpsbvbng26-dotcom/research-collaboration, path: repos/research-collaboration, persist-credentials: false }
