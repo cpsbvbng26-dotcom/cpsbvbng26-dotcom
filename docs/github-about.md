@@ -92,10 +92,10 @@ https://github.com/cpsbvbng26-dotcom/errata-check
 **description**
 
 ```
-Three preprints on a contraction operator, 95 verification checks, and a record of what the series established, what it withdrew, and what can no longer be fixed.
+Three preprints on a contraction operator, 302 verification checks, and a record of what the series established, what it withdrew, and what can no longer be fixed.
 ```
 
-> 参考訳: 縮小作用素をめぐる三篇のプレプリントと、検証 95 項目。何が確立され、何が撤回され、何がもう直せないかの記録。
+> 参考訳: 縮小作用素をめぐる三篇のプレプリントと、検証 302 項目。何が確立され、何が撤回され、何がもう直せないかの記録。
 
 **topics**
 
@@ -246,7 +246,7 @@ https://doi.org/10.5281/zenodo.22335676
 |---|---|---|
 | 1 | `cpsbvbng26-dotcom` | 入口。核の主張と、その限界に 1 クリックで着く |
 | 2 | `errata-check` | 核の道具。唯一 DOI が付いた新規のもの |
-| 3 | `self-correction` | 核の記録。23 件、消せない |
+| 3 | `self-correction` | 核の記録。105 件、消せない |
 | 4 | `trinity-infinity` | 監査の対象（論文と、撤回の記録） |
 | 5 | `trinity-operator` | 監査の対象（訂正と、その反例） |
 | 6 | `autonomy-and-self-cultivation` | 監査の対象（哲学三篇） |
