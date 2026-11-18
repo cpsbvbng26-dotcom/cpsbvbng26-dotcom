@@ -6454,6 +6454,103 @@ console.log('\n13c. 2026-11-18 の点検：創作の系列の名・マージの�
   check('壊して確かめる：README・仕事の名・self-correction の README の数を動かすと落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
+console.log('\n13d. 2026-11-18：黄金比の窓の予想の (a) と (b) の状態が、書いてあるどこでも同じ（命題 8 と 9 で証明済み。解決済みで、(a) と (b) の式は既知の定理の特別な場合、δ についての連続・狭義の増加・両端の極限は読んだ文献に見つからない）');
+{
+  /* 2026-11-18 に、trinity-operator のノートが予想の (a) を命題 8、(b) を命題 9 として証明した。
+   * 状態を書く面は、ノート・開いている問題の頁・続ける範囲の二枚・README・予想のサイト・事前登録の頁の前書き・
+   * 生成もとの設定（researcher-profile）・生成された頁（cpsbvbng26-dotcom）・目録・記録・trinity-infinity の README と年表。
+   * どの面も、(a) が命題 8、(b) が命題 9 で証明済みだと、決まった文で書くこと。前の状態の文（未証明・開いている・
+   * 予想の印）が一つでも残れば落とす。Sophaxis の 2026.0001 は凍結した Figshare の版の記録なので見ない。
+   * 事前登録の頁は、線の下の登録した本文（OSF が正）を見ず、前書きだけを見る。 */
+  const 面 = [
+    ['trinity-operator', 'games/README.md', ['| for 1/φ < δ < 2/3, the sustainable set has length zero | resolved (Proposition 8); a special case of known theorems |', 'and runs from 0 to 1 across the interval | resolved (Proposition 9); the formula is a special case of known theorems; continuity, strict increase and the end limits were not found in the texts read |']],
+    ['trinity-operator', 'games/OPEN-PROBLEM.md', ['| resolved: proved as Proposition 8 (2026-11-18) |', '| resolved: proved as Proposition 9 (2026-11-18) |', 'Its status is resolved (part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['trinity-operator', 'games/SCOPE.md', ['| resolved by Proposition 8 (2026-11-18);', '| resolved by Proposition 9 (2026-11-18);']],
+    ['trinity-operator', 'games/SCOPE.ja.md', ['| 命題 8 で解決済み（2026-11-18）。', '| 命題 9 で解決済み（2026-11-18）。']],
+    ['trinity-operator', 'games/PREREGISTRATION.md', ['Later. On 2026-11-18, parts (a) and (b) were proved as Propositions 8 and 9 of the note.']],
+    ['trinity-operator', 'README.md', ['(a) と (b) は、2026-11-18 に証明しました。(a) が命題 8、(b) が命題 9 です。', '状態は「解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つからない）」です。']],
+    ['trinity-operator', 'site/index.html', ['Both are proved: part (a) is Proposition 8 and part (b) is Proposition 9 of the note.', 'Status: resolved (part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['researcher-profile', 'golden-window.en.json', ['Both are proved: part (a) is Proposition 8 and part (b) is Proposition 9 of the note.', 'Status: resolved (part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['researcher-profile', 'golden-window.json', ['(a) は証明した（命題 8）。(b) も証明した（命題 9）。', '状態は、解決済み（(a) と (b) の式は既知の定理の特別な場合。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つからない）である。']],
+    ['researcher-profile', 'golden-window.js', ['length zero (Proposition 8)', '狭義に増えること（命題 9）']],
+    ['cpsbvbng26-dotcom', 'notes/golden-window.en.html', ['Both are proved: part (a) is Proposition 8 and part (b) is Proposition 9 of the note.', 'Status: resolved (part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['cpsbvbng26-dotcom', 'notes/golden-window.html', ['(a) は証明した（命題 8）。(b) も証明した（命題 9）。', '状態は、解決済み（(a) と (b) の式は既知の定理の特別な場合。']],
+    ['researcher-profile', 'site.json', ['予想の二つの部分は、2026-11-18 に証明しました（命題 8 と 9）。', '予想は解決済みです。(a) と (b) の式は既知の定理の特別な場合です。']],
+    ['cpsbvbng26-dotcom', 'index.html', ['予想の二つの部分は、2026-11-18 に証明しました（命題 8 と 9）。', '予想は解決済みです。(a) と (b) の式は既知の定理の特別な場合です。']],
+    ['researcher-profile', 'site.en.json', ['Both parts of the conjecture were proved on 2026-11-18 (Propositions 8 and 9).', 'Part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['cpsbvbng26-dotcom', 'index.en.html', ['Both parts of the conjecture were proved on 2026-11-18 (Propositions 8 and 9).', 'Part (a) and the formula of part (b) are special cases of known theorems;']],
+    ['researcher-profile', 'site.de.json', ['Beide Teile der Vermutung wurden am 18.11.2026 bewiesen (Propositionen 8 und 9).', 'Teil (a) und die Formel von Teil (b) sind Spezialfälle bekannter Sätze;']],
+    ['cpsbvbng26-dotcom', 'index.de.html', ['Beide Teile der Vermutung wurden am 18.11.2026 bewiesen (Propositionen 8 und 9).', 'Teil (a) und die Formel von Teil (b) sind Spezialfälle bekannter Sätze;']],
+    ['researcher-profile', 'site.fr.json', ['Les deux parties de la conjecture ont été démontrées le 18 novembre 2026 (propositions 8 et 9).', 'sont des cas particuliers de théorèmes connus ;']],
+    ['cpsbvbng26-dotcom', 'index.fr.html', ['Les deux parties de la conjecture ont été démontrées le 18 novembre 2026 (propositions 8 et 9).', 'sont des cas particuliers de théorèmes connus ;']],
+    ['researcher-profile', 'site.it.json', ['Le due parti della congettura sono state dimostrate il 18 novembre 2026 (proposizioni 8 e 9).', 'sono casi particolari di teoremi noti;']],
+    ['cpsbvbng26-dotcom', 'index.it.html', ['Le due parti della congettura sono state dimostrate il 18 novembre 2026 (proposizioni 8 e 9).', 'sono casi particolari di teoremi noti;']],
+    ['researcher-profile', 'catalog.json', ['ノートの命題 8 と 9 で 2026-11-18 に証明した。解決済み（(a) と (b) の式は既知の定理の特別な場合。', 'the note proves them as Propositions 8 and 9 (2026-11-18). Resolved: part (a) and the formula of part (b) are special cases of known theorems']],
+    ['cpsbvbng26-dotcom', 'catalog.json', ['ノートの命題 8 と 9 で 2026-11-18 に証明した。解決済み（(a) と (b) の式は既知の定理の特別な場合。', 'the note proves them as Propositions 8 and 9 (2026-11-18). Resolved: part (a) and the formula of part (b) are special cases of known theorems']],
+    ['cpsbvbng26-dotcom', 'docs/self-assessment.md', ['2026-11-18 に (a) と (b) をノートの命題 8 と 9 で証明した。解決済み（(a) と (b) の式は既知の定理の特別な場合。', '2026-11-18 に、予想の (a) と (b) を証明しました。ノートの命題 8 と命題 9 です。']],
+    ['cpsbvbng26-dotcom', 'docs/figshare.md', ['(a) と (b) は、2026-11-18 にノートの命題 8 と命題 9 で証明しました。予想は解決済みです。(a) と (b) の式は既知の定理の特別な場合です。']],
+    ['cpsbvbng26-dotcom', 'docs/doi-index.md', ['二つは、2026-11-18 に trinity-operator のノートの命題 8 と命題 9 で証明しました。(a) と (b) の式は既知の定理の特別な場合です。']],
+    ['trinity-infinity', 'README.md', ['予想は、2026-11-18 にノートの命題 8 と 9 で解決しました。', '(a) と (b) の式は、既知の定理の特別な場合です。', 'The conjecture was resolved on 2026-11-18, as Propositions 8 and 9 of the note']],
+    ['trinity-infinity', 'TIMELINE.md', ['| 2026-11-18 | ノートの命題 8 と 9 | 黄金比の窓の予想の (a) と (b) | 予想の二つの部分を証明した。', '予想は解決済み（(a) と (b) の式は既知の定理の特別な場合。']],
+  ];
+  /* 前の状態の文。どの面にも残さない。 */
+  const 古い = [
+    /\| Golden-window conjecture \([ab]\) \|[^\n]*\| \*\*conjecture\*\* \|/, /\| `conjecture \([ab]\)` \| Golden-window conjecture \([ab]\) \| open \|/,
+    /証明されていない予想/, /It has not been proved\./, /予想には証明が無く/, /There is no proof, and the evidence is numerical only/,
+    /Ein Beweis fehlt/, /Il n’y a pas de preuve/, /Non c’è una dimostrazione/, /is conjecture \(a\), and is not proved/,
+    /予想 \(a\) で、証明していない/, /Part \(b\) is (still a conjecture|open)/, /\(b\) は証明していません/, /Part \(b\) remains\./,
+    /a proof, or a counterexample, (that|about)/, /の証明か反例/,
+    /* 2026-11-18 の要旨までの照合の前の状態の文。照合した命題 8・9 を「照合していない」と書かない。 */
+    /The proofs have not been checked against the literature\.<\/b>/, /証明は文献と照合していない/, /Neither proof has been checked against the literature/,
+    /proved by Propositions 8 and 9; literature not checked/, /予想は証明済みです/, /文献との照合を条件として/,
+    /the conjecture is proved, subject to the literature check/, /They have not been checked against the literature\. Parts of the results/,
+    /* 照合の途中の文（要旨まで、2026-11-18）と、取り下げられた「同時の連続が壊れる」。 */
+    /read at abstract level only\)/, /文献は要旨までしか/, /一部は既知の結果から従/, /follows from known results/,
+    /known in substance/, /partly known/, /fails in general/, /一部が既知/,
+  ];
+  const 読む = (repo, rel) => {
+    const t = read(repo, rel);
+    return t === null ? null : (rel === 'games/PREREGISTRATION.md' ? t.split('\n---\n')[0] : t);
+  };
+  const 今 = {};
+  面.forEach(([repo, rel]) => { 今[repo + '/' + rel] = 読む(repo, rel); });
+  const 問題 = (m) => {
+    const bad = [];
+    面.forEach(([repo, rel, want]) => {
+      const t = m[repo + '/' + rel];
+      if (t === null || t === undefined) { bad.push(repo + '/' + rel + ' が無い'); return; }
+      const flat = t.replace(/\s+/g, ' ');
+      const miss = want.filter((w) => t.indexOf(w) < 0 && flat.indexOf(w) < 0);
+      if (miss.length) bad.push(repo + '/' + rel + ' に「' + miss[0].slice(0, 30) + '」が無い');
+      const old = 古い.find((re) => re.test(t) || re.test(flat));
+      if (old) bad.push(repo + '/' + rel + ' に前の状態の文 ' + old);
+    });
+    return bad;
+  };
+  const now = 問題(今);
+  check('予想の (a) と (b) の状態が、' + 面.length + ' の面のどれでも「命題 8 と 9 で証明済み」（解決済み、(a) と (b) の式は既知の定理の特別な場合）で、前の状態の文が残っていない',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: (今[k] || '').replace(a, b) });
+  const 壊し = [
+    ['ノートの表の (b) を予想に戻す', 替('trinity-operator/games/README.md', '| resolved (Proposition 9); the formula is a special case of known theorems; continuity, strict increase and the end limits were not found in the texts read |', '| **conjecture** |')],
+    ['予想のサイトの状態を、照合の途中の文に戻す', 替('trinity-operator/site/index.html', 'Status: resolved (part (a) and the formula of part (b) are special cases of known theorems;', 'Status: resolved (part follows from known results; the literature was read at abstract level only).')],
+    ['ラベルの表の (a) を open に戻す', 替('trinity-operator/games/OPEN-PROBLEM.md', '| resolved: proved as Proposition 8 (2026-11-18) |', '| open |')],
+    ['続ける範囲の頁の (b) を証明か反例に戻す', 替('trinity-operator/games/SCOPE.ja.md', '| 命題 9 で解決済み（2026-11-18）。', '| `T_δ` の次元についての証明か反例')],
+    ['予想のサイトを未証明に戻す', 替('trinity-operator/site/index.html', 'Both are proved: part (a) is Proposition 8 and part (b) is Proposition 9 of the note.', 'It has not been proved.')],
+    ['生成された日本語の頁だけを古い文に戻す', 替('cpsbvbng26-dotcom/notes/golden-window.html', '(a) は証明した（命題 8）。(b) も証明した（命題 9）。', '証明されていない予想である。')],
+    ['トップのイタリア語だけを古い文に戻す', 替('cpsbvbng26-dotcom/index.it.html', 'Le due parti della congettura sono state dimostrate il 18 novembre 2026 (proposizioni 8 e 9).', 'Non c’è una dimostrazione.')],
+    ['設定のドイツ語の命題の番号を違える', 替('researcher-profile/site.de.json', '(Propositionen 8 und 9)', '(Propositionen 8 und 10)')],
+    ['目録の英語から証明の一文を外す', 替('researcher-profile/catalog.json', 'the note proves them as Propositions 8 and 9 (2026-11-18', 'the note discusses them')],
+    ['年表の行を落とす', 替('trinity-infinity/TIMELINE.md', '| 2026-11-18 | ノートの命題 8 と 9 |', '| 2026-11-18 | ノート |')],
+    ['trinity-infinity の README の英語の欄の日付を違える', 替('trinity-infinity/README.md', 'resolved on 2026-11-18, as Propositions 8 and 9', 'resolved on 2026-11-19, as Propositions 8 and 9')],
+    ['ノートに、取り下げられた「同時の連続は壊れる」を書き戻す', 替('trinity-operator/games/README.md', '## The literature check of 2026-11-18\n', '## The literature check of 2026-11-18\n\nJoint continuity fails in general.\n')],
+    ['事前登録の前書きを消す', 替('trinity-operator/games/PREREGISTRATION.md', 'Later. On 2026-11-18, parts (a) and (b) were proved', 'Later. On 2026-11-18, part (a) was proved')],
+  ];
+  const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
+  check('壊して確かめる：ノート・ラベル・続ける範囲・サイト・生成された頁・五言語の一つ・設定・目録・年表・英語の欄・事前登録の前書きのどれか一つを戻すと落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 /* 481（百本ノック五）。**この検査の件数は docs/checks.md の一か所にだけ書く。**
  * 2026-11-12 まで五か所に書いて突き合わせていた。ほかの場所は、その頁を指す。数を書き戻せば落とす。 */
 console.log('\n14. この検査が名乗る件数');

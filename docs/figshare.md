@@ -28,6 +28,9 @@ Figshare に出すのは、researchmap の MISC に載せられる水準のも�
 | Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | `10.6084/m9.figshare.34419198` | 2026-10-13 |
 
 trinity-operator の games のノートを、英語の論文の形にしたものです。
+この稿は凍結しており、黄金比の窓の予想の (a) と (b) を予想のまま載せています。
+(a) と (b) は、2026-11-18 にノートの命題 8 と命題 9 で証明しました。予想は解決済みです。(a) と (b) の式は既知の定理の特別な場合です。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つかりませんでした。
+Figshare に新しい版を出すことは利用者のアカウントでしかできず、Claude には触れられません。
 ノートのほうは GitHub にあり、DOI を持ちません。
 この稿の正本は Figshare です（[canonical-sources.md](canonical-sources.md)）。
 `check_ecosystem.js` が、この表の DOI と [doi-index.md](doi-index.md) の Figshare の番号を突き合わせます。
