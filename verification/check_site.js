@@ -3013,9 +3013,10 @@ section('10.63 全作品の目録と、道具の一覧');
    * 日付は catalog.json が持ち、check_ecosystem.js が git の履歴と突き合わせる。ここは頁の表示を見る。 */
   const 時期欠け = [];
   const 二年 = ['sophaxis', 'deposit-check'];
-  /* 黄金比の窓の予想のプレプリント（Figshare）と、その確かめの走査の事前登録（OSF、2026-11-17 に足した）。
-   * この二つだけが一年次の成果の続きで、ほかの行がその書き方になっても、二つのどちらかが外れても落とす。 */
-  const 続きの作品 = ['repeated-games-cyclic-operator', 'golden-window-preregistration'];
+  /* 黄金比の窓の予想のプレプリント（Figshare）と、その確かめの走査の事前登録（OSF、2026-11-17 に足した）と、
+   * その解決の稿（Figshare `10.6084/m9.figshare.35050300`、2026-11-18 に足した）。
+   * この三つだけが一年次の成果の続きで、ほかの行がその書き方になっても、三つのどれかが外れても落とす。 */
+  const 続きの作品 = ['repeated-games-cyclic-operator', 'golden-window-preregistration', 'golden-window-resolution'];
   [['catalog.html', '学部一年次', '学部二年次'], ['catalog.en.html', 'First undergraduate year', 'Second undergraduate year']].forEach(([f, y1, y2]) => {
     const h = read(f);
     works.forEach((w) => {
