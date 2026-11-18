@@ -5034,6 +5034,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
    * GitHub の同時実行の振る舞いは取り寄せて確かめていないので、どちらに振る舞っても正しい形（スキップされた仕事が場所を取らない）を見る。 */
   const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
   const HEAD = '\n## 2026-11-15：自動化を固める\n';
+  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'] };
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
   const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
   const DECIDED = '2026-11-15 に利用者が決め、Claude が書きました';
@@ -5437,7 +5438,10 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
       if (i < 0) { bad.push(r + '：記録の節が無い'); continue; }
       const j = a.indexOf('\n## ', i + 5);
       const t = a.slice(i, j < 0 ? a.length : j);
-      if (/\n## 2026-/.test(a.slice(i + 5))) bad.push(r + '：記録の節が最後の日付の節でない');
+      /* 2026-11-18：Sophaxis と Nusquama の記録は、この節の後に「2026-11-18：名称と商標」を一つだけ持つ（利用者が求め、Claude が書いた）。
+       * ほかの日付の節は、どのリポジトリでもこの節の後に置かない。後に置く節は、名と順をここに挙げたものだけ。 */
+      const after = [...a.slice(i + 5).matchAll(/\n## (2026-[^\n]*)/g)].map((m) => m[1]);
+      if (JSON.stringify(after) !== JSON.stringify(LATER_SECTIONS[r] || [])) bad.push(r + '：記録の節が最後の日付の節でない');
       const rows = t.split('\n').filter((l) => /^\| (?!---|箇所 \||Place \|)/.test(l)).map((l) => l.slice(2, -2).split(' | '));
       const kind = (k) => EN[k] || k;
       if (rows.length < 3 || !rows.every((y) => y.length === 6 && KINDS.includes(kind(y[4])))) bad.push(r + '：記録の表');
@@ -5539,6 +5543,8 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
     ['check_all.js が PDF の形を回さない', Object.assign({}, real, { checkAll: real.checkAll.replace("'verification/check_pdf_shape.py']", "'verification/check_pdf.py']") })],
     ['check_all.js が CI で無いリポジトリを通す', Object.assign({}, real, { checkAll: real.checkAll.replace("if (missing && process.env.GITHUB_ACTIONS === 'true') { failed += missing;", "if (false) { failed += missing;") })],
     ['記録の節を外す', sub('aud', 'solitary-school', real.aud['solitary-school'].replace(HEAD, '\n## 2026-11-15：自動化\n'))],
+    ['Nusquama の記録の名称と商標の後に日付の節を足す', sub('aud', 'nusquama', real.aud.nusquama.replace('\n## 調べた法令\n', '\n## 2026-11-19：次の点検\n\n## 調べた法令\n'))],
+    ['Sophaxis の記録から名称と商標の節を外す', sub('aud', 'sophaxis', real.aud.sophaxis.replace('\n## 2026-11-18：名称と商標\n', '\n## 名称と商標\n'))],
     ['記録の判定の数を変える', sub('aud', 'errata-check', real.aud['errata-check'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?この表の判定は、漏れ )(\d+)/, (m0, a, b) => a + (Number(b) + 1)))],
     ['記録の一行から決めた者を外す', sub('aud', 'trinity-operator', real.aud['trinity-operator'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?\| 漏れ \| [^\n]*?)2026-11-15 に利用者が決め、Claude が書きました。/, '$1'))],
     ['記録から確かめていないことを外す', sub('aud', 'justice-and-algorithms', real.aud['justice-and-algorithms'].replace(/(## 2026-11-15：自動化を固める[\s\S]*?)GitHub の説明書を取り寄せて確かめていません。/, '$1'))],
