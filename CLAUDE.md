@@ -257,3 +257,5 @@ HAL の ID は、モデレーションを通って公開されたものだけを
 運営の決まり（時間の上限は週 20 時間。上限を超えた週は新しい作業を始めず、保守と修正は続ける）は `docs/governance.md` にある。
 サイトをまたぐ決まりの一覧は `verification/sites.json`、キーワードの語彙は `docs/keywords.json`、
 10 リポジトリに一字一句同じに置く `SECURITY.md` と `.github/ISSUE_TEMPLATE/error-report.yml` の正本はここにある。
+本文の空の issue に答える `.github/workflows/empty-issue.yml`（2026-11-19）の正本もここにあり、issue を受けるリポジトリのすべてに同じ写しを置く。
+ラベルとコメントを付けるだけで、閉じず、鍵も掛けず、消さない（題に求めが書かれうるため）。写しと振る舞いは `check_ecosystem.js` の 13f が見る。
