@@ -2230,122 +2230,122 @@
       [
         "v#.#.# の時点で壊す先は ",
         "通り",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "えたときで、そのときには実際は ",
         "通り",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "correction = \"",
         "通り",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         ".py に足しました（# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "古いまま残っていました。実際は ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "ME が名乗る件数が、実際より ",
         "件",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "eck_errata.py # ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "ta.py # # 項目 / ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "_errata.py の中身は ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "拠として数えています**（いま ",
         "件",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "site.js の #.#（",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "ck_route.py の #（",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "と、外した理由の両方を保ちます（",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         " # 回現れます。参考文献欄 ",
         "件",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "無いことを確かめます（# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "に当たって確かめます（# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "紙面の記述と一致します。過去の ",
         "件",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "に変えました（配色 # → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "は WCAG の比で測ってある（",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "# に足しました（# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "とを確かめてあります（# → ",
         "通り",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "` の #.#、# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "た。検査を六つ足し（# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "F です。README の出典 ",
         "件",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "語そのものを機械で固定しており（",
@@ -2360,7 +2360,7 @@
       [
         "check.py に入れました（",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "errata.py が落ちます（",
@@ -2370,22 +2370,22 @@
       [
         "#dd#）では、#.# は ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "す。コミットの題も「# → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "項目に書きます。#.# は ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "site.js は # → ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ],
       [
         "= \"三篇の PDF に対して ",
@@ -2405,7 +2405,7 @@
       [
         "heck_route.py の ",
         "項目",
-        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js / self-correction: build.py >/dev/null && git diff --exit-code -- REGISTER.md data/register.csv views/ && test -z \"$(git status --porcelain -- views/ data/)\""
       ]
     ],
     "solitary-school/.github/workflows/verify.yml": [
