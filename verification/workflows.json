@@ -78,6 +78,7 @@
     "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
     "indexnow.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"indexnow": null} },
     "intake.yml": { "on": ["issue_comment", "issues", "schedule"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"intake": null, "withdrawal": null, "published": null, "deadline": null} },
+    "labels.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"issues": "write"}, "jobs": {"labels": null} },
     "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null, "heartbeat": null} },
     "monthly.yml": { "on": ["schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"monthly": null} },
     "pdf.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"fetch": {"contents": "read"}, "push": {"contents": "write"}} },
