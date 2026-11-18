@@ -8,7 +8,8 @@
  *   - a job that tells IndexNow (it runs a script named indexnow.js), and a job of a workflow that asks the Internet Archive
  *     to save pages, fails when the last run in which it ran did not succeed;
  *   - a workflow that runs on a push to main fails when its last finished run on main (a cancelled one is passed over) did not
- *     succeed, and a repository that heartbeat.json names under "vercel" fails when the status "Vercel" of the head of main is
+ *     succeed (in a workflow that holds this heartbeat, the job of the heartbeat is not counted: otherwise one failure of it
+ *     would fail every later run, 2026-11-19), and a repository that heartbeat.json names under "vercel" fails when the status "Vercel" of the head of main is
  *     not success (pending is allowed for an hour after the commit).
  * Then it opens or updates one issue in this repository, or closes it when nothing fails. The issue holds fixed words and
  * counts only; which workflow failed is in the log of the run. It reads no issue text and writes none.
@@ -110,6 +111,23 @@ function onPushToMain(text) {
   if (!m) return false;
   const b = /branches: \[([^\]]*)\]/.exec(m[1] || '');
   return !b || b[1].split(',').map((x) => x.trim().replace(/^'|'$/g, '')).includes('main');
+}
+
+/* The names of the jobs of a workflow file that run this heartbeat: a step "run: node tools/heartbeat.js". A comment that
+ * names the file does not count; the comment above a job is read as a line of the job before it. */
+function heartbeatJobs(text) {
+  return jobsOf(text).filter((j) => /^\s*(?:-\s+)?run:\s*node\s+tools\/heartbeat\.js\s*$/m.test(j.text)).map((j) => j.name);
+}
+
+/* The conclusion of the last push run on main. In a workflow that holds this heartbeat, the job of the heartbeat is not
+ * counted: it judges the run before, so a failure of it would fail the next run, and that one the next, without end. The
+ * other jobs decide; when the run did not succeed, the first of them that did not succeed gives the conclusion. */
+function pushConclusionOf(run, jobs, own) {
+  if (!run) return null;
+  if (!own.length || run.conclusion === 'success') return run.conclusion || null;
+  if (!Array.isArray(jobs)) throw new Error('the jobs of a run could not be read');
+  const bad = jobs.filter((j) => !own.includes(j.name)).find((j) => j.conclusion && !['success', 'skipped', 'neutral'].includes(j.conclusion));
+  return bad ? bad.conclusion : 'success';
 }
 
 /* The title of the issue of a yearly workflow, for the year of its day in Japan time. */
@@ -233,7 +251,10 @@ async function gather(get = api, now = Date.now()) {
       if (pushed) {
         const runs = await get(base + '/actions/workflows/' + w.id + '/runs?branch=main&event=push&status=completed&per_page=10');
         if (!runs || !Array.isArray(runs.workflow_runs)) throw new Error(repo + '/' + file + ': the runs on main could not be read');
-        e.pushConclusion = (runs.workflow_runs.find((r) => r.conclusion !== 'cancelled') || {}).conclusion || null;
+        const last = runs.workflow_runs.find((r) => r.conclusion !== 'cancelled');
+        const own = heartbeatJobs(text);
+        const jobs = last && own.length && last.conclusion !== 'success' ? ((await get(base + '/actions/runs/' + last.id + '/jobs?per_page=100')) || {}).jobs : [];
+        e.pushConclusion = pushConclusionOf(last, jobs, own);
       }
       if (e.crons.length) {
         e.created = (await scheduleSince(get, base, w.path)) || w.created_at;
@@ -339,6 +360,18 @@ async function selfTest() {
     && judge([{ repo: 'r', file: 'i.yml', crons: [], watched: [{ name: 'IndexNow', conclusion: 'success' }, { name: 'x', conclusion: null }] }], now).length === 0);
   t('a workflow that runs on a push to main is found from the file, with or without branches; one on other branches is not',
     onPushToMain('on:\n  push:\n    branches: [main]\n') && onPushToMain('on:\n  push:\n  pull_request:\n') && !onPushToMain("on:\n  push:\n    branches: ['claude/x-*']\n") && !onPushToMain('on:\n  schedule:\n'));
+  {
+    const two = 'name: x\non:\n  push:\n    branches: [main]\njobs:\n  check:\n    name: The check\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo\n  # the heartbeat (tools/heartbeat.js) below\n  beat:\n    name: The heartbeat\n    runs-on: ubuntu-latest\n    steps:\n      - run: node tools/heartbeat.js\n';
+    const own = heartbeatJobs(two);
+    const fail = { id: 9, conclusion: 'failure' };
+    t('a push run of the workflow that holds the heartbeat is judged without the job of the heartbeat: its own failure passes, a failure of another job fails, and a comment naming the file does not make a job the heartbeat (break on purpose: the other job fails)',
+      own.join() === 'The heartbeat' && heartbeatJobs(wf([])).length === 0
+      && pushConclusionOf(fail, [{ name: 'The check', conclusion: 'success' }, { name: 'The heartbeat', conclusion: 'failure' }], own) === 'success'
+      && pushConclusionOf(fail, [{ name: 'The check', conclusion: 'failure' }, { name: 'The heartbeat', conclusion: 'success' }], own) === 'failure'
+      && pushConclusionOf(fail, [{ name: 'The check', conclusion: 'success' }], []) === 'failure'
+      && pushConclusionOf({ id: 8, conclusion: 'success' }, undefined, own) === 'success' && pushConclusionOf(undefined, [], own) === null
+      && (() => { try { pushConclusionOf(fail, null, own); return false; } catch (e) { return true; } })());
+  }
   t('the last run on main of a workflow run on a push fails when it failed, and passes when it succeeded or was skipped (break on purpose: a failed push run)',
     judge([{ repo: 'r', file: 'p.yml', crons: [], watched: [], pushConclusion: 'failure' }], now).map((f) => f.what).join() === 'push' && judge([{ repo: 'r', file: 'p.yml', crons: [], watched: [], pushConclusion: 'success' }], now).length === 0);
   const st = (state) => ({ statuses: [{ context: 'Vercel', state }] });
@@ -426,5 +459,5 @@ async function selfTest() {
   if (failed.length) process.exit(1);
 }
 
-module.exports = { makeApi, allPages, onPushToMain, deployFine, jobsOf, cronsOf, periodOf, lastYearly, watchedJobs, yearlyTitle, judge, issueBody, gather, CONF, MARK, TEXTS };
+module.exports = { makeApi, allPages, onPushToMain, heartbeatJobs, pushConclusionOf, deployFine, jobsOf, cronsOf, periodOf, lastYearly, watchedJobs, yearlyTitle, judge, issueBody, gather, CONF, MARK, TEXTS };
 if (require.main === module) (process.argv.includes('--test') ? selfTest() : main()).catch((e) => { console.error(e.message); process.exit(1); });
