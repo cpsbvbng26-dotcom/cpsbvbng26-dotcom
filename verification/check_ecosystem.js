@@ -4359,6 +4359,8 @@ console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の
   const INVITE = /helps most|Give a DOI that shows it|DOI の登録情報は公開|metadata of a DOI is public, so it can be named/;
   const AUD = path.join('cpsbvbng26-dotcom', 'docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-13：十六度目の見落とし\n';
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+  /* 2026-11-13 の後に足した様式。権利者の知らせ（2026-11-18、利用者が求め、Claude が書いた）。 */
+  const LATER = [path.join('sophaxis', '.github', 'ISSUE_TEMPLATE', 'rights.yml'), path.join('sophaxis', '.github', 'ISSUE_TEMPLATE', 'rights-ja.yml'), path.join('nusquama', '.github', 'ISSUE_TEMPLATE', 'rights.yml')];
   const forms = {}, contrib = {};
   for (const repo of REPOS) {
     const dir = path.join(ROOT, repo, '.github', 'ISSUE_TEMPLATE');
@@ -4366,7 +4368,7 @@ console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の
     const c = read(repo, 'CONTRIBUTING.md');
     if (c !== null) contrib[path.join(repo, 'CONTRIBUTING.md')] = c;
   }
-  function recordProblems(a) {
+  function recordProblems(a, forms) {
     const i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + 5);
     const sec = i < 0 || j < 0 ? '' : a.slice(i, j);
     if (!sec || a.indexOf('\n## 調べた法令\n') < i) return ['記録の節が無いか、調べた法令の後にある'];
@@ -4380,14 +4382,19 @@ console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の
     if ((sec.match(/2026-11-13 に Claude が決めました。/g) || []).length < 4) bad.push('決めた者');
     if (!sec.includes('十五度目の見落としの節の「13 のリポジトリの、aiXiv.science を名指す文」の行は、英語の README を問題なしとしていました。この判定は誤りでした。')) bad.push('十五度目の行を誤りとした文');
     if (!sec.includes('この稿を誰が審査したかは、確かめていません。')) bad.push('審査の主体を確かめていないこと');
-    /* 記録が名乗る様式の数を、実際に読んだ数と突き合わせる。 */
-    const n = Object.keys(forms).length, nErr = Object.keys(forms).filter((k) => k.endsWith('error-report.yml')).length, nUsed = Object.keys(forms).filter((k) => k.endsWith('used-this-data.yml')).length;
+    /* 記録が名乗る様式の数を、実際に読んだ数と突き合わせる。記録は 2026-11-13 の時点の数を書いている。それより後に足した様式は
+     * LATER に名を挙げて数から除く。挙げた様式が無くなっても、挙げていない様式が増えても落ちる（2026-11-18 に Claude が決めた：
+     * 記録の数を書き換えずに、同じ厳しさで突き合わせ続けるため）。 */
+    const later = LATER.filter((k) => k in forms).length;
+    if (later !== LATER.length) bad.push('後から足した様式が無い');
+    const n = Object.keys(forms).length - later, nErr = Object.keys(forms).filter((k) => k.endsWith('error-report.yml')).length, nUsed = Object.keys(forms).filter((k) => k.endsWith('used-this-data.yml')).length;
     if (!sec.includes('deposit-check の不具合の報告のほかに、' + (n - 1) + ' 本を読みました。') || !sec.includes('誤りの知らせの様式（' + nErr + ' 本）') || !sec.includes('使われた記録の様式（' + nUsed + ' 本）')) bad.push('記録が名乗る様式の数');
     if (!sec.includes('この節も、弁護士は見ていません。') || /弁護士(が|の)(確かめ|確認し)(た|まし)/.test(sec)) bad.push('弁護士の一文');
     return bad;
   }
-  function problems(fm, cm, aud) {
-    const bad = recordProblems(aud || '');
+  /* 記録の数は、既定では読んだ様式で数える。壊し方は、数える様式を替えて渡せる。 */
+  function problems(fm, cm, aud, rec = forms) {
+    const bad = recordProblems(aud || '', rec);
     const asking = [];
     for (const [k, t] of Object.entries(fm)) {
       const fields = t.split(/\n  - type: /);
@@ -4420,14 +4427,16 @@ console.log('\n12v. 十六度目の見落とし：issue の様式は、他人の
     ['記録の節を外す', forms, contrib, audText.replace(HEAD, '\n## 様式\n')],
     ['記録の判定の数を変える', forms, contrib, audText.replace(/(## 2026-11-13：十六度目の見落とし[\s\S]*?この表の判定は、[^。]*?)(\d+)( です。)/, (_, a, n, b) => a + (Number(n) + 1) + b)],
     ['十五度目の行を誤りとした文を外す', forms, contrib, audText.replace('この判定は誤りでした。', '')],
-    ['記録が名乗る様式の数をずらす', forms, contrib, audText.replace('deposit-check の不具合の報告のほかに、', 'deposit-check の不具合の報告のほかに、1').replace('1' + (Object.keys(forms).length - 1) + ' 本を読みました。', (Object.keys(forms).length) + ' 本を読みました。')],
+    ['記録が名乗る様式の数をずらす', forms, contrib, audText.replace('deposit-check の不具合の報告のほかに、', 'deposit-check の不具合の報告のほかに、1').replace('1' + (Object.keys(forms).length - LATER.length - 1) + ' 本を読みました。', (Object.keys(forms).length - LATER.length) + ' 本を読みました。')],
+    ['記録の後に足した様式を挙げずに一つ増やす', forms, contrib, audText, Object.assign({}, forms, { [path.join('nusquama', '.github', 'ISSUE_TEMPLATE', 'other.yml')]: 'name: x\n' })],
+    ['後から足したと挙げた様式を外す', forms, contrib, audText, Object.fromEntries(Object.entries(forms).filter(([k]) => k !== LATER[0]))],
     /* 十七度目（2026-11-13）：後ろに節が増えたので、十六度目の節の末尾を狙う。 */
     ['弁護士の一文を外す', forms, contrib, audText.replace('\n\nこの節も、弁護士は見ていません。\n\n## 2026-11-13：十七度目の見落とし', '\n\n## 2026-11-13：十七度目の見落とし')],
   ];
-  const missed = breaks.filter(([, f, c, a]) => problems(f, c, a).bad.length === 0).map(([k]) => k);
+  const missed = breaks.filter(([, f, c, a, r]) => problems(f, c, a, r).bad.length === 0).map(([k]) => k);
   /* 自分の識別子を求めない、ほかの様式は通る。 */
   const passOk = problems(Object.assign({}, forms, { [path.join('errata-check', '.github', 'ISSUE_TEMPLATE', 'y.yml')]: 'body:\n  - type: input\n    attributes:\n      description: A file, a page URL, or a DOI\n' }), contrib, audText).bad.length === 0;
-  check('壊して確かめる：前の誘いの句・他人の記録のときの文・見本の DOI と iD・ほかのリポジトリの識別子を求める様式・CONTRIBUTING.md の前の文・記録の節と判定の数と十五度目の行の訂正と名乗る様式の数と弁護士の一文のどれを崩しても落ち、識別子を走らせた先として求めない様式は通る（' + (breaks.length - missed.length + (passOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
+  check('壊して確かめる：前の誘いの句・他人の記録のときの文・見本の DOI と iD・ほかのリポジトリの識別子を求める様式・CONTRIBUTING.md の前の文・記録の節と判定の数と十五度目の行の訂正と名乗る様式の数と弁護士の一文・後から足した様式の挙げ漏れと欠けのどれを崩しても落ち、識別子を走らせた先として求めない様式は通る（' + (breaks.length - missed.length + (passOk ? 1 : 0)) + ' / ' + (breaks.length + 1) + '）',
     missed.length === 0 && passOk, missed.concat(passOk ? [] : ['ほかの様式']).join(' / '));
 }
 
