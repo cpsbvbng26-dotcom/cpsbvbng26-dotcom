@@ -127,6 +127,19 @@ O3 はプロジェクトではなく、事前登録に付いた DOI です。登
 | V2 | `10.5281/zenodo.22055553` | A Minor Officer in the Imperial Japanese Navy（2026-08-22） | 旧版。引かない |
 | V3 | `10.5281/zenodo.18525531` | 史料ノートのすべての版 | 概念 DOI。いちばん新しい版を指す |
 
+## 数えない表に置く番号
+
+2026-11-18 に、横断の検査が十の外の二つの配る文も走るようにしました。
+そのとき、一覧に無い番号が三つ出てきました。ここに分けて置きます。
+上の R の表は、検査がその行を数えて現状評価の頁と突き合わせています。ここは数えません。
+どれも、この日には DataCite に届かず、確かめていません。引用には使いません。
+
+| DOI | 何か | 出てくる所と状態 |
+| --- | --- | --- |
+| `10.5281/zenodo.24033371` | sophaxis のすべての版（概念 DOI と書いてある） | 2026-11-07 から sophaxis の CITATION.cff と README ほかにある。版の DOI は R13 |
+| `10.5281/zenodo.24033081` | deposit-check のすべての版（概念 DOI と書いてある） | 2026-11-07 から deposit-check の CITATION.cff と README にある。2026-11-11 の deposit-check の実行の記録（`docs/runs/2026-11-11-catalog/README.md`）が、DataCite から読んだ番号として挙げている。版の DOI は R14 |
+| `10.5281/zenodo.17173702` | Series I の改訂版（`22058624`）の版の関係（IsVersionOf）の先 | 2026-11-11 の deposit-check の実行の記録に一度だけ出る。何の記録かは確かめていない。Series I は上の表の `22058624` で引く |
+
 ## 別の所在にある同一本文
 
 正本は Zenodo です。片方だけを直すと食い違います。
@@ -222,6 +235,21 @@ PhilPapers は削除を依頼として受け付けるので、まだ消えてい
 | `10.5281/zenodo.00000002` | 同上、および `errata-check/README.md` |
 | `10.5281/zenodo.99999999` | `errata-check/tests/check_tool.py` |
 | `10.5281/zenodo.1` | `doi-index-check/verification/check_tool.js`。DOI の斜線を潰さないことを見る |
+
+## 例として置いた番号
+
+十の外の二つのリポジトリが、使い方の例と様式の書き方の例に置いている番号です。
+著者のものではありません。番号が実在するか、何を指すかは確かめていません。
+2026-11-18 に、横断の検査がこの二つの配る文も走るようにしたので、ここに並べました。
+
+| DOI | 所在 |
+| --- | --- |
+| `10.5281/zenodo.0000000` | `sophaxis/.github/ISSUE_TEMPLATE/submission.yml` と `submission-ja.yml` の書き方の例 |
+| `10.5281/zenodo.1234567` | `deposit-check/README.md` の使い方の例 |
+| `10.5281/zenodo.2345678` | 同上 |
+| `10.6084/m9.figshare.7654321` | 同上 |
+| `10.2139/ssrn.7654321` | 同上 |
+| `10.2139/ssrn.8765432` | 同上 |
 
 ## DOI を持たないもの
 
