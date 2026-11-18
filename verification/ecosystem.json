@@ -301,6 +301,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "register \\((\\d+) entries\\)"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/github-about.md",
+          "regex": "核の記録。(\\d+) 件、消せない"
         }
       ]
     },
@@ -523,6 +528,11 @@
           "repo": "trinity-operator",
           "file": "CITATION.cff",
           "regex": "紙面の数値を計算し直す (\\d+) 項目"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "`claims_audit\\.py`（(\\d+) 項目）"
         }
       ]
     },
@@ -678,6 +688,11 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.md",
           "regex": "正誤表の監査 \\d+ = \\d+ \\+ \\d+ \\+ (\\d+)）"
+        },
+        {
+          "repo": "naval-gazette-notes",
+          "file": ".github/workflows/verify.yml",
+          "regex": "正誤表が紙面からずれていないか（(\\d+) 項目）"
         }
       ]
     },
@@ -769,6 +784,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "(\\d+) more on the construction"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "README.md",
+          "regex": "# 証書の (\\d+) 項目"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "README.md",
+          "regex": "\\n証書 (\\d+) 項目。P がリアプノフ"
         }
       ]
     },
@@ -807,6 +832,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "index.en.html",
           "regex": "and (\\d+) on a staged outlook"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "README.md",
+          "regex": "# 展望の (\\d+) 項目"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "README.md",
+          "regex": "\\n展望 (\\d+) 項目。各段が"
         }
       ]
     },
@@ -936,6 +971,2344 @@
           "regex": "三篇の PDF の形 (\\d+) 項目"
         }
       ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：HAL の notice のうち 2026-11-06 に削除した数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/doi-index.md",
+        "数える": "^\\| `hal-\\d+` \\|[^\\n]*\\| 2026-11-06 \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/doi-index.md",
+          "regex": "残っていた (\\d+) 件も、2026-11-06"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：断章論の参考文献の数（凍結した紙面）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "file": "verification/references.toml",
+        "数える": "^paper = \"F\"$"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "参考文献欄 (\\d+) 件に、物語論の文献は一つもありません"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "(\\d+) 件のうちどれも"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "落ちた一篇は、(\\d+) 件すべてに版元"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "項目は (\\d+) 件あるが"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "\\| 断章論（落ちた） \\| (\\d+) \\|"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "参考文献 (\\d+) 件に物語論の文献が一つも無い"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "参考文献欄 (\\d+) 件に、物語論の文献は一つもありません"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：GitHub の About の案の節の数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/github-about.md",
+        "数える": "^## \\d+\\. `"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/github-about.md",
+          "regex": "公開リポジトリ \\*\\*(\\d+) 件\\*\\*分"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：errata-check のタグの数",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "git",
+          "tag"
+        ],
+        "数える": "^\\S+$"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/joss.md",
+          "regex": "`errata-check` が \\*\\*(\\d+) 件\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：autonomy-and-self-cultivation のタグの数",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "cmd": [
+          "git",
+          "tag"
+        ],
+        "数える": "^\\S+$"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/joss.md",
+          "regex": "`autonomy-and-self-cultivation` が \\*\\*(\\d+) 件\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：残る八つのタグの数（八つで揃っているときの数。揃っていなければ -1）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "-e",
+          "const r=require('child_process');const n=[\"cpsbvbng26-dotcom\", \"self-correction\", \"trinity-infinity\", \"trinity-operator\", \"naval-gazette-notes\", \"researcher-profile\", \"justice-and-algorithms\", \"solitary-school\"].map((x)=>r.execFileSync('git',['-C','../'+x,'tag'],{encoding:'utf8'}).split('\\n').filter(Boolean).length);console.log('揃った数 '+(n.every((v)=>v===n[0])?n[0]:-1));"
+        ],
+        "regex": "揃った数 (-?\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/joss.md",
+          "regex": "残る八つが \\*\\*(\\d+) 件\\*\\*ずつ"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：Crossref に問い合わせた件数（同じ段の問い合わせの rows）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "regex": "query\\.author=Takuya\\+Nemoto&rows=(\\d+)&select"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "関連の順に (\\d+) 件読みました"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "関連の順の上位 (\\d+) 件だけです"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：反論の頁の撤回の表の行",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/objections.md",
+        "数える": "^\\| `[A-Z]+-\\d+` \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/objections.md",
+          "regex": "撤回が (\\d+) 件あります"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：反論の頁の撤回のうち、登録簿の found_by が著者で始まる数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "-e",
+          "const fs=require('fs');const ids=[...fs.readFileSync('docs/objections.md','utf8').matchAll(/^\\| `([A-Z]+-\\d+)` \\|/gm)].map((m)=>m[1]);const reg=fs.readFileSync('../self-correction/register.toml','utf8').split(/^\\[\\[entry\\]\\]$/m);const n=ids.filter((i)=>reg.some((e)=>e.includes('id = \"'+i+'\"')&&/^found_by = \"著者/m.test(e))).length;console.log('著者 '+n);"
+        ],
+        "regex": "著者 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/objections.md",
+          "regex": "`found_by` は (\\d+) 件とも「著者」"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：著者自身の Zenodo の DOI の数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/doi-index.md",
+        "数える": "^\\| \\d+ \\| `10\\.5281/zenodo\\.\\d+`"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "下の \\d+ 篇と (\\d+) 件は"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/self-assessment.md",
+          "regex": "\\| Zenodo の DOI \\| DataCite \\| \\*\\*(\\d+) 件\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：現状評価の表の学会での発表",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/self-assessment.md",
+        "regex": "\\n\\| 学会での発表 \\| 学会 \\| \\*\\*(\\d+) 件\\*\\*"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/submission-disclosure.md",
+          "regex": "その二つの軸を (\\d+) 件として置きました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：現状評価の表の受賞",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "file": "docs/self-assessment.md",
+        "regex": "\\n\\| 受賞 \\| 授与する側 \\| \\*\\*(\\d+) 件\\*\\*"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/submission-disclosure.md",
+          "regex": "その二つの軸を (\\d+) 件として置きました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：doi-index-check の検査の数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom/doi-index-check",
+        "cmd": [
+          "node",
+          "verification/check_tool.js"
+        ],
+        "regex": "全 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "doi-index-check/CONTRIBUTING.md",
+          "regex": "「検査は (\\d+) 項目」"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "doi-index-check/README.md",
+          "regex": "検査は \\*\\*(\\d+) 項目\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：doi-index-check の壊す先の数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom/doi-index-check",
+        "cmd": [
+          "node",
+          "verification/check_tool.js"
+        ],
+        "regex": "壊す先 (\\d+) 通り"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "doi-index-check/CONTRIBUTING.md",
+          "regex": "「壊す先は (\\d+) 通り」"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "doi-index-check/README.md",
+          "regex": "壊す先は \\*\\*(\\d+) 通り\\*\\*"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：突き合わせの受付（verify.js）を一字一句同じに置くリポジトリの数",
+      "実際": {
+        "repo": ".",
+        "cmd": [
+          "node",
+          "-e",
+          "const fs=require('fs'),p=require('path');const f=p.join('.github','checked-intake','verify.js');const a=fs.readFileSync(p.join('cpsbvbng26-dotcom',f),'utf8');let n=0;for(const d of fs.readdirSync('.')){try{if(fs.readFileSync(p.join(d,f),'utf8')===a)n++;}catch(e){}}console.log('同じ写し '+n);"
+        ],
+        "regex": "同じ写し (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "deposit-check",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "(?:records of all|checks the|issue forms of all|same files in the|same files in|workflows of the|`main` of the) (\\d+) repositories"
+        },
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "the same file in the (\\d+) repositories"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：十のリポジトリ（共通の決めごとを置くもの）の数",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "cmd": [
+          "node",
+          "-e",
+          "console.log('十 '+require('./verification/ecosystem.json')['共通の決めごと'].repos.length);"
+        ],
+        "regex": "十 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "deposit-check",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "(?:the same as in the|Disclaimer of cpsbvbng26-dotcom covered the) (\\d+) repositories"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：deposit-check の 2026-11-11 の実行の報告の error の行",
+      "実際": {
+        "repo": "deposit-check",
+        "file": "docs/runs/2026-11-11-catalog/report.md",
+        "数える": "^\\| error \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "deposit-check",
+          "file": "docs/runs/2026-11-11-catalog/report.md",
+          "regex": "DOIs read\\.(?: \\d+ \\w+,)*?(?: (\\d+) errors, )"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：deposit-check の 2026-11-11 の実行の報告の warning の行",
+      "実際": {
+        "repo": "deposit-check",
+        "file": "docs/runs/2026-11-11-catalog/report.md",
+        "数える": "^\\| warning \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "deposit-check",
+          "file": "docs/runs/2026-11-11-catalog/report.md",
+          "regex": "DOIs read\\.(?: \\d+ \\w+,)*?(?: (\\d+) warnings, )"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：deposit-check の 2026-11-11 の実行の報告の info の行",
+      "実際": {
+        "repo": "deposit-check",
+        "file": "docs/runs/2026-11-11-catalog/report.md",
+        "数える": "^\\| info \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "deposit-check",
+          "file": "docs/runs/2026-11-11-catalog/report.md",
+          "regex": "DOIs read\\.(?: \\d+ \\w+,)*?(?: (\\d+) notes\\.)"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：黄金比の窓の事前登録した δ の数（games/scan.py の CONFIRM）",
+      "実際": {
+        "repo": "trinity-operator",
+        "cmd": [
+          "python3",
+          "-c",
+          "import sys; sys.path.insert(0, 'games'); import scan; print('格子 %d' % len(scan.CONFIRM))"
+        ],
+        "regex": "格子 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "catalog.json",
+          "regex": "登録した (\\d+) 通りの δ"
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "catalog.json",
+          "regex": "held at the (\\d+) registered values of δ"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "catalog.json",
+          "regex": "登録した (\\d+) 通りの δ"
+        },
+        {
+          "repo": "trinity-operator",
+          "file": "games/OPEN-PROBLEM.md",
+          "regex": "0\\.6665, 0\\.6666, (\\d+) values; depth"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：修了証とオープンバッジの数（cv.json の検証の所在）",
+      "実際": {
+        "repo": "researcher-profile",
+        "cmd": [
+          "node",
+          "-e",
+          "const t=require('fs').readFileSync('cv.json','utf8');console.log('修了証 '+new Set(t.match(/https:\\/\\/(?:courses\\.edx\\.org\\/certificates|www\\.openbadge-global\\.com)\\/[^\"]+/g)||[]).size);"
+        ],
+        "regex": "修了証 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "cv.json",
+          "regex": "修了証・オープンバッジ (\\d+) 件と"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：trinity-infinity の README の出典の数",
+      "実際": {
+        "repo": "trinity-infinity",
+        "file": "README.md",
+        "区間": [
+          "\n### 出典\n",
+          "\n内容を引き写してはいません"
+        ],
+        "数える": "^- "
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "README の出典 (\\d+) 件がこの穴を"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：Sophaxis が一日に自動で外す記録の上限（site.json の autoHoldsPerDay）",
+      "実際": {
+        "repo": "sophaxis",
+        "file": "site.json",
+        "regex": "\"autoHoldsPerDay\": (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "at most (\\d+) records a day are taken offline"
+        },
+        {
+          "repo": "sophaxis",
+          "file": "data/policy-changes.json",
+          "regex": "at most (\\d+) records are taken offline automatically on one day"
+        },
+        {
+          "repo": "sophaxis",
+          "file": "data/policy-changes.json",
+          "regex": "一日（日本時間）に (\\d+) 件までです"
+        },
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "一日（日本時間）に (\\d+) 件までです"
+        },
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-review.md",
+          "regex": "automatically for at most (\\d+) records a day"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 英語の README の検査の前（af75e10）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "af75e10"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "検査を足しました（自身の検査 (\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 英語の README の検査の後（539c5c9）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "539c5c9"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "検査を足しました（自身の検査 \\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 本文だけに出る名の前の壊す先（64773c8）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "64773c8",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見つけられません。\\n  壊す先は (\\d+) から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 本文だけに出る名の後の壊す先（a412388）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "a412388",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見つけられません。\\n  壊す先は \\d+ から (\\d+) 通りへ"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 本文だけに出る名の前の自身の検査（64773c8）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "64773c8"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見つけられません。\\n  壊す先は \\d+ から \\d+ 通りへ、自身の検査は (\\d+) から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 本文だけに出る名の後の自身の検査（a412388）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "a412388"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見つけられません。\\n  壊す先は \\d+ から \\d+ 通りへ、自身の検査は \\d+ から (\\d+) 項目へ"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 版と表題の検査の前（baf1ab6）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "baf1ab6"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "版と表題の食い違いを機械で留める検査\\*\\*（自身の検査 (\\d+) →"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 版と表題の検査の後（64773c8）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "64773c8"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "版と表題の食い違いを機械で留める検査\\*\\*（自身の検査 \\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 引用欄の検査の前（7d7a429）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "7d7a429"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "（自身の検査 (\\d+) → \\d+ 項目）。v0\\.3\\.0 を出したあとも"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 引用欄の検査の後（40a93f6）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "40a93f6"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "（自身の検査 \\d+ → (\\d+) 項目）。v0\\.3\\.0 を出したあとも"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式の前の壊す先（40a93f6）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "40a93f6",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "壊す先は (\\d+) から \\d+ 通りへ、自身の検査は \\d+ から \\d+ 項目へ。見本は"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式の後の壊す先（a0e3cd2）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "a0e3cd2",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "壊す先は \\d+ から (\\d+) 通りへ、自身の検査は \\d+ から \\d+ 項目へ。見本は"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式の前の自身の検査（40a93f6）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "40a93f6"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "自身の検査は (\\d+) から \\d+ 項目へ。見本は"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式の後の自身の検査（a0e3cd2）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "a0e3cd2"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "自身の検査は \\d+ から (\\d+) 項目へ。見本は"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式で見本 minimal が増えた数（40a93f6 → a0e3cd2）",
+      "実際": {
+        "差": [
+          {
+            "repo": "errata-check",
+            "commit": "40a93f6",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/minimal/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          },
+          {
+            "repo": "errata-check",
+            "commit": "a0e3cd2",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/minimal/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          }
+        ]
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見本はそれぞれ (\\d+) 項目増えます"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式で見本 disciplines が増えた数（40a93f6 → a0e3cd2）",
+      "実際": {
+        "差": [
+          {
+            "repo": "errata-check",
+            "commit": "40a93f6",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/disciplines/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          },
+          {
+            "repo": "errata-check",
+            "commit": "a0e3cd2",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/disciplines/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          }
+        ]
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見本はそれぞれ (\\d+) 項目増えます"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 宣言の書式で見本 references が増えた数（40a93f6 → a0e3cd2）",
+      "実際": {
+        "差": [
+          {
+            "repo": "errata-check",
+            "commit": "40a93f6",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/references/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          },
+          {
+            "repo": "errata-check",
+            "commit": "a0e3cd2",
+            "cmd": [
+              "python3",
+              "errata_check.py",
+              "examples/references/audit.toml"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          }
+        ]
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "見本はそれぞれ (\\d+) 項目増えます"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 鍵の固定の前の壊す先（a0e3cd2）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "a0e3cd2",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "確かめました。\\n  壊す先は (\\d+) から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 鍵の固定の後の壊す先（425b429）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "425b429",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "確かめました。\\n  壊す先は \\d+ から (\\d+) 通りへ"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 鍵の固定の前の自身の検査（a0e3cd2）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "a0e3cd2"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "確かめました。\\n  壊す先は \\d+ から \\d+ 通りへ、自身の検査は (\\d+) から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 鍵の固定の後の自身の検査（425b429）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "425b429"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "確かめました。\\n  壊す先は \\d+ から \\d+ 通りへ、自身の検査は \\d+ から (\\d+) 項目へ"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 分野ごとの検査の前（ade5f25）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "ade5f25"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "分野ごとの検査\\*\\*（自身の検査は (\\d+) →"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：errata-check 分野ごとの検査の後（de94335）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "de94335"
+      },
+      "名乗り": [
+        {
+          "repo": "errata-check",
+          "file": "CHANGELOG.md",
+          "regex": "分野ごとの検査\\*\\*（自身の検査は \\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-004 v0.1.0 の壊す先（cf97202、tests の case の数）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "cf97202",
+        "file": "tests/check_tool.py",
+        "数える": "^\\s*case\\(|^disc_case\\("
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "v0\\.1\\.0 の時点で壊す先は (\\d+) 通りありました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-004 v0.2.0 を書き終えたときの壊す先（de94335、tests の case の数）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "de94335",
+        "file": "tests/check_tool.py",
+        "数える": "^\\s*case\\(|^disc_case\\("
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "そのときには実際は (\\d+) 通りになっていました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-004 揃えたあとの壊す先（fbc2407）",
+      "実際": {
+        "repo": "errata-check",
+        "commit": "fbc2407",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "README\\.md が名乗る数が実際と合う  名乗り \\d+ / 実際 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "correction = \"(\\d+) 通りに揃え"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-004 揃える前の自身の検査（de94335）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "de94335"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "tests/check_tool\\.py に足しました（(\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-004 揃えたあとの自身の検査（fbc2407）",
+      "実際": {
+        "repo": "errata-check",
+        "cmd": [
+          "python3",
+          "tests/check_tool.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。",
+        "commit": "fbc2407"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "tests/check_tool\\.py に足しました（\\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：trinity-infinity N9 を機械で当てたときの定理の検査（75748b2）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "75748b2",
+        "cmd": [
+          "python3",
+          "verification/independent_check.py"
+        ],
+        "regex": "(\\d+) checks, \\d+ passed"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "`independent_check\\.py`、(\\d+) 項目"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "independent_check\\.py に入れました（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-008 検証の README が名乗っていた正誤表の監査（e212493）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "e212493",
+        "file": "verification/README.md",
+        "regex": "check_errata\\.py +# (\\d+) 項目"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "claimed = \"check_errata\\.py # (\\d+) 項目"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-008 検証の README が名乗っていた「すべてが通ると」の数（e212493）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "e212493",
+        "file": "verification/README.md",
+        "regex": "\\n(\\d+) 項目すべてが通ると"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": " / (\\d+) 項目すべてが通ると、それぞれ終了コード"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-008 正誤表の監査の実際（e212493）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "e212493",
+        "cmd": [
+          "python3",
+          "verification/check_errata.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_errata\\.py の中身は (\\d+) 項目まで増えていた"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-008 名乗りと実測の差（e212493 の名乗り → bb04e0d の実測）",
+      "実際": {
+        "差": [
+          {
+            "repo": "trinity-infinity",
+            "commit": "e212493",
+            "file": "verification/README.md",
+            "regex": "check_errata\\.py +# (\\d+) 項目"
+          },
+          {
+            "repo": "trinity-infinity",
+            "commit": "bb04e0d",
+            "cmd": [
+              "python3",
+              "verification/check_errata.py"
+            ],
+            "regex": "(\\d+) 件すべて通りました。"
+          }
+        ]
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "名乗る件数が、実際より (\\d+) 件少なかった"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-012 経路の検査の 7（f9b2170）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "f9b2170",
+        "cmd": [
+          "python3",
+          "verification/check_route.py"
+        ],
+        "区間": [
+          "\n7.",
+          "\n\n"
+        ],
+        "数える": "^\\s+(?:PASS|FAIL|OK|通|落)\\b"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_route\\.py の 7（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-013 経路の検査（e55502f）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "e55502f",
+        "cmd": [
+          "python3",
+          "verification/check_route.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "外した理由の両方を保ちます（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：ST-005 経路の検査（3437fd7）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "3437fd7",
+        "cmd": [
+          "python3",
+          "verification/check_route.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_route\\.py の (\\d+) 項目が形を見ています"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：trinity-infinity 単著と書かない検査を足したときの正誤表の監査（56d0887）",
+      "実際": {
+        "repo": "trinity-infinity",
+        "commit": "56d0887",
+        "cmd": [
+          "python3",
+          "verification/check_errata.py"
+        ],
+        "regex": "(\\d+) 件すべて通りました。"
+      },
+      "名乗り": [
+        {
+          "repo": "trinity-infinity",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "件数は (\\d+) 項目のままです"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：autonomy E7 を固定したときの正誤表の監査（ac53c2c）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "commit": "ac53c2c",
+        "cmd": [
+          "python3",
+          "verification/check_errata.py"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/external-evaluations.md",
+          "regex": "二つの引用を機械で固定しました（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：EX-009 前の参考文献の検査（909246c）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "commit": "909246c",
+        "cmd": [
+          "python3",
+          "verification/check_references.py"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "確かめます（(\\d+) → \\d+ 項目）。挙がっていない文献"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：EX-009 後の参考文献の検査（633f1c9）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "commit": "633f1c9",
+        "cmd": [
+          "python3",
+          "verification/check_references.py"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "確かめます（\\d+ → (\\d+) 項目）。挙がっていない文献"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：EX-009 前の正誤表の監査（9030beb）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "commit": "9030beb",
+        "cmd": [
+          "python3",
+          "verification/check_errata.py"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "紙面に当たって確かめます（(\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：EX-009 後の正誤表の監査（633f1c9）",
+      "実際": {
+        "repo": "autonomy-and-self-cultivation",
+        "commit": "633f1c9",
+        "cmd": [
+          "python3",
+          "verification/check_errata.py"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "紙面に当たって確かめます（\\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：WS-001 作用素の頁の検査（8881dcc）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "8881dcc",
+        "cmd": [
+          "node",
+          "verification/check_trinity.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "実際は (\\d+) 項目\""
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-012 割愛の頁の 10.56（95ff120）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "95ff120",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "区間": [
+          "\n10.56 ",
+          "\n\n"
+        ],
+        "数える": "^  (?:OK|FAIL) "
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_site\\.js の 10\\.56（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-020 前の配色（94e89fa）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "94e89fa",
+        "cmd": [
+          "node",
+          "verification/check_contrast.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "（配色 (\\d+) → \\d+ 項目）"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "claimed = \"配色は WCAG の比で測ってある（(\\d+) 項目）\""
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-020 後の配色（00d8db1）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "00d8db1",
+        "cmd": [
+          "node",
+          "verification/check_contrast.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "（配色 \\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-024 前のサイトの構造（c1897be）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "c1897be",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "10\\.59 に足しました（(\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-024 後のサイトの構造（9e895ec）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "9e895ec",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "10\\.59 に足しました（\\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-024 前の壊す先（c1897be の CASES）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "c1897be",
+        "file": "verification/check_guards.js",
+        "区間": [
+          "\nconst CASES = [\n",
+          "\n];"
+        ],
+        "数える": "^  \\["
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "ちょうど落ちることを確かめてあります（(\\d+) → \\d+ 通り）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-024 後の壊す先（9e895ec の CASES）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "9e895ec",
+        "file": "verification/check_guards.js",
+        "区間": [
+          "\nconst CASES = [\n",
+          "\n];"
+        ],
+        "数える": "^  \\["
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "ちょうど落ちることを確かめてあります（\\d+ → (\\d+) 通り）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-026 前のサイトの構造（c03d12d）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "c03d12d",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "の 10\\.56、(\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-026 後のサイトの構造（c121d75）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "c121d75",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "の 10\\.56、\\d+ → (\\d+) 項目）"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "検査を六つ足し（(\\d+) → \\d+ 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-027 後のサイトの構造（592f191）",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "592f191",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "検査を六つ足し（\\d+ → (\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：researcher-profile 受注の場への道を見る 3d を足したときの検査（42028cc）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "42028cc",
+        "cmd": [
+          "bash",
+          "-c",
+          "node build.js > /dev/null && node verification/check_build.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "受注の場への道が無いことを見る（(\\d+) 項目）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：cpsbvbng26-dotcom の点検の記録：直す前の設定が名乗っていた登録簿の件数（researcher-profile f2f0c09^）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "f2f0c09^",
+        "file": "site.json",
+        "regex": "いま (\\d+) 件です。"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "「いま (\\d+) 件です。」"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：cpsbvbng26-dotcom の点検の記録：直す前の英語の設定が名乗っていた登録簿の件数（researcher-profile f2f0c09^）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "f2f0c09^",
+        "file": "site.en.json",
+        "regex": "(\\d+) entries so far\\."
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "「(\\d+) entries so far\\.」"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：researcher-profile の点検の記録：直す前の設定が名乗っていた登録簿の件数（researcher-profile f2f0c09^）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "f2f0c09^",
+        "file": "site.json",
+        "regex": "いま (\\d+) 件です。"
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "「いま (\\d+) 件です。」"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：researcher-profile の点検の記録：直す前の英語の設定が名乗っていた登録簿の件数（researcher-profile f2f0c09^）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "f2f0c09^",
+        "file": "site.en.json",
+        "regex": "(\\d+) entries so far\\."
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "「(\\d+) entries so far\\.」"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：点検の記録：2026-11-12 の登録簿の件数（self-correction fe34c67）",
+      "実際": {
+        "repo": "self-correction",
+        "commit": "fe34c67",
+        "file": "register.toml",
+        "数える": "^\\[\\[entry\\]\\]$"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "register\\.toml には (\\d+) 件あり"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "日英の設定を (\\d+) 件に直し"
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "register\\.toml には (\\d+) 件ある"
+        },
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "日英の欄を (\\d+) 件に直し"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：点検の記録：2026-11-12 の self-correction の README の件数（fe34c67）",
+      "実際": {
+        "repo": "self-correction",
+        "commit": "fe34c67",
+        "file": "README.md",
+        "regex": "いま \\*\\*(\\d+) 件\\*\\*"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "README は (\\d+) 件と書いていた"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：点検の記録：2026-11-12 の同じ頁の別の段の件数（researcher-profile f2f0c09^）",
+      "実際": {
+        "repo": "researcher-profile",
+        "commit": "f2f0c09^",
+        "file": "site.json",
+        "regex": "<strong>(\\d+) 件</strong>"
+      },
+      "名乗り": [
+        {
+          "repo": "researcher-profile",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "同じ頁の別の段は (\\d+) 件と書いていた"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：予告の頁：2026-09-19 の登録簿の件数（self-correction c883434）",
+      "実際": {
+        "repo": "self-correction",
+        "commit": "c883434",
+        "file": "register.toml",
+        "数える": "^\\[\\[entry\\]\\]$"
+      },
+      "名乗り": [
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/predictions.md",
+          "regex": "登録簿は (\\d+) 件あり"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-010 を記したときの証言の件数（self-correction 36f8b7c）",
+      "実際": {
+        "repo": "self-correction",
+        "commit": "36f8b7c",
+        "file": "register.toml",
+        "数える": "^verifiable = \"証言\"$"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "証言も根拠として数えています\\*\\*（いま (\\d+) 件）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-019 九つのリポジトリで著者が Claude だったコミット（2026-09-11T04:50:33Z まで）",
+      "実際": {
+        "repo": ".",
+        "cmd": [
+          "node",
+          "-e",
+          "const r=require('child_process');let n=0;for(const x of [\"cpsbvbng26-dotcom\", \"errata-check\", \"self-correction\", \"trinity-infinity\", \"trinity-operator\", \"autonomy-and-self-cultivation\", \"naval-gazette-notes\", \"researcher-profile\", \"justice-and-algorithms\"]){n+=r.execFileSync('git',['-C',x,'log','--before=2026-09-11T04:50:33Z','--format=%an','main'],{encoding:'utf8'}).split('\\n').filter((a)=>a==='Claude').length;}console.log('Claude '+n);"
+        ],
+        "regex": "Claude (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "過去の (\\d+) 件は直しません"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama checked-intake.yml の行の前の問題なし（adc3fc5^）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "adc3fc5^",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "## 2026-11-12 の続き：八度目の見落とし",
+          "判定は、"
+        ],
+        "数える": "\\| 問題なし \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "checked-intake\\.yml` の行を足したので、問題なしが (\\d+) 件から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama checked-intake.yml の行の後の問題なし（adc3fc5）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "adc3fc5",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "## 2026-11-12 の続き：八度目の見落とし",
+          "判定は、"
+        ],
+        "数える": "\\| 問題なし \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "checked-intake\\.yml` の行を足したので、問題なしが \\d+ 件から (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama reporter.yml の行の前の問題なし（62d321b^）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "62d321b^",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "## 2026-11-12 の続き：八度目の見落とし",
+          "判定は、"
+        ],
+        "数える": "\\| 問題なし \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "reporter\\.yml` の行を足したので、問題なしが (\\d+) 件から"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama reporter.yml の行の後の問題なし（62d321b）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "62d321b",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "## 2026-11-12 の続き：八度目の見落とし",
+          "判定は、"
+        ],
+        "数える": "\\| 問題なし \\|"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "reporter\\.yml` の行を足したので、問題なしが \\d+ 件から (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-13 に数え直した条の数（f430a45）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "f430a45",
+        "file": "verification/world/classes.json",
+        "数える": "\"class\":\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "当たった条は (\\d+) 件です。そのうち「当たる」が \\d+ 件、「当たりうる」が \\d+ 件、残りは「当たらない」です。\\n2026-11-13 に数え直しました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-13 の「当たる」（f430a45）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "f430a45",
+        "file": "verification/world/classes.json",
+        "数える": "\"class\":\"applies\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "当たった条は \\d+ 件です。そのうち「当たる」が (\\d+) 件、「当たりうる」が \\d+ 件、残りは「当たらない」です。\\n2026-11-13 に数え直しました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-13 の「当たりうる」（f430a45）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "f430a45",
+        "file": "verification/world/classes.json",
+        "数える": "\"class\":\"could apply\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "当たった条は \\d+ 件です。そのうち「当たる」が \\d+ 件、「当たりうる」が (\\d+) 件、残りは「当たらない」です。\\n2026-11-13 に数え直しました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-13 に足したオーストリアの貴族の廃止の法律の条（f430a45）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "f430a45",
+        "file": "verification/world/data/AUT.json",
+        "数える": "\"source\":\"AUT-adelaufhg\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "オーストリアの貴族の廃止の法律の条を (\\d+) 件足し"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-12 の条の数（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/classes.json",
+        "数える": "\"class\":\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "2026-11-12 の数は、条が (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 2026-11-12 の「当たりうる」（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/classes.json",
+        "数える": "\"class\":\"could apply\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "2026-11-12 の数は、条が \\d+ 件、「当たりうる」が (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 取り寄せ直した IRL-dpa の記した条（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/data/IRL.json",
+        "数える": "\"source\":\"IRL-dpa\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Data Protection Act 2018：\\w+ で取れた（\\d+ 条に分け、(\\d+) 件を記した）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 取り寄せ直した IRL-defamation の記した条（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/data/IRL.json",
+        "数える": "\"source\":\"IRL-defamation\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Defamation Act 2009：\\w+ で取れた（\\d+ 条に分け、(\\d+) 件を記した）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 取り寄せ直した IRL-fraud の記した条（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/data/IRL.json",
+        "数える": "\"source\":\"IRL-fraud\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Criminal Justice \\(Theft and Fraud Offences\\) Act 2001：\\w+ で取れた（\\d+ 条に分け、(\\d+) 件を記した）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 取り寄せ直した DEU-uwg の記した条（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/data/DEU.json",
+        "数える": "\"source\":\"DEU-uwg\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Gesetz gegen den unlauteren Wettbewerb \\(UWG\\)：\\w+ で取れた（\\d+ 条に分け、(\\d+) 件を記した）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 取り寄せ直した FRA-cil の記した条（eb8fe85）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "eb8fe85",
+        "file": "verification/world/data/FRA.json",
+        "数える": "\"source\":\"FRA-cil\""
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "aux fichiers et aux libertés：\\w+ で取れた（\\d+ 条に分け、(\\d+) 件を記した）"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 文を外した条（6307680）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "6307680",
+        "cmd": [
+          "python3",
+          "-c",
+          "import json,glob;ps=[p for f in sorted(glob.glob('verification/world/data/*.json')) for p in json.load(open(f))['provisions'] if 'spans' in p and 'text' not in p];print('外した %d 憲法 %d 韓国 %d' % (len(ps), sum(p.get('kind')=='constitution' for p in ps), sum(p.get('country')=='KOR' and p.get('kind')!='constitution' for p in ps)))"
+        ],
+        "regex": "外した (\\d+) "
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "で文を外した条は (\\d+) 件です"
+        },
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "\\n(\\d+) 件の条の文は、あわせて"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 文を外した憲法の条（6307680）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "6307680",
+        "cmd": [
+          "python3",
+          "-c",
+          "import json,glob;ps=[p for f in sorted(glob.glob('verification/world/data/*.json')) for p in json.load(open(f))['provisions'] if 'spans' in p and 'text' not in p];print('外した %d 憲法 %d 韓国 %d' % (len(ps), sum(p.get('kind')=='constitution' for p in ps), sum(p.get('country')=='KOR' and p.get('kind')!='constitution' for p in ps)))"
+        ],
+        "regex": "憲法 (\\d+) "
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Constitute Project の英語の文が (\\d+) 件"
+        },
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "Constitute Project の英語の文の条を (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：nusquama 文を外した韓国の英訳の条（6307680）",
+      "実際": {
+        "repo": "nusquama",
+        "commit": "6307680",
+        "cmd": [
+          "python3",
+          "-c",
+          "import json,glob;ps=[p for f in sorted(glob.glob('verification/world/data/*.json')) for p in json.load(open(f))['provisions'] if 'spans' in p and 'text' not in p];print('外した %d 憲法 %d 韓国 %d' % (len(ps), sum(p.get('kind')=='constitution' for p in ps), sum(p.get('country')=='KOR' and p.get('kind')!='constitution' for p in ps)))"
+        ],
+        "regex": "韓国 (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "韓国法制研究院の英訳が (\\d+) 件"
+        },
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "韓国法制研究院の英訳を (\\d+) 件"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：nusquama 2026-11-15 に外した条（removed-2026-11-15.json）",
+      "実際": {
+        "repo": "nusquama",
+        "cmd": [
+          "python3",
+          "-c",
+          "import json;print('外した %d' % len(json.load(open('verification/world/removed-2026-11-15.json'))['provisions']))"
+        ],
+        "regex": "外した (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "nusquama",
+          "file": "docs/world-law-2026-11-12.md",
+          "regex": "外した条は (\\d+) 件で、"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：sophaxis に移した条（verification/world-2026-11-12.json）",
+      "実際": {
+        "repo": "sophaxis",
+        "cmd": [
+          "python3",
+          "-c",
+          "import json;print('移した %d' % len(json.load(open('verification/world-2026-11-12.json'))['provisions']))"
+        ],
+        "regex": "移した (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "と分けた条の (\\d+) 件です"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 2026-11-12 に載っていた記録（d685e66 の listed）",
+      "実際": {
+        "repo": "sophaxis",
+        "cmd": [
+          "node",
+          "-e",
+          "const r=require('child_process');const fs=r.execFileSync('git',['ls-tree','--name-only','d685e66','data/papers/'],{encoding:'utf8'}).split('\\n').filter((f)=>f.endsWith('.json'));console.log('載っている '+fs.filter((f)=>JSON.parse(r.execFileSync('git',['show','d685e66:'+f],{encoding:'utf8'})).status==='listed').length);"
+        ],
+        "regex": "載っている (\\d+)"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "載っている (\\d+) 件はすべて CC BY 4\\.0"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 2026-11-13 に載せた記録（635539e の data/papers）",
+      "実際": {
+        "repo": "sophaxis",
+        "cmd": [
+          "git",
+          "ls-tree",
+          "--name-only",
+          "635539e",
+          "data/papers/"
+        ],
+        "数える": "\\.json$"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "いま載せた記録は (\\d+) 件です"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 未了の務めが 0 になったとき（99ebd9c）",
+      "実際": {
+        "repo": "sophaxis",
+        "commit": "99ebd9c",
+        "file": "verification/duties.json",
+        "数える": "\"status\": ?\"open\""
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "docs/legal-audit-2026-11-12.md",
+          "regex": "未了の務めは (\\d+) 件になりました"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 検査 132 の壊し方（7e76cc7）",
+      "実際": {
+        "repo": "sophaxis",
+        "commit": "7e76cc7",
+        "cmd": [
+          "node",
+          "verification/check.js"
+        ],
+        "区間": [
+          "\n132. ",
+          "\n\n"
+        ],
+        "regex": "break on purpose: the licence[^\\n]*\\((\\d+) / \\d+\\)"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "Check 132 pins all of this, on PDFs made by the check itself, and was broken (\\d+) ways"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 2026-11-12 の法の点検の表の行（d4eb208）",
+      "実際": {
+        "repo": "sophaxis",
+        "commit": "d4eb208",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "\n| 箇所 |",
+          "\n\n"
+        ],
+        "数える": "^\\| (?!箇所 \\||---)"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "`docs/legal-audit-2026-11-12\\.md`: (\\d+) rows, each a place"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：sophaxis 2026-11-12 の法の点検の誤り（d4eb208）",
+      "実際": {
+        "repo": "sophaxis",
+        "commit": "d4eb208",
+        "file": "docs/legal-audit-2026-11-12.md",
+        "区間": [
+          "\n| 箇所 |",
+          "\n\n"
+        ],
+        "数える": "\\| 誤り \\| [^|\\n]* \\|$"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "and what was done \\((\\d+) error, "
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-046 b675dd3 の 10.53",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "b675dd3",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "区間": [
+          "\n10.53 ",
+          "\n\n"
+        ],
+        "数える": "^  (?:OK|FAIL) "
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "b675dd3）では、10\\.53 は (\\d+) 項目です"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "git の履歴の数は、この項目に書きます。10\\.53 は (\\d+) 項目で"
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-046 b675dd3 の親の check_site.js",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "b675dd3^",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "check_site\\.js の項目は、その親のコミットで (\\d+)、"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "コミットの題も「(\\d+) → \\d+ 項目」"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "10\\.53 は \\d+ 項目で、check_site\\.js は (\\d+) → "
+        }
+      ]
+    },
+    {
+      "名前": "散文の数（2026-11-18）：過去の数：SC-046 b675dd3 の check_site.js",
+      "実際": {
+        "repo": "cpsbvbng26-dotcom",
+        "commit": "b675dd3",
+        "cmd": [
+          "node",
+          "verification/check_site.js"
+        ],
+        "regex": "(\\d+) 件(?:すべて通りました|が通り、(\\d+) 件が通りませんでした)",
+        "足す": true
+      },
+      "名乗り": [
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "その親のコミットで \\d+、b675dd3 で (\\d+) です"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "コミットの題も「\\d+ → (\\d+) 項目」"
+        },
+        {
+          "repo": "self-correction",
+          "file": "register.toml",
+          "regex": "10\\.53 は \\d+ 項目で、check_site\\.js は \\d+ → (\\d+) 項目です"
+        }
+      ]
     }
   ],
   "和": [
@@ -994,6 +3367,16 @@
           "repo": "cpsbvbng26-dotcom",
           "file": "README.en.md",
           "regex": "with (\\d+) verification checks"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/github-about.md",
+          "regex": "縮小作用素をめぐる三篇のプレプリントと、検証 (\\d+) 項目。"
+        },
+        {
+          "repo": "cpsbvbng26-dotcom",
+          "file": "docs/github-about.md",
+          "regex": "Three preprints on a contraction operator, (\\d+) verification checks"
         }
       ]
     },
