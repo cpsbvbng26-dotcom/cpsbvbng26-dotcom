@@ -3569,7 +3569,12 @@ console.log('\n12n. 七度目の見落とし：頁の最終更新（2026-11-12 �
     ['英語の免責事項を前の日に戻す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', /Last updated: \d{4}-\d{2}-\d{2} \(Japan time\)\./, 'Last updated: 2026-11-13 (Japan time).')],
     ['免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.md', /最終更新：(\d{4}-\d{2}-\d{2})（日本時間）。/, '最終更新：$1。')],
     ['英語の免責事項から日本時間を外す', 替('cpsbvbng26-dotcom/DISCLAIMER.en.md', /Last updated: (\d{4}-\d{2}-\d{2}) \(Japan time\)\./, 'Last updated: $1.')],
-    ['trinity-infinity の正誤表を前の日に戻す', 替('trinity-infinity/ERRATA.md', '最終更新: 2026年11月13日', '最終更新: 2026年11月12日')],
+    /* 2026-11-19。前は 11月13日 を文字列で固定していた。正誤表の最終更新を進めると置き換えが空振りし、何も壊さなくなる。
+     * いま書いてある日の前の日に戻す。厳しさは同じで、正誤表の日付と、どちらの PR が先に入るかに縛られない。 */
+    ['trinity-infinity の正誤表を前の日に戻す', 替('trinity-infinity/ERRATA.md', /^最終更新: (\d{4})年(\d{1,2})月(\d{1,2})日/m, (s, y, mo, d) => {
+      const t = new Date(Date.UTC(Number(y), Number(mo) - 1, Number(d)) - 86400000);
+      return '最終更新: ' + t.getUTCFullYear() + '年' + (t.getUTCMonth() + 1) + '月' + t.getUTCDate() + '日';
+    })],
     ['正誤表の文を今日変えて、最終更新を変えない', Object.assign({}, 実, { 最後: Object.assign({}, 最後, { 'naval-gazette-notes/ERRATA.md': '2099-01-01' }) })],
     ['最終更新の行の形を崩す', 替('autonomy-and-self-cultivation/ERRATA.md', /^最終更新: /m, '最終更新 ')],
     ['頁を数えから外す', Object.assign({}, 実, { 頁: 頁.filter((k) => k !== 'cpsbvbng26-dotcom/DISCLAIMER.en.md') })],
