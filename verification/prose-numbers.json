@@ -2439,6 +2439,13 @@
         "solitary-school: verification/check_text.js"
       ]
     ],
+    "sophaxis/.github/ISSUE_TEMPLATE/submission-ja.yml": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
     "sophaxis/CHANGELOG.md": [
       [
         "p page, at most ",
@@ -2471,6 +2478,11 @@
         "収録が #,",
         "件",
         "sophaxis: verification/check.js"
+      ],
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
       ]
     ],
     "sophaxis/SECURITY.md": [
@@ -2490,6 +2502,11 @@
         "ものとして拾い上げます。一日に ",
         "件",
         "sophaxis: verification/check.js"
+      ],
+      [
+        "録に学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
       ]
     ],
     "sophaxis/automation.md": [
@@ -2501,6 +2518,25 @@
       [
         "d. The limit of ",
         "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/call.ja.md": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
+      ],
+      [
+        "誌の論文・本の章・本をそれぞれ ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/checklist.ja.md": [
+      [
+        "きの学術誌の論文・本の章・本を ",
+        "件",
         "sophaxis: verification/check.js"
       ]
     ],
@@ -2519,6 +2555,11 @@
         "らず数えて、一日（日本時間）に ",
         "件",
         "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
       ]
     ],
     "sophaxis/docs/legal-audit-2026-11-12.md": [
@@ -2570,6 +2611,27 @@
         "cpsbvbng26-dotcom: verification/check_ecosystem.js"
       ]
     ],
+    "sophaxis/faq.ja.md": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/first.ja.md": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/glossary.ja.md": [
+      [
+        "からは、そうした作品をそれぞれ ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
     "sophaxis/history.ja.md": [
       [
         "と設定を置き、載っている記録が ",
@@ -2582,12 +2644,24 @@
         "#-#-# から一日に ",
         "件",
         "sophaxis: verification/check.js"
+      ],
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
       ]
     ],
     "sophaxis/policies/privacy.md": [
       [
         "p takes at most ",
         "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/policies/submission.ja.md": [
+      [
+        "きの学術誌の論文・本の章・本を ",
+        "件",
         "sophaxis: verification/check.js"
       ]
     ],
@@ -2602,6 +2676,20 @@
       [
         "-#-#, at most ",
         "records",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/process.ja.md": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
+        "sophaxis: verification/check.js"
+      ]
+    ],
+    "sophaxis/rules.ja.md": [
+      [
+        "ぞれ学術誌の論文・本の章・本を ",
+        "件",
         "sophaxis: verification/check.js"
       ]
     ],

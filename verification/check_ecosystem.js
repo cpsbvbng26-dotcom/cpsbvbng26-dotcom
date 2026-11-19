@@ -5110,7 +5110,9 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
    * GitHub の同時実行の振る舞いは取り寄せて確かめていないので、どちらに振る舞っても正しい形（スキップされた仕事が場所を取らない）を見る。 */
   const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
   const HEAD = '\n## 2026-11-15：自動化を固める\n';
-  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'], 'cpsbvbng26-dotcom': ['2026-11-19：読むだけの法令の点検を受けて'] };
+  /* 2026-11-19：cpsbvbng26-dotcom の記録は、この節の後に「2026-11-19：誤りの知らせの様式が YAML として読めなかった」（13h が中身を見る）と、
+   * 「2026-11-19：読むだけの法令の点検を受けて」（A1・A2・B4・C1 などの直し）を、この順に一つずつ持つ。 */
+  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'], 'cpsbvbng26-dotcom': ['2026-11-19：誤りの知らせの様式が YAML として読めなかった', '2026-11-19：読むだけの法令の点検を受けて'] };
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
   const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
   const DECIDED = '2026-11-15 に利用者が決め、Claude が書きました';
@@ -5515,7 +5517,6 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
       const j = a.indexOf('\n## ', i + 5);
       const t = a.slice(i, j < 0 ? a.length : j);
       /* 2026-11-18：Sophaxis と Nusquama の記録は、この節の後に「2026-11-18：名称と商標」を一つだけ持つ（利用者が求め、Claude が書いた）。
-       * 2026-11-19：cpsbvbng26-dotcom の記録は、この節の後に「2026-11-19：読むだけの法令の点検を受けて」を一つだけ持つ（A1・A2・B4・C1 などの直し。Claude が決めた）。
        * ほかの日付の節は、どのリポジトリでもこの節の後に置かない。後に置く節は、名と順をここに挙げたものだけ。 */
       const after = [...a.slice(i + 5).matchAll(/\n## (2026-[^\n]*)/g)].map((m) => m[1]);
       if (JSON.stringify(after) !== JSON.stringify(LATER_SECTIONS[r] || [])) bad.push(r + '：記録の節が最後の日付の節でない');
@@ -7031,6 +7032,125 @@ console.log('\n13e. 2026-11-18：散文に書いた「NN 件・NN 項目・NN �
   ];
   const 通った = 壊し.filter(([, f]) => { const x = f(); return x.無区分.length === 0 && x.余り.length === 0; }).map(([n]) => n);
   check('壊して確かめる：区分の無い数・消した区分・余った区分・書き換えた前の字のどれでも落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+console.log('\n13h. 2026-11-19：15 のリポジトリの .github/ISSUE_TEMPLATE と .github/workflows の YAML が、どれも YAML として読める（Ruby の YAML）');
+{
+  /* 2026-11-19 に Claude が決めた。誤りの知らせの様式（error-report.yml）の「どこか」の説明は、2026-11-14 の 76dd969 から、囲まない値の中に
+   * 「: 」を含み、PyYAML も Ruby の YAML も 20 行目で読めなかった。写しの同一と sha256 は見ていたが、YAML として読めるかは、どこも見ていなかった。
+   * 一。15 のリポジトリの .github/ISSUE_TEMPLATE と .github/workflows の .yml と .yaml を、どれも Ruby の標準の YAML（Psych、libyaml の上）で読み、
+   *     根が対応表（mapping）であることを見る。型の解き方には立ち入らず、構文だけを見る（Psych.parse）。ruby が無ければ落ちる。
+   *     Node には YAML の読み手が無く、横断の CI の pip は numpy と pypdf だけをハッシュで固めて入れるので、作り物の読み手や PyYAML ではなく、
+   *     走る機械にもとからある Ruby を使う。
+   * 二。記録（docs/legal-audit-2026-11-12.md の 2026-11-19 の節）の数と日付を、写しの数と git の履歴から作り直して突き合わせる。
+   *     履歴が浅ければ落ちる。
+   * 三。壊して確かめる：直す前の行を正本に戻す、ワークフローを一つ壊す、根を対応表でなくす、ruby が無い、記録の数か日付を違える。 */
+  const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check', 'research-collaboration', 'golden-window-resolution']);
+  const DIRS = [path.join('.github', 'ISSUE_TEMPLATE'), path.join('.github', 'workflows')];
+  const ERR = '.github/ISSUE_TEMPLATE/error-report.yml';
+  const BAD_AT = '76dd969';
+  const OLD = '      description: 欄の初めに一つだけ書きます。ファイルの名（例 `README.md`）、このリポジトリの頁かファイルの URL、またはこのリポジトリが写しを持つ論文の DOI。'
+    + '頁や節は、その後に書けます（確かめるのは文書の全体です） / Begin with one of these: a file name (such as `README.md`), the URL of a page or a file of this repository, '
+    + 'or the DOI of a paper of which this repository holds a copy. A page or section may follow (the whole document is checked)';
+  const NEW = OLD.replace('description: ', "description: '") + "'";
+  const AUD = path.join('docs', 'legal-audit-2026-11-12.md'), HEAD = '\n## 2026-11-19：誤りの知らせの様式が YAML として読めなかった\n';
+  const files = {};
+  for (const r of REPOS) for (const d of DIRS) {
+    const p = path.join(ROOT, r, d);
+    if (fs.existsSync(p)) fs.readdirSync(p).filter((n) => /\.ya?ml$/.test(n)).sort().forEach((n) => { files[r + '/' + d.split(path.sep).join('/') + '/' + n] = read(r, path.join(d, n)); });
+  }
+  const gitIn = (r, args) => execFileSync('git', args, { cwd: path.join(ROOT, r), encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'ignore'], env: Object.assign({}, process.env, { TZ: 'Asia/Tokyo' }) });
+  const 試す = (f, d) => { try { return f(); } catch (e) { return d; } };
+  /* 履歴：どのリポジトリの main に、いつ（日本時間）直す前の行が入ったか。初めから入っていたか。 */
+  const 歴 = {};
+  for (const r of REPOS) {
+    if (files[r + '/' + ERR] === undefined) continue;
+    const 浅い = 試す(() => gitIn(r, ['rev-parse', '--is-shallow-repository']).trim() !== 'false', true);
+    const cs = 試す(() => gitIn(r, ['log', '--first-parent', '--reverse', '--format=%H %cd', '--date=format-local:%Y-%m-%d', 'HEAD', '--', ERR]).split('\n').filter(Boolean).map((l) => l.split(' ')), []);
+    const has = cs.map(([h, d]) => [d, 試す(() => gitIn(r, ['show', h + ':' + ERR]).split('\n').includes(OLD), false)]);
+    const i = has.findIndex((x) => x[1]);
+    歴[r] = { 浅い, 来た: i < 0 ? null : has[i][0], 初めから: i === 0 };
+  }
+  const 過去 = {
+    日: 試す(() => gitIn('cpsbvbng26-dotcom', ['show', '-s', '--format=%cd', '--date=format-local:%Y-%m-%d', BAD_AT]).trim(), null),
+    文: 試す(() => gitIn('cpsbvbng26-dotcom', ['show', BAD_AT + ':' + ERR]), null),
+    前: 試す(() => gitIn('cpsbvbng26-dotcom', ['show', BAD_AT + '^:' + ERR]), null),
+  };
+  /* Ruby で読む。Ruby の文は ASCII だけで書く（-e の文の符号は ASCII として読まれる）。
+   * 答えは { 名: null（読めた） | 文（読めない理由） }。行は 1 から数える。 */
+  const RB = 'r = {}; JSON.parse(STDIN.read).each { |k, v| begin; d = Psych.parse(v, filename: k); '
+    + 'r[k] = (d && d.root.is_a?(Psych::Nodes::Mapping)) ? nil : [0, 0, "notmap"]; '
+    + 'rescue Psych::SyntaxError => e; r[k] = [e.line, e.column, e.problem.to_s]; end }; print JSON.generate(r)';
+  const 読む = (m, bin) => {
+    let raw;
+    try { raw = JSON.parse(execFileSync(bin, ['-EUTF-8:UTF-8', '-rjson', '-ryaml', '-e', RB], { input: JSON.stringify(m), encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['pipe', 'pipe', 'pipe'] })); }
+    catch (e) { return null; }
+    return Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, v === null ? null : (v[2] === 'notmap' ? '根が対応表でない' : v[0] + ' 行 ' + v[1] + ' 列：' + v[2])]));
+  };
+  const 今 = { files, aud: read('cpsbvbng26-dotcom', AUD) || '', 歴, 過去, bin: 'ruby' };
+  const 問題 = (x) => {
+    const bad = [];
+    const 過去の文 = x.過去.文 === null ? '' : x.過去.文;
+    const 答え = 読む(Object.assign({ ['過去:' + BAD_AT]: 過去の文 }, x.files), x.bin);
+    if (答え === null) return ['ruby で YAML を読めない（ruby が無いか、走らない）'];
+    for (const k of Object.keys(x.files)) if (!(k in 答え) || 答え[k] !== null) bad.push(k + '：' + (答え[k] || '読んでいない'));
+    const 写し = REPOS.filter((r) => x.files[r + '/' + ERR] !== undefined);
+    if (写し.some((r) => x.files[r + '/' + ERR] !== x.files['cpsbvbng26-dotcom/' + ERR])) bad.push('誤りの知らせの様式の写しが正本と違う');
+    if (!写し.every((r) => x.files[r + '/' + ERR].split('\n').includes(NEW))) bad.push('「どこか」の説明が、単引用符で囲んだ形でない');
+    /* 記録。 */
+    const a = x.aud, i = a.indexOf(HEAD), j = i < 0 ? -1 : a.indexOf('\n## ', i + 5);
+    const sec = i < 0 ? '' : a.slice(i, j < 0 ? a.length : j);
+    if (!sec || a.indexOf('\n## 調べた法令\n') < i) return bad.concat(['記録の節が無いか、調べた法令の後にある']);
+    const 行 = 過去の文.split('\n').indexOf(OLD) + 1;
+    const 止まり = /^(\d+) 行 /.exec(String(答え['過去:' + BAD_AT] || ''));
+    if (行 < 1 || !止まり || Number(止まり[1]) !== 行 || x.過去.前 === null || x.過去.前.split('\n').includes(OLD)) bad.push(BAD_AT + ' で入った行と、読むのをやめた行が、記録と合わない');
+    const 来た = 写し.filter((r) => x.歴[r]);
+    if (来た.length !== 写し.length || 来た.some((r) => x.歴[r].浅い || !x.歴[r].来た)) bad.push('履歴が浅いか、直す前の行が入った日を取れない：' + 写し.filter((r) => !x.歴[r] || x.歴[r].浅い || !x.歴[r].来た).join(', '));
+    const 後 = 来た.filter((r) => r !== 'cpsbvbng26-dotcom' && !x.歴[r].初めから), 初 = 来た.filter((r) => x.歴[r].初めから);
+    const 日 = (rs) => [...new Set(rs.map((r) => x.歴[r].来た))];
+    if (日(後).length !== 1 || 日(初).length !== 1 || (x.歴['cpsbvbng26-dotcom'] || {}).初めから !== false) bad.push('直す前の行が入った日が、記録の分け方で一つにまとまらない');
+    const rows = sec.split('\n').filter((l) => /^\| (?!---|箇所 \|)/.test(l)).map((l) => l.slice(2, -2).split(' | '));
+    const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
+    const 内訳 = KINDS.filter((k) => rows.some((y) => y[4] === k)).map((k) => k + ' ' + rows.filter((y) => y[4] === k).length).join('、');
+    const 文 = [
+      '様式は、' + 写し.length + ' のリポジトリに一字一句同じに置いています。',
+      '読めない文は、cpsbvbng26-dotcom のコミット ' + BAD_AT + '（' + x.過去.日 + '）で入りました。',
+      'main に入ったのは、' + 後.length + ' のリポジトリで ' + 日(後)[0] + '、cpsbvbng26-dotcom で ' + (x.歴['cpsbvbng26-dotcom'] || {}).来た + ' です（日本時間）。',
+      初.join(' と ') + ' は、' + 日(初)[0] + ' に様式を置いたときから、この文でした。',
+      'GitHub がこの間に様式を出していたかは、確かめていません。',
+      '`verification/check_ecosystem.js` の 13h が、' + REPOS.length + ' のリポジトリの `.github/ISSUE_TEMPLATE` と `.github/workflows` にある YAML のファイルを、どれも Ruby の YAML で読みます。',
+      '| `.github/ISSUE_TEMPLATE/error-report.yml`（' + 写し.length + ' のリポジトリ） |',
+      '「どこか」の欄の説明（' + 行 + ' 行目）を、引用符で囲まずに書いていました。',
+      'PyYAML と Ruby の YAML は、どちらも ' + 行 + ' 行目で読むのをやめました',
+      'この表の判定は、' + 内訳 + ' です。',
+      'この節も、弁護士は見ていません。',
+      '2026-11-19 に Claude が決めました。',
+    ];
+    文.filter((s) => !sec.includes(s)).forEach((s) => bad.push('記録に「' + s.slice(0, 30) + '」が無い'));
+    if (rows.length < 1 || !rows.every((y) => y.length === 6 && KINDS.includes(y[4]))) bad.push('記録の表の形');
+    return bad;
+  };
+  const now = 問題(今);
+  const nForms = Object.keys(files).filter((k) => k.includes('/ISSUE_TEMPLATE/')).length, nFlows = Object.keys(files).length - nForms;
+  check(REPOS.length + ' のリポジトリの様式 ' + nForms + ' 本とワークフロー ' + nFlows + ' 本が Ruby の YAML で読め、誤りの知らせの様式の写しが正本と同じで、記録の 2026-11-19 の節の数と日付が写しと git の履歴に合う',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { files: Object.assign({}, files, { [k]: String(files[k] || '').replace(a, b) }) });
+  const 記録替 = (a, b) => Object.assign({}, 今, { aud: 今.aud.replace(a, b) });
+  const 壊し = [
+    ['直す前の行を正本の様式に戻す', 替('cpsbvbng26-dotcom/' + ERR, NEW, OLD)],
+    ['直す前の行を写しの一つに戻す', 替('golden-window-resolution/' + ERR, NEW, OLD)],
+    ['ワークフローの一つに「: 」を含む囲まない値を書く', 替('research-collaboration/.github/workflows/empty-issue.yml', /$/, '\nx: a: b\n')],
+    ['様式の根を対応表でなくす', 替('nusquama/.github/ISSUE_TEMPLATE/config.yml', /^[\s\S]*$/, '- blank_issues_enabled: false\n')],
+    ['ruby が無い', Object.assign({}, 今, { bin: 'ruby-not-here' })],
+    ['記録の写しの数を違える', 記録替('様式は、13 のリポジトリに', '様式は、12 のリポジトリに')],
+    ['記録の main に入った日を違える', 記録替('cpsbvbng26-dotcom で 2026-11-15 です', 'cpsbvbng26-dotcom で 2026-11-14 です')],
+    ['記録の行の番号を違える', 記録替('どちらも 20 行目で', 'どちらも 21 行目で')],
+    ['記録の節を外す', 記録替(HEAD, '\n## 2026-11-19：別の節\n')],
+    ['履歴が浅い', Object.assign({}, 今, { 歴: Object.assign({}, 歴, { 'research-collaboration': Object.assign({}, 歴['research-collaboration'], { 浅い: true }) }) })],
+  ];
+  const 通った = 壊し.filter(([, c]) => 問題(c).length === 0).map(([n]) => n);
+  check('壊して確かめる：直す前の行（正本と写し）・壊したワークフロー・対応表でない根・ruby の欠け・記録の数と日付と行・節の欠け・浅い履歴のどれか一つで落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
