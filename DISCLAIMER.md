@@ -1,11 +1,12 @@
 # 免責事項
 
-最終更新：2026-11-15（日本時間）。
+最終更新：2026-11-19（日本時間）。
 
 English: [Disclaimer](DISCLAIMER.en.md)。訳と食い違うときは、この日本語の文が正です。
 
 この頁は、根本卓哉が公開している次の 10 のリポジトリと、そこから作るサイトに掛かります。
 cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-operator、autonomy-and-self-cultivation、naval-gazette-notes、researcher-profile、justice-and-algorithms、solitary-school です。
+golden-window-resolution と research-collaboration には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。
 
 ## 同意について
 
@@ -65,6 +66,9 @@ CC BY 4.0 の Section 5 と MIT ライセンスの末尾の段落は、保証を
 ## 情報の扱い
 
 この節は、上の 10 のリポジトリに加えて、deposit-check のリポジトリにも掛かります。
+この節は、golden-window-resolution のリポジトリにも掛かります。
+research-collaboration では、誤りの知らせの様式（error-report.yml）で開かれた issue と、「人についての記載」の節のメールアドレスに届いた求めに、この節が掛かります。
+research-collaboration のそのほかの扱いは、そのリポジトリの[個人情報の取り扱い](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.md)によります。
 頁は cookie を置かず、アクセス解析の仕組みも置いていません。
 明暗の表示を選んだときは、その選択を、その端末のブラウザの保存域（localStorage）にだけ置きます。
 頁の表示に要るものは、頁を配っているホストからだけ読みます。
@@ -106,6 +110,12 @@ Claude に渡すのは、この欄に印を付けて開かれた issue の題と
 撤回のあとは、その issue を言語モデルに渡しません。
 撤回の前に行ったことは、適法なままです。
 deposit-check の誤りの知らせの様式も同じ欄を持ち、そこから開かれた issue も、この節のとおりに扱います。
+golden-window-resolution と research-collaboration の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。
+research-collaboration では、申し出・求め・権利者の知らせの様式も、同意の欄を持ちます。
+その欄は任意で、印を付けて開かれた issue の題と本文も、Claude に渡ることがあります。
+上の「ほかの様式の issue」は、これらの様式の issue を含みません。
+これらの様式の issue の扱いは、research-collaboration の[個人情報の取り扱い](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.md)の「言語モデルに渡すこと」にあります。
+これらの様式が示す米国の制度と Anthropic の措置は、この節のものです。
 
 米国の制度について、運営者は、個人情報保護委員会の[米国の制度についての情報](https://www.ppc.go.jp/enforcement/infoprovision/laws/offshore_report_america/)に拠ります。
 委員会は、連邦について「包括的な法令は存在しない。」としています。
@@ -134,6 +144,21 @@ deposit-check の不具合の報告では、「情報の扱い」の節のとお
 そう読める語を含む issue には、ラベル「needs a person」も付けます。運営者への目印で、これに頼って何かを決めることはありません。
 コメントと実行の記録は、決まった文と issue の番号だけで、issue に書かれたことを写しません。
 確かめるのは前からある文書の語であって、それが誤りかどうかではありません。
+
+## 本文の空の issue
+
+本文の空のまま開かれた issue には、ワークフロー（`.github/workflows/empty-issue.yml`）が答えます。
+このワークフローは、この頁が挙げるリポジトリのどれにも、一字一句同じ写しで置いています。
+ワークフローは、issue を GitHub の API から読みます。
+確かめるのは、本文が空か空白だけか、ラベルとコメントがあるか、開いた人が bot か持ち主・メンバー・共同作業者か、開いてからの時間です。
+当てはまる issue には、ラベル「empty body」と、様式を指す決まった文のコメントを一つ付けます。
+あとで本文が書かれれば、そのラベルを外します。
+することは、ラベルとコメントを付けることと、そのラベルを外すことだけです。
+issue の題と本文は、コメントにも実行の記録にも、どこにも写しません。
+実行の記録に書くのは、issue の番号と、読んだ件数と答えた件数と、失敗した API の呼び出しの名だけです。
+どの issue も閉じず、鍵も掛けず、消しません。
+題に求めが書かれていることがあり、どの issue も運営者が読むためです。
+このワークフローは、言語モデルを使いません。
 
 ## 言語モデルの利用
 

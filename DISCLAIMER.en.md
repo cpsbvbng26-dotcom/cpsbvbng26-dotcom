@@ -1,11 +1,12 @@
 # Disclaimer
 
-Last updated: 2026-11-15 (Japan time).
+Last updated: 2026-11-19 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
 This page applies to the following 10 repositories that Takuya Nemoto publishes, and to the sites built from them:
 cpsbvbng26-dotcom, errata-check, self-correction, trinity-infinity, trinity-operator, autonomy-and-self-cultivation, naval-gazette-notes, researcher-profile, justice-and-algorithms and solitary-school.
+To golden-window-resolution and research-collaboration, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.
 
 ## Agreement
 
@@ -65,6 +66,9 @@ Of living family members, nothing is written beyond the word "parents".
 ## Information
 
 This section applies, besides the 10 repositories above, to the deposit-check repository.
+This section also applies to the golden-window-resolution repository.
+In research-collaboration, this section applies to issues opened with the error report form (error-report.yml) and to requests received at the email address in the section "Statements about people".
+Everything else in research-collaboration is handled under its own [Personal data](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.en.md) statement.
 The pages set no cookie and carry no analytics.
 When a reader picks the light or dark display, the choice is kept only in that browser's local storage (localStorage).
 Everything a page needs is loaded from the host that serves it.
@@ -106,6 +110,12 @@ The consent can be withdrawn at any time, in an issue or by email.
 After it is withdrawn, that issue is no longer given to a language model.
 What was done before the withdrawal stays lawful.
 The error report form of deposit-check has the same box, and an issue opened from it is handled as this section sets out.
+The error report forms of golden-window-resolution and research-collaboration are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.
+In research-collaboration, the proposal, request and rights-holder forms also have a consent box.
+That box is optional, and the title and text of an issue opened with it ticked may also be given to Claude.
+"An issue from another form" above does not include issues from these forms.
+How issues from these forms are handled is in the section "Giving issues to a language model" of research-collaboration's [Personal data](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.en.md) statement.
+The system of the United States and Anthropic's measures that these forms point to are those in this section.
 
 For the system of the United States, the operator relies on the [information on the system of the United States](https://www.ppc.go.jp/enforcement/infoprovision/laws/offshore_report_america/) that Japan's Personal Information Protection Commission publishes.
 For the federal level, the Commission states 「包括的な法令は存在しない。」 (that there is no comprehensive law).
@@ -134,6 +144,21 @@ A list of words cannot tell every such request from an error report.
 An issue with words that read as such a request also gets the label "needs a person": a signal for the operator, never relied on.
 Comments and logs carry only fixed words and the issue number, never what the issue says.
 What is checked is the words of an existing document, not whether they are wrong.
+
+## Issues with an empty body
+
+A workflow (`.github/workflows/empty-issue.yml`) answers an issue opened with an empty body.
+A word-for-word copy of this workflow is in every repository this page names.
+The workflow reads the issue from GitHub's API.
+It checks whether the body is empty or only white space, whether there is a label or a comment, whether the issue was opened by a bot or by the owner, a member or a collaborator, and how long ago it was opened.
+An issue that qualifies gets the label "empty body" and one comment of fixed words that points to the forms.
+When its body is filled in later, that label is taken off.
+Adding the label and the comment, and taking the label off, is all it does.
+The title and text of the issue are copied nowhere, neither into the comment nor into the log of the run.
+The log carries only issue numbers, the counts of issues read and answered, and the name of an API call that failed.
+No issue is closed, locked or deleted.
+A title may carry a request, and the operator reads every issue.
+The workflow involves no language model.
 
 ## Language models
 
