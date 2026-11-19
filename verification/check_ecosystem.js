@@ -6860,10 +6860,13 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     disc: read('cpsbvbng26-dotcom', 'DISCLAIMER.md') || '', discEn: read('cpsbvbng26-dotcom', 'DISCLAIMER.en.md') || '' };
   for (const r of 場) {
     const form = read(r, ERRF);
-    if (form === null && !REPOS.includes(r)) continue;
+    /* 誤りの知らせの様式のほかにも、受付を約す様式がある（Nusquama の error.yml）。どの様式の名でも、約していれば受付を求める。 */
+    const td = path.join(ROOT, r, '.github', 'ISSUE_TEMPLATE');
+    const others = fs.existsSync(td) ? fs.readdirSync(td).filter((f) => /\.ya?ml$/.test(f) && f !== 'error-report.yml').map((f) => fs.readFileSync(path.join(td, f), 'utf8')).filter((x) => PROMISE.test(x)) : [];
+    if (form === null && !others.length && !REPOS.includes(r)) continue;
     let conf = null;
     try { conf = JSON.parse(read(r, CONF)); } catch (e) { conf = null; }
-    今.repos[r] = { form, js: read(r, VJS), wf: read(r, WFY), conf, root: path.join(ROOT, r) };
+    今.repos[r] = { form, others, js: read(r, VJS), wf: read(r, WFY), conf, root: path.join(ROOT, r) };
   }
   const CI = (() => { const m = { exports: {} }; try { new Function('module', 'exports', 'require', '__dirname', String(今.js0 || '').replace(/^#!.*\n/, ''))(m, m.exports, require, path.join(ROOT, 'cpsbvbng26-dotcom', '.github', 'checked-intake')); } catch (e) { return null; } return m.exports; })();
   const 欄 = (form, id) => (new RegExp('\\n    id: ' + id + '\\n    attributes:\\n      label: ([^\\n]+)\\n').exec(String(form || '')) || [])[1];
@@ -6894,15 +6897,15 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     const W = 欄(m.form0, 'where'), Q = 欄(m.form0, 'printed');
     let n = 0;
     for (const [r, x] of Object.entries(m.repos)) {
-      if (x.form === null) continue;
-      if (!PROMISE.test(x.form)) continue;
+      const forms = (x.form !== null && PROMISE.test(x.form) ? [x.form] : []).concat(x.others || []);
+      if (!forms.length) continue;
       n++;
       if (x.js !== m.js0) bad.push(r + '：受付の道具が無いか、正本と違う');
       if (x.wf !== m.wf0) bad.push(r + '：受付のワークフローが無いか、正本と違う');
       if (!x.conf) { bad.push(r + '：受付の設定が無い'); continue; }
-      if (x.conf.from !== (PROMISE.exec(x.form) || [])[1]) bad.push(r + '：受付の日が様式の約す日と違う');
+      if (forms.some((f) => x.conf.from !== (PROMISE.exec(f) || [])[1])) bad.push(r + '：受付の日が様式の約す日と違う');
       const e = (x.conf.forms || []).find((f) => f.label === 'erratum');
-      if (!e || e.kind !== 'quote' || (e.where || []).join() !== W || (e.quote || []).join() !== Q) bad.push(r + '：誤りの知らせの欄が様式と違う');
+      if (x.form !== null && PROMISE.test(x.form) && (!e || e.kind !== 'quote' || (e.where || []).join() !== W || (e.quote || []).join() !== Q)) bad.push(r + '：誤りの知らせの欄が様式と違う');
       const cp = CI.configProblems(x.conf, x.root);
       if (cp.length) bad.push(r + '：' + cp.join('、'));
     }
@@ -6922,7 +6925,7 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     return bad;
   };
   const now = 問題(今);
-  const 約す = Object.values(今.repos).filter((x) => x.form !== null && PROMISE.test(x.form)).length;
+  const 約す = Object.values(今.repos).filter((x) => (x.form !== null && PROMISE.test(x.form)) || (x.others || []).length).length;
   check('受付を約す誤りの知らせの様式を置く ' + 約す + ' のリポジトリが、どれも受付の道具とワークフローを正本と同じに持ち、設定の日と欄が様式と合う。免責事項（日英）が golden-window-resolution と research-collaboration を挙げ、本文の空の issue の節を持つ',
     now.length === 0, now.slice(0, 6).join(' / '));
   const 替 = (r, k, v) => Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { [r]: Object.assign({}, 今.repos[r], { [k]: v }) }) });
@@ -6936,7 +6939,8 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     ['golden-window-resolution の効力の日を早める', 替(gw, 'conf', Object.assign({}, (今.repos[gw] || {}).conf, { from: '2026-11-20' }))],
     ['research-collaboration の誤りの知らせの欄の名を変える', 替(rc, 'conf', Object.assign({}, (今.repos[rc] || {}).conf, { forms: [{ label: 'erratum', kind: 'quote', where: ['Where'], quote: ['書いてあること / What it says'] }] }))],
     ['golden-window-resolution の設定から needs a person を外す', 替(gw, 'conf', Object.assign({}, (今.repos[gw] || {}).conf, { neverClose: [] }))],
-    ['一覧に無い新しいリポジトリに、様式だけを写す', Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { 'new-repository': { form: 今.form0, js: null, wf: null, conf: null, root: path.join(ROOT, 'new-repository') } }) })],
+    ['一覧に無い新しいリポジトリに、様式だけを写す', Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { 'new-repository': { form: 今.form0, others: [], js: null, wf: null, conf: null, root: path.join(ROOT, 'new-repository') } }) })],
+    ['別の名の様式で受付を約すリポジトリから、受付を外す', 替('nusquama', 'js', null)],
     ['「情報の扱い」から golden-window-resolution を外す', 文('disc', 'この節は、golden-window-resolution のリポジトリにも掛かります。\n', '')],
     ['英語の「Information」から research-collaboration を外す', 文('discEn', 'In research-collaboration, this section applies to issues opened with the error report form', 'This section applies to issues opened with the error report form')],
     ['「issue の中身と言語モデル」から二つの様式を外す', 文('disc', 'golden-window-resolution と research-collaboration の誤りの知らせの様式も、', '誤りの知らせの様式も、')],
@@ -6947,7 +6951,7 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     ['本文の空の issue の節に、言語モデルを使うと書く', 文('disc', 'このワークフローは、言語モデルを使いません。', 'このワークフローは、題を言語モデルに渡します。')],
   ];
   const 通った = 壊し.filter(([, y]) => 問題(y).length === 0).map(([n]) => n);
-  check('壊して確かめる：道具・ワークフローの欠けと一字・設定の欠けと日と欄の名と needs a person・一覧に無いリポジトリの様式だけの写し・免責事項（日英）の二つのリポジトリと断りと冒頭・本文の空の issue の節と閉じる文と言語モデルのどれか一つで落ちる（'
+  check('壊して確かめる：道具・ワークフローの欠けと一字・設定の欠けと日と欄の名と needs a person・一覧に無いリポジトリの様式だけの写し・別の名の様式で約すリポジトリの受付・免責事項（日英）の二つのリポジトリと断りと冒頭・本文の空の issue の節と閉じる文と言語モデルのどれか一つで落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
