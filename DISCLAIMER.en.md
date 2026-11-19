@@ -142,7 +142,11 @@ The checked intake never closes or locks an issue; the operator reads every one.
 A request that the law requires to be received and handled is not turned away without being read, in whatever language and words it is written.
 A list of words cannot tell every such request from an error report.
 An issue with words that read as such a request also gets the label "needs a person": a signal for the operator, never relied on.
-Comments and logs carry only fixed words and the issue number, never what the issue says.
+The workflow of the checked intake writes neither the title nor the text of an issue into a comment or into the log of a run.
+Comments and logs carry only fixed words and the issue number.
+The workflow of the checked intake runs whenever any issue is opened, edited or reopened.
+GitHub shows the title the issue has at that moment as the name of the run in the Actions list.
+When the issue is edited later, the earlier runs keep that name.
 What is checked is the words of an existing document, not whether they are wrong.
 
 ## Issues with an empty body
@@ -154,8 +158,11 @@ It checks whether the body is empty or only white space, whether there is a labe
 An issue that qualifies gets the label "empty body" and one comment of fixed words that points to the forms.
 When its body is filled in later, that label is taken off.
 Adding the label and the comment, and taking the label off, is all it does.
-The title and text of the issue are copied nowhere, neither into the comment nor into the log of the run.
+The workflow writes neither the title nor the text of the issue into the comment or into the log of the run.
 The log carries only issue numbers, the counts of issues read and answered, and the name of an API call that failed.
+The workflow runs whenever any issue is opened or edited.
+GitHub shows the title the issue has at that moment as the name of the run in the Actions list.
+When the issue is edited later, the earlier runs keep that name.
 No issue is closed, locked or deleted.
 A title may carry a request, and the operator reads every issue.
 The workflow involves no language model.
