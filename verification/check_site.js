@@ -1757,25 +1757,32 @@ section('10.59 自己紹介が名乗っていること');
    * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
   {
     const 途上 = {
-      'index.html': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません'],
+      'index.html': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません',
+                    '修士号について、いま具体的に進めているのは、出願の条件を満たすことです（学士号、計算機科学の基礎、推薦状、英語の試験）'],
       'index.en.html': ['Conferences and awards, and a master’s degree through Georgia Tech’s OMSCS, lie on the way to the first of those',
-                        'The master’s degree is in the table of aims, but the two in view have not become three'],
+                        'The master’s degree is in the table of aims, but the two in view have not become three',
+                    'For the master’s degree, what is in progress now is meeting the application requirements: a bachelor’s degree, the foundations of computer science, letters of recommendation and an English test'],
       'index.de.html': ['Fachtagungen und Auszeichnungen sowie ein Masterabschluss über das OMSCS von Georgia Tech liegen auf dem Weg zum ersten dieser Ziele',
-                        'Der Masterabschluss steht in der Tabelle der Ziele, aber aus den zwei Zielen sind nicht drei geworden'],
+                        'Der Masterabschluss steht in der Tabelle der Ziele, aber aus den zwei Zielen sind nicht drei geworden',
+                    'Für den Masterabschluss wird jetzt konkret daran gearbeitet, die Zulassungsvoraussetzungen zu erfüllen: ein Bachelorabschluss, die Grundlagen der Informatik, Empfehlungsschreiben und ein Englischtest'],
       'index.fr.html': ['Les congrès et les distinctions, ainsi qu’un master par l’OMSCS de Georgia Tech, se situent sur le chemin du premier de ces buts',
-                        'Le master figure dans le tableau des buts, mais les deux buts en vue ne sont pas passés à trois'],
+                        'Le master figure dans le tableau des buts, mais les deux buts en vue ne sont pas passés à trois',
+                    'Pour le master, ce qui avance concrètement aujourd’hui, c’est de remplir les conditions de candidature : une licence, les bases de l’informatique, des lettres de recommandation et un test d’anglais'],
       'index.it.html': ['I convegni e i riconoscimenti, e una laurea magistrale con l’OMSCS di Georgia Tech, stanno sulla via del primo di quei due obiettivi',
-                        'La laurea magistrale è nella tabella degli obiettivi, ma i due obiettivi in vista non sono diventati tre'],
-      'README.md': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません'],
+                        'La laurea magistrale è nella tabella degli obiettivi, ma i due obiettivi in vista non sono diventati tre',
+                    'Per la laurea magistrale, ciò che è concretamente in corso ora è soddisfare i requisiti di ammissione: una laurea triennale, le basi dell’informatica, lettere di raccomandazione e un test di inglese'],
+      'README.md': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません',
+                    '修士号について、いま具体的に進めているのは、出願の条件を満たすことです（学士号、計算機科学の基礎、推薦状、英語の試験）'],
       'README.en.md': ['Conferences and awards, and a master’s degree through Georgia Tech’s OMSCS, lie on the way to the first of those',
-                       'The master’s degree is in the table of aims, but the two in view have not become three'],
+                       'The master’s degree is in the table of aims, but the two in view have not become three',
+                    'For the master’s degree, what is in progress now is meeting the application requirements: a bachelor’s degree, the foundations of computer science, letters of recommendation and an English test'],
     };
     const 落ち = [];
     Object.keys(途上).forEach((f) => {
       const h = read(f);
       途上[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
     });
-    ok('学会と賞と修士号が、眼中の三つ目に読めない形で七つの面にある', 落ち.length === 0,
+    ok('学会と賞と修士号が、眼中の三つ目に読めない形で七つの面にあり、修士号について進めていること（出願の条件）がある', 落ち.length === 0,
        落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
   }
 
