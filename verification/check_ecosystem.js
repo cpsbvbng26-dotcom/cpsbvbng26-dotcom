@@ -5110,7 +5110,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
    * GitHub の同時実行の振る舞いは取り寄せて確かめていないので、どちらに振る舞っても正しい形（スキップされた仕事が場所を取らない）を見る。 */
   const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
   const HEAD = '\n## 2026-11-15：自動化を固める\n';
-  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'] };
+  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'], 'cpsbvbng26-dotcom': ['2026-11-19：読むだけの法令の点検を受けて'] };
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
   const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
   const DECIDED = '2026-11-15 に利用者が決め、Claude が書きました';
@@ -5515,6 +5515,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
       const j = a.indexOf('\n## ', i + 5);
       const t = a.slice(i, j < 0 ? a.length : j);
       /* 2026-11-18：Sophaxis と Nusquama の記録は、この節の後に「2026-11-18：名称と商標」を一つだけ持つ（利用者が求め、Claude が書いた）。
+       * 2026-11-19：cpsbvbng26-dotcom の記録は、この節の後に「2026-11-19：読むだけの法令の点検を受けて」を一つだけ持つ（A1・A2・B4・C1 などの直し。Claude が決めた）。
        * ほかの日付の節は、どのリポジトリでもこの節の後に置かない。後に置く節は、名と順をここに挙げたものだけ。 */
       const after = [...a.slice(i + 5).matchAll(/\n## (2026-[^\n]*)/g)].map((m) => m[1]);
       if (JSON.stringify(after) !== JSON.stringify(LATER_SECTIONS[r] || [])) bad.push(r + '：記録の節が最後の日付の節でない');
@@ -6839,7 +6840,7 @@ console.log('\n13f. 2026-11-19：本文の空の issue に答えるワークフ�
 
 console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置くリポジトリは、どれも突き合わせの受付を持つ。免責事項（日英）が golden-window-resolution と research-collaboration を挙げ、本文の空の issue への答え方を書く');
 {
-  /* 2026-11-19 の読むだけの法令の点検（所見 2・3・6）。golden-window-resolution は正本の誤りの知らせの様式を一字一句同じに置き、
+  /* 2026-11-19 の読むだけの法令の点検（A1・A2・B4・C1。点検の記録 docs/legal-audit-2026-11-12.md の 2026-11-19 の節）。golden-window-resolution は正本の誤りの知らせの様式を一字一句同じに置き、
    * その様式は「2026-12-01 から、この様式は「突き合わせの受付」で確かめます」と約していた。ところが、そのリポジトリには受付が無かった。
    * 12y は受付を 13 のリポジトリの決まった一覧でだけ見ており、一覧の外で様式を写したリポジトリを見ていなかった。直し方は 2026-11-19 に Claude が決めた。
    * 一。様式が受付を約す所（15 のリポジトリと、兄弟のディレクトリのうち、受付を約す様式を置くもの）のどれもが、受付の道具とワークフローを
@@ -6847,8 +6848,13 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
    *     道具の configProblems が何も返さない。一覧を決めずに兄弟を走るので、新しいリポジトリに様式だけを写しても落ちる。
    * 二。免責事項（日英）の「情報の扱い」と「issue の中身と言語モデル」の節が、二つのリポジトリを挙げる。research-collaboration の
    *     ほかの様式（任意の同意の欄）が、その節の「ほかの様式の issue」に入らないと書く。冒頭が二つに掛かる節を名指す。
-   * 三。免責事項（日英）に、本文の空の issue に答えるワークフローの節があり、することがラベルとコメントだけで、写さず、閉じず、
-   *     鍵も掛けず、消さず、言語モデルを使わないと書く。 */
+   * 三。免責事項（日英）に、本文の空の issue に答えるワークフローの節があり、することがラベルとコメントだけで、閉じず、
+   *     鍵も掛けず、消さず、言語モデルを使わないと書く。
+   * 四。受付と本文の空の issue の二つの節（日英）は、ワークフローが題も本文もコメントと実行の記録に書かないことと、
+   *     それでも GitHub が題を実行の名として Actions の一覧に示し、issue を直しても前の実行の名が残ることを書く。
+   *     どちらのワークフローも run-name を持たないので、issue の出来事の実行の名は、そのときの issue の題になる。
+   *     2026-11-19 まで二つの節は「どこにも写しません」「issue に書かれたことを写しません」と書き、実行の名を見落としていた（C1）。
+   *     その言い切りが戻れば落とす。直し方は 2026-11-19 に Claude が決めた。ワークフローは変えていない。 */
   const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check', 'research-collaboration', 'golden-window-resolution']);
   const MUST = C.repos.concat(['deposit-check', 'research-collaboration', 'golden-window-resolution']);
   const ERRF = path.join('.github', 'ISSUE_TEMPLATE', 'error-report.yml');
@@ -6877,8 +6883,12 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
       'research-collaboration では、誤りの知らせの様式（error-report.yml）で開かれた issue と、「人についての記載」の節のメールアドレスに届いた求めに、この節が掛かります。'],
     llm: ['golden-window-resolution と research-collaboration の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。',
       'research-collaboration では、申し出・求め・権利者の知らせの様式も、同意の欄を持ちます。', '上の「ほかの様式の issue」は、これらの様式の issue を含みません。'],
-    empty: ['することは、ラベルとコメントを付けることと、そのラベルを外すことだけです。', 'issue の題と本文は、コメントにも実行の記録にも、どこにも写しません。',
-      'どの issue も閉じず、鍵も掛けず、消しません。', 'このワークフローは、言語モデルを使いません。'],
+    empty: ['することは、ラベルとコメントを付けることと、そのラベルを外すことだけです。', 'ワークフローは、issue の題も本文も、コメントにも実行の記録にも書きません。',
+      'ワークフローは、どの issue でも、開かれたときと直されたときに動きます。', 'GitHub は、そのときの issue の題を、実行の名として Actions の一覧に示します。',
+      'あとで issue を直しても、前の実行の名は残ります。', 'どの issue も閉じず、鍵も掛けず、消しません。', 'このワークフローは、言語モデルを使いません。'],
+    intake: ['受付のワークフローは、issue の題も本文も、コメントにも実行の記録にも書きません。', 'コメントと実行の記録に書くのは、決まった文と issue の番号だけです。',
+      '受付のワークフローは、どの issue でも、開かれたとき、直されたとき、開き直されたときに動きます。',
+      'GitHub は、そのときの issue の題を、実行の名として Actions の一覧に示します。', 'あとで issue を直しても、前の実行の名は残ります。'],
   };
   const EN = {
     top: 'To golden-window-resolution and research-collaboration, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.',
@@ -6886,8 +6896,12 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
       'In research-collaboration, this section applies to issues opened with the error report form (error-report.yml) and to requests received at the email address in the section "Statements about people".'],
     llm: ['The error report forms of golden-window-resolution and research-collaboration are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.',
       'In research-collaboration, the proposal, request and rights-holder forms also have a consent box.', '"An issue from another form" above does not include issues from these forms.'],
-    empty: ['Adding the label and the comment, and taking the label off, is all it does.', 'The title and text of the issue are copied nowhere, neither into the comment nor into the log of the run.',
-      'No issue is closed, locked or deleted.', 'The workflow involves no language model.'],
+    empty: ['Adding the label and the comment, and taking the label off, is all it does.', 'The workflow writes neither the title nor the text of the issue into the comment or into the log of the run.',
+      'The workflow runs whenever any issue is opened or edited.', 'GitHub shows the title the issue has at that moment as the name of the run in the Actions list.',
+      'When the issue is edited later, the earlier runs keep that name.', 'No issue is closed, locked or deleted.', 'The workflow involves no language model.'],
+    intake: ['The workflow of the checked intake writes neither the title nor the text of an issue into a comment or into the log of a run.',
+      'Comments and logs carry only fixed words and the issue number.', 'The workflow of the checked intake runs whenever any issue is opened, edited or reopened.',
+      'GitHub shows the title the issue has at that moment as the name of the run in the Actions list.', 'When the issue is edited later, the earlier runs keep that name.'],
   };
   const 問題 = (m) => {
     const bad = [];
@@ -6914,11 +6928,15 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     const info = sec(m.disc, '\n## 情報の扱い\n'), infoEn = sec(m.discEn, '\n## Information\n');
     const llm = sec(m.disc, '\n## issue の中身と言語モデル\n'), llmEn = sec(m.discEn, '\n## Issues and the language model\n');
     const empty = sec(m.disc, '\n## 本文の空の issue\n'), emptyEn = sec(m.discEn, '\n## Issues with an empty body\n');
+    const intake = sec(m.disc, '\n## 突き合わせの受付\n'), intakeEn = sec(m.discEn, '\n## Checked intake\n');
     const head = m.disc.slice(0, m.disc.indexOf('\n## ')), headEn = m.discEn.slice(0, m.discEn.indexOf('\n## '));
     if (!head.includes(JA.top)) bad.push('免責事項の冒頭が二つのリポジトリに掛かる節を挙げない');
     if (!headEn.includes(EN.top)) bad.push('英語の免責事項の冒頭');
     for (const [t, list, name] of [[info, JA.info, '「情報の扱い」'], [infoEn, EN.info, '"Information"'], [llm, JA.llm, '「issue の中身と言語モデル」'], [llmEn, EN.llm, '"Issues and the language model"'],
-      [empty, JA.empty, '「本文の空の issue」'], [emptyEn, EN.empty, '"Issues with an empty body"']]) for (const s of list) if (!t.includes(s)) bad.push('免責事項 ' + name + '：' + s.slice(0, 20));
+      [empty, JA.empty, '「本文の空の issue」'], [emptyEn, EN.empty, '"Issues with an empty body"'],
+      [intake, JA.intake, '「突き合わせの受付」'], [intakeEn, EN.intake, '"Checked intake"']]) for (const s of list) if (!t.includes(s)) bad.push('免責事項 ' + name + '：' + s.slice(0, 20));
+    /* C1。題は実行の名として一覧に出る。「どこにも写さない」の言い切りを、二つの節のどちらにも戻さない。 */
+    if (/写しません|写さない/.test(empty + intake) || /copied nowhere|copies nothing|never what the issue says/i.test(emptyEn + intakeEn)) bad.push('受付か本文の空の issue の節が、題も本文もどこにも写さないと言い切る');
     for (const [t, l] of [[info, 'ja'], [llm, 'ja'], [infoEn, 'en'], [llmEn, 'en']]) if (!t.includes('research-collaboration/blob/main/policies/privacy' + (l === 'en' ? '.en' : '') + '.md')) bad.push('免責事項（' + l + '）が research-collaboration の個人情報の取り扱いを指さない');
     if (/閉じます|鍵を掛けます|消します|Claude に渡します/.test(empty) || /\b(is|are) (closed|locked|deleted)\b(?!,)/.test(emptyEn.replace('No issue is closed, locked or deleted.', ''))) bad.push('本文の空の issue の節が閉じる・鍵を掛ける・消す・渡すと書く');
     if (!(read('cpsbvbng26-dotcom', path.join('.github', 'workflows', 'empty-issue.yml')) || '').includes("const LABEL = 'empty body';") || !empty.includes('「empty body」') || !emptyEn.includes('"empty body"')) bad.push('本文の空の issue の節のラベルがワークフローと違う');
@@ -6949,9 +6967,13 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     ['本文の空の issue の節を外す', 文('disc', '\n## 本文の空の issue\n', '\n## 空の issue\n')],
     ['英語の節に、閉じると書く', 文('discEn', 'No issue is closed, locked or deleted.', 'No issue is locked or deleted. An issue left empty for a week is closed.')],
     ['本文の空の issue の節に、言語モデルを使うと書く', 文('disc', 'このワークフローは、言語モデルを使いません。', 'このワークフローは、題を言語モデルに渡します。')],
+    ['本文の空の issue の節を、前の「どこにも写しません」に戻す', 文('disc', 'ワークフローは、issue の題も本文も、コメントにも実行の記録にも書きません。', 'issue の題と本文は、コメントにも実行の記録にも、どこにも写しません。')],
+    ['英語の受付の節から、実行の名の文を外す', 文('discEn', 'GitHub shows the title the issue has at that moment as the name of the run in the Actions list.\nWhen the issue is edited later, the earlier runs keep that name.\n', '')],
+    ['受付の節に、issue に書かれたことを写さないと書き足す', 文('disc', 'あとで issue を直しても、前の実行の名は残ります。\n確かめるのは', 'あとで issue を直しても、前の実行の名は残ります。\nissue に書かれたことは、どこにも写しません。\n確かめるのは')],
+    ['英語の本文の空の issue の節に、どこにも写さないと書き足す', 文('discEn', 'No issue is closed, locked or deleted.', 'The title and text of the issue are copied nowhere.\nNo issue is closed, locked or deleted.')],
   ];
   const 通った = 壊し.filter(([, y]) => 問題(y).length === 0).map(([n]) => n);
-  check('壊して確かめる：道具・ワークフローの欠けと一字・設定の欠けと日と欄の名と needs a person・一覧に無いリポジトリの様式だけの写し・別の名の様式で約すリポジトリの受付・免責事項（日英）の二つのリポジトリと断りと冒頭・本文の空の issue の節と閉じる文と言語モデルのどれか一つで落ちる（'
+  check('壊して確かめる：道具・ワークフローの欠けと一字・設定の欠けと日と欄の名と needs a person・一覧に無いリポジトリの様式だけの写し・別の名の様式で約すリポジトリの受付・免責事項（日英）の二つのリポジトリと断りと冒頭・本文の空の issue の節と閉じる文と言語モデル・受付と本文の空の issue の節の実行の名の文と「写さない」の言い切りのどれか一つで落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
