@@ -433,7 +433,10 @@
       "summaryEn": "Resolves the golden-window conjecture and adds related results on β-transformations with a hole and on the Trinity-Infinity Series II game. It contains Propositions 8 and 9 of the note with their proofs. Resolved: part (a) and the formula of part (b) are special cases of known theorems; continuity and strict increase in δ and the limits at both ends were not found in the texts read. A separate Figshare item, not a new version of the preprint 10.6084/m9.figshare.34419198",
       "doi": "10.6084/m9.figshare.35050300",
       "conceptDoi": null,
-      "otherDois": [],
+      "otherDois": [
+        "10.5281/zenodo.24382288",
+        "10.5281/zenodo.24382287"
+      ],
       "url": "https://doi.org/10.6084/m9.figshare.35050300",
       "version": null,
       "repository": null,
