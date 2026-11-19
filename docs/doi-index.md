@@ -118,6 +118,21 @@ R15 と R16 は、2026-11-20 に利用者から受け取り、同じ日に DataC
 | R15 | `10.5281/zenodo.24382288` | golden-window-resolution v1.0.0（十の外。稿は Figshare の番号で引く） | 現行 |
 | R16 | `10.5281/zenodo.24382287` | golden-window-resolution のすべての版 | 概念 DOI |
 
+## 横断の検査がまだ読まないリポジトリの保存版
+
+verification-hub と reading-ledger の Zenodo の保存版の番号です。
+2026-11-20 に利用者から受け取り、同じ日に DataCite の記録を直に読んで確かめました。
+確かめたのは、題、種類、著者、ライセンス、すべての版に共通する DOI との関係（IsVersionOf）です。
+横断の検査は、まだこの二つのリポジトリを読みません。
+上の表に置くと、表の番号が表の外に出てくることを確かめる検査が、どこにも見つけられずに落ちます。
+そのため、表ではなくここに挙げます。
+二つのリポジトリを横断の検査に足したときに、上の表へ移します。
+
+- `10.5281/zenodo.24382351`：verification-hub の最初の版（ソフトウェア、MIT）
+- `10.5281/zenodo.24382350`：verification-hub のすべての版
+- `10.5281/zenodo.24382375`：reading-ledger の最初の版（データセット、CC BY 4.0）
+- `10.5281/zenodo.24382374`：reading-ledger のすべての版
+
 ## 同じ記録の前の版
 
 史料ノートの Zenodo の記録には、前の版があります。前の版の題は A Minor Officer in the Imperial Japanese Navy でした。
