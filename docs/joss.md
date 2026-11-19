@@ -93,6 +93,23 @@ errata-check の最短は 2027-03-08 ですが、Sophaxis の最短（2027-05-01
 出す前の点検は、errata-check の `SUBMIT.md` の手順で行います。
 Sophaxis のコードが JOSS に届くかの点検の一覧は、Sophaxis の側に置きます。
 
+## trinity-operator の games を見直した —— 2026-11-19
+
+`trinity-operator` の `games/` は、2026-11-18 までに Figshare の二つの稿の土台になりました（`10.6084/m9.figshare.34419198` と `10.6084/m9.figshare.35050300`）。
+二つ目の稿は、`games/README.md` を文献に挙げています。
+門 2 の、著者自身の研究利用に当たる材料が一つ増えました。
+
+それでも、出さない判断は変えません。
+`games/` は、スクリプト二本（`games.py` と `scan.py`）です。
+場の側は、言語の慣習どおりの形を求めています（`packaged appropriately according to common community standards for the programming language being used`）。
+一回の分析のための道具も、範囲の外です（`rather than being a one-off tool for a single analysis`）。
+`games/` は、黄金比の窓の予想という一本の分析のために書いたものです。
+二つ目の稿の計算も、`games/` ではなく `golden-window-resolution` の台本で回しています。
+
+門 1 に届く最短は、下の表のとおり 2027-03-07 です。
+外の人が `games/` を使った記録が出たら、見直します。
+2026-11-19 に Claude が決めました。
+
 ## 門は四つある
 
 査読に入る前に、四つの門があります。**一つでも欠ければ、査読に入らずに返されます**
