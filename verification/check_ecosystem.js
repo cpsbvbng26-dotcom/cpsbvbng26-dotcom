@@ -6837,6 +6837,120 @@ console.log('\n13f. 2026-11-19：本文の空の issue に答えるワークフ�
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
+console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置くリポジトリは、どれも突き合わせの受付を持つ。免責事項（日英）が golden-window-resolution と research-collaboration を挙げ、本文の空の issue への答え方を書く');
+{
+  /* 2026-11-19 の読むだけの法令の点検（所見 2・3・6）。golden-window-resolution は正本の誤りの知らせの様式を一字一句同じに置き、
+   * その様式は「2026-12-01 から、この様式は「突き合わせの受付」で確かめます」と約していた。ところが、そのリポジトリには受付が無かった。
+   * 12y は受付を 13 のリポジトリの決まった一覧でだけ見ており、一覧の外で様式を写したリポジトリを見ていなかった。直し方は 2026-11-19 に Claude が決めた。
+   * 一。様式が受付を約す所（15 のリポジトリと、兄弟のディレクトリのうち、受付を約す様式を置くもの）のどれもが、受付の道具とワークフローを
+   *     正本と一字一句同じに持ち、設定が読め、効力の日が様式の約す日と同じで、誤りの知らせの欄が様式の欄の名と同じで、
+   *     道具の configProblems が何も返さない。一覧を決めずに兄弟を走るので、新しいリポジトリに様式だけを写しても落ちる。
+   * 二。免責事項（日英）の「情報の扱い」と「issue の中身と言語モデル」の節が、二つのリポジトリを挙げる。research-collaboration の
+   *     ほかの様式（任意の同意の欄）が、その節の「ほかの様式の issue」に入らないと書く。冒頭が二つに掛かる節を名指す。
+   * 三。免責事項（日英）に、本文の空の issue に答えるワークフローの節があり、することがラベルとコメントだけで、写さず、閉じず、
+   *     鍵も掛けず、消さず、言語モデルを使わないと書く。 */
+  const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check', 'research-collaboration', 'golden-window-resolution']);
+  const MUST = C.repos.concat(['deposit-check', 'research-collaboration', 'golden-window-resolution']);
+  const ERRF = path.join('.github', 'ISSUE_TEMPLATE', 'error-report.yml');
+  const VJS = path.join('.github', 'checked-intake', 'verify.js'), CONF = path.join('.github', 'checked-intake', 'config.json'), WFY = path.join('.github', 'workflows', 'checked-intake.yml');
+  const PROMISE = /(\d{4}-\d{2}-\d{2}) から、この様式は「突き合わせの受付」で確かめます。/;
+  const 兄弟 = fs.readdirSync(ROOT, { withFileTypes: true }).filter((d) => d.isDirectory() && !d.name.startsWith('.')).map((d) => d.name);
+  const 場 = [...new Set(REPOS.concat(兄弟))].sort();
+  const 今 = { form0: read('cpsbvbng26-dotcom', ERRF), js0: read('cpsbvbng26-dotcom', VJS), wf0: read('cpsbvbng26-dotcom', WFY), repos: {},
+    disc: read('cpsbvbng26-dotcom', 'DISCLAIMER.md') || '', discEn: read('cpsbvbng26-dotcom', 'DISCLAIMER.en.md') || '' };
+  for (const r of 場) {
+    const form = read(r, ERRF);
+    if (form === null && !REPOS.includes(r)) continue;
+    let conf = null;
+    try { conf = JSON.parse(read(r, CONF)); } catch (e) { conf = null; }
+    今.repos[r] = { form, js: read(r, VJS), wf: read(r, WFY), conf, root: path.join(ROOT, r) };
+  }
+  const CI = (() => { const m = { exports: {} }; try { new Function('module', 'exports', 'require', '__dirname', String(今.js0 || '').replace(/^#!.*\n/, ''))(m, m.exports, require, path.join(ROOT, 'cpsbvbng26-dotcom', '.github', 'checked-intake')); } catch (e) { return null; } return m.exports; })();
+  const 欄 = (form, id) => (new RegExp('\\n    id: ' + id + '\\n    attributes:\\n      label: ([^\\n]+)\\n').exec(String(form || '')) || [])[1];
+  const sec = (t, h) => { const i = t.indexOf(h); const j = i < 0 ? -1 : t.indexOf('\n## ', i + h.length); return i < 0 ? '' : t.slice(i, j < 0 ? t.length : j); };
+  const JA = {
+    top: 'golden-window-resolution と research-collaboration には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。',
+    info: ['この節は、golden-window-resolution のリポジトリにも掛かります。',
+      'research-collaboration では、誤りの知らせの様式（error-report.yml）で開かれた issue と、「人についての記載」の節のメールアドレスに届いた求めに、この節が掛かります。'],
+    llm: ['golden-window-resolution と research-collaboration の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。',
+      'research-collaboration では、申し出・求め・権利者の知らせの様式も、同意の欄を持ちます。', '上の「ほかの様式の issue」は、これらの様式の issue を含みません。'],
+    empty: ['することは、ラベルとコメントを付けることと、そのラベルを外すことだけです。', 'issue の題と本文は、コメントにも実行の記録にも、どこにも写しません。',
+      'どの issue も閉じず、鍵も掛けず、消しません。', 'このワークフローは、言語モデルを使いません。'],
+  };
+  const EN = {
+    top: 'To golden-window-resolution and research-collaboration, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.',
+    info: ['This section also applies to the golden-window-resolution repository.',
+      'In research-collaboration, this section applies to issues opened with the error report form (error-report.yml) and to requests received at the email address in the section "Statements about people".'],
+    llm: ['The error report forms of golden-window-resolution and research-collaboration are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.',
+      'In research-collaboration, the proposal, request and rights-holder forms also have a consent box.', '"An issue from another form" above does not include issues from these forms.'],
+    empty: ['Adding the label and the comment, and taking the label off, is all it does.', 'The title and text of the issue are copied nowhere, neither into the comment nor into the log of the run.',
+      'No issue is closed, locked or deleted.', 'The workflow involves no language model.'],
+  };
+  const 問題 = (m) => {
+    const bad = [];
+    if (!m.form0 || !m.js0 || !m.wf0 || !CI) return ['正本の様式・道具・ワークフローのどれかが無い'];
+    const day = (PROMISE.exec(m.form0) || [])[1];
+    if (!day) bad.push('正本の様式が受付の日を約していない');
+    const W = 欄(m.form0, 'where'), Q = 欄(m.form0, 'printed');
+    let n = 0;
+    for (const [r, x] of Object.entries(m.repos)) {
+      if (x.form === null) continue;
+      if (!PROMISE.test(x.form)) continue;
+      n++;
+      if (x.js !== m.js0) bad.push(r + '：受付の道具が無いか、正本と違う');
+      if (x.wf !== m.wf0) bad.push(r + '：受付のワークフローが無いか、正本と違う');
+      if (!x.conf) { bad.push(r + '：受付の設定が無い'); continue; }
+      if (x.conf.from !== (PROMISE.exec(x.form) || [])[1]) bad.push(r + '：受付の日が様式の約す日と違う');
+      const e = (x.conf.forms || []).find((f) => f.label === 'erratum');
+      if (!e || e.kind !== 'quote' || (e.where || []).join() !== W || (e.quote || []).join() !== Q) bad.push(r + '：誤りの知らせの欄が様式と違う');
+      const cp = CI.configProblems(x.conf, x.root);
+      if (cp.length) bad.push(r + '：' + cp.join('、'));
+    }
+    for (const r of MUST) if (!m.repos[r] || m.repos[r].form !== m.form0) bad.push(r + '：正本の誤りの知らせの様式が無いか、正本と違う');
+    if (n < MUST.length) bad.push('受付を約す様式が少ない（' + n + '）');
+    const info = sec(m.disc, '\n## 情報の扱い\n'), infoEn = sec(m.discEn, '\n## Information\n');
+    const llm = sec(m.disc, '\n## issue の中身と言語モデル\n'), llmEn = sec(m.discEn, '\n## Issues and the language model\n');
+    const empty = sec(m.disc, '\n## 本文の空の issue\n'), emptyEn = sec(m.discEn, '\n## Issues with an empty body\n');
+    const head = m.disc.slice(0, m.disc.indexOf('\n## ')), headEn = m.discEn.slice(0, m.discEn.indexOf('\n## '));
+    if (!head.includes(JA.top)) bad.push('免責事項の冒頭が二つのリポジトリに掛かる節を挙げない');
+    if (!headEn.includes(EN.top)) bad.push('英語の免責事項の冒頭');
+    for (const [t, list, name] of [[info, JA.info, '「情報の扱い」'], [infoEn, EN.info, '"Information"'], [llm, JA.llm, '「issue の中身と言語モデル」'], [llmEn, EN.llm, '"Issues and the language model"'],
+      [empty, JA.empty, '「本文の空の issue」'], [emptyEn, EN.empty, '"Issues with an empty body"']]) for (const s of list) if (!t.includes(s)) bad.push('免責事項 ' + name + '：' + s.slice(0, 20));
+    for (const [t, l] of [[info, 'ja'], [llm, 'ja'], [infoEn, 'en'], [llmEn, 'en']]) if (!t.includes('research-collaboration/blob/main/policies/privacy' + (l === 'en' ? '.en' : '') + '.md')) bad.push('免責事項（' + l + '）が research-collaboration の個人情報の取り扱いを指さない');
+    if (/閉じます|鍵を掛けます|消します|Claude に渡します/.test(empty) || /\b(is|are) (closed|locked|deleted)\b(?!,)/.test(emptyEn.replace('No issue is closed, locked or deleted.', ''))) bad.push('本文の空の issue の節が閉じる・鍵を掛ける・消す・渡すと書く');
+    if (!(read('cpsbvbng26-dotcom', path.join('.github', 'workflows', 'empty-issue.yml')) || '').includes("const LABEL = 'empty body';") || !empty.includes('「empty body」') || !emptyEn.includes('"empty body"')) bad.push('本文の空の issue の節のラベルがワークフローと違う');
+    return bad;
+  };
+  const now = 問題(今);
+  const 約す = Object.values(今.repos).filter((x) => x.form !== null && PROMISE.test(x.form)).length;
+  check('受付を約す誤りの知らせの様式を置く ' + 約す + ' のリポジトリが、どれも受付の道具とワークフローを正本と同じに持ち、設定の日と欄が様式と合う。免責事項（日英）が golden-window-resolution と research-collaboration を挙げ、本文の空の issue の節を持つ',
+    now.length === 0, now.slice(0, 6).join(' / '));
+  const 替 = (r, k, v) => Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { [r]: Object.assign({}, 今.repos[r], { [k]: v }) }) });
+  const 文 = (k, a, b) => Object.assign({}, 今, { [k]: 今[k].replace(a, b) });
+  const gw = 'golden-window-resolution', rc = 'research-collaboration';
+  const 壊し = [
+    ['golden-window-resolution から受付の道具を外す', 替(gw, 'js', null)],
+    ['golden-window-resolution から受付のワークフローを外す', 替(gw, 'wf', null)],
+    ['research-collaboration の受付の道具を一字変える', 替(rc, 'js', (今.repos[rc] || {}).js + '\n')],
+    ['golden-window-resolution の設定を外す', 替(gw, 'conf', null)],
+    ['golden-window-resolution の効力の日を早める', 替(gw, 'conf', Object.assign({}, (今.repos[gw] || {}).conf, { from: '2026-11-20' }))],
+    ['research-collaboration の誤りの知らせの欄の名を変える', 替(rc, 'conf', Object.assign({}, (今.repos[rc] || {}).conf, { forms: [{ label: 'erratum', kind: 'quote', where: ['Where'], quote: ['書いてあること / What it says'] }] }))],
+    ['golden-window-resolution の設定から needs a person を外す', 替(gw, 'conf', Object.assign({}, (今.repos[gw] || {}).conf, { neverClose: [] }))],
+    ['一覧に無い新しいリポジトリに、様式だけを写す', Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { 'new-repository': { form: 今.form0, js: null, wf: null, conf: null, root: path.join(ROOT, 'new-repository') } }) })],
+    ['「情報の扱い」から golden-window-resolution を外す', 文('disc', 'この節は、golden-window-resolution のリポジトリにも掛かります。\n', '')],
+    ['英語の「Information」から research-collaboration を外す', 文('discEn', 'In research-collaboration, this section applies to issues opened with the error report form', 'This section applies to issues opened with the error report form')],
+    ['「issue の中身と言語モデル」から二つの様式を外す', 文('disc', 'golden-window-resolution と research-collaboration の誤りの知らせの様式も、', '誤りの知らせの様式も、')],
+    ['英語の節から「ほかの様式」の断りを外す', 文('discEn', '"An issue from another form" above does not include issues from these forms.\n', '')],
+    ['冒頭から二つのリポジトリを外す', 文('disc', 'golden-window-resolution と research-collaboration には、この頁のうち', 'ほかのリポジトリには、この頁のうち')],
+    ['本文の空の issue の節を外す', 文('disc', '\n## 本文の空の issue\n', '\n## 空の issue\n')],
+    ['英語の節に、閉じると書く', 文('discEn', 'No issue is closed, locked or deleted.', 'No issue is locked or deleted. An issue left empty for a week is closed.')],
+    ['本文の空の issue の節に、言語モデルを使うと書く', 文('disc', 'このワークフローは、言語モデルを使いません。', 'このワークフローは、題を言語モデルに渡します。')],
+  ];
+  const 通った = 壊し.filter(([, y]) => 問題(y).length === 0).map(([n]) => n);
+  check('壊して確かめる：道具・ワークフローの欠けと一字・設定の欠けと日と欄の名と needs a person・一覧に無いリポジトリの様式だけの写し・免責事項（日英）の二つのリポジトリと断りと冒頭・本文の空の issue の節と閉じる文と言語モデルのどれか一つで落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 /* 481（百本ノック五）。**この検査の件数は docs/checks.md の一か所にだけ書く。**
  * 2026-11-12 まで五か所に書いて突き合わせていた。ほかの場所は、その頁を指す。数を書き戻せば落とす。 */
 console.log('\n13e. 2026-11-18：散文に書いた「NN 件・NN 項目・NN 通り」が、どれも区分にある（検査で捕まる・数えられない・外す）');
