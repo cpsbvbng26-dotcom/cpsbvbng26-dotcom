@@ -1752,29 +1752,30 @@ section('10.59 自己紹介が名乗っていること');
   }
 
   /* **目標を二つと書いた頁に、三つ目に見えるものを足した。**学会と賞である。
+   * 2026-11-19 に、目標の表に Georgia Tech の OMSCS での修士号を足した（所有者が決めた）。これも一つ目への途上に置く。
    * **途上だと書いておかないと、眼中にないと言った二つが三つに増える。**
    * 数を書いた側（二つ）と、増えていないと書いた側を、同じところで固める。 */
   {
     const 途上 = {
-      'index.html': ['学会と賞は、その一つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
-      'index.en.html': ['Conferences and awards lie on the way to the first of those',
-                        'The count of goals has not become three'],
-      'index.de.html': ['Fachtagungen und Auszeichnungen liegen auf dem Weg zum ersten dieser Ziele',
-                        'Es sind nicht drei Ziele geworden'],
-      'index.fr.html': ['Les congrès et les distinctions se situent sur le chemin du premier de ces buts',
-                        'Les buts ne sont pas passés à trois'],
-      'index.it.html': ['I convegni e i riconoscimenti stanno sulla via del primo di quei due obiettivi',
-                        'Gli obiettivi non sono diventati tre'],
-      'README.md': ['学会と賞は、その一つ目に向かう途上にあります', '目標が三つに増えたのではありません'],
-      'README.en.md': ['Conferences and awards lie on the way to the first of those',
-                       'The count of goals has not become three'],
+      'index.html': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません'],
+      'index.en.html': ['Conferences and awards, and a master’s degree through Georgia Tech’s OMSCS, lie on the way to the first of those',
+                        'The master’s degree is in the table of aims, but the two in view have not become three'],
+      'index.de.html': ['Fachtagungen und Auszeichnungen sowie ein Masterabschluss über das OMSCS von Georgia Tech liegen auf dem Weg zum ersten dieser Ziele',
+                        'Der Masterabschluss steht in der Tabelle der Ziele, aber aus den zwei Zielen sind nicht drei geworden'],
+      'index.fr.html': ['Les congrès et les distinctions, ainsi qu’un master par l’OMSCS de Georgia Tech, se situent sur le chemin du premier de ces buts',
+                        'Le master figure dans le tableau des buts, mais les deux buts en vue ne sont pas passés à trois'],
+      'index.it.html': ['I convegni e i riconoscimenti, e una laurea magistrale con l’OMSCS di Georgia Tech, stanno sulla via del primo di quei due obiettivi',
+                        'La laurea magistrale è nella tabella degli obiettivi, ma i due obiettivi in vista non sono diventati tre'],
+      'README.md': ['学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります', '修士号は目標の表に載せましたが、眼中の二つが三つに増えたのではありません'],
+      'README.en.md': ['Conferences and awards, and a master’s degree through Georgia Tech’s OMSCS, lie on the way to the first of those',
+                       'The master’s degree is in the table of aims, but the two in view have not become three'],
     };
     const 落ち = [];
     Object.keys(途上).forEach((f) => {
       const h = read(f);
       途上[f].forEach((w) => { if (h.indexOf(w) < 0) 落ち.push(f + ' に「' + w + '」'); });
     });
-    ok('学会と賞が、三つ目の目標に読めない形で七つの面にある', 落ち.length === 0,
+    ok('学会と賞と修士号が、眼中の三つ目に読めない形で七つの面にある', 落ち.length === 0,
        落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
   }
 
