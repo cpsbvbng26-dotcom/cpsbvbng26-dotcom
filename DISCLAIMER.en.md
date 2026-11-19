@@ -1,12 +1,12 @@
 # Disclaimer
 
-Last updated: 2026-11-19 (Japan time).
+Last updated: 2026-11-20 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
 This page applies to the following 10 repositories that Takuya Nemoto publishes, and to the sites built from them:
 cpsbvbng26-dotcom, errata-check, self-correction, trinity-infinity, trinity-operator, autonomy-and-self-cultivation, naval-gazette-notes, researcher-profile, justice-and-algorithms and solitary-school.
-To golden-window-resolution and research-collaboration, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.
+To golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.
 
 ## Agreement
 
@@ -66,9 +66,11 @@ Of living family members, nothing is written beyond the word "parents".
 ## Information
 
 This section applies, besides the 10 repositories above, to the deposit-check repository.
-This section also applies to the golden-window-resolution repository.
+This section also applies to the golden-window-resolution, verification-hub, omscs-preparation, reading-ledger and submission-templates repositories.
 In research-collaboration, this section applies to issues opened with the error report form (error-report.yml) and to requests received at the email address in the section "Statements about people".
 Everything else in research-collaboration is handled under its own [Personal data](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.en.md) statement.
+In legal-and-governance, this section applies to issues opened with the error report form (error-report.yml).
+Everything else in legal-and-governance is handled under its own [Personal data](https://github.com/cpsbvbng26-dotcom/legal-and-governance/blob/main/pages/privacy.en.md) statement.
 The pages set no cookie and carry no analytics.
 When a reader picks the light or dark display, the choice is kept only in that browser's local storage (localStorage).
 Everything a page needs is loaded from the host that serves it.
@@ -110,7 +112,7 @@ The consent can be withdrawn at any time, in an issue or by email.
 After it is withdrawn, that issue is no longer given to a language model.
 What was done before the withdrawal stays lawful.
 The error report form of deposit-check has the same box, and an issue opened from it is handled as this section sets out.
-The error report forms of golden-window-resolution and research-collaboration are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.
+The error report forms of golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.
 In research-collaboration, the proposal, request and rights-holder forms also have a consent box.
 That box is optional, and the title and text of an issue opened with it ticked may also be given to Claude.
 "An issue from another form" above does not include issues from these forms.

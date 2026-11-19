@@ -1,12 +1,12 @@
 # 免責事項
 
-最終更新：2026-11-19（日本時間）。
+最終更新：2026-11-20（日本時間）。
 
 English: [Disclaimer](DISCLAIMER.en.md)。訳と食い違うときは、この日本語の文が正です。
 
 この頁は、根本卓哉が公開している次の 10 のリポジトリと、そこから作るサイトに掛かります。
 cpsbvbng26-dotcom、errata-check、self-correction、trinity-infinity、trinity-operator、autonomy-and-self-cultivation、naval-gazette-notes、researcher-profile、justice-and-algorithms、solitary-school です。
-golden-window-resolution と research-collaboration には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。
+golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。
 
 ## 同意について
 
@@ -66,9 +66,11 @@ CC BY 4.0 の Section 5 と MIT ライセンスの末尾の段落は、保証を
 ## 情報の扱い
 
 この節は、上の 10 のリポジトリに加えて、deposit-check のリポジトリにも掛かります。
-この節は、golden-window-resolution のリポジトリにも掛かります。
+この節は、golden-window-resolution、verification-hub、omscs-preparation、reading-ledger、submission-templates のリポジトリにも掛かります。
 research-collaboration では、誤りの知らせの様式（error-report.yml）で開かれた issue と、「人についての記載」の節のメールアドレスに届いた求めに、この節が掛かります。
 research-collaboration のそのほかの扱いは、そのリポジトリの[個人情報の取り扱い](https://github.com/cpsbvbng26-dotcom/research-collaboration/blob/main/policies/privacy.md)によります。
+legal-and-governance では、誤りの知らせの様式（error-report.yml）で開かれた issue に、この節が掛かります。
+legal-and-governance のそのほかの扱いは、そのリポジトリの[個人情報の取り扱い](https://github.com/cpsbvbng26-dotcom/legal-and-governance/blob/main/pages/privacy.md)によります。
 頁は cookie を置かず、アクセス解析の仕組みも置いていません。
 明暗の表示を選んだときは、その選択を、その端末のブラウザの保存域（localStorage）にだけ置きます。
 頁の表示に要るものは、頁を配っているホストからだけ読みます。
@@ -110,7 +112,7 @@ Claude に渡すのは、この欄に印を付けて開かれた issue の題と
 撤回のあとは、その issue を言語モデルに渡しません。
 撤回の前に行ったことは、適法なままです。
 deposit-check の誤りの知らせの様式も同じ欄を持ち、そこから開かれた issue も、この節のとおりに扱います。
-golden-window-resolution と research-collaboration の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。
+golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。
 research-collaboration では、申し出・求め・権利者の知らせの様式も、同意の欄を持ちます。
 その欄は任意で、印を付けて開かれた issue の題と本文も、Claude に渡ることがあります。
 上の「ほかの様式の issue」は、これらの様式の issue を含みません。
