@@ -5110,7 +5110,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
    * GitHub の同時実行の振る舞いは取り寄せて確かめていないので、どちらに振る舞っても正しい形（スキップされた仕事が場所を取らない）を見る。 */
   const ALL = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check']);
   const HEAD = '\n## 2026-11-15：自動化を固める\n';
-  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標'] };
+  const LATER_SECTIONS = { sophaxis: ['2026-11-18：名称と商標'], nusquama: ['2026-11-18：名称と商標', '2026-11-19：参加のハードル'] };
   const KINDS = ['誤り', '根拠不足', '漏れ', '表現', '問題なし'];
   const EN = { Error: '誤り', 'Insufficient basis': '根拠不足', Omission: '漏れ', Wording: '表現', 'No problem': '問題なし' };
   const DECIDED = '2026-11-15 に利用者が決め、Claude が書きました';
@@ -5515,6 +5515,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
       const j = a.indexOf('\n## ', i + 5);
       const t = a.slice(i, j < 0 ? a.length : j);
       /* 2026-11-18：Sophaxis と Nusquama の記録は、この節の後に「2026-11-18：名称と商標」を一つだけ持つ（利用者が求め、Claude が書いた）。
+       * 2026-11-19：Nusquama の記録は、その後に「2026-11-19：参加のハードル」を持つ（利用者が決め、Claude が書いた）。
        * ほかの日付の節は、どのリポジトリでもこの節の後に置かない。後に置く節は、名と順をここに挙げたものだけ。 */
       const after = [...a.slice(i + 5).matchAll(/\n## (2026-[^\n]*)/g)].map((m) => m[1]);
       if (JSON.stringify(after) !== JSON.stringify(LATER_SECTIONS[r] || [])) bad.push(r + '：記録の節が最後の日付の節でない');
