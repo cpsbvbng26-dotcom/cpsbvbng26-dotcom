@@ -312,7 +312,7 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
 node verification/check_contrast.js  # 配色の読みやすさ 859 項目
-node verification/check_site.js      # サイトの構造 989 項目
+node verification/check_site.js      # サイトの構造 990 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
