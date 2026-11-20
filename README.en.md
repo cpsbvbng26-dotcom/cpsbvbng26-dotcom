@@ -307,7 +307,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 859 checks
-node verification/check_site.js      # site structure, 992 checks
+node verification/check_site.js      # site structure, 990 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
