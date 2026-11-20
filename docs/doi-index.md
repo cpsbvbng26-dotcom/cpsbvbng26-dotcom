@@ -133,6 +133,19 @@ verification-hub と reading-ledger の Zenodo の保存版の番号です。
 - `10.5281/zenodo.24382375`：reading-ledger の最初の版（データセット、CC BY 4.0）
 - `10.5281/zenodo.24382374`：reading-ledger のすべての版
 
+次の番号も同じ扱いです。
+budo-first-person-notes、family-history-archive、social-data-experiments の保存版です。
+2026-11-20 に利用者から受け取り、同じ日に DataCite の記録を直に読んで確かめました。
+確かめたのは、題、種類、著者、版、ライセンス、すべての版に共通する DOI との関係（IsVersionOf）です。
+これらのリポジトリも、横断の検査に足したときに上の表へ移します。
+
+- `10.5281/zenodo.24396795`：budo-first-person-notes の最初の版（その他、CC BY 4.0）
+- `10.5281/zenodo.24396794`：budo-first-person-notes のすべての版
+- `10.5281/zenodo.24397144`：family-history-archive の最初の版（データセット、CC BY 4.0）
+- `10.5281/zenodo.24397143`：family-history-archive のすべての版
+- `10.5281/zenodo.24397158`：social-data-experiments の最初の版（その他、CC BY 4.0）
+- `10.5281/zenodo.24397157`：social-data-experiments のすべての版
+
 ## 同じ記録の前の版
 
 史料ノートの Zenodo の記録には、前の版があります。前の版の題は A Minor Officer in the Imperial Japanese Navy でした。
