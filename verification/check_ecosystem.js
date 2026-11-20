@@ -6856,7 +6856,10 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
    *     それでも GitHub が題を実行の名として Actions の一覧に示し、issue を直しても前の実行の名が残ることを書く。
    *     どちらのワークフローも run-name を持たないので、issue の出来事の実行の名は、そのときの issue の題になる。
    *     2026-11-19 まで二つの節は「どこにも写しません」「issue に書かれたことを写しません」と書き、実行の名を見落としていた（C1）。
-   *     その言い切りが戻れば落とす。直し方は 2026-11-19 に Claude が決めた。ワークフローは変えていない。 */
+   *     その言い切りが戻れば落とす。直し方は 2026-11-19 に Claude が決めた。ワークフローは変えていない。
+   * 五。2026-11-20 に、budo-first-person-notes・family-history-archive・social-data-experiments を置いた。三つとも正本の様式・受付・
+   *     本文の空の issue の仕事を一字一句同じに写す。免責事項（日英）の冒頭と二つの節に三つを足し、同じ厳しさで固める。
+   *     MUST には足さない（omscs-preparation などと同じ扱い）。兄弟のディレクトリにあれば、上の一で受付を見る。 */
   const REPOS = C.repos.concat(['sophaxis', 'nusquama', 'deposit-check', 'research-collaboration', 'golden-window-resolution']);
   const MUST = C.repos.concat(['deposit-check', 'research-collaboration', 'golden-window-resolution']);
   const ERRF = path.join('.github', 'ISSUE_TEMPLATE', 'error-report.yml');
@@ -6880,11 +6883,11 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
   const 欄 = (form, id) => (new RegExp('\\n    id: ' + id + '\\n    attributes:\\n      label: ([^\\n]+)\\n').exec(String(form || '')) || [])[1];
   const sec = (t, h) => { const i = t.indexOf(h); const j = i < 0 ? -1 : t.indexOf('\n## ', i + h.length); return i < 0 ? '' : t.slice(i, j < 0 ? t.length : j); };
   const JA = {
-    top: 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。',
-    info: ['この節は、golden-window-resolution、verification-hub、omscs-preparation、reading-ledger、submission-templates のリポジトリにも掛かります。',
+    top: 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments には、この頁のうち「情報の扱い」「issue の中身と言語モデル」「突き合わせの受付」「本文の空の issue」の節が、それぞれの節に書いた範囲で掛かります。',
+    info: ['この節は、golden-window-resolution、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments のリポジトリにも掛かります。',
       'research-collaboration では、誤りの知らせの様式（error-report.yml）で開かれた issue と、「人についての記載」の節のメールアドレスに届いた求めに、この節が掛かります。',
       'legal-and-governance では、誤りの知らせの様式（error-report.yml）で開かれた issue に、この節が掛かります。'],
-    llm: ['golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。',
+    llm: ['golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments の誤りの知らせの様式も、上の様式と一字一句同じ写しで、そこから開かれた issue も、この節のとおりに扱います。',
       'research-collaboration では、申し出・求め・権利者の知らせの様式も、同意の欄を持ちます。', '上の「ほかの様式の issue」は、これらの様式の issue を含みません。'],
     empty: ['することは、ラベルとコメントを付けることと、そのラベルを外すことだけです。', 'ワークフローは、issue の題も本文も、コメントにも実行の記録にも書きません。',
       'ワークフローは、どの issue でも、開かれたときと直されたときに動きます。', 'GitHub は、そのときの issue の題を、実行の名として Actions の一覧に示します。',
@@ -6894,11 +6897,11 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
       'GitHub は、そのときの issue の題を、実行の名として Actions の一覧に示します。', 'あとで issue を直しても、前の実行の名は残ります。'],
   };
   const EN = {
-    top: 'To golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.',
-    info: ['This section also applies to the golden-window-resolution, verification-hub, omscs-preparation, reading-ledger and submission-templates repositories.',
+    top: 'To golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates, budo-first-person-notes, family-history-archive, social-data-experiments, the sections "Information", "Issues and the language model", "Checked intake" and "Issues with an empty body" of this page apply, each to the extent that it states.',
+    info: ['This section also applies to the golden-window-resolution, verification-hub, omscs-preparation, reading-ledger, submission-templates, budo-first-person-notes, family-history-archive and social-data-experiments repositories.',
       'In research-collaboration, this section applies to issues opened with the error report form (error-report.yml) and to requests received at the email address in the section "Statements about people".',
       'In legal-and-governance, this section applies to issues opened with the error report form (error-report.yml).'],
-    llm: ['The error report forms of golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.',
+    llm: ['The error report forms of golden-window-resolution, research-collaboration, legal-and-governance, verification-hub, omscs-preparation, reading-ledger, submission-templates, budo-first-person-notes, family-history-archive, social-data-experiments are word-for-word copies of the form above, and an issue opened from them is handled as this section sets out.',
       'In research-collaboration, the proposal, request and rights-holder forms also have a consent box.', '"An issue from another form" above does not include issues from these forms.'],
     empty: ['Adding the label and the comment, and taking the label off, is all it does.', 'The workflow writes neither the title nor the text of the issue into the comment or into the log of the run.',
       'The workflow runs whenever any issue is opened or edited.', 'GitHub shows the title the issue has at that moment as the name of the run in the Actions list.',
@@ -6963,12 +6966,14 @@ console.log('\n13g. 2026-11-19：正本の誤りの知らせの様式を置く�
     ['golden-window-resolution の設定から needs a person を外す', 替(gw, 'conf', Object.assign({}, (今.repos[gw] || {}).conf, { neverClose: [] }))],
     ['一覧に無い新しいリポジトリに、様式だけを写す', Object.assign({}, 今, { repos: Object.assign({}, 今.repos, { 'new-repository': { form: 今.form0, others: [], js: null, wf: null, conf: null, root: path.join(ROOT, 'new-repository') } }) })],
     ['別の名の様式で受付を約すリポジトリから、受付を外す', 替('nusquama', 'js', null)],
-    ['「情報の扱い」から golden-window-resolution を外す', 文('disc', 'この節は、golden-window-resolution、verification-hub、omscs-preparation、reading-ledger、submission-templates のリポジトリにも掛かります。\n', '')],
+    ['「情報の扱い」から golden-window-resolution を外す', 文('disc', 'この節は、golden-window-resolution、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments のリポジトリにも掛かります。\n', '')],
     ['「情報の扱い」から legal-and-governance の様式の文を外す', 文('disc', 'legal-and-governance では、誤りの知らせの様式（error-report.yml）で開かれた issue に、この節が掛かります。\n', '')],
     ['英語の「Information」から research-collaboration を外す', 文('discEn', 'In research-collaboration, this section applies to issues opened with the error report form', 'This section applies to issues opened with the error report form')],
-    ['「issue の中身と言語モデル」から二つの様式を外す', 文('disc', 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates の誤りの知らせの様式も、', '誤りの知らせの様式も、')],
+    ['「issue の中身と言語モデル」から二つの様式を外す', 文('disc', 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments の誤りの知らせの様式も、', '誤りの知らせの様式も、')],
+    ['英語の「Issues and the language model」から 2026-11-20 の三つのリポジトリを外す', 文('discEn', 'submission-templates, budo-first-person-notes, family-history-archive, social-data-experiments are word-for-word copies', 'submission-templates are word-for-word copies')],
+    ['「情報の扱い」から family-history-archive を外す', 文('disc', 'submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments のリポジトリにも掛かります。', 'submission-templates、budo-first-person-notes、social-data-experiments のリポジトリにも掛かります。')],
     ['英語の節から「ほかの様式」の断りを外す', 文('discEn', '"An issue from another form" above does not include issues from these forms.\n', '')],
-    ['冒頭から二つのリポジトリを外す', 文('disc', 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates には、この頁のうち', 'ほかのリポジトリには、この頁のうち')],
+    ['冒頭から二つのリポジトリを外す', 文('disc', 'golden-window-resolution、research-collaboration、legal-and-governance、verification-hub、omscs-preparation、reading-ledger、submission-templates、budo-first-person-notes、family-history-archive、social-data-experiments には、この頁のうち', 'ほかのリポジトリには、この頁のうち')],
     ['本文の空の issue の節を外す', 文('disc', '\n## 本文の空の issue\n', '\n## 空の issue\n')],
     ['英語の節に、閉じると書く', 文('discEn', 'No issue is closed, locked or deleted.', 'No issue is locked or deleted. An issue left empty for a week is closed.')],
     ['本文の空の issue の節に、言語モデルを使うと書く', 文('disc', 'このワークフローは、言語モデルを使いません。', 'このワークフローは、題を言語モデルに渡します。')],
