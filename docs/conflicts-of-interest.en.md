@@ -11,7 +11,7 @@ Japanese: [利益相反の記録](conflicts-of-interest.md)
 ### Position
 
 I trained in Shinshin Toitsu Aikido (心身統一合氣道) for 7 years.
-Shinshin Toitsu Aikido is the school taught by the Shinshin Toitsu Aikido Kai (心身統一合氣道会).
+The organisation I trained under is the Shinshin Toitsu Aikido Kai (心身統一合氣道会).
 I am a party to the subject: for 4 years I studied under a teacher (師範) of the school, learning the principle of ki, the unified body (統一体), the empty-hand techniques (体技), and the sword, staff and knife of aikido (合氣剣・合氣杖・合氣短刀).
 In my time at fifth kyu (五級), I was also among those whom the teacher rated highly.
 This is my own account, not a verified fact.
