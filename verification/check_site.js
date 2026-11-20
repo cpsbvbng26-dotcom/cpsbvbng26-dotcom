@@ -1394,7 +1394,7 @@ section('10.59 自己紹介が名乗っていること');
    * 落ち、案内のリンクが消えても落ちる。訳は日本語と英語の二つだけにした。 */
   {
     const 残る先 = [
-      ['notes/afterlife.html', ['石は、墓石と諡名', '紙は、博士（学術）', 'デジタルは、ORCID と DOI']],
+      ['notes/afterlife.html', ['石は、墓石と諡名', '紙は、博士号である', 'デジタルは、ORCID と DOI']],
       ['notes/afterlife.en.html', ['Stone is the gravestone', 'Paper is the doctorate', 'The network is ORCID and DOI']]
     ];
     const 欠け = [];
@@ -1786,6 +1786,49 @@ section('10.59 自己紹介が名乗っていること');
        落ち.length ? 落ち.join(' / ') : '五言語と README 二つ');
   }
 
+  /* **博士号の目標は、課程の名と条件まで書いた一文で七つの面に置く。**
+   * 2026-11-20 に所有者が決めた。University at Buffalo のオンライン博士課程（応用オントロジー）で、
+   * 学費を貯め次第。博士号を取ったのちの活動は残す。達成とする時（博士号の授与）は変えない。
+   * 目標の表の行（目標と達成とする時の二つの欄）と、先の見通しの段の言い直しの両方を一字一句で照らす。
+   * 課程についての事実（単位・年限・費用）も金額も書かない。字面を固めてあるので、足せば落ちる。
+   * 前の形（博士号を取ったのちの活動だけを言う文）が一つの面にでも残れば落ちる。
+   * 死後の頁も、学位を「博士（学術）」と呼ばずに、目標の表に挙げた博士号にあたると書く。 */
+  {
+    const 目標 = {
+      ja: ['学費を貯め次第、University at Buffalo のオンライン博士課程（応用オントロジー、Applied Ontology）に進んで博士号を取得し、そののち独立研究者として活動すること', '博士号が授与された時',
+           '一つは、学費を貯め次第、University at Buffalo のオンライン博士課程（応用オントロジー、Applied Ontology）に進んで博士号を取得し、そののち独立研究者として活動することです。'],
+      en: ['Once the tuition is saved, to earn a PhD in Applied Ontology through the University at Buffalo’s online doctoral program, and then to work as an independent researcher', 'When a doctorate is awarded',
+           'first, once the tuition is saved, earning a PhD in Applied Ontology through the University at Buffalo’s online doctoral program and then working as an independent researcher; second,'],
+      de: ['Sobald die Studiengebühren angespart sind, über das Online-Promotionsprogramm der University at Buffalo in Applied Ontology promovieren und danach als unabhängiger Forscher arbeiten', 'Wenn der Doktorgrad verliehen ist',
+           'erstens, sobald die Studiengebühren angespart sind, über das Online-Promotionsprogramm der University at Buffalo in Applied Ontology zu promovieren und danach als unabhängiger Forscher zu arbeiten; zweitens,'],
+      fr: ['Une fois les frais de scolarité mis de côté, obtenir un doctorat en ontologie appliquée (Applied Ontology) par le programme doctoral en ligne de la University at Buffalo, puis exercer comme chercheur indépendant', 'Quand le doctorat est délivré',
+           'd’une part, une fois les frais de scolarité mis de côté, obtenir un doctorat en ontologie appliquée (Applied Ontology) par le programme doctoral en ligne de la University at Buffalo, puis exercer comme chercheur indépendant ; d’autre part,'],
+      it: ['Una volta messe da parte le tasse universitarie, conseguire un dottorato in ontologia applicata (Applied Ontology) con il programma di dottorato online della University at Buffalo, e poi lavorare come ricercatore indipendente', 'Quando il dottorato è conferito',
+           'da un lato, una volta messe da parte le tasse universitarie, conseguire un dottorato in ontologia applicata (Applied Ontology) con il programma di dottorato online della University at Buffalo e poi lavorare come ricercatore indipendente; dall’altro,'],
+    };
+    const 面 = [['index.html', 'ja', 'td'], ['index.en.html', 'en', 'td'], ['index.de.html', 'de', 'td'],
+                ['index.fr.html', 'fr', 'td'], ['index.it.html', 'it', 'td'], ['README.md', 'ja', 'md'], ['README.en.md', 'en', 'md']];
+    const 前の形 = /博士号を取得したのち、独立|博士号を取ったのち独立|independent researcher after a doctorate|nach der Promotion als unabhängiger Forscher|chercheur indépendant après un doctorat|ricercatore indipendente dopo il dottorato/i;
+    const 落ち = [];
+    面.forEach(([f, l, k]) => {
+      const h = read(f);
+      const [文, 時, 見通し] = 目標[l];
+      const 行 = k === 'td' ? '<td>' + 文 + '</td><td>' + 時 + '</td>' : '| ' + 文 + ' | ' + 時 + ' |';
+      if (h.indexOf(行) < 0) 落ち.push(f + ' に目標の行');
+      if (h.indexOf(見通し) < 0) 落ち.push(f + ' に先の見通しの言い直し');
+      if (前の形.test(h)) 落ち.push(f + ' に前の形');
+    });
+    const 死後 = [['notes/afterlife.html', 'University at Buffalo のオンライン博士課程（応用オントロジー、Applied Ontology）での博士号にあたる'],
+                  ['notes/afterlife.en.html', 'It is the PhD in Applied Ontology through the University at Buffalo\'s online doctoral program, listed in the table of aims']];
+    死後.forEach(([f, w]) => {
+      const h = read(f);
+      if (h.indexOf(w) < 0) 落ち.push(f + ' に目標の博士号');
+      if (h.indexOf('博士（学術）') >= 0) 落ち.push(f + ' に「博士（学術）」');
+    });
+    ok('博士号の目標が、課程の名と学費を貯め次第という条件まで同じ一文で七つの面にあり、前の形が無く、死後の頁も同じ博士号を指す',
+       落ち.length === 0, 落ち.length ? 落ち.join(' / ') : (面.length + ' 面 × 行と言い直し、死後の頁 ' + 死後.length + ' 言語'));
+  }
+
   /* **「まだ一件もない」は、頁の中だけで完結してしまう。**現状評価の表に同じ
    * 二つの軸を置いて、そちらの数と突き合わせる。**片側だけが増えれば落ちる。**
    * 一件でも出たときに、頁の側を直し忘れる形を止める。 */
@@ -2073,7 +2116,7 @@ section('10.59 自己紹介が名乗っていること');
 
   /* **肩書きを名乗らない。一学部生とだけ書く。**2026-09-26 に仮の肩書きを使うと決めたが、
    * 2026-11-11 に外した（決めごと 6）。仮の肩書きの文が一つの面にでも残れば落とす。
-   * 目標（博士号を取ったのちの活動）は、いまの肩書きではないので残る。 */
+   * 目標（博士号を取得し、そののちの活動）は、いまの肩書きではないので残る。 */
   {
     const 一学部生 = {
       'index.html': '<b>肩書きは名乗っていません。</b>一学部生です。',
