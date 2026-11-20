@@ -466,6 +466,7 @@ img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'
 | [経路ごとの、出さない理由](docs/routes.md) | 断られた先と、出さないと決めた先 |
 | [ダイヤモンド・オープンアクセスの場](docs/diamond-oa.md) | 取り寄せて確かめた場だけの一覧 |
 | [一緒に進める相手を探すときの一頁](docs/collaboration.md) | できることと、求めていること |
+| [利益相反の記録](docs/conflicts-of-interest.md) | 氣の原理を研究の対象にするときの立場と扱う場合の条件、題材が寄ったときに起きる利益相反（2026-11-20） |
 | [キーワードの語彙](docs/keywords.json) | 全作品のキーワードに使う語 |
 | [安全の問題の知らせ方](SECURITY.md) | メールで受ける窓口。GitHub の非公開の報告は有効になっていない |
 

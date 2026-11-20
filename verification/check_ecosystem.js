@@ -7158,6 +7158,175 @@ console.log('\n13h. 2026-11-19：15 のリポジトリの .github/ISSUE_TEMPLATE
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
+console.log('\n13i. 2026-11-20：利益相反の記録（cpsbvbng26-dotcom の docs/conflicts-of-interest.md、日英）が書く Sophaxis の効力の日と節が、Sophaxis の規程と規程の変更の一覧（フィード）に合う');
+{
+  /* 2026-11-20 に著者が決めた。氣の原理を Sophaxis では扱わない。記録（日英）は効力の日と、モデレーションの規程の「利益相反」の節を書く。
+   * Sophaxis の側の正は、規程の変更の一覧（data/policy-changes.json）の項の from と、モデレーションの規程の文である。
+   * 一。記録の日英が書く効力の日が、一覧の項の from と同じで、一覧の項は主題の全体（だれが投稿したものでも、運営者のものも含めて）に掛かる。
+   * 二。記録が指す節の印（#conflicts-of-interest と #利益相反）が、組み上がった規程の頁にある。
+   * 三。眠っている利益相反（党・在籍する大学）について、Sophaxis の規程に決まりを置いていない。記録が「氣の原理の主題にだけ掛かります」と書くため。
+   * 四。壊して確かめる。 */
+  const TITLE = "No work on the principle of ki, because of the operator's conflict of interest";
+  const 今 = {
+    ja: read('cpsbvbng26-dotcom', path.join('docs', 'conflicts-of-interest.md')) || '',
+    en: read('cpsbvbng26-dotcom', path.join('docs', 'conflicts-of-interest.en.md')) || '',
+    feed: read('sophaxis', path.join('data', 'policy-changes.json')) || '',
+    mod: read('sophaxis', path.join('policies', 'moderation.md')) || '',
+    modJa: read('sophaxis', path.join('policies', 'moderation.ja.md')) || '',
+    html: read('sophaxis', path.join('site', 'policies', 'moderation.html')) || '',
+    htmlJa: read('sophaxis', path.join('site', 'policies', 'moderation.ja.html')) || '',
+    pol: ['moderation', 'submission', 'terms', 'privacy', 'takedown', 'withdrawal', 'licences', 'copyright'].map((s) => (read('sophaxis', path.join('policies', s + '.md')) || '') + (read('sophaxis', path.join('policies', s + '.ja.md')) || '')).join('\n'),
+  };
+  const 問題 = (x) => {
+    const bad = [];
+    let feed = [];
+    try { feed = JSON.parse(x.feed); } catch (e) { return ['Sophaxis の規程の変更の一覧が読めない']; }
+    const e = feed.find((c) => c.title === TITLE);
+    if (!e || !/^\d{4}-\d{2}-\d{2}$/.test(e.from || '')) return bad.concat(['Sophaxis の規程の変更の一覧に、氣の原理の項か効力の日が無い']);
+    const F = e.from;
+    if (!String(e.text).includes('whoever submits it, the operator included')) bad.push('一覧の項が主題の全体に掛かっていない');
+    if (!x.mod.includes('From ' + F + ', Sophaxis lists no work whose subject is the principle of ki (氣の原理, also written 気の原理), whoever submits it, the operator included.')) bad.push('モデレーションの規程（英）の文が一覧の日と合わない');
+    if (!x.modJa.includes(F + ' から、Sophaxis は、氣の原理（気の原理とも書きます）を主題とする作品を、運営者のものも含めて、だれが投稿したものでも載せません。')) bad.push('モデレーションの規程（日）の文が一覧の日と合わない');
+    if (!x.ja.includes(F + ' から、Sophaxis は、氣の原理を主題とする作品を、だれが投稿したものでも載せません。')) bad.push('記録（日）の効力の日が一覧の ' + F + ' と合わない');
+    if (!x.en.includes('From ' + F + ', Sophaxis lists no work whose subject is the principle of ki, whoever submits it.')) bad.push('記録（英）の効力の日が一覧の ' + F + ' と合わない');
+    if (!x.ja.includes('(https://sophaxis.vercel.app/policies/moderation.ja.html#利益相反)') || !x.htmlJa.includes('id="利益相反"')) bad.push('記録（日）が指す節の印が無い');
+    if (!x.en.includes('(https://sophaxis.vercel.app/policies/moderation.html#conflicts-of-interest)') || !x.html.includes('id="conflicts-of-interest"')) bad.push('記録（英）が指す節の印が無い');
+    if (!x.ja.includes('Sophaxis の除外は、氣の原理の主題にだけ掛かります。') || !x.en.includes('The exclusion on Sophaxis applies only to the principle of ki.')) bad.push('記録が Sophaxis の範囲を書いていない');
+    ['国民民主', 'Democratic Party for the People', 'online degree', 'オンラインの学位'].filter((w) => x.pol.includes(w)).forEach((w) => bad.push('Sophaxis の規程に「' + w + '」'));
+    return bad;
+  };
+  const now = 問題(今);
+  check('利益相反の記録（日英）が書く Sophaxis の効力の日と節の印が、Sophaxis の規程・組み上がった頁・規程の変更の一覧に合い、範囲は主題の全体で、眠っている利益相反の決まりを Sophaxis に置いていない',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: 今[k].replace(a, b) });
+  const 壊し = [
+    ['記録（日）の効力の日を一日ずらす', 替('ja', /(\d{4}-\d{2}-)(\d{2})( から、Sophaxis は、氣の原理を主題とする作品を)/, (m, a, d, c) => a + String(Number(d) + 1).padStart(2, '0') + c)],
+    ['記録（英）の効力の日を一日ずらす', 替('en', /(From \d{4}-\d{2}-)(\d{2})(, Sophaxis lists no work)/, (m, a, d, c) => a + String(Number(d) + 1).padStart(2, '0') + c)],
+    ['一覧の項を外す', 替('feed', TITLE, 'Something else')],
+    ['一覧の項の範囲を運営者の作品に狭める', 替('feed', 'whoever submits it, the operator included', 'when the operator submits it')],
+    ['規程（英）の範囲を狭める', 替('mod', 'whoever submits it, the operator included.', 'when the operator submits it.')],
+    ['組み上がった頁から節の印が消える', 替('htmlJa', 'id="利益相反"', 'id="conflicts"')],
+    ['記録（英）が別の節を指す', 替('en', 'moderation.html#conflicts-of-interest', 'moderation.html#decisions')],
+    ['Sophaxis に党の決まりを置く', 替('pol', /$/, '\nFrom 2026-12-15, Sophaxis lists no work on the policy of the Democratic Party for the People.')],
+    ['記録が Sophaxis の範囲を広げる', 替('ja', 'Sophaxis の除外は、氣の原理の主題にだけ掛かります。', 'Sophaxis の除外は、この節の主題にも掛かります。')],
+  ];
+  const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
+  check('壊して確かめる：記録の効力の日（日・英）・一覧の項・一覧と規程の範囲・節の印（頁・記録）・Sophaxis の党の決まり・記録の範囲のどれか一つで落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+console.log('\n13j. 2026-11-20：利益相反の記録（日英）の文・年数・人名・断り・決めごと 10 と 15・README と CV、壊して確かめる');
+  /* 2026-11-20。利益相反の記録（docs/conflicts-of-interest.md と .en.md）。著者が述べたことを日英で置く。
+   * ここに置くのは、check_site.js の項目の数が五つの言語のトップの頁（生成物）に名乗られているためである。
+   * 師範の名は書かない（決めごと 10）。人名（藤平・植芝、英字の Tohei・Ueshiba）を置かない。
+   * 団体の名は、所属の経歴の開示として、2026-11-20 に本人が許した。check_site.js の独我流の頁の「借り」の締め出しは、
+   * 名乗りの頁にだけ掛かる。この記録は名乗りではなく開示であり、承認を受けていないこと、名を裏付けに使わないことを
+   * 自分で書く。その断りが消えたら落とす。本人の受け止めとして書いた評価には、確かめた事実ではないという断りが要る。
+   * 年数は独我流の頁と合わせる（決めごと 5）。師事した年数は、経験した年数を超えない。
+   * 独学の系列に主題を足さないこと（決めごと 15）、Sophaxis では扱わないこと、研究をしない理由ではないことを固める。
+   * 決めごと 10 の式（verification/kinship.js）も、この二つに当てる。 */
+  {
+    const { 越え, 帰属, 計画 } = require('./kinship');
+    const 利 = { ja: 'docs/conflicts-of-interest.md', en: 'docs/conflicts-of-interest.en.md' };
+    const 利文 = {
+      ja: ['2026-11-20 の記録です。', '師範の名は書きません。', '師範を特定できる言い方もしません。',
+        'この記録は、団体の承認を受けたものではありません。', '団体の名を、こちらの主張の裏付けには使いません。',
+        'この立場で氣の原理を研究すると、結論がどちらに転んでも中立にはなりません。',
+        '肯定する結論は、私自身の経歴と、師と流派の権威を裏付けることになります。',
+        '否定する結論には、師弟関係への遠慮や圧力がかかります。',
+        '扱うとすれば、当事者記録としてだけです。', '立場と師弟関係を開示します。', '体験と検証を分けた形にします。',
+        'この記録は、新しい研究の主題を始めるものではありません。', '独学の系列に、この主題を足しません。',
+        '私が運営する Sophaxis で、この主題を扱うことはしません。',
+        'これは研究をしない理由の記録ではなく、扱う場合の条件の記録です。',
+        '## 眠っている利益相反（題材が寄ったときに起きるもの）', '論点は、著者が受け取った別の言語モデル（Muse）の分析から来ています。', '書いたのは Claude です。',
+        'いまはどれも弱いものです。', '題材が寄ったときにだけ、強くなります。',
+        '私は、国民民主党の本部登録ファンです。', '党の名は、著者が公開すると決めて書いています。', '政治についての見解は、個人情報保護法でいう「信条」に当たりえます。',
+        '党の政策に近い結論は、学術の形をとった政治的な支持に読めます。', 'ほかの党や今の制度への批判は、支持する党を守る議論に読めます。',
+        'そうなった時点で、この利益相反は中程度になります。', '大学の名は、この記録には書きません。',
+        '私自身の道は、いまのオンラインの学習、その先の OMSCS、その先のオンラインの博士課程です。',
+        '褒めれば、単位・推薦・卒業を与える側へのへつらいに見えます。', '批判すれば、不利益を恐れて弱めたのではないかと疑われます。',
+        '党と大学が重なると、弱いもの同士が中程度になります。', 'これらの主題を書くときは、開示を冒頭に置きます。', '事実と評価を分けます。',
+        '在籍する大学やオンラインの学位についての一般的な評価を、研究としては書きません。', 'Sophaxis の除外は、氣の原理の主題にだけ掛かります。'],
+      en: ['This is a record of 2026-11-20.', "The teacher's name is not written here.", 'Nor is anything that would identify the teacher.',
+        'This record has not been approved by the organisation.', 'Its name is not used to support any claim made here.',
+        'If I research the principle of ki from this position, the conclusion cannot be neutral, whichever way it falls.',
+        'A conclusion that affirms it would support my own background and the authority of my teacher and the school.',
+        'A conclusion that denies it would be subject to deference to, or pressure from, the relationship between teacher and student.',
+        'If it is handled at all, it is only as a first-person record.', 'My position and the relationship between teacher and student are disclosed.',
+        'Experience is kept apart from verification.', 'This record does not start a new research topic.', 'The subject is not added to the self-taught series.',
+        'Sophaxis, which I operate, does not handle this subject.',
+        'This is not a record of a reason not to research the subject; it is a record of the conditions under which it could be handled.',
+        '## Dormant conflicts of interest (those that wake when the subject comes close)', 'Its points come from an analysis by another language model (Muse) that the author passed on.', 'Claude wrote it.',
+        'What is set out here is weak now.', 'It becomes stronger only when the subject comes close.',
+        'I am a supporter registered with the headquarters of the Democratic Party for the People (国民民主党).', 'The author chose to publish the name of the party.',
+        "A political view can be a creed (「信条」) under Japan's Act on the Protection of Personal Information.",
+        "A conclusion close to the party's policy can read as political endorsement in academic dress.", 'Criticism of other parties or of present institutions can read as a defence of the party I support.',
+        'At that point this conflict of interest is of medium strength.', 'The name of the university is not written in this record.',
+        'My own path is online study now, then OMSCS, then an online doctorate.',
+        'Praise can look like flattery of those who grant credits, recommendations and graduation.', 'Criticism may be suspected of having been softened for fear of a disadvantage.',
+        'Where the party and the university overlap, weak and weak become medium.', 'When I write on these subjects, the disclosure comes first.', 'Facts and evaluation are kept apart.',
+        'No general evaluation of the university where I am enrolled, or of online degrees, is written as research.', 'The exclusion on Sophaxis applies only to the principle of ki.'],
+    };
+    const 断り = { ja: ['高い評価', 'これは私自身の受け止めとして書くもので、確かめた事実ではありません。'], en: ['rated highly', 'This is my own account, not a verified fact.'] };
+    const 年の式 = { ja: [/心身統一合氣道を (\d+) 年間経験しました。/, /師範に (\d+) 年間師事して学んだ/, /本場である栃木で通算 (\d+) 年と書いています。/],
+      en: [/Shinshin Toitsu Aikido \(心身統一合氣道\) for (\d+) years\./, /for (\d+) years I studied under a teacher/, /says (\d+) years in all, in Tochigi/] };
+    const 利の問題 = (x) => {
+      const bad = [];
+      for (const l of ['ja', 'en']) {
+        const t = x[l] || '';
+        利文[l].filter((s) => t.indexOf(s) < 0).forEach((s) => bad.push(利[l] + ' に「' + s.slice(0, 24) + '」が無い'));
+        ['藤平', '植芝', 'Tohei', 'Ueshiba'].filter((w) => t.indexOf(w) >= 0).forEach((w) => bad.push(利[l] + ' に人名「' + w + '」'));
+        if (t.indexOf(断り[l][0]) >= 0 && t.indexOf(断り[l][1]) < 0) bad.push(利[l] + ' の評価に、本人の受け止めだという断りが無い');
+        [越え, 帰属, 計画].forEach((re) => { const m = re.exec(t); if (m) bad.push(利[l] + ' に決めごと 10 の式が当たる「' + m[0] + '」'); });
+        const 年 = 年の式[l].map((re) => { const m = re.exec(t); return m ? Number(m[1]) : null; });
+        if (年.some((n) => n === null)) bad.push(利[l] + ' の年数が読めない');
+        else if (年[0] !== x.通算 || 年[2] !== x.通算 || !(年[1] > 0 && 年[1] <= 年[0])) bad.push(利[l] + ' の年数（' + 年.join('・') + '）が独我流の頁の通算 ' + x.通算 + ' 年と合わない');
+        if (t.indexOf('2026-12-15') < 0) bad.push(利[l] + ' に Sophaxis の効力の日が無い');
+        /* 在籍する大学の名は書かない（大学は名を伏せて挙げる）。 */
+        if (t.indexOf('ZEN') >= 0) bad.push(利[l] + ' に在籍する大学の名');
+      }
+      /* 記録が書く道（OMSCS、その先のオンラインの博士課程）は、README の目標の表にあるものだけである。 */
+      if (x.rj.indexOf('| Georgia Tech の OMSCS（Online Master of Science in Computer Science）で修士号を取得すること |') < 0
+          || x.rj.indexOf('University at Buffalo のオンライン博士課程') < 0
+          || x.re.indexOf("| To earn a master’s degree through Georgia Tech’s OMSCS") < 0 || x.re.indexOf('University at Buffalo’s online doctoral program') < 0) bad.push('記録が書く道が README の目標に無い');
+      if (x.通算 === null) bad.push('独我流の頁の通算の年数が読めない');
+      if (['<p>心身統一合氣道 五級<span>', '<p>心身統一道 初級<span>', '氣の原理を日常で実践活用し得ることを認める'].some((s) => x.cv.indexOf(s) < 0)) bad.push('記録が指す CV の級が無い');
+      if (x.rj.indexOf('(docs/conflicts-of-interest.md)') < 0 || x.re.indexOf('(docs/conflicts-of-interest.en.md)') < 0) bad.push('README から辿れない');
+      return bad;
+    };
+    const 通算 = (h) => { const m = /本場である栃木で通算 (\d+) 年/.exec(h); return m ? Number(m[1]) : null; };
+    const C_ = (f) => read('cpsbvbng26-dotcom', f) || '';
+    const 利今 = { ja: C_(利.ja), en: C_(利.en), 通算: 通算(C_(path.join('notes', 'solitary-school.html'))), cv: C_('cv.html'), rj: C_('README.md'), re: C_('README.en.md') };
+    const 利今の問題 = 利の問題(利今);
+    check('利益相反の記録（2026-11-20）が日英で、氣の原理の立場・中立にならない理由・扱う場合の条件・独学の系列に足さないこと・Sophaxis で扱わないこと、眠っている利益相反（党・在籍する大学・重なり・条件・Sophaxis の範囲）を書き、人名も大学の名も置かず、年数が独我流の頁の通算 ' + 利今.通算 + ' 年と合い、道が README の目標にある',
+       利今の問題.length === 0, 利今の問題.slice(0, 4).join(' / '));
+    const 利替 = (k, a, b) => Object.assign({}, 利今, { [k]: 利今[k].replace(a, b) });
+    const 利壊 = [
+      ['経験の年数を 8 年にする', 利替('ja', '心身統一合氣道を 7 年間', '心身統一合氣道を 8 年間')],
+      ['英語の年数だけを変える', 利替('en', 'for 7 years.', 'for 6 years.')],
+      ['師事の年数を経験の年数より長くする', 利替('ja', '師範に 4 年間師事', '師範に 9 年間師事')],
+      ['独我流の頁の通算が変わる', Object.assign({}, 利今, { 通算: (利今.通算 || 0) + 1 })],
+      ['人名を書く（どの人とも結び付けず、末尾に一語だけ置く）', 利替('ja', /$/, '\n藤平\n')],
+      ['英語に人名を書く（末尾に一語だけ置く）', 利替('en', /$/, '\nUeshiba\n')],
+      ['評価の断りを外す', 利替('ja', 'これは私自身の受け止めとして書くもので、確かめた事実ではありません。', '')],
+      ['承認を受けていないという断りを外す', 利替('en', 'This record has not been approved by the organisation.', '')],
+      ['独学の系列に足さないという文を外す', 利替('ja', '独学の系列に、この主題を足しません。', '')],
+      ['否定の向きを外す', 利替('en', 'A conclusion that denies it would be subject to deference to, or pressure from, the relationship between teacher and student.', '')],
+      ['続柄の一語を越える', 利替('ja', '私は、心身統一合氣道を', '父が勧めて、私は心身統一合氣道を')],
+      ['README から外す', 利替('re', '(docs/conflicts-of-interest.en.md)', '(docs/governance.md)')],
+      ['CV の級が消える', 利替('cv', '<p>心身統一道 初級<span>', '<p>初級<span>')],
+      ['在籍する大学の名を書く', 利替('ja', 'いまは弱いものです。\n私は大学の職員ではなく', 'いまは弱いものです。\n私は ZEN大学の職員ではなく')],
+      ['党の名を外す', 利替('ja', '私は、国民民主党の本部登録ファンです。', '私は、ある党の本部登録ファンです。')],
+      ['別の言語モデルの分析だという断りを外す', 利替('en', 'Its points come from an analysis by another language model (Muse) that the author passed on.', '')],
+      ['支持の向きの片方を外す', 利替('ja', 'ほかの党や今の制度への批判は、支持する党を守る議論に読めます。', '')],
+      ['Sophaxis の除外を広げる', 利替('en', 'The exclusion on Sophaxis applies only to the principle of ki.', 'The exclusion on Sophaxis applies to these subjects too.')],
+      ['README の目標から OMSCS が消える', 利替('rj', '| Georgia Tech の OMSCS（Online Master of Science in Computer Science）で修士号を取得すること |', '| 修士号を取得すること |')],
+    ];
+    const 利通った = 利壊.filter(([, x]) => 利の問題(x).length === 0).map(([n]) => n);
+    check('壊して確かめる：年数（日・英・師事・独我流の頁）・人名（日・英）・断り（評価・承認・別の言語モデル）・決めごと 15 の文・否定の向き・続柄・README・CV・大学の名・党の名・支持の向き・Sophaxis の範囲・目標の表のどれを崩しても落ちる（'
+       + (利壊.length - 利通った.length) + ' / ' + 利壊.length + '）', 利通った.length === 0, 利通った.join(', '));
+  }
+
 console.log('\n14. この検査が名乗る件数');
 
 {
