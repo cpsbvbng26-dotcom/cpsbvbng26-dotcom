@@ -307,7 +307,7 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 ```
 node verification/check_text.js      # miscoversions and badge markup
 node verification/check_contrast.js  # colour contrast, 859 checks
-node verification/check_site.js      # site structure, 990 checks
+node verification/check_site.js      # site structure, 992 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -400,6 +400,7 @@ The castle map (the ten repositories mapped onto the parts of a Japanese castle)
 | [How to read this record](docs/reading-guide.md) | What is authoritative, and where things are |
 | [Site rules](docs/site-rules.md) | Text size, contrast, dark side, alt text, page weight, language switch, footer |
 | [Diamond open access venues](docs/diamond-oa.md) | Only venues whose own wording was fetched and read |
+| [Record of conflicts of interest](docs/conflicts-of-interest.en.md) | The position from which the principle of ki would be researched and the conditions under which it could be handled, and the conflicts that wake when a subject comes close (2026-11-20; in English) |
 | [Security](SECURITY.md) | The email contact; GitHub private reporting is not enabled |
 
 </details>
