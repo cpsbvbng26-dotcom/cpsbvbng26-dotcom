@@ -299,15 +299,15 @@ Interactive figures drawn from the papers and repositories, kept as artifacts on
 
 ✴︎Verification✴︎
 
-**Every push runs 1939 checks.** There are no dependencies to install.
+**Every push runs 2003 checks.** There are no dependencies to install.
 
 <details>
 <summary>What the checks cover</summary>
 
 ```
 node verification/check_text.js      # miscoversions and badge markup
-node verification/check_contrast.js  # colour contrast, 859 checks
-node verification/check_site.js      # site structure, 990 checks
+node verification/check_contrast.js  # colour contrast, 899 checks
+node verification/check_site.js      # site structure, 1014 checks
 node verification/check_trinity.js   # operator numerics, 90 checks
 ```
 
@@ -317,7 +317,7 @@ ancestors and on the timing of the reveal animation. That one is measured by sta
 Chromium. It needs playwright and Chromium, so it is not in the list above.
 
 ```
-node verification/check_keyboard.js  # Tab traversal, 752 checks (needs Chromium)
+node verification/check_keyboard.js  # Tab traversal, 786 checks (needs Chromium)
 ```
 
 It tabs through 44 pages and looks for focus traps, elements that receive focus while
