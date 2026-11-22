@@ -3223,6 +3223,29 @@
       ]
     },
     {
+      "名前": "散文の数（2026-11-22）：過去の数：sophaxis 検査 146 の壊し方（e101f09）",
+      "実際": {
+        "repo": "sophaxis",
+        "commit": "e101f09",
+        "cmd": [
+          "node",
+          "verification/check.js"
+        ],
+        "区間": [
+          "\n146. ",
+          "\n\n"
+        ],
+        "regex": "break on purpose: each of (\\d+) ways \\(a lawyer"
+      },
+      "名乗り": [
+        {
+          "repo": "sophaxis",
+          "file": "CHANGELOG.md",
+          "regex": "A new check \\(146\\) holds the page, and fails in each of (\\d+) ways it is broken on purpose"
+        }
+      ]
+    },
+    {
       "名前": "散文の数（2026-11-18）：過去の数：sophaxis 2026-11-12 の法の点検の表の行（d4eb208）",
       "実際": {
         "repo": "sophaxis",
