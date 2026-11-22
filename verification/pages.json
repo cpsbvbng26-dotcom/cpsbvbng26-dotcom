@@ -179,6 +179,16 @@
       "priority": "0.4"
     },
     {
+      "file": "notes/design-legal.html",
+      "loc": "notes/design-legal.html",
+      "priority": "0.4"
+    },
+    {
+      "file": "notes/design-legal.en.html",
+      "loc": "notes/design-legal.en.html",
+      "priority": "0.4"
+    },
+    {
       "file": "notes/imperial-selfhood.html",
       "loc": "notes/imperial-selfhood.html",
       "priority": "0.5"

@@ -3405,12 +3405,14 @@ section('10.67 見た目（最初の画面・図・写真・絞り込み・共�
   ok('生成した頁（' + 生成.length + ' 頁）が、それぞれの共有カード（og/ の 1200×630 の PNG）を指し、使われない画像が無い',
      カード.length === 0 && 余り.length === 0, カード.concat(余り).slice(0, 5).join(', '));
 
-  /* 442. 頁の下の欄は一行。名前・連絡・免責・最終更新だけで、ほかのリンクを置かない。 */
+  /* 442. 頁の下の欄は一行。名前・連絡・免責・最終更新だけで、ほかのリンクを置かない。
+   * 2026-11-22。利用者が求めたデザインに関する法的な扱いの頁を、下の欄からつなぐ。足すのはその一つだけで、ほかのリンクは置かないまま。 */
   const 下欄 = 生成.filter((f) => {
     const ft = (/<footer>([\s\S]*?)<\/footer>/.exec(read(f)) || [])[1] || '';
-    return (ft.match(/<a\b/g) || []).length !== 2 || /Built with/.test(ft);
+    const a = [...ft.matchAll(/<a href="([^"]+)"/g)].map((m) => m[1]);
+    return a.length !== 3 || !/\/issues\/new\/choose$/.test(a[0]) || !/\/DISCLAIMER(\.en)?\.md$/.test(a[1]) || !/^\.\/(\.\.\/)?(notes\/)?design-legal(\.en)?\.html$/.test(a[2]) || /Built with/.test(ft);
   });
-  ok('生成した頁の下の欄が、連絡と免責の二つのリンクと名前と日付だけである', 下欄.length === 0, 下欄.join(', '));
+  ok('生成した頁の下の欄が、連絡と免責とデザインに関する法的な扱いの頁の三つのリンクと名前と日付だけである', 下欄.length === 0, 下欄.join(', '));
 }
 
 /* ------------------------------------------------- 10.60 CI の仕事の名前が名乗っている数
@@ -3570,6 +3572,167 @@ section('10.595 <meta> では出せない安全のヘッダー');
      get('X-Content-Type-Options').join() === 'nosniff' && get('Referrer-Policy').join() === 'no-referrer'
      && /camera=\(\)/.test(get('Permissions-Policy').join()) && /microphone=\(\)/.test(get('Permissions-Policy').join()) && /geolocation=\(\)/.test(get('Permissions-Policy').join())
      && get('Cross-Origin-Opener-Policy').join() === 'same-origin' && /^max-age=\d{8,}/.test(get('Strict-Transport-Security').join()));
+}
+
+/* ------------------------------------------------- 10.69 デザインに関する法的な扱いの頁（2026-11-22）
+ *
+ * 利用者が、サイトのデザインに関する法的な扱いの単独の頁を求めた。頁は researcher-profile の design-legal.json（日英）から出る。
+ * 頁に書いた事実を、配っているものと検査の側から確かめる。ずれれば落ちる。
+ * 一。生成した頁の下の欄が、その言語の版（日本語の頁は日本語、ほかは英語）を指し、道が実在の頁に着く。
+ * 二。部品の表（日英で同じ行数）が挙げる画像のファイルが、配っている画像と字のファイルと過不足なく一致する。共有カードの枚数と大きさ、
+ *     カードを指す頁の数、og.png の大きさ、ロゴの図形の数と色が、頁の文と合う。
+ * 三。頁が挙げる書体の名が、全頁の CSS の font-family の名と同じ集まりで、共有カードの並びが update_cards.js と同じ。
+ * 四。引いた条文は statutes.json の文の一字一句の部分で、引いた許諾の文は statutes.json の規約の句と LICENSE の文と同じ。
+ *     README のライセンスの区分が頁の書いたとおり。英語の頁は、引いた条ごとに「訳ではなく要旨」と断る。
+ * 五。見やすさの節が挙げる数（4.5:1・3:1・幅・文字 200% の幅）が検査の側の数と同じで、生成した頁がどれも動きを減らす指定を持ち、
+ *     図の SVG が中身を述べた aria-label を持ち、節が名指す検査がある。
+ * 六。法的な助言ではないこと、弁護士の確認を受けていないこと。どれも壊して落ちることを見る。 */
+section('10.69 デザインに関する法的な扱いの頁（2026-11-22）');
+{
+  const DL = { ja: 'notes/design-legal.html', en: 'notes/design-legal.en.html' };
+  const unent = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+  const pngSize = (b) => b && b.length > 24 && b.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) ? b.readUInt32BE(16) + 'x' + b.readUInt32BE(20) : '';
+  const 配る = [];
+  const walk = (d) => fs.readdirSync(path.join(ROOT, d), { withFileTypes: true }).forEach((e) => {
+    if (/^(\.git|node_modules)$/.test(e.name)) return;
+    const r = path.posix.join(d, e.name);
+    if (e.isDirectory()) walk(r); else if (/\.(png|jpe?g|gif|webp|avif|bmp|svg|ico|woff2?|ttf|otf|eot)$/i.test(e.name)) 配る.push(r.replace(/^\.\//, ''));
+  });
+  walk('.');
+  const 生成 = PAGES.filter((f) => /<span class="updated">/.test(read(f)));
+  const ctx = {
+    ja: fs.existsSync(path.join(ROOT, DL.ja)) ? read(DL.ja) : '', en: fs.existsSync(path.join(ROOT, DL.en)) ? read(DL.en) : '',
+    pages: Object.fromEntries(PAGES.map((f) => [f, read(f)])), 配る: 配る.sort(),
+    sizes: Object.fromEntries(配る.filter((f) => /\.png$/.test(f)).map((f) => [f, pngSize(fs.readFileSync(path.join(ROOT, f)))])),
+    favicon: read('favicon.svg'), st: JSON.parse(read('verification/statutes.json')),
+    lic: read('LICENSE'), licCode: read('LICENSE-CODE'), readme: read('README.md'), readmeEn: read('README.en.md'),
+    contrast: read('verification/check_contrast.js'), keyboard: read('verification/check_keyboard.js'), cards: read('verification/update_cards.js'),
+    self: read('verification/check_site.js'),
+  };
+  const 文の頁 = { ja: ['法的な助言ではありません。', 'この頁は、弁護士の確認を受けていません。', '一字一句そのまま引きます。'],
+    en: ['It is not legal advice.', 'This page has not been reviewed by a lawyer.', 'The English beside them is a summary, not a translation'] };
+  const 問題 = (c) => {
+    const bad = [];
+    if (!c.ja || !c.en) return ['頁が無い'];
+    /* 一。下の欄。 */
+    Object.entries(c.pages).filter(([, h]) => /<span class="updated">/.test(h)).forEach(([f, h]) => {
+      const foot = (/<footer>[\s\S]*?<\/footer>/.exec(h) || [''])[0];
+      const want = /<html lang="ja"/.test(h) ? DL.ja : DL.en;
+      const m = /<a href="([^"]+)">[^<]+<\/a> · <span class="updated">/.exec(foot);
+      if (!m || path.posix.normalize(path.posix.join(path.posix.dirname(f), m[1])) !== want || !(want in c.pages)) bad.push(f + ' の下の欄の道');
+    });
+    /* 二。部品の表。 */
+    const rows = (h) => [...((/<table class="works-table design-parts">([\s\S]*?)<\/table>/.exec(h) || [])[1] || '').matchAll(/<tr><td[\s\S]*?<\/tr>/g)].map((m) => [...m[0].matchAll(/<td data-label="[^"]*">([\s\S]*?)<\/td>/g)].map((x) => x[1]));
+    const rj = rows(c.ja), re = rows(c.en);
+    if (rj.length < 8 || rj.length !== re.length || !rj.every((r) => r.length === 5) || !re.every((r) => r.length === 5)) bad.push('部品の表の形');
+    ['ja', 'en'].forEach((l) => {
+      const cells = (l === 'ja' ? rj : re).map((r) => r[1]).join(' ');
+      const named = [...cells.matchAll(/<code[^>]*>([^<]+)<\/code>/g)].map((m) => m[1]).filter((x) => /\.(svg|png|ico)$/.test(x));
+      const 実 = c.配る.filter((f) => !/^og\//.test(f));
+      const og = c.配る.filter((f) => /^og\/[^/]+\.png$/.test(f));
+      const 外 = c.配る.filter((f) => /^og\//.test(f) && !/^og\/[^/]+\.png$/.test(f));
+      const 欠け = 実.filter((f) => named.indexOf(f) < 0).concat(named.filter((f) => f !== 'og/*.png' && 実.indexOf(f) < 0)).concat(外);
+      if (欠け.length || named.indexOf('og/*.png') < 0) bad.push(l + ' の部品の表と配るファイルのずれ：' + 欠け.join(', '));
+      const n = Number(((l === 'ja' ? /og\/\*\.png<\/code>（(\d+) 枚、どれも 1200×630 px）/ : /og\/\*\.png<\/code> \((\d+) of them, each 1200×630 px\)/).exec(cells) || [])[1]);
+      const 指す = Object.values(c.pages).filter((h) => /<meta property="og:image" content="https:\/\/cpsbvbng26-dotcom\.vercel\.app\/og\/[^"]+\.png">/.test(h)).length;
+      if (n !== og.length || n !== 指す || !og.every((f) => c.sizes[f] === '1200x630')) bad.push(l + ' の共有カードの枚数か大きさ（頁 ' + n + ' / 実際 ' + og.length + ' / 指す頁 ' + 指す + '）');
+      if (c.sizes['og.png'] !== '600x600' || cells.indexOf(l === 'ja' ? 'og.png</code>（600×600 px）' : 'og.png</code> (600×600 px)') < 0) bad.push(l + ' の og.png の大きさ');
+      const logo = (l === 'ja' ? rj : re)[0].join(' ');
+      if (logo.indexOf(l === 'ja' ? '長方形 6 つと多角形 1 つ' : 'Six rectangles and one polygon') < 0 || logo.indexOf('#16161a') < 0 || logo.indexOf('#b08d57') < 0) bad.push(l + ' のロゴの行');
+    });
+    const tags = [...c.favicon.matchAll(/<([a-z]+)\b/g)].map((m) => m[1]);
+    const colors = [...new Set([...c.favicon.matchAll(/(?:fill|stroke)="([^"]+)"/g)].map((m) => m[1]))].sort();
+    if (tags.filter((t) => t === 'rect').length !== 6 || tags.filter((t) => t === 'polygon').length !== 1 || tags.some((t) => ['svg', 'title', 'rect', 'polygon'].indexOf(t) < 0)
+        || /href|<text|<image|font/i.test(c.favicon) || colors.join() !== '#16161a,#b08d57,none') bad.push('ロゴの図形か色');
+    /* 三。書体。 */
+    const 名 = new Set();
+    Object.values(c.pages).forEach((h) => {
+      const css = [...h.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
+      if (/@font-face/i.test(css)) bad.push('@font-face');
+      for (const m of css.matchAll(/(?:font-family|--font-(?:sans|serif|mono))\s*:\s*([^;}]+)/g)) m[1].split(',').map((s) => s.trim().replace(/^["']|["']$/g, '')).filter((s) => s && !/^var\(/.test(s)).forEach((s) => 名.add(s));
+    });
+    ['ja', 'en'].forEach((l) => {
+      const h = c[l], i = h.indexOf('<section id="d3"'), sec = i < 0 ? '' : h.slice(i, h.indexOf('</section>', i));
+      const p1 = (/<p class="profile-core">([\s\S]*?)<\/p>/.exec(sec) || [])[1] || '';
+      const 頁名 = new Set([...p1.matchAll(/<code[^>]*>([^<]+)<\/code>/g)].map((m) => m[1]));
+      if ([...名].sort().join('|') !== [...頁名].sort().join('|')) bad.push(l + ' の書体の名が CSS と違う');
+      const stack = (/font-family: ([^;]+);\n  display: flex/.exec(c.cards) || [])[1];
+      if (!stack || sec.indexOf(stack.replace(/"/g, '&quot;')) < 0 && sec.indexOf(stack) < 0) bad.push(l + ' の共有カードの書体の並び');
+    });
+    /* 四。引いた文。 */
+    const 条文 = c.st['条文'], 規約 = c.st['規約'];
+    const quotes = (h) => [...h.matchAll(/<blockquote class="profile-core"(?: lang="ja")? data-statute="([^"]+)">([\s\S]*?)<\/blockquote>/g)].map((m) => [m[1], unent(m[2])]);
+    const qj = quotes(c.ja), qe = quotes(c.en);
+    if (qj.length < 10 || JSON.stringify(qj) !== JSON.stringify(qe)) bad.push('引いた条文が日英で違う');
+    qj.forEach(([k, t]) => {
+      const e = 条文[k];
+      if (!e || e['文'].indexOf(t) < 0 || t.length < 10) bad.push('写しに無い引用：' + k);
+      else if (require('crypto').createHash('sha256').update(e['文'], 'utf8').digest('hex') !== e.sha256) bad.push('写しの sha256：' + k);
+    });
+    ['著作権法 第2条', '著作権法 第10条', '著作権法 第19条', '著作権法 第20条', '商標法 第25条', '意匠法 第2条', '意匠法 第23条', '不正競争防止法 第2条', '障害者差別解消法 第2条', '障害者差別解消法 第8条']
+      .forEach((k) => { if (!qj.some(([x]) => x === k)) bad.push('引いていない条：' + k); });
+    const 要旨 = [...c.en.matchAll(/data-statute="[^"]+">[\s\S]*?<\/blockquote>\s*<p class="profile-core">([^<]{0,40})/g)].map((m) => m[1]);
+    if (要旨.length !== qe.length || !要旨.every((x) => x.indexOf('Summary, not a translation:') === 0)) bad.push('英語の要旨の断り');
+    const lic = (h, k) => [...h.matchAll(new RegExp('<blockquote class="profile-core"(?: lang="ja")? data-licence="' + k + '">([\\s\\S]*?)</blockquote>', 'g'))].map((m) => unent(m[1]));
+    ['ja', 'en'].forEach((l) => {
+      const ipa = lic(c[l], 'IPA'), ofl = lic(c[l], 'OFL'), cc = lic(c[l], 'CC BY 4.0');
+      const I = 規約['IPAフォントライセンスv1.0 第2条'] || {}, O = 規約['SIL Open Font License 1.1 第5項'] || {};
+      if (ipa.join('|') !== [I['引いた句'], I['引いた句 2']].join('|') || ofl.join('|') !== String(O['引いた句'])
+          || !/^[0-9a-f]{64}$/.test(I['全文の sha256'] || '') || !/^[0-9a-f]{64}$/.test(O['全文の sha256'] || '')) bad.push(l + ' の書体の許諾の文');
+      if (cc.length !== 2 || !cc.every((t) => c.lic.indexOf(t) >= 0)) bad.push(l + ' の CC BY 4.0 の文');
+    });
+    if (/moral/i.test(c.licCode)) bad.push('LICENSE-CODE に人格権の定めがある');
+    if (c.readme.indexOf('ロゴと共有カードの画像 | [CC BY 4.0](LICENSE)') < 0 || !/\| \*\*サイトの実装\*\* [^\n]*マークアップ・スタイル・スクリプト[^\n]*\| \[MIT\]\(LICENSE-CODE\)/.test(c.readme)) bad.push('README のライセンスの区分');
+    /* 五。見やすさ。 */
+    const AA = Number((/const AA = ([\d.]+);/.exec(c.contrast) || [])[1]);
+    const W = ((/const WIDTHS = \[([^\]]*)\]/.exec(c.keyboard) || [])[1] || '').split(',').map((x) => x.trim());
+    const Z = ((/for \(const w of \[([^\]]*)\]\) \{\s*const c4/.exec(c.keyboard) || [])[1] || '').split(',').map((x) => x.trim());
+    if (c.ja.indexOf('の比は、明るい側でも暗い側でも ' + AA + ':1 以上です。') < 0 || c.en.indexOf('is at least ' + AA + ':1, in the light and the dark scheme') < 0 || (c.contrast.match(/>= 3\b/g) || []).length < 2 || c.ja.indexOf('3:1 以上') < 0) bad.push('比の数');
+    if (c.ja.indexOf('幅 ' + W.join('・') + ' px のどれでも') < 0 || c.en.indexOf('At widths of ' + W.slice(0, -1).join(', ') + ' and ' + W[W.length - 1] + ' px') < 0) bad.push('幅の数');
+    if (Z.length !== 2 || c.ja.indexOf('幅 ' + Z[0] + ' px と ' + Z[1] + ' px で文字を 200% にしても') < 0 || c.en.indexOf('at widths of ' + Z[0] + ' and ' + Z[1] + ' px') < 0 || !/zoom|200/.test(c.keyboard)) bad.push('文字 200% の幅');
+    Object.entries(c.pages).filter(([, h]) => /<span class="updated">/.test(h)).forEach(([f, h]) => {
+      if (!/@media \(prefers-reduced-motion: reduce\) \{\s*\*, \*::before, \*::after \{ animation-duration: \.01ms !important; transition-duration: \.01ms !important; \}/.test(h)) bad.push(f + ' に動きを減らす指定が無い');
+    });
+    Object.entries(c.pages).forEach(([f, h]) => {
+      for (const m of h.matchAll(/<figure class="figure[^"]*">\s*<svg ([^>]*)>/g)) if (!/role="img"/.test(m[1]) || !/aria-label="[^"]{20,}"/.test(m[1])) bad.push(f + ' の図に aria-label が無い');
+    });
+    const 名指し = [[c.keyboard, '辿る順が読む順と同じ'], [c.keyboard, '焦点の枠が出ない要素が無い'], [c.self, '焦点の枠を消している頁が無い'], [c.self, "の飛ばす導線に行き先がある"],
+      [c.self, '頁が暗い側の色を持つ'], [c.self, '代替テキストを持ち'], [c.contrast, 'が本文中のリンクを下線で示している'],
+      [c.self, "section('10.65 "], [c.self, "section('10.66 "], [c.self, "section('10.68 "], [c.self, "section('10.58 "], [c.self, "section('13. "], [c.self, "section('2. "], [c.self, "section('6c. "]];
+    名指し.forEach(([t, s]) => { if (t.indexOf(s) < 0) bad.push('名指した検査が無い：' + s); });
+    /* 六。決まった文。 */
+    ['ja', 'en'].forEach((l) => 文の頁[l].forEach((s) => { if (c[l].indexOf(s) < 0) bad.push(l + '：' + s.slice(0, 16)); }));
+    return bad;
+  };
+  const 今 = 問題(ctx);
+  ok('デザインに関する法的な扱いの頁（日英）：下の欄の道（' + 生成.length + ' 頁）、部品の表と配る画像（' + 配る.length + ' ファイル）、共有カードの枚数と大きさ、ロゴの図形、書体の名、引いた条文と許諾の文、README の区分、見やすさの数と動きを減らす指定と図の aria-label、決まった文が合う',
+     今.length === 0, 今.slice(0, 5).join(' / '));
+  const w = (k, a, b) => Object.assign({}, ctx, { [k]: String(ctx[k]).replace(a, b) });
+  const wp = (f, a, b) => Object.assign({}, ctx, { pages: Object.assign({}, ctx.pages, { [f]: String(ctx.pages[f]).replace(a, b) }) });
+  const 壊し = [
+    ['下の欄から道を外す', wp('index.de.html', /<a href="\.\/notes\/design-legal\.en\.html">[^<]*<\/a> · /, '')],
+    ['下の欄の道を違う言語の版へ向ける', wp('notes/mission.html', '<a href="./design-legal.html">', '<a href="./design-legal.en.html">')],
+    ['表から一行を外す', w('ja', /<tr><td data-label="部品">ロゴを画素にしたもの[\s\S]*?<\/tr>/, '')],
+    ['配る画像を一つ足す', Object.assign({}, ctx, { 配る: ctx.配る.concat(['docs/x.png']) })],
+    ['字のファイルを一つ足す', Object.assign({}, ctx, { 配る: ctx.配る.concat(['fonts/x.woff2']) })],
+    ['共有カードの枚数を変える', w('en', /\((\d+) of them, each/, (m, n) => '(' + (Number(n) + 1) + ' of them, each')],
+    ['ロゴに字を足す', w('favicon', '</svg>', '<text>TN</text></svg>')],
+    ['頁の CSS に書体の名を足す', wp('index.html', '--font-sans: "Hiragino Sans",', '--font-sans: "Fancy Sans", "Hiragino Sans",')],
+    ['共有カードの書体の並びを変える', w('cards', '"IPAPGothic", sans-serif', '"IPAPGothic", "DejaVu Sans", sans-serif')],
+    ['引いた条文を一字変える', w('ja', '思想又は感情を創作的に表現したもの', '思想又は感情を創造的に表現したもの')],
+    ['写しの文を一字変える', Object.assign({}, ctx, { st: JSON.parse(JSON.stringify(ctx.st).replace('業として登録意匠及びこれに類似する', '業として登録意匠又はこれに類似する')) })],
+    ['英語の要旨の断りを外す', w('en', 'Summary, not a translation: a work is', 'A work is')],
+    ['IPA の許諾の句を変える', w('en', '文字テキスト表現等として使用することができます', '文字テキスト表現として使用することができます')],
+    ['README の区分を変える', w('readme', 'ロゴと共有カードの画像 | [CC BY 4.0](LICENSE)', 'ロゴと共有カードの画像 | [MIT](LICENSE-CODE)')],
+    ['検査の幅を変える', w('keyboard', 'const WIDTHS = [1440,', 'const WIDTHS = [1600, 1440,')],
+    ['比の基準を変える', w('contrast', 'const AA = 4.5;', 'const AA = 3;')],
+    ['頁から動きを減らす指定を外す', wp('notes/mission.en.html', '@media (prefers-reduced-motion: reduce)', '@media (prefers-reduced-motion: no-preference)')],
+    ['図から aria-label を外す', wp('index.html', /(<figure class="figure reveal">\s*<svg [^>]*?) aria-label="[^"]*"/, '$1')],
+    ['弁護士の一文を外す', w('en', 'This page has not been reviewed by a lawyer.', '')],
+  ];
+  const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
+  ok('壊して確かめる：下の欄・表・配る画像と字のファイル・カードの枚数・ロゴ・書体の名と並び・条文と写し・要旨の断り・許諾の句・README の区分・幅・比・動き・aria-label・弁護士の一文のどれを崩しても落ちる（'
+     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
 section('10.60 CI の仕事の名前が名乗っている数');
