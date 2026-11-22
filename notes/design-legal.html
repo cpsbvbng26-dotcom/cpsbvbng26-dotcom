@@ -871,7 +871,7 @@ footer { border-top: 2px solid var(--seal-gold); }
       <p class="profile-core">どれも閲覧者の端末にある書体を名で指すだけで、このサイトは書体のファイルを配っていません。</p>
       <p class="profile-core">共有カードの字は、<code translate="no" class="notranslate">verification/update_cards.js</code> の並び（<code translate="no" class="notranslate">"Hiragino Sans", "Noto Sans CJK JP", "IPAGothic", "IPAPGothic", sans-serif</code>）で描きます。</p>
       <p class="profile-core">いまの共有カードを描いた作業の環境には、並びの初めの二つの書体がありません。</p>
-      <p class="profile-core">その環境のブラウザに、カードの字をどの書体で描いたかを尋ねました（DevTools の <code translate="no" class="notranslate">CSS.getPlatformFontsForNode</code>、2026-11-22）。字はすべて IPAPGothic（IPA Pゴシック）で描かれ、作用素の論文の第三篇のカード二枚の記号「≥」だけが Liberation Sans で描かれていました。</p>
+      <p class="profile-core">その環境のブラウザに、カードの字をどの書体で描いたかを尋ねました（DevTools の <code translate="no" class="notranslate">CSS.getPlatformFontsForNode</code>、2026-11-22）。字はすべて IPAPGothic で描かれ、作用素の論文の第三篇のカード二枚の記号「≥」だけが Liberation Sans で描かれていました。</p>
       <p class="profile-core">同じ環境でカードを描き直すと、どれも一ビットも違わずに出ることも確かめました。</p>
       <p class="profile-core">IPAPGothic の使用許諾（IPA フォントライセンス v1.0）の第 2 条は、次のとおり定めます。引いたのは、その環境にあるパッケージ（fonts-ipafont-gothic）の許諾の文です。</p>
       <blockquote class="profile-core" data-licence="IPA">2.受領者はコンピュータにインストールされた許諾プログラムをそのまま、または改変を行ったうえで、印刷物およびデジタル・コンテンツにおいて、文字テキスト表現等として使用することができます。</blockquote>
@@ -1017,7 +1017,8 @@ footer { border-top: 2px solid var(--seal-gold); }
       
     </div>
     <div class="notes-list reveal">
-      <p class="profile-core">条文は、<a href="https://github.com/cpsbvbng26-dotcom/nusquama/blob/85dd68091ce06598f55740428d3f1a927448523c/verification/statutes-texts.json" target="_blank" rel="noopener">nusquama の verification/statutes-texts.json</a>（コミット 85dd680、e-Gov 法令 API から 2026-11-22 に取り寄せ）の文と一字一句同じです。このリポジトリでは、同じ文を verification/statutes.json に置いています。</p>
+      <p class="profile-core">条文は、このリポジトリの <a href="https://github.com/cpsbvbng26-dotcom/cpsbvbng26-dotcom/blob/main/verification/statutes.json" target="_blank" rel="noopener">verification/statutes.json</a> に置いた写しから引きます。写しは e-Gov 法令 API から取り寄せた文です。</p>
+      <p class="profile-core">引いた条はどれも、2026-11-22 に e-Gov 法令 API から取り寄せ直した文と、一字一句同じです。</p>
       <p class="profile-core">長い条は、頁の文が拠る項や号だけを、写しの文から一字一句そのまま切り出しました。切り出したところは、引いた文の前に書いています。</p>
       <p class="profile-core">IPA フォントライセンスの文は、共有カードを描いた作業の環境のパッケージ（fonts-ipafont-gothic）の許諾の文から、行の折り返しだけを外して写しました。その文書全体の SHA-256 も、verification/statutes.json に置いています。</p>
       <p class="profile-core">CC BY 4.0 と MIT の文は、このリポジトリの LICENSE と LICENSE-CODE から写しました。</p>
