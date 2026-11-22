@@ -827,7 +827,7 @@ B1・C3・C4・C5 は、この節に挙げた PR では直していません。
 2026-11-22 に、利用者が、サイトのデザインに関する法的な扱いの単独の頁を求めました。
 頁は `notes/design-legal.html` と `notes/design-legal.en.html` で、researcher-profile の `design-legal.json` と `design-legal.en.json` から生成します。
 頁の下の欄から、その頁につなぎます。
-配っている頁に、デザインに関する法的な扱いの頁（日本語と英語）の 2 頁を足しました。
+配っている頁に、`notes/design-legal.html` と `notes/design-legal.en.html` の 2 頁を足しました。
 引いた条文は、創作の系列のリポジトリが e-Gov 法令 API から 2026-11-22 に取り寄せた文と一字一句同じです。
 意匠法と障害者差別解消法の条は、その文を `verification/statutes.json` に写しました。
 書体の許諾の句は、共有カードを描いた作業の環境のパッケージの文から写し、`verification/statutes.json` の規約に置きました。
