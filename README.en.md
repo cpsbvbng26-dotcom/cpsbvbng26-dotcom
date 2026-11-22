@@ -320,7 +320,7 @@ Chromium. It needs playwright and Chromium, so it is not in the list above.
 node verification/check_keyboard.js  # Tab traversal, 786 checks (needs Chromium)
 ```
 
-It tabs through 44 pages and looks for focus traps, elements that receive focus while
+It tabs through 46 pages and looks for focus traps, elements that receive focus while
 still transparent, elements with no focus ring, elements with no size, and a tab order
 that diverges from reading order. **If the tools are absent it exits 1.** A check that
 did not run is not a check that passed.
