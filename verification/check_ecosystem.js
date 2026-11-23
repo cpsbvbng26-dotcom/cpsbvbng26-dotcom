@@ -7226,7 +7226,7 @@ console.log('\n13i. 2026-11-20：利益相反の記録（cpsbvbng26-dotcom の d
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
-console.log('\n13j. 2026-11-20：利益相反の記録（日英）の文・年数・人名・断り・決めごと 10 と 15・README と CV、壊して確かめる');
+console.log('\n13j. 2026-11-20 と 2026-11-23：利益相反の記録（日英）の文・年数・人名・断り・決めごと 10 と 15・README と CV、壊して確かめる');
   /* 2026-11-20。利益相反の記録（docs/conflicts-of-interest.md と .en.md）。著者が述べたことを日英で置く。
    * ここに置くのは、check_site.js の項目の数が五つの言語のトップの頁（生成物）に名乗られているためである。
    * 師範の名は書かない（決めごと 10）。人名（藤平・植芝、英字の Tohei・Ueshiba）を置かない。
@@ -7303,13 +7303,78 @@ console.log('\n13j. 2026-11-20：利益相反の記録（日英）の文・年�
       if (x.通算 === null) bad.push('独我流の頁の通算の年数が読めない');
       if (['<p>心身統一合氣道 五級<span>', '<p>心身統一道 初級<span>', '氣の原理を日常で実践活用し得ることを認める'].some((s) => x.cv.indexOf(s) < 0)) bad.push('記録が指す CV の級が無い');
       if (x.rj.indexOf('(docs/conflicts-of-interest.md)') < 0 || x.re.indexOf('(docs/conflicts-of-interest.en.md)') < 0) bad.push('README から辿れない');
+      /* 2026-11-23 の節。著者は、強い利益相反を開示して氣の原理を客観的な研究の対象にすることを考え（理由は「勿体無い」、
+       * 成果は読む側からも書く側からも金を取らないプレプリントサーバーにだけ置く考え）、Claude が団体の会員規約とサイトポリシーを読み、
+       * 同じ日に著者が「危ない」として進めないと決めた。2026-11-20 の立場は変わらない。
+       * 固めるもの：節が日英にあり、2026-11-20 の節のあと・眠っている利益相反の前にあること。著者の言葉。規約の所在と SHA-256。
+       * 会員規約の条（第 13 条の 1・2・3・5 項、第 14 条の（5）、第 17 条）の一字一句。確かめていないという断り。
+       * 指導資格は記録に無いこと（CV の「武道」の欄に指導資格が無いことと突き合わせる）。2026-11-20 の立場が続くこと。
+       * 始めていない研究の手立て（事前登録・倫理審査・学術誌・公開の経路）を節に書かないこと。特定のプレプリントサーバーの名を書かないこと。
+       * 2026-11-20 の文は改めていないので、その横に「改めました」の注を置かないこと。 */
+      const 検の条 = ['> 第１３条 権利帰属',
+        '> １.心身統一道および心身統一合氣道の内容、本会が発行する著作物や教材など、すべての著作権、その他の知的財産権は本会に帰属する。会員は自身の心身統一道および心身統一合氣道の稽古にのみこれを使用することができる。',
+        '> ２.会員は、本会から提供されるあらゆる形のコンテンツを使用し、書籍の出版・教材の製作・インターネットでの公開など、著作権法に違反する行為をすることはできない。また、本会から提供されるあらゆる形のコンテンツを利用する場合には、あらかじめ本会の許可を得るものとする。',
+        '> ３.会員は、心身統一道および心身統一合氣道に関する書籍の出版や有料動画などの作成・販売、および教材の製作はできない。',
+        '> ５.第１項、第２項、第３項の規定は、会員の退会後または除名後も同様とする。',
+        '> 第１４条 禁止事項', '> （５）許可なく撮影・録音・記録すること', '> 第１７条 除名',
+        '> 会員が本規約に違反し本会の指示に従わない場合、もしくは会員が本会の社会的信用を毀損した場合は、社員総会の決定により当該会員を除名する。当該会員は段位・伝位・級位は剥奪され、再入会することはできない。'];
+      const 検の所在 = ['`https://shinshintoitsuaikido.org/wp/wp-content/uploads/2026/03/会員規約2026.pdf`', '`3875eeb158c6d5f7aaa340462239bc5766ea86fc6f2ed2f0e985c108d107bba3`',
+        '`https://shinshintoitsuaikido.org/guidance/sitepolicy.php`', '`2ca8d01c3a55574eca5a564d5bcc393c1a6fd280c9bf249986035637a64ed387`'];
+      const 検 = {
+        ja: { head: '\n## 2026-11-23 に検討したこと\n', prev: '\n### これは研究をしない理由ではない\n', next: '\n## 眠っている利益相反',
+          must: ['2026-11-20 の立場は、変わっていません。', '著者の言葉は「氣の原理についての研究を強い利益相反を開示しつつ客観的にやろうと思う」です。',
+            '理由として、著者は、稽古の内側で得た知識を使わずに置くのは「勿体無い」と述べました。',
+            '成果は、読む側からも書く側からも金を取らないプレプリントサーバーにだけ置く考えでした。', '著者の言葉は「プレプリントサーバーに留めておく」です。',
+            '著者の求めで、Claude は 2026-11-23（日本時間）に、心身統一合氣道会の規約を読みました。', '附則：2011-04-01 発効、2026-04-01 改定',
+            'この定めが元の会員をどこまで縛るかは、確かめていません。', 'この定めが著作権法とどう関わるかも、確かめていません。', '弁護士の確認も受けていません。',
+            '著者がいま会員かどうかは、この記録には書きません。', '第 17 条の除名は、会員についての定めです。', 'これは、指導資格者に掛かる規約です。',
+            'CV の「武道」の欄が挙げるのは、心身統一合氣道 五級と心身統一道 初級だけです。', '指導資格は、記録のどこにも書いてありません。',
+            '同じ 2026-11-23 に、この研究を進めないと著者が決めました。', '著者の言葉は「いやぁでもやっぱり危ないね辞めておく」です。',
+            '著者は、法の面の危うさを「危ない」と判断しました。', '研究は始めていません。', 'したがって、2026-11-20 の立場はそのまま続きます。',
+            '氣の原理は、扱うとしても当事者記録の形に限ります。', '独学の系列にも足しません。', 'Sophaxis にも載せません。'],
+          退け: /事前登録|倫理審査|学術誌|共同研究者|最初の一歩|公開の経路/, 改め: /2026-11-23 に改め/ },
+        en: { head: '\n## Considered on 2026-11-23\n', prev: '\n### This is not a reason not to research it\n', next: '\n## Dormant conflicts of interest',
+          must: ['The position of 2026-11-20 has not changed.', "In the author's words: 「氣の原理についての研究を強い利益相反を開示しつつ客観的にやろうと思う」.",
+            'As the reason, the author said that leaving unused the knowledge gained inside the practice would be a waste (「勿体無い」).',
+            'The outputs were to be placed only on preprint servers that charge neither authors nor readers.', "In the author's words: 「プレプリントサーバーに留めておく」.",
+            "At the author's request, Claude read the rules of the Shinshin Toitsu Aikido Kai on 2026-11-23 (Japan time).",
+            'Supplementary provisions: in force from 2011-04-01, revised 2026-04-01',
+            'Whether, and how far, this binds a former member was not checked.', 'How it relates to copyright law was not checked either.', 'No lawyer has reviewed it.',
+            'Whether the author is a member now is not recorded here.', 'Expulsion under Article 17 concerns members.', 'These rules apply to qualified instructors.',
+            'The section 「武道」 of the CV lists only fifth kyu of Shinshin Toitsu Aikido and the first grade of Shinshin Toitsu Dō.',
+            'No instructor qualification is written anywhere in the records.',
+            'On the same day, 2026-11-23, the author decided not to proceed with this research.', "In the author's words: 「いやぁでもやっぱり危ないね辞めておく」.",
+            'The author judged the legal risk to be too high (「危ない」).', 'No research has been started.', 'The position of 2026-11-20 therefore continues as it was.',
+            'The principle of ki, if handled at all, is handled only in the form of a first-person record.', 'It is not added to the self-taught series either.',
+            'It is not listed on Sophaxis either.'],
+          退け: /preregist|ethics review|journal|collaborator|first step|route of publication/i, 改め: /revised on 2026-11-23/i },
+      };
+      const 鯖 = /arXiv|PsyArXiv|SocArXiv|Jxiv|bioRxiv|medRxiv|SSRN|Research Square|Preprints\.org|OSF|Zenodo|Figshare|HAL\b|J-STAGE/;
+      for (const l of ['ja', 'en']) {
+        const t = x[l] || '';
+        const k = 検[l];
+        const a = t.indexOf(k.head), p = t.indexOf(k.prev), n = t.indexOf(k.next);
+        if (a < 0) { bad.push(利[l] + ' に 2026-11-23 の節が無い'); continue; }
+        if (!(p >= 0 && p < a && n > a)) bad.push(利[l] + ' の 2026-11-23 の節が、2026-11-20 の氣の原理の節のあと・眠っている利益相反の前にない');
+        const e = t.indexOf('\n## ', a + 1);
+        const sec = t.slice(a, e < 0 ? t.length : e);
+        k.must.filter((s) => sec.indexOf(s) < 0).forEach((s) => bad.push(利[l] + ' の 2026-11-23 の節に「' + s.slice(0, 24) + '」が無い'));
+        const 引 = sec.split('\n').filter((s) => s.startsWith('> ')).join('\n');
+        検の条.filter((s) => 引.indexOf(s) < 0).forEach((s) => bad.push(利[l] + ' の 2026-11-23 の節に、会員規約の「' + s.slice(2, 22) + '」が一字一句ない'));
+        検の所在.filter((s) => sec.indexOf(s) < 0).forEach((s) => bad.push(利[l] + ' の 2026-11-23 の節に、規約の所在か SHA-256 の「' + s.slice(1, 25) + '」が無い'));
+        const 退 = k.退け.exec(sec); if (退) bad.push(利[l] + ' の 2026-11-23 の節に、始めていない研究の手立て「' + 退[0] + '」');
+        const 名 = 鯖.exec(sec); if (名) bad.push(利[l] + ' の 2026-11-23 の節に、特定のサーバーの名「' + 名[0] + '」');
+        const 改 = k.改め.exec(t); if (改) bad.push(利[l] + ' に、改めていない 2026-11-20 の文への注「' + 改[0] + '」');
+      }
+      if (/指導資格|指導員/.test(x.cv)) bad.push('CV に指導資格があるのに、記録は無いと書いている');
+      if (x.rj.indexOf('進めないと決めたこと（2026-11-23）') < 0 || x.re.indexOf('the decision not to proceed (2026-11-23') < 0) bad.push('README の行が 2026-11-23 の節を書いていない');
       return bad;
     };
     const 通算 = (h) => { const m = /本場である栃木で通算 (\d+) 年/.exec(h); return m ? Number(m[1]) : null; };
     const C_ = (f) => read('cpsbvbng26-dotcom', f) || '';
     const 利今 = { ja: C_(利.ja), en: C_(利.en), 通算: 通算(C_(path.join('notes', 'solitary-school.html'))), cv: C_('cv.html'), rj: C_('README.md'), re: C_('README.en.md') };
     const 利今の問題 = 利の問題(利今);
-    check('利益相反の記録（2026-11-20）が日英で、氣の原理の立場・中立にならない理由・扱う場合の条件・独学の系列に足さないこと・Sophaxis で扱わないこと、眠っている利益相反（党・在籍する大学・重なり・条件・Sophaxis の範囲）を書き、人名も大学の名も置かず、年数が独我流の頁の通算 ' + 利今.通算 + ' 年と合い、道が README の目標にある',
+    check('利益相反の記録（2026-11-20）が日英で、氣の原理の立場・中立にならない理由・扱う場合の条件・独学の系列に足さないこと・Sophaxis で扱わないこと、眠っている利益相反（党・在籍する大学・重なり・条件・Sophaxis の範囲）を書き、人名も大学の名も置かず、年数が独我流の頁の通算 ' + 利今.通算 + ' 年と合い、道が README の目標にあり、2026-11-23 の節（検討・会員規約とサイトポリシーの所在と SHA-256・条の一字一句・確かめていない断り・指導資格・進めない決め・2026-11-20 の立場の続き）を日英で、退けた手立てと特定のサーバーの名と改めの注を置かずに書く',
        利今の問題.length === 0, 利今の問題.slice(0, 4).join(' / '));
     const 利替 = (k, a, b) => Object.assign({}, 利今, { [k]: 利今[k].replace(a, b) });
     const 利壊 = [
@@ -7332,9 +7397,26 @@ console.log('\n13j. 2026-11-20：利益相反の記録（日英）の文・年�
       ['支持の向きの片方を外す', 利替('ja', 'ほかの党や今の制度への批判は、支持する党を守る議論に読めます。', '')],
       ['Sophaxis の除外を広げる', 利替('en', 'The exclusion on Sophaxis applies only to the principle of ki.', 'The exclusion on Sophaxis applies to these subjects too.')],
       ['README の目標から OMSCS が消える', 利替('rj', '| Georgia Tech の OMSCS（Online Master of Science in Computer Science）で修士号を取得すること |', '| 修士号を取得すること |')],
+      ['2026-11-23 の節を外す（日）', 利替('ja', '\n## 2026-11-23 に検討したこと\n', '\n## 別の節\n')],
+      ['2026-11-23 の節を眠っている利益相反のあとへ動かす（英）', 利替('en', /(\n## Considered on 2026-11-23\n[\s\S]*?)(\n## Dormant conflicts of interest[\s\S]*)$/, (m, a, b) => b + a)],
+      ['「危ない」の引用を外す（英）', 利替('en', 'The author judged the legal risk to be too high (「危ない」).', 'The author judged the legal risk to be too high.')],
+      ['進めないと決めた文を外す（日）', 利替('ja', '同じ 2026-11-23 に、この研究を進めないと著者が決めました。', '')],
+      ['会員規約の第 13 条第 5 項を一字変える（日）', 利替('ja', '会員の退会後または除名後も同様とする。', '会員の退会後も同様とする。')],
+      ['会員規約の第 17 条を一字変える（英）', 利替('en', '社員総会の決定により当該会員を除名する。', '理事会の決定により当該会員を除名する。')],
+      ['会員規約の第 14 条の（5）を外す（日）', 利替('ja', '> （５）許可なく撮影・録音・記録すること', '> （５）許可なく撮影すること')],
+      ['会員規約の SHA-256 を一字変える（英）', 利替('en', '`3875eeb158c6d5f7aaa340462239bc5766ea86fc6f2ed2f0e985c108d107bba3`', '`3875eeb158c6d5f7aaa340462239bc5766ea86fc6f2ed2f0e985c108d107bba4`')],
+      ['サイトポリシーの所在を外す（日）', 利替('ja', '`https://shinshintoitsuaikido.org/guidance/sitepolicy.php`', '団体のサイト')],
+      ['弁護士の確認を受けていないという断りを外す（日）', 利替('ja', '弁護士の確認も受けていません。', '')],
+      ['退けた手立てを書く（日）', 利替('ja', '研究は始めていません。', '研究は始めていません。\n分析の前に、問いと判定の基準を事前登録します。')],
+      ['退けた公開の経路を書く（英）', 利替('en', 'No research has been started.', 'No research has been started.\nThe work will be submitted to a journal.')],
+      ['特定のサーバーの名を書く（英）', 利替('en', 'No research has been started.', 'No research has been started.\nThe server considered was arXiv.')],
+      ['2026-11-20 の文の横に「改めました」の注を置く（日）', 利替('ja', 'どれかを欠く形では扱いません。\n', 'どれかを欠く形では扱いません。\n\nこの節の一文目は、2026-11-23 に改めました。\n')],
+      ['2026-11-20 の立場が続くという文を外す（英）', 利替('en', 'The position of 2026-11-20 therefore continues as it was.', '')],
+      ['指導資格が CV に載る', 利替('cv', '<p>心身統一道 初級<span>', '<p>心身統一合氣道 指導資格<span>2024 年</span></p>\n      <p>心身統一道 初級<span>')],
+      ['README の行から 2026-11-23 を外す', 利替('rj', '進めないと決めたこと（2026-11-23）', '')],
     ];
     const 利通った = 利壊.filter(([, x]) => 利の問題(x).length === 0).map(([n]) => n);
-    check('壊して確かめる：年数（日・英・師事・独我流の頁）・人名（日・英）・断り（評価・承認・別の言語モデル）・決めごと 15 の文・否定の向き・続柄・README・CV・大学の名・党の名・支持の向き・Sophaxis の範囲・目標の表のどれを崩しても落ちる（'
+    check('壊して確かめる：年数（日・英・師事・独我流の頁）・人名（日・英）・断り（評価・承認・別の言語モデル）・決めごと 15 の文・否定の向き・続柄・README・CV・大学の名・党の名・支持の向き・Sophaxis の範囲・目標の表、2026-11-23 の節（有無・位置・引用・決め・条・SHA-256・所在・断り・退けた手立て・経路・サーバーの名・改めの注・立場・指導資格・README）のどれを崩しても落ちる（'
        + (利壊.length - 利通った.length) + ' / ' + 利壊.length + '）', 利通った.length === 0, 利通った.join(', '));
   }
 
