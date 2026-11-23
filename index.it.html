@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-KezlK7Y+Yv2Maf2dMh3NIBvkiHgfWc1WykGFVlfNRmg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-1FKddeYwtGSsr9OrOPI2W/aqgWYsQoHYo9Ixs7xnZ9A='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-KezlK7Y+Yv2Maf2dMh3NIBvkiHgfWc1WykGFVlfNRmg=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-FPqjpkFZN+R4yzGWvTzG+ck5HpHUiLioNhTszx67AMQ='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Takuya Nemoto — profilo di ricerca</title>
 <meta name="description" content="Profilo di Takuya Nemoto. Quanto si trova qui poggia sullo studio da autodidatta e sul lavoro con modelli linguistici. Ciò che scrivono le piattaforme è riportato nelle loro stesse parole, per quanto le pagine consultate lo contengono.">
 <meta name="robots" content="index, follow">
@@ -722,6 +722,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   background: linear-gradient(180deg, var(--card), var(--card-lo));
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
+}
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
 }
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }

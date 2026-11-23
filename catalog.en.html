@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-i+BlxmJUCm6iV+YOTmc7YJdzMTTDgDmuOlHvNusKU6g=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-I59ObjBeM6CU365R200k2J4KCxsntgmo5u3VANnk0sY=' 'sha256-bwnwCq9rBmYwjvKWQjLVUw1Pa/Xnw7advvId6QN/L0I='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-i+BlxmJUCm6iV+YOTmc7YJdzMTTDgDmuOlHvNusKU6g=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-I59ObjBeM6CU365R200k2J4KCxsntgmo5u3VANnk0sY=' 'sha256-BlTmf7YmNMWNpfrFSynsv6jlKO9BazQarP2Lviyvf6Q='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>Catalogue of works | Takuya Nemoto</title>
 <meta name="description" content="The works of Takuya Nemoto by type, in one table: title, type, status, DOI, canonical location, licence, Zenodo resource type and the period in which it was begun.">
 <meta name="robots" content="index, follow">
@@ -913,6 +913,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   background: linear-gradient(180deg, var(--card), var(--card-lo));
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
+}
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
 }
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }

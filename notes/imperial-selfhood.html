@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-AIuuyGAh2Wgofo9p7qdYk8pEnfnFMApVqyCN68+DLV4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-o5WEQj6kEVZSNCFWgGzFaZKy7iu1YSYWECxidTXc9ls='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-AIuuyGAh2Wgofo9p7qdYk8pEnfnFMApVqyCN68+DLV4=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-tr+Xo5P+1sueyrMbIJjymtpn9vtUaPcsXQwv0+oOcw0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>皇帝主義 | 根本卓哉</title>
 <meta name="description" content="皇帝主義（Manifesto of Imperial Selfhood）の要点の頁です。断片化した自己を、自分の内側にだけ築く主権的な秩序として統合する見取り図で、カントの立法・ニーチェの評価・ユンガーの動員の三層からなります。国家でも他者の支配でもありません。探索的なエッセイで、査読は受けていません。">
 <meta name="robots" content="index, follow">
@@ -719,6 +719,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   background: linear-gradient(180deg, var(--card), var(--card-lo));
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
+}
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
 }
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }

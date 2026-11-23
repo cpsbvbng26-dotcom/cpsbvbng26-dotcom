@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Ur4T/Cr+yOyYCXcEp5AuwA4plAU02NsmwCF6MsAzGKE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-o5WEQj6kEVZSNCFWgGzFaZKy7iu1YSYWECxidTXc9ls='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Ur4T/Cr+yOyYCXcEp5AuwA4plAU02NsmwCF6MsAzGKE=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE='; style-src 'sha256-tr+Xo5P+1sueyrMbIJjymtpn9vtUaPcsXQwv0+oOcw0='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>独身論 | 根本卓哉</title>
 <meta name="description" content="独身論（The Nobility and Exemplarity of the Celibate Individual）の要点の頁です。独身を、性的活動の欠如ではなく、倫理的・実存的な選択として捉え直し、選ばれた独身を自己陶冶の範型の一つとして擁護する論文です。唯一正しい生き方とも、万人の義務とも言いません。プレプリントで、査読は受けていません。">
 <meta name="robots" content="index, follow">
@@ -719,6 +719,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   background: linear-gradient(180deg, var(--card), var(--card-lo));
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
+}
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
 }
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }

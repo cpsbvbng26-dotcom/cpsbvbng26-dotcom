@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-VN3HVG1rrw0cFmxPqoLMP7UjiebL2KNyR7w5/W51Zl0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-L1fe9dGihr+4yG1JJ8R6SYmSglM+P/uo9XZ1Ax/C4fk='; style-src 'sha256-zg3BCG1DGiVDV6xNvpKG8tAO4nsK+jzy7nmSWZ4HBWM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-VN3HVG1rrw0cFmxPqoLMP7UjiebL2KNyR7w5/W51Zl0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-L1fe9dGihr+4yG1JJ8R6SYmSglM+P/uo9XZ1Ax/C4fk='; style-src 'sha256-HhTRHBaJgVGIrEB87nFilyPOCCfew5po7cfJQ44Al/Y='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>The golden-window conjecture | Takuya Nemoto</title>
 <meta name="description" content="A conjecture on a three-player repeated game, and its proof: for discount factors in the window from 1/φ to 2/3, the payoffs that can be kept without randomization form a set of length zero, whose dimension is the root of an equation in δ. Both parts were resolved on 18 November 2026. Part (a) and the formula of part (b) are special cases of known theorems; continuity and strict increase in δ and the limits at both ends were not found in the texts read.">
 <meta name="robots" content="index, follow">
@@ -716,6 +716,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
 }
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+}
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }
 /* 見出しは行の長さをそろえて折り返す。地の文は最後の行が一語だけにならないように折り返す。 */
@@ -780,6 +784,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 #gw-live p { padding: var(--sp-2) 0; border-bottom: 0; }
 #gw-live svg { display: block; margin: var(--sp-2) 0; padding: var(--sp-3) var(--sp-2); background: var(--bg); border-radius: var(--radius-sm); box-shadow: var(--shadow-well); }
 #gw-live #gw-state { padding-top: var(--sp-3); border-top: 1px solid var(--line-soft); }
+@media (max-width: 30rem) {
+  #gw-live { padding: var(--sp-2) var(--sp-3) var(--sp-3); }
+  #gw-live svg { padding: var(--sp-2) 0; }
+}
 /* ---------- 意匠（design.js、2026-11-14） ---------- */
 :root {
   --seal-ink: #16161a;

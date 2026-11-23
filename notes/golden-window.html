@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-L1fe9dGihr+4yG1JJ8R6SYmSglM+P/uo9XZ1Ax/C4fk='; style-src 'sha256-zg3BCG1DGiVDV6xNvpKG8tAO4nsK+jzy7nmSWZ4HBWM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-WLNQPyUVePkzEo6Yx3ZlGmEgpYNy7vcURop6uRYB6m0=' 'sha256-tHd4qJ0R/vQfI0CbRTiL3XGSi+Tun7VhOcDbx08aLKA=' 'sha256-xEIumBm9hib706cHxKRcWJ5xUwqNwJIdRC/4mVeA9hE=' 'sha256-L1fe9dGihr+4yG1JJ8R6SYmSglM+P/uo9XZ1Ax/C4fk='; style-src 'sha256-HhTRHBaJgVGIrEB87nFilyPOCCfew5po7cfJQ44Al/Y='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>黄金比の窓の予想 | 根本卓哉</title>
 <meta name="description" content="黄金比の窓の予想の頁です。三人の繰り返しゲームで、割引因子が 1/φ から 2/3 の窓にあるとき、乱数なしで保てる利得の集合が長さ 0 になり、その次元は δ の式の根として決まる、という予想と、その証明です。二つの部分は 2026 年 11 月 18 日に解決しました。(a) と (b) の式は既知の定理の特別な場合です。δ についての連続・狭義の増加・両端の極限は、読んだ文献には見つかりませんでした。">
 <meta name="robots" content="index, follow">
@@ -716,6 +716,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
   border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-face);
 }
+/* 狭い画面では、図の札の内側の余白を詰め、図を小さくしない。 */
+@media (max-width: 30rem) {
+  .figure { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+}
 /* 仕切りは、線の下に明かりを一本足して、溝に見せる。 */
 .rule { box-shadow: 0 1px 0 var(--edge-hi); }
 /* 見出しは行の長さをそろえて折り返す。地の文は最後の行が一語だけにならないように折り返す。 */
@@ -780,6 +784,10 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; }
 #gw-live p { padding: var(--sp-2) 0; border-bottom: 0; }
 #gw-live svg { display: block; margin: var(--sp-2) 0; padding: var(--sp-3) var(--sp-2); background: var(--bg); border-radius: var(--radius-sm); box-shadow: var(--shadow-well); }
 #gw-live #gw-state { padding-top: var(--sp-3); border-top: 1px solid var(--line-soft); }
+@media (max-width: 30rem) {
+  #gw-live { padding: var(--sp-2) var(--sp-3) var(--sp-3); }
+  #gw-live svg { padding: var(--sp-2) 0; }
+}
 /* ---------- 意匠（design.js、2026-11-14） ---------- */
 :root {
   --seal-ink: #16161a;
