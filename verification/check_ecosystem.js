@@ -7429,6 +7429,77 @@ console.log('\n13j. 2026-11-20 と 2026-11-23：利益相反の記録（日英�
        + (利壊.length - 利通った.length) + ' / ' + 利壊.length + '）', 利通った.length === 0, 利通った.join(', '));
   }
 
+console.log('\n13k. 2026-11-23：国立国会図書館デジタルコレクションの三篇の番号が、所在を並べるどの面にもそろい、篇を取り違えていない');
+{
+  /* 2026-11-21 に、独身論・人格的帝国主義・海軍公報の史料ノートが国立国会図書館デジタルコレクションに登録された
+   * （オンライン資料収集制度。番号は 2026-11-23 に国立国会図書館サーチの検索 API と資料 API から読んだ）。
+   * 利用者は「GitHub とサイトの側にだけ余す所なく」と決めた。所在を並べる面のどれかで抜けるか、篇を取り違えると落ちる。
+   * 一。どの面にも、その面が扱う篇の番号がある（ノートの頁の設定は所在と sameAs の二か所）。
+   * 二。論文の頁には、その篇の番号しか無い。
+   * 三。行に Zenodo の DOI と NDL の番号が並ぶ表では、同じ行の二つが同じ篇を指す。
+   * 四。壊して確かめる。 */
+  const 篇 = { '15017937': '22058254', '15017938': '22057583', '15017939': '22055709' };
+  const 全 = Object.keys(篇);
+  const 哲 = ['15017937', '15017938'];
+  const 面 = [
+    ['researcher-profile', 'papers.json', 全, 1],
+    ['researcher-profile', 'notes.json', 全, 2],
+    ['researcher-profile', 'notes.en.json', 全, 2],
+    ...['site.json', 'site.en.json', 'site.de.json', 'site.fr.json', 'site.it.json'].map((x) => ['researcher-profile', x, 哲, 1]),
+    ...['index.html', 'index.en.html', 'index.de.html', 'index.fr.html', 'index.it.html'].map((x) => ['cpsbvbng26-dotcom', x, 哲, 1]),
+    ['cpsbvbng26-dotcom', 'notes/index.html', 全, 2],
+    ['cpsbvbng26-dotcom', 'notes/index.en.html', 全, 2],
+    ...[['celibate-individual', '15017937'], ['imperial-selfhood', '15017938'], ['naval-gazette-otani-tsune', '15017939']]
+      .flatMap(([p, id]) => ['', '.en'].map((l) => ['cpsbvbng26-dotcom', 'papers/' + p + l + '.html', [id], 1])),
+    ...['README.md', 'README.en.md', 'docs/doi-index.md', 'docs/submission-disclosure.md', 'docs/canonical-sources.md'].map((x) => ['cpsbvbng26-dotcom', x, 全, 1]),
+    ...['README.md', 'CITATION.cff', 'docs/how-to-cite.md'].map((x) => ['autonomy-and-self-cultivation', x, 哲, 1]),
+    ...['README.md', 'CITATION.cff'].map((x) => ['naval-gazette-notes', x, ['15017939'], 1]),
+    ['solitary-school', 'index.html', ['15017937'], 1],
+  ];
+  const 行の面 = ['cpsbvbng26-dotcom:README.md', 'cpsbvbng26-dotcom:README.en.md', 'cpsbvbng26-dotcom:docs/doi-index.md',
+    'cpsbvbng26-dotcom:docs/canonical-sources.md', 'autonomy-and-self-cultivation:README.md'];
+  const 今 = {};
+  面.forEach(([r, f]) => { 今[r + ':' + f] = read(r, f) || ''; });
+  const 問題 = (x) => {
+    const bad = [];
+    for (const [r, f, ids, n] of 面) {
+      const t = x[r + ':' + f] || '';
+      if (!t) { bad.push(r + '/' + f + ' が読めない'); continue; }
+      for (const id of ids) {
+        const k = t.split('ndljp/pid/' + id).length - 1 + t.split('dl.ndl.go.jp/pid/' + id).length - 1;
+        if (k < n) bad.push(r + '/' + f + ' に ' + id + ' が' + (k ? ' ' + n + ' か所そろっていない' : '無い'));
+      }
+      if (f.startsWith('papers/')) 全.filter((id) => !ids.includes(id) && t.includes('pid/' + id)).forEach((id) => bad.push(f + ' に別の篇の ' + id));
+    }
+    for (const k of 行の面) {
+      (x[k] || '').split('\n').forEach((l) => {
+        const ids = 全.filter((id) => l.includes('pid/' + id));
+        const zs = 全.filter((id) => l.includes('zenodo.' + 篇[id]));
+        if (ids.length && zs.length && ids.join() !== zs.join()) bad.push(k + ' の行で、Zenodo と NDL が別の篇を指す');
+      });
+    }
+    return bad;
+  };
+  const now = 問題(今);
+  check('国立国会図書館の三篇の番号（info:ndljp/pid/15017937〜15017939）が、所在を並べる ' + 面.length + ' の面にそろい、論文の頁と表の行で篇を取り違えていない',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: 今[k].replace(a, b) });
+  const 壊し = [
+    ['一覧の表の行で独身論と人格的帝国主義の番号を入れ替える', 替('cpsbvbng26-dotcom:docs/doi-index.md', '`info:ndljp/pid/15017937`', '`info:ndljp/pid/15017938`')],
+    ['海軍公報の論文の頁から外す', 替('cpsbvbng26-dotcom:papers/naval-gazette-otani-tsune.html', /pid\/15017939/g, 'pid/0')],
+    ['独身論の論文の頁に別の篇の番号を書く', 替('cpsbvbng26-dotcom:papers/celibate-individual.en.html', /<\/body>/, 'pid/15017938</body>')],
+    ['イタリア語の設定から人格的帝国主義を外す', 替('researcher-profile:site.it.json', /pid\/15017938/g, 'pid/0')],
+    ['英語のノートの設定から sameAs の一つを外す', 替('researcher-profile:notes.en.json', '"https://dl.ndl.go.jp/pid/15017939"', '"https://example.org/"')],
+    ['自己陶冶の CITATION.cff から外す', 替('autonomy-and-self-cultivation:CITATION.cff', /pid\/15017937/g, 'pid/0')],
+    ['史料ノートの README から外す', 替('naval-gazette-notes:README.md', /pid\/15017939/g, 'pid/0')],
+    ['独我流の頁から外す', 替('solitary-school:index.html', /pid\/15017937/g, 'pid/0')],
+    ['英語の README の行で篇を取り違える', 替('cpsbvbng26-dotcom:README.en.md', /pid\/15017939\)/, 'pid/15017937)')],
+  ];
+  const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
+  check('壊して確かめる：表の行の入れ替え・論文の頁の欠けと取り違え・五言語の設定・ノートの sameAs・CITATION.cff・README・独我流の頁のどれを崩しても落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 console.log('\n14. この検査が名乗る件数');
 
 {
