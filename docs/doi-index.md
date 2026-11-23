@@ -264,6 +264,24 @@ notice は PDF を持たない書誌の登録で、モデレーションを通�
 PhilArchive の `NEMFSI`（Fragmentarian Spiritual Individualism）も、2026-09-26 に削除を依頼しました。
 PhilPapers は削除を依頼として受け付けるので、まだ消えていません。消えたら、この節に足します。
 
+## 解決の稿に添えた品（Figshare）
+
+解決の稿（`10.6084/m9.figshare.35050300`）に添えて、Figshare に置いた品です。
+稿ではないので、上の「別の所在にある同一本文」の表にも、篇の数にも入れません。
+
+| 品 | 所在 |
+| --- | --- |
+| 図（Image） | Figshare `10.6084/m9.figshare.35094328` |
+| 数表（Dataset） | Figshare `10.6084/m9.figshare.35094355` |
+| 台本の束（Software） | Figshare `10.6084/m9.figshare.35094370` |
+| ポスター（Poster） | Figshare `10.6084/m9.figshare.35094385` |
+| スライド（Presentation） | Figshare `10.6084/m9.figshare.35094490` |
+
+2026-11-24 に利用者が出しました。
+番号は、同じ日に DataCite で読み、利用者が書くことを認めました。
+中身と作り方は、golden-window-resolution の `figshare/` にあります。
+これらが Figshare の水準に合わないことは、[figshare.md](figshare.md) に書いています。
+
 ## 第三者の SSRN DOI
 
 著者のものではありません。引用している他人の論文です。書き換えません。
