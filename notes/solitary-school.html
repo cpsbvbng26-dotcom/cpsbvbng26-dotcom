@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-ARm2paYY+9Fx1gAPkrRSvdchnhwZw2huNkOQN5ZUptM='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-+06HPvGGT3lm8HzDOBwGmmhpOhLET7YmZdxtPmC3GKE='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>自己実験としての名乗り | 根本卓哉</title>
 <meta name="description" content="稽古は裏切りと騙し討ちと不意打ちを排除することで成り立つ。その三つは、技が実際に効くかを決める条件でもある。排除しなければ稽古にならず、排除すれば検証にならない。">
 <meta name="robots" content="index, follow">
@@ -17,6 +17,8 @@
   --faint: #727278;
   --line: #e6e4df;
   --accent: #8a6a3d;
+  --shadow-face: inset 0 1px 0 rgba(255, 255, 255, .9), .5px 1px 1px rgba(23, 23, 26, .05), 1px 2px 6px -1px rgba(23, 23, 26, .07);
+  --shadow-float: inset 0 1px 0 rgba(255, 255, 255, .9), 1px 2px 3px rgba(23, 23, 26, .06), 3px 8px 18px -6px rgba(23, 23, 26, .14);
 }
 :root[data-theme="dark"] {
   --bg: #121214;
@@ -26,6 +28,8 @@
   --faint: #81818b;
   --line: #2a2a2d;
   --accent: #b08d57;
+  --shadow-face: inset 0 1px 0 rgba(255, 255, 255, .05), .5px 1px 1px rgba(0, 0, 0, .3), 1px 2px 6px -1px rgba(0, 0, 0, .28);
+  --shadow-float: inset 0 1px 0 rgba(255, 255, 255, .07), 1px 2px 3px rgba(0, 0, 0, .32), 3px 8px 18px -6px rgba(0, 0, 0, .42);
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -46,7 +50,9 @@ table { border-collapse: collapse; width: 100%; font-size: .92rem; }
 th, td { border: 1px solid var(--line); padding: .6rem .75rem; text-align: left; vertical-align: top; }
 th { background: var(--card); font-weight: 600; }
 a { color: var(--accent); }
-.note { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1.5rem; font-size: .95rem; line-height: 1.85; }
+.note { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1.5rem; font-size: .95rem; line-height: 1.85; box-shadow: var(--shadow-face); }
+/* 2026-11-23。奥行き。注釈の札を面の高さに置く。光は左上から当て、影は右下へ落とす。紙では影を外す。 */
+@media print { .note { box-shadow: none; } }
 .note p:last-child { margin-bottom: 0; }
 footer { margin-top: 3.5rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--faint); line-height: 1.85; }
 footer a { color: var(--faint); }
@@ -193,7 +199,7 @@ footer a { color: var(--faint); }
 <div class="note">
 <p>根本卓哉「自己実験としての名乗り —— 非流派が独我流を名乗るとき、何が欠けるか」（公開ノート、未査読）<br>
 https://cpsbvbng26-dotcom.vercel.app/notes/solitary-school.html<br>
-<b>最終更新 2026-11-11。改訂される媒体なので、閲覧日を付すのが正確である。</b></p>
+<b>最終更新 2026-11-23。改訂される媒体なので、閲覧日を付すのが正確である。</b></p>
 </div>
 
 <p><b>経験の欄を、等級として引かないこと。</b>すべて証言であり、段は一つも無い。<b>名乗ってよい理由は、この頁に書いていない。</b></p>

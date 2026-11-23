@@ -54,7 +54,10 @@ PAGES.forEach((page) => {
   const themeOf = (start, end) => {
     const i = html.indexOf(start);
     if (i < 0) return null;
-    const j = end ? html.indexOf(end, i) : i + 1200;
+    /* 終わりを書かないときは、その塊の閉じ括弧までを読む。以前は 1200 字で切っていた。
+     * 2026-11-23 に奥行きの段で暗い側の塊が長くなったとき、1200 字が次の塊（端末の設定の暗い側）まで届き、
+     * 後ろの値で前の値を上書きして読んでいたことが分かった。二つは check_site.js が一字一句同じと見ているが、読む塊は一つにする。 */
+    const j = end ? html.indexOf(end, i) : html.indexOf('}', i);
     const block = html.slice(i, j < 0 ? i + 1200 : j);
     const out = {};
     [...block.matchAll(/--([a-z-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
@@ -65,8 +68,9 @@ PAGES.forEach((page) => {
   const dark = themeOf(':root[data-theme="dark"] {');
   if (!light || !dark) { ok(page + ' に配色の定義がある', false); return; }
 
+  /* 2026-11-23。面の下の色（--card-lo）。面は上から下へ --card から --card-lo へ暗くなるので、字はその両端に載る。 */
   [['ライト', light], ['ダーク', dark]].forEach(([name, t]) => {
-    ['bg', 'card'].forEach((baseName) => {
+    ['bg', 'card', 'card-lo'].forEach((baseName) => {
       const base = t[baseName];
       if (!base) return;
       TEXT_TOKENS.forEach((tok) => {
@@ -76,6 +80,28 @@ PAGES.forEach((page) => {
            r >= AA, r.toFixed(2) + ':1（必要 ' + AA + '）');
       });
     });
+  });
+
+  /* 2026-11-23 の奥行き。地の左上に光（--glow、rgba）を重ねる。字はその上にも載るので、光を最も濃く重ねた地の色で、
+   * 本文の四色の比を測る（明暗それぞれ一項目。いちばん低い比を出す）。光は明るい側では白、暗い側では指し色である。 */
+  const blockOf = (start) => {
+    const i = html.indexOf(start);
+    return i < 0 ? '' : html.slice(i, html.indexOf('}', i));
+  };
+  const rgbaOf = (b, name) => {
+    const m = new RegExp('--' + name + ':\\s*rgba\\((\\d+),\\s*(\\d+),\\s*(\\d+),\\s*([\\d.]+)\\)').exec(b);
+    return m ? [Number(m[1]), Number(m[2]), Number(m[3]), Number(m[4])] : null;
+  };
+  const over = (c, base) => '#' + [0, 1, 2].map((k) => {
+    const g = parseInt(base.replace('#', '').slice(2 * k, 2 * k + 2), 16);
+    return Math.round(c[k] * c[3] + g * (1 - c[3])).toString(16).padStart(2, '0');
+  }).join('');
+  [['ライト', light, blockOf(':root {')], ['ダーク', dark, blockOf(':root[data-theme="dark"] {')]].forEach(([name, t, b]) => {
+    const glow = rgbaOf(b, 'glow');
+    if (!glow || !t.bg) return;
+    const lit = over(glow, t.bg);
+    const low = Math.min(...TEXT_TOKENS.filter((tok) => t[tok]).map((tok) => ratio(t[tok], lit)));
+    ok(page + ' ' + name + ' 本文の四色 / 光を重ねた地 ' + lit + '（--glow）', low >= AA, low.toFixed(2) + ':1（必要 ' + AA + '）');
   });
 
   /* 2026-11-14 の意匠（researcher-profile の design.js）。帯はロゴの二色（墨と金）で描く。

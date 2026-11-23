@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-XJDyQ+N+Gm2ptw3c3yrqIE6xtrtWQPST5zWqe+T1QC8='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-hjGpf7bsEgOg+HyvLsj3qR2U3iwWIHPYzO0uPS2wu6A='; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <title>ページが見つかりません | 根本卓哉</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#faf9f7">
 <style>
-:root { --bg:#faf9f7; --text:#17171a; --muted:#63636b; --line:#e6e4df; --accent:#8a6a3d; }
-:root[data-theme="dark"] { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; }
+:root { --bg:#faf9f7; --text:#17171a; --muted:#63636b; --line:#e6e4df; --accent:#8a6a3d; --shadow-face: inset 0 1px 0 rgba(255, 255, 255, .9), .5px 1px 1px rgba(23, 23, 26, .05), 1px 2px 6px -1px rgba(23, 23, 26, .07); --shadow-float: inset 0 1px 0 rgba(255, 255, 255, .9), 1px 2px 3px rgba(23, 23, 26, .06), 3px 8px 18px -6px rgba(23, 23, 26, .14); }
+:root[data-theme="dark"] { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; --shadow-face: inset 0 1px 0 rgba(255, 255, 255, .05), .5px 1px 1px rgba(0, 0, 0, .3), 1px 2px 6px -1px rgba(0, 0, 0, .28); --shadow-float: inset 0 1px 0 rgba(255, 255, 255, .07), 1px 2px 3px rgba(0, 0, 0, .32), 3px 8px 18px -6px rgba(0, 0, 0, .42); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; }
+  :root:not([data-theme="light"]) { --bg:#121214; --text:#ececee; --muted:#9c9ca4; --line:#2a2a2d; --accent:#b08d57; --shadow-face: inset 0 1px 0 rgba(255, 255, 255, .05), .5px 1px 1px rgba(0, 0, 0, .3), 1px 2px 6px -1px rgba(0, 0, 0, .28); --shadow-float: inset 0 1px 0 rgba(255, 255, 255, .07), 1px 2px 3px rgba(0, 0, 0, .32), 3px 8px 18px -6px rgba(0, 0, 0, .42); }
 }
 html { color-scheme: light dark; }
 :root[data-theme="light"] { color-scheme: light; }
@@ -41,9 +41,19 @@ a {
   display: inline-block; padding: .7rem 1.6rem;
   color: inherit; text-decoration: none; font-size: .88rem;
   border: 1px solid var(--line); border-radius: 999px;
-  transition: border-color .2s;
+  box-shadow: var(--shadow-face);
+  transition: border-color .2s, box-shadow .2s ease-out, translate .2s ease-out;
 }
-a:hover { border-color: var(--accent); }
+/* 2026-11-23。奥行き。トップへ戻るリンクを面の高さに置き、指したときと焦点が入ったときに 2px 浮かせる。光は左上から当て、影は右下へ落とす。 */
+a:hover, a:focus-visible { border-color: var(--accent); translate: 0 -2px; box-shadow: var(--shadow-float); }
+:where(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  a:hover, a:focus-visible { translate: none; }
+}
+@media print {
+  *, *::before, *::after { box-shadow: none !important; }
+}
 </style>
 </head>
 <body>

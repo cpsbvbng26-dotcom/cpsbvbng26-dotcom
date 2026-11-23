@@ -122,6 +122,15 @@ const CASES = [
    (s) => s.replace('--muted: #63636b;', '--muted: #c9c9cf;'),
    'check_contrast.js', ''],
 
+  /* 2026-11-23 の奥行きで足した二色。面の下の色（--card-lo）と、地に重ねる光（--glow）。 */
+  ['暗い側の面の下の色を明るくすると配色が落ちる', 'index.html',
+   swap('--card-lo: #161618;', '--card-lo: #2c2c30;'),
+   'check_contrast.js', 'ダーク --faint / --card-lo'],
+
+  ['暗い側の地に重ねる光を濃くすると配色が落ちる', 'index.html',
+   (s) => s.replace('--glow: rgba(176, 141, 87, .045);', '--glow: rgba(176, 141, 87, .3);'),
+   'check_contrast.js', 'ダーク 本文の四色 / 光を重ねた地'],
+
   ['作用素の照合用の数値をずらすと落ちる', 'verification/trinity_fixtures.json',
    (s) => s.replace('0.5025', '0.5026'),
    'check_trinity.js', ''],
