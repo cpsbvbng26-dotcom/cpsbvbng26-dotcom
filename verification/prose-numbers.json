@@ -908,6 +908,78 @@
         "autonomy-and-self-cultivation: verification/check_hygiene.py / cpsbvbng26-dotcom: verification/check_ecosystem.js / errata-check: tests/check_tool.py"
       ]
     ],
+    "errata-check/SUBMIT.md": [
+      [
+        "- コミット：",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "ト：# 件（マージを除くと ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "を除くと # 件、マージは ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "のコミット：#-# が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        " # 件、#-# が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        " # 件、#-# が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "した pull request：",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        " に Claude があるもの：",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        " があるもの：# 件。無い ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "トの作者の名：Claude が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        " が # 件、根本卓哉 が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "Takuya Nemoto が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "vbng#-dotcom が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ],
+      [
+        "pendabot[bot] が ",
+        "件",
+        "errata-check: tests/check_tool.py"
+      ]
+    ],
     "justice-and-algorithms/.zenodo.json": [
       [
         " approach) onto ",
