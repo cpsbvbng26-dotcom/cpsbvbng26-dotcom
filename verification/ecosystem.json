@@ -5854,11 +5854,6 @@
           "repo": "autonomy-and-self-cultivation",
           "file": "^papers/[^/]+\\.md$",
           "行": "^Takuya Nemoto — {語}$"
-        },
-        {
-          "repo": "sophaxis",
-          "file": ".",
-          "句": "author line changed to (?:\"|\\\\\"|&quot;){語}(?:\"|\\\\\"|&quot;)"
         }
       ],
       "記録": [
