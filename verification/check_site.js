@@ -3698,7 +3698,7 @@ section('10.69 デザインに関する法的な扱いの頁（2026-11-22）');
     });
     const 名指し = [[c.keyboard, '辿る順が読む順と同じ'], [c.keyboard, '焦点の枠が出ない要素が無い'], [c.self, '焦点の枠を消している頁が無い'], [c.self, "の飛ばす導線に行き先がある"],
       [c.self, '頁が暗い側の色を持つ'], [c.self, '代替テキストを持ち'], [c.contrast, 'が本文中のリンクを下線で示している'],
-      [c.self, "section('10.65 "], [c.self, "section('10.66 "], [c.self, "section('10.68 "], [c.self, "section('10.58 "], [c.self, "section('13. "], [c.self, "section('2. "], [c.self, "section('6c. "]];
+      [c.self, "section('10.65 "], [c.self, "section('10.66 "], [c.self, "section('10.68 "], [c.self, "section('10.70 "], [c.self, "section('10.58 "], [c.self, "section('13. "], [c.self, "section('2. "], [c.self, "section('6c. "]];
     名指し.forEach(([t, s]) => { if (t.indexOf(s) < 0) bad.push('名指した検査が無い：' + s); });
     /* 六。決まった文。 */
     ['ja', 'en'].forEach((l) => 文の頁[l].forEach((s) => { if (c[l].indexOf(s) < 0) bad.push(l + '：' + s.slice(0, 16)); }));
@@ -3733,6 +3733,53 @@ section('10.69 デザインに関する法的な扱いの頁（2026-11-22）');
   const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
   ok('壊して確かめる：下の欄・表・配る画像と字のファイル・カードの枚数・ロゴ・書体の名と並び・条文と写し・要旨の断り・許諾の句・README の区分・幅・比・動き・aria-label・弁護士の一文のどれを崩しても落ちる（'
      + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
+/* ------------------------------------------------- 10.70 奥行き（2026-11-23）
+ *
+ * 利用者が「全てのサイトを可能な限り洗練させつつ立体的にして」と求め、Claude が段の決まりを決めた。決まりは researcher-profile の
+ * README の「奥行き」と、その check_build.js の 3i にある。ここでは配っている頁の側を見る。
+ * 生成した頁はどれも、面の下の色・光・縁の明かり・四つの影の段を、明るい側・暗い側・端末の設定の暗い側に持ち、値はトップの頁と同じ。
+ * 動きを減らす設定では浮きを外し、紙では影と濃淡を外す。 */
+section('10.70 奥行き（2026-11-23）');
+{
+  const 生成 = PAGES.filter((f) => /<span class="updated">/.test(read(f)));
+  const KEYS = ['card-lo', 'glow', 'edge-hi', 'shadow-face', 'shadow-float', 'shadow-front', 'shadow-well'];
+  const 段 = (h) => {
+    const g = (re) => ((re.exec(h) || [])[1] || '').replace(/\s+/g, ' ').trim();
+    const pick = (b) => KEYS.map((k) => (new RegExp('--' + k + ': ([^;]+);').exec(b) || [])[1] || null);
+    const light = g(/:root \{([^}]*)\}/), dark = g(/:root\[data-theme="dark"\] \{([^}]*)\}/), auto = g(/:root:not\(\[data-theme="light"\]\) \{([^}]*)\}/);
+    return { light: pick(light), dark: pick(dark), auto: pick(auto), same: dark === auto };
+  };
+  const 基 = 段(read('index.html'));
+  const 問題 = (pages) => {
+    const bad = [];
+    Object.entries(pages).forEach(([f, h]) => {
+      const t = 段(h);
+      ['light', 'dark', 'auto'].forEach((k) => { if (t[k].some((v) => v === null)) bad.push(f + ' の ' + k + ' に段が欠ける'); });
+      if (!t.same) bad.push(f + ' の暗い側の二か所が違う');
+      if (JSON.stringify([t.light, t.dark]) !== JSON.stringify([基.light, 基.dark])) bad.push(f + ' の段の値がトップの頁と違う');
+      const rm = (/@media \(prefers-reduced-motion: reduce\) \{\s*\*, \*::before, \*::after \{[^}]*\}([\s\S]*?)\n\}/.exec(h) || [])[1] || '';
+      if (!/:hover[^{]*\{ translate: none; \}/.test(rm)) bad.push(f + ' の動きを減らす設定が浮きを外していない');
+      const pr = (/@media print \{([\s\S]*?)\n\}/.exec(h) || [])[1] || '';
+      if (pr.indexOf('box-shadow: none !important;') < 0 || pr.indexOf('background-image: none !important;') < 0) bad.push(f + ' の紙が影か濃淡を外していない');
+    });
+    return bad;
+  };
+  const pages = Object.fromEntries(生成.map((f) => [f, read(f)]));
+  const 今 = 問題(pages);
+  ok('生成した頁（' + 生成.length + ' 頁）が、面の下の色・光・縁の明かり・四つの影の段（' + KEYS.length + ' つ）を明暗の三か所に持ち、値がトップの頁と同じで、動きを減らす設定で浮きを外し、紙で影と濃淡を外す',
+     生成.length > 20 && 基.light.every((v) => v) && 今.length === 0, 今.slice(0, 4).join(' / '));
+  const 替 = (f, a, b) => Object.assign({}, pages, { [f]: pages[f].replace(a, b) });
+  const 壊し = [
+    ['端末の設定の暗い側から段を一つ外す', 替('cv.html', /(:root:not\(\[data-theme="light"\]\) \{[\s\S]*?)    --shadow-well: [^\n]*\n/, '$1')],
+    ['一つの頁の影の値を変える', 替('notes/mission.html', '--shadow-float: inset 0 1px 0 rgba(255, 255, 255, .9), 1px 2px 3px', '--shadow-float: inset 0 1px 0 rgba(255, 255, 255, .9), 2px 4px 6px')],
+    ['動きを減らす設定から浮きの外しを消す', 替('catalog.html', /(@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?)  [^\n]*\{ translate: none; \}\n/, '$1')],
+    ['紙から影の外しを消す', 替('papers/imperial-selfhood.en.html', 'box-shadow: none !important; ', '')],
+  ];
+  const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
+  ok('壊して確かめる：暗い側の段・影の値・動きを減らす設定の浮き・紙の影のどれを崩しても落ちる（' + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）',
+     通った.length === 0, 通った.join(', '));
 }
 
 section('10.60 CI の仕事の名前が名乗っている数');
