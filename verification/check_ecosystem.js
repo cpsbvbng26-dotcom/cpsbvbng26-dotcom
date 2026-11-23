@@ -7466,8 +7466,11 @@ console.log('\n13k. 2026-11-23：国立国会図書館デジタルコレクシ�
       const t = x[r + ':' + f] || '';
       if (!t) { bad.push(r + '/' + f + ' が読めない'); continue; }
       for (const id of ids) {
-        const k = t.split('ndljp/pid/' + id).length - 1 + t.split('dl.ndl.go.jp/pid/' + id).length - 1;
-        if (k < n) bad.push(r + '/' + f + ' に ' + id + ' が' + (k ? ' ' + n + ' か所そろっていない' : '無い'));
+        /* 二か所を求める面（ノートの頁の所在と sameAs）は、頁の URL の数で数える。所在の欄は番号と URL を両方持つので、番号を足すと sameAs の欠けを見逃す。 */
+        const url = t.split('dl.ndl.go.jp/pid/' + id).length - 1;
+        const ある = url > 0 || t.includes('ndljp/pid/' + id);
+        if (!ある) bad.push(r + '/' + f + ' に ' + id + ' が無い');
+        else if (n > 1 && url < n) bad.push(r + '/' + f + ' に ' + id + ' の頁が ' + n + ' か所そろっていない');
       }
       if (f.startsWith('papers/')) 全.filter((id) => !ids.includes(id) && t.includes('pid/' + id)).forEach((id) => bad.push(f + ' に別の篇の ' + id));
     }
