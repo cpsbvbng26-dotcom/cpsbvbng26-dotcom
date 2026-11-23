@@ -2447,7 +2447,8 @@ console.log('\n12b2. 作者のサイトの意匠と、訂正の登録簿の年�
 
 /* Sophaxis の頁（researcher-profile の sophaxis*.json と、写した notes/sophaxis*.html）は、
  * 載っている記録の数を地の文で名乗る。決めごと 5 により、名乗りを一覧の項目と突き合わせる。
- * 一覧の id は 2026.0001 から欠けずに並ぶ。sophaxis は十に入らないので、その記録とは比べない。 */
+ * 2026-11-23 に 2026.0001 を著者の求めで削除したので、一覧の id は 2026.0001 から欠けずには並ばない。
+ * 一覧の id は、sophaxis の data/papers で status が listed の記録の id と、同じものが同じ順に並ぶ。 */
 
 console.log('\n12c. Sophaxis の頁が名乗る記録の数');
 
@@ -2455,12 +2456,13 @@ console.log('\n12c. Sophaxis の頁が名乗る記録の数');
   const EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
     'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
   const listed = (html) => [...String(html).matchAll(/Sophaxis:(2026\.\d{4})<\/a>/g)].map((m) => m[1]);
-  const consecutive = (ids) => ids.length > 0 && ids.every((id, i) => id === '2026.' + String(i + 1).padStart(4, '0'));
+  const shownIds = (() => { try { const d = path.join(ROOT, 'sophaxis', 'data', 'papers'); return fs.readdirSync(d).filter((f) => /^\d{4}\.\d{4}\.json$/.test(f)).map((f) => JSON.parse(fs.readFileSync(path.join(d, f), 'utf8'))).filter((p) => p.status === 'listed').map((p) => p.id).sort(); } catch (e) { return []; } })();
+  const consecutive = (ids) => ids.length > 0 && ids.join() === shownIds.join();
   const ja = [read('researcher-profile', 'sophaxis.json'), read('cpsbvbng26-dotcom', 'notes/sophaxis.html')];
   const en = [read('researcher-profile', 'sophaxis.en.json'), read('cpsbvbng26-dotcom', 'notes/sophaxis.en.html')];
   const jaClaims = ja.map((t) => { const m = /いま載っている記録は (\d+) 件で/.exec(t || ''); return m ? Number(m[1]) : null; });
   const jaIds = ja.map((t) => listed(t || ''));
-  check('Sophaxis の頁（日本語）が名乗る記録の数が、一覧の項目の数と合い、id が欠けずに並ぶ',
+  check('Sophaxis の頁（日本語）が名乗る記録の数が、一覧の項目の数と合い、id が sophaxis の載っている記録（' + shownIds.length + ' 件）と同じに並ぶ',
     jaClaims.every((n, i) => n !== null && n === jaIds[i].length && consecutive(jaIds[i])),
     '名乗り ' + jaClaims.join('・') + ' / 一覧 ' + jaIds.map((x) => x.length).join('・'));
   const enClaims = en.map((t) => { const m = /The (\w+) records listed so far/.exec(t || ''); return m ? EN.indexOf(m[1]) : null; });
@@ -2469,6 +2471,8 @@ console.log('\n12c. Sophaxis の頁が名乗る記録の数');
     enClaims.every((n, i) => n !== null && n > 0 && n === enIds[i].length && consecutive(enIds[i]))
       && enIds.every((x) => x.join() === jaIds[0].join()),
     '名乗り ' + enClaims.join('・') + ' / 一覧 ' + enIds.map((x) => x.length).join('・'));
+  check('壊して確かめる：削除した 2026.0001 を一覧に戻す・載っている記録を一つ落とす・順を替える、のどれでも落ちる（3 / 3）',
+    shownIds.length > 1 && !consecutive(['2026.0001'].concat(shownIds)) && !consecutive(shownIds.slice(1)) && !consecutive(shownIds.slice().reverse()));
 }
 
 /* この検査自身が名乗る件数も、実際と合わせる。
@@ -4072,7 +4076,8 @@ console.log('\n12r. 十一度目の見落とし：NEMFSI のすべての所在�
       }
     }
     if (所在の数 < 20) bad.push('NEMFSI のリンクが ' + 所在の数 + ' しか読めない');
-    if (語 !== null && 語の数 < 3) bad.push('使わないと決めた語の英訳が ' + 語の数 + ' しか読めない（翻刻の著者の行と Sophaxis の注があるはず）');
+    /* Sophaxis の注は、その記録 2026.0001 を 2026-11-23 に著者の求めで削除して、消えた。許す所からも外した。残るのは翻刻の著者の行の二つ。 */
+    if (語 !== null && 語の数 < 2) bad.push('使わないと決めた語の英訳が ' + 語の数 + ' しか読めない（翻刻の著者の行が二つあるはず）');
     /* 一。面と、生成もと。 */
     for (const [r, fl] of Object.entries(N['面'])) for (const f of fl) {
       const t = String((x.全部[r] || {})[f] || '');

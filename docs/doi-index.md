@@ -285,7 +285,7 @@ PhilPapers は削除を依頼として受け付けるので、まだ消えてい
 
 | DOI | 所在 |
 | --- | --- |
-| `10.5281/zenodo.0000000` | `sophaxis/.github/ISSUE_TEMPLATE/submission.yml` と `submission-ja.yml` の書き方の例 |
+| `10.2139/ssrn.0000000` | `sophaxis/.github/ISSUE_TEMPLATE/submission.yml` と `submission-ja.yml` の書き方の例。2026-11-23 に、Zenodo の形の例から替えました |
 | `10.5281/zenodo.1234567` | `deposit-check/README.md` の使い方の例 |
 | `10.5281/zenodo.2345678` | 同上 |
 | `10.6084/m9.figshare.7654321` | 同上 |
