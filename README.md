@@ -304,15 +304,15 @@ edX と東北大学 MOOC の修了証も、学部一年の前半で得ていま�
 
 ✴︎Verification✴︎
 
-このリポジトリは、push のたびに 2003 項目の検査を通します。依存パッケージはありません。
+このリポジトリは、push のたびに 2436 項目の検査を通します。依存パッケージはありません。
 
 <details>
 <summary>検査の内訳</summary>
 
 ```
 node verification/check_text.js      # 誤変換とバッジ記法
-node verification/check_contrast.js  # 配色の読みやすさ 899 項目
-node verification/check_site.js      # サイトの構造 1014 項目
+node verification/check_contrast.js  # 配色の読みやすさ 1329 項目
+node verification/check_site.js      # サイトの構造 1017 項目
 node verification/check_trinity.js   # 作用素の数値 90 項目
 ```
 
@@ -347,11 +347,11 @@ node verification/check_all.js        # 10 リポジトリの検査を全部（4
 node doi-index-check/verification/check_tool.js          # DOI の索引を当たる道具 52 項目
 node doi-index-check/verification/check_tool.js --break  # 壊す先 33 通り
 node verification/check_ecosystem.js  # 10 リポジトリ横断（項目の数は docs/checks.md）
-node verification/check_guards.js     # 検査そのものを壊して確かめる 84 項目
+node verification/check_guards.js     # 検査そのものを壊して確かめる 86 項目
 ```
 
 **`check_guards.js`** は、検査そのものを検査します。**検査の道具は、通ることでは信用できない** ——
-何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 78 通り**あって、
+何も見ていなくても全部通るからです。リポジトリを複製し、通る状態を**壊す先は 80 通り**あって、
 壊したところがちょうど落ちることを確かめます。sitemap の日付を古くする、CSP のハッシュを変える、
 核の頁に置かないと決めた語を入れる、先祖の頁で階級を断定する、JS 無しで本文を隠す、
 暗い側の指定を食い違わせる、内部リンクを壊す、本文の色を薄くする、照合用の数値をずらす、
