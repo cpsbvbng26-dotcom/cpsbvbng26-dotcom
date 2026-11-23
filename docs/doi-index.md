@@ -177,11 +177,18 @@ budo-first-person-notes、family-history-archive、social-data-experiments の�
 
 | 論文 | 正 | 別の所在 |
 | --- | --- | --- |
-| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA` |
-| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI` |
+| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、国立国会図書館 `info:ndljp/pid/15017937` |
+| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、国立国会図書館 `info:ndljp/pid/15017938` |
 | Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI` |
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
-| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12` |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、国立国会図書館 `info:ndljp/pid/15017939` |
+
+国立国会図書館の番号は、デジタルコレクションの資料の番号です。DOI ではありません。
+独身の論文、帝国的自己の論文、海軍公報の史料ノートが、e デポで収集されて載りました。
+書誌が登録されたのは 2026-11-21 です。
+番号は、2026-11-23 に国立国会図書館サーチの検索 API とデジタルコレクションの資料 API から読みました。
+公開の範囲は、どれもインターネット公開です。
+書誌の刊行の日付は、独身の論文が 2026-08-22、ほかの二つが 2026-08 です。
 
 ### Zenodo に無い本文
 
