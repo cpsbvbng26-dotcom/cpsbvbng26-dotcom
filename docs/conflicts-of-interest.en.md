@@ -3,6 +3,7 @@
 This is a record of 2026-11-20.
 It sets down what the author said, from the point of view of conflicts of interest, about taking the principle of ki (氣の原理) as a subject of research, and about the conflicts that wake when a subject comes close.
 The author said it on 2026-11-20, and Claude wrote it down.
+On 2026-11-23, a section was added on research into the principle of ki that was considered and not pursued.
 
 Japanese: [利益相反の記録](conflicts-of-interest.md)
 
@@ -67,6 +68,81 @@ The change narrows what Sophaxis accepts, so it is announced the period ahead th
 ### This is not a reason not to research it
 
 This is not a record of a reason not to research the subject; it is a record of the conditions under which it could be handled.
+
+## Considered on 2026-11-23
+
+This section was added on 2026-11-23.
+Claude wrote down what the author said.
+The text of 2026-11-20 above stays as it was.
+The position of 2026-11-20 has not changed.
+
+### What was considered
+
+On 2026-11-23, the author considered treating the principle of ki as an object of objective research.
+It was to be done with the strong conflict of interest disclosed.
+In the author's words: 「氣の原理についての研究を強い利益相反を開示しつつ客観的にやろうと思う」.
+As the reason, the author said that leaving unused the knowledge gained inside the practice would be a waste (「勿体無い」).
+The outputs were to be placed only on preprint servers that charge neither authors nor readers.
+In the author's words: 「プレプリントサーバーに留めておく」.
+
+### Reading the rules of the organisation
+
+At the author's request, Claude read the rules of the Shinshin Toitsu Aikido Kai on 2026-11-23 (Japan time).
+The purpose was to see whether the rules raised any problem.
+The name of the organisation is written, as in the section "Position" above, to disclose the history of affiliation.
+No living person is named, including the people named on the organisation's site.
+
+| Document | Location | Version | SHA-256 of the file fetched |
+| --- | --- | --- | --- |
+| Membership Rules (会員規約) | `https://shinshintoitsuaikido.org/wp/wp-content/uploads/2026/03/会員規約2026.pdf` (linked as 「会員規約」 in the site's menu) | Supplementary provisions: in force from 2011-04-01, revised 2026-04-01 | `3875eeb158c6d5f7aaa340462239bc5766ea86fc6f2ed2f0e985c108d107bba3` |
+| Site policy (サイトポリシー; the page is titled 「利用規約」) | `https://shinshintoitsuaikido.org/guidance/sitepolicy.php` | The page gives no date of version | `2ca8d01c3a55574eca5a564d5bcc393c1a6fd280c9bf249986035637a64ed387` |
+
+The following clauses of the Membership Rules are quoted word for word, in the original Japanese.
+They are paragraphs 1, 2, 3 and 5 of Article 13, item (5) of Article 14, and Article 17.
+The line breaks of the PDF, and the stray spaces that came in when the text was extracted, were removed.
+No translation is given here.
+
+> 第１３条 権利帰属
+>
+> １.心身統一道および心身統一合氣道の内容、本会が発行する著作物や教材など、すべての著作権、その他の知的財産権は本会に帰属する。会員は自身の心身統一道および心身統一合氣道の稽古にのみこれを使用することができる。
+>
+> ２.会員は、本会から提供されるあらゆる形のコンテンツを使用し、書籍の出版・教材の製作・インターネットでの公開など、著作権法に違反する行為をすることはできない。また、本会から提供されるあらゆる形のコンテンツを利用する場合には、あらかじめ本会の許可を得るものとする。
+>
+> ３.会員は、心身統一道および心身統一合氣道に関する書籍の出版や有料動画などの作成・販売、および教材の製作はできない。
+>
+> ５.第１項、第２項、第３項の規定は、会員の退会後または除名後も同様とする。
+
+> 第１４条 禁止事項
+>
+> （５）許可なく撮影・録音・記録すること
+
+> 第１７条 除名
+>
+> 会員が本規約に違反し本会の指示に従わない場合、もしくは会員が本会の社会的信用を毀損した場合は、社員総会の決定により当該会員を除名する。当該会員は段位・伝位・級位は剥奪され、再入会することはできない。
+
+Paragraph 5 of Article 13 says that paragraphs 1 to 3 apply in the same way after a member resigns or is expelled.
+Whether, and how far, this binds a former member was not checked.
+How it relates to copyright law was not checked either.
+No lawyer has reviewed it.
+Whether the author is a member now is not recorded here.
+Expulsion under Article 17 concerns members.
+
+Claude also read the Rules for Qualified Instructors (指導資格者規約; supplementary provisions: in force from 2016-04-01, revised 2022-04-01).
+These rules apply to qualified instructors.
+The section 「武道」 of the CV lists only fifth kyu of Shinshin Toitsu Aikido and the first grade of Shinshin Toitsu Dō.
+No instructor qualification is written anywhere in the records.
+
+### The decision not to proceed
+
+On the same day, 2026-11-23, the author decided not to proceed with this research.
+In the author's words: 「いやぁでもやっぱり危ないね辞めておく」.
+The author judged the legal risk to be too high (「危ない」).
+No research has been started.
+The position of 2026-11-20 therefore continues as it was.
+The principle of ki, if handled at all, is handled only in the form of a first-person record.
+It is not added to the self-taught series either.
+It is not listed on Sophaxis either.
+The rule of Sophaxis from 2026-12-15 also stays as it is.
 
 ## Dormant conflicts of interest (those that wake when the subject comes close)
 
