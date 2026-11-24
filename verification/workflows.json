@@ -112,6 +112,7 @@
     "indexnow.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"indexnow": null} },
     "labels.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"issues": "write"}, "jobs": {"labels": null} },
     "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null} },
-    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} }
+    "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null} },
+    "wayback.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"save": null} }
   }
 }
