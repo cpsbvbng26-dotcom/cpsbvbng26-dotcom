@@ -4,6 +4,7 @@ This is a record of 2026-11-20.
 It sets down what the author said, from the point of view of conflicts of interest, about taking the principle of ki (氣の原理) as a subject of research, and about the conflicts that wake when a subject comes close.
 The author said it on 2026-11-20, and Claude wrote it down.
 On 2026-11-23, a section was added on research into the principle of ki that was considered and not pursued.
+On 2026-11-24, a subsection on means of contact was added.
 
 Japanese: [利益相反の記録](conflicts-of-interest.md)
 
@@ -27,6 +28,16 @@ The first grade of Shinshin Toitsu Dō is the grade that recognises being able t
 The teacher's name is not written here.
 Nor is anything that would identify the teacher.
 This is because rule 10 limits what is written about living persons.
+
+### Means of contact
+
+The author said this on 2026-11-24, and Claude wrote it down.
+There is a direct means of contact with the teacher.
+It is the telephone number from the time we were in touch, unchanged.
+There is an indirect means of contact with a professor emeritus of a university, who evaluated my path since leaving high school.
+There is a means of contact because I am involved, or was involved, with each of them.
+No contact details are written in this record.
+Neither name is written here.
 
 The name of the organisation is written to disclose the history of my affiliation.
 This record has not been approved by the organisation.
