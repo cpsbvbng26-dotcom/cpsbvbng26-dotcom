@@ -7533,6 +7533,57 @@ console.log('\n13k. 2026-11-23：国立国会図書館デジタルコレクシ�
   const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
   check('壊して確かめる：表の行の入れ替え・論文の頁の欠けと取り違え・五言語の設定・ノートの sameAs・CITATION.cff・README・独我流の頁のどれを崩しても落ちる（'
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+
+  /* 2026-11-24：三篇は、全国書誌（電子書籍編）の 2026-11-24 提供分（digital_20261124.tsv）に載った。
+   * 行の ID（R100000039-I15017937〜15017939）は国立国会図書館サーチの書誌の番号で、PID の数と同じ数を持つ。
+   * 受理日はどれも 2026-10-06、収集根拠はオンライン資料収集制度。NDL の所在を並べる面は、すべてこれを添える。
+   * 五。どの面にも、その面が扱う篇の書誌の頁（ndlsearch.ndl.go.jp/books/R100000039-I…）がある。
+   * 六。どの面にも、その面の言語での全国書誌の名があり、そのそばに 2026-11-24 がある（最終更新の日と取り違えないよう、名から 160 字の内で見る）。
+   * 七。論文の頁には、その篇の書誌しか無い。行・<p>・<li> の一つに PID と書誌の両方があれば、同じ篇の組である。
+   * 八。壊して確かめる。 */
+  const 書誌 = (id) => 'ndlsearch.ndl.go.jp/books/R100000039-I' + id;
+  const 名 = (f) => (/\.de\./.test(f) ? 'Japanischen Nationalbibliografie' : /\.fr\./.test(f) ? 'Bibliographie nationale japonaise'
+    : /\.it\./.test(f) ? 'Bibliografia nazionale giapponese' : /\.en\./.test(f) ? 'Japanese National Bibliography' : '全国書誌（電子書籍編');
+  const 書誌の問題 = (x) => {
+    const bad = [];
+    for (const [r, f, ids] of 面) {
+      const k = r + ':' + f;
+      const t = x[k] || '';
+      if (!t) { bad.push(r + '/' + f + ' が読めない'); continue; }
+      ids.filter((id) => !t.includes(書誌(id))).forEach((id) => bad.push(r + '/' + f + ' に ' + id + ' の全国書誌の書誌の頁が無い'));
+      const n = 名(f);
+      let 近い = false;
+      for (let i = t.indexOf(n); i >= 0 && !近い; i = t.indexOf(n, i + 1)) 近い = t.slice(Math.max(0, i - 160), i + n.length + 160).includes('2026-11-24');
+      if (!近い) bad.push(r + '/' + f + ' に「' + n + '」と 2026-11-24 がそろっていない');
+      if (f.startsWith('papers/')) 全.filter((id) => !ids.includes(id) && t.includes('R100000039-I' + id)).forEach((id) => bad.push(f + ' に別の篇の書誌 ' + id));
+      t.split(/\n|\\n|<p>|<li>/).forEach((l) => {
+        const p = 全.filter((id) => l.includes('pid/' + id)).join();
+        const q = 全.filter((id) => l.includes('R100000039-I' + id)).join();
+        if (p && q && p !== q) bad.push(k + ' の一つの段で、NDL の番号と全国書誌の書誌が別の篇を指す');
+      });
+    }
+    return bad;
+  };
+  const 書誌の今 = 書誌の問題(今);
+  check('全国書誌（電子書籍編）の 2026-11-24 提供分が、NDL の所在を並べる ' + 面.length + ' の面にそろい（篇ごとの書誌の頁・言語ごとの名と日付）、NDL の番号と同じ篇を指す',
+    書誌の今.length === 0, 書誌の今.slice(0, 4).join(' / '));
+  const 書誌の壊し = [
+    ['一覧の表の独身論の行に、人格的帝国主義の書誌を書く', 替('cpsbvbng26-dotcom:docs/doi-index.md', '[`R100000039-I15017937`](https://' + 書誌('15017937') + ')', '[`R100000039-I15017938`](https://' + 書誌('15017938') + ')')],
+    ['人格的帝国主義の英語の論文の頁から書誌を外す', 替('cpsbvbng26-dotcom:papers/imperial-selfhood.en.html', new RegExp(書誌('15017938').replace(/[./]/g, '\\$&'), 'g'), 'example.org/')],
+    ['海軍公報の論文の頁に別の篇の書誌を書く', 替('cpsbvbng26-dotcom:papers/naval-gazette-otani-tsune.html', /<\/body>/, 'R100000039-I15017937</body>')],
+    ['フランス語の設定の日付を変える', 替('researcher-profile:site.fr.json', /fichier du 2026-11-24/g, 'fichier du 2026-11-23')],
+    ['イタリア語の頁から全国書誌の名を外す', 替('cpsbvbng26-dotcom:index.it.html', /Bibliografia nazionale giapponese/g, 'catalogo')],
+    ['英語のノートの設定から海軍公報の書誌を外す', 替('researcher-profile:notes.en.json', /R100000039-I15017939/g, 'R0')],
+    ['史料ノートの CITATION.cff から外す', 替('naval-gazette-notes:CITATION.cff', /ndlsearch[^"]*/g, 'example.org/')],
+    ['自己陶冶の README の表で二篇の書誌を入れ替える', 替('autonomy-and-self-cultivation:README.md', /R100000039-I1501793([78])/g, (m, d) => 'R100000039-I1501793' + (d === '7' ? '8' : '7'))],
+    ['独我流の頁から外す', 替('solitary-school:index.html', /ndlsearch\.ndl\.go\.jp/g, 'example.org')],
+    ['英語の README の行で篇を取り違える', 替('cpsbvbng26-dotcom:README.en.md', /R100000039-I15017939\)/, 'R100000039-I15017938)')],
+    ['ドイツ語の頁の段で書誌を入れ替える', 替('cpsbvbng26-dotcom:index.de.html', /R100000039-I1501793([78])/g, (m, d) => 'R100000039-I1501793' + (d === '7' ? '8' : '7'))],
+    ['投稿の記録から日付を外す', 替('cpsbvbng26-dotcom:docs/submission-disclosure.md', /2026-11-24/g, '2026-11-2x')],
+  ];
+  const 書誌の通った = 書誌の壊し.filter(([, x]) => 書誌の問題(x).length === 0).map(([n]) => n);
+  check('壊して確かめる：一覧の行の取り違え・論文の頁の欠けと取り違え・設定の日付・頁の名・ノートの設定・CITATION.cff・README の表と行・独我流の頁・五言語の段・投稿の記録のどれを崩しても落ちる（'
+    + (書誌の壊し.length - 書誌の通った.length) + ' / ' + 書誌の壊し.length + '）', 書誌の通った.length === 0, 書誌の通った.join(', '));
 }
 
 console.log('\n14. この検査が名乗る件数');

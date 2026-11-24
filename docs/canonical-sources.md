@@ -62,9 +62,9 @@ README では `本丸` が `trinity-infinity` を指したままでした。同�
 
 | 論文 | 正（Zenodo） | 別の DOI と所在 |
 |---|---|---|
-| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、国立国会図書館 [`info:ndljp/pid/15017937`](https://dl.ndl.go.jp/pid/15017937) |
-| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、国立国会図書館 [`info:ndljp/pid/15017938`](https://dl.ndl.go.jp/pid/15017938) |
-| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12)、国立国会図書館 [`info:ndljp/pid/15017939`](https://dl.ndl.go.jp/pid/15017939) |
+| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、国立国会図書館 [`info:ndljp/pid/15017937`](https://dl.ndl.go.jp/pid/15017937)（[全国書誌（電子書籍編）](https://ndlsearch.ndl.go.jp/books/R100000039-I15017937)の 2026-11-24 提供分に収録） |
+| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、国立国会図書館 [`info:ndljp/pid/15017938`](https://dl.ndl.go.jp/pid/15017938)（[全国書誌（電子書籍編）](https://ndlsearch.ndl.go.jp/books/R100000039-I15017938)の 2026-11-24 提供分に収録） |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons [レコード](https://works.hcommons.org/records/q36z2-98e12)、国立国会図書館 [`info:ndljp/pid/15017939`](https://dl.ndl.go.jp/pid/15017939)（[全国書誌（電子書籍編）](https://ndlsearch.ndl.go.jp/books/R100000039-I15017939)の 2026-11-24 提供分に収録） |
 | The Trinity-Infinity Framework, Series II | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
 | 「30歳魔法使い」都市伝説の構造分析 | `10.5281/zenodo.23114131` | Knowledge Commons [レコード](https://works.hcommons.org/records/vaa96-ss949) |
 
