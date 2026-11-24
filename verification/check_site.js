@@ -1909,6 +1909,11 @@ section('10.59 自己紹介が名乗っていること');
     const 目録 = JSON.parse(read('catalog.json'));
     const 二年DOI = 目録.works.filter((w) => w.begun && w.begun.period === 'second')
       .map((w) => w.doi).filter(Boolean);
+    /* 学部一年次の成果の続き（決めごと 15 が許すもの）も、書いたのは学部二年次である。目録の始めた時期は
+     * 続きの先のリポジトリの日付を出すので、一年次の側に入る。**八篇の数え直しからは引く。**
+     * 2026-11-24 に、独身論の続き（SSRN）を Zenodo に無い本文の表に足した。引かなければ九篇に数える。 */
+    const 続きDOI = 目録.works.filter((w) => w.begun && w.begun.period === 'first'
+      && /^学部一年次の成果（.*）の続き$/.test(w.begun.ja || '')).map((w) => w.doi).filter(Boolean);
     /* **並べた四つの数を、それぞれの出どころから数え直す。**篇は論文の頁、
      * DOI は doi-index.md の表、リポジトリは joss.md の表、修了証は cv.html である。
      * **一つ増えて散文が据え置きになる形を止める。** */
@@ -1919,7 +1924,8 @@ section('10.59 自己紹介が名乗っていること');
     const 頁なし節 = di.slice(di.indexOf('### 論文の頁をまだ作っていない本文'), di.indexOf('## 削除した所在'));
     const 篇 = fs.readdirSync(path.join(ROOT, 'papers'))
       .filter((x) => x.endsWith('.html') && !x.endsWith('.en.html')).length
-      + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `/gm) || []).length
+      + (無い節.match(/^\| (?!論文 \|)[^-|][^|]* \| SSRN `[^\n]*/gm) || [])
+        .filter((l) => !二年DOI.concat(続きDOI).some((d) => l.indexOf(d) >= 0)).length
       + (頁なし節.match(/^\| (?!論文 \|)[^-|][^|]* \| `10\.5281\/zenodo\.\d+` \|/gm) || [])
         .filter((l) => !二年DOI.some((d) => l.indexOf(d) >= 0)).length;
     const 自身 = di.slice(di.indexOf('## 著者自身の Zenodo DOI'), di.indexOf('## 一括置換してはいけない二つ'));
@@ -3067,25 +3073,34 @@ section('10.63 全作品の目録と、道具の一覧');
   const 時期欠け = [];
   const 二年 = ['sophaxis', 'deposit-check'];
   /* 黄金比の窓の予想のプレプリント（Figshare）と、その確かめの走査の事前登録（OSF、2026-11-17 に足した）と、
-   * その解決の稿（Figshare `10.6084/m9.figshare.35050300`、2026-11-18 に足した）。
-   * この三つだけが一年次の成果の続きで、ほかの行がその書き方になっても、三つのどれかが外れても落とす。 */
-  const 続きの作品 = ['repeated-games-cyclic-operator', 'golden-window-preregistration', 'golden-window-resolution'];
+   * その解決の稿（Figshare `10.6084/m9.figshare.35050300`、2026-11-18 に足した）は、Trinity-Infinity の続き。
+   * 独身論の続き（SSRN `10.2139/ssrn.7726682`、2026-11-24 に足した）は、独身論の続き。
+   * この四つだけが一年次の成果の続きで、ほかの行がその書き方になっても、四つのどれかが外れても、
+   * 続きの先の名が入れ替わっても落とす。 */
+  const 続きの作品 = {
+    'repeated-games-cyclic-operator': 'Trinity-Infinity',
+    'golden-window-preregistration': 'Trinity-Infinity',
+    'golden-window-resolution': 'Trinity-Infinity',
+    'celibate-individual-follow-up': 'The Nobility and Exemplarity of the Celibate Individual',
+  };
   [['catalog.html', '学部一年次', '学部二年次'], ['catalog.en.html', 'First undergraduate year', 'Second undergraduate year']].forEach(([f, y1, y2]) => {
     const h = read(f);
     works.forEach((w) => {
       const m = new RegExp('<tr id="' + w.id + '">(.*?)</tr>').exec(h);
       const last = m ? (m[1].match(/<td>([^<]*)<\/td>$/) || [])[1] : null;
-      /* 一年次の成果の続き（黄金比の窓の予想は Trinity-Infinity の続き）は、その旨を名指した文になる。 */
-      const 続き = f === 'catalog.html' ? '学部一年次の成果（Trinity-Infinity）の続き' : 'Continuation of first-year work (Trinity-Infinity)';
-      const want = 続きの作品.includes(w.id) ? 続き
+      /* 一年次の成果の続きは、その旨を、続きの先を名指した文で書く。 */
+      const 先 = 続きの作品[w.id];
+      const 続き = 先 === undefined ? null
+        : f === 'catalog.html' ? '学部一年次の成果（' + 先 + '）の続き' : 'Continuation of first-year work (' + 先 + ')';
+      const want = 続き !== null ? 続き
         : w.begun.period === 'first' ? y1 : w.begun.period === 'second' ? y2 : null;
       if (want && last !== want) 時期欠け.push(f + ' の ' + w.id + ' が ' + last);
-      if (続きの作品.includes(w.id) !== (last === 続き)) 時期欠け.push(f + ' の ' + w.id + ' の続きの書き方');
+      if ((続き !== null) !== /^学部一年次の成果（.*）の続き$|^Continuation of first-year work \(/.test(last || '')) 時期欠け.push(f + ' の ' + w.id + ' の続きの書き方');
       if (二年.includes(w.id) && (w.begun.period !== 'second' || (last || '').indexOf(y1) >= 0)) 時期欠け.push(f + ' の ' + w.id + ' を二年次としていない');
     });
   });
-  続きの作品.filter((id) => !works.some((w) => w.id === id)).forEach((id) => 時期欠け.push('目録に ' + id + ' が無い'));
-  ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次、黄金比の窓の予想を一年次の成果の続きとする', 時期欠け.length === 0,
+  Object.keys(続きの作品).filter((id) => !works.some((w) => w.id === id)).forEach((id) => 時期欠け.push('目録に ' + id + ' が無い'));
+  ok('目録が、始めた時期を行ごとに出し、Sophaxis と deposit-check を学部二年次、黄金比の窓の予想と独身論の続きを一年次の成果の続きとする', 時期欠け.length === 0,
      時期欠け.join(' / ') || works.length + ' 作品 × 2 言語');
 
   /* 「30歳魔法使い」はエッセイとして挙げる。論文と読み違えられないように。 */

@@ -199,6 +199,7 @@ Zenodo に置いていないものです。いまの正本は下の所在です�
 | Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | SSRN `10.2139/ssrn.7537983`、PhilArchive `NEMMRA`、aiXiv.science `aixiv.261024.000001` |
 | Repeated Games through a Cyclic Operator: A Golden-Ratio Threshold, Fractal Payoff Sets, and the Golden-Window Conjecture | Figshare `10.6084/m9.figshare.34419198` |
 | Resolution of the Golden-Window Conjecture and Related Results on β-Transformations with a Hole and on the Trinity-Infinity Series II Game | Figshare `10.6084/m9.figshare.35050300` |
+| Celibacy, Attachment, and the Non-Reproducing Individual: A Psychiatric and Biological Re-examination of “The Nobility and Exemplarity of the Celibate Individual” | SSRN `10.2139/ssrn.7726682` |
 
 2026-10-13 の Figshare の稿は凍結しており、黄金比の窓の予想の (a) と (b) を予想のまま載せています。
 二つは、2026-11-18 に trinity-operator のノートの命題 8 と命題 9 で証明しました。(a) と (b) の式は既知の定理の特別な場合です。
@@ -217,6 +218,13 @@ Figshare に載ったのは 2026-10-13 です。DOI は利用者から受け取�
 ノートの命題 8 と命題 9 を、証明とともに収めています。
 原稿・PDF・台本は golden-window-resolution にあります。このリポジトリは 10 リポジトリの外です。
 番号が指す記録の中身と、DataCite の資源の種類は、確かめていません。
+
+独身論の続き（Celibacy, Attachment, and the Non-Reproducing Individual …）の SSRN の DOI は、2026-11-24 に利用者から受け取りました。
+題は原稿のもので、SSRN の記録とは突き合わせていません。
+2026-11-24 に、Crossref の API はこの DOI に Resource not found を返しました。
+原稿は十のリポジトリのどれにも置いていません。
+独身論の正本は Zenodo のままです。この続きだけ、SSRN の DOI を正本とします。2026-11-18 に利用者が決めました。
+SSRN の受け付けの数は、ほかの篇と同じく、受け取った SSRN の DOI の数で数えています。
 
 ### 論文の頁をまだ作っていない本文
 

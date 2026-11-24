@@ -1034,6 +1034,37 @@ console.log('\n7.14 SSRN の通過と却下');
     && parseInt(散[1], 10) === 通過 && parseInt(散[2], 10) === 却下,
     散 ? ('名乗り ' + 散[1] + ' / ' + 散[2] + '  実際 ' + 通過 + ' / ' + 却下) : '散文が無い');
 
+  /* 2026-11-24（決めごと 5）。トップの頁の五言語も、出した篇・通った篇・落ちた篇を語で名乗っている。
+   * 語で書いた数は数の検査に掛からず、独身論の続きの SSRN の DOI を受け取ったとき、八篇・五篇のまま残りかけた。
+   * 数え直した三つの数を語に直し、五言語の頁の一文と一字一句で突き合わせる。 */
+  {
+    const 語 = {
+      ja: ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+      en: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'],
+      de: ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf'],
+      fr: ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'],
+      it: ['zero', 'uno', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette', 'otto', 'nove', 'dieci', 'undici', 'dodici'],
+    };
+    const 頭 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
+    const 欠け = [];
+    if (篇 === null || 篇 > 12) 欠け.push('出した篇が数えられない');
+    else {
+      const 文 = {
+        'index.html': '出した' + 語.ja[篇] + '篇のうち、受け付けられたのは' + 語.ja[通過] + '篇、落とされたのは' + 語.ja[却下] + '篇です。',
+        'index.en.html': 'Of the ' + 語.en[篇] + ' submitted, ' + 語.en[通過] + ' were accepted and ' + 語.en[却下] + ' were turned away.',
+        'index.de.html': 'Von ' + 語.de[篇] + ' Einreichungen wurden ' + 語.de[通過] + ' angenommen und ' + 語.de[却下] + ' abgewiesen.',
+        'index.fr.html': 'Sur ' + 語.fr[篇] + ' soumissions, ' + 語.fr[通過] + ' ont été retenues et ' + 語.fr[却下] + ' écartées.',
+        'index.it.html': 'Su ' + 語.it[篇] + ' invii, ' + 語.it[通過] + ' sono stati accolti e ' + 語.it[却下] + ' respinti.',
+      };
+      Object.entries(文).forEach(([f, x]) => {
+        const h = read('cpsbvbng26-dotcom', f) || '';
+        if (h.indexOf(x) < 0 && h.indexOf(頭(x)) < 0) 欠け.push(f + ' に「' + x + '」が無い');
+      });
+    }
+    check('トップの頁の五言語の、SSRN に出した篇・通った篇・落ちた篇の語が、数え直したものと合う', 欠け.length === 0,
+      欠け.length ? 欠け.join(' / ') : ('出した ' + 篇 + '・通過 ' + 通過 + '・却下 ' + 却下 + '、五言語'));
+  }
+
   /* **落ちたことを、落ちたと書いてあること。**待っている顔のまま残さない。 */
   const ev = read('cpsbvbng26-dotcom', path.join('docs', 'external-evaluations.md')) || '';
   check('Series I と III の行が、落とされたと書いてある',
