@@ -177,11 +177,11 @@ budo-first-person-notes、family-history-archive、social-data-experiments の�
 
 | 論文 | 正 | 別の所在 |
 | --- | --- | --- |
-| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、国立国会図書館 `info:ndljp/pid/15017937` |
-| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、国立国会図書館 `info:ndljp/pid/15017938` |
+| The Nobility and Exemplarity of the Celibate Individual | `10.5281/zenodo.22058254` | SSRN `10.2139/ssrn.7358779`、PhilArchive `NEMTNA`、国立国会図書館 `info:ndljp/pid/15017937`、全国書誌（電子書籍編） [`R100000039-I15017937`](https://ndlsearch.ndl.go.jp/books/R100000039-I15017937) |
+| Manifesto of Imperial Selfhood | `10.5281/zenodo.22057583` | SSRN `10.2139/ssrn.7358818`、PhilArchive `NEMMOI`、国立国会図書館 `info:ndljp/pid/15017938`、全国書誌（電子書籍編） [`R100000039-I15017938`](https://ndlsearch.ndl.go.jp/books/R100000039-I15017938) |
 | Fragmentarian Spiritual Individualism | `10.5281/zenodo.22064241` | PhilArchive `NEMFSI` |
 | Trinity-Infinity Series II 改訂版 | `10.5281/zenodo.22058777` | SSRN `10.2139/ssrn.7446961` |
-| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、国立国会図書館 `info:ndljp/pid/15017939` |
+| A Naval Gazette Entry for Lieutenant Otani Tsune | `10.5281/zenodo.22055709` | SSRN `10.2139/ssrn.7449338`、Knowledge Commons `q36z2-98e12`、国立国会図書館 `info:ndljp/pid/15017939`、全国書誌（電子書籍編） [`R100000039-I15017939`](https://ndlsearch.ndl.go.jp/books/R100000039-I15017939) |
 
 国立国会図書館の番号は、デジタルコレクションの資料の番号です。DOI ではありません。
 独身の論文、帝国的自己の論文、海軍公報の史料ノートが、e デポで収集されて載りました。
@@ -189,6 +189,13 @@ budo-first-person-notes、family-history-archive、social-data-experiments の�
 番号は、2026-11-23 に国立国会図書館サーチの検索 API とデジタルコレクションの資料 API から読みました。
 公開の範囲は、どれもインターネット公開です。
 書誌の刊行の日付は、独身の論文が 2026-08-22、ほかの二つが 2026-08 です。
+
+三つの書誌は、全国書誌（電子書籍編）の 2026-11-24 提供分に載りました。
+提供のファイルは `digital_20261124.zip` で、中の `digital_20261124.tsv` に三つの行があります。
+ファイルは、国立国会図書館の[全国書誌（電子書籍編）の提供の頁](https://www.ndl.go.jp/data/data_service/ebej_tsv)に置かれています。
+表の `R100000039-I…` は、その行の ID です。国立国会図書館サーチの書誌の番号でもあります。
+受理日は、どの行も 2026-10-06 です。収集根拠は、どの行もオンライン資料収集制度です。
+2026-11-24 に、三つの行の ID・永続的識別子・DOI が、この表の篇と合うことを確かめました。
 
 ### Zenodo に無い本文
 
