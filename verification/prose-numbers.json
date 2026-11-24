@@ -1343,6 +1343,16 @@
         "cpsbvbng26-dotcom: verification/check_ecosystem.js"
       ],
       [
+        " の行を足したので、問題なしが ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
+        "ので、問題なしが # 件から ",
+        "件",
+        "cpsbvbng26-dotcom: verification/check_ecosystem.js"
+      ],
+      [
         "判定は、誤り ",
         "件",
         "nusquama: verification/check.js"

@@ -53,6 +53,7 @@
     "check.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"check": null, "layout": null} },
     "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
     "empty-issue.yml": { "on": ["issues", "schedule"], "permissions": {"issues": "write"}, "jobs": {"answer": null} },
+    "indexnow.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"indexnow": null} },
     "knighting.yml": { "on": ["issues"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"check": null} },
     "labels.yml": { "on": ["push", "workflow_dispatch"], "permissions": {"issues": "write"}, "jobs": {"labels": null} },
     "live.yml": { "on": ["push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"live": null} },
