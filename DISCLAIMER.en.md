@@ -1,6 +1,6 @@
 # Disclaimer
 
-Last updated: 2026-11-23 (Japan time).
+Last updated: 2026-11-24 (Japan time).
 
 Japanese: [免責事項](DISCLAIMER.md). It governs where this translation differs.
 
@@ -55,6 +55,12 @@ Where a licence is a contract between the operator and a consumer, the operator 
 
 Linked sites are run by their own operators.
 The operator has not checked their content and does not guarantee it.
+
+## Posts on X
+
+The operator also posts on X.
+Posts on X are written relatively loosely, compared with this page and the records in the repositories.
+Where a post on X differs from the records in the repositories, the records govern.
 
 ## Statements about people
 
