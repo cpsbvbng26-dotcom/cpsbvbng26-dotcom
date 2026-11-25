@@ -32,6 +32,7 @@
     "checked-intake.yml": { "on": ["issues", "pull_request", "push"], "permissions": {"contents": "read", "issues": "write"}, "jobs": {"test": null, "intake": null} },
     "empty-issue.yml": { "on": ["issues", "schedule"], "permissions": {"issues": "write"}, "jobs": {"answer": null} },
     "hygiene.yml": { "on": ["pull_request", "push", "schedule", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"hygiene": null} },
+    "paper.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"draft": null} },
     "pypi.yml": { "on": ["release", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"build": null, "publish": {"id-token": "write"}} },
     "swh-save.yml": { "on": ["workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"save": null} },
     "verify.yml": { "on": ["pull_request", "push", "workflow_dispatch"], "permissions": {"contents": "read"}, "jobs": {"verify": null, "action": null} }
