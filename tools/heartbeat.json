@@ -17,7 +17,7 @@
   ],
   "yearly": {
     "sophaxis/audit.yml": "Yearly audit, {year}",
-    "sophaxis/report.yml": "Decisions of {year-1}: record them",
+    "sophaxis/report.yml": "Decisions of {year-1}",
     "nusquama/review.yml": "年一回の総点検（{year} 年）"
   },
   "vercel": ["cpsbvbng26-dotcom", "sophaxis", "nusquama", "trinity-operator"],
