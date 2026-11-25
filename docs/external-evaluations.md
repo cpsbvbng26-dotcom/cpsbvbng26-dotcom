@@ -634,7 +634,7 @@ DNA の生データ、未確認の勲等・階級の断定。この一覧は有�
 | HAL（ソフトウェア） | errata-check v0.3.0 | —（ID はまだ受け取っていない） | 審査待ち。2026-09-29 |
 | Figshare | Repeated Games through a Cyclic Operator（黄金比の窓の予想の英語版） | `10.6084/m9.figshare.34419198` | 載った。2026-10-13。新しいアカウントから出した（下記）。門が下りたかは分からない |
 | Figshare | Resolution of the Golden-Window Conjecture and Related Results on β-Transformations with a Hole and on the Trinity-Infinity Series II Game（黄金比の窓の予想の解決） | `10.6084/m9.figshare.35050300` | 載った。番号は 2026-11-18 に利用者から受け取った。公開された日は確かめていない。上の行の新しい版ではなく、別の項目。門が下りたかは分からない |
-| SSRN | Celibacy, Attachment, and the Non-Reproducing Individual（独身論の続き） | `10.2139/ssrn.7726682` | DOI は 2026-11-24 に利用者から受け取った。同じ日に、Crossref の API はこの DOI に Resource not found を返した。題は原稿のもので、SSRN の記録とは突き合わせていない |
+| SSRN | Celibacy, Attachment, and the Non-Reproducing Individual（独身論の続き） | `10.2139/ssrn.7726682` | DOI は 2026-11-24 に利用者から受け取った。同じ日に、Crossref の API はこの DOI に Resource not found を返した。その時点では、題は原稿のもので、SSRN の記録とは突き合わせていなかった。2026-11-25 に、Crossref の API で記録を確かめた。記録が作られた時刻は 2026-11-24T05:11:04Z。Resource not found を受け取った時刻は書き留めておらず、二つの前後は分からない。記録の題は、引用符の形を除いて原稿の題と同じ。著者には ORCID `0009-0000-1406-0547` が、ORCID の認証を経て付いている。ORCID の公開の記録にも載っている。SSRN が頁を公開した日は確かめていない |
 | Knowledge Commons（KCWorks） | 「30歳魔法使い」都市伝説の構造分析 | `vaa96-ss949`（レコードの番号。DOI は受け取っていない） | 置いた。2026-10-22。査読は無い。言語モデルの利用は、場の欄（AI Use）に開示した |
 | PsyArXiv（OSF） | 「30歳魔法使い」都市伝説の構造分析（英語版 v1.1） | —（付かなかった） | **受け付けられなかった**。2026-10-22 に出した。理由は示されている —— 著者に心理学の査読済み論文が無い。最終の判断で、出し直さないよう求められた |
 
