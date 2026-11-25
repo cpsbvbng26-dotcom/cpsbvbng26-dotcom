@@ -2323,7 +2323,7 @@
         "self-correction: verification/check_register.py"
       ],
       [
-        "ある項目は # 件です。残る ",
+        "る項目は # 件です。残る ",
         "件",
         "cpsbvbng26-dotcom: verification/check_ecosystem.js"
       ],
@@ -3841,7 +3841,7 @@
       "ファイル": "self-correction/register.toml",
       "前": "# ",
       "語": "件",
-      "文": "# 106 件のうち 45 件は再構成です。2025年",
+      "文": "# 113 件のうち 48 件は再構成です。2025年",
       "理由": "TOML の注釈（# の行）。コードの注釈"
     },
     {

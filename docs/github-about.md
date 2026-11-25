@@ -246,7 +246,7 @@ https://doi.org/10.5281/zenodo.22335676
 |---|---|---|
 | 1 | `cpsbvbng26-dotcom` | 入口。核の主張と、その限界に 1 クリックで着く |
 | 2 | `errata-check` | 核の道具。唯一 DOI が付いた新規のもの |
-| 3 | `self-correction` | 核の記録。106 件、消せない |
+| 3 | `self-correction` | 核の記録。113 件、消せない |
 | 4 | `trinity-infinity` | 監査の対象（論文と、撤回の記録） |
 | 5 | `trinity-operator` | 監査の対象（訂正と、その反例） |
 | 6 | `autonomy-and-self-cultivation` | 監査の対象（哲学三篇） |
