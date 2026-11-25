@@ -5168,6 +5168,13 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
   }
   for (const r of LIVE4) { real.live[r] = read(r, path.join('tools', 'live.js')); real.liveConf[r] = read(r, path.join('tools', 'live.json')); real.ua[r] = read(r, path.join('tools', 'ua.js')); }
   for (const r of ['cpsbvbng26-dotcom', 'sophaxis']) { real.hb[r] = read(r, path.join('tools', 'heartbeat.js')); real.hbConf[r] = read(r, path.join('tools', 'heartbeat.json')); }
+  /* 年に一度の issue を開く Sophaxis の台本が書く題（2026-11-25）。見張りの探す題（tools/heartbeat.json の yearly）と一字一句同じでないと、
+   * 開いた issue を見張りが見つけない。年の数の代わりに、heartbeat.json と同じ {year}・{year-1} を渡して題を作らせる。
+   * 題は「Decisions of {year-1}: record them」だったが、運営者に命令しない（決めごと 16）ので「Decisions of {year-1}」にした。 */
+  real.titles = {};
+  for (const [k, rel, y] of [['sophaxis/report.yml', 'tools/report_issue.js', '{year-1}'], ['sophaxis/audit.yml', 'tools/audit.js', '{year}']]) {
+    try { real.titles[k] = require(path.join(ROOT, k.split('/')[0], rel)).title(y); } catch (e) { real.titles[k] = null; }
+  }
   for (const [k, f] of Object.entries(LOCKS)) real.locks[k] = read(k.split('/')[0], f);
 
   /* ---- ワークフローを読む。決まった形（ブロックの YAML、二つ空けの字下げ）の外は、読めないものとして表と合わない。 */
@@ -5533,6 +5540,7 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
         const y = crons.length ? Math.max(...crons.map((c) => H.lastYearly(c, Date.UTC(2027, 11, 31)))) : 0;
         if (!y || iso(y).slice(0, 10) !== d) bad.push(k + '：年に一度の最初の期日が ' + d + ' でない');
         if (!hc || !hc.yearly || !hc.yearly[k]) bad.push(k + '：年に一度の issue の題が無い');
+        if (k in (x.titles || {}) && (!hc || !hc.yearly || typeof x.titles[k] !== 'string' || hc.yearly[k] !== x.titles[k])) bad.push(k + '：見張りの探す題が、issue を開く台本の題（' + x.titles[k] + '）と違う');
       }
     }
     /* 七。同時実行の組。 */
@@ -5641,6 +5649,10 @@ console.log('\n12za. 自動化を固める：13 のリポジトリのワーク�
     ['見張りが古い定期の仕事を見逃す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace('2 * p.hours * HOUR', '200 * p.hours * HOUR') }) })],
     ['見張りが注釈の行のあとの cron を拾わない', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("(?: {4}(?:- cron: .*|#.*)\\n?)+", "(?: {4}- cron: .*\\n?)+") }) })],
     ['見張りが push の失敗を見逃す', Object.assign({}, real, { hb: Object.assign({}, real.hb, { 'cpsbvbng26-dotcom': String(real.hb['cpsbvbng26-dotcom']).replace("['success', 'skipped', 'neutral'].includes(e.pushConclusion)", 'true') }) })],
+    ['見張りの探す題を古い題に戻す', sub('hbConf', 'cpsbvbng26-dotcom', String(real.hbConf['cpsbvbng26-dotcom']).replace('"Decisions of {year-1}"', '"Decisions of {year-1}: record them"'))],
+    ['Sophaxis の年の数の台本の題を古い題に戻す', sub('titles', 'sophaxis/report.yml', 'Decisions of {year-1}: record them')],
+    ['Sophaxis の年に一度の点検の題を変える', sub('titles', 'sophaxis/audit.yml', 'Yearly audit of {year}')],
+    ['Sophaxis の台本が題を書き出さない', sub('titles', 'sophaxis/report.yml', null)],
     ['年に一度の仕事の cron を変える', fw('sophaxis', 'report.yml', (t) => t.replace("'23 3 2 1 *'", "'23 3 2 2 *'"))],
     ['受付の組を一つにする', Object.assign({}, real, { flows: Object.fromEntries(ALL.map((r) => [r, Object.assign({}, real.flows[r], { 'checked-intake.yml': String(real.flows[r]['checked-intake.yml']).replace(/group: \$\{\{[^\n]*\}\}/, 'group: checked-intake') })])) })],
     ['受付の組から持ち主の条件を外す', fw('cpsbvbng26-dotcom', 'checked-intake.yml', (t) => t.replace(" && github.event.sender.login != github.repository_owner) && format('checked-intake-issue-{0}'", ") && format('checked-intake-issue-{0}'"))],
