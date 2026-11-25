@@ -288,7 +288,7 @@
       "venue": "SSRN",
       "venueType": "preprint server",
       "work": "Celibacy, Attachment, and the Non-Reproducing Individual",
-      "outcome": "DOI received; no Crossref record on 2026-11-24",
+      "outcome": "DOI received; Crossref API returned Resource not found on 2026-11-24; Crossref record (created 2026-11-24T05:11:04Z) confirmed on 2026-11-25",
       "reasonCategory": "not applicable"
     },
     {
