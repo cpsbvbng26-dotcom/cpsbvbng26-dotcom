@@ -2638,6 +2638,11 @@
         "fail in each of ",
         "ways",
         "sophaxis: verification/check.js"
+      ],
+      [
+        " in each of the ",
+        "ways",
+        "sophaxis: verification/check.js"
       ]
     ],
     "sophaxis/README.md": [
