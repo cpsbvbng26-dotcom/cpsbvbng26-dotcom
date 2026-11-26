@@ -7674,6 +7674,55 @@ console.log('\n13k. 2026-11-23：国立国会図書館デジタルコレクシ�
     + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
 }
 
+console.log('\n13l. 2026-11-26：削除した HAL の ID のうち、OpenAlex がまだ所在に挙げるものの数が、cpsbvbng26-dotcom の削除の表の右の列と、表の下の文で合う');
+{
+  /* 2026-11-26 に Claude が決めた。OpenAlex を著者の ORCID iD で引くと、削除した HAL の ID が作品の所在として残っていた。
+   * そのうち三つは、どの記録にも書いていなかった。削除の表（docs/doi-index.md「削除した所在」）に足し、右の列に、
+   * OpenAlex がその ID を所在に挙げる作品の番号（W…）を書いた。表の下の文の数（ID の数・作品の数・削除した日を確かめていない行の数）を、
+   * ここで表から数え直す（決めごと 5）。OpenAlex の応答そのものは日付の付いた観測で、ここでは外へ出ない。
+   * 「確かめていません」の行は OpenAlex の所在から見つけたものなので、どれも右の列に作品の番号を持つ。 */
+  const 見る = (di) => {
+    const i = di.indexOf('## 削除した所在');
+    const j = i < 0 ? -1 : di.indexOf('\n## ', i + 1);
+    const 節 = i >= 0 ? di.slice(i, j < 0 ? di.length : j) : '';
+    const 行 = 節.split('\n').filter((l) => /^\| `hal-\d+` \| /.test(l)).map((l) => l.replace(/^\| | \|$/g, '').split(' | '));
+    const W = /^`W\d+`$/;
+    const bad = [];
+    if (!節.includes('\n| HAL の ID | 本文 | 削除した日 | 本文が残る場所 | 2026-11-26 の OpenAlex が所在に挙げる作品 |\n')) bad.push('表の列');
+    if (行.length < 9 || !行.every((c) => c.length === 5 && (W.test(c[4]) || c[4] === '挙げない') && (/^\d{4}-\d{2}-\d{2}$/.test(c[2]) || c[2] === '確かめていません'))) bad.push('表の形');
+    const 挙げる = 行.filter((c) => W.test(c[4]));
+    const 作品 = new Set(挙げる.map((c) => c[4])).size;
+    const 未 = 行.filter((c) => c[2] === '確かめていません');
+    if (!未.every((c) => W.test(c[4]))) bad.push('削除した日を確かめていない行が、OpenAlex の作品を持たない');
+    const 文 = [
+      '2026-11-26 に、OpenAlex を著者の ORCID iD で引きました。',
+      '右の列に作品の番号がある ' + 挙げる.length + ' 件の ID を、OpenAlex は ' + 作品 + ' 件の作品の所在として、まだ挙げていました。',
+      '同じ日に、hal.science はこの ' + 挙げる.length + ' 件のどれにも 404 を返しました。',
+      '削除した日の列が「確かめていません」の ' + 未.length + ' 件は、この日に OpenAlex の所在から見つけて足しました。',
+    ];
+    for (const s of 文) if (!節.includes('\n' + s + '\n')) bad.push('表の下の文が表と合わない：' + s.slice(0, 40));
+    return { bad, n: 挙げる.length, w: 作品, 未: 未.length };
+  };
+  const di = read('cpsbvbng26-dotcom', path.join('docs', 'doi-index.md')) || '';
+  const 今 = 見る(di);
+  check('削除の表の右の列（2026-11-26 の OpenAlex）から数え直した ID の数・作品の数・削除した日を確かめていない行の数が、表の下の文と合う',
+    今.bad.length === 0, 今.bad.length ? 今.bad.join(' / ') : 今.n + ' 件・' + 今.w + ' 作品・' + 今.未 + ' 件');
+  const 替 = (a, b) => di.replace(a, b);
+  const 壊す = [
+    ['文の ID の数を一つ増やす', 替('右の列に作品の番号がある ' + 今.n + ' 件', '右の列に作品の番号がある ' + (今.n + 1) + ' 件')],
+    ['文の作品の数を一つ減らす', 替('OpenAlex は ' + 今.w + ' 件の作品', 'OpenAlex は ' + (今.w - 1) + ' 件の作品')],
+    ['404 の文の数を変える', 替('hal.science はこの ' + 今.n + ' 件', 'hal.science はこの ' + (今.n - 1) + ' 件')],
+    ['ある行の作品を「挙げない」にする', 替('| Zenodo | `W7153479597` |', '| Zenodo | 挙げない |')],
+    ['確かめていない行に日付を入れる', 替('| 確かめていません | Zenodo、PhilArchive |', '| 2026-11-06 | Zenodo、PhilArchive |')],
+    ['確かめていない行から作品を外す', 替('| 確かめていません | Zenodo、PhilArchive | `W7124264941` |', '| 確かめていません | Zenodo、PhilArchive | 挙げない |')],
+    ['表から右の列の見出しを外す', 替('| 本文が残る場所 | 2026-11-26 の OpenAlex が所在に挙げる作品 |', '| 本文が残る場所 |')],
+    ['引いた日の文を外す', 替('2026-11-26 に、OpenAlex を著者の ORCID iD で引きました。\n', '')],
+  ];
+  const 通った = 壊す.filter(([, x]) => x === di || 見る(x).bad.length === 0).map(([n]) => n);
+  check('壊して確かめる：文の三つの数・行の作品・確かめていない行の日付と作品・右の列の見出し・引いた日の文のどれを壊しても落ちる（'
+    + (壊す.length - 通った.length) + ' / ' + 壊す.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 console.log('\n14. この検査が名乗る件数');
 
 {
