@@ -12,7 +12,7 @@ Type: Project · Status: Running
 
 ### Who is Takuya Nemoto (born 18 January 2001)?
 
-I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am currently a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton). A Claude enthusiast, and a Claude Code enthusiast.
+I study philosophy and game theory on my own, with the help of large language models (LLMs). After earning a doctorate, I plan to specialise in existential philosophy. I am currently a student at ZEN University, Faculty of Social Informatics. Since around October 2024, I have also worked as a sole proprietor. I post preprints on SSRN and PhilArchive, publish open-source software, and run [Sophaxis](https://sophaxis.vercel.app/), listed in [ROAR](https://roar.eprints.org/27422/) (the Registry of Open Access Repositories, University of Southampton) and registered with [CORE](https://core.ac.uk/data-providers/27777) (the open access aggregator of the Open University) as a data provider. A Claude enthusiast, and a Claude Code enthusiast.
 
 My main platforms are GitHub, SSRN, PhilArchive, Figshare and OSF. On aiXiv.science, 1 paper has passed the platform's official review. The platform describes its review as a vote of language models. Who reviewed this paper was not checked here. It is counted here as not peer review, and it is not review by a journal or a society either.
 
