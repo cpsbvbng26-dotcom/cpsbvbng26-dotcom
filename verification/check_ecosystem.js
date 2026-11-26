@@ -7601,6 +7601,79 @@ console.log('\n13k. 2026-11-23：国立国会図書館デジタルコレクシ�
     + (書誌の壊し.length - 書誌の通った.length) + ' / ' + 書誌の壊し.length + '）', 書誌の通った.length === 0, 書誌の通った.join(', '));
 }
 
+{
+  /* 2026-11-26：Sophaxis が ROAR に載り、CORE にデータ提供元として登録されていることを、トップの頁の五言語にも書いた。
+   * 利用者は「サイト側にも書いてね」と決めた。番号の出所は sophaxis の site.json（listedIn の ROAR の url、dataProviderIn の CORE の provider）。
+   * 一。トップの頁の五言語の設定と、そこから生成した五つの頁に、その言語の形で ROAR の記録と CORE の提供元の番号が一度ずつあり、出所と同じ。
+   * 二。日英の設定では、その一文が Sophaxis の項目（sophaxis.vercel.app を指す works）の要約にある。
+   * 三。README の自己紹介の二つのリンクも、同じ番号を指す。
+   * 四。壊して確かめる。 */
+  const 形 = {
+    ja: /ROAR の記録 (\d+)、CORE の提供元 (\d+)/g,
+    en: /ROAR record (\d+), CORE provider (\d+)/g,
+    de: /ROAR-Eintrag (\d+), CORE-Anbieter (\d+)/g,
+    fr: /notice ROAR (\d+), fournisseur CORE (\d+)/g,
+    it: /record ROAR (\d+), fornitore CORE (\d+)/g,
+  };
+  const 面 = [
+    ...[['site.json', 'ja'], ['site.en.json', 'en'], ['site.de.json', 'de'], ['site.fr.json', 'fr'], ['site.it.json', 'it']]
+      .map(([f, l]) => ['researcher-profile', f, l]),
+    ...[['index.html', 'ja'], ['index.en.html', 'en'], ['index.de.html', 'de'], ['index.fr.html', 'fr'], ['index.it.html', 'it']]
+      .map(([f, l]) => ['cpsbvbng26-dotcom', f, l]),
+    ['cpsbvbng26-dotcom', 'README.md', 'link'],
+    ['cpsbvbng26-dotcom', 'README.en.md', 'link'],
+  ];
+  const 今 = { 'sophaxis:site.json': read('sophaxis', 'site.json') || '' };
+  面.forEach(([r, f]) => { 今[r + ':' + f] = read(r, f) || ''; });
+  const 問題 = (x) => {
+    const bad = [];
+    let site = {};
+    try { site = JSON.parse(x['sophaxis:site.json']); } catch (e) { bad.push('sophaxis/site.json が読めない'); }
+    const roar = ((site.listedIn || []).find((e) => e.name === 'ROAR') || {}).url || '';
+    const core = ((site.dataProviderIn || []).find((e) => e.name === 'CORE') || {}).provider;
+    const R = (/^https:\/\/roar\.eprints\.org\/(\d+)\/$/.exec(roar) || [])[1];
+    const C = Number.isInteger(core) ? String(core) : null;
+    if (!R || !C) { bad.push('sophaxis/site.json に ROAR の記録か CORE の提供元の番号が無い'); return bad; }
+    for (const [r, f, l] of 面) {
+      const t = x[r + ':' + f] || '';
+      if (!t) { bad.push(r + '/' + f + ' が読めない'); continue; }
+      if (l === 'link') {
+        const rs = [...t.matchAll(/roar\.eprints\.org\/(\d+)/g)].map((m) => m[1]);
+        const cs = [...t.matchAll(/core\.ac\.uk\/data-providers\/(\d+)/g)].map((m) => m[1]);
+        if (rs.length !== 1 || rs[0] !== R) bad.push(r + '/' + f + ' の ROAR のリンクが ' + (rs.join(',') || '無い'));
+        if (cs.length !== 1 || cs[0] !== C) bad.push(r + '/' + f + ' の CORE のリンクが ' + (cs.join(',') || '無い'));
+        continue;
+      }
+      const ms = [...t.matchAll(形[l])];
+      if (ms.length !== 1) { bad.push(r + '/' + f + ' に ROAR と CORE の番号の一文が ' + ms.length + ' か所'); continue; }
+      if (ms[0][1] !== R || ms[0][2] !== C) bad.push(r + '/' + f + ' の番号が ROAR ' + ms[0][1] + '・CORE ' + ms[0][2] + '（出所は ' + R + '・' + C + '）');
+      if (r === 'researcher-profile' && (l === 'ja' || l === 'en')) {
+        let s = '';
+        try { s = ((JSON.parse(t).works || []).find((w) => w.url === 'https://sophaxis.vercel.app/') || {}).summary || ''; } catch (e) { /* 下で落ちる */ }
+        if (!new RegExp(形[l].source).test(s)) bad.push(r + '/' + f + ' の一文が Sophaxis の項目の要約に無い');
+      }
+    }
+    return bad;
+  };
+  const now = 問題(今);
+  check('Sophaxis の ROAR の記録と CORE の提供元の番号が、トップの頁の五言語の設定と頁・README の ' + 面.length + ' の面で sophaxis の site.json と同じ（日英は Sophaxis の項目の要約に置く）',
+    now.length === 0, now.slice(0, 4).join(' / '));
+  const 替 = (k, a, b) => Object.assign({}, 今, { [k]: 今[k].replace(a, b) });
+  const 壊し = [
+    ['出所の CORE の提供元を変える', 替('sophaxis:site.json', '"provider": 27777', '"provider": 27778')],
+    ['フランス語の設定の CORE の番号を変える', 替('researcher-profile:site.fr.json', 'fournisseur CORE 27777', 'fournisseur CORE 27778')],
+    ['イタリア語の頁から一文を外す', 替('cpsbvbng26-dotcom:index.it.html', /record ROAR \d+, fornitore CORE \d+/, '')],
+    ['日本語の設定で一文を OSF の項目へ移す', Object.assign({}, 今, { 'researcher-profile:site.json': 今['researcher-profile:site.json']
+      .replace(/サウサンプトン大学の[^"]*?CORE の提供元 27777）。/, '')
+      .replace('サーバーの、OSF のプロジェクトの頁です。', 'サーバーの、OSF のプロジェクトの頁です。（ROAR の記録 27422、CORE の提供元 27777）') })],
+    ['英語の頁の ROAR の番号を変える', 替('cpsbvbng26-dotcom:index.en.html', 'ROAR record 27422', 'ROAR record 27423')],
+    ['英語の README の ROAR のリンクを変える', 替('cpsbvbng26-dotcom:README.en.md', 'roar.eprints.org/27422', 'roar.eprints.org/27423')],
+  ];
+  const 通った = 壊し.filter(([, x]) => 問題(x).length === 0).map(([n]) => n);
+  check('壊して確かめる：出所の番号・設定の番号・頁の一文・日本語の一文の置き場・頁の番号・README のリンクのどれを崩しても落ちる（'
+    + (壊し.length - 通った.length) + ' / ' + 壊し.length + '）', 通った.length === 0, 通った.join(', '));
+}
+
 console.log('\n14. この検査が名乗る件数');
 
 {
