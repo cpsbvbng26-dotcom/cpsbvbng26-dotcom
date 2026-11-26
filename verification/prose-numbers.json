@@ -1711,6 +1711,21 @@
         "問題なし # 件で、合わせて ",
         "件",
         "nusquama: verification/check.js（検査 99）"
+      ],
+      [
+        "判定は、漏れ ",
+        "件",
+        "nusquama: verification/check.js（検査 100）"
+      ],
+      [
+        "判定は、漏れ # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js（検査 100）"
+      ],
+      [
+        "、問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js（検査 100）"
       ]
     ],
     "nusquama/docs/world-law-2026-11-12.md": [
