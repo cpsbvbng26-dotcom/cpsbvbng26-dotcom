@@ -268,20 +268,32 @@ notice は PDF を持たない書誌の登録で、モデレーションを通�
 残っていた 4 件も、2026-11-06 に著者が削除しました。HAL の公開の検索でも、その日のうちに 0 件になったことを確かめています。
 これからは、HAL の ID はモデレーションを通って公開されたものだけを書きます。審査待ちの投稿の番号は書きません。
 
-| HAL の ID | 本文 | 削除した日 | 本文が残る場所 |
-| --- | --- | --- | --- |
-| `hal-05759279` | Fragmentarian Spiritual Individualism | 2026-09-26 | Zenodo、PhilArchive |
-| `hal-05759325` | Trinity-Infinity Series I 改訂版 | 2026-09-26 | Zenodo |
-| `hal-05759296` | Trinity-Infinity Series III | 2026-09-26 | Zenodo |
-| `hal-05759717` | 正義論とアルゴリズム | 2026-09-26 | Zenodo |
-| `hal-05759721` | 自己実験としての名乗り | 2026-09-26 | Zenodo |
-| `hal-05758942` | The Nobility and Exemplarity of the Celibate Individual | 2026-11-06 | Zenodo、SSRN、PhilArchive |
-| `hal-05758968` | Manifesto of Imperial Selfhood | 2026-11-06 | Zenodo、SSRN、PhilArchive |
-| `hal-05759064` | Trinity-Infinity Series II 改訂版 | 2026-11-06 | Zenodo、SSRN |
-| `hal-05759080` | A Naval Gazette Entry for Lieutenant Otani Tsune | 2026-11-06 | Zenodo、SSRN、Knowledge Commons |
+| HAL の ID | 本文 | 削除した日 | 本文が残る場所 | 2026-11-26 の OpenAlex が所在に挙げる作品 |
+| --- | --- | --- | --- | --- |
+| `hal-05759279` | Fragmentarian Spiritual Individualism | 2026-09-26 | Zenodo、PhilArchive | `W7124264941` |
+| `hal-05759325` | Trinity-Infinity Series I 改訂版 | 2026-09-26 | Zenodo | 挙げない |
+| `hal-05759296` | Trinity-Infinity Series III | 2026-09-26 | Zenodo | `W7153479597` |
+| `hal-05759717` | 正義論とアルゴリズム | 2026-09-26 | Zenodo | `W7208835517` |
+| `hal-05759721` | 自己実験としての名乗り | 2026-09-26 | Zenodo | `W7213343790` |
+| `hal-05758942` | The Nobility and Exemplarity of the Celibate Individual | 2026-11-06 | Zenodo、SSRN、PhilArchive | 挙げない |
+| `hal-05758968` | Manifesto of Imperial Selfhood | 2026-11-06 | Zenodo、SSRN、PhilArchive | `W7203972664` |
+| `hal-05759064` | Trinity-Infinity Series II 改訂版 | 2026-11-06 | Zenodo、SSRN | `W7153175910` |
+| `hal-05759080` | A Naval Gazette Entry for Lieutenant Otani Tsune | 2026-11-06 | Zenodo、SSRN、Knowledge Commons | `W7128304807` |
+| `hal-05680130` | A Naval Gazette Entry for Lieutenant Otani Tsune | 確かめていません | Zenodo、SSRN、Knowledge Commons | `W7128304807` |
+| `hal-05680131` | Manifesto of Imperial Selfhood | 確かめていません | Zenodo、SSRN、PhilArchive | `W7203972664` |
+| `hal-05680137` | Fragmentarian Spiritual Individualism | 確かめていません | Zenodo、PhilArchive | `W7124264941` |
 
 **削除した ID は、この表にだけ残します**。ほかの記録からは所在として外してあります。
 `check_site.js` が、この表の ID へのリンクがどこにも残っていないことを確かめます。
+
+2026-11-26 に、OpenAlex を著者の ORCID iD で引きました。
+右の列に作品の番号がある 10 件の ID を、OpenAlex は 7 件の作品の所在として、まだ挙げていました。
+同じ日に、hal.science はこの 10 件のどれにも 404 を返しました。
+比べるために引いた `hal-00000001` は 200 を返しました。
+OpenAIRE の記録も、ORCID iD で引くと、収集元（collectedfrom）に Hyper Article en Ligne をまだ挙げていました。
+削除した日の列が「確かめていません」の 3 件は、この日に OpenAlex の所在から見つけて足しました。
+それまで、どの記録にも書いていなかった ID です。
+いつ削除したかは、記録に残っていません。
 
 PhilArchive の `NEMFSI`（Fragmentarian Spiritual Individualism）も、2026-09-26 に削除を依頼しました。
 PhilPapers は削除を依頼として受け付けるので、まだ消えていません。消えたら、この節に足します。
