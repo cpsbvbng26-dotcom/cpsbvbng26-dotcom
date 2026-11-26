@@ -1691,6 +1691,26 @@
         "、問題なし # 件で、合わせて ",
         "件",
         "nusquama: verification/check.js（検査 96）"
+      ],
+      [
+        "判定は、根拠不足 ",
+        "件",
+        "nusquama: verification/check.js（検査 99）"
+      ],
+      [
+        "判定は、根拠不足 # 件、漏れ ",
+        "件",
+        "nusquama: verification/check.js（検査 99）"
+      ],
+      [
+        "# 件、漏れ # 件、問題なし ",
+        "件",
+        "nusquama: verification/check.js（検査 99）"
+      ],
+      [
+        "問題なし # 件で、合わせて ",
+        "件",
+        "nusquama: verification/check.js（検査 99）"
       ]
     ],
     "nusquama/docs/world-law-2026-11-12.md": [
