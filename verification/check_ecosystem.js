@@ -1731,10 +1731,11 @@ console.log('\n7.7 受けた勧誘');
       const c = (l.split('|')[2] || '').replace(/[*\s]/g, '');
       return c.indexOf('同上') !== 0;
     }).length;
-    const m = /表の行はいま(.)つあります。差出人は(.)つです/.exec(E);
+    /* 十は「つ」を付けない（「十つ」とは言わない）。一から九は「つ」を付ける。 */
+    const m = /表の行はいま(十|[一二三四五六七八九]つ)あります。差出人は(十|[一二三四五六七八九]つ)です/.exec(E);
     check('勧誘の行数と差出人の数が、名乗りと合う',
       m !== null && rows.length > 0
-      && 漢.indexOf(m[1]) === rows.length && 漢.indexOf(m[2]) === 差出人,
+      && 漢.indexOf(m[1][0]) === rows.length && 漢.indexOf(m[2][0]) === 差出人,
       m ? ('名乗り ' + m[1] + ' 行 / ' + m[2] + ' 差出人  実際 '
            + rows.length + ' / ' + 差出人)
         : '名乗りが無い');
