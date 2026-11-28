@@ -1321,7 +1321,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 **出版社からの勧誘が届いています**。評価ではないので、「受けた評価」には入れません。
 **だが、届いたことは記録します**。都合の悪い接触だけ落とせる状態にしません。
 
-表の行はいま九つあります。差出人は七つです。
+表の行はいま十あります。差出人は八つです。
 
 | いつ | 誰から | 何について |
 | --- | --- | --- |
@@ -1334,6 +1334,7 @@ Kant, I. Groundwork of the Metaphysics of Morals. 1785.
 | 2026年10月 | **Journal of Orthopedics & Bone Disorders**（`ISSN 2577-297X`。担当者の名義。**個人名と連絡先は記録しない**） | どの論文かを名指しせず、整形外科・骨疾患の号への投稿を勧めるもの。**分野がまったく違う** |
 | 2026年10月 | **Medical Journal of Clinical Trials & Case Studies**（`ISSN 2578-4838`。担当者の名義。**個人名は記録しない**。領域名は `clinicalcasestudiesjournal.com`） | どの論文かを名指しせず、投稿を勧めるもの。前の便りへの追いかけだと書いているが、一通目はこの記録に無い。**分野が違う** |
 | 2026年10月14日 | **Journal of Philosophy and Ethics**（`Editorial Manager` の名義。**個人名は記録しない**。ISSN も領域名も文面に無い） | `The Nobility and Exemplarity of the Celibate Individual` を読んだとして、改訂・拡張した稿か関連する研究の投稿を勧めるもの。締め切りは 2026年10月25日 |
+| 2026年11月 | **Journal of Clinical Nursing & Reports**（`ISSN 3065-3630`。`Managing Editor` の名義。**個人名は記録しない**） | `Celibacy, Attachment, and the Non-Reproducing Individual: A Psychiatric and Biological Re-examination of "The Nobility and Exemplarity of the Celibate Individual"` を読んだとして、未発表の論文・総説・症例報告・短報などの投稿を勧めるもの。**分野が違う** |
 
 **明文として届いた条件は三つです**（原文から、必要な範囲だけ引く）。
 
